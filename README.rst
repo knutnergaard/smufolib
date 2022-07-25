@@ -1,26 +1,30 @@
-#SMufoLib
+SMufoLib
+========
 
 SMufoLib is a small library of objects and functions designed to aid in
-font development specific to the [Standard Music Font Layout (SMuFL)]
-(https://github.com/w3c/smufl).
+font development specific to the `Standard Music Font Layout <https://github.com/w3c/smufl>`_ (SMuFL).
 
-The objects in SMufoLib are wrapped around [FontParts]
-(https://fontparts.robotools.dev/en/stable/index.html), the replacement
+
+
+The objects in SMufoLib are wrapped around `FontParts <https://fontparts.robotools.dev/en/stable/index.html>`_, the replacement
 for RoboFab, still in development.
 
-##Documentation
+Documentation
+-------------
 
 SMufoLib’s documentation is presently limited to its docstrings.
 However, the library should be easy to grasp for anyone familiar with
 FontParts and SMuFL in addition to Python.
 
-##Scripts
+Scripts
+-------
 
 SMufoLib comes bundled with several useful functions and scripts for
 building SMuFL metadata files, extracting engraving defaults,
 exporting/importing annotation and more.
 
-##Installation
+Installation
+------------
 
 SMufoLib requires `Python <http://www.python.org/download/>`__ 3.9 or
 later. It is listed in the Python Package Index (PyPI) and can be
@@ -30,24 +34,29 @@ installed with `pip <https://pip.pypa.io/>`__:
 
    $ python -m pip install smufolib
 
-##Configuration
+Configuration
+-------------
 
 Project specific settings are defined in ``smufolib.cfg``. This file is
 divided between the following sections:
 
-####Font Paths
+Font Paths
+^^^^^^^^^^
 
 Filesystem (or URL) paths to various font-related files.
 
-####SMuFL Paths
+SMuFL Paths
+^^^^^^^^^^^
 
 Filesystem (or URL) paths to various SMuFL-related files.
 
-####SMuFL URLs
+SMuFL URLs
+^^^^^^^^^^
 
 Specific URL paths to various SMuFL-related files.
 
-####About interpolation
+About interpolation
+^^^^^^^^^^^^^^^^^^^
 
 In the above sections interpolation strings ``${option}`` and
 ``${section:option}`` may be used to refer to an option in the current
@@ -67,12 +76,14 @@ when specifying pathnames:
 For more information, see:
 https://docs.python.org/3/library/configparser.html#interpolation-of-values
 
-####[Engraving Defaults]
+Engraving Defaults
+^^^^^^^^^^^^^^^^^^
 
 Values for SMuFLs *engravingDefaults* metadata structure. Values left
 empty will be calculated automatically. See ``help`` for
-``smufolib.engraving.getEngravingDefaults``.
+``smufolib.engraving.getEngravingDefaults.``
 
-####[Mark Color]
+Mark Color
+^^^^^^^^^^
 
 Color values for glyph.rGlyph.markColor.
