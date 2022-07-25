@@ -2,12 +2,14 @@ SMufoLib
 ========
 
 SMufoLib is a small library of objects and functions designed to aid in
-font development specific to the `Standard Music Font Layout <https://github.com/w3c/smufl>`_ (SMuFL).
+font development specific to the `Standard Music Font Layout
+<https://github.com/w3c/smufl>`_ (SMuFL).
 
 
 
-The objects in SMufoLib are wrapped around `FontParts <https://fontparts.robotools.dev/en/stable/index.html>`_, the replacement
-for RoboFab, still in development.
+The objects in SMufoLib are wrapped around `FontParts
+<https://fontparts.robotools.dev/en/stable/index.html>`_, the
+replacement for RoboFab, still in development.
 
 Documentation
 -------------
@@ -15,13 +17,6 @@ Documentation
 SMufoLib’s documentation is presently limited to its docstrings.
 However, the library should be easy to grasp for anyone familiar with
 FontParts and SMuFL in addition to Python.
-
-Scripts
--------
-
-SMufoLib comes bundled with several useful functions and scripts for
-building SMuFL metadata files, extracting engraving defaults,
-exporting/importing annotation and more.
 
 Installation
 ------------
@@ -38,7 +33,11 @@ Configuration
 -------------
 
 Project specific settings are defined in ``smufolib.cfg``. This file is
-divided between the following sections:
+located inside the `smufolib` folder in python site packages by
+default, but can be moved to the home folder or a specific location
+defined in the environment variable ``SMUFOLIB_CFG`` or as ``INI_FILEPATH``
+inside ``config.py`` is divided between the following
+sections:
 
 Font Paths
 ^^^^^^^^^^
@@ -71,7 +70,8 @@ when specifying pathnames:
    ...
    [SMuFL Paths]
    ...
-   classes.json = ${Font Paths:directory}/classes.json (result: ~/Documents/UFO/classes.json)
+   classes.json = ${Font Paths:directory}/classes.json
+   (result: ~/Documents/UFO/classes.json)
 
 For more information, see:
 https://docs.python.org/3/library/configparser.html#interpolation-of-values
@@ -87,3 +87,18 @@ Mark Color
 ^^^^^^^^^^
 
 Color values for glyph.rGlyph.markColor.
+
+Scripts
+-------
+
+SMufoLib comes bundled with several useful functions and scripts for
+building SMuFL metadata files, extracting engraving defaults,
+exporting/importing annotation and more.
+
+Scripts can be run directly from the console, passing in
+(optional) arguments in a familiar manner. As an example, check for
+missing or superflous SMuFL anchors with checkAnchors as follows:
+
+.. code:: bash
+
+   $ checkAnchors --mark True
