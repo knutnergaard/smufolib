@@ -68,13 +68,13 @@ respectively. This is particularly useful when specifying pathnames:
 
 ::
 
-   [Font Paths]
+   [font.paths]
    directory = ~/Documents/UFO
    ufo = ${directory}/my_font.ufo (result: ~/Documents/UFO/my_font.ufo)
    ...
-   [SMuFL Paths]
+   [smufl.paths]
    ...
-   classes.json = ${Font Paths:directory}/classes.json
+   classesJson = ${Font Paths:directory}/classes.json
    (result: ~/Documents/UFO/classes.json)
 
 For more information, see:
