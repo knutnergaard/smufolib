@@ -108,7 +108,7 @@ with *checkAnchors* directly from console as follows:
 
 .. code:: bash
 
-   $ checkAnchors --mark True
+   $ checkAnchors --mark
 
 Or with regular python:
 
