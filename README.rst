@@ -74,7 +74,11 @@ respectively. This is particularly useful when specifying pathnames:
    ...
    [smufl.paths]
    ...
+<<<<<<< HEAD
    classesJson = ${font.paths:directory}/classes.json
+=======
+   classesJson = ${Font Paths:directory}/classes.json
+>>>>>>> ed171292b8622c09432008e611c1ead9041dd829
    (result: ~/Documents/UFO/classes.json)
 
 For more information, see:
