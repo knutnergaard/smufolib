@@ -38,12 +38,12 @@ defined in the environment variable ``SMUFOLIB_CFG`` or as
 
 The file is divided between the following sections:
 
-Font Paths
+font.paths
 ^^^^^^^^^^
 
 Filesystem (or URL) paths to various font-related files.
 
-SMuFL Paths
+smufl.paths
 ^^^^^^^^^^^
 
 Filesystem (or URL) paths to various SMuFL-related files.
@@ -51,7 +51,7 @@ Filesystem (or URL) paths to various SMuFL-related files.
 The options in this section are primarily intended to serve as fallback
 values for **SMuFL URLs**.
 
-SMuFL URLs
+smufl.urls
 ^^^^^^^^^^
 
 Specific URL paths to various SMuFL-related files.
@@ -80,17 +80,28 @@ respectively. This is particularly useful when specifying pathnames:
 For more information, see:
 https://docs.python.org/3/library/configparser.html#interpolation-of-values
 
-Engraving Defaults
-^^^^^^^^^^^^^^^^^^
+color.marks
+^^^^^^^^^^^
+
+Color values for glyph markings.
+
+color.anchors
+^^^^^^^^^^^^^
+
+Color values for glyph anchors.
+
+metadata.sizes
+^^^^^^^^^^^^^^
+
+Values for the optional prelimenary sizing keys in a generated font metadata file.
+
+
+metadata.engravingDefaults
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Values for SMuFLs *engravingDefaults* metadata structure. Values left
 empty will be calculated automatically. See ``help`` for
 ``smufolib.engraving.getEngravingDefaults.``
-
-Mark Color
-^^^^^^^^^^
-
-Color values for glyph.rGlyph.markColor.
 
 Scripts
 -------
