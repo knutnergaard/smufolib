@@ -38,26 +38,26 @@ defined in the environment variable ``SMUFOLIB_CFG`` or as
 
 The file is divided between the following sections:
 
-Font Paths
+font.paths
 ^^^^^^^^^^
 
 Filesystem (or URL) paths to various font-related files.
 
-SMuFL Paths
+smufl.paths
 ^^^^^^^^^^^
 
 Filesystem (or URL) paths to various SMuFL-related files.
 
 The options in this section are primarily intended to serve as fallback
-values for **SMuFL URLs**.
+values for **smufl.urls**.
 
-SMuFL URLs
+smufl.urls
 ^^^^^^^^^^
 
-Specific URL paths to various SMuFL-related files.
+URLs to various specific SMuFL-related files.
 
 As mentioned above, fallback values for this section (e.g., in the event
-of a connection failure) can be provided in the **SMuFL Paths** section.
+of a connection failure) can be provided in the **smufl.paths** section.
 
 A note about interpolation
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -68,29 +68,40 @@ respectively. This is particularly useful when specifying pathnames:
 
 ::
 
-   [Font Paths]
+   [font.paths]
    directory = ~/Documents/UFO
    ufo = ${directory}/my_font.ufo (result: ~/Documents/UFO/my_font.ufo)
    ...
-   [SMuFL Paths]
+   [smufl.paths]
    ...
-   classes.json = ${Font Paths:directory}/classes.json
+   classesJson = ${font.paths:directory}/classes.json
    (result: ~/Documents/UFO/classes.json)
 
 For more information, see:
 https://docs.python.org/3/library/configparser.html#interpolation-of-values
 
-Engraving Defaults
-^^^^^^^^^^^^^^^^^^
+color.marks
+^^^^^^^^^^^
+
+Color values for glyph markings.
+
+color.anchors
+^^^^^^^^^^^^^
+
+Color values for glyph anchors.
+
+metadata.sizes
+^^^^^^^^^^^^^^
+
+Values for the optional prelimenary sizing keys in a generated font metadata file.
+
+
+metadata.engravingDefaults
+^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Values for SMuFLs *engravingDefaults* metadata structure. Values left
 empty will be calculated automatically. See ``help`` for
 ``smufolib.engraving.getEngravingDefaults.``
-
-Mark Color
-^^^^^^^^^^
-
-Color values for glyph.rGlyph.markColor.
 
 Scripts
 -------
@@ -108,7 +119,7 @@ with *checkAnchors* directly from console as follows:
 
 .. code:: bash
 
-   $ checkAnchors --mark True
+   $ checkAnchors --mark
 
 Or with regular python:
 
