@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2B3_uniE2B4" format="2">
+  <advance width="235"/>
+  <unicode hex="F5DB"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsJohnston', 'combiningStaffPositions'], 'name': 'timeSig9Numerator', 'description': 'Time signature 9 (numerator)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="20" type="line"/>
+      <point x="10" y="-50" type="line"/>
+      <point x="130" y="-15" type="line"/>
+      <point x="130" y="-255" type="line"/>
+      <point x="160" y="-250" type="line"/>
+      <point x="160" y="125" type="line"/>
+      <point x="215" y="70" type="line"/>
+      <point x="235" y="90" type="line"/>
+      <point x="145" y="180" type="line"/>
+      <point x="55" y="90" type="line"/>
+      <point x="75" y="70" type="line"/>
+      <point x="130" y="125" type="line"/>
+      <point x="130" y="59" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 100 53</string>
+              <string>vstem 125 38</string>
+              <string>vstem 280 69</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w235m0,20l10,-50l130,-15l130,-255l160,-250l160,125l215,70l235,90l145,180l55,90l75,70l130,125l130,59</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

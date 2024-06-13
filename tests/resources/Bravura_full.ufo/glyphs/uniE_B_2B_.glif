@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEB2B" format="2">
+  <advance width="537"/>
+  <unicode hex="EB2B"/>
+  <note>
+{'name': 'elecEject', 'description': 'Eject'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="192" type="curve" smooth="yes"/>
+      <point x="1" y="189"/>
+      <point x="1" y="185"/>
+      <point x="3" y="183" type="curve"/>
+      <point x="6" y="177"/>
+      <point x="12" y="174"/>
+      <point x="19" y="174" type="curve" smooth="yes"/>
+      <point x="519" y="174" type="line" smooth="yes"/>
+      <point x="525" y="174"/>
+      <point x="531" y="177"/>
+      <point x="534" y="183" type="curve" smooth="yes"/>
+      <point x="536" y="186"/>
+      <point x="537" y="189"/>
+      <point x="537" y="192" type="curve" smooth="yes"/>
+      <point x="537" y="195"/>
+      <point x="536" y="198"/>
+      <point x="534" y="201" type="curve" smooth="yes"/>
+      <point x="284" y="633" type="line" smooth="yes"/>
+      <point x="281" y="638"/>
+      <point x="275" y="642"/>
+      <point x="269" y="642" type="curve" smooth="yes"/>
+      <point x="262" y="642"/>
+      <point x="256" y="638"/>
+      <point x="253" y="633" type="curve" smooth="yes"/>
+      <point x="3" y="201" type="line" smooth="yes"/>
+      <point x="1" y="198"/>
+      <point x="1" y="195"/>
+    </contour>
+    <contour>
+      <point x="19" y="0" type="curve" smooth="yes"/>
+      <point x="519" y="0" type="line" smooth="yes"/>
+      <point x="529" y="0"/>
+      <point x="537" y="5"/>
+      <point x="537" y="10" type="curve" smooth="yes"/>
+      <point x="537" y="102" type="line" smooth="yes"/>
+      <point x="537" y="107"/>
+      <point x="529" y="111"/>
+      <point x="519" y="111" type="curve" smooth="yes"/>
+      <point x="19" y="111" type="line" smooth="yes"/>
+      <point x="9" y="111"/>
+      <point x="1" y="107"/>
+      <point x="1" y="102" type="curve" smooth="yes"/>
+      <point x="1" y="10" type="line" smooth="yes"/>
+      <point x="1" y="5"/>
+      <point x="9" y="0"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 111</string>
+              <string>vstem 1 536</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b8f74867e99a97a46cfd9939637c639eadbb974b0399521d77155c71540ee214040114516d4b695d4601a4f3c2c743f2f35dffa2c72a58ab811d93085b9bcb4d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

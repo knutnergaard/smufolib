@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA9C" format="2">
+  <advance width="618"/>
+  <unicode hex="EA9C"/>
+  <note>
+{'name': 'functionKUpper', 'description': 'Function theory K'}
+</note>
+  <outline>
+    <contour>
+      <point x="598" y="0" type="line"/>
+      <point x="298" y="432" type="line"/>
+      <point x="595" y="729" type="line"/>
+      <point x="475" y="729" type="line"/>
+      <point x="112" y="360" type="line"/>
+      <point x="112" y="729" type="line"/>
+      <point x="19" y="729" type="line"/>
+      <point x="19" y="0" type="line"/>
+      <point x="112" y="0" type="line"/>
+      <point x="112" y="255" type="line"/>
+      <point x="231" y="374" type="line"/>
+      <point x="488" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 19 93</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w618m598,0l298,432l595,729l475,729l112,360l112,729l19,729l19,0l112,0l112,255l231,374l488,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

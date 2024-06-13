@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA79" format="2">
+  <advance width="511"/>
+  <unicode hex="EA79"/>
+  <note>
+{'name': 'functionNine', 'description': 'Function theory 9'}
+</note>
+  <outline>
+    <contour>
+      <point x="238" y="253" type="curve" smooth="yes"/>
+      <point x="305" y="253"/>
+      <point x="354" y="277"/>
+      <point x="400" y="332" type="curve"/>
+      <point x="399" y="159"/>
+      <point x="343" y="63"/>
+      <point x="242" y="63" type="curve" smooth="yes"/>
+      <point x="180" y="63"/>
+      <point x="137" y="102"/>
+      <point x="123" y="170" type="curve"/>
+      <point x="35" y="170" type="line"/>
+      <point x="52" y="54"/>
+      <point x="128" y="-15"/>
+      <point x="236" y="-15" type="curve" smooth="yes"/>
+      <point x="402" y="-15"/>
+      <point x="491" y="126"/>
+      <point x="491" y="371" type="curve" smooth="yes"/>
+      <point x="491" y="593"/>
+      <point x="414" y="709"/>
+      <point x="252" y="709" type="curve" smooth="yes"/>
+      <point x="117" y="709"/>
+      <point x="20" y="613"/>
+      <point x="20" y="474" type="curve" smooth="yes"/>
+      <point x="20" y="342"/>
+      <point x="110" y="253"/>
+    </contour>
+    <contour>
+      <point x="251" y="632" type="curve" smooth="yes"/>
+      <point x="333" y="632"/>
+      <point x="395" y="568"/>
+      <point x="395" y="476" type="curve" smooth="yes"/>
+      <point x="395" y="389"/>
+      <point x="334" y="331"/>
+      <point x="248" y="331" type="curve" smooth="yes"/>
+      <point x="163" y="331"/>
+      <point x="110" y="386"/>
+      <point x="110" y="481" type="curve" smooth="yes"/>
+      <point x="110" y="571"/>
+      <point x="170" y="632"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -15 78</string>
+              <string>hstem 253 78</string>
+              <string>hstem 632 77</string>
+              <string>vstem 23 90</string>
+              <string>vstem 394 96</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>8be19d924ed9a3ee3ccd229913f7fbf21ee3728700a101da6f3f59169ffc1ec639262ab5f1d74d86afbe985da7fa65e9a0d8d9a7c60914eae68a4f9a4ddee6d4</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

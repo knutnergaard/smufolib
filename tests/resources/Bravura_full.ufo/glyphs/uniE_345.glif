@@ -1,0 +1,41 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE345" format="2">
+  <advance width="219"/>
+  <unicode hex="E345"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions'], 'name': 'accSagittal55CommaDown', 'description': '55 comma down, 3° down [96 EDO], 3/16-tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="359" type="line"/>
+      <point x="0" y="-172" type="line"/>
+      <point x="16" y="-172" type="line"/>
+      <point x="219" y="78" type="line"/>
+      <point x="219" y="190" type="line"/>
+      <point x="31" y="-40" type="line"/>
+      <point x="31" y="359" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -162 -21</string>
+              <string>hstem 359 -20</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w219m0,359l0,-172l16,-172l219,78l219,190l31,-40l31,359</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

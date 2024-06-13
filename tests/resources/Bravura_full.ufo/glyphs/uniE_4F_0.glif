@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4F0" format="2">
+  <advance width="328"/>
+  <unicode hex="E4F0"/>
+  <note>
+{'classes': ['forTextBasedApplications'], 'name': 'restHBarMiddle', 'description': 'H-bar, middle'}
+</note>
+  <outline>
+    <contour>
+      <point x="-1" y="-104" type="curve" smooth="yes"/>
+      <point x="329" y="-104" type="line" smooth="yes"/>
+      <point x="343" y="-104"/>
+      <point x="355" y="-92"/>
+      <point x="355" y="-78" type="curve" smooth="yes"/>
+      <point x="355" y="70" type="line" smooth="yes"/>
+      <point x="355" y="85"/>
+      <point x="343" y="96"/>
+      <point x="329" y="96" type="curve" smooth="yes"/>
+      <point x="-1" y="96" type="line" smooth="yes"/>
+      <point x="-16" y="96"/>
+      <point x="-27" y="85"/>
+      <point x="-27" y="70" type="curve" smooth="yes"/>
+      <point x="-27" y="-78" type="line" smooth="yes"/>
+      <point x="-27" y="-92"/>
+      <point x="-16" y="-104"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -104 200</string>
+              <string>vstem -27 382</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>81b76d72e54df7ee505e9f5fb82389a5ec2285c6f1ce4622565f9f9894dddca09da95f801fcdba06ec60691aee243ce5ae5a0b5997b18c2cf2c152df6704a866</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

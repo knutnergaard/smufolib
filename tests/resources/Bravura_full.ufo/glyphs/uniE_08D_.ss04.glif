@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE08D.ss04" format="2">
+  <advance width="111"/>
+  <unicode hex="F4EE"/>
+  <note>
+{'name': 'timeSigPlusSmallLarge', 'description': 'Time signature + (for numerators) (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-24" type="line"/>
+      <point x="47" y="-24" type="line"/>
+      <point x="47" y="-157" type="line"/>
+      <point x="64" y="-157" type="line"/>
+      <point x="64" y="-24" type="line"/>
+      <point x="112" y="-24" type="line"/>
+      <point x="112" y="24" type="line"/>
+      <point x="64" y="24" type="line"/>
+      <point x="64" y="157" type="line"/>
+      <point x="47" y="157" type="line"/>
+      <point x="47" y="24" type="line"/>
+      <point x="0" y="24" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -24 48</string>
+              <string>vstem 47 17</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w111m0,-24l47,-24l47,-157l64,-157l64,-24l112,-24l112,24l64,24l64,157l47,157l47,24l0,24</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,88 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE92A" format="2">
+  <advance width="222"/>
+  <unicode hex="E92A"/>
+  <note>
+{'classes': ['tf_prolations'], 'name': 'mensuralProportionMinor', 'description': 'Mensural proportion minor'}
+</note>
+  <outline>
+    <contour>
+      <point x="24" y="-372" type="curve" smooth="yes"/>
+      <point x="37" y="-372"/>
+      <point x="48" y="-361"/>
+      <point x="48" y="-348" type="curve" smooth="yes"/>
+      <point x="48" y="347" type="line" smooth="yes"/>
+      <point x="48" y="360"/>
+      <point x="37" y="371"/>
+      <point x="24" y="371" type="curve" smooth="yes"/>
+      <point x="11" y="371"/>
+      <point x="0" y="360"/>
+      <point x="0" y="347" type="curve" smooth="yes"/>
+      <point x="0" y="-348" type="line" smooth="yes"/>
+      <point x="0" y="-361"/>
+      <point x="11" y="-372"/>
+    </contour>
+    <contour>
+      <point x="115" y="-112" type="curve" smooth="yes"/>
+      <point x="115" y="-140"/>
+      <point x="138" y="-164"/>
+      <point x="167" y="-164" type="curve" smooth="yes"/>
+      <point x="196" y="-164"/>
+      <point x="219" y="-140"/>
+      <point x="219" y="-112" type="curve" smooth="yes"/>
+      <point x="219" y="-83"/>
+      <point x="196" y="-60"/>
+      <point x="167" y="-60" type="curve" smooth="yes"/>
+      <point x="138" y="-60"/>
+      <point x="115" y="-83"/>
+    </contour>
+    <contour>
+      <point x="170" y="58" type="curve" smooth="yes"/>
+      <point x="198" y="58"/>
+      <point x="222" y="82"/>
+      <point x="222" y="110" type="curve" smooth="yes"/>
+      <point x="222" y="139" name="hr01"/>
+      <point x="198" y="162"/>
+      <point x="170" y="162" type="curve" smooth="yes"/>
+      <point x="141" y="162"/>
+      <point x="118" y="139"/>
+      <point x="118" y="110" type="curve" smooth="yes"/>
+      <point x="118" y="82"/>
+      <point x="141" y="58"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 48</string>
+              <string>vstem 115 104</string>
+              <string>hstem -164 104</string>
+              <string>hstem 58 104</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 118 104</string>
+              <string>hstem 58 104</string>
+              <string>hstem -164 104</string>
+              <string>vstem 0 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>33e8b3d954664f890e0748acdd5f72eae5fb35aa77f0c3dafef7d4a157f36f3ae5e751b43e09703d3714dcac4e853a5c244037a2c8d3bd7a810a442de9a73d3f</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

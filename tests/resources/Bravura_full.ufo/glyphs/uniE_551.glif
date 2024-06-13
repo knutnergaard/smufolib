@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE551" format="2">
+  <advance width="465"/>
+  <unicode hex="E551"/>
+  <note>
+{'name': 'lyricsElision', 'description': 'Elision'}
+</note>
+  <outline>
+    <contour>
+      <point x="-80" y="0" type="line"/>
+      <point x="-51" y="-96"/>
+      <point x="104" y="-143"/>
+      <point x="228" y="-143" type="curve" smooth="yes"/>
+      <point x="355" y="-143"/>
+      <point x="513" y="-95"/>
+      <point x="545" y="0" type="curve"/>
+      <point x="531" y="0" type="line"/>
+      <point x="496" y="-61"/>
+      <point x="330" y="-92"/>
+      <point x="229" y="-92" type="curve" smooth="yes"/>
+      <point x="137" y="-92"/>
+      <point x="-36" y="-61"/>
+      <point x="-66" y="0" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -143 51</string>
+              <string>vstem -80 625</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w465m-80,0c-51,-96 104,-143 228,-143c355,-143 513,-95 545,0l531,0c496,-61 330,-92 229,-92c137,-92 -36,-61 -66,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

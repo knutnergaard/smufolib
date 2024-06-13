@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9F5" format="2">
+  <advance width="48"/>
+  <unicode hex="E9F5"/>
+  <note>
+{'name': 'mensuralRestMinima', 'description': 'Minima rest'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="109" type="curve" smooth="yes"/>
+      <point x="0" y="16" type="line" smooth="yes"/>
+      <point x="0" y="7"/>
+      <point x="7" y="0"/>
+      <point x="16" y="0" type="curve" smooth="yes"/>
+      <point x="32" y="0" type="line" smooth="yes"/>
+      <point x="41" y="0"/>
+      <point x="48" y="7"/>
+      <point x="48" y="16" type="curve" smooth="yes"/>
+      <point x="48" y="109" type="line" smooth="yes"/>
+      <point x="48" y="118"/>
+      <point x="41" y="125"/>
+      <point x="32" y="125" type="curve" smooth="yes"/>
+      <point x="16" y="125" type="line" smooth="yes"/>
+      <point x="7" y="125"/>
+      <point x="0" y="118"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 125</string>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w48m0,109l0,16c0,7 7,0 16,0l32,0c41,0 48,7 48,16l48,109c48,118 41,125 32,125l16,125c7,125 0,118 0,109</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,82 +1,67 @@
-"""Configuration module for SMufoLib."""
 from __future__ import annotations
-from typing import TYPE_CHECKING, Tuple
+from typing import Any
 import os
 import errno
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 
-if TYPE_CHECKING:
-    from smufolib.font import Font
-
+from smufolib.constants import CONFIG_FILEPATH
 
 # pylint: disable=invalid-name
 
-# optional specific filepath of smufolib.cfg
-INI_FILEPATH = ''
 
+def load(path: Path | str | None = CONFIG_FILEPATH) -> dict[str, Any]:
+    """Loads parsed config file as :class:`dict`.
 
-def configLoad(filepath=INI_FILEPATH):
-    """Reformats and parses config.ini.
+    If the `path=` parameter is an empty :class:`str` or ``None``, the
+    following locations are checked in order:
 
-    :param filepath: pathname to config.ini, defaults to INI_FILEPATH.
+    #. Current working directory
+    #. Home directory
+    #. Environment variable :envvar:`SMUFOLIB_CFG`
+    #. SMufoLib package directory
+
+    :param path: Path to smufolib.cfg
+
     """
-    config = _readConfig(filepath)
+    config = _readConfigFile(path)
     parsed = {}
     for section in config.sections():
         parsed[section] = {}
         for option, value in config[section].items():
-            value = _parseConfigValue(config, section, option)
+            value = _parse(config, section, option)
             parsed[section][option] = value
-
     return parsed
 
 
-def setDefaultPath(font: Font, stem: str):
-    """Set filepath to directory/generic_filename.json.
-
-    Directory defaults to font's parent if not specified.
-
-    :param stem: last, function-specific part of filename.
-    :param font: the font from which to extract name.
-    """
-    config = configLoad()
-    try:
-        directory = config['fontPaths']['directory']
-    except KeyError:
-        directory = Path(font.path).parent
-    filename = Path(f'{font.name.lower().replace(" ", "_")}_{stem}')
-    return directory / filename
-
-
-def _readConfig(filepath):
-    # Read config file from multiple locations in order:
-    # 1. Specified `filepath`.
-    # 2. Home directory (User/username/)
-    # 3. Environment variable SMUFOLIB_CFG
+def _readConfigFile(path: Path | str | None) -> dict[str, Any]:
+    # Reads config file from selected filepath.
     config = ConfigParser(interpolation=ExtendedInterpolation())
     config.optionxform = str
 
-    if not filepath:
-        for location in (Path.home(),
-                         os.getenv('SMUFOLIB_CFG')):
-            try:
-                with open(os.path.join(location, 'smufolib.cfg'),
-                          encoding='utf-8') as source:
-                    config.read_file(source)
-                    break
-            except (FileNotFoundError, TypeError):
-                continue
-        else:
-            raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
-    else:
-        config.read(filepath)
+    with open(_selectPath(path), encoding='utf-8') as f:
+        config.read_file(f)
     return config
 
 
-def _parseConfigValue(config: ConfigParser, section: str, option: str
-                      ) -> int | float | bool | Tuple[str] | str | None:
-    # Parse configuration values.
+def _selectPath(path: Path | str | None) -> str:
+    # Selects filepath to config file.
+    if path and Path(path).exists():
+        return str(path)
+
+    nameExttension = ('smufolib', 'cfg')
+    for selection in (Path.cwd() / '.'.join(nameExttension),
+                      Path.home() / '.'.join(nameExttension),
+                      os.getenv('_'.join(nameExttension).upper()),
+                      Path(__file__).parents[1] / '.'.join(nameExttension)):
+        if selection and Path(selection).exists():
+            return str(selection)
+    raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
+
+
+def _parse(config: ConfigParser, section: str, option: str
+           ) -> int | float | bool | tuple[str] | str | None:
+    # Parses configured values.
     try:
         return config.getint(section, option)
     except ValueError:

@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA8B" format="2">
+  <advance width="612"/>
+  <unicode hex="EA8B"/>
+  <note>
+{'name': 'functionTUpper', 'description': 'Function theory tonic'}
+</note>
+  <outline>
+    <contour>
+      <point x="20" y="647" type="line"/>
+      <point x="260" y="647" type="line"/>
+      <point x="260" y="0" type="line"/>
+      <point x="353" y="0" type="line"/>
+      <point x="353" y="647" type="line"/>
+      <point x="592" y="647" type="line"/>
+      <point x="592" y="729" type="line"/>
+      <point x="20" y="729" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 647 82</string>
+              <string>vstem 260 93</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w612m20,647l260,647l260,0l353,0l353,647l592,647l592,729l20,729</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

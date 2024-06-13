@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA93" format="2">
+  <advance width="440"/>
+  <unicode hex="EA93"/>
+  <note>
+{'name': 'functionAngleLeft', 'description': 'Function theory angle bracket left'}
+</note>
+  <outline>
+    <contour>
+      <point x="440" y="-271" type="line"/>
+      <point x="92" y="255" type="line"/>
+      <point x="440" y="780" type="line"/>
+      <point x="349" y="780" type="line"/>
+      <point x="0" y="254" type="line"/>
+      <point x="349" y="-271" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -271 1051</string>
+              <string>vstem 0 440</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w440m440,-271l92,255l440,780l349,780l0,254l349,-271</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

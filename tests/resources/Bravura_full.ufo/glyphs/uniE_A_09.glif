@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA09" format="2">
+  <advance width="60"/>
+  <unicode hex="EA09"/>
+  <note>
+{'name': 'chantCustosStemDownPosHighest', 'description': 'Plainchant custos, stem down, highest position'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="59" type="curve" smooth="yes"/>
+      <point x="0" y="-91" type="line" smooth="yes"/>
+      <point x="0" y="-96"/>
+      <point x="0" y="-100"/>
+      <point x="2" y="-100" type="curve"/>
+      <point x="4" y="-100"/>
+      <point x="5" y="-99"/>
+      <point x="7" y="-96" type="curve" smooth="yes"/>
+      <point x="13" y="-89"/>
+      <point x="29" y="-85"/>
+      <point x="46" y="-84" type="curve"/>
+      <point x="46" y="-559" type="line" smooth="yes"/>
+      <point x="46" y="-562"/>
+      <point x="48" y="-565"/>
+      <point x="55" y="-565" type="curve" smooth="yes"/>
+      <point x="58" y="-565"/>
+      <point x="60" y="-562"/>
+      <point x="60" y="-559" type="curve" smooth="yes"/>
+      <point x="60" y="96" type="line"/>
+      <point x="60" y="98"/>
+      <point x="58" y="101"/>
+      <point x="55" y="101" type="curve" smooth="yes"/>
+      <point x="50" y="101" type="line"/>
+      <point x="25" y="99"/>
+      <point x="0" y="86"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -565 666</string>
+              <string>vstem 46 14</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>193cf0af433780a1f375e59a5f883096ea2287106349fa8d9668c63de6a73f8730d7cc76c588966b3ab6cae85c874753e3d692c8dc77f9142e9bfb2e5d88246d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

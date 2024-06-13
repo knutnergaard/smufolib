@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA7C" format="2">
+  <advance width="538"/>
+  <unicode hex="EA7C"/>
+  <note>
+{'name': 'functionGreaterThan', 'description': 'Function theory greater than'}
+</note>
+  <outline>
+    <contour>
+      <point x="20" y="21" type="line"/>
+      <point x="20" y="-69" type="line"/>
+      <point x="518" y="224" type="line"/>
+      <point x="518" y="276" type="line"/>
+      <point x="20" y="569" type="line"/>
+      <point x="20" y="479" type="line"/>
+      <point x="444" y="250" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -48 -21</string>
+              <string>hstem 569 -20</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w538m20,21l20,-69l518,224l518,276l20,569l20,479l444,250</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>smufolib.normalizers &mdash; SMufoLib 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=139e30ab" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SMufoLib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#running-scripts">Running Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/objects.html">Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/request.html">Metadata Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utility Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#normalizers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#pointutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#stdutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.checkAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.generateMetadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">generateMetadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.importAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#importid"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SMufoLib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">smufolib.normalizers</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for smufolib.normalizers</h1><div class="highlight"><pre>
+<span></span><span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+
+<span class="kn">from</span> <span class="nn">fontParts.base.normalizers</span> <span class="kn">import</span> <span class="n">normalizeBoolean</span>  <span class="c1"># pylint: disable=unused-import</span>
+<span class="kn">from</span> <span class="nn">fontParts.base.normalizers</span> <span class="kn">import</span> <span class="n">normalizeColor</span>  <span class="c1"># pylint: disable=unused-import</span>
+<span class="kn">from</span> <span class="nn">fontParts.base.normalizers</span> <span class="kn">import</span> <span class="n">normalizeInternalObjectType</span>  <span class="c1"># pylint: disable=unused-import</span>
+<span class="kn">from</span> <span class="nn">fontParts.base.normalizers</span> <span class="kn">import</span> <span class="n">normalizeVisualRounding</span>  <span class="c1"># pylint: disable=unused-import</span>
+<span class="kn">from</span> <span class="nn">fontParts.base.normalizers</span> <span class="kn">import</span> <span class="n">normalizeGlyph</span>  <span class="c1"># pylint: disable=unused-import</span>
+
+<span class="k">if</span> <span class="n">TYPE_CHECKING</span><span class="p">:</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.font</span> <span class="kn">import</span> <span class="n">Font</span>
+    <span class="kn">from</span> <span class="nn">smufolib.request</span> <span class="kn">import</span> <span class="n">Request</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.smufl</span> <span class="kn">import</span> <span class="n">Smufl</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.engravingDefaults</span> <span class="kn">import</span> <span class="n">EngravingDefaults</span>
+
+<span class="c1"># pylint: disable=C0103, C0415</span>
+
+
+<span class="c1"># ----</span>
+<span class="c1"># Font</span>
+<span class="c1"># ----</span>
+
+<div class="viewcode-block" id="normalizeFont">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeFont">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeFont</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Font</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Font</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes Font object.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not the accepted type.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.font</span> <span class="kn">import</span> <span class="n">Font</span>
+    <span class="k">return</span> <span class="n">normalizeInternalObjectType</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Font</span><span class="p">,</span> <span class="s2">&quot;Font object&quot;</span><span class="p">)</span></div>
+
+
+
+<span class="c1"># -----</span>
+<span class="c1"># Smufl</span>
+<span class="c1"># -----</span>
+
+<div class="viewcode-block" id="normalizeClasses">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeClasses">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeClasses</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+                     <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes smufl classes.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not an accepted type.</span>
+<span class="sd">    :raises ValueError:</span>
+<span class="sd">        - if any ``value`` item does not normalize.</span>
+<span class="sd">          with :func:`normalizeSmuflName`.</span>
+<span class="sd">        - if any ``value`` item is :obj:`None`.</span>
+<span class="sd">        - if any ``value`` items are duplicates.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span>
+            <span class="sa">f</span><span class="s2">&quot;Classes must be tuple, list or None, not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Class names cannot be None.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">val</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;_&#39;</span><span class="p">):</span>
+            <span class="n">normalizeSmuflName</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="n">duplicates</span> <span class="o">=</span> <span class="p">{</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span> <span class="k">if</span> <span class="n">value</span><span class="o">.</span><span class="n">count</span><span class="p">(</span><span class="n">v</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">1</span><span class="p">}</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+            <span class="s2">&quot;Duplicate class names are not allowed. Class &quot;</span>
+            <span class="sa">f</span><span class="s2">&quot;name(s) &#39;</span><span class="si">{</span><span class="s1">&#39;,&#39;</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">duplicates</span><span class="p">)</span><span class="si">}</span><span class="s2">&#39; are duplicate.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">v</span> <span class="k">for</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">value</span> <span class="k">if</span> <span class="n">v</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeDescription">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeDescription">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeDescription</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes smufl descriptions.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not an accepted type.</span>
+<span class="sd">    :raises ValueError: if ``value`` is an empty string.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The description is empty.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Descriptions must be strings or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeDesignSize">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeDesignSize">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeDesignSize</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes design size.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not an accepted type.</span>
+<span class="sd">    :raises ValueError: if ``value`` is less than 10.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">value</span> <span class="o">&lt;</span> <span class="mi">10</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Design size must not be less than 10.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Design size must be an integer or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeSizeRange">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeSizeRange">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeSizeRange</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+                       <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span><span class="p">,</span> <span class="nb">int</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes design size.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not an accepted type.</span>
+<span class="sd">    :raises ValueError:</span>
+<span class="sd">        - if ``value`` does not contain a value pair.</span>
+<span class="sd">        - if ``value`` is not an increasing range.</span>
+<span class="sd">        - if ``value`` items do not normalize</span>
+<span class="sd">          with :func:`normalizeDesignSize`, except not be :obj:`None`.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">length</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">length</span> <span class="o">!=</span> <span class="mi">2</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Size range must be of length 2, not </span><span class="si">{</span><span class="n">length</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="n">start</span><span class="p">,</span> <span class="n">end</span> <span class="o">=</span> <span class="n">value</span>
+        <span class="k">if</span> <span class="n">start</span> <span class="o">&gt;=</span> <span class="n">end</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Size range values must be an increasing range.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">normalizeDesignSize</span><span class="p">(</span><span class="n">start</span><span class="p">),</span> <span class="n">normalizeDesignSize</span><span class="p">(</span><span class="n">end</span><span class="p">))</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Size range must be a list or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeSmufl">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeSmufl">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeSmufl</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Smufl</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Smufl</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes Smufl object.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not the accepted type.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.smufl</span> <span class="kn">import</span> <span class="n">Smufl</span>
+    <span class="k">return</span> <span class="n">normalizeInternalObjectType</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Smufl</span><span class="p">,</span> <span class="s2">&quot;Smufl object&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeSmuflName">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeSmuflName">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeSmuflName</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes smufl names.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not an accepted type.</span>
+<span class="sd">    :raises ValueError:</span>
+<span class="sd">        - if ``value`` is an empty string.</span>
+<span class="sd">        - if ``value`` is value contains non-alphanumeric characters.</span>
+<span class="sd">        - if ``value`` does not start with a lowercase letter or number.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">value</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;The name is empty.&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">val</span><span class="o">.</span><span class="n">isalnum</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;The name &#39;</span><span class="si">{</span><span class="n">value</span><span class="si">}</span><span class="s2">&#39; contains &quot;</span>
+                                 <span class="sa">f</span><span class="s2">&quot;an invalid character: &#39;</span><span class="si">{</span><span class="n">val</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">value</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">isupper</span><span class="p">():</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span>
+                <span class="s2">&quot;Names must start with a lowercase letter or number.&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Names must be str or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+
+
+<span class="c1"># ------------------</span>
+<span class="c1"># Engraving defaults</span>
+<span class="c1"># ------------------</span>
+
+<div class="viewcode-block" id="normalizeEngravingDefaults">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeEngravingDefaults">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeEngravingDefaults</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">EngravingDefaults</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EngravingDefaults</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalize EngravingDefaults object.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not the accepted type.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">smufolib.objects.engravingDefaults</span> <span class="kn">import</span> <span class="n">EngravingDefaults</span>
+    <span class="k">return</span> <span class="n">normalizeInternalObjectType</span><span class="p">(</span>
+        <span class="n">value</span><span class="p">,</span> <span class="n">EngravingDefaults</span><span class="p">,</span> <span class="s2">&quot;EngravingDefaults object&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeEngravingDefaultsAttr">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeEngravingDefaultsAttr">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeEngravingDefaultsAttr</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                                   <span class="n">value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span>
+                                   <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span>
+                                   <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes engraving defaults attribute value based on name.</span>
+
+<span class="sd">    :param name: The name of the attribute to normalize.</span>
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``name`` or ``value`` is not an accepted</span>
+<span class="sd">     type.</span>
+<span class="sd">    :raises ValueError: if ``name=&#39;textFontFamily&#39;`` and ``value``</span>
+<span class="sd">     contains an empty string.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">if</span> <span class="n">name</span> <span class="o">==</span> <span class="s1">&#39;textFontFamily&#39;</span><span class="p">:</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">_normalizeStringList</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">value</span><span class="p">)</span>
+    <span class="k">elif</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">int</span><span class="p">,</span> <span class="nb">float</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> must be an int, float or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">value</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_normalizeStringList</span><span class="p">(</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span>
+                         <span class="n">value</span><span class="p">:</span> <span class="nb">tuple</span><span class="p">[</span><span class="s1">&#39;str&#39;</span><span class="p">,</span> <span class="o">...</span><span class="p">]</span> <span class="o">|</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span>
+                         <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="s1">&#39;str&#39;</span><span class="p">]:</span>
+    <span class="c1"># Normalizes string list.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="p">(</span><span class="nb">tuple</span><span class="p">,</span> <span class="nb">list</span><span class="p">)):</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> must be a list or None, &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">val</span> <span class="ow">in</span> <span class="n">value</span><span class="p">:</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">val</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> items must be strings, &quot;</span>
+                            <span class="sa">f</span><span class="s2">&quot;not </span><span class="si">{</span><span class="nb">type</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">index</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="n">index</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2"> item at index </span><span class="si">{</span><span class="n">index</span><span class="si">}</span><span class="s2"> is empty.&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">value</span><span class="p">)</span>
+
+
+<span class="c1"># -------</span>
+<span class="c1"># Request</span>
+<span class="c1"># -------</span>
+
+
+<div class="viewcode-block" id="normalizeRequest">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeRequest">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeRequest</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="n">Request</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Request</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes Request object.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not the accepted type.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="kn">from</span> <span class="nn">smufolib.request</span> <span class="kn">import</span> <span class="n">Request</span>
+    <span class="k">return</span> <span class="n">normalizeInternalObjectType</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Request</span><span class="p">,</span> <span class="s2">&quot;Request object&quot;</span><span class="p">)</span></div>
+
+
+
+<div class="viewcode-block" id="normalizeRequestPath">
+<a class="viewcode-back" href="../../utils.html#smufolib.normalizers.normalizeRequestPath">[docs]</a>
+<span class="k">def</span> <span class="nf">normalizeRequestPath</span><span class="p">(</span><span class="n">value</span><span class="p">:</span> <span class="nb">str</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Normalizes Request path.</span>
+
+<span class="sd">    Relative paths are resolved automatically.</span>
+
+<span class="sd">    :param value: The value to normalize.</span>
+<span class="sd">    :raises TypeError: if ``value`` is not the accepted type.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">value</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">return</span> <span class="kc">None</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">value</span><span class="p">,</span> <span class="n">Path</span><span class="p">)</span> <span class="ow">or</span> <span class="n">value</span><span class="o">.</span><span class="n">startswith</span><span class="p">(</span><span class="s1">&#39;.&#39;</span><span class="p">):</span>
+            <span class="k">return</span> <span class="nb">str</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="n">value</span><span class="p">)</span><span class="o">.</span><span class="n">resolve</span><span class="p">())</span>
+        <span class="k">return</span> <span class="n">value</span>
+    <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">exc</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">TypeError</span><span class="p">(</span><span class="s2">&quot;Expected str or Path, not &quot;</span>
+                        <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">value</span><span class="o">.</span><span class="vm">__class__</span><span class="o">.</span><span class="vm">__name__</span><span class="si">}</span><span class="s2">&#39;.&quot;</span><span class="p">)</span> <span class="kn">from</span> <span class="nn">exc</span></div>
+
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Knut Nergaard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

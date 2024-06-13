@@ -1,0 +1,129 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBC0" format="2">
+  <advance width="276"/>
+  <unicode hex="EBC0"/>
+  <note>
+{'name': 'luteFrenchFretA', 'description': 'Open string (a)'}
+</note>
+  <outline>
+    <contour>
+      <point x="11" y="25" type="curve"/>
+      <point x="11" y="25"/>
+      <point x="27" y="1"/>
+      <point x="56" y="1" type="curve" smooth="yes"/>
+      <point x="76" y="1"/>
+      <point x="103" y="13"/>
+      <point x="135" y="55" type="curve" smooth="yes"/>
+      <point x="136" y="57"/>
+      <point x="137" y="57"/>
+      <point x="138" y="57" type="curve"/>
+      <point x="139" y="57"/>
+      <point x="139" y="54"/>
+      <point x="139" y="52" type="curve"/>
+      <point x="139" y="20"/>
+      <point x="154" y="0" name="hr01"/>
+      <point x="189" y="0" type="curve" smooth="yes"/>
+      <point x="242" y="0"/>
+      <point x="264" y="48"/>
+      <point x="273" y="73" type="curve" smooth="yes"/>
+      <point x="275" y="78"/>
+      <point x="276" y="83"/>
+      <point x="276" y="86" type="curve" smooth="yes"/>
+      <point x="276" y="93"/>
+      <point x="272" y="94"/>
+      <point x="268" y="94" type="curve" smooth="yes"/>
+      <point x="265" y="94"/>
+      <point x="262" y="93"/>
+      <point x="259" y="92" type="curve" smooth="yes"/>
+      <point x="254" y="89"/>
+      <point x="229" y="67"/>
+      <point x="216" y="67" type="curve"/>
+      <point x="214" y="67"/>
+      <point x="213" y="72"/>
+      <point x="213" y="79" type="curve" smooth="yes"/>
+      <point x="213" y="115"/>
+      <point x="234" y="221"/>
+      <point x="235" y="228" type="curve"/>
+      <point x="235" y="237"/>
+      <point x="222" y="240"/>
+      <point x="205" y="241" type="curve"/>
+      <point x="202" y="241"/>
+      <point x="188" y="242"/>
+      <point x="173" y="242" type="curve" smooth="yes"/>
+      <point x="121" y="242"/>
+      <point x="93" y="232"/>
+      <point x="58" y="191" type="curve" smooth="yes"/>
+      <point x="27" y="154"/>
+      <point x="0" y="103"/>
+      <point x="0" y="63" type="curve" smooth="yes"/>
+      <point x="0" y="49"/>
+      <point x="3" y="36"/>
+    </contour>
+    <contour>
+      <point x="54" y="101" type="curve" smooth="yes"/>
+      <point x="54" y="122"/>
+      <point x="60" y="147"/>
+      <point x="71" y="164" type="curve" smooth="yes"/>
+      <point x="80" y="177"/>
+      <point x="88" y="182"/>
+      <point x="115" y="182" type="curve" smooth="yes"/>
+      <point x="157" y="182" type="line"/>
+      <point x="159" y="182"/>
+      <point x="160" y="181"/>
+      <point x="160" y="179" type="curve"/>
+      <point x="157" y="168"/>
+      <point x="150" y="128"/>
+      <point x="143" y="101" type="curve" smooth="yes"/>
+      <point x="135" y="71"/>
+      <point x="109" y="58"/>
+      <point x="81" y="58" type="curve" smooth="yes" name="hr02"/>
+      <point x="62" y="58"/>
+      <point x="54" y="77"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 1 57</string>
+              <string>vstem 139 74</string>
+              <string>hstem 182 60</string>
+              <string>vstem 0 54</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 67</string>
+              <string>vstem 139 74</string>
+              <string>hstem 182 60</string>
+              <string>vstem 0 54</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 1 57</string>
+              <string>vstem 0 54</string>
+              <string>hstem 182 60</string>
+              <string>vstem 139 74</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>009e1e9937dc07338241c94b44a44d925ba39d2cf5c91aa22045f4ae492e3fd7d7f9cc783ca4df842b8c6d3c857c1a23945c33ac36614c097572dd201ce9ce9b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

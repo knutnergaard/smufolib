@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE974" format="2">
+  <advance width="782"/>
+  <unicode hex="E974"/>
+  <note>
+{'name': 'mensuralObliqueAsc3rdBlack', 'description': 'Oblique form, ascending 3rd, black'}
+</note>
+  <outline>
+    <contour>
+      <point x="23" y="-142" type="curve" smooth="yes"/>
+      <point x="26" y="-142"/>
+      <point x="28" y="-141"/>
+      <point x="31" y="-141" type="curve"/>
+      <point x="762" y="100" type="line" smooth="yes"/>
+      <point x="774" y="104"/>
+      <point x="782" y="116"/>
+      <point x="782" y="128" type="curve" smooth="yes"/>
+      <point x="782" y="358" type="line" smooth="yes"/>
+      <point x="782" y="371"/>
+      <point x="773" y="381"/>
+      <point x="760" y="381" type="curve" smooth="yes"/>
+      <point x="757" y="381"/>
+      <point x="755" y="381"/>
+      <point x="752" y="380" type="curve" smooth="yes"/>
+      <point x="21" y="140" type="line" smooth="yes"/>
+      <point x="9" y="136"/>
+      <point x="0" y="124"/>
+      <point x="0" y="111" type="curve" smooth="yes"/>
+      <point x="0" y="-119" type="line" smooth="yes"/>
+      <point x="0" y="-132"/>
+      <point x="10" y="-142"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -142 523</string>
+              <string>vstem 0 782</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c94657d8c85d81c95aa1e51e4e99eee92e4de382da2c311eb296063f4ac3f101051969dfb29eaea7620a93c98e15ee82ba4ae2e2877828b74bdf0d23daa088dd</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

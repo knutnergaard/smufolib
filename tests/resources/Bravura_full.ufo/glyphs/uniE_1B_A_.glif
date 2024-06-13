@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1BA" format="2">
+  <advance width="356"/>
+  <unicode hex="E1BA"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSacredHarp'], 'name': 'noteShapeTriangleUpWhite', 'description': 'Triangle up white (Aikin 7-shape do)'}
+</note>
+  <anchor x="0" y="-125" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="356" y="-125" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="179" y="125" type="line"/>
+      <point x="0" y="-125" type="line"/>
+      <point x="356" y="-125" type="line"/>
+    </contour>
+    <contour>
+      <point x="280" y="-66" type="line"/>
+      <point x="78" y="-66" type="line"/>
+      <point x="180" y="75" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 59</string>
+              <string>vstem 0 356</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w356m179,125l0,-125l356,-125m280,-66l78,-66l180,75</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

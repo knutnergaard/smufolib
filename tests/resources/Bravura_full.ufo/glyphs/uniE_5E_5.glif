@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE5E5" format="2">
+  <advance width="272"/>
+  <unicode hex="E5E5"/>
+  <note>
+{'name': 'brassMuteClosed', 'description': 'Muted (closed)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="152" type="line"/>
+      <point x="0" y="120" type="line"/>
+      <point x="120" y="120" type="line"/>
+      <point x="120" y="0" type="line" name="hr01"/>
+      <point x="152" y="0" type="line"/>
+      <point x="152" y="120" type="line" name="hr02"/>
+      <point x="272" y="120" type="line"/>
+      <point x="272" y="152" type="line"/>
+      <point x="152" y="152" type="line"/>
+      <point x="152" y="272" type="line"/>
+      <point x="120" y="272" type="line"/>
+      <point x="120" y="152" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 120 32</string>
+              <string>vstem 120 32</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 152</string>
+              <string>vstem 120 32</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 120 32</string>
+              <string>vstem 120 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w272m0,152l0,120l120,120l120,0l152,0l152,120l272,120l272,152l152,152l152,272l120,272l120,152</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

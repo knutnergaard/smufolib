@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE30B" format="2">
+  <advance width="344"/>
+  <unicode hex="E30B"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalMixed', 'combiningStaffPositions'], 'name': 'accSagittal11MediumDiesisDown', 'description': '11 medium diesis down, 1°[17 31] 2°46 down, 1/4-tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="156" y="-37" type="line"/>
+      <point x="0" y="172" type="line"/>
+      <point x="0" y="62" type="line"/>
+      <point x="172" y="-172" type="line"/>
+      <point x="344" y="62" type="line"/>
+      <point x="344" y="172" type="line"/>
+      <point x="187" y="-37" type="line"/>
+      <point x="187" y="359" type="line"/>
+      <point x="156" y="359" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 359 -20</string>
+              <string>vstem 156 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w344m156,-37l0,172l0,62l172,-172l344,62l344,172l187,-37l187,359l156,359</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

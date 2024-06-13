@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBA2" format="2">
+  <advance width="250"/>
+  <unicode hex="EBA2"/>
+  <note>
+{'classes': ['forTextBasedApplications', 'tf_zeroWidth'], 'name': 'luteStaff6LinesNarrow', 'description': 'Lute tablature staff, 6 courses (narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="391" type="line"/>
+      <point x="0" y="359" type="line"/>
+      <point x="250" y="359" type="line"/>
+      <point x="250" y="391" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="1516" type="line"/>
+      <point x="0" y="1484" type="line"/>
+      <point x="250" y="1484" type="line"/>
+      <point x="250" y="1516" type="line"/>
+    </contour>
+    <contour>
+      <point x="250" y="1859" type="line"/>
+      <point x="250" y="1891" type="line"/>
+      <point x="0" y="1891" type="line"/>
+      <point x="0" y="1859" type="line"/>
+    </contour>
+    <contour>
+      <point x="250" y="1109" type="line"/>
+      <point x="250" y="1141" type="line"/>
+      <point x="0" y="1141" type="line"/>
+      <point x="0" y="1109" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="766" type="line"/>
+      <point x="0" y="734" type="line"/>
+      <point x="250" y="734" type="line"/>
+      <point x="250" y="766" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="16" type="line"/>
+      <point x="0" y="-16" type="line"/>
+      <point x="250" y="-16" type="line"/>
+      <point x="250" y="16" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -16 32</string>
+              <string>hstem 359 32</string>
+              <string>hstem 734 32</string>
+              <string>hstem 1109 32</string>
+              <string>hstem 1484 32</string>
+              <string>hstem 1859 32</string>
+              <string>vstem 0 250</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>1524518a893e826d2255a25f125d3c56bbf1d65ebe2b6463ac5b55a5f248f1b2925bf25518e6bbb3c3b2c31e031fb96e8527d55d89261e3827780fa4c1aa9b48</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

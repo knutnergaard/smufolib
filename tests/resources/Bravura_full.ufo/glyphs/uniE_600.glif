@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE600" format="2">
+  <advance width="480"/>
+  <unicode hex="E600"/>
+  <note>
+{'name': 'windLessTightEmbouchure', 'description': 'Somewhat tight embouchure'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="236" type="curve" smooth="yes"/>
+      <point x="0" y="106"/>
+      <point x="105" y="0"/>
+      <point x="236" y="0" type="curve" smooth="yes"/>
+      <point x="366" y="0"/>
+      <point x="472" y="106"/>
+      <point x="472" y="236" type="curve" smooth="yes"/>
+      <point x="472" y="367"/>
+      <point x="366" y="473"/>
+      <point x="236" y="473" type="curve" smooth="yes"/>
+      <point x="105" y="473"/>
+      <point x="0" y="367"/>
+    </contour>
+    <contour>
+      <point x="380" y="377" type="line"/>
+      <point x="415" y="341"/>
+      <point x="437" y="291"/>
+      <point x="437" y="236" type="curve" smooth="yes"/>
+      <point x="437" y="125"/>
+      <point x="347" y="35"/>
+      <point x="236" y="35" type="curve" smooth="yes"/>
+      <point x="181" y="35"/>
+      <point x="131" y="57"/>
+      <point x="95" y="92" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 35</string>
+              <string>vstem 437 35</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>561ba92c7e98ccf571257a3103f07b74079033c6f1ca3eee5134342f49dd1afea761cecdb9b7496997f8a621496930ab4b050ff82f697b242fa95c54fc64a0ba</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

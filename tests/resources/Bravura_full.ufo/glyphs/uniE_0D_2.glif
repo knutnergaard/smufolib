@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE0D2" format="2">
+  <advance width="293"/>
+  <unicode hex="E0D2"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSlashed2', 'noteheads'], 'name': 'noteheadSlashedHalf2', 'description': 'Slashed half notehead (top left to bottom right)'}
+</note>
+  <anchor x="0" y="-41" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="293" y="42" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="-73" y="154" type="curve"/>
+      <point x="-73" y="150"/>
+      <point x="-71" y="145"/>
+      <point x="-66" y="143" type="curve"/>
+      <point x="48" y="69" type="line"/>
+      <point x="13" y="32"/>
+      <point x="0" y="-14"/>
+      <point x="0" y="-41" type="curve" smooth="yes"/>
+      <point x="0" y="-94"/>
+      <point x="42" y="-125"/>
+      <point x="96" y="-125" type="curve" smooth="yes"/>
+      <point x="172" y="-125"/>
+      <point x="220" y="-96"/>
+      <point x="249" y="-61" type="curve"/>
+      <point x="358" y="-132" type="line"/>
+      <point x="361" y="-133"/>
+      <point x="364" y="-134"/>
+      <point x="366" y="-134" type="curve"/>
+      <point x="371" y="-134"/>
+      <point x="375" y="-132"/>
+      <point x="377" y="-127" type="curve"/>
+      <point x="379" y="-125"/>
+      <point x="380" y="-122"/>
+      <point x="380" y="-120" type="curve"/>
+      <point x="380" y="-115"/>
+      <point x="377" y="-111"/>
+      <point x="373" y="-108" type="curve" smooth="yes"/>
+      <point x="266" y="-40" type="line"/>
+      <point x="287" y="-6"/>
+      <point x="293" y="27"/>
+      <point x="293" y="42" type="curve" smooth="yes"/>
+      <point x="293" y="93"/>
+      <point x="253" y="125"/>
+      <point x="195" y="125" type="curve" smooth="yes"/>
+      <point x="141" y="125"/>
+      <point x="100" y="109"/>
+      <point x="70" y="88" type="curve"/>
+      <point x="-52" y="166" type="line" smooth="yes"/>
+      <point x="-54" y="168"/>
+      <point x="-57" y="168"/>
+      <point x="-59" y="168" type="curve"/>
+      <point x="-64" y="168"/>
+      <point x="-68" y="166"/>
+      <point x="-71" y="162" type="curve"/>
+      <point x="-72" y="159"/>
+      <point x="-73" y="156"/>
+    </contour>
+    <contour>
+      <point x="101" y="34" type="curve"/>
+      <point x="198" y="-28" type="line"/>
+      <point x="190" y="-34"/>
+      <point x="181" y="-39"/>
+      <point x="172" y="-46" type="curve"/>
+      <point x="126" y="-75"/>
+      <point x="96" y="-86"/>
+      <point x="75" y="-86" type="curve" smooth="yes"/>
+      <point x="54" y="-86"/>
+      <point x="42" y="-76"/>
+      <point x="35" y="-64" type="curve" smooth="yes"/>
+      <point x="32" y="-58"/>
+      <point x="29" y="-51"/>
+      <point x="29" y="-44" type="curve" smooth="yes"/>
+      <point x="29" y="-24"/>
+      <point x="47" y="0"/>
+    </contour>
+    <contour>
+      <point x="128" y="50" type="line"/>
+      <point x="172" y="75"/>
+      <point x="201" y="84"/>
+      <point x="220" y="84" type="curve" smooth="yes"/>
+      <point x="239" y="84"/>
+      <point x="248" y="76"/>
+      <point x="255" y="64" type="curve" smooth="yes"/>
+      <point x="260" y="57"/>
+      <point x="262" y="51"/>
+      <point x="262" y="44" type="curve" smooth="yes"/>
+      <point x="262" y="30"/>
+      <point x="251" y="14"/>
+      <point x="221" y="-10" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 39</string>
+              <string>hstem 84 41</string>
+              <string>vstem 0 29</string>
+              <string>vstem 262 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c2a55c6ce816910b142f866b613b3991666f9c2f4686ebfe3574fca83b773e61ffdf112f4d9a4cd38d591cb43e435a52f13073aebd798023a06e7717aa95511a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

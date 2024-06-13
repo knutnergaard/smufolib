@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE997" format="2">
+  <advance width="160"/>
+  <unicode hex="E997"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantPunctumVirgaReversed', 'description': 'Punctum virga, reversed'}
+</note>
+  <outline>
+    <contour>
+      <point x="7" y="-401" type="curve" smooth="yes"/>
+      <point x="12" y="-401" type="line" smooth="yes"/>
+      <point x="15" y="-401"/>
+      <point x="19" y="-396"/>
+      <point x="19" y="-393" type="curve" smooth="yes"/>
+      <point x="19" y="-82" type="line"/>
+      <point x="31" y="-75"/>
+      <point x="50" y="-70"/>
+      <point x="75" y="-70" type="curve" smooth="yes"/>
+      <point x="80" y="-70" type="line"/>
+      <point x="118" y="-71"/>
+      <point x="150" y="-87"/>
+      <point x="156" y="-93" type="curve"/>
+      <point x="156" y="-93"/>
+      <point x="160" y="-87"/>
+      <point x="160" y="-83" type="curve" smooth="yes"/>
+      <point x="160" y="57" type="line" smooth="yes"/>
+      <point x="160" y="99"/>
+      <point x="110" y="102"/>
+      <point x="80" y="102" type="curve" smooth="yes"/>
+      <point x="70" y="102" type="line" smooth="yes"/>
+      <point x="49" y="102"/>
+      <point x="0" y="98"/>
+      <point x="0" y="55" type="curve" smooth="yes"/>
+      <point x="0" y="-393" type="line" smooth="yes"/>
+      <point x="0" y="-396"/>
+      <point x="2" y="-401"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -70 172</string>
+              <string>vstem 0 19</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d4d0c484b14387367b6784fd1f38a4a613051d50914b598f3bb8bb050629d9de0316ced5021c000338f5b9a377b0065f1a9eb6579236926278db2af20f91aabc</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

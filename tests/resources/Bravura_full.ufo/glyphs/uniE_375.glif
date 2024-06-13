@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE375" format="2">
+  <advance width="312"/>
+  <unicode hex="E375"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalTrojan', 'combiningStaffPositions'], 'name': 'accSagittal5v23SmallDiesisDown', 'description': '5:23 small diesis down, 2° down [60 EDO], 1/5-tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="197" type="line"/>
+      <point x="0" y="78" type="line"/>
+      <point x="141" y="-172" type="line"/>
+      <point x="158" y="-88"/>
+      <point x="174" y="-47"/>
+      <point x="187" y="-47" type="curve" smooth="yes"/>
+      <point x="268" y="-47" type="line" smooth="yes"/>
+      <point x="298" y="-47"/>
+      <point x="312" y="16"/>
+      <point x="312" y="141" type="curve"/>
+      <point x="281" y="141" type="line"/>
+      <point x="281" y="57"/>
+      <point x="271" y="16"/>
+      <point x="250" y="16" type="curve" smooth="yes"/>
+      <point x="172" y="16" type="line" smooth="yes"/>
+      <point x="167" y="16"/>
+      <point x="162" y="12"/>
+      <point x="156" y="3" type="curve"/>
+      <point x="156" y="359" type="line"/>
+      <point x="125" y="359" type="line"/>
+      <point x="125" y="-23" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -47 63</string>
+              <string>vstem 125 31</string>
+              <string>vstem 281 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>7ce5545ba5e1b4be326f364268d433504048f77354a1cfe575d80169b385c7e13c25312b3cc86586ff97abc0c79d568a3b309e715aa56083220984d0600e68c4</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

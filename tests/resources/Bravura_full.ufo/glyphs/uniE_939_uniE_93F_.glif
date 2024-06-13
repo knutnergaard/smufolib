@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE939_uniE93F" format="2">
+  <advance width="282"/>
+  <unicode hex="F59B"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralMinimaBlackStemDownFlagLeft', 'description': 'Minima black, stem down with flag left'}
+</note>
+  <outline>
+    <contour>
+      <point x="5" y="-11" type="curve" smooth="yes"/>
+      <point x="124" y="-131" type="line"/>
+      <point x="124" y="-646" type="line" smooth="yes"/>
+      <point x="124" y="-655"/>
+      <point x="132" y="-662"/>
+      <point x="140" y="-662" type="curve" smooth="yes"/>
+      <point x="149" y="-662"/>
+      <point x="156" y="-655"/>
+      <point x="156" y="-646" type="curve" smooth="yes"/>
+      <point x="156" y="-132" type="line"/>
+      <point x="278" y="-11" type="line" smooth="yes"/>
+      <point x="281" y="-8"/>
+      <point x="282" y="-4"/>
+      <point x="282" y="0" type="curve" smooth="yes"/>
+      <point x="282" y="4"/>
+      <point x="281" y="9"/>
+      <point x="278" y="12" type="curve" smooth="yes"/>
+      <point x="153" y="137" type="line" smooth="yes"/>
+      <point x="150" y="140"/>
+      <point x="146" y="141"/>
+      <point x="141" y="141" type="curve" smooth="yes"/>
+      <point x="137" y="141"/>
+      <point x="133" y="140"/>
+      <point x="130" y="137" type="curve" smooth="yes"/>
+      <point x="5" y="12" type="line" smooth="yes"/>
+      <point x="2" y="9"/>
+      <point x="0" y="4"/>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-4"/>
+      <point x="2" y="-8"/>
+    </contour>
+    <contour>
+      <point x="39" y="0" type="line"/>
+      <point x="141" y="103" type="line"/>
+      <point x="244" y="0" type="line"/>
+      <point x="141" y="-102" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -650 790</string>
+              <string>vstem 125 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d150ead0cebf14f2086829fc16833171ca581926061551e4818c5bb48737f7cb50d738c12e63d4a1189f873fdc645e4d0c09292b29562915ab8774cad8c736ad</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

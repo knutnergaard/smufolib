@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4A9.ss01" format="2">
+  <advance width="117"/>
+  <unicode hex="F47E"/>
+  <note>
+{'classes': ['articulations', 'articulationsBelow', 'combiningStaffPositions'], 'name': 'articStaccatissimoWedgeBelowSmall', 'description': 'Staccatissimo wedge below (small staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-287" type="curve"/>
+      <point x="0" y="-289"/>
+      <point x="0" y="-290" name="hr01"/>
+      <point x="3" y="-290" type="curve"/>
+      <point x="4" y="-290"/>
+      <point x="31" y="-286"/>
+      <point x="59" y="-286" type="curve" smooth="yes"/>
+      <point x="85" y="-286"/>
+      <point x="113" y="-290"/>
+      <point x="115" y="-290" type="curve"/>
+      <point x="117" y="-290"/>
+      <point x="117" y="-288"/>
+      <point x="117" y="-287" type="curve"/>
+      <point x="95" y="-244"/>
+      <point x="71" y="-101"/>
+      <point x="68" y="-3" type="curve"/>
+      <point x="68" y="0"/>
+      <point x="60" y="0"/>
+      <point x="59" y="0" type="curve"/>
+      <point x="57" y="0"/>
+      <point x="49" y="0"/>
+      <point x="49" y="-3" type="curve"/>
+      <point x="47" y="-102"/>
+      <point x="23" y="-245"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -21 -21</string>
+              <string>vstem 49 19</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -290 290</string>
+              <string>vstem 49 19</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d634a05a79892db31c2956307d33597b70e2051f0940e261ce0cac7faf4ec6767271a39b2cd72439531a774d2aa006d2b498e774901ea8afc8981b04c18b16b3</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

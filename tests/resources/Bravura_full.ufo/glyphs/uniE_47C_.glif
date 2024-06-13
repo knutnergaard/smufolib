@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE47C" format="2">
+  <advance width="281"/>
+  <unicode hex="E47C"/>
+  <note>
+{'classes': ['accidentals', 'combiningStaffPositions'], 'name': 'accidentalWilsonMinus', 'description': 'Wilson minus (5 comma down)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="78" type="line"/>
+      <point x="281" y="-186" type="line"/>
+      <point x="281" y="-78" type="line"/>
+      <point x="0" y="186" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -186 372</string>
+              <string>vstem 0 281</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w281m0,78l281,-186l281,-78l0,186</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

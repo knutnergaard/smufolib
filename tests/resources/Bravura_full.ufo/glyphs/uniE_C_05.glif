@@ -1,0 +1,105 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC05" format="2">
+  <advance width="246"/>
+  <unicode hex="EC05"/>
+  <note>
+{'name': 'luteGermanFLower', 'description': '5th course, 2nd fret (f)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="265" type="curve"/>
+      <point x="40" y="265" type="line"/>
+      <point x="71" y="-122" type="line"/>
+      <point x="71" y="-123"/>
+      <point x="75" y="-124"/>
+      <point x="76" y="-124" type="curve"/>
+      <point x="84" y="-124"/>
+      <point x="85" y="-118"/>
+      <point x="86" y="-109" type="curve" smooth="yes"/>
+      <point x="117" y="143"/>
+      <point x="129" y="265"/>
+      <point x="132" y="265" type="curve" smooth="yes"/>
+      <point x="190" y="265" type="line"/>
+      <point x="184" y="316" type="line"/>
+      <point x="117" y="316" type="line" smooth="yes"/>
+      <point x="100" y="316"/>
+      <point x="91" y="363"/>
+      <point x="91" y="374" type="curve" smooth="yes"/>
+      <point x="91" y="401"/>
+      <point x="102" y="427"/>
+      <point x="133" y="427" type="curve" smooth="yes"/>
+      <point x="155" y="427"/>
+      <point x="172" y="405" name="hr01"/>
+      <point x="194" y="405" type="curve" smooth="yes"/>
+      <point x="201" y="405"/>
+      <point x="203" y="407"/>
+      <point x="206" y="411" type="curve"/>
+      <point x="207" y="412" type="line"/>
+      <point x="207" y="413"/>
+      <point x="209" y="415"/>
+      <point x="209" y="416" type="curve"/>
+      <point x="215" y="423"/>
+      <point x="237" y="455"/>
+      <point x="244" y="465" type="curve" smooth="yes"/>
+      <point x="246" y="468" type="line"/>
+      <point x="246" y="476"/>
+      <point x="240" y="478"/>
+      <point x="235" y="478" type="curve" smooth="yes"/>
+      <point x="226" y="478"/>
+      <point x="225" y="467"/>
+      <point x="217" y="467" type="curve" smooth="yes"/>
+      <point x="197" y="467"/>
+      <point x="183" y="489" name="hr02"/>
+      <point x="160" y="489" type="curve" smooth="yes"/>
+      <point x="72" y="489"/>
+      <point x="59" y="363"/>
+      <point x="20" y="309" type="curve" smooth="yes"/>
+      <point x="4" y="288" type="line"/>
+      <point x="1" y="281"/>
+      <point x="0" y="265"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 265 51</string>
+              <string>vstem 0 246</string>
+              <string>hstem 427 62</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 405 62</string>
+              <string>vstem 0 246</string>
+              <string>hstem 478 -20</string>
+              <string>hstem 265 51</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 427 62</string>
+              <string>hstem 265 51</string>
+              <string>vstem 0 246</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b28a15eac09d18f5e5a850798e0a948142d8f4978ba952a2657b86ce14e93a1f74f185b1925e9fad99dc45d39efdc7ee21e48ce0bb214fd3930a8621b87619b3</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

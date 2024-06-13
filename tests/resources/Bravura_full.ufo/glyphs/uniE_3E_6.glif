@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3E6" format="2">
+  <advance width="406"/>
+  <unicode hex="E3E6"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittalDoubleSharp19CDown', 'description': 'Double sharp 19C-down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="47" type="curve" smooth="yes"/>
+      <point x="0" y="-172" type="line"/>
+      <point x="31" y="-172" type="line"/>
+      <point x="31" y="-47" type="line" smooth="yes"/>
+      <point x="31" y="25"/>
+      <point x="94" y="66"/>
+      <point x="220" y="76" type="curve"/>
+      <point x="246" y="0" type="line"/>
+      <point x="125" y="-349" type="line"/>
+      <point x="161" y="-359" type="line"/>
+      <point x="266" y="-57" type="line"/>
+      <point x="371" y="-359" type="line"/>
+      <point x="406" y="-349" type="line"/>
+      <point x="285" y="0" type="line"/>
+      <point x="312" y="78" type="line"/>
+      <point x="344" y="78" type="line"/>
+      <point x="344" y="172" type="line"/>
+      <point x="250" y="172" type="line" smooth="yes"/>
+      <point x="83" y="172"/>
+      <point x="0" y="130"/>
+    </contour>
+    <contour>
+      <point x="258" y="78" type="line"/>
+      <point x="273" y="78" type="line"/>
+      <point x="266" y="57" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -162 -21</string>
+              <string>hstem 78 94</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>39d1bec7ee577f08f94832261be24812e2f9d215c355476ba13e332f3ceff8b3671b6037c3d80a2f232af6c594e29c2af32b7d2ef1ec30807b34fe66de22b148</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE09C.ss04" format="2">
+  <advance width="101"/>
+  <unicode hex="F4FD"/>
+  <note>
+{'name': 'timeSigXLarge', 'description': 'Open time signature (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-264" type="line"/>
+      <point x="18" y="-264" type="line"/>
+      <point x="50" y="-51" type="line"/>
+      <point x="83" y="-264" type="line"/>
+      <point x="101" y="-264" type="line"/>
+      <point x="59" y="0" type="line"/>
+      <point x="101" y="262" type="line"/>
+      <point x="83" y="262" type="line"/>
+      <point x="50" y="50" type="line"/>
+      <point x="18" y="262" type="line"/>
+      <point x="0" y="262" type="line"/>
+      <point x="41" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -264 526</string>
+              <string>vstem 0 101</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w101m0,-264l18,-264l50,-51l83,-264l101,-264l59,0l101,262l83,262l50,50l18,262l0,262l41,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

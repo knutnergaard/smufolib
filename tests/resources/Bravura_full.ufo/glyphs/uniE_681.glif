@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE681" format="2">
+  <advance width="250"/>
+  <unicode hex="E681"/>
+  <note>
+{'classes': ['tf_harpPedals'], 'name': 'harpPedalCentered', 'description': 'Harp pedal centered (natural)'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="390" type="line"/>
+      <point x="1" y="360" type="line"/>
+      <point x="89" y="360" type="line"/>
+      <point x="89" y="250" type="line"/>
+      <point x="164" y="250" type="line"/>
+      <point x="164" y="360" type="line"/>
+      <point x="251" y="360" type="line"/>
+      <point x="251" y="390" type="line"/>
+      <point x="164" y="390" type="line"/>
+      <point x="164" y="500" type="line"/>
+      <point x="89" y="500" type="line"/>
+      <point x="89" y="390" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 360 30</string>
+              <string>vstem 89 75</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w250m1,390l1,360l89,360l89,250l164,250l164,360l251,360l251,390l164,390l164,500l89,500l89,390</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

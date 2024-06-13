@@ -1,0 +1,121 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE753" format="2">
+  <advance width="873"/>
+  <unicode hex="E753"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictSiren', 'description': 'Siren'}
+</note>
+  <outline>
+    <contour>
+      <point x="19" y="0" type="curve" smooth="yes"/>
+      <point x="446" y="0" type="line" smooth="yes"/>
+      <point x="456" y="0"/>
+      <point x="464" y="8"/>
+      <point x="464" y="18" type="curve" smooth="yes"/>
+      <point x="464" y="106" type="line"/>
+      <point x="552" y="110"/>
+      <point x="632" y="145"/>
+      <point x="694" y="207" type="curve"/>
+      <point x="846" y="105" type="line" smooth="yes"/>
+      <point x="849" y="103"/>
+      <point x="853" y="102"/>
+      <point x="857" y="102" type="curve" smooth="yes"/>
+      <point x="860" y="102"/>
+      <point x="862" y="103"/>
+      <point x="864" y="104" type="curve" smooth="yes"/>
+      <point x="870" y="108"/>
+      <point x="874" y="114"/>
+      <point x="874" y="120" type="curve" smooth="yes"/>
+      <point x="874" y="766" type="line" smooth="yes"/>
+      <point x="874" y="772"/>
+      <point x="870" y="778"/>
+      <point x="865" y="781" type="curve" smooth="yes"/>
+      <point x="862" y="782"/>
+      <point x="859" y="783"/>
+      <point x="856" y="783" type="curve" smooth="yes"/>
+      <point x="853" y="783"/>
+      <point x="849" y="782"/>
+      <point x="847" y="781" type="curve" smooth="yes"/>
+      <point x="690" y="689" type="line"/>
+      <point x="627" y="752"/>
+      <point x="541" y="787"/>
+      <point x="452" y="787" type="curve" smooth="yes"/>
+      <point x="263" y="787"/>
+      <point x="111" y="633"/>
+      <point x="111" y="446" type="curve" smooth="yes"/>
+      <point x="111" y="270"/>
+      <point x="252" y="116"/>
+      <point x="428" y="107" type="curve"/>
+      <point x="428" y="36" type="line"/>
+      <point x="19" y="36" type="line" smooth="yes"/>
+      <point x="9" y="36"/>
+      <point x="1" y="28"/>
+      <point x="1" y="18" type="curve" smooth="yes"/>
+      <point x="1" y="8"/>
+      <point x="9" y="0"/>
+    </contour>
+    <contour>
+      <point x="147" y="446" type="curve" smooth="yes"/>
+      <point x="147" y="614"/>
+      <point x="284" y="751"/>
+      <point x="452" y="751" type="curve" smooth="yes"/>
+      <point x="535" y="751"/>
+      <point x="618" y="716"/>
+      <point x="674" y="654" type="curve" smooth="yes"/>
+      <point x="678" y="650"/>
+      <point x="682" y="649"/>
+      <point x="687" y="649" type="curve" smooth="yes"/>
+      <point x="690" y="649"/>
+      <point x="693" y="649"/>
+      <point x="696" y="651" type="curve" smooth="yes"/>
+      <point x="838" y="734" type="line"/>
+      <point x="838" y="154" type="line"/>
+      <point x="701" y="245" type="line" smooth="yes"/>
+      <point x="698" y="247"/>
+      <point x="694" y="248"/>
+      <point x="691" y="248" type="curve" smooth="yes"/>
+      <point x="686" y="248"/>
+      <point x="681" y="246"/>
+      <point x="678" y="242" type="curve" smooth="yes"/>
+      <point x="621" y="181"/>
+      <point x="547" y="146"/>
+      <point x="464" y="142" type="curve"/>
+      <point x="464" y="445" type="line" smooth="yes"/>
+      <point x="464" y="455"/>
+      <point x="456" y="463"/>
+      <point x="446" y="463" type="curve" smooth="yes"/>
+      <point x="436" y="463"/>
+      <point x="428" y="455"/>
+      <point x="428" y="445" type="curve" smooth="yes"/>
+      <point x="428" y="143" type="line"/>
+      <point x="270" y="154"/>
+      <point x="147" y="288"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 36</string>
+              <string>hstem 0 143</string>
+              <string>hstem 107 36</string>
+              <string>hstem 751 36</string>
+              <string>vstem 111 36</string>
+              <string>vstem 428 36</string>
+              <string>vstem 838 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>eb52397e77b6653562ba256d2eb4d0033ec174df7d9d0a142c91eda50ad20fcbea4e9d32a02cd46c9e0f0e2bb64634dba4ca77647fc827c625c46864b5c4c4de</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE324" format="2">
+  <advance width="406"/>
+  <unicode hex="E324"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalSharp35MUp', 'description': 'Sharp 35M-up, 4° up [50 EDO], 6° up [27 EDO], 13/18-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-78" type="line"/>
+      <point x="0" y="-190" type="line"/>
+      <point x="94" y="-75" type="line"/>
+      <point x="94" y="-359" type="line"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="125" y="-37" type="line"/>
+      <point x="187" y="40" type="line"/>
+      <point x="187" y="-359" type="line"/>
+      <point x="219" y="-359" type="line"/>
+      <point x="219" y="78" type="line"/>
+      <point x="250" y="78" type="line" smooth="yes"/>
+      <point x="261" y="78"/>
+      <point x="271" y="77"/>
+      <point x="281" y="76" type="curve"/>
+      <point x="281" y="-359" type="line"/>
+      <point x="312" y="-359" type="line"/>
+      <point x="312" y="67" type="line"/>
+      <point x="354" y="50"/>
+      <point x="375" y="12"/>
+      <point x="375" y="-47" type="curve" smooth="yes"/>
+      <point x="375" y="-172" type="line"/>
+      <point x="406" y="-172" type="line"/>
+      <point x="406" y="47" type="line" smooth="yes"/>
+      <point x="406" y="130"/>
+      <point x="365" y="172"/>
+      <point x="281" y="172" type="curve" smooth="yes"/>
+      <point x="203" y="172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>hstem -162 -21</string>
+              <string>hstem 78 94</string>
+              <string>vstem 94 31</string>
+              <string>vstem 187 32</string>
+              <string>vstem 281 31</string>
+              <string>vstem 375 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>25e2c08c638b8b30a74a0c0866103495b7002af7733a2437f36c96e02df16e39b206622949da3bfca76a52a5213201c2fc5852f55093316596171858dd0ee431</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

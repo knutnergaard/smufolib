@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE6D2" format="2">
+  <advance width="986"/>
+  <unicode hex="E6D2"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictSnareDrumSnaresOff', 'description': 'Snare drum, snares off'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="41" type="line" smooth="yes"/>
+      <point x="0" y="18"/>
+      <point x="19" y="0"/>
+      <point x="41" y="0" type="curve" smooth="yes"/>
+      <point x="943" y="0" type="line" smooth="yes"/>
+      <point x="966" y="0"/>
+      <point x="984" y="18"/>
+      <point x="984" y="41" type="curve" smooth="yes"/>
+      <point x="984" y="374" type="line" smooth="yes"/>
+      <point x="984" y="397"/>
+      <point x="966" y="415"/>
+      <point x="943" y="415" type="curve" smooth="yes"/>
+      <point x="41" y="415" type="line" smooth="yes"/>
+      <point x="19" y="415"/>
+      <point x="0" y="397"/>
+      <point x="0" y="374" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="41" y="379" type="curve"/>
+      <point x="943" y="379" type="line" smooth="yes"/>
+      <point x="946" y="379"/>
+      <point x="948" y="377"/>
+      <point x="948" y="374" type="curve" smooth="yes"/>
+      <point x="948" y="41" type="line" smooth="yes"/>
+      <point x="948" y="38"/>
+      <point x="946" y="36"/>
+      <point x="943" y="36" type="curve" smooth="yes"/>
+      <point x="41" y="36" type="line"/>
+      <point x="39" y="36"/>
+      <point x="36" y="38"/>
+      <point x="36" y="41" type="curve" smooth="yes"/>
+      <point x="36" y="374" type="line" smooth="yes"/>
+      <point x="36" y="377"/>
+      <point x="39" y="379"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 36</string>
+              <string>hstem 379 36</string>
+              <string>vstem 0 36</string>
+              <string>vstem 948 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>abb798ff2c2cc018e23ea73d35f6cc9a87cfc51d35e391e5f2cee719b11725bf5c5c4e858626ccafaef71f17c0a27fefcb76619b2f7b2916efba8e2d3129160b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

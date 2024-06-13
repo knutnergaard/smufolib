@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2B4_uniE2B2" format="2">
+  <advance width="235"/>
+  <unicode hex="F5DD"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsJohnston', 'combiningStaffPositions'], 'name': 'noteheadHalfParens', 'description': 'Parenthesised half notehead'}
+</note>
+  <outline>
+    <contour>
+      <point x="100" y="-60" type="line"/>
+      <point x="235" y="-20" type="line"/>
+      <point x="225" y="50" type="line"/>
+      <point x="105" y="15" type="line"/>
+      <point x="105" y="250" type="line"/>
+      <point x="160" y="195" type="line"/>
+      <point x="180" y="215" type="line"/>
+      <point x="90" y="305" type="line"/>
+      <point x="0" y="215" type="line"/>
+      <point x="20" y="195" type="line"/>
+      <point x="75" y="250" type="line"/>
+      <point x="75" y="-50" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -60 365</string>
+              <string>vstem 75 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w235m100,-60l235,-20l225,50l105,15l105,250l160,195l180,215l90,305l0,215l20,195l75,250l75,-50</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

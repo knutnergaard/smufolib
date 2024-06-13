@@ -1,0 +1,81 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBF4" format="2">
+  <advance width="673"/>
+  <unicode hex="EBF4"/>
+  <note>
+{'name': 'luteItalianHoldFinger', 'description': 'Hold finger in place'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="257" type="curve" smooth="yes"/>
+      <point x="0" y="154"/>
+      <point x="52" y="0"/>
+      <point x="174" y="0" type="curve" smooth="yes"/>
+      <point x="248" y="0"/>
+      <point x="312" y="68"/>
+      <point x="337" y="163" type="curve"/>
+      <point x="362" y="68"/>
+      <point x="425" y="0"/>
+      <point x="499" y="0" type="curve" smooth="yes"/>
+      <point x="595" y="0"/>
+      <point x="673" y="114"/>
+      <point x="673" y="254" type="curve" smooth="yes"/>
+      <point x="673" y="264"/>
+      <point x="667" y="269"/>
+      <point x="661" y="269" type="curve" smooth="yes"/>
+      <point x="655" y="269"/>
+      <point x="650" y="264"/>
+      <point x="650" y="255" type="curve" smooth="yes"/>
+      <point x="650" y="161"/>
+      <point x="576" y="63"/>
+      <point x="499" y="63" type="curve" smooth="yes"/>
+      <point x="424" y="63"/>
+      <point x="351" y="155"/>
+      <point x="348" y="250" type="curve"/>
+      <point x="348" y="254" type="line" smooth="yes"/>
+      <point x="348" y="259"/>
+      <point x="348" y="261"/>
+      <point x="347" y="262" type="curve"/>
+      <point x="345" y="267"/>
+      <point x="341" y="269"/>
+      <point x="337" y="269" type="curve" smooth="yes"/>
+      <point x="332" y="269"/>
+      <point x="326" y="265"/>
+      <point x="325" y="257" type="curve"/>
+      <point x="324" y="175"/>
+      <point x="266" y="63"/>
+      <point x="174" y="63" type="curve" smooth="yes"/>
+      <point x="97" y="63"/>
+      <point x="23" y="159"/>
+      <point x="23" y="257" type="curve" smooth="yes"/>
+      <point x="23" y="265"/>
+      <point x="17" y="270"/>
+      <point x="11" y="270" type="curve" smooth="yes"/>
+      <point x="5" y="270"/>
+      <point x="0" y="265"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 63</string>
+              <string>vstem 0 23</string>
+              <string>vstem 325 23</string>
+              <string>vstem 650 23</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>cbd6accb8fc7176cfa814fd2f5c45c51dd35989284aa886186a5a181fdc9554d8448ed930ac11bdfb7443729312fd82cc2171ab97b6b9284d2c047fc2128eca4</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

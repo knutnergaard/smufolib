@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE32E" format="2">
+  <advance width="375"/>
+  <unicode hex="E32E"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalDoubleSharp7CDown', 'description': 'Double sharp 7C-down, 5°[43] 10°[72] up, 5/6-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-349" type="line"/>
+      <point x="36" y="-359" type="line"/>
+      <point x="141" y="-57" type="line"/>
+      <point x="246" y="-359" type="line"/>
+      <point x="281" y="-349" type="line"/>
+      <point x="160" y="0" type="line"/>
+      <point x="187" y="75" type="line"/>
+      <point x="292" y="64"/>
+      <point x="344" y="24"/>
+      <point x="344" y="-47" type="curve" smooth="yes"/>
+      <point x="344" y="-172" type="line"/>
+      <point x="375" y="-172" type="line"/>
+      <point x="375" y="47" type="line" smooth="yes"/>
+      <point x="375" y="130"/>
+      <point x="302" y="172"/>
+      <point x="156" y="172" type="curve" smooth="yes"/>
+      <point x="62" y="172" type="line"/>
+      <point x="62" y="78" type="line"/>
+      <point x="94" y="78" type="line"/>
+      <point x="121" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="148" y="78" type="line"/>
+      <point x="141" y="57" type="line"/>
+      <point x="133" y="78" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -162 -21</string>
+              <string>hstem 78 94</string>
+              <string>vstem 344 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>9cd9e56dafbf0930eea1fbf2a744f21c2e39b54d7ed81d78ecaf8feca5f5ee11cc484045c32330b196fc1ea71933f13a8f97413d404de14934174fd6675762ed</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

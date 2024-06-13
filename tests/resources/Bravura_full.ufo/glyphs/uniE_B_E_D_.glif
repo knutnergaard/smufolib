@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBED" format="2">
+  <advance width="979"/>
+  <unicode hex="EBED"/>
+  <note>
+{'name': 'luteItalianTempoSlow', 'description': 'Slow tempo indication (de Mudarra)'}
+</note>
+  <outline>
+    <contour>
+      <point x="2" y="-1" type="curve" smooth="yes"/>
+      <point x="2" y="-303"/>
+      <point x="241" y="-550"/>
+      <point x="540" y="-562" type="curve"/>
+      <point x="540" y="-750" type="line"/>
+      <point x="588" y="-750" type="line"/>
+      <point x="588" y="-563" type="line"/>
+      <point x="694" y="-558"/>
+      <point x="791" y="-524"/>
+      <point x="874" y="-470" type="curve" smooth="yes"/>
+      <point x="879" y="-467"/>
+      <point x="883" y="-466"/>
+      <point x="887" y="-466" type="curve" smooth="yes"/>
+      <point x="902" y="-466"/>
+      <point x="912" y="-483"/>
+      <point x="912" y="-483" type="curve"/>
+      <point x="952" y="-561" type="line"/>
+      <point x="979" y="-561" type="line"/>
+      <point x="979" y="-197" type="line"/>
+      <point x="962" y="-197" type="line"/>
+      <point x="961" y="-202" type="line"/>
+      <point x="900" y="-386"/>
+      <point x="757" y="-518"/>
+      <point x="588" y="-529" type="curve"/>
+      <point x="588" y="525" type="line"/>
+      <point x="756" y="514"/>
+      <point x="900" y="381"/>
+      <point x="962" y="198" type="curve"/>
+      <point x="979" y="198" type="line"/>
+      <point x="979" y="562" type="line"/>
+      <point x="952" y="562" type="line"/>
+      <point x="952" y="562"/>
+      <point x="937" y="535"/>
+      <point x="914" y="489" type="curve" smooth="yes"/>
+      <point x="904" y="469"/>
+      <point x="895" y="463"/>
+      <point x="888" y="463" type="curve" smooth="yes"/>
+      <point x="881" y="463"/>
+      <point x="875" y="469"/>
+      <point x="871" y="471" type="curve" smooth="yes"/>
+      <point x="789" y="525"/>
+      <point x="692" y="557"/>
+      <point x="588" y="561" type="curve"/>
+      <point x="588" y="750" type="line"/>
+      <point x="540" y="750" type="line"/>
+      <point x="540" y="561" type="line"/>
+      <point x="241" y="549"/>
+      <point x="2" y="302"/>
+    </contour>
+    <contour>
+      <point x="540" y="525" type="curve"/>
+      <point x="540" y="-529" type="line"/>
+      <point x="315" y="-514"/>
+      <point x="136" y="-284"/>
+      <point x="136" y="-2" type="curve" smooth="yes"/>
+      <point x="136" y="279"/>
+      <point x="315" y="509"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -563 34</string>
+              <string>hstem 525 36</string>
+              <string>vstem 2 134</string>
+              <string>vstem 540 48</string>
+              <string>vstem 962 17</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6eef79e79a26b53a027040e6fbabfe47ece67f2770e77c1cb16138c5ad5d8435a5d940c62714754b6de771ecace5348eed64f2b4fd1523cd290a97624817a045</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

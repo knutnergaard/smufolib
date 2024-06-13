@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4F3" format="2">
+  <advance width="294"/>
+  <unicode hex="E4F3"/>
+  <note>
+{'classes': ['rests'], 'name': 'restDoubleWholeLegerLine', 'description': 'Double whole rest on leger lines'}
+</note>
+  <outline>
+    <contour>
+      <point x="10" y="-25" type="curve" smooth="yes"/>
+      <point x="284" y="-25" type="line" smooth="yes"/>
+      <point x="290" y="-25"/>
+      <point x="294" y="-20"/>
+      <point x="294" y="-15" type="curve" smooth="yes"/>
+      <point x="294" y="10" type="line" smooth="yes"/>
+      <point x="294" y="16"/>
+      <point x="290" y="20"/>
+      <point x="284" y="20" type="curve" smooth="yes"/>
+      <point x="210" y="20" type="line"/>
+      <point x="210" y="219" type="line"/>
+      <point x="284" y="219" type="line" smooth="yes"/>
+      <point x="290" y="219"/>
+      <point x="294" y="224"/>
+      <point x="294" y="229" type="curve" smooth="yes"/>
+      <point x="294" y="254" type="line" smooth="yes"/>
+      <point x="294" y="260"/>
+      <point x="290" y="264"/>
+      <point x="284" y="264" type="curve" smooth="yes"/>
+      <point x="10" y="264" type="line" smooth="yes"/>
+      <point x="5" y="264"/>
+      <point x="0" y="260"/>
+      <point x="0" y="254" type="curve" smooth="yes"/>
+      <point x="0" y="229" type="line" smooth="yes"/>
+      <point x="0" y="224"/>
+      <point x="5" y="219"/>
+      <point x="10" y="219" type="curve" smooth="yes"/>
+      <point x="85" y="219" type="line"/>
+      <point x="85" y="20" type="line"/>
+      <point x="10" y="20" type="line" smooth="yes"/>
+      <point x="5" y="20"/>
+      <point x="0" y="16"/>
+      <point x="0" y="10" type="curve" smooth="yes"/>
+      <point x="0" y="-15" type="line" smooth="yes"/>
+      <point x="0" y="-20"/>
+      <point x="5" y="-25"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -25 45</string>
+              <string>hstem 219 45</string>
+              <string>vstem 85 125</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>1cda81de94aee28eb7efedfd2bd22f4e45d5a7d54c2661616a3b57a3ba4f4630ce20a34f5cf356b0717e923b7fe86b61e1f43a34011be7d7f48a73fb227c4348</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

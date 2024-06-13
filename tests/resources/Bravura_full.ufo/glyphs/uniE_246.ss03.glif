@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE246.ss03" format="2">
+  <advance width="262"/>
+  <unicode hex="F418"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'flag64thUpStraight', 'description': 'Combining flag 4 (64th) above (straight)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="403" type="line"/>
+      <point x="0" y="278" type="line"/>
+      <point x="10" y="278" type="line"/>
+      <point x="240" y="48" type="line"/>
+      <point x="240" y="173" type="line"/>
+      <point x="10" y="403" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-197" type="line"/>
+      <point x="0" y="-322" type="line"/>
+      <point x="10" y="-322" type="line"/>
+      <point x="240" y="-552" type="line"/>
+      <point x="240" y="-427" type="line"/>
+      <point x="10" y="-197" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="3" type="line"/>
+      <point x="0" y="-122" type="line"/>
+      <point x="10" y="-122" type="line"/>
+      <point x="240" y="-352" type="line"/>
+      <point x="240" y="-227" type="line"/>
+      <point x="10" y="3" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="203" type="line"/>
+      <point x="0" y="78" type="line"/>
+      <point x="10" y="78" type="line"/>
+      <point x="240" y="-152" type="line"/>
+      <point x="240" y="-27" type="line"/>
+      <point x="10" y="203" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -552 955</string>
+              <string>vstem 0 10</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6bb787bac7673fbe4561547593a85e95ae0891df8d42bf2df841558b150535e5eee5f1707673f0fa8eb0c25706f858088164a824ec7ad1908e6d70690909118b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

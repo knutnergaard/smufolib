@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniECA3" format="2">
+  <advance width="341"/>
+  <unicode hex="ECA3"/>
+  <note>
+{'classes': ['tf_metronomeMarks'], 'name': 'metNoteHalfUp', 'description': 'Half note (minim) stem up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-45" type="curve" smooth="yes"/>
+      <point x="0" y="-106"/>
+      <point x="49" y="-141"/>
+      <point x="112" y="-141" type="curve" smooth="yes"/>
+      <point x="302" y="-141"/>
+      <point x="341" y="13"/>
+      <point x="341" y="52" type="curve" smooth="yes"/>
+      <point x="341" y="688" type="line"/>
+      <point x="311" y="688" type="line"/>
+      <point x="311" y="122" type="line"/>
+      <point x="291" y="139"/>
+      <point x="262" y="149"/>
+      <point x="227" y="149" type="curve" smooth="yes"/>
+      <point x="54" y="149"/>
+      <point x="0" y="15"/>
+    </contour>
+    <contour>
+      <point x="34" y="-47" type="curve" smooth="yes"/>
+      <point x="34" y="10"/>
+      <point x="201" y="101"/>
+      <point x="256" y="101" type="curve" smooth="yes"/>
+      <point x="281" y="101"/>
+      <point x="305" y="81"/>
+      <point x="305" y="55" type="curve" smooth="yes"/>
+      <point x="305" y="32"/>
+      <point x="281" y="4"/>
+      <point x="200" y="-49" type="curve" smooth="yes"/>
+      <point x="148" y="-84"/>
+      <point x="112" y="-96"/>
+      <point x="87" y="-96" type="curve" smooth="yes"/>
+      <point x="60" y="-96"/>
+      <point x="34" y="-75"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -141 45</string>
+              <string>hstem 101 48</string>
+              <string>vstem 0 34</string>
+              <string>vstem 311 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>2e2b0539c0a3dd084e9fb331d54fbe6d6c66bf4713bbe97d5faf0ac83a604a885c4a803ddba6ecccbb3239059e3c3d2d255dce8795b59d9720299fa2c6316e8e</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

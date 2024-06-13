@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4A3" format="2">
+  <advance width="84"/>
+  <unicode hex="E4A3"/>
+  <note>
+{'classes': ['articulations', 'articulationsBelow', 'combiningStaffPositions'], 'name': 'articStaccatoBelow', 'description': 'Staccato below'}
+</note>
+  <outline>
+    <contour>
+      <point x="42" y="-84" type="curve" smooth="yes"/>
+      <point x="65" y="-84"/>
+      <point x="84" y="-65"/>
+      <point x="84" y="-42" type="curve" smooth="yes"/>
+      <point x="84" y="-19"/>
+      <point x="65" y="0"/>
+      <point x="42" y="0" type="curve" smooth="yes"/>
+      <point x="19" y="0"/>
+      <point x="0" y="-19"/>
+      <point x="0" y="-42" type="curve" smooth="yes"/>
+      <point x="0" y="-65"/>
+      <point x="19" y="-84"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -84 84</string>
+              <string>vstem 0 84</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w84m42,-84c65,-84 84,-65 84,-42c84,-19 65,0 42,0c19,0 0,-19 0,-42c0,-65 19,-84 42,-84</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

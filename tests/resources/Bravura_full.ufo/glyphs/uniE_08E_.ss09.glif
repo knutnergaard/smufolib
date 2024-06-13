@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE08E.ss09" format="2">
+  <advance width="227"/>
+  <unicode hex="F514"/>
+  <note>
+{'name': 'timeSigFractionalSlashNarrow', 'description': 'Time signature fraction slash (large, narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-162" type="curve"/>
+      <point x="0" y="-164"/>
+      <point x="0" y="-166"/>
+      <point x="1" y="-167" type="curve"/>
+      <point x="14" y="-188" type="line"/>
+      <point x="14" y="-189"/>
+      <point x="16" y="-190"/>
+      <point x="17" y="-190" type="curve"/>
+      <point x="19" y="-190"/>
+      <point x="22" y="-188"/>
+      <point x="23" y="-184" type="curve"/>
+      <point x="223" y="149" type="line"/>
+      <point x="226" y="152"/>
+      <point x="227" y="157"/>
+      <point x="227" y="161" type="curve"/>
+      <point x="227" y="163"/>
+      <point x="226" y="165"/>
+      <point x="226" y="166" type="curve"/>
+      <point x="213" y="187" type="line"/>
+      <point x="212" y="188"/>
+      <point x="211" y="189"/>
+      <point x="210" y="189" type="curve"/>
+      <point x="208" y="189"/>
+      <point x="205" y="187"/>
+      <point x="203" y="183" type="curve" smooth="yes"/>
+      <point x="3" y="-150" type="line" smooth="yes"/>
+      <point x="1" y="-154"/>
+      <point x="0" y="-158"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -190 379</string>
+              <string>vstem 0 378</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>1fdc230364e744b38c906f2af0d31906a238a29bf055a5921dd18e329a3c40c4256c12270718f62fdc02f7d70baf89941306ca6284f7a71f29518e50089c2a0a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

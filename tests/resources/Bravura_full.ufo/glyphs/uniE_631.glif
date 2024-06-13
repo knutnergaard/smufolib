@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE631" format="2">
+  <advance width="200"/>
+  <unicode hex="E631"/>
+  <note>
+{'name': 'pluckedSnapPizzicatoAbove', 'description': 'Snap pizzicato above'}
+</note>
+  <outline>
+    <contour>
+      <point x="100" y="0" type="curve" smooth="yes"/>
+      <point x="155" y="0"/>
+      <point x="200" y="44"/>
+      <point x="200" y="100" type="curve" smooth="yes"/>
+      <point x="200" y="149"/>
+      <point x="163" y="191"/>
+      <point x="116" y="198" type="curve"/>
+      <point x="116" y="300" type="line"/>
+      <point x="84" y="300" type="line"/>
+      <point x="84" y="198" type="line"/>
+      <point x="36" y="191"/>
+      <point x="0" y="149"/>
+      <point x="0" y="100" type="curve" smooth="yes"/>
+      <point x="0" y="44"/>
+      <point x="45" y="0"/>
+    </contour>
+    <contour>
+      <point x="27" y="100" type="curve" smooth="yes"/>
+      <point x="27" y="134"/>
+      <point x="51" y="164"/>
+      <point x="84" y="171" type="curve"/>
+      <point x="84" y="100" type="line"/>
+      <point x="116" y="100" type="line"/>
+      <point x="116" y="171" type="line"/>
+      <point x="148" y="164"/>
+      <point x="173" y="134"/>
+      <point x="173" y="100" type="curve" smooth="yes"/>
+      <point x="173" y="59"/>
+      <point x="140" y="27"/>
+      <point x="100" y="27" type="curve" smooth="yes"/>
+      <point x="59" y="27"/>
+      <point x="27" y="59"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 27</string>
+              <string>hstem 100 200</string>
+              <string>vstem 0 27</string>
+              <string>vstem 84 32</string>
+              <string>vstem 173 27</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b25d49dffc48ac0d0089ae3b2e53db996db8d9e2027b4365f82e2a9ea18eed6ce752bce96d53f01cbc7e78dd69e4a96e2769b1510ea07c2e4fd0fc4534d88ae9</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

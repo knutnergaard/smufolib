@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE97E" format="2">
+  <advance width="783"/>
+  <unicode hex="E97E"/>
+  <note>
+{'name': 'mensuralObliqueAsc5thBlackVoid', 'description': 'Oblique form, ascending 5th, black and void'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-120" type="line" smooth="yes"/>
+      <point x="0" y="-133"/>
+      <point x="9" y="-142"/>
+      <point x="20" y="-142" type="curve" smooth="yes"/>
+      <point x="25" y="-142"/>
+      <point x="29" y="-141"/>
+      <point x="33" y="-138" type="curve" smooth="yes"/>
+      <point x="406" y="115" type="line"/>
+      <point x="407" y="115"/>
+      <point x="408" y="116"/>
+      <point x="409" y="116" type="curve"/>
+      <point x="768" y="359" type="line" smooth="yes"/>
+      <point x="777" y="365"/>
+      <point x="783" y="377"/>
+      <point x="783" y="388" type="curve" smooth="yes"/>
+      <point x="783" y="618" type="line" smooth="yes"/>
+      <point x="783" y="629"/>
+      <point x="775" y="640"/>
+      <point x="760" y="640" type="curve"/>
+      <point x="757" y="639"/>
+      <point x="753" y="638"/>
+      <point x="749" y="636" type="curve"/>
+      <point x="15" y="138" type="line" smooth="yes"/>
+      <point x="6" y="132"/>
+      <point x="0" y="120"/>
+      <point x="0" y="110" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="32" y="109" type="line"/>
+      <point x="32" y="110"/>
+      <point x="33" y="111"/>
+      <point x="34" y="112" type="curve"/>
+      <point x="376" y="344" type="line"/>
+      <point x="376" y="133" type="line"/>
+      <point x="32" y="-100" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -142 782</string>
+              <string>vstem 0 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b71a2e6aa6be5bc8a56c2cbbca5a818e4afc53e6249991ee68c1da5f92e108330b2ded26d9ac11c62193bacaa7543b4bbeedcf415e23c13b37e94fb94d25f83d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

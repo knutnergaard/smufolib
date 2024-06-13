@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE32D" format="2">
+  <advance width="405"/>
+  <unicode hex="E32D"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalDoubleFlat25SUp', 'description': 'Double flat 25S-up, 8°down [53 EDO]'}
+</note>
+  <outline>
+    <contour>
+      <point x="31" y="-47" type="line"/>
+      <point x="31" y="-14"/>
+      <point x="46" y="3"/>
+      <point x="76" y="3" type="curve" smooth="yes"/>
+      <point x="163" y="3"/>
+      <point x="189" y="-103"/>
+      <point x="203" y="-171" type="curve"/>
+      <point x="217" y="-103"/>
+      <point x="242" y="3"/>
+      <point x="329" y="3" type="curve" smooth="yes"/>
+      <point x="359" y="3"/>
+      <point x="374" y="-14"/>
+      <point x="374" y="-47" type="curve"/>
+      <point x="405" y="-47" type="line"/>
+      <point x="405" y="37"/>
+      <point x="374" y="78"/>
+      <point x="312" y="78" type="curve" smooth="yes"/>
+      <point x="282" y="78"/>
+      <point x="257" y="66"/>
+      <point x="237" y="43" type="curve"/>
+      <point x="344" y="349" type="line"/>
+      <point x="308" y="359" type="line"/>
+      <point x="203" y="57" type="line"/>
+      <point x="98" y="359" type="line"/>
+      <point x="62" y="349" type="line"/>
+      <point x="168" y="43" type="line"/>
+      <point x="148" y="66"/>
+      <point x="124" y="78"/>
+      <point x="94" y="78" type="curve" smooth="yes"/>
+      <point x="31" y="78"/>
+      <point x="0" y="37"/>
+      <point x="0" y="-47" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 3 75</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>81905ffda8464594de69f2fe4211f6979203b0e101e03a76cefb85a89879114eeae4fec1b4faf67b6ced1f9193ffc49fba6e43aefedaf9ac120eafff30f42306</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

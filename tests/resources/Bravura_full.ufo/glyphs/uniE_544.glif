@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE544" format="2">
+  <advance width="77"/>
+  <unicode hex="E544"/>
+  <note>
+{'classes': ['dynamics'], 'name': 'dynamicHairpinBracketLeft', 'description': 'Left bracket (for hairpins)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="248" type="curve"/>
+      <point x="0" y="-248" type="line"/>
+      <point x="0" y="-249"/>
+      <point x="1" y="-250"/>
+      <point x="2" y="-250" type="curve"/>
+      <point x="75" y="-250" type="line"/>
+      <point x="76" y="-250"/>
+      <point x="77" y="-248"/>
+      <point x="77" y="-247" type="curve"/>
+      <point x="77" y="-232" type="line"/>
+      <point x="77" y="-230"/>
+      <point x="76" y="-229"/>
+      <point x="75" y="-229" type="curve"/>
+      <point x="32" y="-229" type="line"/>
+      <point x="32" y="228" type="line"/>
+      <point x="75" y="228" type="line"/>
+      <point x="76" y="228"/>
+      <point x="77" y="230"/>
+      <point x="77" y="231" type="curve"/>
+      <point x="77" y="247" type="line"/>
+      <point x="77" y="248"/>
+      <point x="76" y="250"/>
+      <point x="75" y="250" type="curve"/>
+      <point x="2" y="250" type="line"/>
+      <point x="1" y="250"/>
+      <point x="0" y="249"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -250 21</string>
+              <string>hstem 228 22</string>
+              <string>vstem 0 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f806688057bf003da7e5d8fe9daa6596f5eb15775a923fc4b43c58fe3fe2dc9cd2754d7282bc68da3a48e4d42bcdf6d69d9ee235a98121190cc5c486805913d3</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

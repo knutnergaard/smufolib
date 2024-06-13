@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE102.ss08" format="2">
+  <advance width="1176"/>
+  <unicode hex="F4E5"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheads'], 'name': 'noteheadSlashWhiteWholeOversized', 'description': 'Oversized white slash whole'}
+</note>
+  <outline>
+    <contour>
+      <point x="1014" y="264" type="line"/>
+      <point x="570" y="-264" type="line"/>
+      <point x="150" y="-264" type="line"/>
+      <point x="594" y="264" type="line"/>
+    </contour>
+    <contour>
+      <point x="516" y="300" type="line"/>
+      <point x="0" y="-300" type="line"/>
+      <point x="660" y="-300" type="line"/>
+      <point x="1176" y="300" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -250 30</string>
+              <string>hstem 220 30</string>
+              <string>vstem 0 980</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w1176m1014,264l570,-264l150,-264l594,264m516,300l0,-300l660,-300l1176,300</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

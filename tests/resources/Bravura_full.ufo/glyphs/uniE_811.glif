@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE811" format="2">
+  <advance width="414"/>
+  <unicode hex="E811"/>
+  <note>
+{'name': 'handbellsMartellatoLift', 'description': 'Martellato lift'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="363" type="curve"/>
+      <point x="0" y="361"/>
+      <point x="1" y="358"/>
+      <point x="2" y="356" type="curve" smooth="yes"/>
+      <point x="114" y="106" type="line"/>
+      <point x="117" y="101"/>
+      <point x="122" y="97"/>
+      <point x="129" y="97" type="curve" smooth="yes"/>
+      <point x="135" y="97"/>
+      <point x="141" y="101"/>
+      <point x="143" y="106" type="curve" smooth="yes"/>
+      <point x="256" y="356" type="line" smooth="yes"/>
+      <point x="257" y="358"/>
+      <point x="257" y="361"/>
+      <point x="257" y="363" type="curve"/>
+      <point x="257" y="366"/>
+      <point x="257" y="369"/>
+      <point x="255" y="372" type="curve" smooth="yes"/>
+      <point x="252" y="376"/>
+      <point x="247" y="379"/>
+      <point x="241" y="379" type="curve" smooth="yes"/>
+      <point x="16" y="379" type="line" smooth="yes"/>
+      <point x="11" y="379"/>
+      <point x="6" y="376"/>
+      <point x="3" y="372" type="curve" smooth="yes"/>
+      <point x="1" y="369"/>
+      <point x="0" y="366"/>
+    </contour>
+    <contour>
+      <point x="286" y="402" type="line"/>
+      <point x="334" y="402" type="line"/>
+      <point x="334" y="16" type="line" smooth="yes"/>
+      <point x="334" y="7"/>
+      <point x="341" y="0"/>
+      <point x="350" y="0" type="curve" smooth="yes"/>
+      <point x="359" y="0"/>
+      <point x="366" y="7"/>
+      <point x="366" y="16" type="curve" smooth="yes"/>
+      <point x="366" y="402" type="line"/>
+      <point x="414" y="402" type="line"/>
+      <point x="350" y="512" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 334 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>3e201016c09aa1807fd5aec1d9199c2323e9e8f7aa6d10712b3f763b07c7f84252b1ebd2b779845fc8d470d25de417f591c2dde15bf354aa9f4354b0de5242c1</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE8C1" format="2">
+  <advance width="639"/>
+  <unicode hex="E8C1"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'accdnLH3Ranks8Square', 'description': "Left hand, 3 ranks, 8' stop (square)"}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="784" type="line"/>
+      <point x="0" y="0" type="line"/>
+      <point x="638" y="0" type="line"/>
+      <point x="638" y="784" type="line"/>
+    </contour>
+    <contour>
+      <point x="32" y="251" type="line"/>
+      <point x="606" y="251" type="line"/>
+      <point x="606" y="32" type="line"/>
+      <point x="32" y="32" type="line"/>
+    </contour>
+    <contour>
+      <point x="606" y="501" type="line"/>
+      <point x="606" y="283" type="line"/>
+      <point x="32" y="283" type="line"/>
+      <point x="32" y="501" type="line"/>
+    </contour>
+    <contour>
+      <point x="32" y="752" type="line"/>
+      <point x="606" y="752" type="line"/>
+      <point x="606" y="534" type="line"/>
+      <point x="32" y="534" type="line"/>
+    </contour>
+    <contour>
+      <point x="319" y="81" type="curve" smooth="yes"/>
+      <point x="353" y="81"/>
+      <point x="381" y="109"/>
+      <point x="381" y="143" type="curve" smooth="yes"/>
+      <point x="381" y="177"/>
+      <point x="353" y="205"/>
+      <point x="319" y="205" type="curve" smooth="yes"/>
+      <point x="285" y="205"/>
+      <point x="257" y="177"/>
+      <point x="257" y="143" type="curve" smooth="yes"/>
+      <point x="257" y="109"/>
+      <point x="285" y="81"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 32</string>
+              <string>hstem 81 124</string>
+              <string>hstem 251 32</string>
+              <string>hstem 501 33</string>
+              <string>hstem 752 32</string>
+              <string>vstem 0 32</string>
+              <string>vstem 257 124</string>
+              <string>vstem 606 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>ccd5698c6043331112eff598e220c468deaa8a4af46e497ba03c412511586f68ee74774655345753910a4b4dc8f109e3bcaf5d20be5561f0bbf5ed71b757a7e9</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

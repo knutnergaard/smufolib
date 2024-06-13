@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE894" format="2">
+  <advance width="717"/>
+  <unicode hex="E894"/>
+  <note>
+{'name': 'conductorBeat2Simple', 'description': 'Beat 2, simple time'}
+</note>
+  <outline>
+    <contour>
+      <point x="35" y="0" type="curve" smooth="yes"/>
+      <point x="55" y="0"/>
+      <point x="71" y="16"/>
+      <point x="71" y="36" type="curve" smooth="yes"/>
+      <point x="71" y="431" type="line"/>
+      <point x="645" y="431" type="line"/>
+      <point x="645" y="36" type="line" smooth="yes"/>
+      <point x="645" y="16"/>
+      <point x="662" y="0"/>
+      <point x="681" y="0" type="curve" smooth="yes"/>
+      <point x="701" y="0"/>
+      <point x="717" y="16"/>
+      <point x="717" y="36" type="curve" smooth="yes"/>
+      <point x="717" y="467" type="line" smooth="yes"/>
+      <point x="717" y="487"/>
+      <point x="701" y="503"/>
+      <point x="681" y="503" type="curve" smooth="yes"/>
+      <point x="35" y="503" type="line" smooth="yes"/>
+      <point x="15" y="503"/>
+      <point x="-1" y="487"/>
+      <point x="-1" y="467" type="curve" smooth="yes"/>
+      <point x="-1" y="36" type="line" smooth="yes"/>
+      <point x="-1" y="16"/>
+      <point x="15" y="0"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 431 72</string>
+              <string>vstem -1 72</string>
+              <string>vstem 645 72</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>0491184cbd3937c32c6a5abfb17627ec29a7a196c5cab7459e0425a1a74ac43a446a0ce752aa9310f2113b264a2d6b89fc7362373445aa0b109be4f837f91f2d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

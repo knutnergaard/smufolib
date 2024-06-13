@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA27" format="2">
+  <advance width="275"/>
+  <unicode hex="EA27"/>
+  <note>
+{'name': 'medRenLiquescentDescCMN', 'description': 'Liquescent descending (Corpus Monodicum)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="21" type="curve" smooth="yes"/>
+      <point x="0" y="-52"/>
+      <point x="78" y="-126"/>
+      <point x="163" y="-126" type="curve" smooth="yes"/>
+      <point x="206" y="-126"/>
+      <point x="234" y="-108"/>
+      <point x="250" y="-89" type="curve"/>
+      <point x="248" y="-96"/>
+      <point x="247" y="-121"/>
+      <point x="246" y="-146" type="curve" smooth="yes"/>
+      <point x="241" y="-299" type="line"/>
+      <point x="241" y="-311"/>
+      <point x="259" y="-318"/>
+      <point x="271" y="-318" type="curve" smooth="yes"/>
+      <point x="275" y="-318" type="line"/>
+      <point x="275" y="-24" type="line" smooth="yes"/>
+      <point x="275" y="62"/>
+      <point x="192" y="127"/>
+      <point x="111" y="127" type="curve" smooth="yes"/>
+      <point x="53" y="127"/>
+      <point x="0" y="89"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -318 445</string>
+              <string>vstem 241 34</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>75a6bf41afadaa07d7ec235c708cdfebf0db0b16102d833d2d658d66300a53dbb2b83146b3dcc9aa9c2e0ba722a11cee4007770df07280c26fd6c6f47a86772c</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEE18" format="2">
+  <unicode hex="EE18"/>
+  <note>
+{'name': 'organGermanOctaveUp', 'description': 'Combining single octave line above'}
+</note>
+  <outline>
+    <contour>
+      <point x="240" y="410" type="line" smooth="yes"/>
+      <point x="246" y="410"/>
+      <point x="262" y="438"/>
+      <point x="262" y="442" type="curve"/>
+      <point x="262" y="443"/>
+      <point x="262" y="443"/>
+      <point x="-222" y="443" type="curve" smooth="yes"/>
+      <point x="-241" y="443" type="line" smooth="yes"/>
+      <point x="-249" y="443"/>
+      <point x="-262" y="416"/>
+      <point x="-262" y="411" type="curve"/>
+      <point x="-262" y="410" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 410 33</string>
+              <string>vstem -262 524</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w0m240,410c246,410 262,438 262,442c262,443 262,443 -222,443l-241,443c-249,443 -262,416 -262,411l-262,410</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE853" format="2">
+  <advance width="530"/>
+  <unicode hex="E853"/>
+  <note>
+{'name': 'fretboard4StringNut', 'description': '4-string fretboard at nut'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="0" type="line"/>
+      <point x="526" y="0" type="line"/>
+      <point x="526" y="1024" type="line"/>
+      <point x="0" y="1024" type="line"/>
+    </contour>
+    <contour>
+      <point x="168" y="500" type="line"/>
+      <point x="168" y="274" type="line"/>
+      <point x="24" y="274" type="line"/>
+      <point x="24" y="500" type="line"/>
+    </contour>
+    <contour>
+      <point x="24" y="524" type="line"/>
+      <point x="24" y="750" type="line"/>
+      <point x="168" y="750" type="line"/>
+      <point x="168" y="524" type="line"/>
+    </contour>
+    <contour>
+      <point x="24" y="250" type="line"/>
+      <point x="168" y="250" type="line"/>
+      <point x="168" y="24" type="line"/>
+      <point x="24" y="24" type="line"/>
+    </contour>
+    <contour>
+      <point x="334" y="250" type="line"/>
+      <point x="334" y="24" type="line"/>
+      <point x="192" y="24" type="line"/>
+      <point x="192" y="250" type="line"/>
+    </contour>
+    <contour>
+      <point x="192" y="500" type="line"/>
+      <point x="334" y="500" type="line"/>
+      <point x="334" y="274" type="line"/>
+      <point x="192" y="274" type="line"/>
+    </contour>
+    <contour>
+      <point x="360" y="24" type="line"/>
+      <point x="360" y="250" type="line"/>
+      <point x="502" y="250" type="line"/>
+      <point x="502" y="24" type="line"/>
+    </contour>
+    <contour>
+      <point x="192" y="750" type="line"/>
+      <point x="334" y="750" type="line"/>
+      <point x="334" y="524" type="line"/>
+      <point x="192" y="524" type="line"/>
+    </contour>
+    <contour>
+      <point x="360" y="500" type="line"/>
+      <point x="502" y="500" type="line"/>
+      <point x="502" y="274" type="line"/>
+      <point x="360" y="274" type="line"/>
+    </contour>
+    <contour>
+      <point x="360" y="750" type="line"/>
+      <point x="502" y="750" type="line"/>
+      <point x="502" y="524" type="line"/>
+      <point x="360" y="524" type="line"/>
+    </contour>
+    <contour>
+      <point x="24" y="774" type="line"/>
+      <point x="24" y="959" type="line"/>
+      <point x="168" y="959" type="line"/>
+      <point x="168" y="774" type="line"/>
+    </contour>
+    <contour>
+      <point x="502" y="959" type="line"/>
+      <point x="502" y="774" type="line"/>
+      <point x="360" y="774" type="line"/>
+      <point x="360" y="959" type="line"/>
+    </contour>
+    <contour>
+      <point x="192" y="959" type="line"/>
+      <point x="334" y="959" type="line"/>
+      <point x="334" y="774" type="line"/>
+      <point x="192" y="774" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 24</string>
+              <string>hstem 250 24</string>
+              <string>hstem 500 24</string>
+              <string>hstem 750 24</string>
+              <string>hstem 959 65</string>
+              <string>vstem 0 24</string>
+              <string>vstem 168 24</string>
+              <string>vstem 334 26</string>
+              <string>vstem 502 24</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>2d7ddda9afea97d494c029cccd095aa4245f044d052deebe66f0f90afe9ec94c724dcad838fb1f1f7c69584feaffe1dceef70c8b47c2266bf15a99c0962b27b2</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

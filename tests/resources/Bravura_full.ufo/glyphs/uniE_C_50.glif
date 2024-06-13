@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC50" format="2">
+  <advance width="387"/>
+  <unicode hex="EC50"/>
+  <note>
+{'name': 'smnSharp', 'description': 'Sharp stem up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-5"/>
+      <point x="3" y="-10"/>
+      <point x="8" y="-11" type="curve"/>
+      <point x="371" y="-136" type="line" smooth="yes"/>
+      <point x="373" y="-137"/>
+      <point x="374" y="-137"/>
+      <point x="375" y="-137" type="curve"/>
+      <point x="378" y="-137"/>
+      <point x="380" y="-136"/>
+      <point x="382" y="-135" type="curve" smooth="yes"/>
+      <point x="385" y="-133"/>
+      <point x="387" y="-129"/>
+      <point x="387" y="-125" type="curve" smooth="yes"/>
+      <point x="387" y="125" type="line" smooth="yes"/>
+      <point x="387" y="129"/>
+      <point x="385" y="132"/>
+      <point x="382" y="135" type="curve" smooth="yes"/>
+      <point x="380" y="136"/>
+      <point x="378" y="137"/>
+      <point x="376" y="137" type="curve"/>
+      <point x="375" y="137"/>
+      <point x="373" y="137"/>
+      <point x="371" y="136" type="curve" smooth="yes"/>
+      <point x="8" y="11" type="line"/>
+      <point x="3" y="10"/>
+      <point x="0" y="5"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -137 274</string>
+              <string>vstem 0 387</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>e1b11eeeea9a8303e430f65f2fc3037c989e94bbc3ca6d5a66a37d8083b8d7ca4651f8eaab84e060c1b49d5b610bcc5df03f87798a02770ac35e33f543f267e0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

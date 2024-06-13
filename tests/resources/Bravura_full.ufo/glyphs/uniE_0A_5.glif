@@ -1,0 +1,10 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE0A5" format="2">
+  <advance width="295"/>
+  <unicode hex="E0A5"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheads'], 'name': 'noteheadNull', 'description': 'Null notehead'}
+</note>
+  <outline>
+  </outline>
+</glyph>

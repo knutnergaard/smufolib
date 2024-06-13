@@ -1,0 +1,86 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE691" format="2">
+  <advance width="965"/>
+  <unicode hex="E691"/>
+  <note>
+{'name': 'harpTuningKeyHandle', 'description': 'Use handle of tuning key pictogram'}
+</note>
+  <outline>
+    <contour>
+      <point x="28" y="335" type="curve" smooth="yes"/>
+      <point x="239" y="335" type="line"/>
+      <point x="239" y="65" type="line" smooth="yes"/>
+      <point x="239" y="50"/>
+      <point x="252" y="37"/>
+      <point x="267" y="37" type="curve" smooth="yes"/>
+      <point x="328" y="37" type="line" smooth="yes"/>
+      <point x="343" y="37"/>
+      <point x="356" y="50"/>
+      <point x="356" y="65" type="curve" smooth="yes"/>
+      <point x="356" y="335" type="line"/>
+      <point x="567" y="335" type="line" smooth="yes"/>
+      <point x="582" y="335"/>
+      <point x="595" y="348"/>
+      <point x="595" y="363" type="curve" smooth="yes"/>
+      <point x="595" y="465" type="line" smooth="yes"/>
+      <point x="595" y="480"/>
+      <point x="582" y="493"/>
+      <point x="567" y="493" type="curve" smooth="yes"/>
+      <point x="28" y="493" type="line" smooth="yes"/>
+      <point x="13" y="493"/>
+      <point x="0" y="480"/>
+      <point x="0" y="465" type="curve" smooth="yes"/>
+      <point x="0" y="363" type="line" smooth="yes"/>
+      <point x="0" y="348"/>
+      <point x="13" y="335"/>
+    </contour>
+    <contour>
+      <point x="32" y="367" type="line"/>
+      <point x="32" y="461" type="line"/>
+      <point x="563" y="461" type="line"/>
+      <point x="563" y="367" type="line"/>
+    </contour>
+    <contour>
+      <point x="271" y="335" type="line"/>
+      <point x="324" y="335" type="line"/>
+      <point x="324" y="69" type="line"/>
+      <point x="271" y="69" type="line"/>
+    </contour>
+    <contour>
+      <point x="648" y="414" type="line"/>
+      <point x="758" y="350" type="line"/>
+      <point x="758" y="398" type="line"/>
+      <point x="965" y="398" type="line"/>
+      <point x="965" y="430" type="line"/>
+      <point x="758" y="430" type="line"/>
+      <point x="758" y="478" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 37 32</string>
+              <string>hstem 335 32</string>
+              <string>hstem 398 32</string>
+              <string>hstem 461 32</string>
+              <string>vstem 0 32</string>
+              <string>vstem 239 32</string>
+              <string>vstem 324 32</string>
+              <string>vstem 563 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>fa76a7c689b373ff8f9318b17a884434d240de463e0a51f4bc4703d35e61edea996674009334cd75e26c1e03dfd58a1b71b6c850d43b8b23e55ed30ce11e47db</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

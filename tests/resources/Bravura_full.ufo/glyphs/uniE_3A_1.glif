@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3A1" format="2">
+  <advance width="250"/>
+  <unicode hex="E3A1"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittal5v13MediumDiesisDown', 'description': '5:13 medium diesis down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-47" type="line"/>
+      <point x="36" y="-66" type="line"/>
+      <point x="12" y="-83"/>
+      <point x="0" y="-118"/>
+      <point x="0" y="-172" type="curve"/>
+      <point x="31" y="-172" type="line"/>
+      <point x="31" y="-141"/>
+      <point x="51" y="-125"/>
+      <point x="89" y="-125" type="curve" smooth="yes"/>
+      <point x="128" y="-125"/>
+      <point x="176" y="-141"/>
+      <point x="234" y="-172" type="curve"/>
+      <point x="250" y="-172" type="line"/>
+      <point x="250" y="359" type="line"/>
+      <point x="219" y="359" type="line"/>
+      <point x="219" y="63" type="line"/>
+      <point x="0" y="180" type="line"/>
+      <point x="0" y="109" type="line"/>
+      <point x="219" y="-7" type="line"/>
+      <point x="219" y="-93" type="line"/>
+      <point x="0" y="23" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -172 531</string>
+              <string>vstem 0 31</string>
+              <string>vstem 219 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>0d8db6096fa1102cb66acabe12c640cba45a8c9e7a2a6c412ded9c2098da44519650810442534b575cf7e8da2c9e4cf9b93e22a3f9656c54fe6f3b08ad09d0bf</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

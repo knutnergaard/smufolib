@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBA6" format="2">
+  <advance width="149"/>
+  <unicode hex="EBA6"/>
+  <note>
+{'name': 'luteDurationDoubleWhole', 'description': 'Double whole note (breve) duration sign'}
+</note>
+  <outline>
+    <contour>
+      <point x="4" y="663" type="curve" smooth="yes"/>
+      <point x="8" y="658"/>
+      <point x="13" y="656"/>
+      <point x="18" y="656" type="curve" smooth="yes"/>
+      <point x="22" y="656"/>
+      <point x="26" y="658"/>
+      <point x="30" y="660" type="curve"/>
+      <point x="112" y="730" type="line"/>
+      <point x="112" y="18" type="line" smooth="yes"/>
+      <point x="112" y="8"/>
+      <point x="120" y="0"/>
+      <point x="130" y="0" type="curve" smooth="yes"/>
+      <point x="140" y="0"/>
+      <point x="148" y="8"/>
+      <point x="148" y="18" type="curve" smooth="yes"/>
+      <point x="148" y="768" type="line" smooth="yes"/>
+      <point x="148" y="778"/>
+      <point x="140" y="786"/>
+      <point x="130" y="786" type="curve"/>
+      <point x="128" y="786"/>
+      <point x="126" y="786"/>
+      <point x="124" y="785" type="curve" smooth="yes"/>
+      <point x="118" y="782" type="line"/>
+      <point x="6" y="688" type="line" smooth="yes"/>
+      <point x="2" y="685"/>
+      <point x="0" y="679"/>
+      <point x="0" y="674" type="curve" smooth="yes"/>
+      <point x="0" y="670"/>
+      <point x="1" y="666"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 112 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f9b76507765a0195716980466f8be930c801cefc877188e6e96f671758334e3f9a1df707d60ca69fd8b8465dd830079d8a8491d299309566ac12c1b261f81167</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

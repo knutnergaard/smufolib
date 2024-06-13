@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4C7" format="2">
+  <advance width="605"/>
+  <unicode hex="E4C7"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'pauses', 'pausesBelow'], 'name': 'fermataLongBelow', 'description': 'Long fermata below'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-306" type="line" smooth="yes"/>
+      <point x="0" y="-321"/>
+      <point x="22" y="-333"/>
+      <point x="50" y="-333" type="curve" smooth="yes"/>
+      <point x="553" y="-333" type="line" smooth="yes"/>
+      <point x="581" y="-333"/>
+      <point x="603" y="-321"/>
+      <point x="603" y="-306" type="curve" smooth="yes"/>
+      <point x="603" y="-13" type="line" smooth="yes"/>
+      <point x="603" y="-6"/>
+      <point x="592" y="0"/>
+      <point x="578" y="0" type="curve" smooth="yes"/>
+      <point x="565" y="0"/>
+      <point x="554" y="-6"/>
+      <point x="554" y="-13" type="curve" smooth="yes"/>
+      <point x="554" y="-201" type="line" smooth="yes"/>
+      <point x="554" y="-213"/>
+      <point x="427" y="-219"/>
+      <point x="301" y="-219" type="curve" smooth="yes"/>
+      <point x="175" y="-219"/>
+      <point x="49" y="-213"/>
+      <point x="49" y="-201" type="curve" smooth="yes"/>
+      <point x="49" y="-13" type="line" smooth="yes"/>
+      <point x="49" y="-6"/>
+      <point x="38" y="0"/>
+      <point x="24" y="0" type="curve" smooth="yes"/>
+      <point x="11" y="0"/>
+      <point x="0" y="-6"/>
+      <point x="0" y="-13" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="247" y="-54" type="curve" smooth="yes"/>
+      <point x="247" y="-84"/>
+      <point x="271" y="-108"/>
+      <point x="301" y="-108" type="curve" smooth="yes"/>
+      <point x="332" y="-108"/>
+      <point x="356" y="-84"/>
+      <point x="356" y="-54" type="curve" smooth="yes"/>
+      <point x="356" y="-24"/>
+      <point x="332" y="1"/>
+      <point x="301" y="1" type="curve" smooth="yes"/>
+      <point x="271" y="1"/>
+      <point x="247" y="-24"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -333 114</string>
+              <string>hstem -108 109</string>
+              <string>vstem 0 49</string>
+              <string>vstem 247 109</string>
+              <string>vstem 554 49</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d286632a86421a7f70b9f4d1d390b4509dcaddd3d21fa32d73558729bfcfca51fe642e09f76cd1cedc8a4d721fde6f0b180a91858c2cb608f0685e685ed62a6e</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

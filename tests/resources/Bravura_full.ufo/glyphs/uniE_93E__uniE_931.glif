@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE93E_uniE931" format="2">
+  <advance width="782"/>
+  <unicode hex="F585"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralLongaBlackVoidStemDownLeft', 'description': 'Longa black and void, stem down left'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="625" type="curve" smooth="yes"/>
+      <point x="0" y="-125" type="line"/>
+      <point x="0" y="-126"/>
+      <point x="0" y="-127"/>
+      <point x="1" y="-128" type="curve"/>
+      <point x="1" y="-136"/>
+      <point x="9" y="-140"/>
+      <point x="16" y="-141" type="curve"/>
+      <point x="766" y="-141" type="line" smooth="yes"/>
+      <point x="775" y="-141"/>
+      <point x="782" y="-134"/>
+      <point x="782" y="-125" type="curve" smooth="yes"/>
+      <point x="782" y="125" type="line" smooth="yes"/>
+      <point x="782" y="133"/>
+      <point x="775" y="141"/>
+      <point x="766" y="141" type="curve" smooth="yes"/>
+      <point x="32" y="141" type="line"/>
+      <point x="32" y="625" type="line" smooth="yes"/>
+      <point x="32" y="633"/>
+      <point x="25" y="641"/>
+      <point x="16" y="641" type="curve" smooth="yes"/>
+      <point x="7" y="641"/>
+      <point x="0" y="633"/>
+    </contour>
+    <contour>
+      <point x="32" y="109" type="line"/>
+      <point x="750" y="109" type="line"/>
+      <point x="750" y="-109" type="line"/>
+      <point x="32" y="-109" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 307 32</string>
+              <string>hstem 617 32</string>
+              <string>vstem 125 32</string>
+              <string>vstem 313 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>08f9dbd248f34da5e4c91ef5ea4eb866d9fe0b47a62319af03b2359d8f072be44f8483f4c423c54cdb2b3c1dbf98c611513fc314e6afe3314148679ce8be8c4f</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3F0" format="2">
+  <advance width="94"/>
+  <unicode hex="E3F0"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalDiacritics', 'combiningStaffPositions'], 'name': 'accSagittalShaftUp', 'description': 'Shaft up, (natural for use with only diacritics up)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="78" type="line"/>
+      <point x="0" y="-359" type="line"/>
+      <point x="31" y="-359" type="line"/>
+      <point x="31" y="78" type="line"/>
+      <point x="16" y="172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w94m0,78l0,-359l31,-359l31,78l16,172</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

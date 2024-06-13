@@ -1,126 +1,173 @@
-"""Command Line Interface for SMufoLib."""
-
 from __future__ import annotations
-from argparse import ArgumentParser, Namespace
-from pathlib import Path
+from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+import json
+import textwrap
 
-from smufolib import Font, Request
+from smufolib import config, converters
+from smufolib.objects.font import Font
+from smufolib.request import Request
+
+CONFIG = config.load()
 
 # pylint: disable=invalid-name, unused-argument, too-many-branches
 
 
-def argParser(*args: str,
-              addHelp: bool = False,
-              description: str | None = None,
-              **kwargs) -> Namespace:
-    """Provide generic command line options to smufolib scripts.
+def commonParser(*args, addHelp: bool = False, description: str | None = None,
+                 **kwargs) -> ArgumentParser:
+    r"""Provides generic command-line arguments and options.
 
-    All arguments are optional and may be imported as needed to avoid
-    having to define them in each individual script. Additional options
-    may be defined on a script-by-script basis with `argParser` passed
-    as a parent to the script's `ArgumentParser`.
+    See the :ref:`Available Options` for details.
 
-    :param args: positional arguments for testing purposes.
-    :param addHelp: add help message. Should be False when `argParser`
-        is parent and otherwise True.
-    :param description: program description used when used directly.
-    :param kwargs: imported optional arguments and default values.
+    :param \*args: Required positional arguments to assign.
+    :param addHelp: Add help message. Should be ``False`` when
+        function is parent and otherwise ``True``.
+    :param description: Program description when used directly.
+    :param \**kwargs: Options and their default values to assign.
+    :raises TypeError: Duplicate arguments in \*args and \**kwargs.
+
+    Examples::
+
+        >>> import argparse
+        >>> from smufolib import Font, cli
+        >>> args = cli.commonParser('font', clear=True)
+        >>> parser = argparse.ArgumentParser(parents=[args],
+        ...             description='showcase commonParser')
+        >>> parser.add_argument(
+        ...     '-O', '--include-optionals',
+        ...     action='store_true',
+        ...     default=includeOptionals,
+        ...     help="include optional glyphs",
+        ...     dest='includeOptionals'
+        ... )
+        >>> parser.parse_args("-h".split()))
+        usage: test.py [-h] [-x] [-O] font
+
+        showcase commonParser
+
+        positional arguments:
+            font         path to UFO file
+
+        optional arguments:
+            -h, --help                show this help message and exit
+            -x, --clear               erase preexisting objects on execution
+            -O, --include-optionals   include optional glyphs
+
+    ::
+
+        >>> parser.parse_args("-f path/to/my/font.ufo".split())
+        Namespace(font=<Font 'MyFont' path='path/to/my/font.ufo' at 4377107232>, mark=False)
+
+    ::
+
+        >>> parser.parse_args("-f path/to/my/font.ufo --clear".split())
+        Namespace(font=<Font 'MyFont' path='path/to/my/font.ufo' at 4377107232>, mark=True)
+
     """
-    parser = ArgumentParser(add_help=addHelp, description=description)
+    parser = ArgumentParser(add_help=addHelp,
+                            formatter_class=ArgumentDefaultsHelpFormatter,
+                            description=description)
 
-    if 'clear' in kwargs:
-        parser.add_argument(
-            '-x', '--clear',
-            action='store_true',
-            default=kwargs['clear'],
-            help="Erase preexisting objects on execution.")
+    settings = {
+        'attributes': {
+            'nargs': '+',
+            'help': "ID attributes to be set: name, classes and/or description"
+        },
+        'classesData': {
+            'type': Request,
+            'help': "path to classes metadata file"
+        },
+        'clear': {
+            'action': 'store_true',
+            'help': "erase preexisting objects on execution"
+        },
+        'color': {
+            'nargs': 4,
+            'type': converters.toNumber,
+            'help': "list of RGBA color values"
+        },
+        'colors': {
+            'type': json.loads,
+            'help': textwrap.dedent("""\
+            Keys mapped to RGBA color arrays as JSON string, e.g.
+            {"mark1": [1, 0, 0, 1], "cutOutNE": [0, 0.8, 0, 1]}
+            """)
+        },
+        'exclude': {
+            'nargs': '+',
+            'help': "objects to exclude from processing"
+        },
+        'font': {
+            'type': Font,
+            'help': "path to UFO file"
+        },
+        'fontData': {
+            'type': Request,
+            'help': "path to font metadata file"
+        },
+        'glyphnamesData': {
+            'type': Request,
+            'help': "path to glyphnames metadata file"
+        },
+        'include': {
+            'nargs': '+',
+            'help': "objects to include in processing"
+        },
+        'includeOptionals': {
+            'action': 'store_true',
+            'help': "include optional glyphs"
+        },
+        'mark': {
+            'action': 'store_true',
+            'help': "apply defined color values to objects"
+        },
+        'overwrite': {
+            'action': 'store_true',
+            'help': "overwrite preexisting values"
+        },
+        'rangesData': {
+            'type': Request,
+            'help': "path to ranges metadata file"
+        },
+        'sourcePath': {
+            'type': Request,
+            'help': "path to source file or directory"
+        },
+        'spaces': {
+            'action': 'store_true',
+            'help': "values are given in staff spaces"
+        },
+        'targetPath': {
+            'help': "path to target file or directory"
+        },
+        'verbose': {
+            'action': 'store_true',
+            'help': "make output verbose"
+        }
+    }
 
-    if 'color' in kwargs:
-        parser.add_argument(
-            '-c', '--color',
-            action='store_true',
-            default=kwargs['color'],
-            help="Apply config defined color values.")
+    for arg in args:
+        settings[arg]['metavar'] = converters.toKebab(arg)
+        parser.add_argument(arg, **settings[arg])
 
-    if 'exclude' in kwargs:
-        parser.add_argument(
-            '-e', '--exclude',
-            nargs='+',
-            default=kwargs['exclude'],
-            help="List of data points to exclude from processing.")
+    seen = set()
+    for key, value in kwargs.items():
+        if key in args:
+            raise TypeError(
+                f"Option '{key}' is already added as positional argument.")
 
-    if 'font' in kwargs:
-        parser.add_argument(
-            '-f', '--font',
-            type=Font,
-            default=kwargs['font'],
-            help="Override default path to UFO file.")
+        flags = _generateFlags(key)
+        assert flags[0] not in seen, f"Short flag '{flags[0]}' is duplicate."
+        seen.add(flags[0])
 
-    if 'include' in kwargs:
-        parser.add_argument(
-            '-i', '--include',
-            nargs='+',
-            default=kwargs['include'],
-            help="List of data points to include in processing.")
-
-    if 'mark' in kwargs:
-        parser.add_argument(
-            '-m', '--mark',
-            action='store_true',
-            default=kwargs['mark'],
-            help="Mark processed glyphs with cofig defined color.")
-
-    if 'classData' in kwargs:
-        parser.add_argument(
-            '-cd', '--class-data',
-            type=Request,
-            default=kwargs['classData'],
-            help="Override default path to class metadata.",
-            dest='classData')
-
-    if 'fontData' in kwargs:
-        parser.add_argument(
-            '-fd', '--font-data',
-            type=Request,
-            default=kwargs['fontData'],
-            help="Override default path to font metadata.",
-            dest='fontData')
-
-    if 'glyphnameData' in kwargs:
-        parser.add_argument(
-            '-gd', '--glyphname-data',
-            type=Request,
-            default=kwargs['glyphnameData'],
-            help="Override default path to glyphname metadata.",
-            dest='glyphnameData')
-
-    if 'rangeData' in kwargs:
-        parser.add_argument(
-            '-rd', '--range-data',
-            type=Request,
-            default=kwargs['rangeData'],
-            help="Override default path to range metadata.",
-            dest='rangeData')
-
-    if 'overwrite' in kwargs:
-        parser.add_argument(
-            '-w', '--overwrite',
-            action='store_true',
-            default=kwargs['overwrite'],
-            help="Overwrite preexisting values.")
-
-    if 'source' in kwargs:
-        parser.add_argument(
-            '-s', '--source',
-            type=Path,
-            default=kwargs['source'],
-            help="Override default path to source file.")
-
-    if 'target' in kwargs:
-        parser.add_argument(
-            '-t', '--target',
-            type=Path,
-            default=kwargs['target'],
-            help="Override default path to target file.")
-
+        settings[key]['dest'] = key
+        if value is not None:
+            settings[key]['default'] = value
+        parser.add_argument(*flags, **settings[key])
     return parser
+
+
+def _generateFlags(argument):
+    # Generates tuple of option flags.
+    shortFlags = CONFIG['cli.shortFlags']
+    longFlag = f'--{converters.toKebab(argument)}'
+    return (shortFlags[argument], longFlag)

@@ -1,0 +1,108 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE7CA" format="2">
+  <advance width="436"/>
+  <unicode hex="E7CA"/>
+  <note>
+{'classes': ['tf_pictograms', 'tf_zeroWidth'], 'name': 'pictBeaterMetalLeft', 'description': 'Metal beater, left'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="546" type="curve" smooth="yes"/>
+      <point x="0" y="483"/>
+      <point x="51" y="431"/>
+      <point x="115" y="431" type="curve" smooth="yes"/>
+      <point x="130" y="431"/>
+      <point x="145" y="434"/>
+      <point x="159" y="440" type="curve"/>
+      <point x="408" y="7" type="line"/>
+      <point x="411" y="3"/>
+      <point x="416" y="0"/>
+      <point x="421" y="0" type="curve" smooth="yes"/>
+      <point x="429" y="0"/>
+      <point x="436" y="5"/>
+      <point x="436" y="14" type="curve" smooth="yes"/>
+      <point x="436" y="17"/>
+      <point x="435" y="20"/>
+      <point x="434" y="22" type="curve" smooth="yes"/>
+      <point x="185" y="455" type="line"/>
+      <point x="214" y="477"/>
+      <point x="230" y="511"/>
+      <point x="230" y="546" type="curve" smooth="yes"/>
+      <point x="230" y="609"/>
+      <point x="179" y="661"/>
+      <point x="115" y="661" type="curve" smooth="yes"/>
+      <point x="52" y="661"/>
+      <point x="0" y="608"/>
+    </contour>
+    <contour>
+      <point x="30" y="546" type="curve" smooth="yes"/>
+      <point x="30" y="565"/>
+      <point x="37" y="585"/>
+      <point x="49" y="600" type="curve"/>
+      <point x="103" y="545" type="line"/>
+      <point x="50" y="491" type="line"/>
+      <point x="47" y="495"/>
+      <point x="44" y="499"/>
+      <point x="42" y="503" type="curve" smooth="yes"/>
+      <point x="34" y="516"/>
+      <point x="30" y="531"/>
+    </contour>
+    <contour>
+      <point x="73" y="619" type="line" smooth="yes"/>
+      <point x="86" y="627"/>
+      <point x="100" y="631"/>
+      <point x="115" y="631" type="curve" smooth="yes"/>
+      <point x="135" y="631"/>
+      <point x="154" y="624"/>
+      <point x="169" y="611" type="curve"/>
+      <point x="117" y="558" type="line"/>
+      <point x="63" y="613" type="line"/>
+    </contour>
+    <contour>
+      <point x="117" y="532" type="line"/>
+      <point x="169" y="480" type="line"/>
+      <point x="158" y="472" type="line"/>
+      <point x="145" y="465"/>
+      <point x="130" y="461"/>
+      <point x="115" y="461" type="curve" smooth="yes"/>
+      <point x="96" y="461"/>
+      <point x="78" y="467"/>
+      <point x="63" y="479" type="curve"/>
+    </contour>
+    <contour>
+      <point x="183" y="597" type="line"/>
+      <point x="189" y="588" type="line" smooth="yes"/>
+      <point x="197" y="575"/>
+      <point x="200" y="560"/>
+      <point x="200" y="546" type="curve" smooth="yes"/>
+      <point x="200" y="527"/>
+      <point x="193" y="509"/>
+      <point x="182" y="494" type="curve"/>
+      <point x="130" y="545" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 431 30</string>
+              <string>hstem 631 30</string>
+              <string>vstem 0 30</string>
+              <string>vstem 200 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c72f7fcff09de2120466b01edfa5daaba0179942f75815b5d9b2825c95ef76e666c21692cd9086d20f0886890bccfb294d1a1ad518a49f3739f73b899328f25a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

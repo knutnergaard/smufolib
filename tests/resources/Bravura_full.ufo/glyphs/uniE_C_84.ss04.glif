@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC84.ss04" format="2">
+  <advance width="111"/>
+  <unicode hex="F503"/>
+  <note>
+{'name': 'timeSigSlashLarge', 'description': 'Time signature slash separator (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="111" y="500" type="line"/>
+      <point x="85" y="500" type="line"/>
+      <point x="0" y="-499" type="line"/>
+      <point x="26" y="-499" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -499 999</string>
+              <string>vstem 0 111</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w111m111,500l85,500l0,-499l26,-499</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

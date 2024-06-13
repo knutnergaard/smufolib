@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE5F5" format="2">
+  <advance width="304"/>
+  <unicode hex="E5F5"/>
+  <note>
+{'name': 'windThreeQuartersClosedHole', 'description': 'Three-quarters closed hole'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="152" type="curve" smooth="yes"/>
+      <point x="0" y="68"/>
+      <point x="68" y="0"/>
+      <point x="152" y="0" type="curve" smooth="yes"/>
+      <point x="237" y="0"/>
+      <point x="305" y="68"/>
+      <point x="305" y="152" type="curve" smooth="yes"/>
+      <point x="305" y="237"/>
+      <point x="237" y="305"/>
+      <point x="152" y="305" type="curve" smooth="yes"/>
+      <point x="68" y="305"/>
+      <point x="0" y="237"/>
+    </contour>
+    <contour>
+      <point x="32" y="152" type="line"/>
+      <point x="32" y="218"/>
+      <point x="87" y="273"/>
+      <point x="152" y="273" type="curve"/>
+      <point x="152" y="152" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 152</string>
+              <string>hstem 273 32</string>
+              <string>vstem 0 32</string>
+              <string>vstem 152 153</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w304m0,152c0,68 68,0 152,0c237,0 305,68 305,152c305,237 237,305 152,305c68,305 0,237 0,152m32,152c32,218 87,273 152,273l152,152</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

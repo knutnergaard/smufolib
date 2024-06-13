@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9D8" format="2">
+  <advance width="164"/>
+  <unicode hex="E9D8"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantEpisema', 'description': 'Episema'}
+</note>
+  <outline>
+    <contour>
+      <point x="-6" y="137" type="curve" smooth="yes"/>
+      <point x="-6" y="133" type="line" smooth="yes"/>
+      <point x="-6" y="129"/>
+      <point x="-3" y="125"/>
+      <point x="0" y="125" type="curve" smooth="yes"/>
+      <point x="164" y="125" type="line" smooth="yes"/>
+      <point x="167" y="125"/>
+      <point x="170" y="129"/>
+      <point x="170" y="133" type="curve" smooth="yes"/>
+      <point x="170" y="137" type="line" smooth="yes"/>
+      <point x="170" y="142"/>
+      <point x="167" y="145"/>
+      <point x="164" y="145" type="curve" smooth="yes"/>
+      <point x="0" y="145" type="line" smooth="yes"/>
+      <point x="-3" y="145"/>
+      <point x="-6" y="142"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 125 20</string>
+              <string>vstem -6 176</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b4a634daee58e999024e8e7bb5000b3169b31b67f7cbab2bbb8a496aa09ad3dda31b3873111293bdfca76087cf7bda3672d17d66da06074c1153b73feba8a2f4</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

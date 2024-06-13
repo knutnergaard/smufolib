@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE331" format="2">
+  <advance width="406"/>
+  <unicode hex="E331"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalDoubleFlat5CUp', 'description': 'Double flat 5C-up, 5°[22 29] 7°[34 41] 9°53 down, 11/12 tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="281" y="349" type="line"/>
+      <point x="246" y="359" type="line"/>
+      <point x="141" y="57" type="line"/>
+      <point x="36" y="359" type="line"/>
+      <point x="0" y="349" type="line"/>
+      <point x="121" y="0" type="line"/>
+      <point x="105" y="-46" type="line"/>
+      <point x="62" y="-78" type="line"/>
+      <point x="62" y="-172" type="line"/>
+      <point x="78" y="-172" type="line"/>
+      <point x="406" y="78" type="line"/>
+      <point x="406" y="183" type="line"/>
+      <point x="161" y="-3" type="line"/>
+      <point x="160" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -162 -21</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w406m281,349l246,359l141,57l36,359l0,349l121,0l105,-46l62,-78l62,-172l78,-172l406,78l406,183l161,-3l160,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,87 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC19" format="2">
+  <advance width="413"/>
+  <unicode hex="EC19"/>
+  <note>
+{'name': 'luteGermanCUpper', 'description': '6th course, 3rd fret (C)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="224" type="curve" smooth="yes"/>
+      <point x="0" y="216"/>
+      <point x="1" y="181"/>
+      <point x="1" y="173" type="curve"/>
+      <point x="24" y="68"/>
+      <point x="110" y="-13"/>
+      <point x="219" y="-13" type="curve" smooth="yes"/>
+      <point x="304" y="-13"/>
+      <point x="413" y="34"/>
+      <point x="413" y="133" type="curve"/>
+      <point x="400" y="133"/>
+      <point x="363" y="100"/>
+      <point x="356" y="96" type="curve" smooth="yes"/>
+      <point x="324" y="77"/>
+      <point x="289" y="69"/>
+      <point x="253" y="69" type="curve" smooth="yes"/>
+      <point x="234" y="69"/>
+      <point x="139" y="87"/>
+      <point x="139" y="108" type="curve"/>
+      <point x="139" y="109"/>
+      <point x="140" y="111"/>
+      <point x="140" y="111" type="curve"/>
+      <point x="145" y="116" type="line"/>
+      <point x="219" y="167" type="line"/>
+      <point x="219" y="408" type="line"/>
+      <point x="253" y="408"/>
+      <point x="285" y="403"/>
+      <point x="318" y="403" type="curve" smooth="yes"/>
+      <point x="372" y="403"/>
+      <point x="376" y="451"/>
+      <point x="376" y="499" type="curve"/>
+      <point x="374" y="505"/>
+      <point x="372" y="508"/>
+      <point x="371" y="512" type="curve"/>
+      <point x="348" y="500"/>
+      <point x="325" y="496"/>
+      <point x="304" y="496" type="curve" smooth="yes"/>
+      <point x="276" y="496"/>
+      <point x="251" y="501"/>
+      <point x="217" y="501" type="curve"/>
+      <point x="80" y="436"/>
+      <point x="0" y="383"/>
+    </contour>
+    <contour>
+      <point x="52" y="275" type="curve" smooth="yes"/>
+      <point x="52" y="305"/>
+      <point x="80" y="430"/>
+      <point x="129" y="430" type="curve"/>
+      <point x="129" y="147" type="line"/>
+      <point x="119" y="127" type="line"/>
+      <point x="76" y="160"/>
+      <point x="52" y="221"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -13 82</string>
+              <string>hstem 403 93</string>
+              <string>vstem 0 52</string>
+              <string>vstem 129 90</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>681dd362f25b6c7dc668dd4ca29fc3833e90d5f099acb7458e24aebdd00574f929a99b539c465047dac44f8b9600ce3c14903519339a8df63db010e4d6f4a528</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

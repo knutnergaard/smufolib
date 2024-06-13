@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE781" format="2">
+  <advance width="138"/>
+  <unicode hex="E781"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterSoftGlockenspielDown', 'description': 'Soft glockenspiel stick down'}
+</note>
+  <outline>
+    <contour>
+      <point x="69" y="0" type="curve" smooth="yes"/>
+      <point x="107" y="0"/>
+      <point x="138" y="31"/>
+      <point x="138" y="69" type="curve" smooth="yes"/>
+      <point x="138" y="102"/>
+      <point x="116" y="129"/>
+      <point x="85" y="136" type="curve"/>
+      <point x="85" y="728" type="line" smooth="yes"/>
+      <point x="85" y="736"/>
+      <point x="79" y="743"/>
+      <point x="70" y="743" type="curve" smooth="yes"/>
+      <point x="62" y="743"/>
+      <point x="55" y="736"/>
+      <point x="55" y="728" type="curve" smooth="yes"/>
+      <point x="55" y="137" type="line"/>
+      <point x="24" y="130"/>
+      <point x="0" y="102"/>
+      <point x="0" y="69" type="curve" smooth="yes"/>
+      <point x="0" y="31"/>
+      <point x="31" y="0"/>
+    </contour>
+    <contour>
+      <point x="30" y="69" type="curve" smooth="yes"/>
+      <point x="30" y="91"/>
+      <point x="48" y="108"/>
+      <point x="69" y="108" type="curve" smooth="yes"/>
+      <point x="91" y="108"/>
+      <point x="108" y="91"/>
+      <point x="108" y="69" type="curve" smooth="yes"/>
+      <point x="108" y="48"/>
+      <point x="91" y="30"/>
+      <point x="69" y="30" type="curve" smooth="yes"/>
+      <point x="48" y="30"/>
+      <point x="30" y="48"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 30</string>
+              <string>hstem 722 -21</string>
+              <string>vstem 0 30</string>
+              <string>vstem 55 30</string>
+              <string>vstem 108 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>484069e793ad8604bfd0e437cf5f5a8e7659b152262abca727b4b7dcc568920116b18a173c1843150b41395c6486f9f95995343cd52ca9a48dcff361fa8e90f1</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

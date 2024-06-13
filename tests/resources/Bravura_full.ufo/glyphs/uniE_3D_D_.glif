@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3DD" format="2">
+  <advance width="500"/>
+  <unicode hex="E3DD"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittalFlat5v13LDown', 'description': 'Flat 5:13L-down'}
+</note>
+  <outline>
+    <contour>
+      <point x="31" y="-47" type="line"/>
+      <point x="31" y="-14"/>
+      <point x="42" y="3"/>
+      <point x="66" y="3" type="curve" smooth="yes"/>
+      <point x="137" y="3"/>
+      <point x="162" y="-119"/>
+      <point x="172" y="-171" type="curve"/>
+      <point x="500" y="-46" type="line"/>
+      <point x="500" y="22" type="line"/>
+      <point x="187" y="-97" type="line"/>
+      <point x="187" y="-9" type="line"/>
+      <point x="500" y="110" type="line"/>
+      <point x="500" y="178" type="line"/>
+      <point x="281" y="95" type="line"/>
+      <point x="281" y="360" type="line"/>
+      <point x="250" y="360" type="line"/>
+      <point x="250" y="83" type="line"/>
+      <point x="187" y="59" type="line"/>
+      <point x="187" y="359" type="line"/>
+      <point x="156" y="359" type="line"/>
+      <point x="156" y="20" type="line"/>
+      <point x="139" y="52"/>
+      <point x="118" y="71"/>
+      <point x="93" y="77" type="curve"/>
+      <point x="93" y="359" type="line"/>
+      <point x="62" y="359" type="line"/>
+      <point x="62" y="77" type="line"/>
+      <point x="21" y="69"/>
+      <point x="0" y="28"/>
+      <point x="0" y="-47" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -171 531</string>
+              <string>vstem 0 31</string>
+              <string>vstem 62 31</string>
+              <string>vstem 156 31</string>
+              <string>vstem 250 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b083f3981f270f0a911a6fa97e6a79c531628fa474aced00669e7d988e9e0ed1988d09681256e1351a38367e8a59ebfdf427f2b5edfdb75f7013e7b98fdc1c2a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

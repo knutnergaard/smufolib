@@ -1,0 +1,62 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE989" format="2">
+  <advance width="782"/>
+  <unicode hex="E989"/>
+  <note>
+{'name': 'mensuralObliqueDesc4thVoid', 'description': 'Oblique form, descending 4th, void'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="110" type="curve" smooth="yes"/>
+      <point x="0" y="-120" type="line" smooth="yes"/>
+      <point x="0" y="-132"/>
+      <point x="8" y="-144"/>
+      <point x="18" y="-149" type="curve" smooth="yes"/>
+      <point x="750" y="-533" type="line"/>
+      <point x="754" y="-534"/>
+      <point x="758" y="-535"/>
+      <point x="761" y="-535" type="curve" smooth="yes"/>
+      <point x="773" y="-535"/>
+      <point x="782" y="-526"/>
+      <point x="782" y="-513" type="curve" smooth="yes"/>
+      <point x="782" y="-283" type="line" smooth="yes"/>
+      <point x="782" y="-272"/>
+      <point x="775" y="-260"/>
+      <point x="765" y="-254" type="curve"/>
+      <point x="33" y="129" type="line" smooth="yes"/>
+      <point x="29" y="131"/>
+      <point x="25" y="132"/>
+      <point x="22" y="132" type="curve" smooth="yes"/>
+      <point x="10" y="132"/>
+      <point x="0" y="122"/>
+    </contour>
+    <contour>
+      <point x="32" y="93" type="line"/>
+      <point x="750" y="-283" type="line"/>
+      <point x="750" y="-497" type="line"/>
+      <point x="33" y="-121" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -535 667</string>
+              <string>vstem 0 32</string>
+              <string>vstem 750 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>a243112903f98a1dfabf4e21372fe0889049ee92c411e301844e189f035dff563dd8b499ef243ba573a73ad229b72e3d5eab59d9df36844155f173487190e688</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="u1D16C" format="2">
+  <advance width="300"/>
+  <unicode hex="1D16C"/>
+  <outline>
+    <contour>
+      <point x="-150" y="-155" type="line"/>
+      <point x="-150" y="-280" type="line"/>
+      <point x="150" y="-218" type="line"/>
+      <point x="150" y="-93" type="line"/>
+    </contour>
+    <contour>
+      <point x="-150" y="-96" type="line"/>
+      <point x="150" y="-34" type="line"/>
+      <point x="150" y="91" type="line"/>
+      <point x="-150" y="29" type="line"/>
+    </contour>
+    <contour>
+      <point x="150" y="153" type="line"/>
+      <point x="150" y="278" type="line"/>
+      <point x="-150" y="215" type="line"/>
+      <point x="-150" y="90" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -280 558</string>
+              <string>vstem -150 300</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w300m-150,-155l-150,-280l150,-218l150,-93m-150,-96l150,-34l150,91l-150,29m150,153l150,278l-150,215l-150,90</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

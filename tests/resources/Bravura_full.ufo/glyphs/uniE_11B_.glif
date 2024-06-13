@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE11B" format="2">
+  <advance width="501"/>
+  <unicode hex="E11B"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSquare', 'noteheads'], 'name': 'noteheadSquareBlackWhite', 'description': 'Large square white notehead'}
+</note>
+  <anchor x="0" y="-250" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="500" y="250" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="500" y="-250" type="line"/>
+      <point x="500" y="250" type="line"/>
+      <point x="0" y="250" type="line"/>
+      <point x="0" y="-250" type="line"/>
+    </contour>
+    <contour>
+      <point x="34" y="-216" type="line"/>
+      <point x="34" y="216" type="line"/>
+      <point x="465" y="216" type="line"/>
+      <point x="465" y="-216" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -250 34</string>
+              <string>hstem 216 34</string>
+              <string>vstem 0 34</string>
+              <string>vstem 465 35</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w501m500,-250l500,250l0,250l0,-250m34,-216l34,216l465,216l465,-216</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

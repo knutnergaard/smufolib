@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE084.ss04" format="2">
+  <advance width="132"/>
+  <unicode hex="F444"/>
+  <note>
+{'classes': ['tf_zeroWidth'], 'name': 'timeSig4Large', 'description': 'Time signature 4 (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="5" y="-130" type="line"/>
+      <point x="79" y="-130" type="line"/>
+      <point x="79" y="-250" type="line"/>
+      <point x="101" y="-250" type="line"/>
+      <point x="101" y="-130" type="line"/>
+      <point x="128" y="-130" type="line"/>
+      <point x="128" y="-75" type="line"/>
+      <point x="101" y="-75" type="line"/>
+      <point x="101" y="250" type="line"/>
+      <point x="85" y="250" type="line"/>
+      <point x="5" y="-65" type="line"/>
+    </contour>
+    <contour>
+      <point x="79" y="144" type="line"/>
+      <point x="79" y="-75" type="line"/>
+      <point x="24" y="-75" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -500 30</string>
+              <string>hstem -260 111</string>
+              <string>hstem 471 29</string>
+              <string>vstem 319 88</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w132m5,-130l79,-130l79,-250l101,-250l101,-130l128,-130l128,-75l101,-75l101,250l85,250l5,-65m79,144l79,-75l24,-75</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

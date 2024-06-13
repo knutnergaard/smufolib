@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniED16" format="2">
+  <advance width="246"/>
+  <unicode hex="ED16"/>
+  <note>
+{'classes': ['tf_figuredBass'], 'name': 'fingeringTUpper', 'description': 'Fingering T (left-hand thumb for guitar)'}
+</note>
+  <outline>
+    <contour>
+      <point x="20" y="250" type="line"/>
+      <point x="20" y="155" type="line"/>
+      <point x="31" y="155" type="line"/>
+      <point x="33" y="185"/>
+      <point x="38" y="239"/>
+      <point x="81" y="239" type="curve" smooth="yes"/>
+      <point x="90" y="239"/>
+      <point x="93" y="235"/>
+      <point x="94" y="224" type="curve"/>
+      <point x="94" y="32" type="line" smooth="yes"/>
+      <point x="94" y="16"/>
+      <point x="91" y="11"/>
+      <point x="81" y="11" type="curve" smooth="yes"/>
+      <point x="52" y="11" type="line"/>
+      <point x="52" y="0" type="line"/>
+      <point x="195" y="0" type="line"/>
+      <point x="195" y="11" type="line"/>
+      <point x="166" y="11" type="line" smooth="yes"/>
+      <point x="156" y="11"/>
+      <point x="152" y="16"/>
+      <point x="152" y="32" type="curve" smooth="yes"/>
+      <point x="152" y="224" type="line" smooth="yes"/>
+      <point x="152" y="234"/>
+      <point x="156" y="239"/>
+      <point x="166" y="239" type="curve" smooth="yes"/>
+      <point x="204" y="239"/>
+      <point x="215" y="181"/>
+      <point x="215" y="155" type="curve"/>
+      <point x="226" y="155" type="line"/>
+      <point x="226" y="250" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 11</string>
+              <string>hstem 239 11</string>
+              <string>vstem 20 11</string>
+              <string>vstem 94 58</string>
+              <string>vstem 215 11</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>68f1dc5d335a46b3065dbe35fa823488565662037c598b98c3a716028e0478961fd988bca1c00052c6914c2d6fc90a82ab569767e189498b09e61d81a1df2a76</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE6DB.salt01" format="2">
+  <advance width="1815"/>
+  <unicode hex="F438"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictTambourineStockhausen', 'description': 'Tambourine (Stockhausen)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="239" type="curve" smooth="yes"/>
+      <point x="0" y="229"/>
+      <point x="8" y="221"/>
+      <point x="18" y="221" type="curve" smooth="yes"/>
+      <point x="229" y="221" type="line"/>
+      <point x="229" y="18" type="line" smooth="yes"/>
+      <point x="229" y="8"/>
+      <point x="237" y="0"/>
+      <point x="247" y="0" type="curve" smooth="yes"/>
+      <point x="257" y="0"/>
+      <point x="265" y="8"/>
+      <point x="265" y="18" type="curve" smooth="yes"/>
+      <point x="265" y="221" type="line"/>
+      <point x="475" y="221" type="line" smooth="yes"/>
+      <point x="485" y="221"/>
+      <point x="493" y="229"/>
+      <point x="493" y="239" type="curve" smooth="yes"/>
+      <point x="493" y="249"/>
+      <point x="485" y="257"/>
+      <point x="475" y="257" type="curve" smooth="yes"/>
+      <point x="265" y="257" type="line"/>
+      <point x="265" y="382" type="line"/>
+      <point x="1550" y="382" type="line"/>
+      <point x="1550" y="257" type="line"/>
+      <point x="1340" y="257" type="line" smooth="yes"/>
+      <point x="1330" y="257"/>
+      <point x="1322" y="249"/>
+      <point x="1322" y="239" type="curve" smooth="yes"/>
+      <point x="1322" y="229"/>
+      <point x="1330" y="221"/>
+      <point x="1340" y="221" type="curve" smooth="yes"/>
+      <point x="1550" y="221" type="line"/>
+      <point x="1550" y="18" type="line" smooth="yes"/>
+      <point x="1550" y="8"/>
+      <point x="1558" y="0"/>
+      <point x="1568" y="0" type="curve" smooth="yes"/>
+      <point x="1578" y="0"/>
+      <point x="1586" y="8"/>
+      <point x="1586" y="18" type="curve" smooth="yes"/>
+      <point x="1586" y="221" type="line"/>
+      <point x="1797" y="221" type="line" smooth="yes"/>
+      <point x="1807" y="221"/>
+      <point x="1815" y="229"/>
+      <point x="1815" y="239" type="curve" smooth="yes"/>
+      <point x="1815" y="249"/>
+      <point x="1807" y="257"/>
+      <point x="1797" y="257" type="curve" smooth="yes"/>
+      <point x="1586" y="257" type="line"/>
+      <point x="1586" y="400" type="line" smooth="yes"/>
+      <point x="1586" y="410"/>
+      <point x="1578" y="418"/>
+      <point x="1568" y="418" type="curve" smooth="yes"/>
+      <point x="247" y="418" type="line" smooth="yes"/>
+      <point x="237" y="418"/>
+      <point x="229" y="410"/>
+      <point x="229" y="400" type="curve" smooth="yes"/>
+      <point x="229" y="257" type="line"/>
+      <point x="18" y="257" type="line" smooth="yes"/>
+      <point x="8" y="257"/>
+      <point x="0" y="249"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 221 36</string>
+              <string>hstem 382 36</string>
+              <string>vstem 229 36</string>
+              <string>vstem 1550 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>af938b36640fe799c2a7bd0c36d545af28771bdff69d20ad28271ed38bf46c6ad9be3de782f80151f3d2a369c8a083871d59b1fe94bcefe55e8c8772810b2180</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

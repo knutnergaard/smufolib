@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE99E" format="2">
+  <advance width="153"/>
+  <unicode hex="E99E"/>
+  <note>
+{'name': 'chantOriscusLiquescens', 'description': 'Oriscus liquescens'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-50" type="line" smooth="yes"/>
+      <point x="0" y="-81"/>
+      <point x="12" y="-97"/>
+      <point x="35" y="-97" type="curve" smooth="yes"/>
+      <point x="42" y="-97"/>
+      <point x="56" y="-92"/>
+      <point x="76" y="-81" type="curve" smooth="yes"/>
+      <point x="96" y="-71"/>
+      <point x="106" y="-66"/>
+      <point x="111" y="-66" type="curve" smooth="yes"/>
+      <point x="129" y="-66"/>
+      <point x="129" y="-87"/>
+      <point x="129" y="-99" type="curve"/>
+      <point x="128" y="-121"/>
+      <point x="129" y="-146"/>
+      <point x="123" y="-167" type="curve"/>
+      <point x="115" y="-200"/>
+      <point x="83" y="-214"/>
+      <point x="54" y="-223" type="curve"/>
+      <point x="49" y="-226"/>
+      <point x="46" y="-230"/>
+      <point x="46" y="-236" type="curve"/>
+      <point x="48" y="-243"/>
+      <point x="52" y="-246"/>
+      <point x="56" y="-246" type="curve"/>
+      <point x="102" y="-235"/>
+      <point x="130" y="-213"/>
+      <point x="141" y="-185" type="curve" smooth="yes"/>
+      <point x="153" y="-155"/>
+      <point x="153" y="-119"/>
+      <point x="153" y="-74" type="curve" smooth="yes"/>
+      <point x="153" y="49" type="line" smooth="yes"/>
+      <point x="153" y="80"/>
+      <point x="141" y="95"/>
+      <point x="117" y="95" type="curve" smooth="yes"/>
+      <point x="109" y="95"/>
+      <point x="96" y="90"/>
+      <point x="76" y="81" type="curve"/>
+      <point x="56" y="70"/>
+      <point x="42" y="66"/>
+      <point x="35" y="66" type="curve" smooth="yes"/>
+      <point x="14" y="66"/>
+      <point x="7" y="86"/>
+      <point x="6" y="113" type="curve"/>
+      <point x="6" y="114"/>
+      <point x="4" y="114"/>
+      <point x="3" y="114" type="curve"/>
+      <point x="1" y="114"/>
+      <point x="0" y="114"/>
+      <point x="0" y="113" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -246 360</string>
+              <string>vstem 129 24</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f1c2ca896a71d20f3a133b987a90e24c0d60e4763ed72db3b2a1b8ef4da972a5da26cfb798f638d4c43ac3be44903869f5ce5c08ab85e3f4dcf04ebc347ceb76</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

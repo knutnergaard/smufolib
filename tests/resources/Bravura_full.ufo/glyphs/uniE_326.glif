@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE326" format="2">
+  <advance width="469"/>
+  <unicode hex="E326"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalSharp11MUp', 'description': 'Sharp 11M-up, 3° up [17 31 EDOs], 7° up [46 EDO], 3/4-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-78" type="line"/>
+      <point x="0" y="-188" type="line"/>
+      <point x="125" y="-55" type="line"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="156" y="-359" type="line"/>
+      <point x="156" y="-21" type="line"/>
+      <point x="219" y="45" type="line"/>
+      <point x="219" y="-359" type="line"/>
+      <point x="250" y="-359" type="line"/>
+      <point x="250" y="45" type="line"/>
+      <point x="312" y="-21" type="line"/>
+      <point x="312" y="-359" type="line"/>
+      <point x="344" y="-359" type="line"/>
+      <point x="344" y="-55" type="line"/>
+      <point x="469" y="-188" type="line"/>
+      <point x="469" y="-78" type="line"/>
+      <point x="234" y="172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>vstem 125 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 312 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>019713f7d3ebaaff59e6cc39999050f0f66f4c98ffbaaad5092a907cd1220a237be7f236e428ed7ce6ec8eabad07e9fd3f81900833e100bedaaed1e24ee6d566</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

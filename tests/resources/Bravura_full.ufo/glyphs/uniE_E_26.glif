@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEE26" format="2">
+  <advance width="500"/>
+  <unicode hex="EE26"/>
+  <note>
+{'name': 'organGermanBuxheimerSemibrevis', 'description': 'Semibrevis Buxheimer Orgelbuch'}
+</note>
+  <outline>
+    <contour>
+      <point x="214" y="-72" type="curve" smooth="yes"/>
+      <point x="250" y="-102" type="line"/>
+      <point x="265" y="-95"/>
+      <point x="285" y="-71"/>
+      <point x="285" y="-56" type="curve"/>
+      <point x="285" y="-55"/>
+      <point x="285" y="-54"/>
+      <point x="284" y="-53" type="curve"/>
+      <point x="247" y="-23" type="line"/>
+      <point x="232" y="-25"/>
+      <point x="212" y="-56"/>
+      <point x="212" y="-69" type="curve"/>
+      <point x="212" y="-70"/>
+      <point x="212" y="-71"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -102 79</string>
+              <string>vstem 212 73</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w500m214,-72l250,-102c265,-95 285,-71 285,-56c285,-55 285,-54 284,-53l247,-23c232,-25 212,-56 212,-69c212,-70 212,-71 214,-72</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

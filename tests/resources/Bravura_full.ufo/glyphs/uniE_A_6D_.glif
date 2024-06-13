@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA6D" format="2">
+  <advance width="412"/>
+  <unicode hex="EA6D"/>
+  <note>
+{'classes': ['figuredBass', 'tf_figuredBass'], 'name': 'figbassCombiningRaising', 'description': 'Combining raise'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="50" type="curve" smooth="yes"/>
+      <point x="0" y="39"/>
+      <point x="6" y="38"/>
+      <point x="14" y="38" type="curve"/>
+      <point x="406" y="175" type="line"/>
+      <point x="410" y="177"/>
+      <point x="412" y="180"/>
+      <point x="412" y="183" type="curve" smooth="yes"/>
+      <point x="412" y="193"/>
+      <point x="405" y="194"/>
+      <point x="398" y="194" type="curve"/>
+      <point x="6" y="58" type="line"/>
+      <point x="2" y="56"/>
+      <point x="0" y="53"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 37 158</string>
+              <string>vstem 0 412</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w412m0,50c0,39 6,38 14,38l406,175c410,177 412,180 412,183c412,193 405,194 398,194l6,58c2,56 0,53 0,50</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

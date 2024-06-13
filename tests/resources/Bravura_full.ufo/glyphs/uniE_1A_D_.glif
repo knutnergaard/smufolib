@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1AD" format="2">
+  <advance width="486"/>
+  <unicode hex="E1AD"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheads'], 'name': 'noteEmptyWhole', 'description': 'Empty whole note'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-77"/>
+      <point x="65" y="-146"/>
+      <point x="237" y="-146" type="curve" smooth="yes"/>
+      <point x="424" y="-146"/>
+      <point x="486" y="-80"/>
+      <point x="486" y="0" type="curve" smooth="yes"/>
+      <point x="486" y="82"/>
+      <point x="401" y="144"/>
+      <point x="248" y="144" type="curve" smooth="yes"/>
+      <point x="95" y="144"/>
+      <point x="0" y="79"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -146 25</string>
+              <string>hstem 118 26</string>
+              <string>vstem 0 60</string>
+              <string>vstem 425 61</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w486m0,0c0,-77 65,-146 237,-146c424,-146 486,-80 486,0c486,82 401,144 248,144c95,144 0,79 0,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE094.ss04" format="2">
+  <advance width="51"/>
+  <unicode hex="F4F5"/>
+  <note>
+{'name': 'timeSigParensLeftLarge', 'description': 'Left parenthesis for whole time signature (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="38" y="-494" type="curve"/>
+      <point x="51" y="-494" type="line"/>
+      <point x="30" y="-344"/>
+      <point x="20" y="-168"/>
+      <point x="20" y="0" type="curve" smooth="yes"/>
+      <point x="20" y="167"/>
+      <point x="30" y="345"/>
+      <point x="51" y="494" type="curve"/>
+      <point x="38" y="494" type="line"/>
+      <point x="14" y="356"/>
+      <point x="0" y="165"/>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-166"/>
+      <point x="14" y="-357"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 494 -20</string>
+              <string>vstem 0 20</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w51m38,-494l51,-494c30,-344 20,-168 20,0c20,167 30,345 51,494l38,494c14,356 0,165 0,0c0,-166 14,-357 38,-494</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

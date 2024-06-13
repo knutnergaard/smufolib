@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA95" format="2">
+  <advance width="466"/>
+  <unicode hex="EA95"/>
+  <note>
+{'name': 'functionRepetition1', 'description': 'Function theory repetition 1'}
+</note>
+  <outline>
+    <contour>
+      <point x="446" y="0" type="line"/>
+      <point x="446" y="116" type="line"/>
+      <point x="330" y="116" type="line"/>
+      <point x="330" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="20" y="0" type="line"/>
+      <point x="136" y="0" type="line"/>
+      <point x="136" y="116" type="line"/>
+      <point x="20" y="116" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 116</string>
+              <string>vstem 20 116</string>
+              <string>vstem 330 116</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w466m446,0l446,116l330,116l330,0m20,0l136,0l136,116l20,116</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

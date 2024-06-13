@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE34B" format="2">
+  <advance width="344"/>
+  <unicode hex="E34B"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions'], 'name': 'accSagittalFlat5v11SUp', 'description': 'Flat 5:11S-up'}
+</note>
+  <outline>
+    <contour>
+      <point x="62" y="-47" type="curve" smooth="yes"/>
+      <point x="109" y="-47" type="line" smooth="yes"/>
+      <point x="133" y="-47"/>
+      <point x="154" y="-88"/>
+      <point x="172" y="-172" type="curve"/>
+      <point x="193" y="-68"/>
+      <point x="222" y="-11"/>
+      <point x="258" y="0" type="curve" name="hr01"/>
+      <point x="266" y="1"/>
+      <point x="274" y="2"/>
+      <point x="278" y="2" type="curve" smooth="yes"/>
+      <point x="301" y="2"/>
+      <point x="313" y="-14"/>
+      <point x="313" y="-47" type="curve" name="hr02"/>
+      <point x="344" y="-47" type="line"/>
+      <point x="344" y="36"/>
+      <point x="318" y="78" name="hr03"/>
+      <point x="266" y="78" type="curve" smooth="yes"/>
+      <point x="261" y="78"/>
+      <point x="255" y="77"/>
+      <point x="250" y="76" type="curve"/>
+      <point x="250" y="359" type="line"/>
+      <point x="219" y="359" type="line"/>
+      <point x="219" y="61" type="line"/>
+      <point x="199" y="44"/>
+      <point x="182" y="15"/>
+      <point x="169" y="-27" type="curve"/>
+      <point x="156" y="1"/>
+      <point x="141" y="16" name="hr04"/>
+      <point x="125" y="16" type="curve"/>
+      <point x="125" y="359" type="line"/>
+      <point x="94" y="359" type="line"/>
+      <point x="94" y="16" type="line"/>
+      <point x="78" y="16" type="line" smooth="yes"/>
+      <point x="47" y="16"/>
+      <point x="31" y="58"/>
+      <point x="31" y="141" type="curve"/>
+      <point x="0" y="141" type="line"/>
+      <point x="0" y="16"/>
+      <point x="21" y="-47"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -47 63</string>
+              <string>vstem 0 31</string>
+              <string>vstem 94 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 313 31</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 78</string>
+              <string>vstem 313 31</string>
+              <string>vstem 0 31</string>
+              <string>vstem 94 31</string>
+              <string>vstem 219 31</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -47 63</string>
+              <string>vstem 313 31</string>
+              <string>vstem 0 31</string>
+              <string>vstem 94 31</string>
+              <string>vstem 219 31</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr03</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 78</string>
+              <string>vstem 219 31</string>
+              <string>vstem 0 31</string>
+              <string>vstem 94 31</string>
+              <string>vstem 313 31</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr04</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -47 63</string>
+              <string>vstem 94 31</string>
+              <string>vstem 0 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 313 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d2915b95ae0b1abfc36e6a97456f88ce335f86befefb6e48e252aa133706d290d7170e00f0360b47b5ed027a14e00547e63e04311f9b8b74d4cbc82a857b916e</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

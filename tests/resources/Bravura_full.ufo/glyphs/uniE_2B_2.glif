@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2B2" format="2">
+  <advance width="160"/>
+  <unicode hex="E2B2"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsJohnston', 'combiningStaffPositions'], 'name': 'accidentalJohnstonEl', 'description': 'Inverted seven (raise by 36:35)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-175" type="line"/>
+      <point x="25" y="-185" type="line"/>
+      <point x="160" y="-145" type="line"/>
+      <point x="150" y="-75" type="line"/>
+      <point x="30" y="-110" type="line"/>
+      <point x="30" y="130" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -185 315</string>
+              <string>vstem 0 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w160m0,-175l25,-185l160,-145l150,-75l30,-110l30,130l0,125</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

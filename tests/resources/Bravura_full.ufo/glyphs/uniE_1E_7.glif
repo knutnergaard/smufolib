@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1E7" format="2">
+  <advance width="100"/>
+  <unicode hex="E1E7"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'forTextBasedApplications'], 'name': 'augmentationDot', 'description': 'Augmentation dot'}
+</note>
+  <outline>
+    <contour>
+      <point x="50" y="-50" type="curve" smooth="yes"/>
+      <point x="78" y="-50"/>
+      <point x="100" y="-28"/>
+      <point x="100" y="0" type="curve" smooth="yes"/>
+      <point x="100" y="28"/>
+      <point x="78" y="50"/>
+      <point x="50" y="50" type="curve" smooth="yes"/>
+      <point x="22" y="50"/>
+      <point x="0" y="28"/>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-28"/>
+      <point x="22" y="-50"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -50 100</string>
+              <string>vstem 0 100</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w100m50,-50c78,-50 100,-28 100,0c100,28 78,50 50,50c22,50 0,28 0,0c0,-28 22,-50 50,-50</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

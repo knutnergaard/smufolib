@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE372" format="2">
+  <advance width="156"/>
+  <unicode hex="E372"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalTrojan', 'combiningStaffPositions'], 'name': 'accSagittal5v19CommaUp', 'description': '5:19 comma up, (5:19C, 5C plus 19s), 1/20-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-197" type="line"/>
+      <point x="125" y="23" type="line"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="156" y="-359" type="line"/>
+      <point x="156" y="172" type="line"/>
+      <point x="141" y="172" type="line"/>
+      <point x="105" y="109"/>
+      <point x="78" y="78" name="hr01"/>
+      <point x="60" y="78" type="curve" smooth="yes"/>
+      <point x="41" y="78"/>
+      <point x="31" y="88"/>
+      <point x="31" y="109" type="curve"/>
+      <point x="0" y="109" type="line"/>
+      <point x="0" y="50"/>
+      <point x="18" y="19"/>
+      <point x="53" y="16" type="curve"/>
+      <point x="0" y="-78" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 31</string>
+              <string>vstem 125 31</string>
+              <string>hstem -359 531</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 16 62</string>
+              <string>vstem 0 31</string>
+              <string>vstem 125 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w156m0,-197l125,23l125,-359l156,-359l156,172l141,172c105,109 78,78 60,78c41,78 31,88 31,109l0,109c0,50 18,19 53,16l0,-78</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

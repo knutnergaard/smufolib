@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE5E6" format="2">
+  <advance width="305"/>
+  <unicode hex="E5E6"/>
+  <note>
+{'name': 'brassMuteHalfClosed', 'description': 'Half-muted (half-closed)'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="152" type="curve" smooth="yes"/>
+      <point x="1" y="68"/>
+      <point x="70" y="0"/>
+      <point x="153" y="0" type="curve" smooth="yes"/>
+      <point x="237" y="0"/>
+      <point x="305" y="68"/>
+      <point x="305" y="152" type="curve" smooth="yes"/>
+      <point x="305" y="236"/>
+      <point x="237" y="304"/>
+      <point x="153" y="304" type="curve" smooth="yes"/>
+      <point x="70" y="304"/>
+      <point x="1" y="236"/>
+    </contour>
+    <contour>
+      <point x="169" y="136" type="line"/>
+      <point x="272" y="136" type="line"/>
+      <point x="265" y="82"/>
+      <point x="223" y="40"/>
+      <point x="169" y="33" type="curve"/>
+    </contour>
+    <contour>
+      <point x="169" y="271" type="line"/>
+      <point x="223" y="264"/>
+      <point x="265" y="221"/>
+      <point x="272" y="168" type="curve"/>
+      <point x="169" y="168" type="line"/>
+    </contour>
+    <contour>
+      <point x="34" y="136" type="curve"/>
+      <point x="137" y="136" type="line"/>
+      <point x="137" y="33" type="line"/>
+      <point x="84" y="40"/>
+      <point x="42" y="82"/>
+    </contour>
+    <contour>
+      <point x="34" y="168" type="line"/>
+      <point x="42" y="221"/>
+      <point x="84" y="264"/>
+      <point x="137" y="271" type="curve"/>
+      <point x="137" y="168" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 33</string>
+              <string>hstem 136 32</string>
+              <string>hstem 271 33</string>
+              <string>vstem 1 33</string>
+              <string>vstem 137 32</string>
+              <string>vstem 272 33</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>7dc74db91a696647a1f9e0584dc7affa2ba9d31c5dc9d522f1e1a035a1f876e55ee826a97f0023d0968f420dc2d2b14ddbe480d05659a52b9fb3591c14c14223</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

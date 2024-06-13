@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEDA3" format="2">
+  <advance width="403"/>
+  <unicode hex="EDA3"/>
+  <note>
+{'name': 'kahnLeap', 'description': 'Leap'}
+</note>
+  <outline>
+    <contour>
+      <point x="170" y="552" type="curve"/>
+      <point x="170" y="1" type="line"/>
+      <point x="234" y="1" type="line"/>
+      <point x="234" y="2"/>
+      <point x="234" y="4"/>
+      <point x="234" y="5" type="curve"/>
+      <point x="234" y="77"/>
+      <point x="300" y="161"/>
+      <point x="404" y="161" type="curve"/>
+      <point x="404" y="221" type="line"/>
+      <point x="339" y="220"/>
+      <point x="282" y="197"/>
+      <point x="234" y="151" type="curve"/>
+      <point x="234" y="703" type="line"/>
+      <point x="171" y="703" type="line"/>
+      <point x="171" y="702"/>
+      <point x="171" y="700"/>
+      <point x="171" y="699" type="curve"/>
+      <point x="171" y="626"/>
+      <point x="103" y="543"/>
+      <point x="0" y="543" type="curve"/>
+      <point x="0" y="483" type="line"/>
+      <point x="67" y="484"/>
+      <point x="123" y="507"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 22 -21</string>
+              <string>hstem 161 60</string>
+              <string>hstem 483 60</string>
+              <string>vstem 170 64</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>ddd7731b8c0f4721fa700655fc34502a8ba6f9a93010987d99e75c74bc7b5d603b354414c1c66fed5e2a2ced45bbce4d76985895b2f13a8ac5b28da469057013</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

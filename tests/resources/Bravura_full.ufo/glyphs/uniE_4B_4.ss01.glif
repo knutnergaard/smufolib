@@ -1,0 +1,110 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4B4.ss01" format="2">
+  <advance width="339"/>
+  <unicode hex="F489"/>
+  <note>
+{'classes': ['articulations', 'articulationsAbove', 'combiningStaffPositions'], 'name': 'articTenutoAccentAboveSmall', 'description': 'Tenuto-accent above (small staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="11" y="339" type="curve" smooth="yes"/>
+      <point x="222" y="267" type="line"/>
+      <point x="226" y="265"/>
+      <point x="229" y="264"/>
+      <point x="229" y="262" type="curve"/>
+      <point x="229" y="260"/>
+      <point x="226" y="258"/>
+      <point x="222" y="257" type="curve" smooth="yes"/>
+      <point x="12" y="185" type="line" smooth="yes"/>
+      <point x="5" y="183"/>
+      <point x="0" y="175"/>
+      <point x="0" y="168" type="curve"/>
+      <point x="0" y="166"/>
+      <point x="0" y="165"/>
+      <point x="1" y="163" type="curve" smooth="yes"/>
+      <point x="5" y="151" type="line" smooth="yes"/>
+      <point x="7" y="145"/>
+      <point x="15" y="140"/>
+      <point x="22" y="140" type="curve"/>
+      <point x="24" y="140"/>
+      <point x="25" y="140"/>
+      <point x="27" y="141" type="curve" smooth="yes"/>
+      <point x="302" y="235" type="line" smooth="yes"/>
+      <point x="310" y="238"/>
+      <point x="324" y="245"/>
+      <point x="331" y="250" type="curve"/>
+      <point x="331" y="250"/>
+      <point x="333" y="252"/>
+      <point x="333" y="262" type="curve" smooth="yes"/>
+      <point x="333" y="272"/>
+      <point x="331" y="274"/>
+      <point x="331" y="274" type="curve"/>
+      <point x="324" y="279"/>
+      <point x="310" y="286"/>
+      <point x="302" y="289" type="curve" smooth="yes"/>
+      <point x="26" y="383" type="line" smooth="yes"/>
+      <point x="24" y="384"/>
+      <point x="23" y="384"/>
+      <point x="21" y="384" type="curve"/>
+      <point x="14" y="384"/>
+      <point x="7" y="379"/>
+      <point x="5" y="373" type="curve" smooth="yes"/>
+      <point x="1" y="360" type="line" smooth="yes"/>
+      <point x="0" y="358"/>
+      <point x="0" y="357"/>
+      <point x="0" y="355" type="curve"/>
+      <point x="0" y="348"/>
+      <point x="5" y="341"/>
+    </contour>
+    <contour>
+      <point x="0" y="24" type="line" smooth="yes"/>
+      <point x="0" y="10"/>
+      <point x="11" y="0"/>
+      <point x="24" y="0" type="curve" smooth="yes"/>
+      <point x="315" y="0" type="line" smooth="yes"/>
+      <point x="328" y="0"/>
+      <point x="339" y="10"/>
+      <point x="339" y="24" type="curve" smooth="yes" name="hr01"/>
+      <point x="339" y="40" type="line" smooth="yes"/>
+      <point x="339" y="53"/>
+      <point x="328" y="64"/>
+      <point x="315" y="64" type="curve" smooth="yes"/>
+      <point x="24" y="64" type="line" smooth="yes"/>
+      <point x="11" y="64"/>
+      <point x="0" y="53"/>
+      <point x="0" y="40" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 333</string>
+              <string>hstem 161 -21</string>
+              <string>hstem 0 64</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 333</string>
+              <string>hstem 0 64</string>
+              <string>hstem 161 -21</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>70ed9fd5043bca2b7427331bf3da049d4e8655ea7ee7ccfb037c47f251024bac19e58be6523094fc74e48ee2f1172c3929e09eaed2944c9040c8211e7d0cc766</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

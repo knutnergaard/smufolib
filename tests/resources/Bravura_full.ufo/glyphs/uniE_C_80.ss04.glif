@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC80.ss04" format="2">
+  <advance width="50"/>
+  <unicode hex="F4FF"/>
+  <note>
+{'name': 'timeSigBracketLeftLarge', 'description': 'Left bracket for whole time signature (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="46" y="-500" type="line"/>
+      <point x="46" y="-464" type="line"/>
+      <point x="20" y="-464" type="line"/>
+      <point x="20" y="464" type="line"/>
+      <point x="46" y="464" type="line"/>
+      <point x="46" y="500" type="line"/>
+      <point x="0" y="500" type="line"/>
+      <point x="0" y="-500" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -500 36</string>
+              <string>hstem 464 36</string>
+              <string>vstem 0 20</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w50m46,-500l46,-464l20,-464l20,464l46,464l46,500l0,500l0,-500</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

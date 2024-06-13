@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE06C" format="2">
+  <advance width="463"/>
+  <unicode hex="E06C"/>
+  <note>
+{'classes': ['clefs'], 'name': 'semipitchedPercussionClef2', 'description': 'Semi-pitched percussion clef 2'}
+</note>
+  <outline>
+    <contour>
+      <point x="207" y="-86" type="line"/>
+      <point x="207" y="-178" type="line" smooth="yes"/>
+      <point x="207" y="-191"/>
+      <point x="217" y="-202"/>
+      <point x="231" y="-202" type="curve" smooth="yes"/>
+      <point x="244" y="-202"/>
+      <point x="255" y="-191"/>
+      <point x="255" y="-178" type="curve" smooth="yes"/>
+      <point x="255" y="-68" type="line"/>
+      <point x="459" y="11" type="line"/>
+      <point x="459" y="171" type="line"/>
+      <point x="255" y="93" type="line"/>
+      <point x="255" y="182" type="line" smooth="yes"/>
+      <point x="255" y="195"/>
+      <point x="244" y="206"/>
+      <point x="231" y="206" type="curve" smooth="yes"/>
+      <point x="217" y="206"/>
+      <point x="207" y="195"/>
+      <point x="207" y="182" type="curve" smooth="yes"/>
+      <point x="207" y="74" type="line"/>
+      <point x="2" y="-4" type="line"/>
+      <point x="2" y="-165" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -202 408</string>
+              <string>vstem 207 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>42d94dc8758423a462c7c8fcd939aa83a5e31ebece5168c507936b6d5e3adbf4295c589ef31cac2f854683432313aadcc434619a155cf8b69e5e9a5dfa8637cc</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA7F" format="2">
+  <advance width="618"/>
+  <unicode hex="EA7F"/>
+  <note>
+{'name': 'functionDUpper', 'description': 'Function theory major dominant'}
+</note>
+  <outline>
+    <contour>
+      <point x="301" y="0" type="line" smooth="yes"/>
+      <point x="485" y="0"/>
+      <point x="598" y="138"/>
+      <point x="598" y="365" type="curve" smooth="yes"/>
+      <point x="598" y="591"/>
+      <point x="486" y="729"/>
+      <point x="301" y="729" type="curve" smooth="yes"/>
+      <point x="20" y="729" type="line"/>
+      <point x="20" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="113" y="82" type="line"/>
+      <point x="113" y="647" type="line"/>
+      <point x="285" y="647" type="line" smooth="yes"/>
+      <point x="429" y="647"/>
+      <point x="505" y="550"/>
+      <point x="505" y="364" type="curve" smooth="yes"/>
+      <point x="505" y="180"/>
+      <point x="429" y="82"/>
+      <point x="285" y="82" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 82</string>
+              <string>hstem 647 82</string>
+              <string>vstem 20 93</string>
+              <string>vstem 505 93</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f980875e72de7d939f093df6f27f2f65a2e68b21aae636d5f85ba841e54fe3f13365e8a5e7ceca37b379fc5ce9096a23a73de8eead6fc9adc9d192f7d8416bde</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

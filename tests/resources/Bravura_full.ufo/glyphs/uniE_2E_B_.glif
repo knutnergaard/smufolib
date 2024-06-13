@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2EB" format="2">
+  <advance width="245"/>
+  <unicode hex="E2EB"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsHelmholtzEllis', 'combiningStaffPositions'], 'name': 'accidentalCombiningRaise23Limit29LimitComma', 'description': 'Combining raise by one 23-limit comma'}
+</note>
+  <outline>
+    <contour>
+      <point x="247" y="-171" type="line"/>
+      <point x="220" y="-143" type="line"/>
+      <point x="144" y="-219" type="line"/>
+      <point x="144" y="125" type="line" name="hr01"/>
+      <point x="103" y="125" type="line"/>
+      <point x="103" y="-219" type="line"/>
+      <point x="28" y="-143" type="line"/>
+      <point x="0" y="-171" type="line"/>
+      <point x="124" y="-295" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -165 420</string>
+              <string>vstem 103 41</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -295 420</string>
+              <string>vstem 103 41</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w245m247,-171l220,-143l144,-219l144,125l103,125l103,-219l28,-143l0,-171l124,-295</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

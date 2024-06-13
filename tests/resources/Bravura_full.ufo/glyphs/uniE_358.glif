@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE358" format="2">
+  <advance width="344"/>
+  <unicode hex="E358"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions'], 'name': 'accSagittalSharp55CUp', 'description': 'Sharp 55C-up, 11° up [96 EDO], 11/16-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="31" y="-359" type="line"/>
+      <point x="31" y="54" type="line"/>
+      <point x="94" y="7" type="line"/>
+      <point x="94" y="-359" type="line"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="125" y="-17" type="line"/>
+      <point x="187" y="-64" type="line"/>
+      <point x="187" y="-359" type="line"/>
+      <point x="219" y="-359" type="line"/>
+      <point x="219" y="-88" type="line"/>
+      <point x="344" y="-183" type="line"/>
+      <point x="344" y="-78" type="line"/>
+      <point x="16" y="172" type="line"/>
+      <point x="0" y="172" type="line"/>
+      <point x="0" y="-359" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>hstem 172 -20</string>
+              <string>vstem 0 31</string>
+              <string>vstem 94 31</string>
+              <string>vstem 187 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w344m31,-359l31,54l94,7l94,-359l125,-359l125,-17l187,-64l187,-359l219,-359l219,-88l344,-183l344,-78l16,172l0,172l0,-359</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEDAD" format="2">
+  <advance width="137"/>
+  <unicode hex="EDAD"/>
+  <note>
+{'name': 'kahnKneeInward', 'description': 'Knee-inward'}
+</note>
+  <outline>
+    <contour>
+      <point x="110" y="696" type="line"/>
+      <point x="0" y="587" type="line"/>
+      <point x="110" y="477" type="line"/>
+      <point x="136" y="503" type="line"/>
+      <point x="53" y="587" type="line"/>
+      <point x="136" y="670" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 477 219</string>
+              <string>vstem 0 136</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w137m110,696l0,587l110,477l136,503l53,587l136,670</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

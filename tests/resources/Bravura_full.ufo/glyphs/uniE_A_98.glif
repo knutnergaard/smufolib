@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA98" format="2">
+  <advance width="385"/>
+  <unicode hex="EA98"/>
+  <note>
+{'name': 'functionPlus', 'description': 'Function theory prefix plus'}
+</note>
+  <outline>
+    <contour>
+      <point x="20" y="553" type="line"/>
+      <point x="166" y="553" type="line"/>
+      <point x="166" y="407" type="line"/>
+      <point x="218" y="407" type="line"/>
+      <point x="218" y="553" type="line"/>
+      <point x="365" y="553" type="line"/>
+      <point x="365" y="605" type="line"/>
+      <point x="218" y="605" type="line"/>
+      <point x="218" y="751" type="line"/>
+      <point x="166" y="751" type="line"/>
+      <point x="166" y="605" type="line"/>
+      <point x="20" y="605" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 428 -21</string>
+              <string>hstem 553 52</string>
+              <string>hstem 751 -20</string>
+              <string>vstem 166 52</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w385m20,553l166,553l166,407l218,407l218,553l365,553l365,605l218,605l218,751l166,751l166,605l20,605</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniED19" format="2">
+  <advance width="164"/>
+  <unicode hex="ED19"/>
+  <note>
+{'classes': ['tf_figuredBass'], 'name': 'fingeringILower', 'description': 'Fingering i (indicio; right-hand index finger for guitar)'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="156" type="line"/>
+      <point x="15" y="208"/>
+      <point x="48" y="240"/>
+      <point x="62" y="240" type="curve" smooth="yes"/>
+      <point x="74" y="240"/>
+      <point x="78" y="234"/>
+      <point x="78" y="226" type="curve" smooth="yes"/>
+      <point x="78" y="201"/>
+      <point x="39" y="148"/>
+      <point x="29" y="110" type="curve"/>
+      <point x="24" y="97"/>
+      <point x="22" y="83"/>
+      <point x="22" y="70" type="curve" smooth="yes"/>
+      <point x="22" y="30"/>
+      <point x="43" y="-7"/>
+      <point x="85" y="-7" type="curve" smooth="yes" name="hr01"/>
+      <point x="132" y="-7"/>
+      <point x="152" y="52"/>
+      <point x="164" y="86" type="curve"/>
+      <point x="155" y="91" type="line"/>
+      <point x="137" y="52"/>
+      <point x="113" y="8"/>
+      <point x="94" y="8" type="curve" smooth="yes"/>
+      <point x="84" y="8"/>
+      <point x="76" y="17"/>
+      <point x="76" y="36" type="curve" smooth="yes"/>
+      <point x="76" y="43"/>
+      <point x="77" y="53"/>
+      <point x="80" y="63" type="curve"/>
+      <point x="85" y="96"/>
+      <point x="118" y="138" name="hr02"/>
+      <point x="118" y="194" type="curve" smooth="yes"/>
+      <point x="118" y="231"/>
+      <point x="99" y="259"/>
+      <point x="66" y="259" type="curve" smooth="yes"/>
+      <point x="38" y="259"/>
+      <point x="6" y="217"/>
+      <point x="-13" y="161" type="curve"/>
+    </contour>
+    <contour>
+      <point x="122" y="310" type="curve" smooth="yes"/>
+      <point x="146" y="310"/>
+      <point x="160" y="324" name="hr03"/>
+      <point x="160" y="348" type="curve" smooth="yes"/>
+      <point x="160" y="366"/>
+      <point x="146" y="385"/>
+      <point x="122" y="385" type="curve" smooth="yes"/>
+      <point x="104" y="385"/>
+      <point x="85" y="366"/>
+      <point x="85" y="348" type="curve" smooth="yes"/>
+      <point x="85" y="324"/>
+      <point x="104" y="310"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 240 19</string>
+              <string>vstem 78 40</string>
+              <string>vstem 22 54</string>
+              <string>hstem -7 15</string>
+              <string>hstem 310 75</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -7 15</string>
+              <string>vstem 85 75</string>
+              <string>vstem 22 54</string>
+              <string>hstem 240 19</string>
+              <string>hstem 310 75</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 78 40</string>
+              <string>hstem 240 19</string>
+              <string>hstem 310 75</string>
+              <string>hstem -7 15</string>
+              <string>vstem 22 54</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr03</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 85 75</string>
+              <string>hstem 310 75</string>
+              <string>hstem -7 15</string>
+              <string>hstem 240 19</string>
+              <string>vstem 22 54</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6ad9ffb12684c6e9df30ff61e4b41b5de3c8083a8def6ed5035cb8f505a9515788ed8062d9454a763011488759a0706dfd87eccc8bad3c9567e8d4cbc35ac70b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

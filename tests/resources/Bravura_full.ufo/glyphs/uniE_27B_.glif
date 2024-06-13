@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE27B" format="2">
+  <advance width="185"/>
+  <unicode hex="E27B"/>
+  <note>
+{'classes': ['accidentals', 'accidentals24EDOArrows', 'combiningStaffPositions'], 'name': 'accidentalArrowDown', 'description': 'Arrow down (lower by one quarter-tone)'}
+</note>
+  <anchor x="128" y="96" name="cutOutNE" color="0,0,0,0"/>
+  <anchor x="55" y="96" name="cutOutNW" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="92" y="-127" type="line"/>
+      <point x="185" y="77" type="line"/>
+      <point x="107" y="77" type="line"/>
+      <point x="107" y="378" type="line" smooth="yes"/>
+      <point x="107" y="384"/>
+      <point x="103" y="388"/>
+      <point x="97" y="388" type="curve" smooth="yes"/>
+      <point x="87" y="388" type="line" smooth="yes"/>
+      <point x="82" y="388"/>
+      <point x="77" y="384"/>
+      <point x="77" y="378" type="curve" smooth="yes"/>
+      <point x="77" y="77" type="line"/>
+      <point x="0" y="77" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -127 515</string>
+              <string>vstem 77 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w185m92,-127l185,77l107,77l107,378c107,384 103,388 97,388l87,388c82,388 77,384 77,378l77,77l0,77</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

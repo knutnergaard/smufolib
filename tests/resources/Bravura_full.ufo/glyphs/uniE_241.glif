@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE241" format="2">
+  <advance width="306"/>
+  <unicode hex="E241"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'flag8thDown', 'description': 'Combining flag 1 (8th) below'}
+</note>
+  <anchor x="-149" y="542" name="graceNoteSlashNW" color="0,0,0,0"/>
+  <anchor x="332" y="157" name="graceNoteSlashSE" color="0,0,0,0"/>
+  <anchor x="0" y="33" name="stemDownSW" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="11" y="-14" type="curve" smooth="yes"/>
+      <point x="30" y="-14"/>
+      <point x="38" y="-8"/>
+      <point x="40" y="8" type="curve"/>
+      <point x="57" y="103"/>
+      <point x="131" y="190"/>
+      <point x="182" y="269" type="curve" smooth="yes"/>
+      <point x="245" y="368"/>
+      <point x="306" y="487"/>
+      <point x="306" y="612" type="curve" smooth="yes"/>
+      <point x="306" y="690"/>
+      <point x="286" y="761"/>
+      <point x="278" y="793" type="curve" smooth="yes"/>
+      <point x="275" y="804"/>
+      <point x="269" y="808"/>
+      <point x="262" y="808" type="curve" smooth="yes"/>
+      <point x="247" y="808"/>
+      <point x="230" y="789"/>
+      <point x="240" y="760" type="curve" smooth="yes"/>
+      <point x="254" y="718"/>
+      <point x="261" y="668"/>
+      <point x="261" y="623" type="curve" smooth="yes"/>
+      <point x="261" y="564"/>
+      <point x="236" y="480"/>
+      <point x="221" y="446" type="curve" smooth="yes"/>
+      <point x="184" y="362"/>
+      <point x="134" y="281"/>
+      <point x="0" y="236" type="curve"/>
+      <point x="0" y="1" type="line" smooth="yes"/>
+      <point x="0" y="-11"/>
+      <point x="5" y="-14"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -14 822</string>
+              <string>vstem 261 45</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>41fc99da971fbb205f161a75e413aa7b5e916dd363d8af2cd5af21dc221049df6801adc82de3da4c4c90b2f240200d0dd54cf6a3dc96ad662f08d19785d43bf5</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

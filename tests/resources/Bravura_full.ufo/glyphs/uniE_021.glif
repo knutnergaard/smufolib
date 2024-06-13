@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE021" format="2">
+  <advance width="250"/>
+  <unicode hex="E021"/>
+  <note>
+{'classes': ['forTextBasedApplications', 'tf_zeroWidth'], 'name': 'staff6LinesNarrow', 'description': '6-line staff (narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="141" type="line"/>
+      <point x="0" y="109" type="line"/>
+      <point x="250" y="109" type="line"/>
+      <point x="250" y="141" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="891" type="line"/>
+      <point x="0" y="859" type="line"/>
+      <point x="250" y="859" type="line"/>
+      <point x="250" y="891" type="line"/>
+    </contour>
+    <contour>
+      <point x="250" y="609" type="line"/>
+      <point x="250" y="641" type="line"/>
+      <point x="0" y="641" type="line"/>
+      <point x="0" y="609" type="line"/>
+    </contour>
+    <contour>
+      <point x="250" y="359" type="line"/>
+      <point x="250" y="391" type="line"/>
+      <point x="0" y="391" type="line"/>
+      <point x="0" y="359" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="1141" type="line"/>
+      <point x="0" y="1109" type="line"/>
+      <point x="250" y="1109" type="line"/>
+      <point x="250" y="1141" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-109" type="line"/>
+      <point x="0" y="-141" type="line"/>
+      <point x="250" y="-141" type="line"/>
+      <point x="250" y="-109" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -141 32</string>
+              <string>hstem 109 32</string>
+              <string>hstem 359 32</string>
+              <string>hstem 609 32</string>
+              <string>hstem 859 32</string>
+              <string>hstem 1109 32</string>
+              <string>vstem 0 250</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>4204369dbc4c421c34a11b2bc6f6e2bde37f7b2c094086ed46627726991b03d56b9ed373181b7c026a98748a3daadaad22bfe6bc01fb0849e4e123b76a678a8a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

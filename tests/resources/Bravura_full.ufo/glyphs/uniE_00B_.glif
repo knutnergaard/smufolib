@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE00B" format="2">
+  <advance width="526"/>
+  <unicode hex="E00B"/>
+  <note>
+{'name': 'staffDivideArrowDown', 'description': 'Staff divide arrow down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="508" type="curve" smooth="yes"/>
+      <point x="0" y="503"/>
+      <point x="1" y="499"/>
+      <point x="5" y="495" type="curve" smooth="yes"/>
+      <point x="359" y="141" type="line"/>
+      <point x="283" y="65" type="line"/>
+      <point x="526" y="0" type="line"/>
+      <point x="461" y="243" type="line"/>
+      <point x="385" y="167" type="line"/>
+      <point x="31" y="521" type="line"/>
+      <point x="27" y="524"/>
+      <point x="22" y="526"/>
+      <point x="18" y="526" type="curve" smooth="yes"/>
+      <point x="7" y="526"/>
+      <point x="0" y="519"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 526</string>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 526</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w526m0,508c0,503 1,499 5,495l359,141l283,65l526,0l461,243l385,167l31,521c27,524 22,526 18,526c7,526 0,519 0,508</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

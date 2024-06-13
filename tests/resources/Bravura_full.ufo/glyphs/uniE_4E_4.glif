@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4E4" format="2">
+  <advance width="283"/>
+  <unicode hex="E4E4"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'rests'], 'name': 'restHalf', 'description': 'Half (minim) rest'}
+</note>
+  <outline>
+    <contour>
+      <point x="26" y="-2" type="curve" smooth="yes"/>
+      <point x="256" y="-2" type="line" smooth="yes"/>
+      <point x="270" y="-2"/>
+      <point x="282" y="10"/>
+      <point x="282" y="24" type="curve" smooth="yes"/>
+      <point x="282" y="116" type="line" smooth="yes"/>
+      <point x="282" y="131"/>
+      <point x="270" y="142"/>
+      <point x="256" y="142" type="curve" smooth="yes"/>
+      <point x="26" y="142" type="line" smooth="yes"/>
+      <point x="11" y="142"/>
+      <point x="0" y="131"/>
+      <point x="0" y="116" type="curve" smooth="yes"/>
+      <point x="0" y="24" type="line" smooth="yes"/>
+      <point x="0" y="10"/>
+      <point x="11" y="-2"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -2 144</string>
+              <string>vstem 0 282</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w283m26,-2l256,-2c270,-2 282,10 282,24l282,116c282,131 270,142 256,142l26,142c11,142 0,131 0,116l0,24c0,10 11,-2 26,-2</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

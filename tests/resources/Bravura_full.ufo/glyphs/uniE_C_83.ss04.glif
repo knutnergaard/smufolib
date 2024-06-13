@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC83.ss04" format="2">
+  <advance width="50"/>
+  <unicode hex="F502"/>
+  <note>
+{'name': 'timeSigBracketRightSmallLarge', 'description': 'Right bracket for numerator only (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="3" y="-289" type="line"/>
+      <point x="3" y="-330" type="line"/>
+      <point x="50" y="-330" type="line"/>
+      <point x="50" y="329" type="line"/>
+      <point x="3" y="329" type="line"/>
+      <point x="3" y="288" type="line"/>
+      <point x="29" y="288" type="line"/>
+      <point x="29" y="-289" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -330 41</string>
+              <string>hstem 288 41</string>
+              <string>vstem 29 21</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w50m3,-289l3,-330l50,-330l50,329l3,329l3,288l29,288l29,-289</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

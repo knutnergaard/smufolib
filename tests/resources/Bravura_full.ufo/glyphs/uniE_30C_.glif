@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE30C" format="2">
+  <advance width="344"/>
+  <unicode hex="E30C"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalMixed', 'combiningStaffPositions'], 'name': 'accSagittal11LargeDiesisUp', 'description': '11 large diesis up, (11L), (sharp less 11M), 3° up [46 EDO]'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="47" type="curve" smooth="yes"/>
+      <point x="0" y="-172" type="line"/>
+      <point x="31" y="-172" type="line"/>
+      <point x="31" y="-47" type="line" smooth="yes"/>
+      <point x="31" y="37"/>
+      <point x="62" y="78"/>
+      <point x="125" y="78" type="curve" smooth="yes"/>
+      <point x="156" y="78" type="line"/>
+      <point x="156" y="-359" type="line"/>
+      <point x="187" y="-359" type="line"/>
+      <point x="187" y="78" type="line"/>
+      <point x="219" y="78" type="line" smooth="yes"/>
+      <point x="281" y="78"/>
+      <point x="312" y="37"/>
+      <point x="312" y="-47" type="curve" smooth="yes"/>
+      <point x="312" y="-172" type="line"/>
+      <point x="344" y="-172" type="line"/>
+      <point x="344" y="47" type="line" smooth="yes"/>
+      <point x="344" y="130"/>
+      <point x="312" y="172"/>
+      <point x="250" y="172" type="curve" smooth="yes"/>
+      <point x="94" y="172" type="line" smooth="yes"/>
+      <point x="31" y="172"/>
+      <point x="0" y="130"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>hstem -162 -21</string>
+              <string>hstem 78 94</string>
+              <string>vstem 0 31</string>
+              <string>vstem 156 31</string>
+              <string>vstem 312 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>68e4a646de9bec30753b71bed3337c856136d7c84e46ed891ed4ff501163c6f25bc7748e86707e7cc9324b0fdf53e7f7dcdf48a5dbe71c5e6db5115df7abf120</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

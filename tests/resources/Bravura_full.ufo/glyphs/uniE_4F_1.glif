@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4F1" format="2">
+  <advance width="377"/>
+  <unicode hex="E4F1"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'rests'], 'name': 'restHBarRight', 'description': 'H-bar, right half'}
+</note>
+  <outline>
+    <contour>
+      <point x="15" y="-104" type="curve" smooth="yes"/>
+      <point x="343" y="-104" type="line"/>
+      <point x="343" y="-254" type="line" smooth="yes"/>
+      <point x="343" y="-263"/>
+      <point x="350" y="-270"/>
+      <point x="359" y="-270" type="curve" smooth="yes"/>
+      <point x="368" y="-270"/>
+      <point x="375" y="-263"/>
+      <point x="375" y="-254" type="curve" smooth="yes"/>
+      <point x="375" y="246" type="line" smooth="yes"/>
+      <point x="375" y="255"/>
+      <point x="368" y="262"/>
+      <point x="359" y="262" type="curve" smooth="yes"/>
+      <point x="350" y="262"/>
+      <point x="343" y="255"/>
+      <point x="343" y="246" type="curve" smooth="yes"/>
+      <point x="343" y="96" type="line"/>
+      <point x="13" y="96" type="line" smooth="yes"/>
+      <point x="6" y="96"/>
+      <point x="0" y="91"/>
+      <point x="0" y="84" type="curve" smooth="yes"/>
+      <point x="0" y="-87" type="line" smooth="yes"/>
+      <point x="0" y="-97"/>
+      <point x="7" y="-104"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -104 200</string>
+              <string>vstem 343 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f0b0d43ab20039381909a2c25fbc323699fdb5739d52608be7ab31f7dd0db61239d3d0525d36c01ff1ff3847ce9a8468c99078aa74feb48cd2c4409e01ade951</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

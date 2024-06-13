@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE505" format="2">
+  <advance width="124"/>
+  <unicode hex="E505"/>
+  <note>
+{'name': 'repeatBarLowerDot', 'description': 'Repeat bar lower dot'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-112" type="curve" smooth="yes"/>
+      <point x="0" y="-146"/>
+      <point x="28" y="-174"/>
+      <point x="62" y="-174" type="curve" smooth="yes"/>
+      <point x="97" y="-174"/>
+      <point x="125" y="-146"/>
+      <point x="125" y="-112" type="curve" smooth="yes"/>
+      <point x="125" y="-77"/>
+      <point x="97" y="-49"/>
+      <point x="62" y="-49" type="curve" smooth="yes"/>
+      <point x="28" y="-49"/>
+      <point x="0" y="-77"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -174 125</string>
+              <string>vstem 0 125</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w124m0,-112c0,-146 28,-174 62,-174c97,-174 125,-146 125,-112c125,-77 97,-49 62,-49c28,-49 0,-77 0,-112</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

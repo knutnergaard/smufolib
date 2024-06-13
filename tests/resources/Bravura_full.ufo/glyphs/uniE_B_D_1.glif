@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBD1" format="2">
+  <advance width="272"/>
+  <unicode hex="EBD1"/>
+  <note>
+{'name': 'luteFrenchMordentUpper', 'description': 'Mordent with upper auxiliary'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="21" type="curve" smooth="yes"/>
+      <point x="0" y="16"/>
+      <point x="1" y="11"/>
+      <point x="7" y="7" type="curve"/>
+      <point x="11" y="3"/>
+      <point x="16" y="0"/>
+      <point x="20" y="0" type="curve" smooth="yes"/>
+      <point x="26" y="0"/>
+      <point x="32" y="3"/>
+      <point x="36" y="8" type="curve" smooth="yes"/>
+      <point x="136" y="119" type="line"/>
+      <point x="235" y="8" type="line" smooth="yes"/>
+      <point x="239" y="3"/>
+      <point x="246" y="0"/>
+      <point x="251" y="0" type="curve" smooth="yes"/>
+      <point x="261" y="0"/>
+      <point x="272" y="12"/>
+      <point x="272" y="22" type="curve" smooth="yes"/>
+      <point x="272" y="28"/>
+      <point x="271" y="32"/>
+      <point x="267" y="36" type="curve" smooth="yes"/>
+      <point x="164" y="151" type="line"/>
+      <point x="267" y="264" type="line" smooth="yes"/>
+      <point x="271" y="268"/>
+      <point x="272" y="273"/>
+      <point x="272" y="279" type="curve" smooth="yes"/>
+      <point x="272" y="290"/>
+      <point x="262" y="300"/>
+      <point x="251" y="300" type="curve" smooth="yes"/>
+      <point x="246" y="300"/>
+      <point x="239" y="297"/>
+      <point x="235" y="293" type="curve" smooth="yes"/>
+      <point x="136" y="182" type="line"/>
+      <point x="36" y="293" type="line" smooth="yes"/>
+      <point x="32" y="297"/>
+      <point x="25" y="300"/>
+      <point x="20" y="300" type="curve" smooth="yes"/>
+      <point x="15" y="300"/>
+      <point x="11" y="298"/>
+      <point x="7" y="294" type="curve"/>
+      <point x="1" y="290"/>
+      <point x="0" y="284"/>
+      <point x="0" y="279" type="curve" smooth="yes"/>
+      <point x="0" y="273"/>
+      <point x="1" y="268"/>
+      <point x="5" y="264" type="curve" smooth="yes"/>
+      <point x="107" y="151" type="line"/>
+      <point x="5" y="36" type="line" smooth="yes"/>
+      <point x="1" y="32"/>
+      <point x="0" y="26"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 272</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>3144f7c79d2ae806c1e458ac9570e26e5c3d844df252bb563dc49b616434621a383648b821a393e5e59931bce35cc99a170b8e4c5311f7c1ee2b1df0d93c29b5</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,116 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE7C6" format="2">
+  <advance width="493"/>
+  <unicode hex="E7C6"/>
+  <note>
+{'classes': ['tf_pictograms', 'tf_zeroWidth'], 'name': 'pictGumHardLeft', 'description': 'Hard gum beater, left'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="593" type="curve"/>
+      <point x="0" y="587"/>
+      <point x="4" y="581"/>
+      <point x="11" y="579" type="curve" smooth="yes"/>
+      <point x="58" y="566" type="line"/>
+      <point x="57" y="559"/>
+      <point x="56" y="553"/>
+      <point x="56" y="546" type="curve" smooth="yes"/>
+      <point x="56" y="497"/>
+      <point x="89" y="453"/>
+      <point x="135" y="437" type="curve"/>
+      <point x="121" y="388" type="line"/>
+      <point x="121" y="384" type="line" smooth="yes"/>
+      <point x="121" y="377"/>
+      <point x="125" y="372"/>
+      <point x="132" y="369" type="curve"/>
+      <point x="136" y="369" type="line" smooth="yes"/>
+      <point x="143" y="369"/>
+      <point x="149" y="373"/>
+      <point x="150" y="380" type="curve"/>
+      <point x="164" y="431" type="line"/>
+      <point x="171" y="431" type="line" smooth="yes"/>
+      <point x="186" y="431"/>
+      <point x="201" y="434"/>
+      <point x="215" y="440" type="curve"/>
+      <point x="465" y="8" type="line" smooth="yes"/>
+      <point x="468" y="3"/>
+      <point x="473" y="0"/>
+      <point x="478" y="0" type="curve"/>
+      <point x="480" y="0"/>
+      <point x="483" y="1"/>
+      <point x="485" y="3" type="curve" smooth="yes"/>
+      <point x="490" y="6"/>
+      <point x="493" y="11"/>
+      <point x="493" y="16" type="curve"/>
+      <point x="493" y="18"/>
+      <point x="492" y="21"/>
+      <point x="491" y="23" type="curve" smooth="yes"/>
+      <point x="241" y="455" type="line"/>
+      <point x="255" y="465"/>
+      <point x="266" y="479"/>
+      <point x="274" y="494" type="curve"/>
+      <point x="324" y="480" type="line"/>
+      <point x="328" y="480" type="line" smooth="yes"/>
+      <point x="334" y="480"/>
+      <point x="341" y="484"/>
+      <point x="342" y="491" type="curve"/>
+      <point x="342" y="492"/>
+      <point x="343" y="494"/>
+      <point x="343" y="495" type="curve"/>
+      <point x="343" y="501"/>
+      <point x="339" y="507"/>
+      <point x="332" y="509" type="curve" smooth="yes"/>
+      <point x="284" y="522" type="line"/>
+      <point x="286" y="530"/>
+      <point x="286" y="538"/>
+      <point x="286" y="546" type="curve" smooth="yes"/>
+      <point x="286" y="595"/>
+      <point x="256" y="639"/>
+      <point x="209" y="655" type="curve"/>
+      <point x="222" y="700" type="line"/>
+      <point x="222" y="704" type="line" smooth="yes"/>
+      <point x="222" y="711"/>
+      <point x="218" y="716"/>
+      <point x="211" y="718" type="curve" smooth="yes"/>
+      <point x="209" y="719"/>
+      <point x="208" y="719"/>
+      <point x="206" y="719" type="curve"/>
+      <point x="200" y="719"/>
+      <point x="195" y="714"/>
+      <point x="193" y="708" type="curve" smooth="yes"/>
+      <point x="180" y="661" type="line"/>
+      <point x="171" y="661" type="line" smooth="yes"/>
+      <point x="126" y="661"/>
+      <point x="86" y="636"/>
+      <point x="67" y="595" type="curve"/>
+      <point x="19" y="608" type="line"/>
+      <point x="15" y="608" type="line" smooth="yes"/>
+      <point x="8" y="608"/>
+      <point x="3" y="604"/>
+      <point x="1" y="597" type="curve"/>
+      <point x="1" y="596"/>
+      <point x="0" y="594"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 493</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>ed1adeb4d3f857e0b53062dbf323630c0e1efe0ef5bad2845dec4240ad88ed1b2b6198a235386fd2a8f31bb1e5c6a8b4096f1e72aa0e99def0a7d802933b8a3b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

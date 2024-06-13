@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9F2" format="2">
+  <advance width="48"/>
+  <unicode hex="E9F2"/>
+  <note>
+{'name': 'mensuralRestLongaImperfecta', 'description': 'Longa imperfecta rest'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="234" type="curve" smooth="yes"/>
+      <point x="0" y="-234" type="line" smooth="yes"/>
+      <point x="0" y="-243"/>
+      <point x="7" y="-250"/>
+      <point x="16" y="-250" type="curve" smooth="yes"/>
+      <point x="32" y="-250" type="line" smooth="yes"/>
+      <point x="41" y="-250"/>
+      <point x="48" y="-243"/>
+      <point x="48" y="-234" type="curve" smooth="yes"/>
+      <point x="48" y="234" type="line" smooth="yes"/>
+      <point x="48" y="243"/>
+      <point x="41" y="250"/>
+      <point x="32" y="250" type="curve" smooth="yes"/>
+      <point x="16" y="250" type="line" smooth="yes"/>
+      <point x="7" y="250"/>
+      <point x="0" y="243"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -250 500</string>
+              <string>vstem 0 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w48m0,234l0,-234c0,-243 7,-250 16,-250l32,-250c41,-250 48,-243 48,-234l48,234c48,243 41,250 32,250l16,250c7,250 0,243 0,234</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

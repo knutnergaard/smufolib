@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2DE" format="2">
+  <advance width="172"/>
+  <unicode hex="E2DE"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsHelmholtzEllis', 'combiningStaffPositions'], 'name': 'accidentalLowerOneSeptimalComma', 'description': 'Lower by one septimal comma'}
+</note>
+  <anchor x="53" y="80" name="cutOutNE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="0" y="-103" type="line" smooth="yes"/>
+      <point x="0" y="-110"/>
+      <point x="2" y="-115"/>
+      <point x="7" y="-115" type="curve"/>
+      <point x="8" y="-115"/>
+      <point x="10" y="-115"/>
+      <point x="12" y="-114" type="curve" smooth="yes"/>
+      <point x="159" y="-54" type="line" smooth="yes"/>
+      <point x="166" y="-51"/>
+      <point x="171" y="-49"/>
+      <point x="171" y="-42" type="curve" smooth="yes"/>
+      <point x="171" y="56" type="line" smooth="yes"/>
+      <point x="171" y="63"/>
+      <point x="168" y="69"/>
+      <point x="163" y="69" type="curve"/>
+      <point x="162" y="69"/>
+      <point x="160" y="69"/>
+      <point x="159" y="68" type="curve"/>
+      <point x="30" y="16" type="line"/>
+      <point x="30" y="403" type="line" smooth="yes"/>
+      <point x="30" y="409"/>
+      <point x="25" y="414"/>
+      <point x="19" y="414" type="curve" smooth="yes"/>
+      <point x="11" y="414" type="line" smooth="yes"/>
+      <point x="5" y="414"/>
+      <point x="0" y="409"/>
+      <point x="0" y="403" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 529</string>
+              <string>vstem 0 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6a2fa2b5c755680037fb75946640ced969e3960cc30ca29e9f8abb14d97e2468c40dada10ef5cbec0157ebb951cbc624b7a9fcdbc339a0ef7f77e3beddb41b52</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

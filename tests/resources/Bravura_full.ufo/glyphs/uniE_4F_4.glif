@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4F4" format="2">
+  <advance width="282"/>
+  <unicode hex="E4F4"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'rests'], 'name': 'restWholeLegerLine', 'description': 'Whole rest on leger line'}
+</note>
+  <outline>
+    <contour>
+      <point x="-117" y="2" type="curve" smooth="yes"/>
+      <point x="-117" y="-8"/>
+      <point x="-109" y="-16"/>
+      <point x="-99" y="-16" type="curve" smooth="yes"/>
+      <point x="0" y="-16" type="line" name="hr01"/>
+      <point x="0" y="-109" type="line" smooth="yes"/>
+      <point x="0" y="-123"/>
+      <point x="11" y="-135"/>
+      <point x="26" y="-135" type="curve" smooth="yes"/>
+      <point x="256" y="-135" type="line" smooth="yes"/>
+      <point x="270" y="-135"/>
+      <point x="282" y="-123"/>
+      <point x="282" y="-109" type="curve" smooth="yes"/>
+      <point x="282" y="-17" type="line"/>
+      <point x="282" y="-16"/>
+      <point x="282" y="-16"/>
+      <point x="381" y="-16" type="curve" smooth="yes"/>
+      <point x="391" y="-16"/>
+      <point x="399" y="-8" name="hr02"/>
+      <point x="399" y="2" type="curve" smooth="yes"/>
+      <point x="399" y="12"/>
+      <point x="391" y="20"/>
+      <point x="381" y="20" type="curve" smooth="yes"/>
+      <point x="-99" y="20" type="line" smooth="yes"/>
+      <point x="-109" y="20"/>
+      <point x="-117" y="12"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem -117 516</string>
+              <string>hstem -16 36</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -16 36</string>
+              <string>vstem 0 282</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>vstem -117 516</string>
+              <string>hstem -16 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>abb5ce3162fdd7585d7faff87fa1b8c7f0e7d782c97bfdd5ade7cae4c8fc7f72ae36e87bc6d9bc7fdb15c4f0ac9f5cec7a0bdc72c8bfa79aff6fad1c5c013d50</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

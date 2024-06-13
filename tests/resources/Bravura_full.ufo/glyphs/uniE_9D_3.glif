@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9D3" format="2">
+  <advance width="94"/>
+  <unicode hex="E9D3"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantCirculusBelow', 'description': 'Circulus below'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-124" type="curve" smooth="yes"/>
+      <point x="0" y="-149"/>
+      <point x="22" y="-171"/>
+      <point x="47" y="-171" type="curve" smooth="yes"/>
+      <point x="72" y="-171"/>
+      <point x="94" y="-149"/>
+      <point x="94" y="-124" type="curve" smooth="yes"/>
+      <point x="94" y="-99"/>
+      <point x="72" y="-77"/>
+      <point x="47" y="-77" type="curve" smooth="yes"/>
+      <point x="22" y="-77"/>
+      <point x="0" y="-99"/>
+    </contour>
+    <contour>
+      <point x="18" y="-124" type="curve" smooth="yes"/>
+      <point x="18" y="-108"/>
+      <point x="31" y="-95"/>
+      <point x="47" y="-95" type="curve" smooth="yes"/>
+      <point x="63" y="-95"/>
+      <point x="76" y="-108"/>
+      <point x="76" y="-124" type="curve" smooth="yes"/>
+      <point x="76" y="-140"/>
+      <point x="63" y="-153"/>
+      <point x="47" y="-153" type="curve" smooth="yes"/>
+      <point x="31" y="-153"/>
+      <point x="18" y="-140"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -171 18</string>
+              <string>hstem -95 18</string>
+              <string>vstem 0 18</string>
+              <string>vstem 76 18</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>9576491fa4f12a813e86c42935142480f3b6303ae0ccfa49297af8d94f265ac935c15d430f6f3f713a8df677146f142615573ec11340572080323e9ec1af6426</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

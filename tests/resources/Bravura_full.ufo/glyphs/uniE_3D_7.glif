@@ -1,0 +1,63 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3D7" format="2">
+  <advance width="469"/>
+  <unicode hex="E3D7"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittalFlat5v49MDown', 'description': 'Flat 5:49M-down'}
+</note>
+  <outline>
+    <contour>
+      <point x="31" y="-109" type="line"/>
+      <point x="31" y="-78"/>
+      <point x="48" y="-63"/>
+      <point x="82" y="-63" type="curve" smooth="yes"/>
+      <point x="115" y="-63"/>
+      <point x="166" y="-99"/>
+      <point x="234" y="-172" type="curve"/>
+      <point x="469" y="78" type="line"/>
+      <point x="469" y="187" type="line"/>
+      <point x="344" y="55" type="line"/>
+      <point x="344" y="359" type="line"/>
+      <point x="312" y="359" type="line"/>
+      <point x="312" y="21" type="line"/>
+      <point x="250" y="-45" type="line"/>
+      <point x="250" y="359" type="line"/>
+      <point x="219" y="359" type="line"/>
+      <point x="219" y="-45" type="line"/>
+      <point x="156" y="21" type="line"/>
+      <point x="156" y="359" type="line"/>
+      <point x="125" y="359" type="line"/>
+      <point x="125" y="55" type="line"/>
+      <point x="0" y="187" type="line"/>
+      <point x="0" y="78" type="line"/>
+      <point x="74" y="-1" type="line"/>
+      <point x="25" y="-7"/>
+      <point x="0" y="-43"/>
+      <point x="0" y="-109" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -63 62</string>
+              <string>vstem 0 31</string>
+              <string>vstem 125 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 312 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f1a43915831dd48a8e7e7ca080e4cef2f092606e96d578839c178eb9f63cc61cd4ed5feff12563d567a436caa7da552343f4c5e313d878590041f2f48286065f</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

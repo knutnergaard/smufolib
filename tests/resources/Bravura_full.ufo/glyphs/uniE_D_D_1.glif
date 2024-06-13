@@ -1,0 +1,83 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEDD1" format="2">
+  <advance width="403"/>
+  <unicode hex="EDD1"/>
+  <note>
+{'name': 'kahnGraceTapChange', 'description': 'Grace-tap-change'}
+</note>
+  <outline>
+    <contour>
+      <point x="170" y="552" type="curve"/>
+      <point x="170" y="356" type="line"/>
+      <point x="96" y="334" type="line"/>
+      <point x="105" y="300" type="line"/>
+      <point x="110" y="301"/>
+      <point x="139" y="310"/>
+      <point x="170" y="318" type="curve"/>
+      <point x="170" y="1" type="line"/>
+      <point x="234" y="1" type="line"/>
+      <point x="234" y="2"/>
+      <point x="234" y="4"/>
+      <point x="234" y="5" type="curve"/>
+      <point x="234" y="77"/>
+      <point x="300" y="161"/>
+      <point x="404" y="161" type="curve"/>
+      <point x="404" y="221" type="line"/>
+      <point x="339" y="220"/>
+      <point x="282" y="197"/>
+      <point x="234" y="151" type="curve"/>
+      <point x="234" y="337" type="line"/>
+      <point x="237" y="338"/>
+      <point x="239" y="338"/>
+      <point x="240" y="339" type="curve"/>
+      <point x="295" y="355" type="line"/>
+      <point x="303" y="358"/>
+      <point x="307" y="365"/>
+      <point x="307" y="371" type="curve"/>
+      <point x="307" y="373"/>
+      <point x="306" y="374"/>
+      <point x="306" y="376" type="curve"/>
+      <point x="303" y="385"/>
+      <point x="298" y="389"/>
+      <point x="289" y="389" type="curve"/>
+      <point x="287" y="389"/>
+      <point x="286" y="389"/>
+      <point x="284" y="389" type="curve"/>
+      <point x="234" y="374" type="line"/>
+      <point x="234" y="703" type="line"/>
+      <point x="171" y="703" type="line"/>
+      <point x="171" y="702"/>
+      <point x="171" y="700"/>
+      <point x="171" y="699" type="curve"/>
+      <point x="171" y="626"/>
+      <point x="103" y="543"/>
+      <point x="0" y="543" type="curve"/>
+      <point x="0" y="483" type="line"/>
+      <point x="67" y="484"/>
+      <point x="123" y="507"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 22 -21</string>
+              <string>hstem 161 60</string>
+              <string>hstem 483 60</string>
+              <string>vstem 170 64</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>4552cae094646c1a2f9fc22afdf434ac46368130ade9b9622364e57edc0694913a4ae8d94a910b0a4592416a5c3e7e1ae5bf7a3afc0258a97c9b412fa9dc269a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE93F_uniE931" format="2">
+  <advance width="782"/>
+  <unicode hex="F583"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralLongaBlackStemUpLeft', 'description': 'Longa black, stem up left'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="125" type="curve" smooth="yes"/>
+      <point x="0" y="-625" type="line" smooth="yes"/>
+      <point x="0" y="-634"/>
+      <point x="7" y="-641"/>
+      <point x="16" y="-641" type="curve" smooth="yes"/>
+      <point x="25" y="-641"/>
+      <point x="32" y="-634"/>
+      <point x="32" y="-625" type="curve" smooth="yes"/>
+      <point x="32" y="-141" type="line"/>
+      <point x="766" y="-141" type="line" smooth="yes"/>
+      <point x="775" y="-141"/>
+      <point x="782" y="-134"/>
+      <point x="782" y="-125" type="curve" smooth="yes"/>
+      <point x="782" y="125" type="line" smooth="yes"/>
+      <point x="782" y="133"/>
+      <point x="775" y="141"/>
+      <point x="766" y="141" type="curve" smooth="yes"/>
+      <point x="16" y="141" type="line" smooth="yes"/>
+      <point x="7" y="141"/>
+      <point x="0" y="133"/>
+    </contour>
+    <contour>
+      <point x="32" y="-109" type="line"/>
+      <point x="32" y="109" type="line"/>
+      <point x="750" y="109" type="line"/>
+      <point x="750" y="-109" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 307 32</string>
+              <string>hstem 617 32</string>
+              <string>vstem 126 32</string>
+              <string>vstem 313 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>e1a97f98e2832e40083157298410adff1f35a58bf36c5a35df24b86fd2583afcdd5e2d0699d7a695e95983fd4cb963fcc09fa596ddb0dfa794f6b1ffbb832a45</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

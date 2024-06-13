@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1B6" format="2">
+  <advance width="360"/>
+  <unicode hex="E1B6"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSacredHarp'], 'name': 'noteShapeTriangleLeftWhite', 'description': 'Triangle left white (stem up; 4-shape fa; 7-shape fa)'}
+</note>
+  <anchor x="0" y="125" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="359" y="-125" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="360" y="-125" type="line"/>
+      <point x="360" y="125" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+    <contour>
+      <point x="141" y="57" type="line"/>
+      <point x="334" y="57" type="line"/>
+      <point x="334" y="-77" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 57 68</string>
+              <string>vstem 334 26</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w360m360,-125l360,125l0,125m141,57l334,57l334,-77</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

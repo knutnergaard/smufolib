@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE0C8" format="2">
+  <advance width="339"/>
+  <unicode hex="E0C8"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheads'], 'name': 'noteheadTriangleUpRightWhite', 'description': 'Triangle notehead up right white'}
+</note>
+  <anchor x="0" y="125" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="339" y="125" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="0" y="125" type="line"/>
+      <point x="339" y="-125" type="line"/>
+      <point x="339" y="125" type="line"/>
+    </contour>
+    <contour>
+      <point x="311" y="97" type="line"/>
+      <point x="311" y="-70" type="line"/>
+      <point x="86" y="97" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 97 28</string>
+              <string>vstem 311 28</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w339m0,125l339,-125l339,125m311,97l311,-70l86,97</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE385" format="2">
+  <advance width="375"/>
+  <unicode hex="E385"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalTrojan', 'combiningStaffPositions'], 'name': 'accSagittalDoubleFlat5v19CUp', 'description': 'Double flat 5:19C-up, 19/20-tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-47" type="curve"/>
+      <point x="31" y="-47" type="line"/>
+      <point x="31" y="-14"/>
+      <point x="43" y="3"/>
+      <point x="66" y="3" type="curve" smooth="yes"/>
+      <point x="72" y="3"/>
+      <point x="79" y="2"/>
+      <point x="86" y="0" type="curve" smooth="yes"/>
+      <point x="123" y="-10"/>
+      <point x="151" y="-67"/>
+      <point x="172" y="-172" type="curve"/>
+      <point x="250" y="-172" type="line" smooth="yes"/>
+      <point x="333" y="-172"/>
+      <point x="375" y="-130"/>
+      <point x="375" y="-47" type="curve" smooth="yes"/>
+      <point x="375" y="172" type="line"/>
+      <point x="344" y="172" type="line"/>
+      <point x="344" y="47" type="line" smooth="yes"/>
+      <point x="344" y="-37"/>
+      <point x="302" y="-78"/>
+      <point x="219" y="-78" type="curve"/>
+      <point x="191" y="0" type="line"/>
+      <point x="312" y="349" type="line"/>
+      <point x="277" y="359" type="line"/>
+      <point x="172" y="57" type="line"/>
+      <point x="67" y="359" type="line"/>
+      <point x="31" y="349" type="line"/>
+      <point x="134" y="52" type="line"/>
+      <point x="118" y="69"/>
+      <point x="100" y="78"/>
+      <point x="78" y="78" type="curve" smooth="yes"/>
+      <point x="26" y="78"/>
+      <point x="0" y="37"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -172 94</string>
+              <string>hstem 3 75</string>
+              <string>vstem 0 31</string>
+              <string>vstem 344 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>1d41bbe46b7364dd4a66cd6e18ab444cd6926f5734e5bfff44b85ddbf48c524644e5f57832052db01fba31f841e7ec71b685a805717b56dcf2d565fef7a976a6</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9BD" format="2">
+  <advance width="14"/>
+  <unicode hex="E9BD"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantConnectingLineAsc2nd', 'description': 'Connecting line, ascending 2nd'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="150" type="line"/>
+      <point x="0" y="-150" type="line"/>
+      <point x="14" y="-150" type="line"/>
+      <point x="14" y="150" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -150 300</string>
+              <string>vstem 0 14</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w14m0,150l0,-150l14,-150l14,150</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

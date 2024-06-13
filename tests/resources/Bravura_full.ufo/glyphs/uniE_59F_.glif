@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE59F" format="2">
+  <advance width="1"/>
+  <unicode hex="E59F"/>
+  <note>
+{'classes': ['multiGlyphForms', 'tf_ornaments'], 'name': 'ornamentMiddleVerticalStroke', 'description': 'Ornament middle vertical stroke'}
+</note>
+  <anchor x="1" y="0" name="repeatOffset"/>
+  <outline>
+    <contour>
+      <point x="-14" y="331" type="line"/>
+      <point x="-14" y="-61" type="line"/>
+      <point x="16" y="-61" type="line"/>
+      <point x="16" y="331" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -61 392</string>
+              <string>vstem -14 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w1m-14,331l-14,-61l16,-61l16,331</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE101" format="2">
+  <advance width="531"/>
+  <unicode hex="E101"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSlashHorizontalEnds', 'noteheads'], 'name': 'noteheadSlashHorizontalEnds', 'description': 'Slash with horizontal ends'}
+</note>
+  <anchor x="0" y="-250" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="530" y="250" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="430" y="250" type="line"/>
+      <point x="0" y="-250" type="line"/>
+      <point x="100" y="-250" type="line"/>
+      <point x="530" y="250" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -250 500</string>
+              <string>vstem 0 530</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w531m430,250l0,-250l100,-250l530,250</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

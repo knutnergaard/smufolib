@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE133" format="2">
+  <advance width="300"/>
+  <unicode hex="E133"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetDefault', 'noteheads'], 'name': 'noteheadClusterHalfMiddle', 'description': 'Combining half note cluster, middle'}
+</note>
+  <outline>
+    <contour>
+      <point x="197" y="100" type="line"/>
+      <point x="197" y="-99" type="line"/>
+      <point x="234" y="-99" type="line"/>
+      <point x="234" y="100" type="line"/>
+    </contour>
+    <contour>
+      <point x="65" y="100" type="line"/>
+      <point x="65" y="-100" type="line" name="hr01"/>
+      <point x="101" y="-100" type="line"/>
+      <point x="101" y="100" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -99 199</string>
+              <string>vstem 197 37</string>
+              <string>vstem 65 36</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -100 200</string>
+              <string>vstem 65 36</string>
+              <string>vstem 197 37</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w300m197,100l197,-99l234,-99l234,100m65,100l65,-100l101,-100l101,100</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE582" format="2">
+  <advance width="283"/>
+  <unicode hex="E582"/>
+  <note>
+{'classes': ['ornaments', 'tf_ornaments'], 'name': 'ornamentShake3', 'description': 'Shake'}
+</note>
+  <outline>
+    <contour>
+      <point x="-1" y="140" type="curve" smooth="yes"/>
+      <point x="-1" y="131"/>
+      <point x="6" y="124"/>
+      <point x="15" y="124" type="curve" smooth="yes"/>
+      <point x="124" y="124" type="line"/>
+      <point x="124" y="15" type="line" smooth="yes"/>
+      <point x="124" y="6"/>
+      <point x="131" y="-1"/>
+      <point x="140" y="-1" type="curve" smooth="yes"/>
+      <point x="148" y="-1"/>
+      <point x="156" y="6"/>
+      <point x="156" y="15" type="curve" smooth="yes"/>
+      <point x="156" y="124" type="line"/>
+      <point x="265" y="124" type="line" smooth="yes"/>
+      <point x="273" y="124"/>
+      <point x="281" y="131"/>
+      <point x="281" y="140" type="curve" smooth="yes"/>
+      <point x="281" y="149"/>
+      <point x="273" y="156"/>
+      <point x="265" y="156" type="curve" smooth="yes"/>
+      <point x="156" y="156" type="line"/>
+      <point x="156" y="265" type="line" smooth="yes"/>
+      <point x="156" y="274"/>
+      <point x="148" y="281"/>
+      <point x="140" y="281" type="curve" smooth="yes"/>
+      <point x="131" y="281"/>
+      <point x="124" y="274"/>
+      <point x="124" y="265" type="curve" smooth="yes"/>
+      <point x="124" y="156" type="line"/>
+      <point x="15" y="156" type="line" smooth="yes"/>
+      <point x="6" y="156"/>
+      <point x="-1" y="149"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 20 -21</string>
+              <string>hstem 124 32</string>
+              <string>vstem 124 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>a5283330c14a5495fd2d8bb45179a2a0e28945049d9f2727642932630dbfaa73f9e5fbae61089e53241fde3e556146e1f3ebdace2e08a941aa364f7e8e981d59</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

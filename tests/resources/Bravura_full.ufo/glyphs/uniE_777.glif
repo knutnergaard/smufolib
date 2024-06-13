@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE777" format="2">
+  <advance width="437"/>
+  <unicode hex="E777"/>
+  <note>
+{'classes': ['tf_pictograms', 'tf_zeroWidth'], 'name': 'pictBeaterMediumXylophoneLeft', 'description': 'Medium xylophone stick left'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="545" type="curve" smooth="yes"/>
+      <point x="1" y="482"/>
+      <point x="53" y="431"/>
+      <point x="116" y="431" type="curve" smooth="yes"/>
+      <point x="131" y="431"/>
+      <point x="146" y="434"/>
+      <point x="160" y="440" type="curve"/>
+      <point x="409" y="8" type="line" smooth="yes"/>
+      <point x="412" y="3"/>
+      <point x="417" y="0"/>
+      <point x="422" y="0" type="curve"/>
+      <point x="424" y="0"/>
+      <point x="427" y="1"/>
+      <point x="429" y="2" type="curve" smooth="yes"/>
+      <point x="434" y="5"/>
+      <point x="437" y="10"/>
+      <point x="437" y="15" type="curve" smooth="yes"/>
+      <point x="437" y="18"/>
+      <point x="436" y="21"/>
+      <point x="435" y="23" type="curve" smooth="yes"/>
+      <point x="186" y="455" type="line"/>
+      <point x="215" y="477"/>
+      <point x="231" y="511"/>
+      <point x="231" y="547" type="curve" smooth="yes"/>
+      <point x="231" y="610"/>
+      <point x="180" y="661"/>
+      <point x="116" y="661" type="curve" smooth="yes"/>
+      <point x="51" y="661"/>
+      <point x="1" y="609"/>
+    </contour>
+    <contour>
+      <point x="31" y="545" type="curve" smooth="yes"/>
+      <point x="31" y="575"/>
+      <point x="47" y="605"/>
+      <point x="73" y="620" type="curve"/>
+      <point x="158" y="473" type="line"/>
+      <point x="145" y="465"/>
+      <point x="131" y="461"/>
+      <point x="116" y="461" type="curve" smooth="yes"/>
+      <point x="70" y="461"/>
+      <point x="31" y="499"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 431 30</string>
+              <string>vstem 1 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>8f7b314decc725ff49aef1ce537147aebfa9724ed3bb0319782eb08368cc4e0e7275f89817e5709a173aebdc4d25dffa5e1b54a22f0251ac97af45ed57b2e7ba</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

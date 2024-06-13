@@ -1,0 +1,68 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE08F.ss09" format="2">
+  <advance width="269"/>
+  <unicode hex="F515"/>
+  <note>
+{'name': 'timeSigEqualsNarrow', 'description': 'Time signature equals (large, narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="62" type="line" smooth="yes"/>
+      <point x="0" y="55"/>
+      <point x="5" y="49"/>
+      <point x="11" y="49" type="curve" smooth="yes"/>
+      <point x="258" y="49" type="line" smooth="yes"/>
+      <point x="264" y="49"/>
+      <point x="269" y="55"/>
+      <point x="269" y="62" type="curve" smooth="yes"/>
+      <point x="269" y="111" type="line" smooth="yes"/>
+      <point x="269" y="118"/>
+      <point x="264" y="124"/>
+      <point x="258" y="124" type="curve" smooth="yes"/>
+      <point x="11" y="124" type="line" smooth="yes"/>
+      <point x="5" y="124"/>
+      <point x="0" y="118"/>
+      <point x="0" y="111" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="11" y="-125" type="curve" smooth="yes"/>
+      <point x="258" y="-125" type="line" smooth="yes"/>
+      <point x="264" y="-125"/>
+      <point x="269" y="-119"/>
+      <point x="269" y="-112" type="curve" smooth="yes"/>
+      <point x="269" y="-63" type="line" smooth="yes"/>
+      <point x="269" y="-56"/>
+      <point x="264" y="-50"/>
+      <point x="258" y="-50" type="curve" smooth="yes"/>
+      <point x="11" y="-50" type="line" smooth="yes"/>
+      <point x="5" y="-50"/>
+      <point x="0" y="-56"/>
+      <point x="0" y="-63" type="curve" smooth="yes"/>
+      <point x="0" y="-112" type="line" smooth="yes"/>
+      <point x="0" y="-119"/>
+      <point x="5" y="-125"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 75</string>
+              <string>hstem 49 75</string>
+              <string>vstem 0 448</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>be957b3b142c2efeac9c49bb8277cdfd8c2ecc340995ca02e9f54a3dca41a891bb6e774717d919bc369458e59e1837516abf3255d0160797c8ad0b94fe9e6300</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

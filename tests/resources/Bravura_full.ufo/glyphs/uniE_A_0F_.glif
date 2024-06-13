@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA0F" format="2">
+  <advance width="182"/>
+  <unicode hex="EA0F"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralColorationEndRound', 'description': 'Coloration end, round'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="166" type="curve" smooth="yes"/>
+      <point x="0" y="157"/>
+      <point x="7" y="150"/>
+      <point x="16" y="150" type="curve" smooth="yes"/>
+      <point x="94" y="150" type="line" smooth="yes"/>
+      <point x="125" y="150"/>
+      <point x="150" y="131"/>
+      <point x="150" y="99" type="curve" smooth="yes"/>
+      <point x="150" y="16" type="line" smooth="yes"/>
+      <point x="150" y="7"/>
+      <point x="157" y="0"/>
+      <point x="166" y="0" type="curve" smooth="yes"/>
+      <point x="175" y="0"/>
+      <point x="182" y="7"/>
+      <point x="182" y="16" type="curve" smooth="yes"/>
+      <point x="182" y="99" type="line" smooth="yes"/>
+      <point x="182" y="147"/>
+      <point x="145" y="182"/>
+      <point x="94" y="182" type="curve" smooth="yes"/>
+      <point x="16" y="182" type="line" smooth="yes"/>
+      <point x="7" y="182"/>
+      <point x="0" y="175"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 150 32</string>
+              <string>vstem 150 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>a578174a00dd13390586f61fbee8422728c4788dc58557544c44ab78849489db0ac335d65df24c3cba5d30e9a6f52d6a5a271cdef2f333cde1b4a8c3b56eb21b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

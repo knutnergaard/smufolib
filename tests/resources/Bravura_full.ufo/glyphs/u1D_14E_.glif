@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="u1D14E" format="2">
+  <advance width="327"/>
+  <unicode hex="1D14E"/>
+  <outline>
+    <contour>
+      <point x="145" y="-125" type="line"/>
+      <point x="293" y="125" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+    <contour>
+      <point x="145" y="-69" type="line"/>
+      <point x="49" y="97" type="line"/>
+      <point x="243" y="97" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 97 28</string>
+              <string>vstem 0 293</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w327m145,-125l293,125l0,125m145,-69l49,97l243,97</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

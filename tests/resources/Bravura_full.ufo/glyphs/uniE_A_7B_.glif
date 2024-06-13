@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA7B" format="2">
+  <advance width="278"/>
+  <unicode hex="EA7B"/>
+  <note>
+{'name': 'functionMinus', 'description': 'Function theory minus'}
+</note>
+  <outline>
+    <contour>
+      <point x="258" y="240" type="line"/>
+      <point x="258" y="312" type="line"/>
+      <point x="20" y="312" type="line"/>
+      <point x="20" y="240" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 240 72</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w278m258,240l258,312l20,312l20,240</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

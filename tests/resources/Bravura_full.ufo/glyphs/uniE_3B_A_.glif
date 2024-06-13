@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3BA" format="2">
+  <advance width="406"/>
+  <unicode hex="E3BA"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittalSharp143CDown', 'description': 'Sharp 143C-down'}
+</note>
+  <outline>
+    <contour>
+      <point x="31" y="-141" type="line"/>
+      <point x="31" y="-58"/>
+      <point x="47" y="-16"/>
+      <point x="78" y="-16" type="curve" smooth="yes"/>
+      <point x="94" y="-16" type="line"/>
+      <point x="94" y="-359" type="line"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="125" y="-16" type="line"/>
+      <point x="146" y="-16"/>
+      <point x="164" y="7"/>
+      <point x="180" y="53" type="curve"/>
+      <point x="219" y="12" type="line"/>
+      <point x="219" y="-359" type="line"/>
+      <point x="250" y="-359" type="line"/>
+      <point x="250" y="-21" type="line"/>
+      <point x="406" y="-188" type="line"/>
+      <point x="406" y="-78" type="line"/>
+      <point x="172" y="172" type="line"/>
+      <point x="154" y="88"/>
+      <point x="133" y="47"/>
+      <point x="109" y="47" type="curve" smooth="yes"/>
+      <point x="62" y="47" type="line" smooth="yes"/>
+      <point x="21" y="47"/>
+      <point x="0" y="-16"/>
+      <point x="0" y="-141" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>hstem -16 63</string>
+              <string>vstem 94 31</string>
+              <string>vstem 219 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>16f0eb0568b0531bc967fe4909a5b0fc30abde1d326f0a13a378d4f72d4be7143bbabd165e6ee9b295346cd707c6483f9e33ba10f9bf37bbce1572539358a8d2</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

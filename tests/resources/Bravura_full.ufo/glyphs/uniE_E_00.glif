@@ -1,0 +1,98 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEE00" format="2">
+  <advance width="500"/>
+  <unicode hex="EE00"/>
+  <note>
+{'name': 'organGermanCUpper', 'description': 'German organ tablature great C'}
+</note>
+  <outline>
+    <contour>
+      <point x="47" y="203" type="curve" smooth="yes"/>
+      <point x="47" y="118"/>
+      <point x="103" y="61"/>
+      <point x="158" y="30" type="curve" smooth="yes"/>
+      <point x="184" y="15"/>
+      <point x="215" y="5"/>
+      <point x="246" y="5" type="curve" smooth="yes"/>
+      <point x="309" y="5"/>
+      <point x="374" y="51"/>
+      <point x="417" y="94" type="curve" smooth="yes"/>
+      <point x="421" y="98"/>
+      <point x="453" y="137"/>
+      <point x="453" y="149" type="curve"/>
+      <point x="453" y="150"/>
+      <point x="452" y="152"/>
+      <point x="451" y="152" type="curve"/>
+      <point x="445" y="152"/>
+      <point x="442" y="148"/>
+      <point x="440" y="146" type="curve" smooth="yes"/>
+      <point x="406" y="112"/>
+      <point x="351" y="70"/>
+      <point x="289" y="70" type="curve"/>
+      <point x="194" y="73"/>
+      <point x="95" y="165"/>
+      <point x="95" y="263" type="curve" smooth="yes"/>
+      <point x="95" y="327"/>
+      <point x="133" y="380"/>
+      <point x="146" y="435" type="curve" smooth="yes"/>
+      <point x="152" y="462"/>
+      <point x="155" y="490"/>
+      <point x="163" y="515" type="curve"/>
+      <point x="182" y="527"/>
+      <point x="204" y="533"/>
+      <point x="228" y="533" type="curve" smooth="yes"/>
+      <point x="264" y="533"/>
+      <point x="369" y="507"/>
+      <point x="372" y="459" type="curve"/>
+      <point x="372" y="457"/>
+      <point x="373" y="457"/>
+      <point x="374" y="457" type="curve"/>
+      <point x="376" y="457"/>
+      <point x="378" y="458"/>
+      <point x="379" y="459" type="curve"/>
+      <point x="385" y="463"/>
+      <point x="392" y="470"/>
+      <point x="396" y="476" type="curve" smooth="yes"/>
+      <point x="407" y="490"/>
+      <point x="417" y="504"/>
+      <point x="419" y="520" type="curve"/>
+      <point x="413" y="576"/>
+      <point x="315" y="597"/>
+      <point x="270" y="597" type="curve" smooth="yes"/>
+      <point x="190" y="597"/>
+      <point x="151" y="540"/>
+      <point x="126" y="487" type="curve" smooth="yes"/>
+      <point x="108" y="450"/>
+      <point x="108" y="405"/>
+      <point x="94" y="363" type="curve"/>
+      <point x="79" y="325"/>
+      <point x="59" y="285"/>
+      <point x="51" y="242" type="curve" smooth="yes"/>
+      <point x="48" y="228"/>
+      <point x="47" y="215"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 5 65</string>
+              <string>hstem 533 64</string>
+              <string>vstem 47 48</string>
+              <string>vstem 372 47</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>88e48c4daa3eb371c4359124c534e043211814d3cab9dbaacfffa4a4b0de0be9adb82e74704cba2b75664a734955a47d5ecebad504980269327171b2d3a6e301</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

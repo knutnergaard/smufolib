@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2EA" format="2">
+  <advance width="245"/>
+  <unicode hex="E2EA"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsHelmholtzEllis', 'combiningStaffPositions'], 'name': 'accidentalCombiningLower23Limit29LimitComma', 'description': 'Combining lower by one 23-limit comma'}
+</note>
+  <outline>
+    <contour>
+      <point x="124" y="295" type="line"/>
+      <point x="0" y="171" type="line"/>
+      <point x="28" y="143" type="line"/>
+      <point x="103" y="219" type="line"/>
+      <point x="103" y="-125" type="line"/>
+      <point x="144" y="-125" type="line"/>
+      <point x="144" y="219" type="line"/>
+      <point x="220" y="143" type="line"/>
+      <point x="247" y="171" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 420</string>
+              <string>vstem 103 41</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w245m124,295l0,171l28,143l103,219l103,-125l144,-125l144,219l220,143l247,171</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

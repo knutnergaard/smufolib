@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE3AA" format="2">
+  <advance width="312"/>
+  <unicode hex="E3AA"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPromethean', 'combiningStaffPositions'], 'name': 'accSagittal11v19LargeDiesisUp', 'description': '11:19 large diesis up, (11:19L, apotome less 11:19M)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-359" type="line"/>
+      <point x="31" y="-359" type="line"/>
+      <point x="31" y="-60" type="line"/>
+      <point x="312" y="-178" type="line"/>
+      <point x="312" y="-109" type="line"/>
+      <point x="31" y="9" type="line"/>
+      <point x="31" y="96" type="line"/>
+      <point x="312" y="-21" type="line"/>
+      <point x="312" y="47" type="line"/>
+      <point x="16" y="172" type="line"/>
+      <point x="0" y="172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -359 531</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w312m0,-359l31,-359l31,-60l312,-178l312,-109l31,9l31,96l312,-21l312,47l16,172l0,172</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

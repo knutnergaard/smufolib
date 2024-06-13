@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE7D1" format="2">
+  <advance width="142"/>
+  <unicode hex="E7D1"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterSnareSticksUp', 'description': 'Snare sticks up'}
+</note>
+  <outline>
+    <contour>
+      <point x="6" y="6" type="curve"/>
+      <point x="9" y="2"/>
+      <point x="14" y="0"/>
+      <point x="19" y="0" type="curve" smooth="yes"/>
+      <point x="123" y="0" type="line" smooth="yes"/>
+      <point x="128" y="0"/>
+      <point x="133" y="2"/>
+      <point x="136" y="6" type="curve"/>
+      <point x="140" y="9"/>
+      <point x="141" y="14"/>
+      <point x="141" y="19" type="curve"/>
+      <point x="89" y="716" type="line" smooth="yes"/>
+      <point x="88" y="725"/>
+      <point x="80" y="732"/>
+      <point x="71" y="732" type="curve" smooth="yes"/>
+      <point x="62" y="732"/>
+      <point x="54" y="725"/>
+      <point x="53" y="716" type="curve" smooth="yes"/>
+      <point x="1" y="19" type="line"/>
+      <point x="1" y="14"/>
+      <point x="2" y="9"/>
+    </contour>
+    <contour>
+      <point x="71" y="473" type="line"/>
+      <point x="104" y="36" type="line"/>
+      <point x="38" y="36" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 36</string>
+              <string>vstem 1 140</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6719ca873f7bd63a829f149fe6f00ab74cca3bb702a0a5c1e5f849b84a9612da6b65e68eb440b9a62c88173bf554736abb91a03f6ccab919e649f2daacbf6eea</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

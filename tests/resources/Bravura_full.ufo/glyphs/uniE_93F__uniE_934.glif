@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE93F_uniE934" format="2">
+  <advance width="332"/>
+  <unicode hex="F56F"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'gClefNatural2Above', 'description': 'G clef, natural 2 above'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="125" type="curve" smooth="yes"/>
+      <point x="0" y="-625" type="line" smooth="yes"/>
+      <point x="0" y="-634"/>
+      <point x="8" y="-641"/>
+      <point x="16" y="-641" type="curve" smooth="yes"/>
+      <point x="25" y="-641"/>
+      <point x="32" y="-634"/>
+      <point x="32" y="-625" type="curve" smooth="yes"/>
+      <point x="32" y="-141" type="line"/>
+      <point x="316" y="-141" type="line" smooth="yes"/>
+      <point x="325" y="-141"/>
+      <point x="332" y="-134"/>
+      <point x="332" y="-125" type="curve" smooth="yes"/>
+      <point x="332" y="125" type="line" smooth="yes"/>
+      <point x="332" y="133"/>
+      <point x="325" y="141"/>
+      <point x="316" y="141" type="curve" smooth="yes"/>
+      <point x="16" y="141" type="line" smooth="yes"/>
+      <point x="8" y="141"/>
+      <point x="0" y="133"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -141 32</string>
+              <string>hstem 109 32</string>
+              <string>vstem 0 32</string>
+              <string>vstem 300 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c61e91c79a64190f5f726220e35a3e5fd5718e75c8d6f0ab5297a9533caa4844b7331ea19643e7c62a11ef3a8a3242bf391e607d1895b8554ff1166a6c32a48a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

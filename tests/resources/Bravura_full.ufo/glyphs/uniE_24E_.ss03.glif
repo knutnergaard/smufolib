@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE24E.ss03" format="2">
+  <advance width="301"/>
+  <unicode hex="F424"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'flag1024thUpStraight', 'description': 'Combining flag 8 (1024th) above (straight)'}
+</note>
+  <outline>
+    <contour>
+      <point x="10" y="475" type="line"/>
+      <point x="240" y="245" type="line"/>
+      <point x="240" y="370" type="line"/>
+      <point x="10" y="600" type="line"/>
+      <point x="0" y="600" type="line"/>
+      <point x="0" y="475" type="line"/>
+    </contour>
+    <contour>
+      <point x="10" y="675" type="line"/>
+      <point x="240" y="445" type="line"/>
+      <point x="240" y="570" type="line"/>
+      <point x="10" y="800" type="line"/>
+      <point x="0" y="800" type="line"/>
+      <point x="0" y="675" type="line"/>
+    </contour>
+    <contour>
+      <point x="10" y="275" type="line"/>
+      <point x="240" y="45" type="line"/>
+      <point x="240" y="170" type="line"/>
+      <point x="10" y="400" type="line"/>
+      <point x="0" y="400" type="line"/>
+      <point x="0" y="275" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="1000" type="line"/>
+      <point x="0" y="875" type="line"/>
+      <point x="10" y="875" type="line"/>
+      <point x="240" y="645" type="line"/>
+      <point x="240" y="770" type="line"/>
+      <point x="10" y="1000" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="200" type="line"/>
+      <point x="0" y="75" type="line"/>
+      <point x="10" y="75" type="line"/>
+      <point x="240" y="-155" type="line"/>
+      <point x="240" y="-30" type="line"/>
+      <point x="10" y="200" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="0" type="line"/>
+      <point x="0" y="-125" type="line"/>
+      <point x="10" y="-125" type="line"/>
+      <point x="240" y="-355" type="line"/>
+      <point x="240" y="-230" type="line"/>
+      <point x="10" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="1200" type="line"/>
+      <point x="0" y="1075" type="line"/>
+      <point x="10" y="1075" type="line"/>
+      <point x="240" y="845" type="line"/>
+      <point x="240" y="970" type="line"/>
+      <point x="10" y="1200" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-200" type="line"/>
+      <point x="0" y="-325" type="line"/>
+      <point x="10" y="-325" type="line"/>
+      <point x="240" y="-555" type="line"/>
+      <point x="240" y="-430" type="line"/>
+      <point x="10" y="-200" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -555 1755</string>
+              <string>vstem 0 10</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>a43ae011007db00ab46d4c360f2dc479241e579cb71cb06665aa3dfc5f9645adc3e591dc0b9392836cdee79cbd90914b9af221bb93a9af033630b80dba6548a9</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

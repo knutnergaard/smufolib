@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA71" format="2">
+  <advance width="285"/>
+  <unicode hex="EA71"/>
+  <note>
+{'name': 'functionOne', 'description': 'Function theory 1'}
+</note>
+  <outline>
+    <contour>
+      <point x="177" y="505" type="line"/>
+      <point x="177" y="0" type="line"/>
+      <point x="265" y="0" type="line"/>
+      <point x="265" y="709" type="line"/>
+      <point x="207" y="709" type="line"/>
+      <point x="176" y="600"/>
+      <point x="156" y="585"/>
+      <point x="20" y="568" type="curve"/>
+      <point x="20" y="505" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 709 -20</string>
+              <string>vstem 178 88</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w285m177,505l177,0l265,0l265,709l207,709c176,600 156,585 20,568l20,505</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

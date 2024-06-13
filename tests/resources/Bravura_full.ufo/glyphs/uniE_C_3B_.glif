@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC3B" format="2">
+  <advance width="500"/>
+  <unicode hex="EC3B"/>
+  <note>
+{'name': 'kievanNoteBeam', 'description': 'Kievan beam'}
+</note>
+  <outline>
+    <contour>
+      <point x="525" y="-90" type="line"/>
+      <point x="525" y="0" type="line"/>
+      <point x="-32" y="90" type="line"/>
+      <point x="-32" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem -32 557</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w500m525,-90l525,0l-32,90l-32,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

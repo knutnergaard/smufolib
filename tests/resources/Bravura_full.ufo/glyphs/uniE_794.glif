@@ -1,0 +1,122 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE794" format="2">
+  <advance width="220"/>
+  <unicode hex="E794"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterWoodTimpaniUp', 'description': 'Wood timpani stick up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="527" type="line" smooth="yes"/>
+      <point x="0" y="512"/>
+      <point x="12" y="500"/>
+      <point x="27" y="500" type="curve" smooth="yes"/>
+      <point x="93" y="500" type="line"/>
+      <point x="93" y="15" type="line" smooth="yes"/>
+      <point x="93" y="7"/>
+      <point x="100" y="0"/>
+      <point x="108" y="0" type="curve" smooth="yes"/>
+      <point x="117" y="0"/>
+      <point x="123" y="7"/>
+      <point x="123" y="15" type="curve" smooth="yes"/>
+      <point x="123" y="500" type="line"/>
+      <point x="189" y="500" type="line" smooth="yes"/>
+      <point x="204" y="500"/>
+      <point x="217" y="512"/>
+      <point x="217" y="527" type="curve" smooth="yes"/>
+      <point x="217" y="736" type="line" smooth="yes"/>
+      <point x="217" y="751"/>
+      <point x="204" y="763"/>
+      <point x="189" y="763" type="curve" smooth="yes"/>
+      <point x="27" y="763" type="line" smooth="yes"/>
+      <point x="12" y="763"/>
+      <point x="0" y="751"/>
+      <point x="0" y="736" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="30" y="722" type="line"/>
+      <point x="185" y="567" type="line"/>
+      <point x="185" y="566"/>
+      <point x="186" y="566"/>
+      <point x="187" y="542" type="curve"/>
+      <point x="163" y="565"/>
+      <point x="57" y="671"/>
+      <point x="30" y="698" type="curve"/>
+    </contour>
+    <contour>
+      <point x="30" y="676" type="line"/>
+      <point x="176" y="530" type="line"/>
+      <point x="152" y="530" type="line"/>
+      <point x="30" y="652" type="line"/>
+    </contour>
+    <contour>
+      <point x="41" y="733" type="curve"/>
+      <point x="65" y="733" type="line"/>
+      <point x="187" y="611" type="line"/>
+      <point x="187" y="588" type="line"/>
+      <point x="156" y="618"/>
+      <point x="67" y="708"/>
+    </contour>
+    <contour>
+      <point x="30" y="630" type="line"/>
+      <point x="130" y="530" type="line"/>
+      <point x="106" y="530" type="line"/>
+      <point x="30" y="606" type="line"/>
+    </contour>
+    <contour>
+      <point x="87" y="733" type="line"/>
+      <point x="111" y="733" type="line"/>
+      <point x="125" y="719"/>
+      <point x="169" y="675"/>
+      <point x="187" y="658" type="curve"/>
+      <point x="187" y="634" type="line"/>
+    </contour>
+    <contour>
+      <point x="30" y="560" type="line"/>
+      <point x="30" y="584" type="line"/>
+      <point x="84" y="530" type="line"/>
+      <point x="60" y="530" type="line"/>
+    </contour>
+    <contour>
+      <point x="134" y="733" type="line"/>
+      <point x="157" y="733" type="line"/>
+      <point x="187" y="704" type="line"/>
+      <point x="187" y="681" type="line"/>
+    </contour>
+    <contour>
+      <point x="30" y="537" type="line"/>
+      <point x="38" y="530" type="line"/>
+      <point x="30" y="530" type="line"/>
+    </contour>
+    <contour>
+      <point x="180" y="733" type="line"/>
+      <point x="187" y="733" type="line"/>
+      <point x="187" y="727" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 500 30</string>
+              <string>hstem 733 30</string>
+              <string>vstem 0 30</string>
+              <string>vstem 93 30</string>
+              <string>vstem 187 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>bcd780d942881e052582c523e0bd9f9ac7dc54fd53f59c10efbeef655cd403f5b92197f0dfc4a12e8857dc6db04773716044d3ae1612f705eb3e148596a1ed56</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

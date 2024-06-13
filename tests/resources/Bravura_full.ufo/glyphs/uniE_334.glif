@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE334" format="2">
+  <advance width="469"/>
+  <unicode hex="E334"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalDoubleSharp', 'description': 'Double sharp, (2 apotomes up)[almost all EDOs], whole-tone up'}
+</note>
+  <outline>
+    <contour>
+      <point x="375" y="-349" type="line"/>
+      <point x="254" y="0" type="line"/>
+      <point x="264" y="30" type="line"/>
+      <point x="469" y="-188" type="line"/>
+      <point x="469" y="-78" type="line"/>
+      <point x="234" y="172" type="line"/>
+      <point x="0" y="-78" type="line"/>
+      <point x="0" y="-188" type="line"/>
+      <point x="205" y="30" type="line"/>
+      <point x="215" y="0" type="line"/>
+      <point x="94" y="-349" type="line"/>
+      <point x="129" y="-359" type="line"/>
+      <point x="234" y="-57" type="line"/>
+      <point x="339" y="-359" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -359 531</string>
+              <string>vstem 0 469</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w469m375,-349l254,0l264,30l469,-188l469,-78l234,172l0,-78l0,-188l205,30l215,0l94,-349l129,-359l234,-57l339,-359</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

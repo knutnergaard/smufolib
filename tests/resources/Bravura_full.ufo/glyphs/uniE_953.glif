@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE953" format="2">
+  <advance width="282"/>
+  <unicode hex="E953"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralBlackSemibrevis', 'description': 'Black mensural semibrevis'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-1" type="curve" smooth="yes"/>
+      <point x="0" y="-5"/>
+      <point x="2" y="-9"/>
+      <point x="5" y="-12" type="curve" smooth="yes"/>
+      <point x="130" y="-137" type="line" smooth="yes"/>
+      <point x="133" y="-140"/>
+      <point x="137" y="-141"/>
+      <point x="142" y="-141" type="curve" smooth="yes"/>
+      <point x="146" y="-141"/>
+      <point x="150" y="-140"/>
+      <point x="153" y="-137" type="curve" smooth="yes"/>
+      <point x="278" y="-12" type="line" smooth="yes"/>
+      <point x="281" y="-9"/>
+      <point x="282" y="-5"/>
+      <point x="282" y="-1" type="curve" smooth="yes"/>
+      <point x="282" y="3"/>
+      <point x="281" y="8"/>
+      <point x="278" y="11" type="curve" smooth="yes"/>
+      <point x="153" y="136" type="line" smooth="yes"/>
+      <point x="150" y="139"/>
+      <point x="146" y="141"/>
+      <point x="142" y="141" type="curve" smooth="yes"/>
+      <point x="137" y="141"/>
+      <point x="133" y="139"/>
+      <point x="130" y="136" type="curve" smooth="yes"/>
+      <point x="5" y="11" type="line" smooth="yes"/>
+      <point x="2" y="8"/>
+      <point x="0" y="3"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -141 282</string>
+              <string>vstem 0 282</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>3cc4c7876ba6c7288c5d155d049b35d4f67e5a01c33c809f618908e999611e6d1df388cd742a710019277dd3047302380c461b1853d95489e0c9128ecd30af8c</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

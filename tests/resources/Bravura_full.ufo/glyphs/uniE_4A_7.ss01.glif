@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4A7.ss01" format="2">
+  <advance width="132"/>
+  <unicode hex="F47C"/>
+  <note>
+{'classes': ['articulations', 'articulationsBelow', 'combiningStaffPositions'], 'name': 'articStaccatissimoBelowSmall', 'description': 'Staccatissimo below (small staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-273" type="curve"/>
+      <point x="1" y="-286"/>
+      <point x="31" y="-295" name="hr01"/>
+      <point x="65" y="-295" type="curve" smooth="yes"/>
+      <point x="102" y="-295"/>
+      <point x="132" y="-287"/>
+      <point x="132" y="-272" type="curve" smooth="yes"/>
+      <point x="132" y="-249"/>
+      <point x="99" y="0"/>
+      <point x="65" y="0" type="curve" smooth="yes"/>
+      <point x="35" y="0"/>
+      <point x="0" y="-258"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -21 -21</string>
+              <string>vstem 0 132</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -295 295</string>
+              <string>vstem 0 132</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w132m0,-273c1,-286 31,-295 65,-295c102,-295 132,-287 132,-272c132,-249 99,0 65,0c35,0 0,-258 0,-273</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

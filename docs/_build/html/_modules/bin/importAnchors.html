@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>bin.importAnchors &mdash; SMufoLib 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/custom.css?v=139e30ab" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            SMufoLib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started.html#running-scripts">Running Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../api/objects.html">Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/request.html">Metadata Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../api/configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utility Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#normalizers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#pointutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../utils.html#stdutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.checkAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.generateMetadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">generateMetadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#module-bin.importAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../scripts.html#importid"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">SMufoLib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">bin.importAnchors</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for bin.importAnchors</h1><div class="highlight"><pre>
+<span></span><span class="ch">#!/usr/bin/env python3</span>
+<span class="sd">&quot;&quot;&quot;This script sets glyph anchors based on data from a SMuFL font metadata</span>
+<span class="sd">JSON file (SMuFL&#39;s reference font, Bravura, by default).</span>
+
+<span class="sd">This script requires that SMufoLib be installed within its</span>
+<span class="sd">executive environment. It may also be imported as a module and contains</span>
+<span class="sd">the following public funcitons:</span>
+
+<span class="sd">    * :func:`main` – main function of the script.</span>
+<span class="sd">&quot;&quot;&quot;</span>
+
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+<span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">TYPE_CHECKING</span><span class="p">,</span> <span class="n">Any</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="kn">from</span> <span class="nn">pathlib</span> <span class="kn">import</span> <span class="n">Path</span>
+
+<span class="kn">from</span> <span class="nn">smufolib.objects.font</span> <span class="kn">import</span> <span class="n">Font</span>
+<span class="kn">from</span> <span class="nn">smufolib.request</span> <span class="kn">import</span> <span class="n">Request</span>
+<span class="kn">from</span> <span class="nn">smufolib</span> <span class="kn">import</span> <span class="n">cli</span><span class="p">,</span> <span class="n">config</span>
+
+<span class="n">CONFIG</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">load</span><span class="p">()</span>
+
+<span class="c1"># Parameter defaults</span>
+<span class="n">FONT_DATA</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">CONFIG</span><span class="p">[</span><span class="s1">&#39;metadata.paths&#39;</span><span class="p">][</span><span class="s1">&#39;referenceFont&#39;</span><span class="p">],</span>
+                    <span class="n">CONFIG</span><span class="p">[</span><span class="s1">&#39;metadata.fallbacks&#39;</span><span class="p">][</span><span class="s1">&#39;referenceFont&#39;</span><span class="p">])</span>
+<span class="n">MARK</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="n">COLORS</span> <span class="o">=</span> <span class="n">CONFIG</span><span class="p">[</span><span class="s1">&#39;color.anchors&#39;</span><span class="p">]</span>
+<span class="n">CLEAR</span> <span class="o">=</span> <span class="kc">False</span>
+<span class="n">VERBOSE</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="c1"># pylint: disable=invalid-name, too-many-arguments</span>
+
+
+<div class="viewcode-block" id="main">
+<a class="viewcode-back" href="../../scripts.html#bin.importAnchors.main">[docs]</a>
+<span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">font</span><span class="p">:</span> <span class="n">Font</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+         <span class="n">fontData</span><span class="p">:</span> <span class="n">Request</span> <span class="o">|</span> <span class="n">Path</span> <span class="o">|</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">FONT_DATA</span><span class="p">,</span>
+         <span class="n">mark</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">MARK</span><span class="p">,</span>
+         <span class="n">colors</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span>
+                                 <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">,</span> <span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="n">COLORS</span><span class="p">,</span>
+         <span class="n">clear</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">CLEAR</span><span class="p">,</span>
+         <span class="n">verbose</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="n">VERBOSE</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Main function of the script.</span>
+
+<span class="sd">    :param font: font object to which the script applies.</span>
+<span class="sd">    :param fontData: Object call or direct path to reference font</span>
+<span class="sd">     metadata file. Defaults to :class:`~smufolib.request.Request`</span>
+<span class="sd">     with :attr:`~smufolib.request.Request.path`</span>
+<span class="sd">     and :attr:`~smufolib.request.Request.fallback` set to</span>
+<span class="sd">     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective</span>
+<span class="sd">     ``referenceFont`` configurations.</span>
+<span class="sd">    :param mark: Apply defined anchor colors. Defaults to ``True``</span>
+<span class="sd">    :param colors: dict of anchorNames mapped to UFO color values to</span>
+<span class="sd">     apply when ``mark=True``.</span>
+<span class="sd">    :param clear: erase preexisting anchors on append. Defaults to</span>
+<span class="sd">     ``False``.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">fontData</span> <span class="o">=</span> <span class="n">fontData</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">fontData</span><span class="p">,</span> <span class="n">Request</span><span class="p">):</span>
+        <span class="n">fontData</span> <span class="o">=</span> <span class="n">Request</span><span class="p">(</span><span class="n">fontData</span><span class="p">)</span><span class="o">.</span><span class="n">json</span><span class="p">()</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Preparing glyph data...&#39;</span><span class="p">)</span>
+    <span class="n">sourceAnchors</span> <span class="o">=</span> <span class="n">fontData</span><span class="p">[</span><span class="s1">&#39;glyphsWithAnchors&#39;</span><span class="p">]</span>
+    <span class="n">names</span> <span class="o">=</span> <span class="p">{</span><span class="n">g</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="n">g</span><span class="o">.</span><span class="n">name</span> <span class="k">for</span> <span class="n">g</span> <span class="ow">in</span> <span class="n">font</span> <span class="k">if</span> <span class="n">g</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">name</span>
+             <span class="ow">and</span> <span class="n">g</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="n">sourceAnchors</span><span class="p">}</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Processing...&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\n\n</span><span class="s1">&#39;</span><span class="p">)</span>
+    <span class="n">appended</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">smuflName</span><span class="p">,</span> <span class="n">anchors</span> <span class="ow">in</span> <span class="n">sourceAnchors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">glyphName</span> <span class="o">=</span> <span class="n">names</span><span class="p">[</span><span class="n">smuflName</span><span class="p">]</span>
+        <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+            <span class="k">continue</span>
+        <span class="k">if</span> <span class="n">clear</span><span class="p">:</span>
+            <span class="n">font</span><span class="p">[</span><span class="n">glyphName</span><span class="p">]</span><span class="o">.</span><span class="n">rGlyph</span><span class="o">.</span><span class="n">clearAnchors</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">anchorName</span><span class="p">,</span> <span class="n">position</span> <span class="ow">in</span> <span class="n">anchors</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">mark</span> <span class="ow">and</span> <span class="n">colors</span><span class="p">:</span>
+                <span class="n">anchorColor</span> <span class="o">=</span> <span class="n">colors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">anchorName</span><span class="p">,</span> <span class="kc">None</span><span class="p">)</span>
+            <span class="n">font</span><span class="p">[</span><span class="n">glyphName</span><span class="p">]</span><span class="o">.</span><span class="n">appendAnchor</span><span class="p">(</span><span class="n">anchorName</span><span class="p">,</span> <span class="n">position</span><span class="p">,</span> <span class="n">anchorColor</span><span class="p">)</span>
+            <span class="n">appended</span><span class="p">[</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">glyphName</span><span class="si">}</span><span class="s1"> (</span><span class="si">{</span><span class="n">smuflName</span><span class="si">}</span><span class="s1">)&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">anchorName</span><span class="p">)</span>
+
+    <span class="n">font</span><span class="o">.</span><span class="n">save</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
+        <span class="n">_printDiagnostics</span><span class="p">(</span><span class="n">appended</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;Done!&#39;</span><span class="p">)</span></div>
+
+
+
+<span class="k">def</span> <span class="nf">_printDiagnostics</span><span class="p">(</span><span class="n">results</span><span class="p">:</span> <span class="nb">dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="n">Any</span><span class="p">])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;appended anchors:&#39;</span><span class="o">.</span><span class="n">upper</span><span class="p">())</span>
+    <span class="k">for</span> <span class="n">glyphName</span><span class="p">,</span> <span class="n">anchors</span> <span class="ow">in</span> <span class="n">results</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\n\t</span><span class="si">{</span><span class="n">glyphName</span><span class="si">}</span><span class="s2">:&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">anchor</span> <span class="ow">in</span> <span class="n">anchors</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;</span><span class="se">\t\t</span><span class="si">{</span><span class="n">anchor</span><span class="si">}</span><span class="s2">&quot;</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">_parseArgs</span><span class="p">():</span>
+    <span class="n">parser</span> <span class="o">=</span> <span class="n">cli</span><span class="o">.</span><span class="n">commonParser</span><span class="p">(</span><span class="s1">&#39;font&#39;</span><span class="p">,</span>
+                              <span class="n">addHelp</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                              <span class="n">description</span><span class="o">=</span><span class="p">(</span>
+                                  <span class="s2">&quot;Set anchors from font metadata JSON file.&quot;</span><span class="p">),</span>
+                              <span class="n">fontData</span><span class="o">=</span><span class="n">FONT_DATA</span><span class="p">,</span>
+                              <span class="n">mark</span><span class="o">=</span><span class="n">MARK</span><span class="p">,</span>
+                              <span class="n">colors</span><span class="o">=</span><span class="n">COLORS</span><span class="p">,</span>
+                              <span class="n">clear</span><span class="o">=</span><span class="n">CLEAR</span><span class="p">,</span>
+                              <span class="n">verbose</span><span class="o">=</span><span class="n">VERBOSE</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">parser</span><span class="o">.</span><span class="n">parse_args</span><span class="p">()</span>
+
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="n">args</span> <span class="o">=</span> <span class="n">_parseArgs</span><span class="p">()</span>
+    <span class="n">main</span><span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">font</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">fontData</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">color</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">clear</span><span class="p">,</span> <span class="n">args</span><span class="o">.</span><span class="n">verbose</span><span class="p">)</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Knut Nergaard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

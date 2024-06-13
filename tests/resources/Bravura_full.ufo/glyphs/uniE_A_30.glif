@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA30" format="2">
+  <advance width="654"/>
+  <unicode hex="EA30"/>
+  <note>
+{'classes': ['tf_daseianNotation'], 'name': 'daseianGraves1', 'description': 'Daseian graves 1'}
+</note>
+  <outline>
+    <contour>
+      <point x="120" y="280" type="curve" smooth="yes"/>
+      <point x="154" y="280"/>
+      <point x="184" y="301"/>
+      <point x="184" y="338" type="curve" smooth="yes"/>
+      <point x="184" y="382"/>
+      <point x="147" y="387"/>
+      <point x="111" y="387" type="curve" smooth="yes"/>
+      <point x="106" y="387" type="line" smooth="yes"/>
+      <point x="90" y="387"/>
+      <point x="87" y="400"/>
+      <point x="87" y="411" type="curve"/>
+      <point x="88" y="428"/>
+      <point x="111" y="448"/>
+      <point x="136" y="460" type="curve" smooth="yes"/>
+      <point x="250" y="516"/>
+      <point x="294" y="499"/>
+      <point x="308" y="506" type="curve" smooth="yes"/>
+      <point x="310" y="507"/>
+      <point x="312" y="508"/>
+      <point x="314" y="508" type="curve"/>
+      <point x="323" y="508"/>
+      <point x="331" y="489"/>
+      <point x="335" y="480" type="curve"/>
+      <point x="335" y="480"/>
+      <point x="396" y="315"/>
+      <point x="400" y="301" type="curve" smooth="yes"/>
+      <point x="401" y="299"/>
+      <point x="401" y="297"/>
+      <point x="401" y="295" type="curve"/>
+      <point x="401" y="287"/>
+      <point x="394" y="285" name="hr01"/>
+      <point x="394" y="285" type="curve"/>
+      <point x="280" y="285" type="line" smooth="yes"/>
+      <point x="274" y="285"/>
+      <point x="272" y="281"/>
+      <point x="272" y="277" type="curve"/>
+      <point x="272" y="275"/>
+      <point x="273" y="273"/>
+      <point x="273" y="271" type="curve"/>
+      <point x="286" y="230" type="line" smooth="yes"/>
+      <point x="290" y="218"/>
+      <point x="294" y="217"/>
+      <point x="302" y="217" type="curve" smooth="yes"/>
+      <point x="310" y="217"/>
+      <point x="395" y="216"/>
+      <point x="404" y="215" type="curve" smooth="yes"/>
+      <point x="413" y="214"/>
+      <point x="422" y="213"/>
+      <point x="426" y="200" type="curve"/>
+      <point x="426" y="200"/>
+      <point x="458" y="100"/>
+      <point x="469" y="71" type="curve" smooth="yes"/>
+      <point x="470" y="67"/>
+      <point x="471" y="64"/>
+      <point x="471" y="61" type="curve" smooth="yes"/>
+      <point x="471" y="49"/>
+      <point x="459" y="48"/>
+      <point x="459" y="48" type="curve"/>
+      <point x="399" y="48" type="line" smooth="yes"/>
+      <point x="392" y="48"/>
+      <point x="388" y="33"/>
+      <point x="388" y="20" type="curve" smooth="yes"/>
+      <point x="388" y="10"/>
+      <point x="391" y="0"/>
+      <point x="396" y="0" type="curve" smooth="yes"/>
+      <point x="643" y="0" type="line" smooth="yes"/>
+      <point x="651" y="0"/>
+      <point x="654" y="12"/>
+      <point x="654" y="24" type="curve" smooth="yes"/>
+      <point x="654" y="36"/>
+      <point x="650" y="48"/>
+      <point x="644" y="48" type="curve" smooth="yes"/>
+      <point x="606" y="48" type="line" smooth="yes"/>
+      <point x="599" y="48"/>
+      <point x="592" y="50"/>
+      <point x="587" y="70" type="curve"/>
+      <point x="587" y="70"/>
+      <point x="404" y="619"/>
+      <point x="382" y="668" type="curve" smooth="yes"/>
+      <point x="360" y="717"/>
+      <point x="358" y="737"/>
+      <point x="305" y="752" type="curve" smooth="yes"/>
+      <point x="297" y="754"/>
+      <point x="290" y="755"/>
+      <point x="283" y="755" type="curve" smooth="yes"/>
+      <point x="239" y="755"/>
+      <point x="205" y="720"/>
+      <point x="201" y="699" type="curve"/>
+      <point x="201" y="694" type="line" smooth="yes"/>
+      <point x="201" y="675"/>
+      <point x="220" y="656"/>
+      <point x="243" y="656" type="curve" smooth="yes"/>
+      <point x="246" y="656"/>
+      <point x="249" y="656"/>
+      <point x="252" y="657" type="curve" smooth="yes"/>
+      <point x="272" y="661"/>
+      <point x="282" y="669"/>
+      <point x="295" y="669" type="curve" smooth="yes"/>
+      <point x="312" y="669"/>
+      <point x="329" y="660"/>
+      <point x="329" y="641" type="curve" smooth="yes"/>
+      <point x="329" y="627"/>
+      <point x="320" y="611"/>
+      <point x="305" y="600" type="curve" smooth="yes"/>
+      <point x="279" y="581"/>
+      <point x="197" y="594"/>
+      <point x="133" y="569" type="curve" smooth="yes"/>
+      <point x="84" y="549"/>
+      <point x="46" y="521"/>
+      <point x="22" y="474" type="curve" smooth="yes"/>
+      <point x="10" y="450"/>
+      <point x="0" y="421"/>
+      <point x="0" y="393" type="curve" smooth="yes"/>
+      <point x="0" y="331"/>
+      <point x="59" y="280" name="hr02"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 280 107</string>
+              <string>vstem 0 87</string>
+              <string>hstem 0 48</string>
+              <string>hstem 669 86</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 217 68</string>
+              <string>hstem 0 48</string>
+              <string>hstem 669 86</string>
+              <string>vstem 0 87</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 280 107</string>
+              <string>hstem 0 48</string>
+              <string>hstem 669 86</string>
+              <string>vstem 0 87</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>1019aa4d08b250a8039e2668cdaf9c03d78e8f7f31b9e3d8125247d8b14f22ad25c70ab0951f4b8036200bb6f01821b658cf1749d9fa08ff1f6b8dafc1b9f973</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

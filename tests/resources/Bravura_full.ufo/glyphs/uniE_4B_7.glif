@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4B7" format="2">
+  <advance width="238"/>
+  <unicode hex="E4B7"/>
+  <note>
+{'classes': ['articulations', 'articulationsBelow', 'combiningStaffPositions'], 'name': 'articStressBelow', 'description': 'Stress below'}
+</note>
+  <outline>
+    <contour>
+      <point x="163" y="-230" type="curve" smooth="yes"/>
+      <point x="165" y="-233"/>
+      <point x="169" y="-234"/>
+      <point x="173" y="-234" type="curve" smooth="yes"/>
+      <point x="196" y="-234"/>
+      <point x="236" y="-193"/>
+      <point x="236" y="-170" type="curve" smooth="yes"/>
+      <point x="236" y="-166"/>
+      <point x="235" y="-163"/>
+      <point x="233" y="-160" type="curve" smooth="yes"/>
+      <point x="223" y="-150"/>
+      <point x="41" y="0"/>
+      <point x="9" y="0" type="curve" smooth="yes"/>
+      <point x="5" y="0"/>
+      <point x="4" y="-1"/>
+      <point x="4" y="-5" type="curve" smooth="yes"/>
+      <point x="4" y="-38"/>
+      <point x="153" y="-220"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -234 234</string>
+              <string>vstem 4 232</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>894191837e67f004eb56497d5997f491ade515db21ebcefbc1146a31bfbcd5525e8087dafc28c201fd9e256ea91b94fb55640ee7cdc83a97f03e966065e6e60b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

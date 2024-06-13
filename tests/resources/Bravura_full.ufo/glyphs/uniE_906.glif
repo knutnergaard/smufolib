@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE906" format="2">
+  <advance width="134"/>
+  <unicode hex="E906"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantCclef', 'description': 'Plainchant C clef'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-108" type="line" smooth="yes"/>
+      <point x="0" y="-142"/>
+      <point x="5" y="-221"/>
+      <point x="71" y="-221" type="curve" smooth="yes"/>
+      <point x="76" y="-221" type="line"/>
+      <point x="125" y="-218"/>
+      <point x="134" y="-180"/>
+      <point x="134" y="-165" type="curve" smooth="yes"/>
+      <point x="134" y="-37" type="line"/>
+      <point x="134" y="-37"/>
+      <point x="134" y="-34"/>
+      <point x="132" y="-34" type="curve"/>
+      <point x="131" y="-34"/>
+      <point x="129" y="-35"/>
+      <point x="126" y="-37" type="curve"/>
+      <point x="126" y="-37"/>
+      <point x="102" y="-61"/>
+      <point x="69" y="-61" type="curve" smooth="yes"/>
+      <point x="36" y="-61"/>
+      <point x="8" y="-37"/>
+      <point x="8" y="0" type="curve" smooth="yes"/>
+      <point x="8" y="37"/>
+      <point x="36" y="61"/>
+      <point x="69" y="61" type="curve" smooth="yes"/>
+      <point x="102" y="61"/>
+      <point x="126" y="37"/>
+      <point x="126" y="37" type="curve"/>
+      <point x="129" y="35"/>
+      <point x="131" y="34"/>
+      <point x="132" y="34" type="curve"/>
+      <point x="134" y="34"/>
+      <point x="134" y="37"/>
+      <point x="134" y="37" type="curve"/>
+      <point x="134" y="165" type="line" smooth="yes"/>
+      <point x="134" y="180"/>
+      <point x="125" y="218"/>
+      <point x="76" y="221" type="curve"/>
+      <point x="70" y="221" type="line" smooth="yes"/>
+      <point x="5" y="221"/>
+      <point x="0" y="142"/>
+      <point x="0" y="108" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -221 160</string>
+              <string>hstem 61 160</string>
+              <string>vstem 0 8</string>
+              <string>vstem 126 8</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>096d161593cc4f942e677bf228a52c20d21172422b76136614c3de3eb7230af8ee1b00561319506d7e1d5346fa833d235d5e1c22e24d27933aaec43bd32f3b0a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

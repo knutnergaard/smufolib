@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA9A" format="2">
+  <advance width="182"/>
+  <unicode hex="EA9A"/>
+  <note>
+{'name': 'functionIUpper', 'description': 'Function theory I'}
+</note>
+  <outline>
+    <contour>
+      <point x="137" y="0" type="line"/>
+      <point x="137" y="729" type="line"/>
+      <point x="44" y="729" type="line"/>
+      <point x="44" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 44 93</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w182m137,0l137,729l44,729l44,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

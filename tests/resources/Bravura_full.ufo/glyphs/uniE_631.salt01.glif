@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE631.salt01" format="2">
+  <advance width="200"/>
+  <unicode hex="F433"/>
+  <note>
+{'name': 'pluckedSnapPizzicatoAboveGerman', 'description': 'Snap pizzicato above (German)'}
+</note>
+  <outline>
+    <contour>
+      <point x="100" y="0" type="curve" smooth="yes"/>
+      <point x="155" y="0"/>
+      <point x="200" y="44"/>
+      <point x="200" y="100" type="curve" smooth="yes"/>
+      <point x="200" y="150"/>
+      <point x="163" y="191"/>
+      <point x="116" y="199" type="curve"/>
+      <point x="116" y="300" type="line"/>
+      <point x="84" y="300" type="line"/>
+      <point x="84" y="199" type="line"/>
+      <point x="36" y="191"/>
+      <point x="0" y="150"/>
+      <point x="0" y="100" type="curve" smooth="yes"/>
+      <point x="0" y="44"/>
+      <point x="45" y="0"/>
+    </contour>
+    <contour>
+      <point x="47" y="100" type="curve"/>
+      <point x="47" y="100"/>
+      <point x="49" y="184"/>
+      <point x="100" y="184" type="curve" smooth="yes"/>
+      <point x="152" y="184"/>
+      <point x="153" y="100"/>
+      <point x="153" y="100" type="curve"/>
+      <point x="153" y="59"/>
+      <point x="141" y="17"/>
+      <point x="100" y="17" type="curve" smooth="yes"/>
+      <point x="60" y="17"/>
+      <point x="47" y="59"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 17</string>
+              <string>hstem 184 15</string>
+              <string>hstem 279 -21</string>
+              <string>vstem 0 47</string>
+              <string>vstem 84 32</string>
+              <string>vstem 153 47</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>81a4f7db30f15f8e58a289d416529101094b71833baee6af971e62f5dd2922d25cf08b866d60dac1cd968dae94fb81498f6286fd3037596fc7059a38feec785d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

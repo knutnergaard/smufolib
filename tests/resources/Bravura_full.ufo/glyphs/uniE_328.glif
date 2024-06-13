@@ -1,0 +1,75 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE328" format="2">
+  <advance width="469"/>
+  <unicode hex="E328"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalSharp11LUp', 'description': 'Sharp 11L-up, 8° up [46 EDO]'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="47" type="curve" smooth="yes"/>
+      <point x="0" y="-172" type="line"/>
+      <point x="31" y="-172" type="line"/>
+      <point x="31" y="-47" type="line" smooth="yes"/>
+      <point x="31" y="18"/>
+      <point x="62" y="57"/>
+      <point x="125" y="72" type="curve"/>
+      <point x="125" y="-359" type="line"/>
+      <point x="156" y="-359" type="line"/>
+      <point x="156" y="77" type="line"/>
+      <point x="166" y="78"/>
+      <point x="176" y="78"/>
+      <point x="187" y="78" type="curve" smooth="yes"/>
+      <point x="219" y="78" type="line"/>
+      <point x="219" y="-359" type="line"/>
+      <point x="250" y="-359" type="line"/>
+      <point x="250" y="78" type="line"/>
+      <point x="281" y="78" type="line" smooth="yes"/>
+      <point x="292" y="78"/>
+      <point x="303" y="78"/>
+      <point x="312" y="77" type="curve"/>
+      <point x="312" y="-359" type="line"/>
+      <point x="344" y="-359" type="line"/>
+      <point x="344" y="72" type="line"/>
+      <point x="406" y="57"/>
+      <point x="437" y="18"/>
+      <point x="437" y="-47" type="curve" smooth="yes"/>
+      <point x="437" y="-172" type="line"/>
+      <point x="469" y="-172" type="line"/>
+      <point x="469" y="47" type="line" smooth="yes"/>
+      <point x="469" y="130"/>
+      <point x="417" y="172"/>
+      <point x="312" y="172" type="curve" smooth="yes"/>
+      <point x="156" y="172" type="line" smooth="yes"/>
+      <point x="52" y="172"/>
+      <point x="0" y="130"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -349 -21</string>
+              <string>hstem -162 -21</string>
+              <string>hstem 78 94</string>
+              <string>vstem 0 31</string>
+              <string>vstem 125 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 312 32</string>
+              <string>vstem 437 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>afe1021d3e57bc88fa0c9edd71c763885fbaffc210f391ee6dd125e38a0c52e4b96b44c6d55af52aed30c6946003c33b06639f4ff2adfb27a333a5afade92a7d</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

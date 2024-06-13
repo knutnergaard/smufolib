@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE990" format="2">
+  <advance width="160"/>
+  <unicode hex="E990"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantPunctum', 'description': 'Punctum'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-97" type="line" smooth="yes"/>
+      <point x="0" y="-101"/>
+      <point x="1" y="-101"/>
+      <point x="2" y="-101" type="curve"/>
+      <point x="4" y="-101"/>
+      <point x="7" y="-99"/>
+      <point x="8" y="-97" type="curve"/>
+      <point x="20" y="-90"/>
+      <point x="48" y="-78"/>
+      <point x="80" y="-77" type="curve" name="hr01"/>
+      <point x="85" y="-77" type="line" smooth="yes"/>
+      <point x="121" y="-77"/>
+      <point x="145" y="-89"/>
+      <point x="153" y="-97" type="curve" smooth="yes"/>
+      <point x="156" y="-100"/>
+      <point x="157" y="-101" name="hr02"/>
+      <point x="158" y="-101" type="curve"/>
+      <point x="160" y="-101"/>
+      <point x="160" y="-97"/>
+      <point x="160" y="-97" type="curve"/>
+      <point x="160" y="48" type="line" smooth="yes"/>
+      <point x="160" y="83"/>
+      <point x="117" y="102"/>
+      <point x="76" y="102" type="curve" smooth="yes"/>
+      <point x="37" y="102"/>
+      <point x="0" y="85"/>
+      <point x="0" y="50" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 160</string>
+              <string>hstem -101 203</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -77 179</string>
+              <string>vstem 0 160</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -101 203</string>
+              <string>vstem 0 160</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>e32d45e4146f240cc400573e95d0da23529c2aca8e0f62cd97a71c14702e1b39984cdae5ec774c46f4065d61012ff193261850e374cfc29f122813a2e48d29ad</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,89 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE638" format="2">
+  <advance width="325"/>
+  <unicode hex="E638"/>
+  <note>
+{'name': 'pluckedDamp', 'description': 'Damp'}
+</note>
+  <outline>
+    <contour>
+      <point x="60" y="148" type="line"/>
+      <point x="67" y="103"/>
+      <point x="103" y="67"/>
+      <point x="148" y="61" type="curve"/>
+      <point x="148" y="0" type="line"/>
+      <point x="176" y="0" type="line"/>
+      <point x="176" y="61" type="line"/>
+      <point x="221" y="67"/>
+      <point x="257" y="103"/>
+      <point x="264" y="148" type="curve"/>
+      <point x="324" y="148" type="line"/>
+      <point x="324" y="176" type="line"/>
+      <point x="264" y="176" type="line"/>
+      <point x="258" y="222"/>
+      <point x="222" y="259"/>
+      <point x="176" y="265" type="curve"/>
+      <point x="176" y="324" type="line"/>
+      <point x="148" y="324" type="line"/>
+      <point x="148" y="265" type="line"/>
+      <point x="102" y="259"/>
+      <point x="66" y="222"/>
+      <point x="60" y="176" type="curve"/>
+      <point x="0" y="176" type="line"/>
+      <point x="0" y="148" type="line"/>
+    </contour>
+    <contour>
+      <point x="88" y="176" type="line"/>
+      <point x="94" y="206"/>
+      <point x="118" y="231"/>
+      <point x="148" y="236" type="curve"/>
+      <point x="148" y="176" type="line"/>
+    </contour>
+    <contour>
+      <point x="176" y="236" type="line"/>
+      <point x="206" y="231"/>
+      <point x="230" y="206"/>
+      <point x="236" y="176" type="curve"/>
+      <point x="176" y="176" type="line"/>
+    </contour>
+    <contour>
+      <point x="148" y="148" type="line"/>
+      <point x="148" y="89" type="line"/>
+      <point x="118" y="95"/>
+      <point x="94" y="118"/>
+      <point x="88" y="148" type="curve"/>
+    </contour>
+    <contour>
+      <point x="235" y="148" type="line"/>
+      <point x="230" y="118"/>
+      <point x="206" y="95"/>
+      <point x="176" y="89" type="curve"/>
+      <point x="176" y="148" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 148 28</string>
+              <string>hstem 236 88</string>
+              <string>vstem 60 28</string>
+              <string>vstem 148 28</string>
+              <string>vstem 235 29</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>825d828ed7c218d52754fb06aa0ea4ab14a2e64bebf31f64a16fa9ee1b03094ed0bfdb7ff48d79e65cdf6de5313868c77249660b14164088a1f169b7bbcf069f</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

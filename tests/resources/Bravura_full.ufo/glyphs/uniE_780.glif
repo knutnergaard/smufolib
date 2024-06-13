@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE780" format="2">
+  <advance width="138"/>
+  <unicode hex="E780"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterSoftGlockenspielUp', 'description': 'Soft glockenspiel stick up'}
+</note>
+  <outline>
+    <contour>
+      <point x="55" y="606" type="curve"/>
+      <point x="55" y="15" type="line" smooth="yes"/>
+      <point x="55" y="7"/>
+      <point x="62" y="0"/>
+      <point x="70" y="0" type="curve" smooth="yes"/>
+      <point x="79" y="0"/>
+      <point x="85" y="7"/>
+      <point x="85" y="15" type="curve" smooth="yes"/>
+      <point x="85" y="607" type="line"/>
+      <point x="116" y="614"/>
+      <point x="138" y="641"/>
+      <point x="138" y="674" type="curve" smooth="yes"/>
+      <point x="138" y="712"/>
+      <point x="107" y="743"/>
+      <point x="69" y="743" type="curve" smooth="yes"/>
+      <point x="31" y="743"/>
+      <point x="0" y="712"/>
+      <point x="0" y="674" type="curve" smooth="yes"/>
+      <point x="0" y="641"/>
+      <point x="24" y="613"/>
+    </contour>
+    <contour>
+      <point x="69" y="713" type="curve" smooth="yes"/>
+      <point x="91" y="713"/>
+      <point x="108" y="695"/>
+      <point x="108" y="674" type="curve" smooth="yes"/>
+      <point x="108" y="652"/>
+      <point x="91" y="635"/>
+      <point x="69" y="635" type="curve" smooth="yes"/>
+      <point x="48" y="635"/>
+      <point x="30" y="652"/>
+      <point x="30" y="674" type="curve" smooth="yes"/>
+      <point x="30" y="695"/>
+      <point x="48" y="713"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 713 30</string>
+              <string>vstem 0 30</string>
+              <string>vstem 55 30</string>
+              <string>vstem 108 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>04a6ab0f0358ce19166f0e9a0d39b934d01c899495c562d3e03c20c7381cb52954bb0dd6fe2ef79e9ec0647e1c5477e61639a5eca5f2d95aa4c2b95197b0f774</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

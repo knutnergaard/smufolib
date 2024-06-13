@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE78B" format="2">
+  <advance width="474"/>
+  <unicode hex="E78B"/>
+  <note>
+{'classes': ['tf_pictograms', 'tf_zeroWidth'], 'name': 'pictBeaterSoftTimpaniLeft', 'description': 'Soft timpani stick left'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="599" type="curve" smooth="yes"/>
+      <point x="1" y="594"/>
+      <point x="2" y="589"/>
+      <point x="4" y="585" type="curve" smooth="yes"/>
+      <point x="109" y="404" type="line" smooth="yes"/>
+      <point x="114" y="396"/>
+      <point x="123" y="391"/>
+      <point x="132" y="391" type="curve" smooth="yes"/>
+      <point x="137" y="391"/>
+      <point x="142" y="392"/>
+      <point x="146" y="394" type="curve" smooth="yes"/>
+      <point x="203" y="428" type="line"/>
+      <point x="446" y="8" type="line"/>
+      <point x="448" y="3"/>
+      <point x="454" y="0"/>
+      <point x="459" y="0" type="curve"/>
+      <point x="461" y="0"/>
+      <point x="464" y="1"/>
+      <point x="466" y="2" type="curve" smooth="yes"/>
+      <point x="471" y="5"/>
+      <point x="474" y="10"/>
+      <point x="474" y="16" type="curve"/>
+      <point x="474" y="18"/>
+      <point x="473" y="21"/>
+      <point x="472" y="23" type="curve" smooth="yes"/>
+      <point x="229" y="443" type="line"/>
+      <point x="286" y="476" type="line" smooth="yes"/>
+      <point x="295" y="481"/>
+      <point x="300" y="490"/>
+      <point x="300" y="499" type="curve" smooth="yes"/>
+      <point x="300" y="504"/>
+      <point x="299" y="509"/>
+      <point x="296" y="513" type="curve"/>
+      <point x="192" y="694" type="line" smooth="yes"/>
+      <point x="187" y="702"/>
+      <point x="178" y="707"/>
+      <point x="168" y="707" type="curve" smooth="yes"/>
+      <point x="163" y="707"/>
+      <point x="159" y="706"/>
+      <point x="155" y="703" type="curve"/>
+      <point x="14" y="622" type="line" smooth="yes"/>
+      <point x="5" y="617"/>
+      <point x="1" y="608"/>
+    </contour>
+    <contour>
+      <point x="167" y="676" type="line"/>
+      <point x="269" y="500" type="line"/>
+      <point x="133" y="422" type="line"/>
+      <point x="32" y="598" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 1 473</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>14d6838b6cef638a5f3af6fa3a7b790e5832ec78226cb2e5ba9466e1e0f26d19a55841e50bb9a98163e9d1d8c27d51c058ffb49bc88d7548955350f191d222d0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

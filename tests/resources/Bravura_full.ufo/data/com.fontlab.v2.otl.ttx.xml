@@ -1,0 +1,4966 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<OTLayout>
+<GPOS>
+  <Version value="1.0"/>
+  <ScriptList>
+    <!-- ScriptCount=1 -->
+    <ScriptRecord index="0">
+      <ScriptTag value="DFLT"/>
+      <Script>
+        <DefaultLangSys>
+          <ReqFeatureIndex value="65535"/>
+          <!-- FeatureCount=1 -->
+          <FeatureIndex index="0" value="0"/>
+        </DefaultLangSys>
+        <!-- LangSysCount=0 -->
+      </Script>
+    </ScriptRecord>
+  </ScriptList>
+  <FeatureList>
+    <!-- FeatureCount=1 -->
+    <FeatureRecord index="0">
+      <FeatureTag value="kern"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="0"/>
+      </Feature>
+    </FeatureRecord>
+  </FeatureList>
+  <LookupList>
+    <!-- LookupCount=1 -->
+    <Lookup index="0">
+      <LookupType value="2"/>
+      <LookupFlag value="8"/>
+      <!-- SubTableCount=1 -->
+      <PairPos index="0" Format="1">
+        <Coverage Format="1">
+          <Glyph value="uniE1F0"/>
+          <Glyph value="uniE1F1"/>
+          <Glyph value="uniE1F2"/>
+          <Glyph value="uniE1F3"/>
+          <Glyph value="uniE1F4"/>
+          <Glyph value="uniE1F5"/>
+          <Glyph value="uniE1F6"/>
+          <Glyph value="uniE1F7"/>
+          <Glyph value="uniE1F8"/>
+          <Glyph value="uniE1F9"/>
+          <Glyph value="uniE1FA"/>
+          <Glyph value="uniE1FB"/>
+          <Glyph value="uniE1FC"/>
+          <Glyph value="uniE260"/>
+          <Glyph value="uniE262"/>
+          <Glyph value="uniE2B0"/>
+          <Glyph value="uniE2B1"/>
+          <Glyph value="uniE2B2"/>
+          <Glyph value="uniE2B3"/>
+          <Glyph value="uniE2B4"/>
+          <Glyph value="uniE2B5"/>
+          <Glyph value="uniE2B6"/>
+          <Glyph value="uniE2B7"/>
+          <Glyph value="uniE3F2"/>
+          <Glyph value="uniE3F3"/>
+          <Glyph value="uniE520"/>
+          <Glyph value="uniE522"/>
+          <Glyph value="uniE523"/>
+          <Glyph value="uniE524"/>
+          <Glyph value="uniE525"/>
+          <Glyph value="uniE527"/>
+          <Glyph value="uniE528"/>
+          <Glyph value="uniE529"/>
+          <Glyph value="uniE52A"/>
+          <Glyph value="uniE52B"/>
+          <Glyph value="uniE52D"/>
+          <Glyph value="uniE52F"/>
+          <Glyph value="uniE530"/>
+          <Glyph value="uniE531"/>
+          <Glyph value="uniE532"/>
+          <Glyph value="uniE533"/>
+          <Glyph value="uniE536"/>
+          <Glyph value="uniE53C"/>
+          <Glyph value="uniE549"/>
+          <Glyph value="uniE650"/>
+          <Glyph value="uniE651"/>
+          <Glyph value="uniE659"/>
+          <Glyph value="uniE65E"/>
+          <Glyph value="uniE65F"/>
+          <Glyph value="uniE660"/>
+          <Glyph value="uniE676"/>
+          <Glyph value="uniE770"/>
+          <Glyph value="uniE771"/>
+          <Glyph value="uniE772"/>
+          <Glyph value="uniE773"/>
+          <Glyph value="uniE774"/>
+          <Glyph value="uniE775"/>
+          <Glyph value="uniE776"/>
+          <Glyph value="uniE777"/>
+          <Glyph value="uniE778"/>
+          <Glyph value="uniE779"/>
+          <Glyph value="uniE77A"/>
+          <Glyph value="uniE77B"/>
+          <Glyph value="uniE77C"/>
+          <Glyph value="uniE77D"/>
+          <Glyph value="uniE77E"/>
+          <Glyph value="uniE77F"/>
+          <Glyph value="uniE780"/>
+          <Glyph value="uniE781"/>
+          <Glyph value="uniE782"/>
+          <Glyph value="uniE783"/>
+          <Glyph value="uniE784"/>
+          <Glyph value="uniE785"/>
+          <Glyph value="uniE786"/>
+          <Glyph value="uniE787"/>
+          <Glyph value="uniE788"/>
+          <Glyph value="uniE789"/>
+          <Glyph value="uniE78A"/>
+          <Glyph value="uniE78B"/>
+          <Glyph value="uniE78C"/>
+          <Glyph value="uniE78D"/>
+          <Glyph value="uniE78E"/>
+          <Glyph value="uniE78F"/>
+          <Glyph value="uniE790"/>
+          <Glyph value="uniE791"/>
+          <Glyph value="uniE792"/>
+          <Glyph value="uniE793"/>
+          <Glyph value="uniE794"/>
+          <Glyph value="uniE795"/>
+          <Glyph value="uniE796"/>
+          <Glyph value="uniE797"/>
+          <Glyph value="uniE798"/>
+          <Glyph value="uniE799"/>
+          <Glyph value="uniE79A"/>
+          <Glyph value="uniE79B"/>
+          <Glyph value="uniE79C"/>
+          <Glyph value="uniE79D"/>
+          <Glyph value="uniE79E"/>
+          <Glyph value="uniE79F"/>
+          <Glyph value="uniE7A0"/>
+          <Glyph value="uniE7A1"/>
+          <Glyph value="uniE7A2"/>
+          <Glyph value="uniE7A3"/>
+          <Glyph value="uniE7A4"/>
+          <Glyph value="uniE7A5"/>
+          <Glyph value="uniE7A6"/>
+          <Glyph value="uniE7A7"/>
+          <Glyph value="uniE7A8"/>
+          <Glyph value="uniE7A9"/>
+          <Glyph value="uniE7AA"/>
+          <Glyph value="uniE7AB"/>
+          <Glyph value="uniE7AC"/>
+          <Glyph value="uniE7AD"/>
+          <Glyph value="uniE7AE"/>
+          <Glyph value="uniE7AF"/>
+          <Glyph value="uniE7B0"/>
+          <Glyph value="uniE7B1"/>
+          <Glyph value="uniE7B3"/>
+          <Glyph value="uniE7B4"/>
+          <Glyph value="uniE7B5"/>
+          <Glyph value="uniE7B6"/>
+          <Glyph value="uniE7B7"/>
+          <Glyph value="uniE7B8"/>
+          <Glyph value="uniE7B9"/>
+          <Glyph value="uniE7BA"/>
+          <Glyph value="uniE7BB"/>
+          <Glyph value="uniE7BC"/>
+          <Glyph value="uniE7BD"/>
+          <Glyph value="uniE7BE"/>
+          <Glyph value="uniE7BF"/>
+          <Glyph value="uniE7C0"/>
+          <Glyph value="uniE7C1"/>
+          <Glyph value="uniE7C2"/>
+          <Glyph value="uniE7C3"/>
+          <Glyph value="uniE7C4"/>
+          <Glyph value="uniE7C5"/>
+          <Glyph value="uniE7C6"/>
+          <Glyph value="uniE7C7"/>
+          <Glyph value="uniE7C8"/>
+          <Glyph value="uniE7C9"/>
+          <Glyph value="uniE7CA"/>
+          <Glyph value="uniE7D1"/>
+          <Glyph value="uniE7D2"/>
+          <Glyph value="uniE7D3"/>
+          <Glyph value="uniE7D4"/>
+          <Glyph value="uniE7DE"/>
+          <Glyph value="uniE7E2"/>
+          <Glyph value="uniE7E8"/>
+          <Glyph value="uniEAA1"/>
+          <Glyph value="uniEAA6"/>
+          <Glyph value="uniEAA7"/>
+          <Glyph value="uniEAA8"/>
+          <Glyph value="uniF5AD"/>
+          <Glyph value="uniF5AF"/>
+          <Glyph value="uniF5B1"/>
+          <Glyph value="uniF5B3"/>
+          <Glyph value="uniF5B5"/>
+          <Glyph value="uniF5B7"/>
+          <Glyph value="uniF5B9"/>
+          <Glyph value="uniF5BB"/>
+          <Glyph value="uniF5BD"/>
+          <Glyph value="uniF5BF"/>
+          <Glyph value="uniF5C9"/>
+          <Glyph value="uniF5D3"/>
+          <Glyph value="uniF5D4"/>
+          <Glyph value="uniF5D5"/>
+          <Glyph value="uniF5D6"/>
+        </Coverage>
+        <ValueFormat1 value="4"/>
+        <ValueFormat2 value="0"/>
+        <!-- PairSetCount=167 -->
+        <PairSet index="0">
+          <!-- PairValueCount=17 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F7"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="80"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-60"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-160"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-60"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-130"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="1">
+          <!-- PairValueCount=18 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F7"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="2">
+          <!-- PairValueCount=18 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F1"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-60"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-110"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-120"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="3">
+          <!-- PairValueCount=19 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F1"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-120"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-60"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-130"/>
+          </PairValueRecord>
+          <PairValueRecord index="18">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="4">
+          <!-- PairValueCount=18 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-120"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-110"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="5">
+          <!-- PairValueCount=19 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F1"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-120"/>
+          </PairValueRecord>
+          <PairValueRecord index="18">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="6">
+          <!-- PairValueCount=19 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F1"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="60"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE1FE"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE1FF"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE200"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE201"/>
+            <Value1 XAdvance="-70"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE202"/>
+            <Value1 XAdvance="-120"/>
+          </PairValueRecord>
+          <PairValueRecord index="18">
+            <SecondGlyph value="uniE203"/>
+            <Value1 XAdvance="-80"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="7">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="-230"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="8">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="-200"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="9">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="-200"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="10">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="-200"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="11">
+          <!-- PairValueCount=11 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F8"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F9"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE1FA"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE1FB"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE1FC"/>
+            <Value1 XAdvance="-200"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE1FD"/>
+            <Value1 XAdvance="-4"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="12">
+          <!-- PairValueCount=7 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE1F0"/>
+            <Value1 XAdvance="80"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE1F1"/>
+            <Value1 XAdvance="80"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE1F2"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE1F3"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE1F4"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE1F5"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE1F6"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="13">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE2B4"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE2B6"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE2B7"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="14">
+          <!-- PairValueCount=6 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE2B4"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE2B5"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE2B6"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE2B7"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="15">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="-30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="16">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="17">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="-30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="-40"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE2B4"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE2B5"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="18">
+          <!-- PairValueCount=15 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE2B3"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE2B4"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE2B5"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE2B6"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE2B7"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5CF"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5D0"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5D1"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniF5D2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniF5D7"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniF5D8"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniF5DB"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniF5DC"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="19">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE2B6"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="20">
+          <!-- PairValueCount=2 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="21">
+          <!-- PairValueCount=2 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="22">
+          <!-- PairValueCount=2 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B0"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE2B1"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="23">
+          <!-- PairValueCount=33 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE302"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE308"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE30A"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE316"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE318"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE31E"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE324"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE326"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE32E"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE330"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE332"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE334"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE342"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE34A"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE34E"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE356"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE35E"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE362"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="18">
+            <SecondGlyph value="uniE374"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="19">
+            <SecondGlyph value="uniE37A"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="20">
+            <SecondGlyph value="uniE380"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="21">
+            <SecondGlyph value="uniE382"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="22">
+            <SecondGlyph value="uniE386"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="23">
+            <SecondGlyph value="uniE392"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="24">
+            <SecondGlyph value="uniE39C"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="25">
+            <SecondGlyph value="uniE39E"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="26">
+            <SecondGlyph value="uniE3B8"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="27">
+            <SecondGlyph value="uniE3BA"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="28">
+            <SecondGlyph value="uniE3C2"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="29">
+            <SecondGlyph value="uniE3CC"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="30">
+            <SecondGlyph value="uniE3CE"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="31">
+            <SecondGlyph value="uniE3E8"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="32">
+            <SecondGlyph value="uniE3EA"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="24">
+          <!-- PairValueCount=33 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE303"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE309"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE30B"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE317"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE319"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE31F"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE325"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE327"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniE32F"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniE331"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="10">
+            <SecondGlyph value="uniE333"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="11">
+            <SecondGlyph value="uniE335"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="12">
+            <SecondGlyph value="uniE343"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="13">
+            <SecondGlyph value="uniE34B"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="14">
+            <SecondGlyph value="uniE34F"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="15">
+            <SecondGlyph value="uniE357"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="16">
+            <SecondGlyph value="uniE35F"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="17">
+            <SecondGlyph value="uniE363"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="18">
+            <SecondGlyph value="uniE375"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="19">
+            <SecondGlyph value="uniE37B"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="20">
+            <SecondGlyph value="uniE381"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="21">
+            <SecondGlyph value="uniE383"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="22">
+            <SecondGlyph value="uniE387"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="23">
+            <SecondGlyph value="uniE393"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="24">
+            <SecondGlyph value="uniE39D"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="25">
+            <SecondGlyph value="uniE39F"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="26">
+            <SecondGlyph value="uniE3B9"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="27">
+            <SecondGlyph value="uniE3BB"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="28">
+            <SecondGlyph value="uniE3C3"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="29">
+            <SecondGlyph value="uniE3CD"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="30">
+            <SecondGlyph value="uniE3CF"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="31">
+            <SecondGlyph value="uniE3E9"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+          <PairValueRecord index="32">
+            <SecondGlyph value="uniE3EB"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="25">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-31"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="26">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-110"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE522"/>
+            <Value1 XAdvance="-117"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-101"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-66"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="27">
+          <!-- PairValueCount=6 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE522"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="28">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE522"/>
+            <Value1 XAdvance="15"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="31"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="31"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="31"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="31"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="29">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-47"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="30">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="31">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="32">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="33">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="34">
+          <!-- PairValueCount=5 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE532"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="35">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-63"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="36">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-102"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-63"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="37">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-101"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-62"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="38">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-101"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-63"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="39">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-102"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-63"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="40">
+          <!-- PairValueCount=8 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE525"/>
+            <Value1 XAdvance="-101"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniE549"/>
+            <Value1 XAdvance="-63"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="41">
+          <!-- PairValueCount=6 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="42">
+          <!-- PairValueCount=6 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE520"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE527"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE528"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE529"/>
+            <Value1 XAdvance="-90"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE52A"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE52B"/>
+            <Value1 XAdvance="-100"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="43">
+          <!-- PairValueCount=6 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE52D"/>
+            <Value1 XAdvance="-10"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE52F"/>
+            <Value1 XAdvance="23"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE530"/>
+            <Value1 XAdvance="24"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE531"/>
+            <Value1 XAdvance="23"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniE533"/>
+            <Value1 XAdvance="23"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniE534"/>
+            <Value1 XAdvance="20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="44">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="45">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="30"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="46">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="47">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="48">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="49">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE677"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="50">
+          <!-- PairValueCount=4 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE659"/>
+            <Value1 XAdvance="40"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE65E"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE65F"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniE660"/>
+            <Value1 XAdvance="50"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="51">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-315"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="52">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="53">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE773"/>
+            <Value1 XAdvance="-515"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="54">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE772"/>
+            <Value1 XAdvance="-351"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="55">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-315"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="56">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="57">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE777"/>
+            <Value1 XAdvance="-516"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="58">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE776"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="59">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-315"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="60">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="61">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE77B"/>
+            <Value1 XAdvance="-516"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="62">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE77A"/>
+            <Value1 XAdvance="-344"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="63">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-315"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="64">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="65">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE77F"/>
+            <Value1 XAdvance="-516"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="66">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE77E"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="67">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-261"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="68">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="69">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE783"/>
+            <Value1 XAdvance="-516"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="70">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE782"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="71">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-250"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="72">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="73">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE787"/>
+            <Value1 XAdvance="-515"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="74">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE786"/>
+            <Value1 XAdvance="-351"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="75">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-310"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="76">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="77">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE78B"/>
+            <Value1 XAdvance="-633"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="78">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE78A"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="79">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-310"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="80">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="81">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE78F"/>
+            <Value1 XAdvance="-632"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="82">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE78E"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="83">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="84">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="85">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE793"/>
+            <Value1 XAdvance="-633"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="86">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE792"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="87">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-304"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="88">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="89">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE797"/>
+            <Value1 XAdvance="-633"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="90">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE796"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="91">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="92">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="93">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="94">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="95">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="96">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="97">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="98">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="99">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="100">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="101">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-370"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-336"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="102">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="103">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7A5"/>
+            <Value1 XAdvance="-570"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="104">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7A4"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="105">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-370"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="106">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="107">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7A9"/>
+            <Value1 XAdvance="-571"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="108">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7A8"/>
+            <Value1 XAdvance="-351"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="109">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-370"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="110">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="111">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7AD"/>
+            <Value1 XAdvance="-570"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="112">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7AC"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="113">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-305"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="114">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="115">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7B1"/>
+            <Value1 XAdvance="-477"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="116">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7B0"/>
+            <Value1 XAdvance="-304"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="117">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-310"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="118">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="119">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7B6"/>
+            <Value1 XAdvance="-531"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="120">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7B5"/>
+            <Value1 XAdvance="-351"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="121">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-350"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-310"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="122">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="123">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7BA"/>
+            <Value1 XAdvance="-532"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="124">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7B9"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="125">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-318"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="126">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="127">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7BE"/>
+            <Value1 XAdvance="-750"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="128">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7BD"/>
+            <Value1 XAdvance="-250"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="129">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="130">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="131">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7C2"/>
+            <Value1 XAdvance="-750"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="132">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7C1"/>
+            <Value1 XAdvance="-250"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="133">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="134">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="135">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7C6"/>
+            <Value1 XAdvance="-750"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="136">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7C5"/>
+            <Value1 XAdvance="-257"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="137">
+          <!-- PairValueCount=3 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7E9"/>
+            <Value1 XAdvance="-340"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniE7EA"/>
+            <Value1 XAdvance="-308"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="138">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-300"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="139">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7CA"/>
+            <Value1 XAdvance="-532"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="140">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7C9"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="141">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="142">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="143">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="144">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-260"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="145">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-230"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="146">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-330"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="147">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE7EB"/>
+            <Value1 XAdvance="-220"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="148">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniEAA0"/>
+            <Value1 XAdvance="-8"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="149">
+          <!-- PairValueCount=2 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniEAA5"/>
+            <Value1 XAdvance="7"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniEAA7"/>
+            <Value1 XAdvance="12"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="150">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniEAA8"/>
+            <Value1 XAdvance="-12"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="151">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniEAA7"/>
+            <Value1 XAdvance="15"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="152">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-430"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-398"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-438"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-398"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="153">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-344"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-297"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-344"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-313"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-297"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-328"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-312"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-320"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="154">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-422"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-390"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-429"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-399"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-399"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-390"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="155">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-398"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-422"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-352"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="156">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-407"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-398"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-357"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-390"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="157">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-344"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-368"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-359"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="158">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-407"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-344"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="159">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-422"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-399"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-438"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-398"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-399"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="160">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-406"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-430"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-367"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-399"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-390"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-382"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="161">
+          <!-- PairValueCount=10 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniF5AC"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="1">
+            <SecondGlyph value="uniF5AE"/>
+            <Value1 XAdvance="-360"/>
+          </PairValueRecord>
+          <PairValueRecord index="2">
+            <SecondGlyph value="uniF5B0"/>
+            <Value1 XAdvance="-407"/>
+          </PairValueRecord>
+          <PairValueRecord index="3">
+            <SecondGlyph value="uniF5B2"/>
+            <Value1 XAdvance="-375"/>
+          </PairValueRecord>
+          <PairValueRecord index="4">
+            <SecondGlyph value="uniF5B4"/>
+            <Value1 XAdvance="-414"/>
+          </PairValueRecord>
+          <PairValueRecord index="5">
+            <SecondGlyph value="uniF5B6"/>
+            <Value1 XAdvance="-359"/>
+          </PairValueRecord>
+          <PairValueRecord index="6">
+            <SecondGlyph value="uniF5B8"/>
+            <Value1 XAdvance="-390"/>
+          </PairValueRecord>
+          <PairValueRecord index="7">
+            <SecondGlyph value="uniF5BA"/>
+            <Value1 XAdvance="-391"/>
+          </PairValueRecord>
+          <PairValueRecord index="8">
+            <SecondGlyph value="uniF5BC"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+          <PairValueRecord index="9">
+            <SecondGlyph value="uniF5BE"/>
+            <Value1 XAdvance="-383"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="162">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="163">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="164">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="165">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+        <PairSet index="166">
+          <!-- PairValueCount=1 -->
+          <PairValueRecord index="0">
+            <SecondGlyph value="uniE2B2"/>
+            <Value1 XAdvance="-20"/>
+          </PairValueRecord>
+        </PairSet>
+      </PairPos>
+    </Lookup>
+  </LookupList>
+</GPOS>
+<GSUB>
+  <Version value="1.0"/>
+  <ScriptList>
+    <!-- ScriptCount=1 -->
+    <ScriptRecord index="0">
+      <ScriptTag value="DFLT"/>
+      <Script>
+        <DefaultLangSys>
+          <ReqFeatureIndex value="65535"/>
+          <!-- FeatureCount=12 -->
+          <FeatureIndex index="0" value="0"/>
+          <FeatureIndex index="1" value="1"/>
+          <FeatureIndex index="2" value="2"/>
+          <FeatureIndex index="3" value="3"/>
+          <FeatureIndex index="4" value="4"/>
+          <FeatureIndex index="5" value="5"/>
+          <FeatureIndex index="6" value="6"/>
+          <FeatureIndex index="7" value="7"/>
+          <FeatureIndex index="8" value="8"/>
+          <FeatureIndex index="9" value="9"/>
+          <FeatureIndex index="10" value="10"/>
+          <FeatureIndex index="11" value="11"/>
+        </DefaultLangSys>
+        <!-- LangSysCount=0 -->
+      </Script>
+    </ScriptRecord>
+  </ScriptList>
+  <FeatureList>
+    <!-- FeatureCount=12 -->
+    <FeatureRecord index="0">
+      <FeatureTag value="ccmp"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="11"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="1">
+      <FeatureTag value="liga"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="10"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="2">
+      <FeatureTag value="salt"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="9"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="3">
+      <FeatureTag value="ss01"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="0"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="4">
+      <FeatureTag value="ss02"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="1"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="5">
+      <FeatureTag value="ss03"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="2"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="6">
+      <FeatureTag value="ss04"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="3"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="7">
+      <FeatureTag value="ss05"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="4"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="8">
+      <FeatureTag value="ss06"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="5"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="9">
+      <FeatureTag value="ss07"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="6"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="10">
+      <FeatureTag value="ss08"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="7"/>
+      </Feature>
+    </FeatureRecord>
+    <FeatureRecord index="11">
+      <FeatureTag value="ss09"/>
+      <Feature>
+        <!-- LookupCount=1 -->
+        <LookupListIndex index="0" value="8"/>
+      </Feature>
+    </FeatureRecord>
+  </FeatureList>
+  <LookupList>
+    <!-- LookupCount=12 -->
+    <Lookup index="0">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE050">
+          <Alternate glyph="uniF472"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE05C">
+          <Alternate glyph="uniF473"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE062">
+          <Alternate glyph="uniF474"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE080">
+          <Alternate glyph="uniF45D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE081">
+          <Alternate glyph="uniF45E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE082">
+          <Alternate glyph="uniF45F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE083">
+          <Alternate glyph="uniF460"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE084">
+          <Alternate glyph="uniF461"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE085">
+          <Alternate glyph="uniF462"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE086">
+          <Alternate glyph="uniF463"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE087">
+          <Alternate glyph="uniF464"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE088">
+          <Alternate glyph="uniF465"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE089">
+          <Alternate glyph="uniF466"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A0">
+          <Alternate glyph="uniF467"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A2">
+          <Alternate glyph="uniF468"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A3">
+          <Alternate glyph="uniF469"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A4">
+          <Alternate glyph="uniF46A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE260">
+          <Alternate glyph="uniF427"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE261">
+          <Alternate glyph="uniF428"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE262">
+          <Alternate glyph="uniF429"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A0">
+          <Alternate glyph="uniF475"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A1">
+          <Alternate glyph="uniF476"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A2">
+          <Alternate glyph="uniF477"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A3">
+          <Alternate glyph="uniF478"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A4">
+          <Alternate glyph="uniF479"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A5">
+          <Alternate glyph="uniF47A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A6">
+          <Alternate glyph="uniF47B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A7">
+          <Alternate glyph="uniF47C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A8">
+          <Alternate glyph="uniF47D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A9">
+          <Alternate glyph="uniF47E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AA">
+          <Alternate glyph="uniF47F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AB">
+          <Alternate glyph="uniF480"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AC">
+          <Alternate glyph="uniF481"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AD">
+          <Alternate glyph="uniF482"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AE">
+          <Alternate glyph="uniF483"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4AF">
+          <Alternate glyph="uniF484"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B0">
+          <Alternate glyph="uniF485"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B1">
+          <Alternate glyph="uniF486"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B2">
+          <Alternate glyph="uniF487"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B3">
+          <Alternate glyph="uniF488"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B4">
+          <Alternate glyph="uniF489"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4B5">
+          <Alternate glyph="uniF48A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE520">
+          <Alternate glyph="uniF46B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE521">
+          <Alternate glyph="uniF46C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE522">
+          <Alternate glyph="uniF46D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE523">
+          <Alternate glyph="uniF46E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE524">
+          <Alternate glyph="uniF46F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE525">
+          <Alternate glyph="uniF470"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE526">
+          <Alternate glyph="uniF471"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="1">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE240">
+          <Alternate glyph="uniF410"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE242">
+          <Alternate glyph="uniF413"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE244">
+          <Alternate glyph="uniF416"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE246">
+          <Alternate glyph="uniF419"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE248">
+          <Alternate glyph="uniF41C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24A">
+          <Alternate glyph="uniF41F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24C">
+          <Alternate glyph="uniF422"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24E">
+          <Alternate glyph="uniF425"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="2">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE240">
+          <Alternate glyph="uniF40F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE241">
+          <Alternate glyph="uniF411"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE242">
+          <Alternate glyph="uniF412"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE243">
+          <Alternate glyph="uniF414"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE244">
+          <Alternate glyph="uniF415"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE245">
+          <Alternate glyph="uniF417"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE246">
+          <Alternate glyph="uniF418"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE247">
+          <Alternate glyph="uniF41A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE248">
+          <Alternate glyph="uniF41B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE249">
+          <Alternate glyph="uniF41D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24A">
+          <Alternate glyph="uniF41E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24B">
+          <Alternate glyph="uniF420"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24C">
+          <Alternate glyph="uniF421"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24D">
+          <Alternate glyph="uniF423"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24E">
+          <Alternate glyph="uniF424"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24F">
+          <Alternate glyph="uniF426"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="3">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE080">
+          <Alternate glyph="uniF440"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE081">
+          <Alternate glyph="uniF441"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE082">
+          <Alternate glyph="uniF442"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE083">
+          <Alternate glyph="uniF443"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE084">
+          <Alternate glyph="uniF444"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE085">
+          <Alternate glyph="uniF445"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE086">
+          <Alternate glyph="uniF446"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE087">
+          <Alternate glyph="uniF447"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE088">
+          <Alternate glyph="uniF448"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE089">
+          <Alternate glyph="uniF449"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08A">
+          <Alternate glyph="uniF44A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08B">
+          <Alternate glyph="uniF44B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08C">
+          <Alternate glyph="uniF44C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08D">
+          <Alternate glyph="uniF4EE"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08E">
+          <Alternate glyph="uniF4EF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08F">
+          <Alternate glyph="uniF4F0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE090">
+          <Alternate glyph="uniF4F1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE091">
+          <Alternate glyph="uniF4F2"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE092">
+          <Alternate glyph="uniF4F3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE093">
+          <Alternate glyph="uniF4F4"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE094">
+          <Alternate glyph="uniF4F5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE095">
+          <Alternate glyph="uniF4F6"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE096">
+          <Alternate glyph="uniF4F7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE097">
+          <Alternate glyph="uniF4F8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE098">
+          <Alternate glyph="uniF4F9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE099">
+          <Alternate glyph="uniF4FA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09A">
+          <Alternate glyph="uniF4FB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09B">
+          <Alternate glyph="uniF4FC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09C">
+          <Alternate glyph="uniF4FD"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09D">
+          <Alternate glyph="uniF4FE"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC80">
+          <Alternate glyph="uniF4FF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC81">
+          <Alternate glyph="uniF500"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC82">
+          <Alternate glyph="uniF501"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC83">
+          <Alternate glyph="uniF502"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC84">
+          <Alternate glyph="uniF503"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC85">
+          <Alternate glyph="uniF504"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC86">
+          <Alternate glyph="uniF505"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="4">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE0A0">
+          <Alternate glyph="uniF4BA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A1">
+          <Alternate glyph="uniF4BB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A2">
+          <Alternate glyph="uniF4BC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A3">
+          <Alternate glyph="uniF4BD"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A4">
+          <Alternate glyph="uniF4BE"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="5">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE880">
+          <Alternate glyph="uniF4CC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE881">
+          <Alternate glyph="uniF4CD"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE882">
+          <Alternate glyph="uniF4CE"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE883">
+          <Alternate glyph="uniF4CF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE884">
+          <Alternate glyph="uniF4D0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE885">
+          <Alternate glyph="uniF4D1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE886">
+          <Alternate glyph="uniF4D2"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE887">
+          <Alternate glyph="uniF4D3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE888">
+          <Alternate glyph="uniF4D4"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE889">
+          <Alternate glyph="uniF4D5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE88A">
+          <Alternate glyph="uniF4D6"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="6">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE870">
+          <Alternate glyph="uniF4D8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE871">
+          <Alternate glyph="uniF4D7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE872">
+          <Alternate glyph="uniF4D9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE873">
+          <Alternate glyph="uniF4DA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE874">
+          <Alternate glyph="uniF4DB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED60">
+          <Alternate glyph="uniF4DC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED61">
+          <Alternate glyph="uniF4DD"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED62">
+          <Alternate glyph="uniF4DE"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED63">
+          <Alternate glyph="uniF4DF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED64">
+          <Alternate glyph="uniF4E0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED65">
+          <Alternate glyph="uniF4E1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniED66">
+          <Alternate glyph="uniF4E2"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="7">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE100">
+          <Alternate glyph="uniF4E3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE101">
+          <Alternate glyph="uniF4E4"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE102">
+          <Alternate glyph="uniF4E5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE103">
+          <Alternate glyph="uniF4E6"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE104">
+          <Alternate glyph="uniF4E7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE105">
+          <Alternate glyph="uniF4E8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE106">
+          <Alternate glyph="uniF4E9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE107">
+          <Alternate glyph="uniF4EA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE108">
+          <Alternate glyph="uniF4EB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE109">
+          <Alternate glyph="uniF4EC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE10A">
+          <Alternate glyph="uniF4ED"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="8">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE080">
+          <Alternate glyph="uniF506"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE081">
+          <Alternate glyph="uniF507"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE082">
+          <Alternate glyph="uniF508"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE083">
+          <Alternate glyph="uniF509"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE084">
+          <Alternate glyph="uniF50A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE085">
+          <Alternate glyph="uniF50B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE086">
+          <Alternate glyph="uniF50C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE087">
+          <Alternate glyph="uniF50D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE088">
+          <Alternate glyph="uniF50E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE089">
+          <Alternate glyph="uniF50F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08A">
+          <Alternate glyph="uniF510"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08B">
+          <Alternate glyph="uniF511"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08C">
+          <Alternate glyph="uniF512"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08D">
+          <Alternate glyph="uniF513"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08E">
+          <Alternate glyph="uniF514"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE08F">
+          <Alternate glyph="uniF515"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE090">
+          <Alternate glyph="uniF516"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE091">
+          <Alternate glyph="uniF517"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE092">
+          <Alternate glyph="uniF518"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE093">
+          <Alternate glyph="uniF519"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE094">
+          <Alternate glyph="uniF51A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE095">
+          <Alternate glyph="uniF51B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE096">
+          <Alternate glyph="uniF51C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE097">
+          <Alternate glyph="uniF51D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE098">
+          <Alternate glyph="uniF51E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE099">
+          <Alternate glyph="uniF51F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09A">
+          <Alternate glyph="uniF520"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09B">
+          <Alternate glyph="uniF521"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09C">
+          <Alternate glyph="uniF522"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE09D">
+          <Alternate glyph="uniF523"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC80">
+          <Alternate glyph="uniF524"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC81">
+          <Alternate glyph="uniF525"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC82">
+          <Alternate glyph="uniF526"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC83">
+          <Alternate glyph="uniF527"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC84">
+          <Alternate glyph="uniF528"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC85">
+          <Alternate glyph="uniF529"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEC86">
+          <Alternate glyph="uniF52A"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="9">
+      <LookupType value="3"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <AlternateSubst index="0" Format="1">
+        <AlternateSet glyph="uniE000">
+          <Alternate glyph="uniF400"/>
+          <Alternate glyph="uniF401"/>
+          <Alternate glyph="uniF402"/>
+          <Alternate glyph="uniF403"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE042">
+          <Alternate glyph="uniF45C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE047">
+          <Alternate glyph="uniF404"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE048">
+          <Alternate glyph="uniF405"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE05C">
+          <Alternate glyph="uniF408"/>
+          <Alternate glyph="uniF4BF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE062">
+          <Alternate glyph="uniF406"/>
+          <Alternate glyph="uniF407"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE069">
+          <Alternate glyph="uniF409"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE06D">
+          <Alternate glyph="uniF40A"/>
+          <Alternate glyph="uniF40B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE06E">
+          <Alternate glyph="uniF40C"/>
+          <Alternate glyph="uniF40D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE07B">
+          <Alternate glyph="uniF4C0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE0A0">
+          <Alternate glyph="uniF43F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE1D0">
+          <Alternate glyph="uniF40E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE240">
+          <Alternate glyph="uniF48B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE241">
+          <Alternate glyph="uniF48C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE242">
+          <Alternate glyph="uniF48D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE243">
+          <Alternate glyph="uniF48E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE244">
+          <Alternate glyph="uniF48F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE245">
+          <Alternate glyph="uniF490"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE246">
+          <Alternate glyph="uniF491"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE247">
+          <Alternate glyph="uniF492"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE248">
+          <Alternate glyph="uniF493"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE249">
+          <Alternate glyph="uniF494"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24A">
+          <Alternate glyph="uniF495"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24B">
+          <Alternate glyph="uniF496"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24C">
+          <Alternate glyph="uniF497"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24D">
+          <Alternate glyph="uniF498"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24E">
+          <Alternate glyph="uniF499"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE24F">
+          <Alternate glyph="uniF49A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE264">
+          <Alternate glyph="uniF4A1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE266">
+          <Alternate glyph="uniF4A2"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A0">
+          <Alternate glyph="uniF42A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4A1">
+          <Alternate glyph="uniF42B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE4D1">
+          <Alternate glyph="uniF42C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE514">
+          <Alternate glyph="uniF4C2"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE515">
+          <Alternate glyph="uniF4C3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE516">
+          <Alternate glyph="uniF4C4"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE517">
+          <Alternate glyph="uniF4C5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE518">
+          <Alternate glyph="uniF4C6"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE519">
+          <Alternate glyph="uniF4C7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE51D">
+          <Alternate glyph="uniF4C8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE51E">
+          <Alternate glyph="uniF4C9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE5F0">
+          <Alternate glyph="uniF42D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE5F1">
+          <Alternate glyph="uniF42E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE5F2">
+          <Alternate glyph="uniF42F"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE5F3">
+          <Alternate glyph="uniF430"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE626">
+          <Alternate glyph="uniF431"/>
+          <Alternate glyph="uniF43E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE630">
+          <Alternate glyph="uniF432"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE631">
+          <Alternate glyph="uniF433"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE650">
+          <Alternate glyph="uniF434"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE659">
+          <Alternate glyph="uniF435"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE68F">
+          <Alternate glyph="uniF436"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE690">
+          <Alternate glyph="uniF437"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A0">
+          <Alternate glyph="uniF4AA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A1">
+          <Alternate glyph="uniF4A9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A2">
+          <Alternate glyph="uniF4A4"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A3">
+          <Alternate glyph="uniF4A3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A6">
+          <Alternate glyph="uniF4AB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A7">
+          <Alternate glyph="uniF4A5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6A8">
+          <Alternate glyph="uniF4A6"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6B1">
+          <Alternate glyph="uniF4A7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6B2">
+          <Alternate glyph="uniF4A8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6D0">
+          <Alternate glyph="uniF4AE"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6D4">
+          <Alternate glyph="uniF4AF"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6D7">
+          <Alternate glyph="uniF4B2"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6D8">
+          <Alternate glyph="uniF4AD"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6DB">
+          <Alternate glyph="uniF438"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6DC">
+          <Alternate glyph="uniF4B3"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6DD">
+          <Alternate glyph="uniF4B0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6DE">
+          <Alternate glyph="uniF4B1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6F3">
+          <Alternate glyph="uniF4B4"/>
+          <Alternate glyph="uniF4B5"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE6F8">
+          <Alternate glyph="uniF439"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE710">
+          <Alternate glyph="uniF43A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE711">
+          <Alternate glyph="uniF43B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE740">
+          <Alternate glyph="uniF4B6"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE741">
+          <Alternate glyph="uniF43C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE75A">
+          <Alternate glyph="uniF4AC"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE766">
+          <Alternate glyph="uniF4B7"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE842">
+          <Alternate glyph="uniF4B8"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE849">
+          <Alternate glyph="uniF4C1"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE86B">
+          <Alternate glyph="uniF4B9"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE8CB">
+          <Alternate glyph="uniF45B"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE902">
+          <Alternate glyph="uniF49D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE905">
+          <Alternate glyph="uniF49B"/>
+          <Alternate glyph="uniF49C"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE906">
+          <Alternate glyph="uniF49E"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE929">
+          <Alternate glyph="uniF43D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniE9E0">
+          <Alternate glyph="uniF49F"/>
+          <Alternate glyph="uniF4A0"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEAAB">
+          <Alternate glyph="uniF4CA"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEAAC">
+          <Alternate glyph="uniF4CB"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBB0">
+          <Alternate glyph="uniF44D"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBC2">
+          <Alternate glyph="uniF45A"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBCD">
+          <Alternate glyph="uniF44E"/>
+          <Alternate glyph="uniF44F"/>
+          <Alternate glyph="uniF450"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBCE">
+          <Alternate glyph="uniF451"/>
+          <Alternate glyph="uniF452"/>
+          <Alternate glyph="uniF453"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBCF">
+          <Alternate glyph="uniF454"/>
+          <Alternate glyph="uniF455"/>
+          <Alternate glyph="uniF456"/>
+        </AlternateSet>
+        <AlternateSet glyph="uniEBD0">
+          <Alternate glyph="uniF457"/>
+          <Alternate glyph="uniF458"/>
+          <Alternate glyph="uniF459"/>
+        </AlternateSet>
+      </AlternateSubst>
+    </Lookup>
+    <Lookup index="10">
+      <LookupType value="4"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <LigatureSubst index="0" Format="1">
+        <LigatureSet glyph="uniE058">
+          <Ligature components="uniE881,uniE880,uniE260" glyph="uniF545"/>
+          <Ligature components="uniE881,uniE880,uniE261" glyph="uniF55A"/>
+          <Ligature components="uniE881,uniE881,uniE260" glyph="uniF546"/>
+          <Ligature components="uniE881,uniE882,uniE262" glyph="uniF565"/>
+          <Ligature components="uniE881,uniE883,uniE260" glyph="uniF547"/>
+          <Ligature components="uniE881,uniE883,uniE261" glyph="uniF55B"/>
+          <Ligature components="uniE881,uniE884,uniE260" glyph="uniF548"/>
+          <Ligature components="uniE881,uniE885,uniE260" glyph="uniF549"/>
+          <Ligature components="uniE881,uniE886,uniE260" glyph="uniF54A"/>
+          <Ligature components="uniE881,uniE887,uniE261" glyph="uniF55C"/>
+          <Ligature components="uniE260,uniE881" glyph="uniF54B"/>
+          <Ligature components="uniE260,uniE882" glyph="uniF54D"/>
+          <Ligature components="uniE260,uniE883" glyph="uniF54F"/>
+          <Ligature components="uniE260,uniE884" glyph="uniF550"/>
+          <Ligature components="uniE260,uniE886" glyph="uniF553"/>
+          <Ligature components="uniE260,uniE887" glyph="uniF555"/>
+          <Ligature components="uniE260,uniE889" glyph="uniF558"/>
+          <Ligature components="uniE261,uniE882" glyph="uniF559"/>
+          <Ligature components="uniE261,uniE883" glyph="uniF55F"/>
+          <Ligature components="uniE261,uniE886" glyph="uniF561"/>
+          <Ligature components="uniE261,uniE889" glyph="uniF564"/>
+          <Ligature components="uniE262,uniE885" glyph="uniF568"/>
+          <Ligature components="uniE881,uniE880" glyph="uniF52D"/>
+          <Ligature components="uniE881,uniE881" glyph="uniF52E"/>
+          <Ligature components="uniE881,uniE882" glyph="uniF52F"/>
+          <Ligature components="uniE881,uniE883" glyph="uniF530"/>
+          <Ligature components="uniE881,uniE884" glyph="uniF531"/>
+          <Ligature components="uniE881,uniE885" glyph="uniF532"/>
+          <Ligature components="uniE881,uniE886" glyph="uniF533"/>
+          <Ligature components="uniE881,uniE887" glyph="uniF534"/>
+          <Ligature components="uniE880" glyph="uniF52C"/>
+          <Ligature components="uniE882" glyph="uniF536"/>
+          <Ligature components="uniE883" glyph="uniF538"/>
+          <Ligature components="uniE884" glyph="uniF53A"/>
+          <Ligature components="uniE885" glyph="uniF53C"/>
+          <Ligature components="uniE886" glyph="uniF53E"/>
+          <Ligature components="uniE887" glyph="uniF540"/>
+          <Ligature components="uniE888" glyph="uniF542"/>
+          <Ligature components="uniE889" glyph="uniF544"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE059">
+          <Ligature components="uniE881,uniE262" glyph="uniF566"/>
+          <Ligature components="uniE882,uniE260" glyph="uniF54C"/>
+          <Ligature components="uniE882,uniE261" glyph="uniF55D"/>
+          <Ligature components="uniE883,uniE260" glyph="uniF54E"/>
+          <Ligature components="uniE883,uniE261" glyph="uniF55E"/>
+          <Ligature components="uniE884,uniE262" glyph="uniF567"/>
+          <Ligature components="uniE885,uniE260" glyph="uniF551"/>
+          <Ligature components="uniE886,uniE260" glyph="uniF552"/>
+          <Ligature components="uniE886,uniE261" glyph="uniF560"/>
+          <Ligature components="uniE887,uniE260" glyph="uniF554"/>
+          <Ligature components="uniE887,uniE261" glyph="uniF562"/>
+          <Ligature components="uniE888,uniE260" glyph="uniF556"/>
+          <Ligature components="uniE889,uniE260" glyph="uniF557"/>
+          <Ligature components="uniE889,uniE261" glyph="uniF563"/>
+          <Ligature components="uniE882" glyph="uniF535"/>
+          <Ligature components="uniE883" glyph="uniF537"/>
+          <Ligature components="uniE884" glyph="uniF539"/>
+          <Ligature components="uniE885" glyph="uniF53B"/>
+          <Ligature components="uniE886" glyph="uniF53D"/>
+          <Ligature components="uniE887" glyph="uniF53F"/>
+          <Ligature components="uniE888" glyph="uniF541"/>
+          <Ligature components="uniE889" glyph="uniF543"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE062">
+          <Ligature components="uniE885" glyph="uniF52B"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE09E">
+          <Ligature components="uniE081,uniE09E,uniE082,uniE09F,uniE088" glyph="uniF5F3"/>
+          <Ligature components="uniE082,uniE09F,uniE082" glyph="uniF5E8"/>
+          <Ligature components="uniE082,uniE09F,uniE084" glyph="uniF5E7"/>
+          <Ligature components="uniE083,uniE09F,uniE082" glyph="uniF5E9"/>
+          <Ligature components="uniE083,uniE09F,uniE084" glyph="uniF5EA"/>
+          <Ligature components="uniE083,uniE09F,uniE088" glyph="uniF5EB"/>
+          <Ligature components="uniE084,uniE09F,uniE084" glyph="uniF5EC"/>
+          <Ligature components="uniE085,uniE09F,uniE084" glyph="uniF5ED"/>
+          <Ligature components="uniE085,uniE09F,uniE088" glyph="uniF5EE"/>
+          <Ligature components="uniE086,uniE09F,uniE084" glyph="uniF5EF"/>
+          <Ligature components="uniE086,uniE09F,uniE088" glyph="uniF5F0"/>
+          <Ligature components="uniE087,uniE09F,uniE088" glyph="uniF5F1"/>
+          <Ligature components="uniE089,uniE09F,uniE088" glyph="uniF5F2"/>
+          <Ligature components="uniE080" glyph="uniF5B7"/>
+          <Ligature components="uniE081" glyph="uniF5B9"/>
+          <Ligature components="uniE082" glyph="uniF5BB"/>
+          <Ligature components="uniE083" glyph="uniF5BD"/>
+          <Ligature components="uniE084" glyph="uniF5BF"/>
+          <Ligature components="uniE085" glyph="uniF5C1"/>
+          <Ligature components="uniE086" glyph="uniF5C3"/>
+          <Ligature components="uniE087" glyph="uniF5C5"/>
+          <Ligature components="uniE088" glyph="uniF5C7"/>
+          <Ligature components="uniE089" glyph="uniF5C9"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE09F">
+          <Ligature components="uniE080" glyph="uniF5B6"/>
+          <Ligature components="uniE081" glyph="uniF5B8"/>
+          <Ligature components="uniE082" glyph="uniF5BA"/>
+          <Ligature components="uniE083" glyph="uniF5BC"/>
+          <Ligature components="uniE084" glyph="uniF5BE"/>
+          <Ligature components="uniE085" glyph="uniF5C0"/>
+          <Ligature components="uniE086" glyph="uniF5C2"/>
+          <Ligature components="uniE087" glyph="uniF5C4"/>
+          <Ligature components="uniE088" glyph="uniF5C6"/>
+          <Ligature components="uniE089" glyph="uniF5C8"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE0F5">
+          <Ligature components="uniE0A0,uniE0F6" glyph="uniF5CD"/>
+          <Ligature components="uniE0A2,uniE0F6" glyph="uniF5CC"/>
+          <Ligature components="uniE0A3,uniE0F6" glyph="uniF5CB"/>
+          <Ligature components="uniE0A4,uniE0F6" glyph="uniF5CA"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE260">
+          <Ligature components="uniE2B2,uniE2B5" glyph="uniF5E4"/>
+          <Ligature components="uniE2B4,uniE2B2" glyph="uniF5E3"/>
+          <Ligature components="uniE567,uniE262" glyph="uniF5AF"/>
+          <Ligature components="uniE2B2" glyph="uniF5D6"/>
+          <Ligature components="uniE2B4" glyph="uniF5D7"/>
+          <Ligature components="uniE2B5" glyph="uniF5D8"/>
+          <Ligature components="uniE566" glyph="uniF5AB"/>
+          <Ligature components="uniE567" glyph="uniF5AE"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE261">
+          <Ligature components="uniE566" glyph="uniF5AC"/>
+          <Ligature components="uniE567" glyph="uniF5B1"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE262">
+          <Ligature components="uniE2B4,uniE2B2" glyph="uniF5DF"/>
+          <Ligature components="uniE2B5,uniE2B2" glyph="uniF5E0"/>
+          <Ligature components="uniE567,uniE260" glyph="uniF5B4"/>
+          <Ligature components="uniE2B2" glyph="uniF5D3"/>
+          <Ligature components="uniE2B4" glyph="uniF5D4"/>
+          <Ligature components="uniE2B5" glyph="uniF5D5"/>
+          <Ligature components="uniE566" glyph="uniF5AD"/>
+          <Ligature components="uniE567" glyph="uniF5B3"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE26A">
+          <Ligature components="uniE260,uniE26B" glyph="uniF5CE"/>
+          <Ligature components="uniE261,uniE26B" glyph="uniF5CF"/>
+          <Ligature components="uniE262,uniE26B" glyph="uniF5D0"/>
+          <Ligature components="uniE263,uniE26B" glyph="uniF5D1"/>
+          <Ligature components="uniE264,uniE26B" glyph="uniF5D2"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B3">
+          <Ligature components="uniE260,uniE2B4" glyph="uniF5E5"/>
+          <Ligature components="uniE260,uniE2B5" glyph="uniF5E6"/>
+          <Ligature components="uniE262,uniE2B4" glyph="uniF5E1"/>
+          <Ligature components="uniE262,uniE2B5" glyph="uniF5E2"/>
+          <Ligature components="uniE260" glyph="uniF5DA"/>
+          <Ligature components="uniE262" glyph="uniF5D9"/>
+          <Ligature components="uniE2B4" glyph="uniF5DB"/>
+          <Ligature components="uniE2B5" glyph="uniF5DC"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B4">
+          <Ligature components="uniE2B2" glyph="uniF5DD"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B5">
+          <Ligature components="uniE2B2" glyph="uniF5DE"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE520">
+          <Ligature components="uniE520,uniE520,uniE520,uniE520,uniE520" glyph="uniE527"/>
+          <Ligature components="uniE520,uniE520,uniE520,uniE520" glyph="uniE528"/>
+          <Ligature components="uniE520,uniE520,uniE520" glyph="uniE529"/>
+          <Ligature components="uniE520,uniE520" glyph="uniE52A"/>
+          <Ligature components="uniE520" glyph="uniE52B"/>
+          <Ligature components="uniE522" glyph="uniE52E"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE521">
+          <Ligature components="uniE520" glyph="uniE52C"/>
+          <Ligature components="uniE522" glyph="uniE52D"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE522">
+          <Ligature components="uniE522,uniE522,uniE522,uniE522,uniE522" glyph="uniE533"/>
+          <Ligature components="uniE522,uniE522,uniE522,uniE522" glyph="uniE532"/>
+          <Ligature components="uniE522,uniE522,uniE522" glyph="uniE531"/>
+          <Ligature components="uniE522,uniE522" glyph="uniE530"/>
+          <Ligature components="uniE520" glyph="uniE534"/>
+          <Ligature components="uniE522" glyph="uniE52F"/>
+          <Ligature components="uniE525" glyph="uniE535"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE523">
+          <Ligature components="uniE522,uniE525" glyph="uniE53D"/>
+          <Ligature components="uniE522" glyph="uniE53C"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE524">
+          <Ligature components="uniE522,uniE520,uniE520" glyph="uniE538"/>
+          <Ligature components="uniE522,uniE522,uniE525" glyph="uniE53B"/>
+          <Ligature components="uniE522,uniE525,uniE520" glyph="uniE53A"/>
+          <Ligature components="uniE522,uniE520" glyph="uniE537"/>
+          <Ligature components="uniE522,uniE525" glyph="uniE539"/>
+          <Ligature components="uniE522" glyph="uniE536"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE567">
+          <Ligature components="uniE260" glyph="uniF5B0"/>
+          <Ligature components="uniE261" glyph="uniF5B2"/>
+          <Ligature components="uniE262" glyph="uniF5B5"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE930">
+          <Ligature components="uniE93E" glyph="uniF57E"/>
+          <Ligature components="uniE93F" glyph="uniF57C"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE931">
+          <Ligature components="uniE93E" glyph="uniF586"/>
+          <Ligature components="uniE93F" glyph="uniF584"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE932">
+          <Ligature components="uniE93E" glyph="uniF582"/>
+          <Ligature components="uniE93F" glyph="uniF580"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE934">
+          <Ligature components="uniE93E" glyph="uniF572"/>
+          <Ligature components="uniE93F" glyph="uniF570"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE935">
+          <Ligature components="uniE93E" glyph="uniF57A"/>
+          <Ligature components="uniE93F" glyph="uniF578"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE936">
+          <Ligature components="uniE93E" glyph="uniF576"/>
+          <Ligature components="uniE93F" glyph="uniF574"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE938">
+          <Ligature components="uniE93E" glyph="uniF58C"/>
+          <Ligature components="uniE93F" glyph="uniF587"/>
+          <Ligature components="uniE941" glyph="uniF58F"/>
+          <Ligature components="uniE942" glyph="uniF58A"/>
+          <Ligature components="uniE943" glyph="uniF58E"/>
+          <Ligature components="uniE944" glyph="uniF589"/>
+          <Ligature components="uniE945" glyph="uniF590"/>
+          <Ligature components="uniE946" glyph="uniF58B"/>
+          <Ligature components="uniE947" glyph="uniF58D"/>
+          <Ligature components="uniE948" glyph="uniF588"/>
+          <Ligature components="uniE949" glyph="uniF5A6"/>
+          <Ligature components="uniE94A" glyph="uniF5A5"/>
+          <Ligature components="uniE94B" glyph="uniF56A"/>
+          <Ligature components="uniE94C" glyph="uniF569"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE939">
+          <Ligature components="uniE93E" glyph="uniF5A1"/>
+          <Ligature components="uniE93F" glyph="uniF59B"/>
+          <Ligature components="uniE941" glyph="uniF5A3"/>
+          <Ligature components="uniE942" glyph="uniF59E"/>
+          <Ligature components="uniE943" glyph="uniF5A2"/>
+          <Ligature components="uniE944" glyph="uniF59D"/>
+          <Ligature components="uniE945" glyph="uniF5A4"/>
+          <Ligature components="uniE946" glyph="uniF59F"/>
+          <Ligature components="uniE947" glyph="uniF5A0"/>
+          <Ligature components="uniE948" glyph="uniF59C"/>
+          <Ligature components="uniE949" glyph="uniF5AA"/>
+          <Ligature components="uniE94A" glyph="uniF5A9"/>
+          <Ligature components="uniE94B" glyph="uniF56E"/>
+          <Ligature components="uniE94C" glyph="uniF56D"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93A">
+          <Ligature components="uniE93E" glyph="uniF596"/>
+          <Ligature components="uniE93F" glyph="uniF591"/>
+          <Ligature components="uniE941" glyph="uniF599"/>
+          <Ligature components="uniE942" glyph="uniF594"/>
+          <Ligature components="uniE943" glyph="uniF598"/>
+          <Ligature components="uniE944" glyph="uniF593"/>
+          <Ligature components="uniE945" glyph="uniF59A"/>
+          <Ligature components="uniE946" glyph="uniF595"/>
+          <Ligature components="uniE947" glyph="uniF597"/>
+          <Ligature components="uniE948" glyph="uniF592"/>
+          <Ligature components="uniE949" glyph="uniF5A8"/>
+          <Ligature components="uniE94A" glyph="uniF5A7"/>
+          <Ligature components="uniE94B" glyph="uniF56C"/>
+          <Ligature components="uniE94C" glyph="uniF56B"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93E">
+          <Ligature components="uniE930" glyph="uniF57D"/>
+          <Ligature components="uniE931" glyph="uniF585"/>
+          <Ligature components="uniE932" glyph="uniF581"/>
+          <Ligature components="uniE934" glyph="uniF571"/>
+          <Ligature components="uniE935" glyph="uniF579"/>
+          <Ligature components="uniE936" glyph="uniF575"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93F">
+          <Ligature components="uniE930" glyph="uniF57B"/>
+          <Ligature components="uniE931" glyph="uniF583"/>
+          <Ligature components="uniE932" glyph="uniF57F"/>
+          <Ligature components="uniE934" glyph="uniF56F"/>
+          <Ligature components="uniE935" glyph="uniF577"/>
+          <Ligature components="uniE936" glyph="uniF573"/>
+        </LigatureSet>
+      </LigatureSubst>
+    </Lookup>
+    <Lookup index="11">
+      <LookupType value="4"/>
+      <LookupFlag value="0"/>
+      <!-- SubTableCount=1 -->
+      <LigatureSubst index="0" Format="1">
+        <LigatureSet glyph="uniE058">
+          <Ligature components="uniE881,uniE880,uniE260" glyph="uniF545"/>
+          <Ligature components="uniE881,uniE880,uniE261" glyph="uniF55A"/>
+          <Ligature components="uniE881,uniE881,uniE260" glyph="uniF546"/>
+          <Ligature components="uniE881,uniE882,uniE262" glyph="uniF565"/>
+          <Ligature components="uniE881,uniE883,uniE260" glyph="uniF547"/>
+          <Ligature components="uniE881,uniE883,uniE261" glyph="uniF55B"/>
+          <Ligature components="uniE881,uniE884,uniE260" glyph="uniF548"/>
+          <Ligature components="uniE881,uniE885,uniE260" glyph="uniF549"/>
+          <Ligature components="uniE881,uniE886,uniE260" glyph="uniF54A"/>
+          <Ligature components="uniE881,uniE887,uniE261" glyph="uniF55C"/>
+          <Ligature components="uniE260,uniE881" glyph="uniF54B"/>
+          <Ligature components="uniE260,uniE882" glyph="uniF54D"/>
+          <Ligature components="uniE260,uniE883" glyph="uniF54F"/>
+          <Ligature components="uniE260,uniE884" glyph="uniF550"/>
+          <Ligature components="uniE260,uniE886" glyph="uniF553"/>
+          <Ligature components="uniE260,uniE887" glyph="uniF555"/>
+          <Ligature components="uniE260,uniE889" glyph="uniF558"/>
+          <Ligature components="uniE261,uniE882" glyph="uniF559"/>
+          <Ligature components="uniE261,uniE883" glyph="uniF55F"/>
+          <Ligature components="uniE261,uniE886" glyph="uniF561"/>
+          <Ligature components="uniE261,uniE889" glyph="uniF564"/>
+          <Ligature components="uniE262,uniE885" glyph="uniF568"/>
+          <Ligature components="uniE881,uniE880" glyph="uniF52D"/>
+          <Ligature components="uniE881,uniE881" glyph="uniF52E"/>
+          <Ligature components="uniE881,uniE882" glyph="uniF52F"/>
+          <Ligature components="uniE881,uniE883" glyph="uniF530"/>
+          <Ligature components="uniE881,uniE884" glyph="uniF531"/>
+          <Ligature components="uniE881,uniE885" glyph="uniF532"/>
+          <Ligature components="uniE881,uniE886" glyph="uniF533"/>
+          <Ligature components="uniE881,uniE887" glyph="uniF534"/>
+          <Ligature components="uniE880" glyph="uniF52C"/>
+          <Ligature components="uniE882" glyph="uniF536"/>
+          <Ligature components="uniE883" glyph="uniF538"/>
+          <Ligature components="uniE884" glyph="uniF53A"/>
+          <Ligature components="uniE885" glyph="uniF53C"/>
+          <Ligature components="uniE886" glyph="uniF53E"/>
+          <Ligature components="uniE887" glyph="uniF540"/>
+          <Ligature components="uniE888" glyph="uniF542"/>
+          <Ligature components="uniE889" glyph="uniF544"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE059">
+          <Ligature components="uniE881,uniE262" glyph="uniF566"/>
+          <Ligature components="uniE882,uniE260" glyph="uniF54C"/>
+          <Ligature components="uniE882,uniE261" glyph="uniF55D"/>
+          <Ligature components="uniE883,uniE260" glyph="uniF54E"/>
+          <Ligature components="uniE883,uniE261" glyph="uniF55E"/>
+          <Ligature components="uniE884,uniE262" glyph="uniF567"/>
+          <Ligature components="uniE885,uniE260" glyph="uniF551"/>
+          <Ligature components="uniE886,uniE260" glyph="uniF552"/>
+          <Ligature components="uniE886,uniE261" glyph="uniF560"/>
+          <Ligature components="uniE887,uniE260" glyph="uniF554"/>
+          <Ligature components="uniE887,uniE261" glyph="uniF562"/>
+          <Ligature components="uniE888,uniE260" glyph="uniF556"/>
+          <Ligature components="uniE889,uniE260" glyph="uniF557"/>
+          <Ligature components="uniE889,uniE261" glyph="uniF563"/>
+          <Ligature components="uniE882" glyph="uniF535"/>
+          <Ligature components="uniE883" glyph="uniF537"/>
+          <Ligature components="uniE884" glyph="uniF539"/>
+          <Ligature components="uniE885" glyph="uniF53B"/>
+          <Ligature components="uniE886" glyph="uniF53D"/>
+          <Ligature components="uniE887" glyph="uniF53F"/>
+          <Ligature components="uniE888" glyph="uniF541"/>
+          <Ligature components="uniE889" glyph="uniF543"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE062">
+          <Ligature components="uniE885" glyph="uniF52B"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE09E">
+          <Ligature components="uniE081,uniE09E,uniE082,uniE09F,uniE088" glyph="uniF5F3"/>
+          <Ligature components="uniE082,uniE09F,uniE082" glyph="uniF5E8"/>
+          <Ligature components="uniE082,uniE09F,uniE084" glyph="uniF5E7"/>
+          <Ligature components="uniE083,uniE09F,uniE082" glyph="uniF5E9"/>
+          <Ligature components="uniE083,uniE09F,uniE084" glyph="uniF5EA"/>
+          <Ligature components="uniE083,uniE09F,uniE088" glyph="uniF5EB"/>
+          <Ligature components="uniE084,uniE09F,uniE084" glyph="uniF5EC"/>
+          <Ligature components="uniE085,uniE09F,uniE084" glyph="uniF5ED"/>
+          <Ligature components="uniE085,uniE09F,uniE088" glyph="uniF5EE"/>
+          <Ligature components="uniE086,uniE09F,uniE084" glyph="uniF5EF"/>
+          <Ligature components="uniE086,uniE09F,uniE088" glyph="uniF5F0"/>
+          <Ligature components="uniE087,uniE09F,uniE088" glyph="uniF5F1"/>
+          <Ligature components="uniE089,uniE09F,uniE088" glyph="uniF5F2"/>
+          <Ligature components="uniE080" glyph="uniF5B7"/>
+          <Ligature components="uniE081" glyph="uniF5B9"/>
+          <Ligature components="uniE082" glyph="uniF5BB"/>
+          <Ligature components="uniE083" glyph="uniF5BD"/>
+          <Ligature components="uniE084" glyph="uniF5BF"/>
+          <Ligature components="uniE085" glyph="uniF5C1"/>
+          <Ligature components="uniE086" glyph="uniF5C3"/>
+          <Ligature components="uniE087" glyph="uniF5C5"/>
+          <Ligature components="uniE088" glyph="uniF5C7"/>
+          <Ligature components="uniE089" glyph="uniF5C9"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE09F">
+          <Ligature components="uniE080" glyph="uniF5B6"/>
+          <Ligature components="uniE081" glyph="uniF5B8"/>
+          <Ligature components="uniE082" glyph="uniF5BA"/>
+          <Ligature components="uniE083" glyph="uniF5BC"/>
+          <Ligature components="uniE084" glyph="uniF5BE"/>
+          <Ligature components="uniE085" glyph="uniF5C0"/>
+          <Ligature components="uniE086" glyph="uniF5C2"/>
+          <Ligature components="uniE087" glyph="uniF5C4"/>
+          <Ligature components="uniE088" glyph="uniF5C6"/>
+          <Ligature components="uniE089" glyph="uniF5C8"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE0F5">
+          <Ligature components="uniE0A0,uniE0F6" glyph="uniF5CD"/>
+          <Ligature components="uniE0A2,uniE0F6" glyph="uniF5CC"/>
+          <Ligature components="uniE0A3,uniE0F6" glyph="uniF5CB"/>
+          <Ligature components="uniE0A4,uniE0F6" glyph="uniF5CA"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE260">
+          <Ligature components="uniE2B2,uniE2B5" glyph="uniF5E4"/>
+          <Ligature components="uniE2B4,uniE2B2" glyph="uniF5E3"/>
+          <Ligature components="uniE567,uniE262" glyph="uniF5AF"/>
+          <Ligature components="uniE2B2" glyph="uniF5D6"/>
+          <Ligature components="uniE2B4" glyph="uniF5D7"/>
+          <Ligature components="uniE2B5" glyph="uniF5D8"/>
+          <Ligature components="uniE566" glyph="uniF5AB"/>
+          <Ligature components="uniE567" glyph="uniF5AE"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE261">
+          <Ligature components="uniE566" glyph="uniF5AC"/>
+          <Ligature components="uniE567" glyph="uniF5B1"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE262">
+          <Ligature components="uniE2B4,uniE2B2" glyph="uniF5DF"/>
+          <Ligature components="uniE2B5,uniE2B2" glyph="uniF5E0"/>
+          <Ligature components="uniE567,uniE260" glyph="uniF5B4"/>
+          <Ligature components="uniE2B2" glyph="uniF5D3"/>
+          <Ligature components="uniE2B4" glyph="uniF5D4"/>
+          <Ligature components="uniE2B5" glyph="uniF5D5"/>
+          <Ligature components="uniE566" glyph="uniF5AD"/>
+          <Ligature components="uniE567" glyph="uniF5B3"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE26A">
+          <Ligature components="uniE260,uniE26B" glyph="uniF5CE"/>
+          <Ligature components="uniE261,uniE26B" glyph="uniF5CF"/>
+          <Ligature components="uniE262,uniE26B" glyph="uniF5D0"/>
+          <Ligature components="uniE263,uniE26B" glyph="uniF5D1"/>
+          <Ligature components="uniE264,uniE26B" glyph="uniF5D2"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B3">
+          <Ligature components="uniE260,uniE2B4" glyph="uniF5E5"/>
+          <Ligature components="uniE260,uniE2B5" glyph="uniF5E6"/>
+          <Ligature components="uniE262,uniE2B4" glyph="uniF5E1"/>
+          <Ligature components="uniE262,uniE2B5" glyph="uniF5E2"/>
+          <Ligature components="uniE260" glyph="uniF5DA"/>
+          <Ligature components="uniE262" glyph="uniF5D9"/>
+          <Ligature components="uniE2B4" glyph="uniF5DB"/>
+          <Ligature components="uniE2B5" glyph="uniF5DC"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B4">
+          <Ligature components="uniE2B2" glyph="uniF5DD"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE2B5">
+          <Ligature components="uniE2B2" glyph="uniF5DE"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE520">
+          <Ligature components="uniE520,uniE520,uniE520,uniE520,uniE520" glyph="uniE527"/>
+          <Ligature components="uniE520,uniE520,uniE520,uniE520" glyph="uniE528"/>
+          <Ligature components="uniE520,uniE520,uniE520" glyph="uniE529"/>
+          <Ligature components="uniE520,uniE520" glyph="uniE52A"/>
+          <Ligature components="uniE520" glyph="uniE52B"/>
+          <Ligature components="uniE522" glyph="uniE52E"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE521">
+          <Ligature components="uniE520" glyph="uniE52C"/>
+          <Ligature components="uniE522" glyph="uniE52D"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE522">
+          <Ligature components="uniE522,uniE522,uniE522,uniE522,uniE522" glyph="uniE533"/>
+          <Ligature components="uniE522,uniE522,uniE522,uniE522" glyph="uniE532"/>
+          <Ligature components="uniE522,uniE522,uniE522" glyph="uniE531"/>
+          <Ligature components="uniE522,uniE522" glyph="uniE530"/>
+          <Ligature components="uniE520" glyph="uniE534"/>
+          <Ligature components="uniE522" glyph="uniE52F"/>
+          <Ligature components="uniE525" glyph="uniE535"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE523">
+          <Ligature components="uniE522,uniE525" glyph="uniE53D"/>
+          <Ligature components="uniE522" glyph="uniE53C"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE524">
+          <Ligature components="uniE522,uniE520,uniE520" glyph="uniE538"/>
+          <Ligature components="uniE522,uniE522,uniE525" glyph="uniE53B"/>
+          <Ligature components="uniE522,uniE525,uniE520" glyph="uniE53A"/>
+          <Ligature components="uniE522,uniE520" glyph="uniE537"/>
+          <Ligature components="uniE522,uniE525" glyph="uniE539"/>
+          <Ligature components="uniE522" glyph="uniE536"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE567">
+          <Ligature components="uniE260" glyph="uniF5B0"/>
+          <Ligature components="uniE261" glyph="uniF5B2"/>
+          <Ligature components="uniE262" glyph="uniF5B5"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE930">
+          <Ligature components="uniE93E" glyph="uniF57E"/>
+          <Ligature components="uniE93F" glyph="uniF57C"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE931">
+          <Ligature components="uniE93E" glyph="uniF586"/>
+          <Ligature components="uniE93F" glyph="uniF584"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE932">
+          <Ligature components="uniE93E" glyph="uniF582"/>
+          <Ligature components="uniE93F" glyph="uniF580"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE934">
+          <Ligature components="uniE93E" glyph="uniF572"/>
+          <Ligature components="uniE93F" glyph="uniF570"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE935">
+          <Ligature components="uniE93E" glyph="uniF57A"/>
+          <Ligature components="uniE93F" glyph="uniF578"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE936">
+          <Ligature components="uniE93E" glyph="uniF576"/>
+          <Ligature components="uniE93F" glyph="uniF574"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE938">
+          <Ligature components="uniE93E" glyph="uniF58C"/>
+          <Ligature components="uniE93F" glyph="uniF587"/>
+          <Ligature components="uniE941" glyph="uniF58F"/>
+          <Ligature components="uniE942" glyph="uniF58A"/>
+          <Ligature components="uniE943" glyph="uniF58E"/>
+          <Ligature components="uniE944" glyph="uniF589"/>
+          <Ligature components="uniE945" glyph="uniF590"/>
+          <Ligature components="uniE946" glyph="uniF58B"/>
+          <Ligature components="uniE947" glyph="uniF58D"/>
+          <Ligature components="uniE948" glyph="uniF588"/>
+          <Ligature components="uniE949" glyph="uniF5A6"/>
+          <Ligature components="uniE94A" glyph="uniF5A5"/>
+          <Ligature components="uniE94B" glyph="uniF56A"/>
+          <Ligature components="uniE94C" glyph="uniF569"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE939">
+          <Ligature components="uniE93E" glyph="uniF5A1"/>
+          <Ligature components="uniE93F" glyph="uniF59B"/>
+          <Ligature components="uniE941" glyph="uniF5A3"/>
+          <Ligature components="uniE942" glyph="uniF59E"/>
+          <Ligature components="uniE943" glyph="uniF5A2"/>
+          <Ligature components="uniE944" glyph="uniF59D"/>
+          <Ligature components="uniE945" glyph="uniF5A4"/>
+          <Ligature components="uniE946" glyph="uniF59F"/>
+          <Ligature components="uniE947" glyph="uniF5A0"/>
+          <Ligature components="uniE948" glyph="uniF59C"/>
+          <Ligature components="uniE949" glyph="uniF5AA"/>
+          <Ligature components="uniE94A" glyph="uniF5A9"/>
+          <Ligature components="uniE94B" glyph="uniF56E"/>
+          <Ligature components="uniE94C" glyph="uniF56D"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93A">
+          <Ligature components="uniE93E" glyph="uniF596"/>
+          <Ligature components="uniE93F" glyph="uniF591"/>
+          <Ligature components="uniE941" glyph="uniF599"/>
+          <Ligature components="uniE942" glyph="uniF594"/>
+          <Ligature components="uniE943" glyph="uniF598"/>
+          <Ligature components="uniE944" glyph="uniF593"/>
+          <Ligature components="uniE945" glyph="uniF59A"/>
+          <Ligature components="uniE946" glyph="uniF595"/>
+          <Ligature components="uniE947" glyph="uniF597"/>
+          <Ligature components="uniE948" glyph="uniF592"/>
+          <Ligature components="uniE949" glyph="uniF5A8"/>
+          <Ligature components="uniE94A" glyph="uniF5A7"/>
+          <Ligature components="uniE94B" glyph="uniF56C"/>
+          <Ligature components="uniE94C" glyph="uniF56B"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93E">
+          <Ligature components="uniE930" glyph="uniF57D"/>
+          <Ligature components="uniE931" glyph="uniF585"/>
+          <Ligature components="uniE932" glyph="uniF581"/>
+          <Ligature components="uniE934" glyph="uniF571"/>
+          <Ligature components="uniE935" glyph="uniF579"/>
+          <Ligature components="uniE936" glyph="uniF575"/>
+        </LigatureSet>
+        <LigatureSet glyph="uniE93F">
+          <Ligature components="uniE930" glyph="uniF57B"/>
+          <Ligature components="uniE931" glyph="uniF583"/>
+          <Ligature components="uniE932" glyph="uniF57F"/>
+          <Ligature components="uniE934" glyph="uniF56F"/>
+          <Ligature components="uniE935" glyph="uniF577"/>
+          <Ligature components="uniE936" glyph="uniF573"/>
+        </LigatureSet>
+      </LigatureSubst>
+    </Lookup>
+  </LookupList>
+</GSUB>
+</OTLayout>

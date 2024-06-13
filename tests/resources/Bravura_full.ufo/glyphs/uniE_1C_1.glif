@@ -1,0 +1,51 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1C1" format="2">
+  <advance width="294"/>
+  <unicode hex="E1C1"/>
+  <note>
+{'name': 'noteShapeKeystoneBlack', 'description': 'Inverted keystone black (Walker 7-shape do)'}
+</note>
+  <anchor x="0" y="110" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="294" y="114" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="44" y="-109" type="line" smooth="yes"/>
+      <point x="46" y="-118"/>
+      <point x="54" y="-125"/>
+      <point x="62" y="-125" type="curve" smooth="yes"/>
+      <point x="231" y="-125" type="line" smooth="yes"/>
+      <point x="240" y="-125"/>
+      <point x="248" y="-118"/>
+      <point x="250" y="-109" type="curve" smooth="yes"/>
+      <point x="294" y="113" type="line"/>
+      <point x="294" y="120"/>
+      <point x="289" y="125"/>
+      <point x="281" y="125" type="curve" smooth="yes"/>
+      <point x="12" y="125" type="line" smooth="yes"/>
+      <point x="5" y="125"/>
+      <point x="0" y="120"/>
+      <point x="0" y="110" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 250</string>
+              <string>vstem 0 294</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>296359850bc2cfe72909bc86e8e568f38eaf75e1dba1e373fec43cde62bd300eca6547809fd533e36eebece46f5e705324c2cf5862b41353d2c677df4b1b7d85</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

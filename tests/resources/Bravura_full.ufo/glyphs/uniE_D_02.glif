@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniED02" format="2">
+  <advance width="372"/>
+  <unicode hex="ED02"/>
+  <note>
+{'name': 'functionNUpperSuperscript', 'description': 'Function theory superscript N'}
+</note>
+  <outline>
+    <contour>
+      <point x="20" y="728" type="line"/>
+      <point x="20" y="343" type="line"/>
+      <point x="77" y="343" type="line"/>
+      <point x="77" y="641" type="line"/>
+      <point x="287" y="343" type="line"/>
+      <point x="352" y="343" type="line"/>
+      <point x="352" y="728" type="line"/>
+      <point x="294" y="728" type="line"/>
+      <point x="294" y="427" type="line"/>
+      <point x="83" y="728" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 343 385</string>
+              <string>vstem 20 57</string>
+              <string>vstem 294 58</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w372m20,728l20,343l77,343l77,641l287,343l352,343l352,728l294,728l294,427l83,728</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

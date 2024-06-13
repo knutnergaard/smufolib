@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2B4" format="2">
+  <advance width="180"/>
+  <unicode hex="E2B4"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsJohnston', 'combiningStaffPositions'], 'name': 'accidentalJohnstonUp', 'description': 'Up arrow (raise by 33:32)'}
+</note>
+  <outline>
+    <contour>
+      <point x="90" y="180" type="line"/>
+      <point x="0" y="90" type="line"/>
+      <point x="20" y="70" type="line"/>
+      <point x="75" y="125" type="line"/>
+      <point x="75" y="-125" type="line"/>
+      <point x="105" y="-125" type="line"/>
+      <point x="105" y="125" type="line"/>
+      <point x="160" y="70" type="line"/>
+      <point x="180" y="90" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 305</string>
+              <string>vstem 75 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w180m90,180l0,90l20,70l75,125l75,-125l105,-125l105,125l160,70l180,90</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

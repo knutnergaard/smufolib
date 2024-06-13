@@ -1,0 +1,61 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE0A2.ss05" format="2">
+  <advance width="459"/>
+  <unicode hex="F4BC"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetDefault', 'noteheads'], 'name': 'noteheadWholeOversized', 'description': 'Whole notehead (oversized)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="2" type="curve" smooth="yes"/>
+      <point x="0" y="-71"/>
+      <point x="62" y="-136"/>
+      <point x="224" y="-136" type="curve" smooth="yes"/>
+      <point x="402" y="-136"/>
+      <point x="459" y="-74"/>
+      <point x="459" y="2" type="curve" smooth="yes"/>
+      <point x="459" y="79"/>
+      <point x="336" y="137"/>
+      <point x="235" y="137" type="curve" smooth="yes"/>
+      <point x="90" y="137"/>
+      <point x="0" y="76"/>
+    </contour>
+    <contour>
+      <point x="117" y="42" type="curve" smooth="yes"/>
+      <point x="117" y="98"/>
+      <point x="156" y="112"/>
+      <point x="207" y="112" type="curve" smooth="yes"/>
+      <point x="281" y="112"/>
+      <point x="341" y="32"/>
+      <point x="341" y="-34" type="curve" smooth="yes"/>
+      <point x="341" y="-89"/>
+      <point x="307" y="-111"/>
+      <point x="258" y="-111" type="curve" smooth="yes"/>
+      <point x="186" y="-111"/>
+      <point x="117" y="-28"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -136 25</string>
+              <string>hstem 112 25</string>
+              <string>vstem 0 117</string>
+              <string>vstem 341 118</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6312430092ebee87f2862a4ae6b139951f03a1f8a6fbd4b7844b423aacffc034670ef9f6677567d81e5c7cb29a9c97855b250fcb4a83e30cc247f2787d54cb74</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

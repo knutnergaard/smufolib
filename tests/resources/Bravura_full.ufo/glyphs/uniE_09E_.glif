@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE09E" format="2">
+  <unicode hex="E09E"/>
+  <note>
+{'classes': ['forTextBasedApplications'], 'name': 'timeSigCombNumerator', 'description': 'Control character for numerator digit'}
+</note>
+  <outline>
+  </outline>
+</glyph>

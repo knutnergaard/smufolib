@@ -1,0 +1,100 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE7A1" format="2">
+  <advance width="321"/>
+  <unicode hex="E7A1"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterDoubleBassDrumDown', 'description': 'Double bass drum stick down'}
+</note>
+  <outline>
+    <contour>
+      <point x="34" y="0" type="curve" smooth="yes"/>
+      <point x="287" y="0" type="line" smooth="yes"/>
+      <point x="305" y="0"/>
+      <point x="320" y="15"/>
+      <point x="320" y="33" type="curve" smooth="yes"/>
+      <point x="320" y="353" type="line" smooth="yes"/>
+      <point x="320" y="371"/>
+      <point x="305" y="386"/>
+      <point x="287" y="386" type="curve" smooth="yes"/>
+      <point x="175" y="386" type="line"/>
+      <point x="175" y="585" type="line"/>
+      <point x="233" y="585" type="line" smooth="yes"/>
+      <point x="247" y="585"/>
+      <point x="259" y="595"/>
+      <point x="259" y="607" type="curve" smooth="yes"/>
+      <point x="259" y="740" type="line" smooth="yes"/>
+      <point x="259" y="753"/>
+      <point x="247" y="763"/>
+      <point x="233" y="763" type="curve" smooth="yes"/>
+      <point x="88" y="763" type="line" smooth="yes"/>
+      <point x="73" y="763"/>
+      <point x="62" y="753"/>
+      <point x="62" y="740" type="curve" smooth="yes"/>
+      <point x="62" y="607" type="line" smooth="yes"/>
+      <point x="62" y="595"/>
+      <point x="73" y="585"/>
+      <point x="88" y="585" type="curve" smooth="yes"/>
+      <point x="145" y="585" type="line"/>
+      <point x="145" y="386" type="line"/>
+      <point x="34" y="386" type="line" smooth="yes"/>
+      <point x="15" y="386"/>
+      <point x="0" y="371"/>
+      <point x="0" y="353" type="curve" smooth="yes"/>
+      <point x="0" y="33" type="line" smooth="yes"/>
+      <point x="0" y="15"/>
+      <point x="15" y="0"/>
+    </contour>
+    <contour>
+      <point x="30" y="353" type="line"/>
+      <point x="30" y="355"/>
+      <point x="32" y="356"/>
+      <point x="34" y="356" type="curve"/>
+      <point x="287" y="356" type="line"/>
+      <point x="289" y="356"/>
+      <point x="290" y="355"/>
+      <point x="290" y="353" type="curve"/>
+      <point x="290" y="33" type="line"/>
+      <point x="290" y="32"/>
+      <point x="289" y="30"/>
+      <point x="287" y="30" type="curve"/>
+      <point x="34" y="30" type="line"/>
+      <point x="32" y="30"/>
+      <point x="30" y="32"/>
+      <point x="30" y="33" type="curve"/>
+    </contour>
+    <contour>
+      <point x="92" y="615" type="line"/>
+      <point x="92" y="733" type="line"/>
+      <point x="229" y="733" type="line"/>
+      <point x="229" y="615" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 30</string>
+              <string>hstem 356 30</string>
+              <string>hstem 585 30</string>
+              <string>hstem 733 30</string>
+              <string>vstem 0 30</string>
+              <string>vstem 62 30</string>
+              <string>vstem 145 30</string>
+              <string>vstem 229 30</string>
+              <string>vstem 290 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f7ae8f7fa7d30c43ad548f813bdca5a0928dbbddd0b1819ae2e4ea44284ca0bbffb6fac70776fb9b658cbaefcb489aba896b897bc44ac4434802d2d82667e778</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

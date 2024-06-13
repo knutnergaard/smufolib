@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE311" format="2">
+  <advance width="345"/>
+  <unicode hex="E311"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalFlat25SUp', 'description': 'Flat 25S-up, 3° down [53 EDO]'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-47" type="curve"/>
+      <point x="31" y="-47" type="line"/>
+      <point x="31" y="-14"/>
+      <point x="43" y="3"/>
+      <point x="66" y="3" type="curve" smooth="yes"/>
+      <point x="72" y="3"/>
+      <point x="79" y="2"/>
+      <point x="86" y="0" type="curve" smooth="yes"/>
+      <point x="123" y="-10"/>
+      <point x="151" y="-67"/>
+      <point x="172" y="-171" type="curve"/>
+      <point x="182" y="-119"/>
+      <point x="207" y="3"/>
+      <point x="278" y="3" type="curve" smooth="yes"/>
+      <point x="302" y="3"/>
+      <point x="313" y="-14"/>
+      <point x="313" y="-47" type="curve"/>
+      <point x="345" y="-47" type="line"/>
+      <point x="345" y="37"/>
+      <point x="319" y="78"/>
+      <point x="267" y="78" type="curve" smooth="yes"/>
+      <point x="261" y="78"/>
+      <point x="256" y="78"/>
+      <point x="251" y="77" type="curve"/>
+      <point x="250" y="359" type="line"/>
+      <point x="219" y="359" type="line"/>
+      <point x="219" y="61" type="line"/>
+      <point x="200" y="45"/>
+      <point x="184" y="19"/>
+      <point x="172" y="-18" type="curve"/>
+      <point x="160" y="19"/>
+      <point x="144" y="45"/>
+      <point x="125" y="61" type="curve"/>
+      <point x="125" y="359" type="line"/>
+      <point x="94" y="359" type="line"/>
+      <point x="94" y="77" type="line"/>
+      <point x="89" y="78"/>
+      <point x="83" y="78"/>
+      <point x="78" y="78" type="curve" smooth="yes"/>
+      <point x="26" y="78"/>
+      <point x="0" y="37"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 3 75</string>
+              <string>hstem 359 -20</string>
+              <string>vstem 94 31</string>
+              <string>vstem 219 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d92b235d4b8d8f445bfde487f7395fa4f8b2b4e53c7943faedf1373e1e5980c2e5044798f2dde72a39b2525d10fb79210124ccd469ce76654f627478130e63c8</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

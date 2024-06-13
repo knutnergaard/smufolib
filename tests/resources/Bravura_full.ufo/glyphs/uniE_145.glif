@@ -1,0 +1,42 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE145" format="2">
+  <advance width="344"/>
+  <unicode hex="E145"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSquare', 'noteheads'], 'name': 'noteheadRectangularClusterWhiteTop', 'description': 'Combining white rectangular cluster, top'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-135" type="line"/>
+      <point x="52" y="-135" type="line"/>
+      <point x="52" y="73" type="line"/>
+      <point x="292" y="73" type="line"/>
+      <point x="292" y="-135" type="line"/>
+      <point x="344" y="-135" type="line"/>
+      <point x="344" y="125" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 73 52</string>
+              <string>vstem 0 52</string>
+              <string>vstem 292 52</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w344m0,-135l52,-135l52,73l292,73l292,-135l344,-135l344,125l0,125</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

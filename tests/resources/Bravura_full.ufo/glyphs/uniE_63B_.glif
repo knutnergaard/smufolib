@@ -1,0 +1,82 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE63B" format="2">
+  <advance width="216"/>
+  <unicode hex="E63B"/>
+  <note>
+{'classes': ['stemDecorations'], 'name': 'pluckedDampOnStem', 'description': 'Damp for stem'}
+</note>
+  <outline>
+    <contour>
+      <point x="-184" y="-18" type="curve" smooth="yes"/>
+      <point x="-149" y="-18" type="line"/>
+      <point x="-140" y="-94"/>
+      <point x="-76" y="-152"/>
+      <point x="2" y="-152" type="curve" smooth="yes"/>
+      <point x="80" y="-152"/>
+      <point x="144" y="-94"/>
+      <point x="153" y="-18" type="curve"/>
+      <point x="185" y="-18" type="line" smooth="yes"/>
+      <point x="214" y="-18"/>
+      <point x="216" y="-10"/>
+      <point x="216" y="0" type="curve" smooth="yes"/>
+      <point x="216" y="11"/>
+      <point x="216" y="19"/>
+      <point x="185" y="19" type="curve" smooth="yes"/>
+      <point x="153" y="19" type="line"/>
+      <point x="143" y="94"/>
+      <point x="80" y="152"/>
+      <point x="2" y="152" type="curve" smooth="yes"/>
+      <point x="-76" y="152"/>
+      <point x="-139" y="94"/>
+      <point x="-149" y="19" type="curve"/>
+      <point x="-184" y="19" type="line" smooth="yes"/>
+      <point x="-214" y="19"/>
+      <point x="-214" y="11"/>
+      <point x="-214" y="0" type="curve" smooth="yes"/>
+      <point x="-214" y="-10"/>
+      <point x="-214" y="-18"/>
+    </contour>
+    <contour>
+      <point x="121" y="-18" type="line"/>
+      <point x="112" y="-76"/>
+      <point x="62" y="-120"/>
+      <point x="2" y="-120" type="curve" smooth="yes"/>
+      <point x="-58" y="-120"/>
+      <point x="-108" y="-76"/>
+      <point x="-117" y="-18" type="curve"/>
+    </contour>
+    <contour>
+      <point x="-116" y="19" type="line"/>
+      <point x="-107" y="76"/>
+      <point x="-58" y="120"/>
+      <point x="2" y="120" type="curve" smooth="yes"/>
+      <point x="62" y="120"/>
+      <point x="111" y="76"/>
+      <point x="120" y="19" type="curve"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 32</string>
+              <string>hstem 134 37</string>
+              <string>hstem 272 32</string>
+              <string>vstem 1 33</string>
+              <string>vstem 271 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>dc500290f4f658b7f44801d118f389e771444898276e378b84bbf89444c183630123f7a43c2cd9791f1a49bf9164de27c2e5432c0baa01435b6e6cd23772f456</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

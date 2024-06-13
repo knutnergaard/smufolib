@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE106.ss08" format="2">
+  <advance width="636"/>
+  <unicode hex="F4E9"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSlashHorizontalEnds', 'noteheads'], 'name': 'noteheadSlashXOversized', 'description': 'Oversized large X notehead'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-300" type="line"/>
+      <point x="120" y="-300" type="line"/>
+      <point x="318" y="-70" type="line"/>
+      <point x="516" y="-300" type="line"/>
+      <point x="636" y="-300" type="line"/>
+      <point x="378" y="0" type="line"/>
+      <point x="636" y="300" type="line"/>
+      <point x="516" y="300" type="line"/>
+      <point x="318" y="70" type="line"/>
+      <point x="120" y="300" type="line"/>
+      <point x="0" y="300" type="line"/>
+      <point x="258" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 530</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w636m0,-300l120,-300l318,-70l516,-300l636,-300l378,0l636,300l516,300l318,70l120,300l0,300l258,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

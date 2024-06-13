@@ -1,0 +1,95 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEB17" format="2">
+  <advance width="947"/>
+  <unicode hex="EB17"/>
+  <note>
+{'name': 'elecVideoCamera', 'description': 'Video camera'}
+</note>
+  <outline>
+    <contour>
+      <point x="25" y="0" type="curve" smooth="yes"/>
+      <point x="621" y="0" type="line" smooth="yes"/>
+      <point x="634" y="0"/>
+      <point x="645" y="11"/>
+      <point x="645" y="24" type="curve" smooth="yes"/>
+      <point x="645" y="512" type="line" smooth="yes"/>
+      <point x="645" y="525"/>
+      <point x="634" y="536"/>
+      <point x="621" y="536" type="curve" smooth="yes"/>
+      <point x="25" y="536" type="line" smooth="yes"/>
+      <point x="12" y="536"/>
+      <point x="1" y="525"/>
+      <point x="1" y="512" type="curve" smooth="yes"/>
+      <point x="1" y="24" type="line" smooth="yes"/>
+      <point x="1" y="11"/>
+      <point x="12" y="0"/>
+    </contour>
+    <contour>
+      <point x="49" y="488" type="line"/>
+      <point x="597" y="488" type="line"/>
+      <point x="597" y="48" type="line"/>
+      <point x="49" y="48" type="line"/>
+    </contour>
+    <contour>
+      <point x="663" y="170" type="line" smooth="yes"/>
+      <point x="663" y="160"/>
+      <point x="669" y="152"/>
+      <point x="677" y="148" type="curve" smooth="yes"/>
+      <point x="913" y="44" type="line" smooth="yes"/>
+      <point x="916" y="43"/>
+      <point x="920" y="42"/>
+      <point x="923" y="42" type="curve" smooth="yes"/>
+      <point x="928" y="42"/>
+      <point x="932" y="44"/>
+      <point x="936" y="46" type="curve" smooth="yes"/>
+      <point x="943" y="51"/>
+      <point x="947" y="58"/>
+      <point x="947" y="66" type="curve" smooth="yes"/>
+      <point x="947" y="459" type="line" smooth="yes"/>
+      <point x="947" y="467"/>
+      <point x="943" y="475"/>
+      <point x="936" y="479" type="curve" smooth="yes"/>
+      <point x="932" y="482"/>
+      <point x="927" y="483"/>
+      <point x="923" y="483" type="curve" smooth="yes"/>
+      <point x="920" y="483"/>
+      <point x="916" y="482"/>
+      <point x="913" y="481" type="curve" smooth="yes"/>
+      <point x="677" y="378" type="line" smooth="yes"/>
+      <point x="669" y="374"/>
+      <point x="663" y="365"/>
+      <point x="663" y="356" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="711" y="340" type="line"/>
+      <point x="899" y="422" type="line"/>
+      <point x="899" y="103" type="line"/>
+      <point x="711" y="186" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 48</string>
+              <string>hstem 488 48</string>
+              <string>vstem 1 48</string>
+              <string>vstem 597 48</string>
+              <string>vstem 663 48</string>
+              <string>vstem 899 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>f6f35e1976a58693bb4aa5367da117a79397592ed092ae876134e7aa74332da3dc5260386019a2623951d8c038dd3739f1d1acaeb7ed0bd7f57d89cf97e19fd0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

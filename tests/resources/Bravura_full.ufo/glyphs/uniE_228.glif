@@ -1,0 +1,76 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE228" format="2">
+  <advance width="149"/>
+  <unicode hex="E228"/>
+  <note>
+{'name': 'tremoloFingered4', 'description': 'Fingered tremolo 4'}
+</note>
+  <outline>
+    <contour>
+      <point x="150" y="62" type="line"/>
+      <point x="150" y="187" type="line"/>
+      <point x="-150" y="124" type="line"/>
+      <point x="-150" y="-1" type="line" name="hr01"/>
+    </contour>
+    <contour>
+      <point x="150" y="-309" type="line"/>
+      <point x="150" y="-184" type="line"/>
+      <point x="-150" y="-246" type="line"/>
+      <point x="-150" y="-371" type="line" name="hr02"/>
+    </contour>
+    <contour>
+      <point x="-150" y="-62" type="line"/>
+      <point x="-150" y="-187" type="line"/>
+      <point x="150" y="-125" type="line"/>
+      <point x="150" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="-150" y="315" type="line"/>
+      <point x="-150" y="190" type="line"/>
+      <point x="150" y="252" type="line"/>
+      <point x="150" y="377" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem -150 300</string>
+              <string>hstem -371 558</string>
+              <string>hstem 190 187</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 20 -21</string>
+              <string>vstem -150 300</string>
+              <string>hstem 190 187</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -371 558</string>
+              <string>vstem -150 300</string>
+              <string>hstem 190 187</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>7eae60d6807e6f439bb87d49604eef7a0ed06d105d11fbf7b619cacfcf99e091635dd66029d9fe62743f2c164cda99d2d130d445e1df45df7fac9f5680597012</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

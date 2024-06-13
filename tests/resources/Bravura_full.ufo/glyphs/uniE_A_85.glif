@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA85" format="2">
+  <advance width="610"/>
+  <unicode hex="EA85"/>
+  <note>
+{'name': 'functionNUpper', 'description': 'Function theory N'}
+</note>
+  <outline>
+    <contour>
+      <point x="108" y="0" type="line"/>
+      <point x="108" y="591" type="line"/>
+      <point x="485" y="0" type="line"/>
+      <point x="590" y="0" type="line"/>
+      <point x="590" y="729" type="line"/>
+      <point x="502" y="729" type="line"/>
+      <point x="502" y="133" type="line"/>
+      <point x="121" y="729" type="line"/>
+      <point x="20" y="729" type="line"/>
+      <point x="20" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 729 -20</string>
+              <string>vstem 20 88</string>
+              <string>vstem 502 88</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w610m108,0l108,591l485,0l590,0l590,729l502,729l502,133l121,729l20,729l20,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

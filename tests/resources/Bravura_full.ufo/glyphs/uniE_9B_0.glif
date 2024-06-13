@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9B0" format="2">
+  <advance width="139"/>
+  <unicode hex="E9B0"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'chantPodatusLower', 'description': 'Podatus, lower'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="133" type="curve" smooth="yes"/>
+      <point x="0" y="7" type="line" smooth="yes"/>
+      <point x="0" y="1"/>
+      <point x="4" y="0"/>
+      <point x="27" y="0" type="curve" smooth="yes"/>
+      <point x="119" y="0" type="line" smooth="yes"/>
+      <point x="147" y="0"/>
+      <point x="154" y="0"/>
+      <point x="154" y="8" type="curve" smooth="yes"/>
+      <point x="154" y="164" type="line"/>
+      <point x="139" y="164" type="line"/>
+      <point x="139" y="158" type="line" smooth="yes"/>
+      <point x="139" y="143"/>
+      <point x="130" y="140"/>
+      <point x="100" y="140" type="curve" smooth="yes"/>
+      <point x="70" y="140" type="line" smooth="yes"/>
+      <point x="34" y="140"/>
+      <point x="13" y="140"/>
+      <point x="6" y="142" type="curve"/>
+      <point x="3" y="142"/>
+      <point x="0" y="139"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 140</string>
+              <string>vstem 139 15</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c57e5d37ca9daf885b5fdf57ef27bf8fd978108ea56ab7598cb856391e2ec939bbcfee3899c047d665f6d7f42aa7794e252bc4904ba0ff2aa69503f5a2f9d675</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

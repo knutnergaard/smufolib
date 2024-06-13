@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE13F" format="2">
+  <advance width="296"/>
+  <unicode hex="E13F"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetDiamond', 'noteheads'], 'name': 'noteheadDiamondClusterBlackTop', 'description': 'Combining black diamond cluster, top'}
+</note>
+  <anchor x="343" y="-53" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="12" y="-33" type="curve"/>
+      <point x="41" y="-49"/>
+      <point x="82" y="-93"/>
+      <point x="82" y="-125" type="curve"/>
+      <point x="220" y="-125" type="line"/>
+      <point x="220" y="-88"/>
+      <point x="237" y="-60"/>
+      <point x="280" y="-36" type="curve" smooth="yes"/>
+      <point x="290" y="-30"/>
+      <point x="296" y="-24" name="hr01"/>
+      <point x="296" y="-19" type="curve" smooth="yes"/>
+      <point x="296" y="-14"/>
+      <point x="291" y="-10"/>
+      <point x="279" y="-5" type="curve" smooth="yes"/>
+      <point x="261" y="2"/>
+      <point x="238" y="23"/>
+      <point x="229" y="28" type="curve"/>
+      <point x="204" y="49"/>
+      <point x="182" y="76"/>
+      <point x="166" y="104" type="curve" smooth="yes"/>
+      <point x="158" y="117"/>
+      <point x="153" y="124"/>
+      <point x="149" y="124" type="curve" smooth="yes"/>
+      <point x="144" y="124"/>
+      <point x="139" y="117"/>
+      <point x="132" y="104" type="curve" smooth="yes"/>
+      <point x="111" y="60"/>
+      <point x="55" y="16"/>
+      <point x="12" y="-6" type="curve"/>
+      <point x="4" y="-11"/>
+      <point x="0" y="-16"/>
+      <point x="0" y="-20" type="curve" smooth="yes"/>
+      <point x="0" y="-24"/>
+      <point x="4" y="-30"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 82 138</string>
+              <string>hstem -125 249</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 296</string>
+              <string>hstem -125 249</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>a0d5c47fb418231b156e25b5aaed65a010888896ebfe5a303eabb8af95e9ae3011d98639ee57be576efa08a178cfc798564839f7794385e41f2d82987df1482a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

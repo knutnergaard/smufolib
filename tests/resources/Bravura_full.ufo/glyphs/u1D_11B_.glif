@@ -1,0 +1,69 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="u1D11B" format="2">
+  <advance width="500"/>
+  <unicode hex="1D11B"/>
+  <outline>
+    <contour>
+      <point x="0" y="141" type="line"/>
+      <point x="0" y="109" type="line"/>
+      <point x="500" y="109" type="line"/>
+      <point x="500" y="141" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="891" type="line"/>
+      <point x="0" y="859" type="line"/>
+      <point x="500" y="859" type="line"/>
+      <point x="500" y="891" type="line"/>
+    </contour>
+    <contour>
+      <point x="500" y="609" type="line"/>
+      <point x="500" y="641" type="line"/>
+      <point x="0" y="641" type="line"/>
+      <point x="0" y="609" type="line"/>
+    </contour>
+    <contour>
+      <point x="500" y="359" type="line"/>
+      <point x="500" y="391" type="line"/>
+      <point x="0" y="391" type="line"/>
+      <point x="0" y="359" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="1141" type="line"/>
+      <point x="0" y="1109" type="line"/>
+      <point x="500" y="1109" type="line"/>
+      <point x="500" y="1141" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-109" type="line"/>
+      <point x="0" y="-141" type="line"/>
+      <point x="500" y="-141" type="line"/>
+      <point x="500" y="-109" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -141 32</string>
+              <string>hstem 109 32</string>
+              <string>hstem 359 32</string>
+              <string>hstem 609 32</string>
+              <string>hstem 859 32</string>
+              <string>hstem 1109 32</string>
+              <string>vstem 0 500</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>bff86621e1aa6a27a837ba90ce96bcd2328b8c992fad99c6ddc1aca5396cd62e0a9c035bd54275027e2fd4c9d6b8d215cd9eceb89976c7106572e532b8f76bc8</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

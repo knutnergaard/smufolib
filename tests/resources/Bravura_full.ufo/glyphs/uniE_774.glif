@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE774" format="2">
+  <advance width="234"/>
+  <unicode hex="E774"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictBeaterMediumXylophoneUp', 'description': 'Medium xylophone stick up'}
+</note>
+  <outline>
+    <contour>
+      <point x="101" y="513" type="curve"/>
+      <point x="101" y="14" type="line" smooth="yes"/>
+      <point x="101" y="6"/>
+      <point x="108" y="-1"/>
+      <point x="116" y="-1" type="curve" smooth="yes"/>
+      <point x="125" y="-1"/>
+      <point x="131" y="6"/>
+      <point x="131" y="14" type="curve" smooth="yes"/>
+      <point x="131" y="513" type="line"/>
+      <point x="188" y="520"/>
+      <point x="231" y="568"/>
+      <point x="231" y="627" type="curve" smooth="yes"/>
+      <point x="231" y="690"/>
+      <point x="180" y="742"/>
+      <point x="116" y="742" type="curve" smooth="yes"/>
+      <point x="53" y="742"/>
+      <point x="1" y="690"/>
+      <point x="1" y="627" type="curve" smooth="yes"/>
+      <point x="1" y="568"/>
+      <point x="45" y="520"/>
+    </contour>
+    <contour>
+      <point x="116" y="542" type="curve"/>
+      <point x="116" y="712" type="line"/>
+      <point x="163" y="712"/>
+      <point x="201" y="674"/>
+      <point x="201" y="627" type="curve" smooth="yes"/>
+      <point x="201" y="580"/>
+      <point x="163" y="542"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 20 -21</string>
+              <string>hstem 513 29</string>
+              <string>hstem 712 30</string>
+              <string>vstem 101 30</string>
+              <string>vstem 201 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>b157444f8279672f3d51a0b624f5fcb2fd1deccdd0b37f7ecb350c1b700ef69de2eee9b009345f41a9fe73ea48dd113edf90d5038148f8570764fc88bfe5d9d7</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

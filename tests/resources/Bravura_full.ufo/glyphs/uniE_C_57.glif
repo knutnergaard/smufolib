@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC57" format="2">
+  <advance width="542"/>
+  <unicode hex="EC57"/>
+  <note>
+{'name': 'smnHistoryDoubleFlat', 'description': 'Double flat history sign'}
+</note>
+  <outline>
+    <contour>
+      <point x="13" y="-112" type="curve" smooth="yes"/>
+      <point x="530" y="-112" type="line" smooth="yes"/>
+      <point x="537" y="-112"/>
+      <point x="542" y="-107"/>
+      <point x="542" y="-100" type="curve" smooth="yes"/>
+      <point x="542" y="100" type="line" smooth="yes"/>
+      <point x="542" y="107"/>
+      <point x="537" y="112"/>
+      <point x="530" y="112" type="curve" smooth="yes"/>
+      <point x="13" y="112" type="line" smooth="yes"/>
+      <point x="6" y="112"/>
+      <point x="1" y="107"/>
+      <point x="1" y="100" type="curve" smooth="yes"/>
+      <point x="1" y="-100" type="line" smooth="yes"/>
+      <point x="1" y="-107"/>
+      <point x="6" y="-112"/>
+    </contour>
+    <contour>
+      <point x="518" y="88" type="line"/>
+      <point x="518" y="-88" type="line"/>
+      <point x="284" y="-88" type="line"/>
+      <point x="284" y="88" type="line"/>
+    </contour>
+    <contour>
+      <point x="25" y="-88" type="line"/>
+      <point x="25" y="88" type="line"/>
+      <point x="259" y="88" type="line"/>
+      <point x="259" y="-88" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -112 24</string>
+              <string>hstem 88 24</string>
+              <string>vstem 1 24</string>
+              <string>vstem 259 25</string>
+              <string>vstem 518 24</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>3807d8360645bf7f8b8465cbe7c33edfb428ef4b45c56be988cca2920d20310485da8f218c52a84ff2ce3a4ec6ec41597db54175d244b62a286b5061075c7f60</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

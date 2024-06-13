@@ -1,0 +1,79 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEE24" format="2">
+  <advance width="500"/>
+  <unicode hex="EE24"/>
+  <note>
+{'name': 'organGermanBuxheimerBrevis3', 'description': 'Brevis (Ternary) Buxheimer Orgelbuch'}
+</note>
+  <outline>
+    <contour>
+      <point x="387" y="-69" type="curve"/>
+      <point x="387" y="-70"/>
+      <point x="387" y="-71"/>
+      <point x="389" y="-72" type="curve" smooth="yes"/>
+      <point x="425" y="-102" type="line"/>
+      <point x="440" y="-95"/>
+      <point x="460" y="-71"/>
+      <point x="460" y="-56" type="curve"/>
+      <point x="460" y="-55"/>
+      <point x="460" y="-54"/>
+      <point x="459" y="-53" type="curve"/>
+      <point x="422" y="-23" type="line"/>
+      <point x="407" y="-25"/>
+      <point x="387" y="-56"/>
+    </contour>
+    <contour>
+      <point x="211" y="-69" type="curve"/>
+      <point x="211" y="-70"/>
+      <point x="211" y="-71"/>
+      <point x="213" y="-72" type="curve" smooth="yes"/>
+      <point x="249" y="-102" type="line"/>
+      <point x="264" y="-95"/>
+      <point x="284" y="-71"/>
+      <point x="284" y="-56" type="curve"/>
+      <point x="284" y="-55"/>
+      <point x="284" y="-54"/>
+      <point x="283" y="-53" type="curve"/>
+      <point x="246" y="-23" type="line"/>
+      <point x="231" y="-25"/>
+      <point x="211" y="-56"/>
+    </contour>
+    <contour>
+      <point x="37" y="-72" type="curve" smooth="yes"/>
+      <point x="73" y="-102" type="line"/>
+      <point x="88" y="-95"/>
+      <point x="108" y="-71"/>
+      <point x="108" y="-56" type="curve"/>
+      <point x="108" y="-55"/>
+      <point x="108" y="-54"/>
+      <point x="107" y="-53" type="curve"/>
+      <point x="70" y="-23" type="line"/>
+      <point x="55" y="-25"/>
+      <point x="35" y="-56"/>
+      <point x="35" y="-69" type="curve"/>
+      <point x="35" y="-70"/>
+      <point x="35" y="-71"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -102 79</string>
+              <string>vstem 35 425</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>c32912e55e78ef939df6c41f57f669d9e3ac1763bd91853e7bc012b1ac89a17ad7bbca70d7c52c8e7b7ef2b0671c1ac0764d3d2240bc2439698bd0d4ccfea138</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

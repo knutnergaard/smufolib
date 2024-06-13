@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE9A1" format="2">
+  <advance width="91"/>
+  <unicode hex="E9A1"/>
+  <note>
+{'name': 'chantPunctumDeminutum', 'description': 'Punctum deminutum'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-55" type="line"/>
+      <point x="0" y="-57"/>
+      <point x="1" y="-57"/>
+      <point x="1" y="-57" type="curve"/>
+      <point x="2" y="-57"/>
+      <point x="4" y="-56"/>
+      <point x="5" y="-55" type="curve"/>
+      <point x="11" y="-51"/>
+      <point x="27" y="-44" name="hr01"/>
+      <point x="46" y="-44" type="curve"/>
+      <point x="48" y="-44" type="line"/>
+      <point x="69" y="-44"/>
+      <point x="83" y="-51"/>
+      <point x="87" y="-55" type="curve" smooth="yes"/>
+      <point x="89" y="-57" name="hr02"/>
+      <point x="89" y="-57"/>
+      <point x="90" y="-57" type="curve"/>
+      <point x="91" y="-57"/>
+      <point x="91" y="-55"/>
+      <point x="91" y="-55" type="curve"/>
+      <point x="91" y="27" type="line" smooth="yes"/>
+      <point x="91" y="47"/>
+      <point x="67" y="58"/>
+      <point x="43" y="58" type="curve" smooth="yes"/>
+      <point x="21" y="58"/>
+      <point x="0" y="48"/>
+      <point x="0" y="28" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 91</string>
+              <string>hstem -57 115</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -44 102</string>
+              <string>vstem 0 91</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -57 115</string>
+              <string>vstem 0 91</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>0b16930e117f4c6fdbf59b6a5adbf36d94cbc7953c3c94292ccfbfe956b980a09959df7b487e59f38c09216019b478afcd76852b90f8481a517d0e9ba33e28c0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

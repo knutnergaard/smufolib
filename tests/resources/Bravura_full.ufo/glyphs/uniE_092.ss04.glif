@@ -1,0 +1,47 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE092.ss04" format="2">
+  <advance width="44"/>
+  <unicode hex="F4F3"/>
+  <note>
+{'name': 'timeSigParensLeftSmallLarge', 'description': 'Left parenthesis for numerator only (outside staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="40" y="-329" type="curve"/>
+      <point x="54" y="-329" type="line"/>
+      <point x="32" y="-229"/>
+      <point x="20" y="-112"/>
+      <point x="20" y="0" type="curve" smooth="yes"/>
+      <point x="20" y="112"/>
+      <point x="32" y="230"/>
+      <point x="54" y="329" type="curve"/>
+      <point x="40" y="329" type="line"/>
+      <point x="15" y="238"/>
+      <point x="0" y="110"/>
+      <point x="0" y="0" type="curve" smooth="yes"/>
+      <point x="0" y="-110"/>
+      <point x="15" y="-238"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -329 658</string>
+              <string>vstem 0 20</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w44m40,-329l54,-329c32,-229 20,-112 20,0c20,112 32,230 54,329l40,329c15,238 0,110 0,0c0,-110 15,-238 40,-329</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

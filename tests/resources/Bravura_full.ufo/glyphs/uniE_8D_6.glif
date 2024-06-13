@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE8D6" format="2">
+  <advance width="192"/>
+  <unicode hex="E8D6"/>
+  <note>
+{'classes': ['stemDecorations', 'tf_pictograms'], 'name': 'accdnRicochetStem6', 'description': 'Combining ricochet for stem (6 tones)'}
+</note>
+  <outline>
+    <contour>
+      <point x="-194" y="116" type="curve" smooth="yes"/>
+      <point x="-194" y="108"/>
+      <point x="-189" y="101"/>
+      <point x="-182" y="98" type="curve"/>
+      <point x="119" y="4" type="line"/>
+      <point x="-181" y="-89" type="line" smooth="yes"/>
+      <point x="-189" y="-91"/>
+      <point x="-194" y="-98"/>
+      <point x="-194" y="-105" type="curve" smooth="yes"/>
+      <point x="-194" y="-113"/>
+      <point x="-189" y="-120"/>
+      <point x="-182" y="-123" type="curve"/>
+      <point x="119" y="-218" type="line"/>
+      <point x="-186" y="-312" type="line"/>
+      <point x="-186" y="-350" type="line"/>
+      <point x="181" y="-234" type="line" smooth="yes"/>
+      <point x="189" y="-231"/>
+      <point x="193" y="-224"/>
+      <point x="193" y="-216" type="curve" smooth="yes"/>
+      <point x="193" y="-209"/>
+      <point x="188" y="-202"/>
+      <point x="181" y="-200" type="curve" smooth="yes"/>
+      <point x="-118" y="-107" type="line"/>
+      <point x="181" y="-12" type="line" smooth="yes"/>
+      <point x="189" y="-9"/>
+      <point x="193" y="-2"/>
+      <point x="193" y="6" type="curve" smooth="yes"/>
+      <point x="193" y="13"/>
+      <point x="188" y="20"/>
+      <point x="181" y="22" type="curve" smooth="yes"/>
+      <point x="-116" y="115" type="line"/>
+      <point x="181" y="208" type="line" smooth="yes"/>
+      <point x="189" y="211"/>
+      <point x="193" y="218"/>
+      <point x="193" y="226" type="curve" smooth="yes"/>
+      <point x="193" y="233"/>
+      <point x="188" y="240"/>
+      <point x="181" y="242" type="curve" smooth="yes"/>
+      <point x="-185" y="356" type="line"/>
+      <point x="-185" y="319" type="line"/>
+      <point x="119" y="224" type="line"/>
+      <point x="-181" y="132" type="line" smooth="yes"/>
+      <point x="-189" y="130"/>
+      <point x="-194" y="123"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -350 706</string>
+              <string>vstem -194 387</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>333ae7f58b9ab6dfd8aa87e6a60de5bde3a4c9377d0330d7a218dbe84218f258582cb5595b008803b1dc7d0f18a4d229255c3b05c9ce437fbe9fd6b539895b83</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

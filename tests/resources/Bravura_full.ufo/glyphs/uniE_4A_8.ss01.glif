@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4A8.ss01" format="2">
+  <advance width="117"/>
+  <unicode hex="F47D"/>
+  <note>
+{'classes': ['articulations', 'articulationsAbove', 'combiningStaffPositions'], 'name': 'articStaccatissimoWedgeAboveSmall', 'description': 'Staccatissimo wedge above (small staff)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="287" type="curve"/>
+      <point x="23" y="245"/>
+      <point x="47" y="102"/>
+      <point x="49" y="3" type="curve"/>
+      <point x="49" y="0"/>
+      <point x="57" y="0"/>
+      <point x="59" y="0" type="curve"/>
+      <point x="60" y="0"/>
+      <point x="68" y="0"/>
+      <point x="68" y="3" type="curve"/>
+      <point x="71" y="101"/>
+      <point x="95" y="244"/>
+      <point x="117" y="287" type="curve"/>
+      <point x="117" y="288"/>
+      <point x="117" y="290"/>
+      <point x="115" y="290" type="curve"/>
+      <point x="113" y="290"/>
+      <point x="85" y="286"/>
+      <point x="59" y="286" type="curve" smooth="yes"/>
+      <point x="31" y="286"/>
+      <point x="4" y="290"/>
+      <point x="3" y="290" type="curve"/>
+      <point x="0" y="290"/>
+      <point x="0" y="289"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 49 19</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>7fb192c0a7537ff4f270a2b6199bfe419641e47637ab73717b6f5748bd7d86e0c2f6c37686384159d06f8937dc3e95ef13be927ae6ed872bfcc5dae100d2a2ca</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

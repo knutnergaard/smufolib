@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE108.ss08" format="2">
+  <advance width="636"/>
+  <unicode hex="F4EB"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSlashHorizontalEnds', 'noteheads'], 'name': 'noteheadSlashHorizontalEndsMutedOversized', 'description': 'Oversized muted slash with horizontal ends'}
+</note>
+  <outline>
+    <contour>
+      <point x="636" y="300" type="line"/>
+      <point x="516" y="300" type="line"/>
+      <point x="304" y="53" type="line"/>
+      <point x="114" y="311" type="line"/>
+      <point x="83" y="289" type="line"/>
+      <point x="277" y="23" type="line"/>
+      <point x="0" y="-300" type="line"/>
+      <point x="120" y="-300" type="line"/>
+      <point x="332" y="-53" type="line"/>
+      <point x="521" y="-311" type="line"/>
+      <point x="552" y="-289" type="line"/>
+      <point x="359" y="-23" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -259 518</string>
+              <string>vstem 0 530</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w636m636,300l516,300l304,53l114,311l83,289l277,23l0,-300l120,-300l332,-53l521,-311l552,-289l359,-23</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

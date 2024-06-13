@@ -1,0 +1,58 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE8F2" format="2">
+  <advance width="250"/>
+  <unicode hex="E8F2"/>
+  <note>
+{'classes': ['forTextBasedApplications', 'tf_zeroWidth'], 'name': 'chantStaffNarrow', 'description': 'Plainchant staff (narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="250" y="117" type="line"/>
+      <point x="250" y="133" type="line"/>
+      <point x="0" y="133" type="line"/>
+      <point x="0" y="117" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-367" type="line"/>
+      <point x="0" y="-383" type="line"/>
+      <point x="250" y="-383" type="line"/>
+      <point x="250" y="-367" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-117" type="line"/>
+      <point x="0" y="-133" type="line"/>
+      <point x="250" y="-133" type="line"/>
+      <point x="250" y="-117" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="383" type="line"/>
+      <point x="0" y="367" type="line"/>
+      <point x="250" y="367" type="line"/>
+      <point x="250" y="383" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -383 16</string>
+              <string>hstem -133 16</string>
+              <string>hstem 117 16</string>
+              <string>hstem 367 16</string>
+              <string>vstem 0 250</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w250m250,117l250,133l0,133l0,117m0,-367l0,-383l250,-383l250,-367m0,-117l0,-133l250,-133l250,-117m0,383l0,367l250,367l250,383</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

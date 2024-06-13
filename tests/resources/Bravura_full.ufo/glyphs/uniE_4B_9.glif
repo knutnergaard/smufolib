@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4B9" format="2">
+  <advance width="383"/>
+  <unicode hex="E4B9"/>
+  <note>
+{'classes': ['articulations', 'articulationsBelow', 'combiningStaffPositions'], 'name': 'articUnstressBelow', 'description': 'Unstress below'}
+</note>
+  <outline>
+    <contour>
+      <point x="1" y="-191" type="curve" smooth="yes"/>
+      <point x="1" y="-207" type="line"/>
+      <point x="33" y="-207" type="line"/>
+      <point x="33" y="-191" type="line" smooth="yes"/>
+      <point x="33" y="-103"/>
+      <point x="104" y="-32"/>
+      <point x="192" y="-32" type="curve" smooth="yes"/>
+      <point x="280" y="-32"/>
+      <point x="351" y="-103"/>
+      <point x="351" y="-191" type="curve" smooth="yes"/>
+      <point x="351" y="-207" type="line"/>
+      <point x="383" y="-207" type="line"/>
+      <point x="383" y="-191" type="line" smooth="yes"/>
+      <point x="383" y="-86"/>
+      <point x="297" y="0"/>
+      <point x="192" y="0" type="curve" smooth="yes"/>
+      <point x="87" y="0"/>
+      <point x="1" y="-86"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -32 32</string>
+              <string>vstem 1 32</string>
+              <string>vstem 351 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>067e81b741dc3ac1c8e2397c9431394be836b30640f45a3e9f5bfb3838d7cb8e0a2dad932f9c327cd46cb30bb4015917e79204c037b1de26326a7df215146e7e</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

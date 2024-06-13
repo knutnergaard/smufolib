@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE618" format="2">
+  <advance width="214"/>
+  <unicode hex="E618"/>
+  <note>
+{'classes': ['stemDecorations'], 'name': 'stringsBowBehindBridge', 'description': 'Bow behind bridge (sul ponticello)'}
+</note>
+  <outline>
+    <contour>
+      <point x="-214" y="0" type="curve"/>
+      <point x="-182" y="0" type="line"/>
+      <point x="-182" y="104"/>
+      <point x="-104" y="182"/>
+      <point x="0" y="182" type="curve" smooth="yes"/>
+      <point x="104" y="182"/>
+      <point x="182" y="104"/>
+      <point x="182" y="0" type="curve"/>
+      <point x="214" y="0" type="line"/>
+      <point x="214" y="122"/>
+      <point x="122" y="214"/>
+      <point x="0" y="214" type="curve" smooth="yes"/>
+      <point x="-123" y="214"/>
+      <point x="-214" y="122"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 182 32</string>
+              <string>vstem -214 32</string>
+              <string>vstem 182 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w214m-214,0l-182,0c-182,104 -104,182 0,182c104,182 182,104 182,0l214,0c214,122 122,214 0,214c-123,214 -214,122 -214,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

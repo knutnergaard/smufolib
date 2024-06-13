@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE682" format="2">
+  <advance width="250"/>
+  <unicode hex="E682"/>
+  <note>
+{'classes': ['tf_harpPedals'], 'name': 'harpPedalLowered', 'description': 'Harp pedal lowered (sharp)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="390" type="line"/>
+      <point x="0" y="360" type="line"/>
+      <point x="250" y="360" type="line"/>
+      <point x="250" y="390" type="line"/>
+    </contour>
+    <contour>
+      <point x="87" y="92" type="line"/>
+      <point x="162" y="92" type="line"/>
+      <point x="162" y="342" type="line"/>
+      <point x="87" y="342" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 360 30</string>
+              <string>vstem 87 75</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w250m0,390l0,360l250,360l250,390m87,92l162,92l162,342l87,342</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

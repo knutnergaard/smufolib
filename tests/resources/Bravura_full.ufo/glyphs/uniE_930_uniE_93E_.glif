@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE930_uniE93E" format="2">
+  <advance width="782"/>
+  <unicode hex="F57E"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralFusaBlackVoidStemUp', 'description': 'Fusa black and void, stem up'}
+</note>
+  <outline>
+    <contour>
+      <point x="16" y="-141" type="curve" smooth="yes"/>
+      <point x="766" y="-141" type="line" smooth="yes"/>
+      <point x="775" y="-141"/>
+      <point x="782" y="-134"/>
+      <point x="782" y="-125" type="curve" smooth="yes"/>
+      <point x="782" y="625" type="line" smooth="yes"/>
+      <point x="782" y="634"/>
+      <point x="775" y="641"/>
+      <point x="766" y="641" type="curve" smooth="yes"/>
+      <point x="757" y="641"/>
+      <point x="750" y="634"/>
+      <point x="750" y="625" type="curve" smooth="yes"/>
+      <point x="750" y="141" type="line"/>
+      <point x="16" y="141" type="line" smooth="yes"/>
+      <point x="7" y="141"/>
+      <point x="0" y="134"/>
+      <point x="0" y="125" type="curve" smooth="yes"/>
+      <point x="0" y="-125" type="line" smooth="yes"/>
+      <point x="0" y="-134"/>
+      <point x="7" y="-141"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -649 32</string>
+              <string>hstem -339 32</string>
+              <string>vstem 126 32</string>
+              <string>vstem 313 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>db7c55b1744e60fda3eab33d6841b06b3685f7b803e8ab44f965a9603f71a0fd3e60152cfe2555c575060d4bc966846f71cdc51a6e8865421ef957a649fe9c7a</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

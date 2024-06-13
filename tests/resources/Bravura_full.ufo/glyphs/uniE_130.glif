@@ -1,0 +1,44 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE130" format="2">
+  <advance width="424"/>
+  <unicode hex="E130"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetDefault', 'noteheads'], 'name': 'noteheadClusterWholeMiddle', 'description': 'Combining whole note cluster, middle'}
+</note>
+  <outline>
+    <contour>
+      <point x="241" y="100" type="line"/>
+      <point x="241" y="-100" type="line"/>
+      <point x="319" y="-100" type="line"/>
+      <point x="319" y="100" type="line"/>
+    </contour>
+    <contour>
+      <point x="105" y="100" type="line"/>
+      <point x="105" y="-100" type="line"/>
+      <point x="183" y="-100" type="line"/>
+      <point x="183" y="100" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -100 200</string>
+              <string>vstem 105 78</string>
+              <string>vstem 241 78</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w424m241,100l241,-100l319,-100l319,100m105,100l105,-100l183,-100l183,100</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

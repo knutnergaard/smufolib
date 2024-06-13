@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE35B" format="2">
+  <advance width="344"/>
+  <unicode hex="E35B"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions'], 'name': 'accSagittalFlat7v11CDown', 'description': 'Flat 7:11C-down, 6° down [60 EDO], 3/5- tone down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="172" type="line"/>
+      <point x="0" y="-47" type="line" smooth="yes"/>
+      <point x="0" y="-130"/>
+      <point x="83" y="-172"/>
+      <point x="250" y="-172" type="curve" smooth="yes"/>
+      <point x="344" y="-172" type="line"/>
+      <point x="344" y="359" type="line"/>
+      <point x="312" y="359" type="line"/>
+      <point x="312" y="-78" type="line"/>
+      <point x="250" y="-78" type="line"/>
+      <point x="250" y="359" type="line"/>
+      <point x="219" y="359" type="line"/>
+      <point x="219" y="-76" type="line"/>
+      <point x="196" y="-74"/>
+      <point x="175" y="-71"/>
+      <point x="156" y="-67" type="curve"/>
+      <point x="156" y="359" type="line"/>
+      <point x="125" y="359" type="line"/>
+      <point x="125" y="-60" type="line"/>
+      <point x="62" y="-40"/>
+      <point x="31" y="-4"/>
+      <point x="31" y="47" type="curve" smooth="yes"/>
+      <point x="31" y="172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -172 94</string>
+              <string>vstem 0 31</string>
+              <string>vstem 125 31</string>
+              <string>vstem 219 31</string>
+              <string>vstem 312 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>9532d85e3d4b9cb319257292605a444ff27cfaa4632a6aba3b9b1b11f4947526c932a83fdeb7fd608e44d0e76d67b5d547d9c5db5e8c188831dda995ddbdb7fa</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

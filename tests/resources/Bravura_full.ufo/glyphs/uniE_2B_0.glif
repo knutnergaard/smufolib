@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE2B0" format="2">
+  <advance width="150"/>
+  <unicode hex="E2B0"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsJohnston', 'combiningStaffPositions'], 'name': 'accidentalJohnstonPlus', 'description': 'Plus (raise by 81:80)'}
+</note>
+  <outline>
+    <contour>
+      <point x="60" y="-15" type="line"/>
+      <point x="60" y="-75" type="line"/>
+      <point x="90" y="-75" type="line"/>
+      <point x="90" y="-15" type="line"/>
+      <point x="150" y="-15" type="line"/>
+      <point x="150" y="15" type="line"/>
+      <point x="90" y="15" type="line"/>
+      <point x="90" y="75" type="line"/>
+      <point x="60" y="75" type="line"/>
+      <point x="60" y="15" type="line"/>
+      <point x="0" y="15" type="line"/>
+      <point x="0" y="-15" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -15 30</string>
+              <string>vstem 60 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w150m60,-15l60,-75l90,-75l90,-15l150,-15l150,15l90,15l90,75l60,75l60,15l0,15l0,-15</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

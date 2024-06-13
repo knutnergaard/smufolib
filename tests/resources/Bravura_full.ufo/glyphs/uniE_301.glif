@@ -1,0 +1,64 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE301" format="2">
+  <advance width="157"/>
+  <unicode hex="E301"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalMixed', 'combiningStaffPositions'], 'name': 'accSagittal5v7KleismaDown', 'description': '5:7 kleisma down'}
+</note>
+  <outline>
+    <contour>
+      <point x="16" y="-172" type="line"/>
+      <point x="37" y="-68"/>
+      <point x="60" y="-11"/>
+      <point x="86" y="0" type="curve"/>
+      <point x="91" y="1"/>
+      <point x="96" y="2"/>
+      <point x="101" y="2" type="curve" smooth="yes"/>
+      <point x="117" y="2"/>
+      <point x="125" y="-14"/>
+      <point x="125" y="-47" type="curve" name="hr01"/>
+      <point x="157" y="-47" type="line"/>
+      <point x="157" y="36"/>
+      <point x="136" y="78"/>
+      <point x="94" y="78" type="curve" smooth="yes"/>
+      <point x="70" y="78"/>
+      <point x="49" y="60"/>
+      <point x="31" y="24" type="curve"/>
+      <point x="31" y="359" type="line"/>
+      <point x="0" y="359" type="line"/>
+      <point x="0" y="-172" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 78</string>
+              <string>vstem 125 32</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem -47 125</string>
+              <string>vstem 125 32</string>
+              <string>vstem 0 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>ad3b055a459844557f3c63b111585e7b56a5395af1b201c3346244b949b298cd5780100c27ff5a3f6f55db4f9256a040a47a0bfbd744d075b41711ebbab87291</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

@@ -1,0 +1,9 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEB93" format="2">
+  <unicode hex="EB93"/>
+  <note>
+{'classes': ['forTextBasedApplications'], 'name': 'staffPosRaise4', 'description': 'Raise 4 staff positions'}
+</note>
+  <outline>
+  </outline>
+</glyph>

@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="u1D152" format="2">
+  <advance width="356"/>
+  <unicode hex="1D152"/>
+  <outline>
+    <contour>
+      <point x="0" y="0" type="line" smooth="yes"/>
+      <point x="0" y="-91"/>
+      <point x="78" y="-125"/>
+      <point x="158" y="-125" type="curve" smooth="yes"/>
+      <point x="238" y="-125"/>
+      <point x="315" y="-90"/>
+      <point x="315" y="0" type="curve" smooth="yes"/>
+      <point x="315" y="125" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+    <contour>
+      <point x="287" y="97" type="line"/>
+      <point x="287" y="0" type="line" smooth="yes"/>
+      <point x="287" y="-74"/>
+      <point x="222" y="-97"/>
+      <point x="158" y="-97" type="curve" smooth="yes"/>
+      <point x="41" y="-97"/>
+      <point x="28" y="-29"/>
+      <point x="28" y="0" type="curve" smooth="yes"/>
+      <point x="28" y="97" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -125 28</string>
+              <string>hstem 97 28</string>
+              <string>vstem 0 28</string>
+              <string>vstem 287 28</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>7d87fed5d253ac140fb71a4bd8f3ef57ce55094eb271be1f18fe1fcffdcf531a46700cd89594e0b79931b55f013ff76056683c26c9db5a3c6ddc665a156d86d6</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

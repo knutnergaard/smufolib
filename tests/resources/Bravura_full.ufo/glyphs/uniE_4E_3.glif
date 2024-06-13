@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4E3" format="2">
+  <advance width="283"/>
+  <unicode hex="E4E3"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'rests'], 'name': 'restWhole', 'description': 'Whole (semibreve) rest'}
+</note>
+  <outline>
+    <contour>
+      <point x="26" y="-135" type="curve" smooth="yes"/>
+      <point x="256" y="-135" type="line" smooth="yes"/>
+      <point x="270" y="-135"/>
+      <point x="282" y="-123"/>
+      <point x="282" y="-109" type="curve" smooth="yes"/>
+      <point x="282" y="-17" type="line" smooth="yes"/>
+      <point x="282" y="-2"/>
+      <point x="270" y="9"/>
+      <point x="256" y="9" type="curve" smooth="yes"/>
+      <point x="26" y="9" type="line" smooth="yes"/>
+      <point x="11" y="9"/>
+      <point x="0" y="-2"/>
+      <point x="0" y="-17" type="curve" smooth="yes"/>
+      <point x="0" y="-109" type="line" smooth="yes"/>
+      <point x="0" y="-123"/>
+      <point x="11" y="-135"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -135 144</string>
+              <string>vstem 0 282</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w283m26,-135l256,-135c270,-135 282,-123 282,-109l282,-17c282,-2 270,9 256,9l26,9c11,9 0,-2 0,-17l0,-109c0,-123 11,-135 26,-135</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

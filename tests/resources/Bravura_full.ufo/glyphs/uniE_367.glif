@@ -1,0 +1,56 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE367" format="2">
+  <advance width="437"/>
+  <unicode hex="E367"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions'], 'name': 'accSagittalDoubleFlat7v11kUp', 'description': 'Double flat 7:11k-up'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="177" type="line"/>
+      <point x="0" y="109" type="line"/>
+      <point x="272" y="15" type="line"/>
+      <point x="277" y="0" type="line"/>
+      <point x="254" y="-67" type="line"/>
+      <point x="0" y="21" type="line"/>
+      <point x="0" y="-47" type="line"/>
+      <point x="359" y="-172" type="line"/>
+      <point x="375" y="-172" type="line"/>
+      <point x="375" y="-109" type="line"/>
+      <point x="352" y="-101" type="line"/>
+      <point x="316" y="0" type="line"/>
+      <point x="437" y="349" type="line"/>
+      <point x="402" y="359" type="line"/>
+      <point x="297" y="57" type="line"/>
+      <point x="192" y="359" type="line"/>
+      <point x="156" y="349" type="line"/>
+      <point x="245" y="93" type="line"/>
+    </contour>
+    <contour>
+      <point x="297" y="-57" type="line"/>
+      <point x="307" y="-86" type="line"/>
+      <point x="289" y="-80" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -172 531</string>
+              <string>vstem 0 437</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>6467d54ff21dba8449fbfa56cd894095a09a9f2ca03830660fedc10b5b1a38b8a628638cd52c531e3cda7833099a95f3762f8740a0b596014299a459cd012735</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

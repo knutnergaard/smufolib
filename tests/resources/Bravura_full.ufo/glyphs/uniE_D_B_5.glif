@@ -1,0 +1,109 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEDB5" format="2">
+  <advance width="656"/>
+  <unicode hex="EDB5"/>
+  <note>
+{'name': 'kahnSlideTap', 'description': 'Slide-tap'}
+</note>
+  <outline>
+    <contour>
+      <point x="11" y="500" type="curve" smooth="yes"/>
+      <point x="26" y="460"/>
+      <point x="53" y="422"/>
+      <point x="84" y="391" type="curve" smooth="yes"/>
+      <point x="141" y="332"/>
+      <point x="219" y="306"/>
+      <point x="296" y="279" type="curve" smooth="yes"/>
+      <point x="367" y="254"/>
+      <point x="435" y="226"/>
+      <point x="504" y="197" type="curve"/>
+      <point x="519" y="192"/>
+      <point x="529" y="181"/>
+      <point x="542" y="172" type="curve"/>
+      <point x="539" y="169"/>
+      <point x="539" y="166"/>
+      <point x="536" y="163" type="curve"/>
+      <point x="503" y="175"/>
+      <point x="473" y="193"/>
+      <point x="438" y="197" type="curve" smooth="yes"/>
+      <point x="417" y="200"/>
+      <point x="395" y="202"/>
+      <point x="373" y="202" type="curve" smooth="yes"/>
+      <point x="369" y="202"/>
+      <point x="342" y="202"/>
+      <point x="294" y="197" type="curve"/>
+      <point x="281" y="197"/>
+      <point x="270" y="173"/>
+      <point x="259" y="158" type="curve"/>
+      <point x="262" y="151"/>
+      <point x="265" y="146"/>
+      <point x="268" y="143" type="curve"/>
+      <point x="305" y="143"/>
+      <point x="330" y="145"/>
+      <point x="340" y="145" type="curve" smooth="yes"/>
+      <point x="354" y="145"/>
+      <point x="368" y="144"/>
+      <point x="382" y="142" type="curve" smooth="yes"/>
+      <point x="474" y="130"/>
+      <point x="551" y="86"/>
+      <point x="612" y="17" type="curve"/>
+      <point x="617" y="13"/>
+      <point x="618" y="6"/>
+      <point x="621" y="1" type="curve"/>
+      <point x="646" y="29"/>
+      <point x="655" y="61"/>
+      <point x="655" y="89" type="curve" smooth="yes"/>
+      <point x="655" y="92"/>
+      <point x="655" y="99"/>
+      <point x="654" y="110" type="curve" smooth="yes"/>
+      <point x="653" y="130"/>
+      <point x="636" y="168"/>
+      <point x="608" y="195" type="curve" smooth="yes"/>
+      <point x="544" y="254"/>
+      <point x="468" y="280"/>
+      <point x="388" y="309" type="curve"/>
+      <point x="312" y="338"/>
+      <point x="236" y="363"/>
+      <point x="161" y="398" type="curve" smooth="yes"/>
+      <point x="129" y="413"/>
+      <point x="98" y="445"/>
+      <point x="83" y="477" type="curve" smooth="yes"/>
+      <point x="60" y="526"/>
+      <point x="58" y="583"/>
+      <point x="43" y="636" type="curve" smooth="yes"/>
+      <point x="40" y="647"/>
+      <point x="31" y="656"/>
+      <point x="24" y="667" type="curve"/>
+      <point x="16" y="656"/>
+      <point x="1" y="646"/>
+      <point x="1" y="635" type="curve" smooth="yes"/>
+      <point x="1" y="588"/>
+      <point x="0" y="565"/>
+      <point x="0" y="563" type="curve"/>
+      <point x="0" y="541"/>
+      <point x="4" y="520"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 22 -21</string>
+              <string>hstem 145 57</string>
+              <string>vstem 1 23</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>d2e898fe0cb0bde66e806631232e7cbba420eb6ab2839aab1f2e5fbd3af29455a227f463ca218cc55ab9854b16dc8f773062df2826d181c6921cbf1352fd83b3</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

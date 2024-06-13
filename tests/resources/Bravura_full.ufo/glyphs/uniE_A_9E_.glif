@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA9E" format="2">
+  <advance width="493"/>
+  <unicode hex="EA9E"/>
+  <note>
+{'name': 'functionLUpper', 'description': 'Function theory L'}
+</note>
+  <outline>
+    <contour>
+      <point x="473" y="0" type="line"/>
+      <point x="473" y="82" type="line"/>
+      <point x="113" y="82" type="line"/>
+      <point x="113" y="729" type="line"/>
+      <point x="20" y="729" type="line"/>
+      <point x="20" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 82</string>
+              <string>vstem 20 93</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w493m473,0l473,82l113,82l113,729l20,729l20,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

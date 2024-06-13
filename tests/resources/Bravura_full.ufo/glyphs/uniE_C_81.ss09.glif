@@ -1,0 +1,48 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEC81.ss09" format="2">
+  <advance width="118"/>
+  <unicode hex="F525"/>
+  <note>
+{'name': 'timeSigBracketRightNarrow', 'description': 'Right bracket for whole time signature (large, narrow)'}
+</note>
+  <outline>
+    <contour>
+      <point x="82" y="578" type="line"/>
+      <point x="82" y="-586" type="line"/>
+      <point x="0" y="-586" type="line"/>
+      <point x="0" y="-622" type="line"/>
+      <point x="90" y="-622" type="line" smooth="yes"/>
+      <point x="105" y="-622"/>
+      <point x="118" y="-609"/>
+      <point x="118" y="-594" type="curve" smooth="yes"/>
+      <point x="118" y="586" type="line" smooth="yes"/>
+      <point x="118" y="602"/>
+      <point x="105" y="614"/>
+      <point x="90" y="614" type="curve" smooth="yes"/>
+      <point x="0" y="614" type="line"/>
+      <point x="0" y="578" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -622 36</string>
+              <string>hstem 578 36</string>
+              <string>vstem 82 36</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w118m82,578l82,-586l0,-586l0,-622l90,-622c105,-622 118,-609 118,-594l118,586c118,602 105,614 90,614l0,614l0,578</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

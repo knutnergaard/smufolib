@@ -1,0 +1,124 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEA00" format="2">
+  <advance width="285"/>
+  <unicode hex="EA00"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'mensuralSignumUp', 'description': 'Signum congruentiae up'}
+</note>
+  <outline>
+    <contour>
+      <point x="109" y="156" type="curve" smooth="yes"/>
+      <point x="130" y="139"/>
+      <point x="136" y="126"/>
+      <point x="136" y="116" type="curve" smooth="yes"/>
+      <point x="136" y="102"/>
+      <point x="124" y="92"/>
+      <point x="116" y="79" type="curve" smooth="yes"/>
+      <point x="108" y="65"/>
+      <point x="99" y="40"/>
+      <point x="99" y="22" type="curve" smooth="yes"/>
+      <point x="99" y="9"/>
+      <point x="104" y="0"/>
+      <point x="116" y="0" type="curve" smooth="yes"/>
+      <point x="134" y="0"/>
+      <point x="142" y="9"/>
+      <point x="153" y="21" type="curve" smooth="yes"/>
+      <point x="176" y="45"/>
+      <point x="214" y="99"/>
+      <point x="214" y="166" type="curve" smooth="yes"/>
+      <point x="214" y="171" type="line"/>
+      <point x="212" y="240"/>
+      <point x="153" y="265"/>
+      <point x="122" y="283" type="curve"/>
+      <point x="110" y="283"/>
+      <point x="92" y="299"/>
+      <point x="92" y="312" type="curve" smooth="yes"/>
+      <point x="92" y="332"/>
+      <point x="110" y="370"/>
+      <point x="133" y="370" type="curve" smooth="yes"/>
+      <point x="146" y="370"/>
+      <point x="162" y="363"/>
+      <point x="181" y="358" type="curve" smooth="yes"/>
+      <point x="186" y="357"/>
+      <point x="190" y="356"/>
+      <point x="195" y="356" type="curve" smooth="yes"/>
+      <point x="229" y="356"/>
+      <point x="258" y="390"/>
+      <point x="258" y="423" type="curve" smooth="yes"/>
+      <point x="258" y="448"/>
+      <point x="240" y="471"/>
+      <point x="195" y="471" type="curve" smooth="yes"/>
+      <point x="143" y="471"/>
+      <point x="103" y="431"/>
+      <point x="83" y="417" type="curve" smooth="yes" name="hr01"/>
+      <point x="64" y="404"/>
+      <point x="6" y="337"/>
+      <point x="0" y="267" type="curve"/>
+      <point x="0" y="260" type="line" smooth="yes"/>
+      <point x="0" y="198"/>
+      <point x="62" y="195"/>
+    </contour>
+    <contour>
+      <point x="0" y="41" type="curve" smooth="yes"/>
+      <point x="0" y="19"/>
+      <point x="19" y="0"/>
+      <point x="42" y="0" type="curve" smooth="yes"/>
+      <point x="64" y="0"/>
+      <point x="83" y="19"/>
+      <point x="83" y="41" type="curve" smooth="yes"/>
+      <point x="83" y="64"/>
+      <point x="64" y="83"/>
+      <point x="42" y="83" type="curve" smooth="yes"/>
+      <point x="19" y="83"/>
+      <point x="0" y="64"/>
+    </contour>
+    <contour>
+      <point x="203" y="41" type="curve" smooth="yes"/>
+      <point x="203" y="19"/>
+      <point x="221" y="0"/>
+      <point x="244" y="0" type="curve" smooth="yes"/>
+      <point x="267" y="0"/>
+      <point x="285" y="19"/>
+      <point x="285" y="41" type="curve" smooth="yes"/>
+      <point x="285" y="64"/>
+      <point x="267" y="83"/>
+      <point x="244" y="83" type="curve" smooth="yes"/>
+      <point x="221" y="83"/>
+      <point x="203" y="64"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem 136 78</string>
+              <string>hstem 0 83</string>
+              <string>vstem 0 92</string>
+              <string>hstem 356 115</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>vstem 0 83</string>
+              <string>hstem 0 83</string>
+              <string>vstem 203 82</string>
+              <string>hstem 356 115</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>66ba18822103a805c471e6b39bb7353a05f5ebb415b9d08264aff26e6cd79992ac95e5ef5928817fbc42b3826c843abf1a1d96a8c8f82594d2b2ee1244472502</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

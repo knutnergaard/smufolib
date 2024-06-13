@@ -1,0 +1,39 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE1B9" format="2">
+  <advance width="361"/>
+  <unicode hex="E1B9"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetSacredHarp'], 'name': 'noteShapeDiamondBlack', 'description': 'Diamond black (4-shape mi; 7-shape mi)'}
+</note>
+  <anchor x="0" y="0" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="361" y="0" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="183" y="137" type="line"/>
+      <point x="0" y="0" type="line"/>
+      <point x="177" y="-138" type="line"/>
+      <point x="361" y="0" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 327</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w361m183,137l0,0l177,-138l361,0</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

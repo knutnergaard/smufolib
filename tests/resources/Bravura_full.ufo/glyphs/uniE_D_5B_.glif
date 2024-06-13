@@ -1,0 +1,94 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniED5B" format="2">
+  <advance width="226"/>
+  <unicode hex="ED5B"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsStockhausen'], 'name': 'accidentalFlatRepeatedSpaceStockhausen', 'description': 'Repeated flat, note in space (Stockhausen)'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-174" type="line" smooth="yes"/>
+      <point x="0" y="-177"/>
+      <point x="2" y="-179"/>
+      <point x="5" y="-179" type="curve" smooth="yes"/>
+      <point x="21" y="-179"/>
+      <point x="69" y="-140"/>
+      <point x="79" y="-131" type="curve" smooth="yes"/>
+      <point x="101" y="-109"/>
+      <point x="130" y="-93"/>
+      <point x="153" y="-72" type="curve" smooth="yes"/>
+      <point x="190" y="-39"/>
+      <point x="226" y="6"/>
+      <point x="226" y="58" type="curve" smooth="yes"/>
+      <point x="226" y="111"/>
+      <point x="183" y="153"/>
+      <point x="133" y="153" type="curve" smooth="yes"/>
+      <point x="123" y="153"/>
+      <point x="112" y="152"/>
+      <point x="102" y="148" type="curve" smooth="yes"/>
+      <point x="92" y="145"/>
+      <point x="62" y="123"/>
+      <point x="44" y="123" type="curve" smooth="yes"/>
+      <point x="36" y="123"/>
+      <point x="30" y="128"/>
+      <point x="30" y="141" type="curve" smooth="yes"/>
+      <point x="30" y="485" type="line" smooth="yes"/>
+      <point x="30" y="489"/>
+      <point x="31" y="494"/>
+      <point x="36" y="494" type="curve" smooth="yes"/>
+      <point x="218" y="494" type="line"/>
+      <point x="177" y="423" type="line"/>
+      <point x="326" y="509" type="line"/>
+      <point x="177" y="594" type="line"/>
+      <point x="218" y="524" type="line"/>
+      <point x="12" y="524" type="line" smooth="yes"/>
+      <point x="5" y="524"/>
+      <point x="0" y="517"/>
+      <point x="0" y="509" type="curve" smooth="yes"/>
+    </contour>
+    <contour>
+      <point x="30" y="20" type="line" smooth="yes"/>
+      <point x="30" y="33"/>
+      <point x="42" y="53"/>
+      <point x="45" y="58" type="curve" smooth="yes"/>
+      <point x="53" y="75"/>
+      <point x="95" y="101"/>
+      <point x="116" y="101" type="curve" smooth="yes"/>
+      <point x="145" y="101"/>
+      <point x="157" y="68"/>
+      <point x="157" y="43" type="curve" smooth="yes"/>
+      <point x="157" y="-21"/>
+      <point x="102" y="-65"/>
+      <point x="52" y="-96" type="curve" smooth="yes"/>
+      <point x="48" y="-98"/>
+      <point x="42" y="-99"/>
+      <point x="39" y="-99" type="curve" smooth="yes"/>
+      <point x="30" y="-99"/>
+      <point x="30" y="-85"/>
+      <point x="30" y="-80" type="curve" smooth="yes"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 101 52</string>
+              <string>hstem 494 30</string>
+              <string>vstem 0 30</string>
+              <string>vstem 157 69</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>afb4c655f5ed238f5bdf1cae9a4c9cf04910713460fa92d3bac02c98c48f94b77b8bf1338f22a4f7cf71f65b82d704e03cc9ea684ac8efa9d4f89b9f1c1df72b</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

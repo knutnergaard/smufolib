@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE763" format="2">
+  <advance width="714"/>
+  <unicode hex="E763"/>
+  <note>
+{'classes': ['tf_pictograms'], 'name': 'pictLionsRoar', 'description': "Lion's roar"}
+</note>
+  <outline>
+    <contour>
+      <point x="-1" y="18" type="curve"/>
+      <point x="-1" y="8"/>
+      <point x="7" y="0"/>
+      <point x="17" y="0" type="curve" smooth="yes"/>
+      <point x="695" y="0" type="line" smooth="yes"/>
+      <point x="701" y="0"/>
+      <point x="706" y="3"/>
+      <point x="710" y="8" type="curve" smooth="yes"/>
+      <point x="712" y="11"/>
+      <point x="713" y="15"/>
+      <point x="713" y="19" type="curve"/>
+      <point x="713" y="21"/>
+      <point x="713" y="23"/>
+      <point x="712" y="25" type="curve" smooth="yes"/>
+      <point x="564" y="392" type="line" smooth="yes"/>
+      <point x="562" y="398"/>
+      <point x="555" y="403"/>
+      <point x="548" y="403" type="curve" smooth="yes"/>
+      <point x="380" y="403" type="line"/>
+      <point x="374" y="548"/>
+      <point x="201" y="645"/>
+      <point x="158" y="645" type="curve" smooth="yes"/>
+      <point x="155" y="645"/>
+      <point x="152" y="643"/>
+      <point x="152" y="641" type="curve"/>
+      <point x="152" y="639"/>
+      <point x="154" y="637"/>
+      <point x="158" y="636" type="curve" smooth="yes"/>
+      <point x="167" y="633"/>
+      <point x="333" y="576"/>
+      <point x="337" y="403" type="curve"/>
+      <point x="164" y="403" type="line" smooth="yes"/>
+      <point x="156" y="403"/>
+      <point x="150" y="398"/>
+      <point x="147" y="392" type="curve"/>
+      <point x="0" y="25" type="line" smooth="yes"/>
+      <point x="-1" y="23"/>
+      <point x="-1" y="20"/>
+    </contour>
+    <contour>
+      <point x="43" y="36" type="line"/>
+      <point x="176" y="367" type="line"/>
+      <point x="536" y="367" type="line"/>
+      <point x="668" y="36" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 0 36</string>
+              <string>hstem 367 36</string>
+              <string>vstem 337 43</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>248dff8110966427207a60b9522c973f542802013f35dff9d5df57dbc61e77398059e4334ab32e6cce382a5eaf10067d8c97ad624b736c6d11bb1cc5726507dc</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

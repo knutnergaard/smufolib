@@ -1,0 +1,49 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE4AA" format="2">
+  <advance width="48"/>
+  <unicode hex="E4AA"/>
+  <note>
+{'classes': ['articulations', 'articulationsAbove', 'combiningStaffPositions'], 'name': 'articStaccatissimoStrokeAbove', 'description': 'Staccatissimo stroke above'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="281" type="curve" smooth="yes"/>
+      <point x="0" y="9" type="line" smooth="yes"/>
+      <point x="0" y="4"/>
+      <point x="4" y="0"/>
+      <point x="9" y="0" type="curve" smooth="yes"/>
+      <point x="39" y="0" type="line" smooth="yes"/>
+      <point x="44" y="0"/>
+      <point x="48" y="4"/>
+      <point x="48" y="9" type="curve" smooth="yes"/>
+      <point x="48" y="281" type="line" smooth="yes"/>
+      <point x="48" y="286"/>
+      <point x="44" y="290"/>
+      <point x="39" y="290" type="curve" smooth="yes"/>
+      <point x="9" y="290" type="line" smooth="yes"/>
+      <point x="4" y="290"/>
+      <point x="0" y="286"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 48</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w48m0,281l0,9c0,4 4,0 9,0l39,0c44,0 48,4 48,9l48,281c48,286 44,290 39,290l9,290c4,290 0,286 0,281</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

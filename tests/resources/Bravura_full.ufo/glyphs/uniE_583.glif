@@ -1,0 +1,37 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE583" format="2">
+  <advance width="27"/>
+  <unicode hex="E583"/>
+  <note>
+{'classes': ['ornaments', 'tf_ornaments'], 'name': 'ornamentVerticalLine', 'description': 'Vertical line'}
+</note>
+  <outline>
+    <contour>
+      <point x="25" y="109" type="line"/>
+      <point x="25" y="389" type="line"/>
+      <point x="1" y="389" type="line"/>
+      <point x="1" y="109" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 109 280</string>
+              <string>vstem 1 24</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w27m25,109l25,389l1,389l1,109</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

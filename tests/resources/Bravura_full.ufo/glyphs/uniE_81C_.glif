@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE81C" format="2">
+  <advance width="129"/>
+  <unicode hex="E81C"/>
+  <note>
+{'name': 'handbellsEcho2', 'description': 'Echo 2'}
+</note>
+  <outline>
+    <contour>
+      <point x="64" y="44" type="line"/>
+      <point x="128" y="155" type="line"/>
+      <point x="80" y="155" type="line"/>
+      <point x="80" y="430" type="line"/>
+      <point x="128" y="430" type="line"/>
+      <point x="64" y="540" type="line"/>
+      <point x="0" y="430" type="line"/>
+      <point x="48" y="430" type="line"/>
+      <point x="48" y="155" type="line"/>
+      <point x="0" y="155" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 44 496</string>
+              <string>vstem 48 32</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>w129m64,44l128,155l80,155l80,430l128,430l64,540l0,430l48,430l48,155l0,155</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

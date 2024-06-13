@@ -1,0 +1,172 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE17F" format="2">
+  <advance width="361"/>
+  <unicode hex="E17F"/>
+  <note>
+{'classes': ['combiningStaffPositions', 'noteheadSetNamesPitch', 'noteheads'], 'name': 'noteAFlatHalf', 'description': 'A flat (half note)'}
+</note>
+  <anchor x="0" y="-47" name="stemDownNW" color="0,0,0,0"/>
+  <anchor x="361" y="48" name="stemUpSE" color="0,0,0,0"/>
+  <outline>
+    <contour>
+      <point x="119" y="-144" type="curve" smooth="yes"/>
+      <point x="321" y="-144"/>
+      <point x="361" y="12"/>
+      <point x="361" y="49" type="curve" smooth="yes"/>
+      <point x="361" y="108"/>
+      <point x="311" y="146"/>
+      <point x="241" y="146" type="curve" smooth="yes"/>
+      <point x="57" y="146"/>
+      <point x="0" y="12"/>
+      <point x="0" y="-47" type="curve" smooth="yes"/>
+      <point x="0" y="-109"/>
+      <point x="52" y="-144"/>
+    </contour>
+    <contour>
+      <point x="30" y="-31" type="curve" smooth="yes"/>
+      <point x="30" y="40"/>
+      <point x="183" y="118"/>
+      <point x="248" y="118" type="curve" smooth="yes"/>
+      <point x="282" y="118"/>
+      <point x="302" y="102"/>
+      <point x="317" y="78" type="curve" smooth="yes"/>
+      <point x="325" y="64"/>
+      <point x="331" y="50"/>
+      <point x="331" y="36" type="curve" smooth="yes"/>
+      <point x="331" y="-32"/>
+      <point x="187" y="-117"/>
+      <point x="122" y="-117" type="curve" smooth="yes"/>
+      <point x="77" y="-117"/>
+      <point x="30" y="-78"/>
+    </contour>
+    <contour>
+      <point x="103" y="-88" type="line"/>
+      <point x="112" y="-58" type="line"/>
+      <point x="167" y="-58" type="line"/>
+      <point x="177" y="-88" type="line"/>
+      <point x="207" y="-88" type="line"/>
+      <point x="157" y="58" type="line"/>
+      <point x="124" y="58" type="line"/>
+      <point x="72" y="-88" type="line"/>
+    </contour>
+    <contour>
+      <point x="219" y="-66" type="line"/>
+      <point x="219" y="-66"/>
+      <point x="292" y="-33"/>
+      <point x="292" y="15" type="curve" smooth="yes"/>
+      <point x="292" y="20" type="line"/>
+      <point x="290" y="41"/>
+      <point x="281" y="47"/>
+      <point x="271" y="47" type="curve" smooth="yes"/>
+      <point x="256" y="47" name="hr01"/>
+      <point x="239" y="35"/>
+      <point x="239" y="35" type="curve"/>
+      <point x="239" y="94" type="line"/>
+      <point x="219" y="86" type="line"/>
+    </contour>
+    <contour>
+      <point x="239" y="16" type="line"/>
+      <point x="249" y="24"/>
+      <point x="258" y="28"/>
+      <point x="264" y="28" type="curve" smooth="yes" name="hr02"/>
+      <point x="272" y="28" name="hr03"/>
+      <point x="276" y="22"/>
+      <point x="276" y="13" type="curve" smooth="yes"/>
+      <point x="276" y="-7"/>
+      <point x="239" y="-32"/>
+      <point x="239" y="-32" type="curve"/>
+    </contour>
+    <contour>
+      <point x="121" y="-33" type="line"/>
+      <point x="140" y="24" type="line"/>
+      <point x="159" y="-33" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem -144 27</string>
+              <string>vstem 331 30</string>
+              <string>hstem 118 28</string>
+              <string>vstem 0 30</string>
+              <string>hstem -58 25</string>
+              <string>hstem 24 34</string>
+              <string>vstem 219 20</string>
+              <string>vstem 276 16</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 28 19</string>
+              <string>vstem 219 20</string>
+              <string>hstem -144 27</string>
+              <string>hstem -58 25</string>
+              <string>hstem 118 28</string>
+              <string>vstem 0 30</string>
+              <string>vstem 276 16</string>
+              <string>vstem 331 30</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr02</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 24 34</string>
+              <string>hstem -144 27</string>
+              <string>hstem -58 25</string>
+              <string>hstem 118 28</string>
+              <string>vstem 0 30</string>
+              <string>vstem 219 20</string>
+              <string>vstem 276 16</string>
+              <string>vstem 331 30</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr03</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 28 19</string>
+              <string>vstem 276 16</string>
+              <string>vstem 219 20</string>
+              <string>hstem -58 25</string>
+              <string>hstem -144 27</string>
+              <string>hstem 118 28</string>
+              <string>vstem 0 30</string>
+              <string>vstem 331 30</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>lsb</string>
+            <key>stems</key>
+            <array>
+              <string>hstem 24 34</string>
+              <string>hstem -58 25</string>
+              <string>hstem -144 27</string>
+              <string>hstem 118 28</string>
+              <string>vstem 0 30</string>
+              <string>vstem 219 20</string>
+              <string>vstem 276 16</string>
+              <string>vstem 331 30</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>73cbef2f5f95b505e8ee805cf5327897a2c6106327652b89b3bdc0b35e6a4276e4ec0e56c646f50cc607f5fec942ce2e2e1923dc11224d16e9ca157f3e5749c6</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

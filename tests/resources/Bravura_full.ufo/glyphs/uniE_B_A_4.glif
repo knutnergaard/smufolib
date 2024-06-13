@@ -1,0 +1,90 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniEBA4" format="2">
+  <advance width="375"/>
+  <unicode hex="EBA4"/>
+  <note>
+{'classes': ['forTextBasedApplications'], 'name': 'luteBarlineEndRepeat', 'description': 'Lute tablature end repeat barline'}
+</note>
+  <outline>
+    <contour>
+      <point x="250" y="0" type="line"/>
+      <point x="375" y="0" type="line"/>
+      <point x="375" y="1875" type="line"/>
+      <point x="250" y="1875" type="line"/>
+    </contour>
+    <contour>
+      <point x="183" y="0" type="line"/>
+      <point x="183" y="1875" type="line"/>
+      <point x="147" y="1875" type="line"/>
+      <point x="147" y="0" type="line"/>
+    </contour>
+    <contour>
+      <point x="50" y="883" type="curve" smooth="yes"/>
+      <point x="78" y="883"/>
+      <point x="100" y="905"/>
+      <point x="100" y="933" type="curve" smooth="yes"/>
+      <point x="100" y="961"/>
+      <point x="78" y="983"/>
+      <point x="50" y="983" type="curve" smooth="yes"/>
+      <point x="23" y="983"/>
+      <point x="0" y="961"/>
+      <point x="0" y="933" type="curve" smooth="yes"/>
+      <point x="0" y="905"/>
+      <point x="23" y="883"/>
+    </contour>
+    <contour>
+      <point x="0" y="1308" type="curve" smooth="yes"/>
+      <point x="0" y="1280"/>
+      <point x="23" y="1258"/>
+      <point x="50" y="1258" type="curve" smooth="yes"/>
+      <point x="78" y="1258"/>
+      <point x="100" y="1280"/>
+      <point x="100" y="1308" type="curve" smooth="yes"/>
+      <point x="100" y="1336"/>
+      <point x="78" y="1358"/>
+      <point x="50" y="1358" type="curve" smooth="yes"/>
+      <point x="23" y="1358"/>
+      <point x="0" y="1336"/>
+    </contour>
+    <contour>
+      <point x="50" y="508" type="curve" smooth="yes"/>
+      <point x="78" y="508"/>
+      <point x="100" y="530"/>
+      <point x="100" y="558" type="curve" smooth="yes"/>
+      <point x="100" y="586"/>
+      <point x="78" y="608"/>
+      <point x="50" y="608" type="curve" smooth="yes"/>
+      <point x="23" y="608"/>
+      <point x="0" y="586"/>
+      <point x="0" y="558" type="curve" smooth="yes"/>
+      <point x="0" y="530"/>
+      <point x="23" y="508"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>hstem 508 100</string>
+              <string>hstem 883 100</string>
+              <string>hstem 1258 100</string>
+              <string>vstem 0 100</string>
+              <string>vstem 147 36</string>
+              <string>vstem 250 125</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>e68e91b72a5c78af9a520438eab42c3d711dca3d8149e64509ced1b04e0b7b340274dc8f2a09803cfdd0f6227e1764df8e8b3d9ef1a44abd03118a66a67dee72</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

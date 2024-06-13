@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE332" format="2">
+  <advance width="406"/>
+  <unicode hex="E332"/>
+  <note>
+{'classes': ['accidentals', 'accidentalsSagittalPure', 'combiningStaffPositions'], 'name': 'accSagittalDoubleSharp5v7kDown', 'description': 'Double sharp 5:7k-down'}
+</note>
+  <outline>
+    <contour>
+      <point x="0" y="-190" type="line"/>
+      <point x="175" y="24" type="line"/>
+      <point x="184" y="0" type="line"/>
+      <point x="62" y="-349" type="line"/>
+      <point x="98" y="-359" type="line"/>
+      <point x="203" y="-57" type="line"/>
+      <point x="308" y="-359" type="line"/>
+      <point x="344" y="-349" type="line"/>
+      <point x="223" y="0" type="line"/>
+      <point x="250" y="78" type="line"/>
+      <point x="333" y="78"/>
+      <point x="375" y="37"/>
+      <point x="375" y="-47" type="curve" smooth="yes"/>
+      <point x="375" y="-172" type="line"/>
+      <point x="406" y="-172" type="line"/>
+      <point x="406" y="47" type="line" smooth="yes"/>
+      <point x="406" y="130"/>
+      <point x="365" y="172"/>
+      <point x="281" y="172" type="curve" smooth="yes"/>
+      <point x="203" y="172" type="line"/>
+      <point x="0" y="-78" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 78 94</string>
+              <string>vstem 375 31</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>4d2252a02742e7831b4f14a77cd82d9f044bf089666b201213f758882ebb80ac58e6664bc7a135e09228782950ac2bb7e36f9e38d6e463176a6c4a099410bb82</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

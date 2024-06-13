@@ -34,7 +34,7 @@ Project specific settings are defined in ``smufolib.cfg``. This file is
 located inside the `smufolib` folder in python site packages by
 default, but can be moved to the home folder or a specific location
 defined in the environment variable ``SMUFOLIB_CFG`` or as
-``INI_FILEPATH`` inside ``config.py``.
+``CONFIG_FILEPATH`` inside ``config.py``.
 
 The file is divided between the following sections:
 

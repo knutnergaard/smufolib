@@ -1,0 +1,71 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE249.ss03" format="2">
+  <advance width="275"/>
+  <unicode hex="F41D"/>
+  <note>
+{'classes': ['combiningStaffPositions'], 'name': 'flag128thDownStraight', 'description': 'Combining flag 5 (128th) below (straight)'}
+</note>
+  <outline>
+    <contour>
+      <point x="10" y="200" type="line"/>
+      <point x="240" y="430" type="line"/>
+      <point x="240" y="555" type="line"/>
+      <point x="10" y="325" type="line"/>
+      <point x="0" y="325" type="line"/>
+      <point x="0" y="200" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-600" type="line"/>
+      <point x="10" y="-600" type="line"/>
+      <point x="240" y="-370" type="line"/>
+      <point x="240" y="-245" type="line"/>
+      <point x="10" y="-475" type="line"/>
+      <point x="0" y="-475" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="0" type="line"/>
+      <point x="10" y="0" type="line"/>
+      <point x="240" y="230" type="line"/>
+      <point x="240" y="355" type="line"/>
+      <point x="10" y="125" type="line"/>
+      <point x="0" y="125" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-200" type="line"/>
+      <point x="10" y="-200" type="line"/>
+      <point x="240" y="30" type="line"/>
+      <point x="240" y="155" type="line"/>
+      <point x="10" y="-75" type="line"/>
+      <point x="0" y="-75" type="line"/>
+    </contour>
+    <contour>
+      <point x="0" y="-400" type="line"/>
+      <point x="10" y="-400" type="line"/>
+      <point x="240" y="-170" type="line"/>
+      <point x="240" y="-45" type="line"/>
+      <point x="10" y="-275" type="line"/>
+      <point x="0" y="-275" type="line"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>hstem 21 -21</string>
+              <string>vstem 0 10</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>8fdad6ff2de8919acd13ea386722e751a5f36c9fa7477202f403b192eda13110366cf58962a5626d892c37c2b564d88b2b9ad6fd6ad39b8860b6ab97b618f8d9</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>

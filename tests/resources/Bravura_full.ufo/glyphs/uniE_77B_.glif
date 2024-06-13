@@ -1,0 +1,70 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<glyph name="uniE77B" format="2">
+  <advance width="435"/>
+  <unicode hex="E77B"/>
+  <note>
+{'classes': ['tf_pictograms', 'tf_zeroWidth'], 'name': 'pictBeaterHardXylophoneLeft', 'description': 'Hard xylophone stick left'}
+</note>
+  <outline>
+    <contour>
+      <point x="-2" y="546" type="curve" smooth="yes"/>
+      <point x="-2" y="483"/>
+      <point x="49" y="431"/>
+      <point x="113" y="431" type="curve" smooth="yes"/>
+      <point x="129" y="431"/>
+      <point x="143" y="434"/>
+      <point x="157" y="440" type="curve"/>
+      <point x="406" y="8" type="line" smooth="yes"/>
+      <point x="409" y="3"/>
+      <point x="414" y="0"/>
+      <point x="419" y="0" type="curve"/>
+      <point x="421" y="0"/>
+      <point x="424" y="1"/>
+      <point x="426" y="2" type="curve" smooth="yes"/>
+      <point x="434" y="6"/>
+      <point x="436" y="16"/>
+      <point x="432" y="23" type="curve" smooth="yes"/>
+      <point x="183" y="455" type="line"/>
+      <point x="210" y="476"/>
+      <point x="228" y="509" name="hr01"/>
+      <point x="228" y="546" type="curve" smooth="yes"/>
+      <point x="228" y="610"/>
+      <point x="176" y="661"/>
+      <point x="113" y="661" type="curve" smooth="yes"/>
+      <point x="49" y="661"/>
+      <point x="-2" y="610"/>
+    </contour>
+  </outline>
+  <lib>
+    <dict>
+      <key>public.postscript.hints</key>
+      <dict>
+        <key>formatVersion</key>
+        <string>1</string>
+        <key>hintSetList</key>
+        <array>
+          <dict>
+            <key>stems</key>
+            <array>
+              <string>vstem -2 436</string>
+              <string>hstem 431 230</string>
+              <string>hstem 21 -21</string>
+            </array>
+          </dict>
+          <dict>
+            <key>pointTag</key>
+            <string>hr01</string>
+            <key>stems</key>
+            <array>
+              <string>vstem -2 230</string>
+              <string>hstem 431 230</string>
+              <string>hstem 21 -21</string>
+            </array>
+          </dict>
+        </array>
+        <key>id</key>
+        <string>8ef6827300306531e74643af88c4ffe21815c86cd6e1f0af9d144681e824b823e975aecd8cdd227eb8f134e86d7810f011b4104ce6f7d0dbb5f475f182edef0e</string>
+      </dict>
+    </dict>
+  </lib>
+</glyph>
