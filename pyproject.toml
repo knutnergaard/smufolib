@@ -8,9 +8,27 @@ version = "0.1.0"
 dependencies = [
     "fontParts",
     "tqdm",
+requires-python = ">=3.9"
+]
+authors = [
+    {name = "Knut Nergaard", email = "knut.nergaard@gmail.com"}
 ]
 
-requires-python = ">=3.9"
+description = "FontParts based library for SMuFL font scripting"
+readme = "README.rst"
+license = {file = "LICENSE.txt"}
+keywords = [
+    "music notation",
+    "font design",
+    "SMuFL",
+    "UFO",
+    "FontParts"
+    ]
+classifiers =
+    "Development Status :: 4 - Beta",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3 :: Only",
+    "Operating System :: OS Independent"
 
 [tool.setuptools]
 include-package-data = true
