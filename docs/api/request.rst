@@ -1,6 +1,3 @@
-.. module:: smufolib.request
-    :noindex:
-
 .. _metadata requests:
 
 =================
@@ -13,9 +10,6 @@ files are handled in the :mod:`~smufolib.request` module.
 The :class:`~smufolib.request.Request` class allows simultanous URL and
 filepath requests for maximum reliability and access to updated data.
 
-.. autoclass:: Request
-    :members:
-
-.. autoclass:: URLWarning
+.. automodule:: smufolib.request
     :members:
 

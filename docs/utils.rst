@@ -1,6 +1,3 @@
-.. module:: smufolib
-    :noindex:
-
 .. _converters:
 
 :mod:`converters`

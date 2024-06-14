@@ -1,5 +1,3 @@
-.. module:: smufolib.objects
-
 =======
 Objects
 =======

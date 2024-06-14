@@ -1,6 +1,3 @@
-.. module:: smufolib
-    :noindex:
-
 .. _Command Line Interface:
 
 ======================

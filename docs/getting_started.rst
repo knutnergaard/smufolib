@@ -1,6 +1,3 @@
-.. module:: bin
-   :noindex:
-
 Installation
 ============
 

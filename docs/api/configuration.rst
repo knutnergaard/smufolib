@@ -1,6 +1,3 @@
-.. module:: smufolib
-    :noindex:
-
 =============
 Configuration
 =============
