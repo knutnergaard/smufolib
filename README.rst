@@ -38,7 +38,7 @@ directly from the console, passing in any arguments in the familiar
 manner to each platform.
 
 As an example, check for missing or superflous SMuFL anchors by running
-the :mod:`~bin.checkAnchors` script directly from console:
+the checkAnchors script directly from console:
 
 .. code:: zsh
 
