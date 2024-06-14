@@ -1,0 +1,6 @@
+[console_scripts]
+calculate-engraving-defaults = bin.calculateEngravingDefaults:main
+check-anchors = bin.checkAnchors:main
+generate-metadata = bin.generateMetadata:main
+import-anchors = bin.importAnchors:main
+import-id = bin.importID:main

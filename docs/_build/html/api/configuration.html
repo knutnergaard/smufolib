@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Configuration &mdash; SMufoLib 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=139e30ab" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="converters" href="../utils.html" />
+    <link rel="prev" title="Command Line Interface" href="cli.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SMufoLib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html#running-scripts">Running Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="objects.html">Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="request.html">Metadata Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Configuration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.config.load"><code class="docutils literal notranslate"><span class="pre">load()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib-cfg">smufolib.cfg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#request">[request]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata-paths">[metadata.paths]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#metadata-fallbacks">[metadata.fallbacks]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#cli-shortflags">[cli.shortFlags]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-marks">[color.marks]</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#color-anchors">[color.anchors]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utility Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#normalizers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#pointutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#stdutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.checkAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.generateMetadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">generateMetadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.importAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.importID"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SMufoLib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Configuration</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/knutnergaard/smufolib/blob/api/configuration.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="configuration">
+<h1>Configuration<a class="headerlink" href="#configuration" title="Link to this heading"></a></h1>
+<p>User defined default settings for SMufoLib are set in the configuration
+file <a class="reference internal" href="#smufolib-cfg"><span class="std std-ref">smufolib.cfg</span></a> and parsed by the <a class="reference internal" href="#module-smufolib.config" title="smufolib.config"><code class="xref py py-mod docutils literal notranslate"><span class="pre">config</span></code></a>
+module. Detailed information on how SMufoLib handles configuration
+is provided in the following sections.</p>
+<dl class="py function" id="module-smufolib.config">
+<dt class="sig sig-object py" id="smufolib.config.load">
+<span class="sig-name descname"><span class="pre">load</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">path</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">''</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/config.html#load"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.config.load" title="Link to this definition"></a></dt>
+<dd><p>Load parsed config file as <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>.</p>
+<p>If the <strong>path=</strong> parameter is an empty <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">str</span></code></a> or <code class="docutils literal notranslate"><span class="pre">None</span></code>, the
+following locations are checked in order:</p>
+<ol class="arabic simple">
+<li><p>Current working directory</p></li>
+<li><p>Home directory</p></li>
+<li><p>Environment variable <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">SMUFOLIB_CFG</span></code></p></li>
+<li><p>SMufoLib package directory</p></li>
+</ol>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>path</strong> (<a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><em>None</em>) – Path to smufolib.cfg</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<section id="smufolib-cfg">
+<span id="id1"></span><h2>smufolib.cfg<a class="headerlink" href="#smufolib-cfg" title="Link to this heading"></a></h2>
+<p>The SMufoLib configuration file <strong>smufolib.cfg</strong> contains default
+settings for SMufoLib. It contains three main sections, with
+sub-sections denoted by a preceding dot, and settings for warnings, URL
+and file paths and colors.</p>
+<section id="request">
+<span id="id2"></span><h3>[request]<a class="headerlink" href="#request" title="Link to this heading"></a></h3>
+<p>This section contains configuration for
+the <a class="reference internal" href="request.html#smufolib.request.Request" title="smufolib.request.Request"><code class="xref py py-class docutils literal notranslate"><span class="pre">smufolib.request.Request</span></code></a> class.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[request]</span>
+<span class="na">encoding</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">utf-8</span>
+<span class="na">warn</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">true</span>
+</pre></div>
+</div>
+</section>
+<section id="metadata-paths">
+<span id="id3"></span><h3>[metadata.paths]<a class="headerlink" href="#metadata-paths" title="Link to this heading"></a></h3>
+<p>Primary metadata paths are configured in this section.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata.paths]</span>
+<span class="na">directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://raw.githubusercontent.com/w3c/smufl/gh-pages/metadata/</span>
+<span class="na">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}classes.json</span>
+<span class="na">glyphnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}glyphnames.json</span>
+<span class="na">ranges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}ranges.json</span>
+<span class="na">referenceFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">https://raw.githubusercontent.com/steinbergmedia/</span>
+<span class="w">    </span><span class="na">bravura/master/redist/bravura_metadata.json</span>
+</pre></div>
+</div>
+</section>
+<section id="metadata-fallbacks">
+<span id="id4"></span><h3>[metadata.fallbacks]<a class="headerlink" href="#metadata-fallbacks" title="Link to this heading"></a></h3>
+<p>Metadata fallback paths are configured in this section.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[metadata.fallbacks]</span>
+<span class="na">directory</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">./smufolib/metadata/</span>
+<span class="na">classes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}classes.json</span>
+<span class="na">glyphnames</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}glyphnames.json</span>
+<span class="na">ranges</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}ranges.json</span>
+<span class="na">referenceFont</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">${directory}bravura_metadata.json</span>
+</pre></div>
+</div>
+</section>
+<section id="cli-shortflags">
+<span id="id5"></span><h3>[cli.shortFlags]<a class="headerlink" href="#cli-shortflags" title="Link to this heading"></a></h3>
+<p>Short flags for <a class="reference internal" href="cli.html#command-line-interface"><span class="std std-ref">Command Line Interface</span></a> options to be used
+with <a class="reference internal" href="cli.html#smufolib.cli.commonParser" title="smufolib.cli.commonParser"><code class="xref py py-func docutils literal notranslate"><span class="pre">commonParser()</span></code></a> are configured in this section.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[cli.shortFlags]</span>
+<span class="na">classData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-C</span>
+<span class="na">clear</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-x</span>
+<span class="na">color</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-c</span>
+<span class="na">exclude</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-e</span>
+<span class="na">font</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-f</span>
+<span class="na">fontData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-F</span>
+<span class="na">glyphnameData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-G</span>
+<span class="na">include</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-i</span>
+<span class="na">mark</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-m</span>
+<span class="na">overwrite</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-o</span>
+<span class="na">rangeData</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-r</span>
+<span class="na">sourcePath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-S</span>
+<span class="na">spaces</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-s</span>
+<span class="na">targetPath</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">-T</span>
+</pre></div>
+</div>
+</section>
+<section id="color-marks">
+<span id="id6"></span><h3>[color.marks]<a class="headerlink" href="#color-marks" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/valuetypes/index.html#type-color" title="(in FontParts v0.1)"><span>Color</span></a> values for glyph marks are configured in this section.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[color.marks]</span>
+<span class="na">mark1</span><span class="w"> </span><span class="o">=</span>
+<span class="na">mark2</span><span class="w"> </span><span class="o">=</span>
+<span class="na">mark3</span><span class="w"> </span><span class="o">=</span>
+</pre></div>
+</div>
+</section>
+<section id="color-anchors">
+<span id="id7"></span><h3>[color.anchors]<a class="headerlink" href="#color-anchors" title="Link to this heading"></a></h3>
+<p><a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/valuetypes/index.html#type-color" title="(in FontParts v0.1)"><span>Color</span></a> values for glyph anchors are configured in this section.</p>
+<div class="highlight-cfg notranslate"><div class="highlight"><pre><span></span><span class="k">[color.anchors]</span>
+<span class="na">cutOutNE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">cutOutNW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">cutOutSE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">cutOutSW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">graceNoteSlashNE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">graceNoteSlashNW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">graceNoteSlashSE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">graceNoteSlashSW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">nominalWidth</span><span class="w"> </span><span class="o">=</span>
+<span class="na">noteheadOrigin</span><span class="w"> </span><span class="o">=</span>
+<span class="na">numeralBottom</span><span class="w"> </span><span class="o">=</span>
+<span class="na">numeralTop</span><span class="w"> </span><span class="o">=</span>
+<span class="na">opticalCenter</span><span class="w"> </span><span class="o">=</span>
+<span class="na">repeatOffset</span><span class="w"> </span><span class="o">=</span>
+<span class="na">splitStemDownNE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">splitStemDownNW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">splitStemUpSE</span><span class="w"> </span><span class="o">=</span>
+<span class="na">splitStemUpSW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">stemDownNW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">stemDownSW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">stemUpNW</span><span class="w"> </span><span class="o">=</span>
+<span class="na">stemUpSE</span><span class="w"> </span><span class="o">=</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="cli.html" class="btn btn-neutral float-left" title="Command Line Interface" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="../utils.html" class="btn btn-neutral float-right" title="converters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Knut Nergaard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

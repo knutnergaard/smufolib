@@ -1,0 +1,92 @@
+Metadata-Version: 2.1
+Name: SMufoLib
+Version: 0.1.0
+Summary: FontParts based library for SMuFL font scripting
+Author-email: Knut Nergaard <knut.nergaard@gmail.com>
+License: 
+        Copyright (c) 2022 Knut Nergaard
+        
+        Permission is hereby granted, free of charge, to any person obtaining a copy
+        of this software and associated documentation files (the "Software"), to deal
+        in the Software without restriction, including without limitation the rights
+        to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+        copies of the Software, and to permit persons to whom the Software is
+        furnished to do so, subject to the following conditions:
+        
+        The above copyright notice and this permission notice shall be included in all
+        copies or substantial portions of the Software.
+        
+        THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+        IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+        FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+        AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+        LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+        OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+        SOFTWARE.
+        
+        
+Project-URL: Homepage, https://github.com/knutnergaard/SMufoLib
+Keywords: music notation,font design,SMuFL,UFO,FontParts
+Classifier: Development Status :: 4 - Beta
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Programming Language :: Python :: 3 :: Only
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.10
+Description-Content-Type: text/x-rst
+License-File: LICENSE.txt
+Requires-Dist: fontParts
+Requires-Dist: tqdm
+
+SMufoLib: Where SMuFL meets UFO
+===============================
+
+SMufoLib is a small Python library designed to aid in font development
+and scripting specific to the `Standard Music Font Layout
+<https://w3c.github.io/smufl/latest/>`_ (SMuFL). As an extension of the
+`FontParts <https://fontparts.robotools.dev/en/stable/index.html>`_
+API, SMufoLib relies on the platform and application independent
+`Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format and
+the command line, rather than any particular font editor.
+
+Documentation
+-------------
+
+SMufoLib’s documentation is available at `smufolib.readthedocs.io
+<https://smufolib.readthedocs.io/en/latest/index.html>`_.
+
+Installation
+------------
+
+SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
+later. It is listed in the Python Package Index (PyPI) and can be
+installed with `pip <https://pip.pypa.io/>`__:
+
+.. code:: bash
+
+   $ python -m pip install smufolib
+
+Scripts
+-------
+
+SMufoLib comes bundled with several useful functions and scripts for
+building SMuFL metadata files, calculating engraving defaults from
+glyphs, importing identification attributes and more.
+
+Scripts may be run either via the Python interpreter or
+directly from the console, passing in any arguments in the familiar
+manner to each platform.
+
+As an example, check for missing or superflous SMuFL anchors by running
+the checkAnchors script directly from console:
+
+.. code:: zsh
+
+   $ check-anchors --mark
+
+Or import it as a module in Python:
+
+.. code:: Py3
+
+   from bin import checkAnchors
+
+   checkAnchors(mark=True)

@@ -1,0 +1,1320 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Objects &mdash; SMufoLib 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../_static/css/custom.css?v=139e30ab" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../_static/doctools.js?v=9a2dae69"></script>
+        <script src="../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Metadata Requests" href="request.html" />
+    <link rel="prev" title="Installation" href="../getting_started.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../index.html" class="icon icon-home">
+            SMufoLib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../getting_started.html#running-scripts">Running Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Objects</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#base-objects">Base Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.font.Font"><code class="docutils literal notranslate"><span class="pre">Font</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.font.Font.layerClass"><code class="docutils literal notranslate"><span class="pre">Font.layerClass</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.font.Font.smufl"><code class="docutils literal notranslate"><span class="pre">Font.smufl</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.glyph.Glyph"><code class="docutils literal notranslate"><span class="pre">Glyph</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.glyph.Glyph.smufl"><code class="docutils literal notranslate"><span class="pre">Glyph.smufl</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.layer.Layer"><code class="docutils literal notranslate"><span class="pre">Layer</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.layer.Layer.glyphClass"><code class="docutils literal notranslate"><span class="pre">Layer.glyphClass</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#core-objects">Core Objects</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.smufl.Smufl"><code class="docutils literal notranslate"><span class="pre">Smufl</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.findGlyph"><code class="docutils literal notranslate"><span class="pre">Smufl.findGlyph()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.round"><code class="docutils literal notranslate"><span class="pre">Smufl.round()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.toSpaces"><code class="docutils literal notranslate"><span class="pre">Smufl.toSpaces()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.toUnits"><code class="docutils literal notranslate"><span class="pre">Smufl.toUnits()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.advanceWidth"><code class="docutils literal notranslate"><span class="pre">Smufl.advanceWidth</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.alternates"><code class="docutils literal notranslate"><span class="pre">Smufl.alternates</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.anchors"><code class="docutils literal notranslate"><span class="pre">Smufl.anchors</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.bBox"><code class="docutils literal notranslate"><span class="pre">Smufl.bBox</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.base"><code class="docutils literal notranslate"><span class="pre">Smufl.base</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.classes"><code class="docutils literal notranslate"><span class="pre">Smufl.classes</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.codepoint"><code class="docutils literal notranslate"><span class="pre">Smufl.codepoint</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.componentGlyphs"><code class="docutils literal notranslate"><span class="pre">Smufl.componentGlyphs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.description"><code class="docutils literal notranslate"><span class="pre">Smufl.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.designSize"><code class="docutils literal notranslate"><span class="pre">Smufl.designSize</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.engravingDefaults"><code class="docutils literal notranslate"><span class="pre">Smufl.engravingDefaults</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.font"><code class="docutils literal notranslate"><span class="pre">Smufl.font</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.glyph"><code class="docutils literal notranslate"><span class="pre">Smufl.glyph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isLigature"><code class="docutils literal notranslate"><span class="pre">Smufl.isLigature</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isMember"><code class="docutils literal notranslate"><span class="pre">Smufl.isMember</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isOptional"><code class="docutils literal notranslate"><span class="pre">Smufl.isOptional</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isRecommended"><code class="docutils literal notranslate"><span class="pre">Smufl.isRecommended</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isSalt"><code class="docutils literal notranslate"><span class="pre">Smufl.isSalt</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.isSet"><code class="docutils literal notranslate"><span class="pre">Smufl.isSet</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.layer"><code class="docutils literal notranslate"><span class="pre">Smufl.layer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.name"><code class="docutils literal notranslate"><span class="pre">Smufl.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.range"><code class="docutils literal notranslate"><span class="pre">Smufl.range</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.sizeRange"><code class="docutils literal notranslate"><span class="pre">Smufl.sizeRange</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.spaces"><code class="docutils literal notranslate"><span class="pre">Smufl.spaces</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.suffix"><code class="docutils literal notranslate"><span class="pre">Smufl.suffix</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.smufl.Smufl.version"><code class="docutils literal notranslate"><span class="pre">Smufl.version</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.clear"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.clear()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.items"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.items()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.keys"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.keys()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.round"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.round()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.update"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.update()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.values"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.values()</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.arrowShaftThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.arrowShaftThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.barlineSeparation"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.barlineSeparation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamSpacing"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.beamSpacing</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.beamThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.bracketThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.bracketThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineDashLength"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.dashedBarlineDashLength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineGapLength"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.dashedBarlineGapLength</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.dashedBarlineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.font"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.font</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.glyph"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.glyph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hBarThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.hBarThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hairpinThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.hairpinThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.layer"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.layer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineExtension"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.legerLineExtension</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.legerLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.lyricLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.lyricLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.octaveLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.octaveLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.pedalLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.pedalLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatBarlineDotSeparation"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.repeatBarlineDotSeparation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatEndingLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.repeatEndingLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurEndpointThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.slurEndpointThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurMidpointThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.slurMidpointThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.smufl"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.smufl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.spaces"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.spaces</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.staffLineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.staffLineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.stemThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.stemThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.subBracketThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.subBracketThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.textEnclosureThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.textEnclosureThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.textFontFamily"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.textFontFamily</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thickBarlineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.thickBarlineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinBarlineThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.thinBarlineThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinThickBarlineSeparation"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.thinThickBarlineSeparation</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieEndpointThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.tieEndpointThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieMidpointThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.tieMidpointThickness</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tupletBracketThickness"><code class="docutils literal notranslate"><span class="pre">EngravingDefaults.tupletBracketThickness</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.objects.range.Range"><code class="docutils literal notranslate"><span class="pre">Range</span></code></a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.description"><code class="docutils literal notranslate"><span class="pre">Range.description</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.end"><code class="docutils literal notranslate"><span class="pre">Range.end</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.font"><code class="docutils literal notranslate"><span class="pre">Range.font</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.glyph"><code class="docutils literal notranslate"><span class="pre">Range.glyph</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.glyphs"><code class="docutils literal notranslate"><span class="pre">Range.glyphs</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.layer"><code class="docutils literal notranslate"><span class="pre">Range.layer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.name"><code class="docutils literal notranslate"><span class="pre">Range.name</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.smufl"><code class="docutils literal notranslate"><span class="pre">Range.smufl</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#smufolib.objects.range.Range.start"><code class="docutils literal notranslate"><span class="pre">Range.start</span></code></a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="request.html">Metadata Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utility Modules</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#normalizers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#pointutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../utils.html#stdutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code></a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.checkAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.generateMetadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">generateMetadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.importAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scripts.html#module-bin.importID"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">SMufoLib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active">Objects</li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/knutnergaard/smufolib/blob/api/objects.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="objects">
+<span id="module-smufolib.objects"></span><h1>Objects<a class="headerlink" href="#objects" title="Link to this heading"></a></h1>
+<section id="base-objects">
+<h2>Base Objects<a class="headerlink" href="#base-objects" title="Link to this heading"></a></h2>
+<p>SMufoLib’s most low-level classes are simply implementations of
+the <a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/objects/segment.html#module-fontParts.base" title="(in FontParts v0.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">fontParts.base</span></code></a> equivalents. As such, SMufoLib provides easy
+access to an entire common font development API in addition to
+functionality specific to SMuFL. Please see the <a class="reference external" href="https://fontparts.robotools.dev/en/stable/index.html">FontParts
+documentation</a>
+for further reference.</p>
+<dl class="py class" id="module-smufolib.objects.font">
+<dt class="sig sig-object py" id="smufolib.objects.font.Font">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Font</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">pathOrObject</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">showInterface</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/font.html#Font"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.font.Font" title="Link to this definition"></a></dt>
+<dd><p>Environment implementation of <a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/objects/font.html#fontParts.base.BaseFont" title="(in FontParts v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fontParts.base.BaseFont</span></code></a>.</p>
+<p>To import the <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> object and instantiate a font:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="kn">from</span> <span class="nn">smufolib</span> <span class="kn">import</span> <span class="n">Font</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">font</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="s1">&#39;path/to/my/font.ufo&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.objects.font.Font.layerClass">
+<span class="sig-name descname"><span class="pre">layerClass</span></span><a class="headerlink" href="#smufolib.objects.font.Font.layerClass" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></a></p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.font.Font.smufl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smufl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><span class="pre">Smufl</span></a></em><a class="headerlink" href="#smufolib.objects.font.Font.smufl" title="Link to this definition"></a></dt>
+<dd><p>Font instance of <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-smufolib.objects.glyph">
+<dt class="sig sig-object py" id="smufolib.objects.glyph.Glyph">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Glyph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/glyph.html#Glyph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.glyph.Glyph" title="Link to this definition"></a></dt>
+<dd><p>Environment implementation of <a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/objects/glyph.html#fontParts.base.BaseGlyph" title="(in FontParts v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fontParts.base.BaseGlyph</span></code></a>.</p>
+<p>Glyphs are usually accessed through
+a <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> objects inherent glyph
+dictionary. To instantiate the SMuFL glyph named <code class="docutils literal notranslate"><span class="pre">uniE030</span></code>
+(single barline):</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE030&#39;</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.glyph.Glyph.smufl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smufl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><span class="pre">Smufl</span></a></em><a class="headerlink" href="#smufolib.objects.glyph.Glyph.smufl" title="Link to this definition"></a></dt>
+<dd><p>Glyph instance of <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a>.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-smufolib.objects.layer">
+<dt class="sig sig-object py" id="smufolib.objects.layer.Layer">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Layer</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">args</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/layer.html#Layer"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.layer.Layer" title="Link to this definition"></a></dt>
+<dd><p>Environment implementation of <a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/objects/layer.html#fontParts.base.BaseLayer" title="(in FontParts v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fontParts.base.BaseLayer</span></code></a>.</p>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.objects.layer.Layer.glyphClass">
+<span class="sig-name descname"><span class="pre">glyphClass</span></span><a class="headerlink" href="#smufolib.objects.layer.Layer.glyphClass" title="Link to this definition"></a></dt>
+<dd><p>alias of <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a></p>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+<section id="core-objects">
+<h2>Core Objects<a class="headerlink" href="#core-objects" title="Link to this heading"></a></h2>
+<p>The following classes represent SMufoLib’s metadata collection classes.</p>
+<div class="admonition caution">
+<p class="admonition-title">Caution</p>
+<p>These classes use <a class="reference external" href="https://fontparts.robotools.dev/en/stable/objectref/objects/lib.html#fontParts.base.BaseLib" title="(in FontParts v0.1)"><code class="xref py py-class docutils literal notranslate"><span class="pre">fontParts.base.BaseLib</span></code></a> to store
+property settings. Editing these keys directly may cause problems.</p>
+</div>
+<dl class="py class" id="module-smufolib.objects.smufl">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Smufl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">font</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">glyph</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/smufl.html#Smufl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.smufl.Smufl" title="Link to this definition"></a></dt>
+<dd><p>Provides SMuFL-related metadata and functionality.</p>
+<p>Class may be called from either <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a>
+or <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a>. Font-specific attributes
+with unique names may be accessed from both, due to the consistent
+access to parent classes in FontParts.</p>
+<div class="admonition note" id="about-glyph-naming">
+<p class="admonition-title">Note</p>
+<p>Attributes with the purpose of identifying ligatures
+(<a class="reference internal" href="#smufolib.objects.smufl.Smufl.isLigature" title="smufolib.objects.smufl.Smufl.isLigature"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isLigature</span></code></a>), stylistic alternates (<a class="reference internal" href="#smufolib.objects.smufl.Smufl.isSalt" title="smufolib.objects.smufl.Smufl.isSalt"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isSalt</span></code></a>) and
+stylistic sets (<a class="reference internal" href="#smufolib.objects.smufl.Smufl.isSet" title="smufolib.objects.smufl.Smufl.isSet"><code class="xref py py-attr docutils literal notranslate"><span class="pre">isSet</span></code></a>) depend on strict adherence to the
+descriptive naming schemes stipulated in the <a class="reference external" href="https://github.com/adobe-type-tools/agl-specification#readme">Adobe Glyph List       Specification</a> and followed by the SMuFL standard
+(see <a class="reference external" href="https://github.com/adobe-type-tools/agl-specification#6-assigning-glyph-names-in-new-fonts">Section 6</a> for more
+information).</p>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>To avoid having to set all the glyph identification
+attributes manually, it is advisable to run the
+script <a class="reference internal" href="../scripts.html#module-bin.importID" title="bin.importID"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a> prior to using this class with
+an excisting font for the first time.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>font</strong> (<a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><em>Font</em></a><em> | </em><em>None</em>) – Parent <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> object.</p></li>
+<li><p><strong>glyph</strong> (<a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><em>Glyph</em></a><em> | </em><em>None</em>) – Parent <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object.</p></li>
+</ul>
+</dd>
+</dl>
+<p>While this object is normally created as part of
+a <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a>, an orphan <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a>
+object can be created like this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">smufl</span> <span class="o">=</span> <span class="n">Smufl</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.findGlyph">
+<span class="sig-name descname"><span class="pre">findGlyph</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/smufl.html#Smufl.findGlyph"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.smufl.Smufl.findGlyph" title="Link to this definition"></a></dt>
+<dd><p>Find <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object from <a class="reference internal" href="#smufolib.objects.smufl.Smufl.name" title="smufolib.objects.smufl.Smufl.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – SMuFL-specific canonical glyph name.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph">Glyph</a> | None</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">findGlyph</span><span class="p">(</span><span class="s1">&#39;barlineSingle&#39;</span><span class="p">)</span>
+<span class="go">&lt;Glyph &#39;uniE030&#39; (&#39;public.default&#39;) at 4393557200&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/smufl.html#Smufl.round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.smufl.Smufl.round" title="Link to this definition"></a></dt>
+<dd><p>Round font units to integers.</p>
+<p>Method applies to the following attributes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#smufolib.objects.smufl.Smufl.engravingDefaults" title="smufolib.objects.smufl.Smufl.engravingDefaults"><code class="xref py py-attr docutils literal notranslate"><span class="pre">engravingDefaults</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.smufl.Smufl.anchors" title="smufolib.objects.smufl.Smufl.anchors"><code class="xref py py-attr docutils literal notranslate"><span class="pre">anchors</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.smufl.Smufl.advanceWidth" title="smufolib.objects.smufl.Smufl.advanceWidth"><code class="xref py py-attr docutils literal notranslate"><span class="pre">advanceWidth</span></code></a></p></li>
+</ul>
+<p>If <a class="reference internal" href="#smufolib.objects.smufl.Smufl.spaces" title="smufolib.objects.smufl.Smufl.spaces"><code class="xref py py-attr docutils literal notranslate"><span class="pre">spaces</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, values are left unchanged.</p>
+<p>Examples:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">230.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">wiadvanceWidthdth</span>
+<span class="go">230.5</span>
+</pre></div>
+</div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">spaces</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">0.922</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">0.922</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.toSpaces">
+<span class="sig-name descname"><span class="pre">toSpaces</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/smufl.html#Smufl.toSpaces"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.smufl.Smufl.toSpaces" title="Link to this definition"></a></dt>
+<dd><p>Convert font units to staff spaces based on font UPM size.</p>
+<p>The inverse of <a class="reference internal" href="#smufolib.objects.smufl.Smufl.toUnits" title="smufolib.objects.smufl.Smufl.toUnits"><code class="xref py py-meth docutils literal notranslate"><span class="pre">toUnits()</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Value to convert.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> | None</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="s1">&#39;path/to/my/font.ufo&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">unitsPerEm</span>
+<span class="go">2048</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">toSpaces</span><span class="p">(</span><span class="mi">512</span><span class="p">)</span>
+<span class="go">1.0</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.toUnits">
+<span class="sig-name descname"><span class="pre">toUnits</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/smufl.html#Smufl.toUnits"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.smufl.Smufl.toUnits" title="Link to this definition"></a></dt>
+<dd><p>Convert staff spaces to font units based on font UPM size.</p>
+<p>The inverse of <a class="reference internal" href="#smufolib.objects.smufl.Smufl.toSpaces" title="smufolib.objects.smufl.Smufl.toSpaces"><code class="xref py py-meth docutils literal notranslate"><span class="pre">toSpaces()</span></code></a>.
+Result is always rounded.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – Value to convert.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | None</p>
+</dd>
+</dl>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span> <span class="o">=</span> <span class="n">Font</span><span class="p">(</span><span class="s1">&#39;path/to/my/font.ufo&#39;</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">info</span><span class="o">.</span><span class="n">unitsPerEm</span>
+<span class="go">2048</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">toSpaces</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+<span class="go">1024</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.advanceWidth">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">advanceWidth</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.advanceWidth" title="Link to this definition"></a></dt>
+<dd><p>Glyph advance width.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">671</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.alternates">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">alternates</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.alternates" title="Link to this definition"></a></dt>
+<dd><p>Metadata of glyph alternates.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE050&#39;</span><span class="p">]</span> <span class="c1"># gClef</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">alternates</span>
+<span class="go">({&#39;codepoint&#39;: &#39;U+F472&#39;, &#39;name&#39;: &#39;gClefSmall&#39;},)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.anchors">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">anchors</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.anchors" title="Link to this definition"></a></dt>
+<dd><p>SMuFL-specific glyph anchors as Cartesian coordinates.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE0A3&#39;</span><span class="p">]</span> <span class="c1"># noteheadHalf</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">anchors</span>
+<span class="go">{&#39;cutOutNW&#39;: (0.204, 0.296), &#39;cutOutSE&#39;:</span>
+<span class="go">(0.98, -0.3), &#39;splitStemDownNE&#39;: (0.956, -0.3), &#39;splitStemDownNW&#39;:</span>
+<span class="go">(0.128, -0.428), &#39;splitStemUpSE&#39;: (1.108, 0.372), &#39;splitStemUpSW&#39;:</span>
+<span class="go">(0.328, 0.38), &#39;stemDownNW&#39;: (0.0, -0.168), &#39;stemUpSE&#39;: (1.18, 0.168)}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.bBox">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bBox</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><span class="pre">dict</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="p"><span class="pre">]</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.bBox" title="Link to this definition"></a></dt>
+<dd><p>Glyph bounding box as Cartesian coordinates.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">bBox</span>
+<span class="go">{&#39;bBoxSW&#39;: (0.0, -0.5), &#39;bBoxNE&#39;: (1.18, 0.5)}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.base">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">base</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><span class="pre">Glyph</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.base" title="Link to this definition"></a></dt>
+<dd><p><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object of alternate’s base glyph.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE050.ss01&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">base</span>
+<span class="go">&lt;Glyph &#39;uniE050&#39; (&#39;public.default&#39;) at 4373577008&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.classes">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">classes</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.classes" title="Link to this definition"></a></dt>
+<dd><p>SMuFL-specific class memberships.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE354&#39;</span><span class="p">]</span> <span class="c1"># accSagittalSharp7v11kUp</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">classes</span>
+<span class="go">[&#39;accidentals&#39;, &#39;accidentalsSagittalAthenian&#39;, &#39;combiningStaffPositions&#39;]</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.codepoint">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">codepoint</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.codepoint" title="Link to this definition"></a></dt>
+<dd><p>Unicode codepoint as formatted string.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE0A3&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">codepoint</span>
+<span class="go">U+E0A3</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.componentGlyphs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">componentGlyphs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.componentGlyphs" title="Link to this definition"></a></dt>
+<dd><p>Ligature components by <a class="reference internal" href="#smufolib.objects.smufl.Smufl.name" title="smufolib.objects.smufl.Smufl.name"><code class="xref py py-attr docutils literal notranslate"><span class="pre">name</span></code></a>.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE09E_uniE083_uniE09F_uniE084&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">componentGlyphs</span>
+<span class="go">(&#39;timeSigCombNumerator&#39;, &#39;timeSig3&#39;, &#39;timeSigCombDenominator&#39;, &#39;timeSig4&#39;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.description">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.description" title="Link to this definition"></a></dt>
+<dd><p>SMuFL-specific glyph description of optional glyphs.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">description</span>
+<span class="go">Combining swished stem</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.designSize">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">designSize</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.designSize" title="Link to this definition"></a></dt>
+<dd><p>Optimum point size in integral decipoints.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">designSize</span>
+<span class="go">240</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.engravingDefaults">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">engravingDefaults</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><span class="pre">EngravingDefaults</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.engravingDefaults" title="Link to this definition"></a></dt>
+<dd><p>Font’s <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><code class="xref py py-class docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a> object.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="go">&lt;EngravingDefaults at 4540156752&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.font">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><span class="pre">Font</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.font" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> object.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">font</span>
+<span class="go">&lt;Font &#39;MyFont&#39; path=&#39;path/to/my/font.ufo&#39; at 4405856720&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.glyph">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">glyph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><span class="pre">Glyph</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.glyph" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">glyph</span>
+<span class="go">&lt;Glyph &#39;uniE587&#39; (&#39;public.default&#39;) at 4536458160&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isLigature">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isLigature</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isLigature" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is ligature.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE09E_uniE083_uniE09F_uniE084&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isLigature</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE083&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isLigature</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isMember">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isMember</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isMember" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is either <a class="reference external" href="https://w3c.github.io/smufl/latest/about/recommended-chars-optional-glyphs.html">recommended or optional</a>.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE050&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isMember</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;spaces&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isMember</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isOptional">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isOptional</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isOptional" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is <a class="reference external" href="https://w3c.github.io/smufl/latest/about/recommended-chars-optional-glyphs.html">optional</a>.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniF660&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isOptional</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE083&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isOptional</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isRecommended">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isRecommended</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isRecommended" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is <a class="reference external" href="https://w3c.github.io/smufl/latest/about/recommended-chars-optional-glyphs.html">recommended</a>.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE083&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">g1</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isRecommended</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniF660&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isRecommended</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isSalt">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isSalt</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isSalt" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is stylistic alternate.</p>
+<p>Accepts both <code class="docutils literal notranslate"><span class="pre">'.alt'</span></code> and <code class="docutils literal notranslate"><span class="pre">'.salt'</span></code> suffix.
+See <a class="reference internal" href="#about-glyph-naming"><span class="std std-ref">Note</span></a> about glyph naming.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE042.salt01&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isSalt</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE042&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isSalt</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.isSet">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">isSet</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.isSet" title="Link to this definition"></a></dt>
+<dd><p>Return <a class="reference external" href="https://docs.python.org/3/library/constants.html#True" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">True</span></code></a> if glyph is stylistic set member.</p>
+<p>See <a class="reference internal" href="#about-glyph-naming"><span class="std std-ref">Note</span></a> about glyph naming.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE050.ss01&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isSet</span>
+<span class="go">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE042.salt01&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">isSet</span>
+<span class="go">False</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><span class="pre">Layer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.layer" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></a> object.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">layer</span>
+<span class="go">&lt;Layer &#39;public.default&#39; at 4568631952&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.name" title="Link to this definition"></a></dt>
+<dd><p>SMuFL-specific canonical font or glyph name.</p>
+<p>Examples:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">name</span>
+<span class="go">Bravura</span>
+</pre></div>
+</div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE212&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">name</span>
+<span class="go">stemSwished</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.range">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">range</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.range.Range" title="smufolib.objects.range.Range"><span class="pre">Range</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.range" title="Link to this definition"></a></dt>
+<dd><p>Glyph’s <a class="reference internal" href="#smufolib.objects.range.Range" title="smufolib.objects.range.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">Range</span></code></a> object.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE212&#39;</span><span class="p">]</span> <span class="c1"># stemSwished</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">range</span>
+<span class="go">&lt;Range &#39;stems&#39; (&#39;U+E210–U+E21F&#39;) at 4348391632&gt;</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.sizeRange">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">sizeRange</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.sizeRange" title="Link to this definition"></a></dt>
+<dd><p>Optimum size range in integral decipoints.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">designSize</span>
+<span class="go">(180, 260)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.spaces">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.spaces" title="Link to this definition"></a></dt>
+<dd><p>Set state of measurement to staff spaces.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">230.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">spaces</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">advanceWidth</span>
+<span class="go">0.922</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.suffix">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">suffix</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.suffix" title="Link to this definition"></a></dt>
+<dd><p>Return suffix of alternates.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span> <span class="o">=</span> <span class="n">font</span><span class="p">[</span><span class="s1">&#39;uniE050.ss01&#39;</span><span class="p">]</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">glyph</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">suffix</span>
+<span class="go">ss01</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.smufl.Smufl.version">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">version</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.smufl.Smufl.version" title="Link to this definition"></a></dt>
+<dd><p>SMuFL-specific font version number.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">font</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">version</span>
+<span class="go">2.2</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class" id="module-smufolib.objects.engravingDefaults">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">EngravingDefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smufl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="Link to this definition"></a></dt>
+<dd><p>SMuFL engraving default settings.</p>
+<p>This object contains properties and methods pertained to SMuFL’s
+<a class="reference external" href="https://w3c.github.io/smufl/latest/specification/engravingdefaults.html">engravingDefaults</a>
+metadata structure, defining recommended defaults for line widths
+etc., according to the specification.</p>
+<p>The <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><code class="xref py py-class docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a> object is essentially a <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>
+with access to keys through regular class attributes.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Engraving default values can be calculated from the
+contours of specific glyphs and set automatically with
+the <a class="reference internal" href="../scripts.html#module-bin.calculateEngravingDefaults" title="bin.calculateEngravingDefaults"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a> script.</p>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>smufl</strong> (<a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><em>Smufl</em></a><em> | </em><em>None</em>) – Parent <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a> object.</p>
+</dd>
+</dl>
+<p>While this object is normally created as part of
+a <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a>, an
+orphan <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><code class="xref py py-class docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a> object may be created like
+this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">EngravingDefaults</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.clear">
+<span class="sig-name descname"><span class="pre">clear</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.clear"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.clear" title="Link to this definition"></a></dt>
+<dd><p>Clear all engraving default settings.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">clear</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: None, &#39;barlineSeparation&#39;: None, ...}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.items">
+<span class="sig-name descname"><span class="pre">items</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.items"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.items" title="Link to this definition"></a></dt>
+<dd><p>Return dict of all available settings and their values.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)">dict</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, …] | None]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.keys">
+<span class="sig-name descname"><span class="pre">keys</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.keys"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.keys" title="Link to this definition"></a></dt>
+<dd><p>Return sorted list of all available settings names.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+<span class="go">[&#39;arrowShaftThickness&#39;, &#39;barlineSeparation&#39;, ...]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.round">
+<span class="sig-name descname"><span class="pre">round</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.round"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.round" title="Link to this definition"></a></dt>
+<dd><p>Round font units to integers.</p>
+<p>Method applies to the following attributes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.arrowShaftThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.arrowShaftThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">arrowShaftThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.barlineSeparation" title="smufolib.objects.engravingDefaults.EngravingDefaults.barlineSeparation"><code class="xref py py-attr docutils literal notranslate"><span class="pre">barlineSeparation</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamSpacing" title="smufolib.objects.engravingDefaults.EngravingDefaults.beamSpacing"><code class="xref py py-attr docutils literal notranslate"><span class="pre">beamSpacing</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.beamThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">beamThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.bracketThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.bracketThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">bracketThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineDashLength" title="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineDashLength"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashedBarlineDashLength</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineGapLength" title="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineGapLength"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashedBarlineGapLength</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">dashedBarlineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hairpinThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.hairpinThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hairpinThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hBarThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.hBarThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">hBarThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineExtension" title="smufolib.objects.engravingDefaults.EngravingDefaults.legerLineExtension"><code class="xref py py-attr docutils literal notranslate"><span class="pre">legerLineExtension</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.legerLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">legerLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.lyricLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.lyricLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">lyricLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.octaveLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.octaveLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">octaveLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.pedalLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.pedalLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">pedalLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatBarlineDotSeparation" title="smufolib.objects.engravingDefaults.EngravingDefaults.repeatBarlineDotSeparation"><code class="xref py py-attr docutils literal notranslate"><span class="pre">repeatBarlineDotSeparation</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatEndingLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.repeatEndingLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">repeatEndingLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurEndpointThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.slurEndpointThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">slurEndpointThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurMidpointThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.slurMidpointThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">slurMidpointThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.staffLineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.staffLineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">staffLineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.stemThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.stemThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">stemThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.subBracketThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.subBracketThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">subBracketThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.textEnclosureThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.textEnclosureThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">textEnclosureThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thickBarlineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.thickBarlineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">thickBarlineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinBarlineThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.thinBarlineThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">thinBarlineThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinThickBarlineSeparation" title="smufolib.objects.engravingDefaults.EngravingDefaults.thinThickBarlineSeparation"><code class="xref py py-attr docutils literal notranslate"><span class="pre">thinThickBarlineSeparation</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieEndpointThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.tieEndpointThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tieEndpointThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieMidpointThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.tieMidpointThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tieMidpointThickness</span></code></a></p></li>
+<li><p><a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tupletBracketThickness" title="smufolib.objects.engravingDefaults.EngravingDefaults.tupletBracketThickness"><code class="xref py py-attr docutils literal notranslate"><span class="pre">tupletBracketThickness</span></code></a></p></li>
+</ul>
+<p>If <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.spaces" title="smufolib.objects.engravingDefaults.EngravingDefaults.spaces"><code class="xref py py-attr docutils literal notranslate"><span class="pre">spaces</span></code></a> is <code class="docutils literal notranslate"><span class="pre">True</span></code>, values are left unchanged.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">30.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">31</span>
+</pre></div>
+</div>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">spaces</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">0.12</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">round</span><span class="p">()</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">0.12</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.update">
+<span class="sig-name descname"><span class="pre">update</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">other</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">**</span></span><span class="n"><span class="pre">kwargs</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.update"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.update" title="Link to this definition"></a></dt>
+<dd><p>Update settings attributes with other object or values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>other</strong> (<a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><em>EngravingDefaults</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><em>dict</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>...</em><em>] </em><em>| </em><em>None</em><em>] </em><em>| </em><em>None</em>) – Other <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><code class="xref py py-class docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a> or <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a>
+of attribute names mapped to values.</p></li>
+<li><p><strong>**kwargs</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>...</em><em>] </em><em>| </em><em>None</em>) – Optional attribute names and values as keyword
+arguments.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>None</p>
+</dd>
+</dl>
+<p>An object may be updated in a few different ways:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: None, &#39;barlineSeparation&#39;: None, ...}</span>
+</pre></div>
+</div>
+<p>Update with <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.12)"><code class="xref py py-class docutils literal notranslate"><span class="pre">dict</span></code></a> object.:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;arrowShaftThickness&#39;</span><span class="p">:</span> <span class="mi">46</span><span class="p">,</span> <span class="s1">&#39;barlineSeparation&#39;</span><span class="p">:</span> <span class="mi">72</span><span class="p">,</span> <span class="o">...</span><span class="p">}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+</pre></div>
+</div>
+<p>Update with other <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><code class="xref py py-class docutils literal notranslate"><span class="pre">EngravingDefaults</span></code></a> object.:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span> <span class="o">=</span> <span class="n">f2</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d2</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+</pre></div>
+</div>
+<p>Update with keyword arguments:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">arrowShaftThickness</span><span class="o">=</span><span class="mi">46</span><span class="p">,</span> <span class="n">barlineSeparation</span><span class="o">=</span><span class="mi">72</span><span class="p">)</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d1</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+<span class="go">{&#39;arrowShaftThickness&#39;: 46, &#39;barlineSeparation&#39;: 72, ...}</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.values">
+<span class="sig-name descname"><span class="pre">values</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/engravingDefaults.html#EngravingDefaults.values"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.values" title="Link to this definition"></a></dt>
+<dd><p>Return list of all available settings values.</p>
+<p>Order corresponds to <a class="reference internal" href="#smufolib.objects.engravingDefaults.EngravingDefaults.keys" title="smufolib.objects.engravingDefaults.EngravingDefaults.keys"><code class="xref py py-meth docutils literal notranslate"><span class="pre">keys()</span></code></a>.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">d</span> <span class="o">=</span> <span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">d</span><span class="o">.</span><span class="n">values</span><span class="p">()</span>
+<span class="go">[46, 72, 62, 125, 125, 125, 57, 36, 200, 39, 80, 40, ...]</span>
+</pre></div>
+</div>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)">list</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.arrowShaftThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">arrowShaftThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.arrowShaftThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the line used for the shaft of an arrow.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.barlineSeparation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">barlineSeparation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.barlineSeparation" title="Link to this definition"></a></dt>
+<dd><p>Distance between multiple thin barlines.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.beamSpacing">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beamSpacing</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamSpacing" title="Link to this definition"></a></dt>
+<dd><p>Distance between beams.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.beamThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">beamThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.beamThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a beam.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.bracketThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">bracketThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.bracketThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the vertical line of a grouping bracket.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineDashLength">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dashedBarlineDashLength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineDashLength" title="Link to this definition"></a></dt>
+<dd><p>Length of the dashes to be used in a dashed barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineGapLength">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dashedBarlineGapLength</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineGapLength" title="Link to this definition"></a></dt>
+<dd><p>Length of the gap between dashes in a dashed barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">dashedBarlineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.dashedBarlineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a dashed barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.font">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><span class="pre">Font</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.font" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.glyph">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">glyph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><span class="pre">Glyph</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.glyph" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.hBarThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hBarThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hBarThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a crescendo/diminuendo hairpin.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.hairpinThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">hairpinThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.hairpinThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a crescendo/diminuendo hairpin.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><span class="pre">Layer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.layer" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.legerLineExtension">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">legerLineExtension</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineExtension" title="Link to this definition"></a></dt>
+<dd><p>Amount of leger line extension from notehead.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.legerLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">legerLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.legerLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a leger line.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.lyricLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">lyricLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.lyricLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the lyric extension line.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.octaveLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">octaveLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.octaveLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the dashed line used for an octave line.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.pedalLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">pedalLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.pedalLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the line used for piano pedaling.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.repeatBarlineDotSeparation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">repeatBarlineDotSeparation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatBarlineDotSeparation" title="Link to this definition"></a></dt>
+<dd><p>Distance between dots and inner line of a repeat barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.repeatEndingLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">repeatEndingLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.repeatEndingLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of repeat ending brackets.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.slurEndpointThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slurEndpointThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurEndpointThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the end of a slur.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.slurMidpointThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">slurMidpointThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.slurMidpointThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the mid-point of a slur.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.smufl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smufl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><span class="pre">Smufl</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.smufl" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a>.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.spaces">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">spaces</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><span class="pre">bool</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.spaces" title="Link to this definition"></a></dt>
+<dd><p>Set state of measurement to staff spaces.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">30.5</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">spaces</span> <span class="o">=</span> <span class="kc">True</span>
+<span class="gp">&gt;&gt;&gt; </span><span class="n">f</span><span class="o">.</span><span class="n">smufl</span><span class="o">.</span><span class="n">engravingDefaults</span><span class="o">.</span><span class="n">stemThickness</span>
+<span class="go">0.12</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.staffLineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">staffLineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.staffLineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of each staff line.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.stemThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">stemThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.stemThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a stem.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.subBracketThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">subBracketThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.subBracketThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the vertical line of a grouping sub-bracket.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.textEnclosureThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">textEnclosureThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.textEnclosureThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of box drawn around text instructions.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.textFontFamily">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">textFontFamily</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><span class="pre">tuple</span></a><span class="p"><span class="pre">[</span></span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.textFontFamily" title="Link to this definition"></a></dt>
+<dd><p>tuple of text font pairings.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.thickBarlineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">thickBarlineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thickBarlineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a thick barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.thinBarlineThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">thinBarlineThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinBarlineThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a thin barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.thinThickBarlineSeparation">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">thinThickBarlineSeparation</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.thinThickBarlineSeparation" title="Link to this definition"></a></dt>
+<dd><p>Thickness of a thin barline.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.tieEndpointThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tieEndpointThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieEndpointThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the end of a tie.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.tieMidpointThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tieMidpointThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tieMidpointThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of the mid-point of a tie.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.engravingDefaults.EngravingDefaults.tupletBracketThickness">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">tupletBracketThickness</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.engravingDefaults.EngravingDefaults.tupletBracketThickness" title="Link to this definition"></a></dt>
+<dd><p>Thickness of tuplet brackets.</p>
+</dd></dl>
+
+</dd></dl>
+
+<p id="module-smufolib.objects.range">Range metadata module for SMufoLib.</p>
+<dl class="py class">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Range</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">smufl</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/smufolib/objects/range.html#Range"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.objects.range.Range" title="Link to this definition"></a></dt>
+<dd><p>SMuFL range-related metadata.</p>
+<p>Information about how a <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a>
+relates to SMuFL’s own glyph ranges is accessible through this
+object. It is currently read-only, and retrieves it’s data from the
+<a class="reference external" href="https://w3c.github.io/smufl/latest/specification/ranges.html">ranges.json</a>
+metadata file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>smufl</strong> (<a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><em>Smufl</em></a><em> | </em><em>None</em>) – Parent <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a>.</p>
+</dd>
+</dl>
+<p>While this object is normally created as part of
+a <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a>, an
+orphan <a class="reference internal" href="#smufolib.objects.range.Range" title="smufolib.objects.range.Range"><code class="xref py py-class docutils literal notranslate"><span class="pre">Range</span></code></a> object may be created like
+this:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span> <span class="o">=</span> <span class="n">Range</span><span class="p">()</span>
+</pre></div>
+</div>
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.description">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">description</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.description" title="Link to this definition"></a></dt>
+<dd><p>Description of affiliated SMuFL range.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="o">.</span><span class="n">description</span>
+<span class="go">Time signatures</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.end">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">end</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.end" title="Link to this definition"></a></dt>
+<dd><p>End unicode of affiliated SMuFL range.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="o">.</span><span class="n">end</span>
+<span class="go">U+E09F</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.font">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">font</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><span class="pre">Font</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.font" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><code class="xref py py-class docutils literal notranslate"><span class="pre">Font</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.glyph">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">glyph</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><span class="pre">Glyph</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.glyph" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.glyphs">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">glyphs</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="pre">Tuple</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><span class="pre">Glyph</span></a><span class="p"><span class="pre">,</span></span><span class="w"> </span><span class="p"><span class="pre">...</span></span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.glyphs" title="Link to this definition"></a></dt>
+<dd><p><a class="reference internal" href="#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><code class="xref py py-class docutils literal notranslate"><span class="pre">Glyph</span></code></a> objects of Affiliated SMuFL range.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="o">.</span><span class="n">glyphs</span>
+<span class="go">(&lt;Glyph &#39;uniE080&#39; (&#39;public.default&#39;) at 4596284000&gt;,</span>
+<span class="go">...</span>
+<span class="go">&lt;Glyph &#39;uniE09F&#39; (&#39;public.default&#39;) at 4632755792&gt;)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.layer">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">layer</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><span class="pre">Layer</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.layer" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.layer.Layer" title="smufolib.objects.layer.Layer"><code class="xref py py-class docutils literal notranslate"><span class="pre">Layer</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.name">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">name</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.name" title="Link to this definition"></a></dt>
+<dd><p>Name of affiliated SMuFL range.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="o">.</span><span class="n">name</span>
+<span class="go">timeSignatures</span>
+</pre></div>
+</div>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.smufl">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">smufl</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><span class="pre">Smufl</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.smufl" title="Link to this definition"></a></dt>
+<dd><p>Parent <a class="reference internal" href="#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><code class="xref py py-class docutils literal notranslate"><span class="pre">Smufl</span></code></a> object.</p>
+</dd></dl>
+
+<dl class="py property">
+<dt class="sig sig-object py" id="smufolib.objects.range.Range.start">
+<em class="property"><span class="pre">property</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">start</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><span class="pre">None</span></a></em><a class="headerlink" href="#smufolib.objects.range.Range.start" title="Link to this definition"></a></dt>
+<dd><p>Start unicode of affiliated SMuFL range.</p>
+<p>Example:</p>
+<div class="highlight-python3 notranslate"><div class="highlight"><pre><span></span><span class="gp">&gt;&gt;&gt; </span><span class="nb">range</span><span class="o">.</span><span class="n">start</span>
+<span class="go">U+E080</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../getting_started.html" class="btn btn-neutral float-left" title="Installation" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="request.html" class="btn btn-neutral float-right" title="Metadata Requests" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Knut Nergaard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

@@ -1,0 +1,719 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="./">
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>converters &mdash; SMufoLib 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="_static/pygments.css?v=b76e3c8a" />
+      <link rel="stylesheet" type="text/css" href="_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="_static/css/custom.css?v=139e30ab" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/jquery.js?v=5d32c60e"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="_static/documentation_options.js?v=01f34227"></script>
+        <script src="_static/doctools.js?v=9a2dae69"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="calculateEngravingDefaults" href="scripts.html" />
+    <link rel="prev" title="Configuration" href="api/configuration.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="index.html" class="icon icon-home">
+            SMufoLib
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Getting Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html">Installation</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started.html#running-scripts">Running Scripts</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">API Reference</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="api/objects.html">Objects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/request.html">Metadata Requests</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/cli.html">Command Line Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="api/configuration.html">Configuration</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Utility Modules</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.convertMeasurement"><code class="docutils literal notranslate"><span class="pre">convertMeasurement()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.toDecimal"><code class="docutils literal notranslate"><span class="pre">toDecimal()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.toKebab"><code class="docutils literal notranslate"><span class="pre">toKebab()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.toNumber"><code class="docutils literal notranslate"><span class="pre">toNumber()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.toUniHex"><code class="docutils literal notranslate"><span class="pre">toUniHex()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.converters.toUniName"><code class="docutils literal notranslate"><span class="pre">toUniName()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#normalizers"><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeClasses"><code class="docutils literal notranslate"><span class="pre">normalizeClasses()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeDescription"><code class="docutils literal notranslate"><span class="pre">normalizeDescription()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeDesignSize"><code class="docutils literal notranslate"><span class="pre">normalizeDesignSize()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeEngravingDefaults"><code class="docutils literal notranslate"><span class="pre">normalizeEngravingDefaults()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeEngravingDefaultsAttr"><code class="docutils literal notranslate"><span class="pre">normalizeEngravingDefaultsAttr()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeFont"><code class="docutils literal notranslate"><span class="pre">normalizeFont()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeRequest"><code class="docutils literal notranslate"><span class="pre">normalizeRequest()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeRequestPath"><code class="docutils literal notranslate"><span class="pre">normalizeRequestPath()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeSizeRange"><code class="docutils literal notranslate"><span class="pre">normalizeSizeRange()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeSmufl"><code class="docutils literal notranslate"><span class="pre">normalizeSmufl()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.normalizers.normalizeSmuflName"><code class="docutils literal notranslate"><span class="pre">normalizeSmuflName()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#pointutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.pointUtils.Point"><code class="docutils literal notranslate"><span class="pre">Point</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.pointUtils.Point.contourIndex"><code class="docutils literal notranslate"><span class="pre">Point.contourIndex</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.pointUtils.Point.position"><code class="docutils literal notranslate"><span class="pre">Point.position</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.pointUtils.Point.type"><code class="docutils literal notranslate"><span class="pre">Point.type</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.pointUtils.Position"><code class="docutils literal notranslate"><span class="pre">Position</span></code></a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.pointUtils.Position.x"><code class="docutils literal notranslate"><span class="pre">Position.x</span></code></a></li>
+<li class="toctree-l3"><a class="reference internal" href="#smufolib.pointUtils.Position.y"><code class="docutils literal notranslate"><span class="pre">Position.y</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.pointUtils.getCompositePoints"><code class="docutils literal notranslate"><span class="pre">getCompositePoints()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.pointUtils.getContourPoints"><code class="docutils literal notranslate"><span class="pre">getContourPoints()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.pointUtils.getPoints"><code class="docutils literal notranslate"><span class="pre">getPoints()</span></code></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="#stdutils"><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code></a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.stdUtils.addTuples"><code class="docutils literal notranslate"><span class="pre">addTuples()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.stdUtils.flatten"><code class="docutils literal notranslate"><span class="pre">flatten()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.stdUtils.isFloat"><code class="docutils literal notranslate"><span class="pre">isFloat()</span></code></a></li>
+<li class="toctree-l2"><a class="reference internal" href="#smufolib.stdUtils.validateClassAttr"><code class="docutils literal notranslate"><span class="pre">validateClassAttr()</span></code></a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Scripts</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html"><code class="xref py py-mod docutils literal notranslate"><span class="pre">calculateEngravingDefaults</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#module-bin.checkAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">checkAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#module-bin.generateMetadata"><code class="xref py py-mod docutils literal notranslate"><span class="pre">generateMetadata</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#module-bin.importAnchors"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importAnchors</span></code></a></li>
+<li class="toctree-l1"><a class="reference internal" href="scripts.html#module-bin.importID"><code class="xref py py-mod docutils literal notranslate"><span class="pre">importID</span></code></a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">SMufoLib</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home" aria-label="Home"></a></li>
+      <li class="breadcrumb-item active"><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code></li>
+      <li class="wy-breadcrumbs-aside">
+              <a href="https://github.com/knutnergaard/smufolib/blob/utils.rst" class="fa fa-github"> Edit on GitHub</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="converters">
+<span id="id1"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">converters</span></code><a class="headerlink" href="#converters" title="Link to this heading"></a></h1>
+<p>This module contains various general conversion functions used
+throughout SMufoLib.</p>
+<dl class="py function" id="module-smufolib.converters">
+<dt class="sig sig-object py" id="smufolib.converters.convertMeasurement">
+<span class="sig-name descname"><span class="pre">convertMeasurement</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">convertTo</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">unitsPerEm</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">rounded</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#convertMeasurement"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.convertMeasurement" title="Link to this definition"></a></dt>
+<dd><p>Convert between units of measurement based on UPM size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The value to convert.</p></li>
+<li><p><strong>convertTo</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – Unit to convert to.</p></li>
+<li><p><strong>unitsPerEm</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>) – The UPM value to base conversion on.</p></li>
+<li><p><strong>rounded</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether to round result to nearest integer.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – unless <code class="docutils literal notranslate"><span class="pre">convertTo='spaces'</span></code> or <code class="docutils literal notranslate"><span class="pre">='units'</span></code>.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.converters.toDecimal">
+<span class="sig-name descname"><span class="pre">toDecimal</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#toDecimal"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.toDecimal" title="Link to this definition"></a></dt>
+<dd><p>Convert formatted unicode or uni name to decimal codepoint.</p>
+<p>Function accepts any hexadecimal string within the Unicode range
+(U+0000 – U+10FFFF) prefixed by <code class="docutils literal notranslate"><span class="pre">'u'</span></code>, <code class="docutils literal notranslate"><span class="pre">'U+'</span></code> or <code class="docutils literal notranslate"><span class="pre">'uni'</span></code>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The value to convert.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if value is not the accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not a valid formatted unicode
+codepoint.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.converters.toKebab">
+<span class="sig-name descname"><span class="pre">toKebab</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#toKebab"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.toKebab" title="Link to this definition"></a></dt>
+<dd><p>Convert camelCase to kebab-case.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> – The string to convert.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.converters.toNumber">
+<span class="sig-name descname"><span class="pre">toNumber</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#toNumber"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.toNumber" title="Link to this definition"></a></dt>
+<dd><p>Convert numeric string to number.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> – The value to convert.</p></li>
+<li><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">string</span></code> is not a valid int or float.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.converters.toUniHex">
+<span class="sig-name descname"><span class="pre">toUniHex</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#toUniHex"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.toUniHex" title="Link to this definition"></a></dt>
+<dd><p>Convert decimal codepoint to formatted Unicode hex.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The decimal to convert.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if value is not the accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is outside the Unicode range
+(U+0000 – U+10FFFF).</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.converters.toUniName">
+<span class="sig-name descname"><span class="pre">toUniName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">short</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/converters.html#toUniName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.converters.toUniName" title="Link to this definition"></a></dt>
+<dd><p>Convert formatted Unicode hex or decimal to ‘uni’ name.</p>
+<p>Function accepts any integer or prefixed hexadecimal string
+within the Unicode range(U+0000 – U+10FFFF).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>) – The value to convert.</p></li>
+<li><p><strong>short</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)"><em>bool</em></a>) – Whether to return name with single <code class="docutils literal notranslate"><span class="pre">'u'</span></code> prefix.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if value is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is outside the Unicode range
+(U+0000 – U+10FFFF) or not a valid formatted string.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="normalizers">
+<span id="id2"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">normalizers</span></code><a class="headerlink" href="#normalizers" title="Link to this heading"></a></h1>
+<p>This module is an extension of <a class="reference external" href="https://fontparts.robotools.dev/en/stable/environments/objects/normalizers.html#module-fontParts.base.normalizers" title="(in FontParts v0.1)"><code class="xref py py-mod docutils literal notranslate"><span class="pre">fontParts.base.normalizers</span></code></a> and
+contains all normalization functionality used throughout SMufoLib.</p>
+<dl class="py function" id="module-smufolib.normalizers">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeClasses">
+<span class="sig-name descname"><span class="pre">normalizeClasses</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeClasses"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeClasses" title="Link to this definition"></a></dt>
+<dd><p>Normalize smufl classes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>...</em><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>] </em><em>| </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – <ul>
+<li><p>if any <code class="docutils literal notranslate"><span class="pre">value</span></code> item does not normalize.
+with <a class="reference internal" href="#smufolib.normalizers.normalizeSmuflName" title="smufolib.normalizers.normalizeSmuflName"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalizeSmuflName()</span></code></a>.</p></li>
+<li><p>if any <code class="docutils literal notranslate"><span class="pre">value</span></code> item is <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>.</p></li>
+<li><p>if any <code class="docutils literal notranslate"><span class="pre">value</span></code> items are duplicates.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeDescription">
+<span class="sig-name descname"><span class="pre">normalizeDescription</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeDescription"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeDescription" title="Link to this definition"></a></dt>
+<dd><p>Normalize smufl descriptions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is an empty string.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeDesignSize">
+<span class="sig-name descname"><span class="pre">normalizeDesignSize</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeDesignSize"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeDesignSize" title="Link to this definition"></a></dt>
+<dd><p>Normalize design size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is less than 10.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeEngravingDefaults">
+<span class="sig-name descname"><span class="pre">normalizeEngravingDefaults</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeEngravingDefaults"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeEngravingDefaults" title="Link to this definition"></a></dt>
+<dd><p>Normalize EngravingDefaults object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference internal" href="api/objects.html#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults"><em>EngravingDefaults</em></a>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not the accepted type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="api/objects.html#smufolib.objects.engravingDefaults.EngravingDefaults" title="smufolib.objects.engravingDefaults.EngravingDefaults">EngravingDefaults</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeEngravingDefaultsAttr">
+<span class="sig-name descname"><span class="pre">normalizeEngravingDefaultsAttr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeEngravingDefaultsAttr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeEngravingDefaultsAttr" title="Link to this definition"></a></dt>
+<dd><p>Normalize engraving defaults attribute value based on name.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>name</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>) – The name of the attribute to normalize.</p></li>
+<li><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>, </em><em>...</em><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>] </em><em>| </em><em>None</em>) – The value to normalize.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">name</span></code> or <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted
+type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">name='textFontFamily'</span></code> and <code class="docutils literal notranslate"><span class="pre">value</span></code>
+contains an empty string.</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a> | <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, …] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeFont">
+<span class="sig-name descname"><span class="pre">normalizeFont</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeFont"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeFont" title="Link to this definition"></a></dt>
+<dd><p>Normalize Font object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference internal" href="api/objects.html#smufolib.objects.font.Font" title="smufolib.objects.font.Font"><em>Font</em></a>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not the accepted type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="api/objects.html#smufolib.objects.font.Font" title="smufolib.objects.font.Font">Font</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeRequest">
+<span class="sig-name descname"><span class="pre">normalizeRequest</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeRequest"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeRequest" title="Link to this definition"></a></dt>
+<dd><p>Normalize Request object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference internal" href="api/request.html#smufolib.request.Request" title="smufolib.request.Request"><em>Request</em></a>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not the accepted type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="api/request.html#smufolib.request.Request" title="smufolib.request.Request">Request</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeRequestPath">
+<span class="sig-name descname"><span class="pre">normalizeRequestPath</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeRequestPath"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeRequestPath" title="Link to this definition"></a></dt>
+<dd><p>Normalize Request path.</p>
+<p>Relative paths are resolved automatically.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/pathlib.html#pathlib.Path" title="(in Python v3.12)"><em>Path</em></a><em> | </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not the accepted type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeSizeRange">
+<span class="sig-name descname"><span class="pre">normalizeSizeRange</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeSizeRange"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeSizeRange" title="Link to this definition"></a></dt>
+<dd><p>Normalize design size.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>] </em><em>| </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#list" title="(in Python v3.12)"><em>list</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em>] </em><em>| </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – <ul>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> does not contain a value pair.</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an increasing range.</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> items do not normalize
+with <a class="reference internal" href="#smufolib.normalizers.normalizeDesignSize" title="smufolib.normalizers.normalizeDesignSize"><code class="xref py py-func docutils literal notranslate"><span class="pre">normalizeDesignSize()</span></code></a>, except not be <a class="reference external" href="https://docs.python.org/3/library/constants.html#None" title="(in Python v3.12)"><code class="xref py py-obj docutils literal notranslate"><span class="pre">None</span></code></a>.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>, <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeSmufl">
+<span class="sig-name descname"><span class="pre">normalizeSmufl</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeSmufl"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeSmufl" title="Link to this definition"></a></dt>
+<dd><p>Normalize Smufl object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference internal" href="api/objects.html#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl"><em>Smufl</em></a>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not the accepted type.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="api/objects.html#smufolib.objects.smufl.Smufl" title="smufolib.objects.smufl.Smufl">Smufl</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.normalizers.normalizeSmuflName">
+<span class="sig-name descname"><span class="pre">normalizeSmuflName</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">value</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/normalizers.html#normalizeSmuflName"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.normalizers.normalizeSmuflName" title="Link to this definition"></a></dt>
+<dd><p>Normalize smufl names.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>value</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><em>None</em>) – The value to normalize.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><ul class="simple">
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#TypeError" title="(in Python v3.12)"><strong>TypeError</strong></a> – if <code class="docutils literal notranslate"><span class="pre">value</span></code> is not an accepted type.</p></li>
+<li><p><a class="reference external" href="https://docs.python.org/3/library/exceptions.html#ValueError" title="(in Python v3.12)"><strong>ValueError</strong></a> – <ul>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> is an empty string.</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> is value contains non-alphanumeric characters.</p></li>
+<li><p>if <code class="docutils literal notranslate"><span class="pre">value</span></code> does not start with a lowercase letter or number.</p></li>
+</ul>
+</p></li>
+</ul>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a> | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="pointutils">
+<span id="id3"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">pointUtils</span></code><a class="headerlink" href="#pointutils" title="Link to this heading"></a></h1>
+<p>This module contains utility functions to simplify the syntax
+of <code class="xref py py-class docutils literal notranslate"><span class="pre">fontParts.base.Point</span></code>.</p>
+<dl class="py class" id="module-smufolib.pointUtils">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Point">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Point</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">type</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">position</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">contourIndex</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/pointUtils.html#Point"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.pointUtils.Point" title="Link to this definition"></a></dt>
+<dd><p>Named tuple for point values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>type</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>)</p></li>
+<li><p><strong>position</strong> (<a class="reference internal" href="#smufolib.pointUtils.Position" title="smufolib.pointUtils.Position"><em>Position</em></a>)</p></li>
+<li><p><strong>contourIndex</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Point.contourIndex">
+<span class="sig-name descname"><span class="pre">contourIndex</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a></em><a class="headerlink" href="#smufolib.pointUtils.Point.contourIndex" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 2</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Point.position">
+<span class="sig-name descname"><span class="pre">position</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference internal" href="#smufolib.pointUtils.Position" title="smufolib.pointUtils.Position"><span class="pre">Position</span></a></em><a class="headerlink" href="#smufolib.pointUtils.Point.position" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Point.type">
+<span class="sig-name descname"><span class="pre">type</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><span class="pre">str</span></a></em><a class="headerlink" href="#smufolib.pointUtils.Point.type" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Position">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">Position</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">x</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">y</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/pointUtils.html#Position"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.pointUtils.Position" title="Link to this definition"></a></dt>
+<dd><p>Named tuple for position values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>x</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
+<li><p><strong>y</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><em>float</em></a>)</p></li>
+</ul>
+</dd>
+</dl>
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Position.x">
+<span class="sig-name descname"><span class="pre">x</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#smufolib.pointUtils.Position.x" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 0</p>
+</dd></dl>
+
+<dl class="py attribute">
+<dt class="sig sig-object py" id="smufolib.pointUtils.Position.y">
+<span class="sig-name descname"><span class="pre">y</span></span><em class="property"><span class="p"><span class="pre">:</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><span class="pre">int</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)"><span class="pre">float</span></a></em><a class="headerlink" href="#smufolib.pointUtils.Position.y" title="Link to this definition"></a></dt>
+<dd><p>Alias for field number 1</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.pointUtils.getCompositePoints">
+<span class="sig-name descname"><span class="pre">getCompositePoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">component</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/pointUtils.html#getCompositePoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.pointUtils.getCompositePoints" title="Link to this definition"></a></dt>
+<dd><p>Get points and offset position from glyph component.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>component</strong> (<em>RComponent</em>)</p></li>
+<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)">str</a>, <a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>], <a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.pointUtils.getContourPoints">
+<span class="sig-name descname"><span class="pre">getContourPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">contour</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/pointUtils.html#getContourPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.pointUtils.getContourPoints" title="Link to this definition"></a></dt>
+<dd><p>Get tuple of points for all glyph contours.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>contour</strong> (<em>RContour</em>)</p></li>
+<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[NamedTuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.pointUtils.getPoints">
+<span class="sig-name descname"><span class="pre">getPoints</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">glyph</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">types</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">('line',</span> <span class="pre">'curve',</span> <span class="pre">'qcurve')</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/pointUtils.html#getPoints"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.pointUtils.getPoints" title="Link to this definition"></a></dt>
+<dd><p>Get tuple of points for a glyph.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>glyph</strong> (<a class="reference internal" href="api/objects.html#smufolib.objects.glyph.Glyph" title="smufolib.objects.glyph.Glyph"><em>Glyph</em></a>)</p></li>
+<li><p><strong>types</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em> | </em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)"><em>tuple</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a><em>]</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[NamedTuple]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+<section id="stdutils">
+<span id="stdtutils"></span><h1><code class="xref py py-mod docutils literal notranslate"><span class="pre">stdUtils</span></code><a class="headerlink" href="#stdutils" title="Link to this heading"></a></h1>
+<p>This module contains various standard utility functions used throughout
+SMufoLib.</p>
+<dl class="py function" id="module-smufolib.stdUtils">
+<dt class="sig sig-object py" id="smufolib.stdUtils.addTuples">
+<span class="sig-name descname"><span class="pre">addTuples</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="o"><span class="pre">*</span></span><span class="n"><span class="pre">tuples</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/stdUtils.html#addTuples"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.stdUtils.addTuples" title="Link to this definition"></a></dt>
+<dd><p>Sumize tuple values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.12)">tuple</a>[<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)">int</a> | <a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.12)">float</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.stdUtils.flatten">
+<span class="sig-name descname"><span class="pre">flatten</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iterable</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">depth</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/stdUtils.html#flatten"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.stdUtils.flatten" title="Link to this definition"></a></dt>
+<dd><p>Flatten irregularly nested iterables of any depth.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>iterable</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><em>Iterable</em></a><em>[</em><a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a><em>]</em>)</p></li>
+<li><p><strong>depth</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.12)"><em>int</em></a><em> | </em><em>None</em>)</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><em>Iterable</em></a>[<a class="reference external" href="https://docs.python.org/3/library/typing.html#typing.Any" title="(in Python v3.12)"><em>Any</em></a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.stdUtils.isFloat">
+<span class="sig-name descname"><span class="pre">isFloat</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">string</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/stdUtils.html#isFloat"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.stdUtils.isFloat" title="Link to this definition"></a></dt>
+<dd><p>Check if string is float.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>string</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.12)"><em>str</em></a>)</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py function">
+<dt class="sig sig-object py" id="smufolib.stdUtils.validateClassAttr">
+<span class="sig-name descname"><span class="pre">validateClassAttr</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">obj</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">attributes</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="_modules/smufolib/stdUtils.html#validateClassAttr"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#smufolib.stdUtils.validateClassAttr" title="Link to this definition"></a></dt>
+<dd><p>Check for class and attribute exsistence.</p>
+<p>Vvalidates object based on its existence and specified attributes.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>obj</strong> – Object to validate</p></li>
+<li><p><strong>attributes</strong> (<a class="reference external" href="https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterable" title="(in Python v3.12)"><em>Iterable</em></a><em> | </em><em>None</em>) – Attribute names to check.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.12)">bool</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="api/configuration.html" class="btn btn-neutral float-left" title="Configuration" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="scripts.html" class="btn btn-neutral float-right" title="calculateEngravingDefaults" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2022, Knut Nergaard.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
