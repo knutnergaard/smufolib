@@ -8,8 +8,8 @@ version = "0.1.0"
 dependencies = [
     "fontParts",
     "tqdm",
-requires-python = ">=3.10"
 ]
+requires-python = ">=3.10"
 authors = [
     {name = "Knut Nergaard", email = "knut.nergaard@gmail.com"}
 ]
