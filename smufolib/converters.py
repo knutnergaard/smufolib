@@ -13,7 +13,7 @@ def convertMeasurement(value: int | float | str,
                        convertTo: str,
                        unitsPerEm: int | float,
                        rounded: bool = False) -> int | float | None:
-    """Converts between units of measurement based on UPM size.
+    """Convert between units of measurement based on UPM size.
 
     :param value: The value to convert.
     :param convertTo: Unit to convert to.
@@ -42,7 +42,7 @@ def convertMeasurement(value: int | float | str,
 
 
 def toDecimal(value: str) -> int:
-    """Converts formatted unicode or uni name to decimal codepoint.
+    """Convert formatted unicode or uni name to decimal codepoint.
 
     Function accepts any hexadecimal string within the Unicode range
     (U+0000 – U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
@@ -70,7 +70,7 @@ def toDecimal(value: str) -> int:
 
 
 def toUniHex(value: int) -> str:
-    """Converts decimal codepoint to formatted Unicode hex.
+    """Convert decimal codepoint to formatted Unicode hex.
 
     :param value: The decimal to convert.
     :raises TypeError: if value is not the accepted type.
@@ -89,7 +89,7 @@ def toUniHex(value: int) -> str:
 
 
 def toUniName(value: str | int, short: bool = False) -> str:
-    """Converts formatted Unicode hex or decimal to 'uni' name.
+    """Convert formatted Unicode hex or decimal to 'uni' name.
 
     Function accepts any integer or prefixed hexadecimal string
     within the Unicode range(U+0000 – U+10FFFF).
@@ -122,7 +122,7 @@ def toUniName(value: str | int, short: bool = False) -> str:
 
 
 def toKebab(string):
-    """Simple camelCase to kebab-case converter.
+    """Convert camelCase to kebab-case.
 
     :param string: The string to convert.
 
@@ -131,7 +131,7 @@ def toKebab(string):
 
 
 def toNumber(string: str) -> int | float:
-    """Converts numeric string to number.
+    """Convert numeric string to number.
 
     :param value: The value to convert.
     :raises ValueError: if ``string`` is not a valid int or float.
@@ -148,7 +148,7 @@ def toNumber(string: str) -> int | float:
 
 
 def _findUnicodeHex(string: str) -> str | None:
-    # Finds the ending hex in various unicode value configurations.
+    # Find the ending hex in various unicode value configurations.
     pattern = r'((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}'
     result = re.search(pattern, string, flags=re.IGNORECASE)
     if result:
@@ -159,7 +159,7 @@ def _findUnicodeHex(string: str) -> str | None:
 
 
 def _isInUnicodeRange(number: int) -> bool:
-    # checks if number is within unicode range
+    # check if number is within unicode range
     if 0x0 <= number <= 0x10FFFF:
         return True
     return False

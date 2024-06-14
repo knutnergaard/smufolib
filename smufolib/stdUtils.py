@@ -7,7 +7,7 @@ import operator
 
 
 def flatten(iterable: Iterable[Any], depth: int = None) -> Iterable[Any]:
-    """Flattens irregularly nested iterables of any depth."""
+    """Flatten irregularly nested iterables of any depth."""
     for item in iterable:
         if (not isinstance(item, Iterable)
                 or isinstance(item, (str, bytes)) or depth == 0):
@@ -19,12 +19,12 @@ def flatten(iterable: Iterable[Any], depth: int = None) -> Iterable[Any]:
 
 
 def addTuples(*tuples) -> tuple[int | float]:
-    """Sumizes tuple values."""
+    """Sumize tuple values."""
     return tuple(map(sum, zip(*tuples)))
 
 
 def isFloat(string: str) -> bool:
-    """Checks if string is float."""
+    """Check if string is float."""
     if '.' not in string:
         return False
     try:
@@ -35,7 +35,7 @@ def isFloat(string: str) -> bool:
 
 
 def validateClassAttr(obj, attributes: Iterable | None = None) -> bool:
-    """Checks for class and attribute exsistence.
+    """Check for class and attribute exsistence.
 
     Vvalidates object based on its existence and specified attributes.
 

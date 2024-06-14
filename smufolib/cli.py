@@ -14,7 +14,7 @@ CONFIG = config.load()
 
 def commonParser(*args, addHelp: bool = False, description: str | None = None,
                  **kwargs) -> ArgumentParser:
-    r"""Provides generic command-line arguments and options.
+    r"""Provide generic command-line arguments and options.
 
     See the :ref:`Available Options` for details.
 

@@ -15,3 +15,4 @@ filepath requests for maximum reliability and access to updated data.
 
 .. automodule:: smufolib.request
     :members:
+

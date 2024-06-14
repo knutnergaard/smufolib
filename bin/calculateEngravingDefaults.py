@@ -32,18 +32,20 @@ This script requires that SMufoLib be installed within its executive
 environment. It may also be imported as a module and contains the
 following public functions:
 
-* :func:`main` – Main function of the script.
-* :func:`boundsLeft` – Returns absolute value of bounds x minimum.
-* :func:`boundsHeight` – Returns absolute value of bounds height.
-* :func:`stemDot` – Measures distance between stem and dot countour.
-* :func:`xInner` – Measures distance between two adjacent x points of
-  different contours.
-* :func:`xOrigin` – Measures distance between two adjacent x points
-  closest to origin.
-* :func:`yInner` – Measures distance between two adjacent y points of
-  different contours.
-* :func:`yMinimum` – Measures distance between two adjacent low-points
-  on y axis.
+    * :func:`calculateEngravingDefaults` - The scripts program function.
+    * :func:`main` – Command line entry point.
+    * :func:`boundsLeft` – Returns absolute value of bounds x minimum.
+    * :func:`boundsHeight` – Returns absolute value of bounds height.
+    * :func:`stemDot` – Measures distance between stem and dot
+       countour.
+    * :func:`xInner` – Measures distance between two adjacent x points
+       of different contours.
+    * :func:`xOrigin` – Measures distance between two adjacent x points
+      closest to origin.
+    * :func:`yInner` – Measures distance between two adjacent y points
+       of different contours.
+    * :func:`yMinimum` – Measures distance between two adjacent
+       low-points on y axis.
 
 """
 from __future__ import annotations
@@ -71,12 +73,14 @@ MARGIN_OF_ERROR = 6
 # pylint: disable=invalid-name, too-many-arguments
 
 
-def main(font: Font | Path | str,
-         exclude: str | list | None = EXCLUDE,
-         override: dict[str, int | float] | None = OVERRIDE,
-         remap: dict[str, dict[str, str | int]] | None = REMAP,
-         spaces: bool = SPACES) -> None:
-    """Main function of the script.
+def calculateEngravingDefaults(font: Font | Path | str,
+                               exclude: str | list | None = EXCLUDE,
+                               override: dict[str, int |
+                                              float] | None = OVERRIDE,
+                               remap: dict[str, dict[str, str | int]
+                                           ] | None = REMAP,
+                               spaces: bool = SPACES) -> None:
+    """Calculate engraving defaults from glyph contours.
 
     :param font: Target font object or path to file.
     :param exclude: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
@@ -177,6 +181,13 @@ def main(font: Font | Path | str,
 
     font.save()
     print("Done!")
+
+
+def main():
+    """Command line entry point."""
+    args = _parseArgs()
+    calculateEngravingDefaults(
+        args.font, args.exclude, args.remap, args.override, args.spaces)
 
 
 # ------
@@ -318,8 +329,8 @@ def yMinimum(glyph: Glyph, referenceIndex: int=0) -> int:
 
 def _areAdjacent(point1: RPoint, point2: RPoint,
                  axis: str | None) -> bool:
-    # Checks if points are adjacent on axis.
-    # Employs margin of error for point placement.
+    # Check if points are adjacent on axis.
+    # Employ margin of error for point placement.
 
     def withinRange(num1: int, num2: int) -> bool:
         return num2 - MARGIN_OF_ERROR <= num1 <= num2 + MARGIN_OF_ERROR
@@ -337,7 +348,7 @@ def _areAdjacent(point1: RPoint, point2: RPoint,
 
 
 def _parseArgs() -> argparse.Namespace:
-    # Parses command line arguments and options.
+    # Parse command line arguments and options.
     parser = argparse.ArgumentParser(
         parents=[cli.commonParser('font', exclude=EXCLUDE, spaces=SPACES)],
         formatter_class=argparse.RawTextHelpFormatter,
@@ -376,5 +387,4 @@ def _parseArgs() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = _parseArgs()
-    main(args.font, args.exclude, args.remap, args.override, args.spaces)
+    main()

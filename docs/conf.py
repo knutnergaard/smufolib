@@ -32,7 +32,8 @@ extensions = [
 
 intersphinx_mapping = {
     'fontParts': ('https://fontparts.robotools.dev/en/stable/', None),
-    'python': ('https://docs.python.org/3/', None)
+    'python': ('https://docs.python.org/3/', None),
+    'setuptools': ('https://setuptools.readthedocs.io/en/latest', None)
 }
 
 

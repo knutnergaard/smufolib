@@ -15,13 +15,13 @@ documentation <https://fontparts.robotools.dev/en/stable/index.html>`_
 for further reference.
 
 .. automodule:: smufolib.objects.font
-    :members:
+   :members:
 
 .. automodule:: smufolib.objects.glyph
-    :members:
+   :members:
 
 .. automodule:: smufolib.objects.layer
-    :members:
+   :members:
 
 Core Objects
 ============
@@ -32,10 +32,10 @@ The following classes represent SMufoLib's metadata collection classes.
    property settings. Editing these keys directly may cause problems.
 
 .. automodule:: smufolib.objects.smufl
-    :members:
+   :members:
 
 .. automodule:: smufolib.objects.engravingDefaults
-    :members:
+   :members:
 
 .. automodule:: smufolib.objects.range
-    :members:
+   :members:

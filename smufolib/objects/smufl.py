@@ -37,8 +37,8 @@ class Smufl(BaseObject):
 
     .. tip:: To avoid having to set all the glyph identification
        attributes manually, it is advisable to run the
-       script :mod:`~bin.importID` prior to using this class with an
-       excisting font for the first time.
+       script :mod:`~bin.importID` prior to using this class with
+       an excisting font for the first time.
 
     :param font: Parent :class:`~smufolib.objects.font.Font` object.
     :param glyph: Parent :class:`~smufolib.objects.glyph.Glyph` object.
@@ -346,23 +346,7 @@ class Smufl(BaseObject):
     # Font
     # ----
 
-    # @property
-    # def fontName(self) -> str | None:
-    #     """SMuFL-specific font name.
-
-    #     Example::
-
-    #         >>> font.smufl.fontName
-    #         MTF-Cadence
-
-    #     """
-    #     if self.font is None:
-    #         return None
-    #     return self.font.info.naked().familyName
-
-    # @fontName.setter
-    # def fontName(self, value: str | None) -> None:
-    #     self.font.info.naked().familyName = value
+    # Font family name is acessible through font.smufl.name.
 
     @property
     def version(self) -> float | None:
@@ -471,7 +455,7 @@ class Smufl(BaseObject):
             self.glyph.lib[attribute] = value
 
     def _updateNames(self, value) -> None:
-        # Keeps dynamic dict of names in font.lib.
+        # Keep dynamic dict of names in font.lib.
         if value is None:
             if self._names is None:
                 return
@@ -505,7 +489,7 @@ class Smufl(BaseObject):
 
     @property
     def isLigature(self) -> bool:
-        """Returns :obj:`True` if glyph is ligature.
+        """Return :obj:`True` if glyph is ligature.
 
         Example::
 
@@ -525,7 +509,7 @@ class Smufl(BaseObject):
 
     @property
     def isMember(self) -> bool:
-        """Returns :obj:`True` if glyph is either `recommended or optional
+        """Return :obj:`True` if glyph is either `recommended or optional
         <https://w3c.github.io/smufl/latest/about/recommended-chars-\
         optional-glyphs.html>`_.
 
@@ -546,7 +530,7 @@ class Smufl(BaseObject):
 
     @property
     def isOptional(self) -> bool:
-        """Returns :obj:`True` if glyph is `optional <https://w3c.github.io\
+        """Return :obj:`True` if glyph is `optional <https://w3c.github.io\
         /smufl/latest/about/recommended-chars-optional-glyphs.html>`_.
 
         Example::
@@ -566,7 +550,7 @@ class Smufl(BaseObject):
 
     @property
     def isRecommended(self) -> bool:
-        """Returns :obj:`True` if glyph is `recommended <https://w3c.github.io\
+        """Return :obj:`True` if glyph is `recommended <https://w3c.github.io\
         /smufl/latest/about/recommended-chars-optional-glyphs.html>`_.
 
         Example::
@@ -586,7 +570,7 @@ class Smufl(BaseObject):
 
     @property
     def isSalt(self) -> bool:
-        """Returns :obj:`True` if glyph is stylistic alternate.
+        """Return :obj:`True` if glyph is stylistic alternate.
 
         Accepts both ``'.alt'`` and ``'.salt'`` suffix.
         See :ref:`Note <about glyph naming>` about glyph naming.
@@ -609,7 +593,7 @@ class Smufl(BaseObject):
 
     @property
     def isSet(self) -> bool:
-        """Returns :obj:`True` if glyph is stylistic set member.
+        """Return :obj:`True` if glyph is stylistic set member.
 
         See :ref:`Note <about glyph naming>` about glyph naming.
 
@@ -633,7 +617,7 @@ class Smufl(BaseObject):
     # -----------------------------
 
     def round(self) -> None:
-        """Rounds font units to integers.
+        """Round font units to integers.
 
         Method applies to the following attributes:
 
@@ -670,7 +654,7 @@ class Smufl(BaseObject):
             self.glyph.round()
 
     def toSpaces(self, value: int | float) -> float | None:
-        """Converts font units to staff spaces based on font UPM size.
+        """Convert font units to staff spaces based on font UPM size.
 
         The inverse of :meth:`toUnits`.
 
@@ -695,7 +679,7 @@ class Smufl(BaseObject):
             rounded=False)
 
     def toUnits(self, value: int | float) -> int | None:
-        """Converts staff spaces to font units based on font UPM size.
+        """Convert staff spaces to font units based on font UPM size.
 
         The inverse of :meth:`toSpaces`.
         Result is always rounded.
@@ -721,7 +705,7 @@ class Smufl(BaseObject):
 
     @property
     def spaces(self) -> bool:
-        """State of measurement.
+        """Set state of measurement to staff spaces.
 
         Example::
 
@@ -771,7 +755,7 @@ class Smufl(BaseObject):
         return basename if basename in self.font else None
 
     def findGlyph(self, name: str) -> Glyph | None:
-        """Finds :class:`~smufolib.objects.glyph.Glyph` object from :attr:`name`.
+        """Find :class:`~smufolib.objects.glyph.Glyph` object from :attr:`name`.
 
         :param name: SMuFL-specific canonical glyph name.
 
@@ -788,7 +772,7 @@ class Smufl(BaseObject):
 
     @property
     def suffix(self) -> str | None:
-        """Returns suffix of alternates.
+        """Return suffix of alternates.
 
         Example::
 

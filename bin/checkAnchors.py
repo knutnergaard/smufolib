@@ -13,11 +13,12 @@ This script requires that SMufoLib be installed within its executive
 environment. It may also be imported as a module and contains the
 following public funcitons:
 
-    * :func:`main` – main function of the script. See function help
-        for parameter details.
+    * :func:`checkAnchors` - The scripts program function.
+    * :func:`main` – Command line entry point.
+
 """
 from __future__ import annotations
-from typing import Any, Callable
+from typing import Any
 import argparse
 from pathlib import Path
 
@@ -37,12 +38,12 @@ VERBOSE = False
 # pylint: disable=invalid-name
 
 
-def main(font: Font | Path | str,
-         fontData: Request | Path | str = FONT_DATA,
-         mark: bool = MARK,
-         color: tuple[int | float] | None = MARK_COLOR,
-         verbose: bool = VERBOSE) -> None:
-    """Main function of the script.
+def checkAnchors(font: Font | Path | str,
+                 fontData: Request | Path | str = FONT_DATA,
+                 mark: bool = MARK,
+                 color: tuple[int | float] | None = MARK_COLOR,
+                 verbose: bool = VERBOSE) -> None:
+    """Check validity of SMuFL-specific glyph anchors.
 
     :param font: Object or path to
      target :class:`~smufolib.objects.font.Font`.
@@ -56,7 +57,7 @@ def main(font: Font | Path | str,
     :param color: Color value to apply when ``mark=True``.
      Defaults to
      :ref:`[color.marks]` ``mark1`` configuration.
-     :param verbose: Make output verbose. Defaults to ``False``
+     :param verbose: Make output verbose. Defaults to ``False``.
 
     """
     names = {}
@@ -113,6 +114,16 @@ def main(font: Font | Path | str,
         print("Done!")
 
 
+def main():
+    """Command line entry point."""
+    args = _parseArgs()
+    checkAnchors(args.font,
+                 fontData=args.fontData,
+                 mark=args.mark,
+                 color=args.color,
+                 verbose=args.verbose)
+
+
 def _evaluate(test: dict[str:Any],
               reference: dict[str:Any],
               names: dict[str:str],
@@ -140,6 +151,7 @@ def _evaluate(test: dict[str:Any],
 
 
 def _parseArgs() -> argparse.Namespace:
+    # Parse command line arguments and options.
     parser = cli.commonParser(
         'font',
         addHelp=True,
@@ -153,9 +165,4 @@ def _parseArgs() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = _parseArgs()
-    main(args.font,
-         fontData=args.fontData,
-         mark=args.mark,
-         color=args.color,
-         verbose=args.verbose)
+    main()

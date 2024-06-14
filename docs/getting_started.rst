@@ -1,36 +1,40 @@
+.. module:: bin
+   :noindex:
+
 Installation
 ============
 
-There is more than one way to install SMufoLib, the most common being
-via pip from `PyPi <https://pypi.org/project/smufolib>`_.
+SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
+later. It is listed in the `Python Package Index
+<https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
+`pip <https://pip.pypa.io/>`__:
 
-pip install
------------
-
-To install SMufoLib with pip, enter the following code in your favorite terminal:
-
-.. code-block:: console
+.. code:: zsh
 
     $ python -m pip install smufolib
 
 Running Scripts
 ===============
 
-SMufoLib scripts may be run either via the Python interpreter or
+SMufoLib comes bundled with several useful functions and scripts for
+building SMuFL metadata files, calculating engraving defaults from
+glyphs, importing identification attributes and more.
+
+Scripts may be run either via the Python interpreter or
 directly from the console, passing in any arguments in the familiar
 manner to each platform.
 
-As an example, check for missing or superflous SMuFL anchors
-with *checkAnchors* directly from console as follows:
+As an example, check for missing or superflous SMuFL anchors by running
+the :mod:`~bin.checkAnchors` script directly from console:
 
 .. code:: zsh
 
-   $ checkAnchors --mark
+   $ check-anchors --mark
 
-Or with regular python:
+Or import it as a module in Python:
 
 .. code:: Py3
 
    from bin import checkAnchors
 
-   checkAnchors(mark=True)
+   checkAnchors.main(mark=True)

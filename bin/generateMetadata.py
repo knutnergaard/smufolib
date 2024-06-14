@@ -27,7 +27,8 @@ This script requires that SMufoLib be installed within its executive
 environment. It may also be imported as a module and contains the
 following public functions:
 
-    * :func:`main` – Main function of the script.
+    * :func:`generateMetadata` – The scripts program function.
+    * :func:`main` - Command line entry point.
 
 """
 from __future__ import annotations
@@ -51,10 +52,10 @@ VERBOSE = False
 # pylint: disable=C0103
 
 
-def main(font: Font | Path | str,
-         targetPath: str | Path,
-         fontData: str | Path | Request = FONT_DATA,
-         verbose: bool = VERBOSE) -> None:
+def generateMetadata(font: Font | Path | str,
+                     targetPath: str | Path,
+                     fontData: str | Path | Request = FONT_DATA,
+                     verbose: bool = VERBOSE) -> None:
     """Generate metadata JSON file.
 
     :param font: Object or path to
@@ -81,6 +82,15 @@ def main(font: Font | Path | str,
         json.dump(metadata, outfile, indent=4, sort_keys=False)
 
     print("Done!")
+
+
+def main():
+    """Command line entry point."""
+    args = _parseArgs()
+    generateMetadata(args.font,
+                     args.targetPath,
+                     fontData=args.fontData,
+                     verbose=args.verbose)
 
 
 def _compileMetadata(font, fontData, verbose, verboseprint) -> dict[str, Any]:
@@ -167,7 +177,7 @@ def _getSetsTemplate(fontData) -> dict[str, dict[str, str]]:
 
 
 def _parseArgs() -> argparse.Namespace:
-    # Parses command line arguments and options.
+    # Parse command line arguments and options.
     parser = cli.commonParser('font',
                               'targetPath',
                               addHelp=True,
@@ -179,8 +189,4 @@ def _parseArgs() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = _parseArgs()
-    main(args.font,
-         args.targetPath,
-         fontData=args.fontData,
-         verbose=args.verbose)
+    main()

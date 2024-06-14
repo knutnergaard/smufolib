@@ -6,7 +6,9 @@ This script requires that SMufoLib be installed within its
 executive environment. It may also be imported as a module and contains
 the following public funcitons:
 
-    * :func:`main` – main function of the script.
+    * :func:`importAnchors` – The scripts program function.
+    * :func:`main` - Command line entry point.
+
 """
 
 from __future__ import annotations
@@ -32,14 +34,14 @@ VERBOSE = False
 # pylint: disable=invalid-name, too-many-arguments
 
 
-def main(font: Font | Path | str = None,
-         fontData: Request | Path | str = FONT_DATA,
-         mark: bool = MARK,
-         colors: dict[str, tuple[int | float, int | float,
-                                 int | float, int | float]] | None = COLORS,
-         clear: bool = CLEAR,
-         verbose: bool = VERBOSE) -> None:
-    """Main function of the script.
+def importAnchors(font: Font | Path | str = None,
+                  fontData: Request | Path | str = FONT_DATA,
+                  mark: bool = MARK,
+                  colors: dict[str, tuple[int | float, int | float,
+                                          int | float, int | float]] | None = COLORS,
+                  clear: bool = CLEAR,
+                  verbose: bool = VERBOSE) -> None:
+    """Import anchors from font metadata.
 
     :param font: font object to which the script applies.
     :param fontData: Object call or direct path to reference font
@@ -86,6 +88,13 @@ def main(font: Font | Path | str = None,
     print('Done!')
 
 
+def main():
+    """Command line entry point."""
+    args = _parseArgs()
+    importAnchors(args.font, args.fontData,
+                  args.color, args.clear, args.verbose)
+
+
 def _printDiagnostics(results: dict[str, Any]) -> None:
     print('appended anchors:'.upper())
     for glyphName, anchors in results.items():
@@ -95,6 +104,7 @@ def _printDiagnostics(results: dict[str, Any]) -> None:
 
 
 def _parseArgs():
+    # Parse command line arguments and options.
     parser = cli.commonParser('font',
                               addHelp=True,
                               description=(
@@ -108,5 +118,4 @@ def _parseArgs():
 
 
 if __name__ == '__main__':
-    args = _parseArgs()
-    main(args.font, args.fontData, args.color, args.clear, args.verbose)
+    main()

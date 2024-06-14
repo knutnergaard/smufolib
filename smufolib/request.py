@@ -14,7 +14,7 @@ CONFIG = config.load()
 
 
 class Request:
-    """HTTP or filesystem request.
+    """Send HTTP or filesystem request.
 
     A fallback path (e.g., a filesystem path to the same file), may be
     specified in case of connection failure
@@ -57,11 +57,11 @@ class Request:
 
     @property
     def raw(self) -> str | bytes:
-        """Makes a request and returns raw file contents."""
+        """Make a request and returns raw file contents."""
         if (self.path is None and self.fallback is None):
             raise ValueError(f"Path/fallback must be '{Path.__name__}' "
                              "or 'str' not 'NoneType'.")
-        # Employs context manager stack for on- and offline use cases.
+        # Employ context manager stack for on- and offline use cases.
         with contextlib.ExitStack() as stack:
             try:
                 raw = stack.enter_context(urllib.request.urlopen(self.path))

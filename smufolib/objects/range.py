@@ -121,7 +121,7 @@ class Range:
 
     @property
     def start(self) -> int | None:
-        """Returns start unicode of affiliated SMuFL range.
+        """Start unicode of affiliated SMuFL range.
 
         Example::
 
@@ -133,7 +133,7 @@ class Range:
 
     @property
     def end(self) -> int | None:
-        """Returns end unicode of affiliated SMuFL range.
+        """End unicode of affiliated SMuFL range.
 
         Example::
 

@@ -26,7 +26,8 @@ This script requires that SMufoLib be installed within its
 executive environment. It may also be imported as a module and contains
 the following public functions:
 
-* :func:`main` – Main function of the script.
+    * :func:`importID` – The scripts program function.
+    * :func:`main` - Command line entry point.
 
 """
 from __future__ import annotations
@@ -56,16 +57,16 @@ VERBOSE = False
 # pylint: disable=R0913, R0914, C0103
 
 
-def main(font: Font | Path | str,
-         attributes: str | tuple[str, ...] = ID_ATTRIBUTES,
-         classesData: Request | Path | str = CLASSES_DATA,
-         glyphnamesData: Request | Path | str = GLYPHNAMES_DATA,
-         fontData: Request | Path | str = FONT_DATA,
-         includeOptionals: bool = INCLUDE_OPTIONALS,
-         overwrite: bool = OVERWRITE,
-         verbose: bool = VERBOSE
-         ) -> None:
-    """Main function of the script.
+def importID(font: Font | Path | str,
+             attributes: str | tuple[str, ...] = ID_ATTRIBUTES,
+             classesData: Request | Path | str = CLASSES_DATA,
+             glyphnamesData: Request | Path | str = GLYPHNAMES_DATA,
+             fontData: Request | Path | str = FONT_DATA,
+             includeOptionals: bool = INCLUDE_OPTIONALS,
+             overwrite: bool = OVERWRITE,
+             verbose: bool = VERBOSE
+             ) -> None:
+    """Import SMuFL identification attributes.
 
     :param font: Object or path to target :class:`~smufolib.Font`.
     :param attributes: ID attributes to be set. Value can be either
@@ -151,8 +152,21 @@ def main(font: Font | Path | str,
     print('Done!')
 
 
+def main():
+    """Command line entry point."""
+    args = _parseArgs()
+    importID(args.font,
+             args.attributes,
+             classesData=args.classesData,
+             glyphnamesData=args.glyphnamesData,
+             fontData=args.fontData,
+             includeOptionals=args.includeOptionals,
+             overwrite=args.overwrite,
+             verbose=args.verbose)
+
+
 def _normalizeAttributes(value: str | tuple[str, ...] | list[str]):
-    # Normalizes values in the ``attributes`` parameter.
+    # Normalize values in the ``attributes`` parameter.
 
     if isinstance(value, str):
         value = (value,)
@@ -231,7 +245,7 @@ def _buildGlyphMaps(font, attributes, includeOptionals, classesDataJson,
 
 
 def _parseArgs() -> argparse.Namespace:
-    # Define command line arguments.
+    # Parse command line arguments and options.
 
     parser = argparse.ArgumentParser(
         parents=[cli.commonParser(
@@ -249,12 +263,4 @@ def _parseArgs() -> argparse.Namespace:
 
 
 if __name__ == '__main__':
-    args = _parseArgs()
-    main(args.font,
-         args.attributes,
-         classesData=args.classesData,
-         glyphnamesData=args.glyphnamesData,
-         fontData=args.fontData,
-         includeOptionals=args.includeOptionals,
-         overwrite=args.overwrite,
-         verbose=args.verbose)
+    main()

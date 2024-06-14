@@ -24,7 +24,7 @@ class EngravingDefaults(BaseObject):
     metadata structure, defining recommended defaults for line widths
     etc., according to the specification.
 
-    the :class:`EngravingDefaults` object is essentially a :class:`dict`
+    The :class:`EngravingDefaults` object is essentially a :class:`dict`
     with access to keys through regular class attributes.
 
     .. tip:: Engraving default values can be calculated from the
@@ -56,7 +56,7 @@ class EngravingDefaults(BaseObject):
     # ------------------
 
     def clear(self) -> None:
-        """Clears all engraving default settings.
+        """Clear all engraving default settings.
 
         Example::
 
@@ -70,7 +70,7 @@ class EngravingDefaults(BaseObject):
         self._engravingDefaults = None
 
     def items(self) -> dict[str, int | float | tuple[str, ...] | None]:
-        """Returns dict of all available settings and their values.
+        """Return dict of all available settings and their values.
 
         Example::
 
@@ -82,7 +82,7 @@ class EngravingDefaults(BaseObject):
         return dict(zip(self.keys(), self.values()))
 
     def keys(self) -> list[str]:
-        """Returns sorted list of all available settings names.
+        """Return sorted list of all available settings names.
 
         Example::
 
@@ -96,7 +96,7 @@ class EngravingDefaults(BaseObject):
     def update(self, other: EngravingDefaults
                | dict[str, int | float | tuple[str, ...] | None] = None,
                **kwargs: int | float | tuple[str, ...] | None) -> None:
-        r"""Updates settings attributes with other object or values.
+        r"""Update settings attributes with other object or values.
 
         :param other: Other :class:`EngravingDefaults` or :class:`dict`
             of attribute names mapped to values.
@@ -147,7 +147,7 @@ class EngravingDefaults(BaseObject):
                          | dict[str, int | float | tuple[str, ...] | None],
                          kwargs: dict[str, int | float | tuple[str, ...]]
                          ) -> None:
-        # Normalizes update(other)
+        # Normalize update(other)
         if isinstance(other, EngravingDefaults):
             other = other.items()
         if other is None:
@@ -163,7 +163,7 @@ class EngravingDefaults(BaseObject):
         return other
 
     def values(self) -> list[str]:
-        """Returns list of all available settings values.
+        """Return list of all available settings values.
 
         Order corresponds to :meth:`keys`.
 
@@ -550,7 +550,7 @@ class EngravingDefaults(BaseObject):
     # -----------------------------
 
     def round(self) -> None:
-        """Rounds font units to integers.
+        """Round font units to integers.
 
         Method applies to the following attributes:
 
@@ -616,7 +616,7 @@ class EngravingDefaults(BaseObject):
 
     @property
     def spaces(self) -> bool:
-        """State of measurement.
+        """Set state of measurement to staff spaces.
 
         Example::
 

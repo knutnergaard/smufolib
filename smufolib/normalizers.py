@@ -23,7 +23,7 @@ if TYPE_CHECKING:
 # ----
 
 def normalizeFont(value: Font) -> Font:
-    """Normalizes Font object.
+    """Normalize Font object.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not the accepted type.
@@ -39,7 +39,7 @@ def normalizeFont(value: Font) -> Font:
 
 def normalizeClasses(value: tuple[str, ...] | list[str] | None
                      ) -> tuple[str] | None:
-    """Normalizes smufl classes.
+    """Normalize smufl classes.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not an accepted type.
@@ -71,7 +71,7 @@ def normalizeClasses(value: tuple[str, ...] | list[str] | None
 
 
 def normalizeDescription(value: str | None) -> str | None:
-    """Normalizes smufl descriptions.
+    """Normalize smufl descriptions.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not an accepted type.
@@ -90,7 +90,7 @@ def normalizeDescription(value: str | None) -> str | None:
 
 
 def normalizeDesignSize(value: int | None) -> int | None:
-    """Normalizes design size.
+    """Normalize design size.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not an accepted type.
@@ -110,7 +110,7 @@ def normalizeDesignSize(value: int | None) -> int | None:
 
 def normalizeSizeRange(value: tuple[int, int] | list[int] | None
                        ) -> tuple[int, int] | None:
-    """Normalizes design size.
+    """Normalize design size.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not an accepted type.
@@ -137,7 +137,7 @@ def normalizeSizeRange(value: tuple[int, int] | list[int] | None
 
 
 def normalizeSmufl(value: Smufl) -> Smufl:
-    """Normalizes Smufl object.
+    """Normalize Smufl object.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not the accepted type.
@@ -148,7 +148,7 @@ def normalizeSmufl(value: Smufl) -> Smufl:
 
 
 def normalizeSmuflName(value: str | None) -> str | None:
-    """Normalizes smufl names.
+    """Normalize smufl names.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not an accepted type.
@@ -196,7 +196,7 @@ def normalizeEngravingDefaultsAttr(name: str,
                                    value: int | float
                                    | tuple[str, ...] | list[str] | None
                                    ) -> int | float | tuple[str, ...] | None:
-    """Normalizes engraving defaults attribute value based on name.
+    """Normalize engraving defaults attribute value based on name.
 
     :param name: The name of the attribute to normalize.
     :param value: The value to normalize.
@@ -219,7 +219,7 @@ def normalizeEngravingDefaultsAttr(name: str,
 def _normalizeStringList(name: str,
                          value: tuple['str', ...] | list[str]
                          ) -> tuple['str']:
-    # Normalizes string list.
+    # Normalize string list.
     if not isinstance(value, (tuple, list)):
         raise TypeError(f"{name} must be a list or None, "
                         f"not {type(value).__name__}.")
@@ -239,7 +239,7 @@ def _normalizeStringList(name: str,
 
 
 def normalizeRequest(value: Request) -> Request:
-    """Normalizes Request object.
+    """Normalize Request object.
 
     :param value: The value to normalize.
     :raises TypeError: if ``value`` is not the accepted type.
@@ -250,7 +250,7 @@ def normalizeRequest(value: Request) -> Request:
 
 
 def normalizeRequestPath(value: str | Path | None) -> str | None:
-    """Normalizes Request path.
+    """Normalize Request path.
 
     Relative paths are resolved automatically.
 

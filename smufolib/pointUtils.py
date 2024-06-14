@@ -13,14 +13,14 @@ if TYPE_CHECKING:
 
 
 class Point(NamedTuple):
-    """Returns named tuple for point values."""
+    """Named tuple for point values."""
     type: str
     position: Position
     contourIndex: int
 
 
 class Position(NamedTuple):
-    """Returns named tuple for position values."""
+    """Named tuple for position values."""
     x: int | float
     y: int | float
 
@@ -28,7 +28,7 @@ class Position(NamedTuple):
 def getPoints(glyph: Glyph,
               types: str | tuple[str] = ('line', 'curve', 'qcurve')
               ) -> tuple[NamedTuple]:
-    """Returns tuple of points for a glyph."""
+    """Get tuple of points for a glyph."""
     points = tuple(getContourPoints(c, types) for c in glyph)
     if glyph.components:
         points += tuple(getCompositePoints(c, types) for c in glyph.components)
@@ -38,7 +38,7 @@ def getPoints(glyph: Glyph,
 def getContourPoints(contour: RContour,
                      types: str | tuple[str]
                      ) -> tuple[NamedTuple]:
-    """Returns tuple of points for all glyph contours."""
+    """Get tuple of points for all glyph contours."""
     rawPoints = stdUtils.flatten(contour)
     return tuple(Point(p.type, Position(*p.position), p.contour.index)
                  for p in rawPoints if p.type in types)
@@ -47,7 +47,7 @@ def getContourPoints(contour: RContour,
 def getCompositePoints(component: RComponent,
                        types: str | tuple[str]
                        ) -> tuple[str, tuple[int], int]:
-    """Gets points and offset position from glyph component."""
+    """Get points and offset position from glyph component."""
     baseGlyph = component.font[component.baseGlyph]
     rawPoints = stdUtils.flatten(baseGlyph.contours)
     offset, index = component.offset, component.index

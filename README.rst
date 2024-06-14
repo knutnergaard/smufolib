@@ -1,25 +1,24 @@
-SMufoLib
-========
+SMufoLib: Where SMuFL meets UFO
+===============================
 
-SMufoLib is a small Python library designed to aid in
-font development specific to the `Standard Music Font Layout
-<https://github.com/w3c/smufl>`_ (SMuFL).
-
-The objects in SMufoLib are wrapped around `FontParts
-<https://fontparts.robotools.dev/en/stable/index.html>`_, the
-replacement for RoboFab, still in development.
+SMufoLib is a small Python library designed to aid in font development
+and scripting specific to the `Standard Music Font Layout
+<https://w3c.github.io/smufl/latest/>`_ (SMuFL). As an extension of the
+`FontParts <https://fontparts.robotools.dev/en/stable/index.html>`_
+API, SMufoLib relies on the platform and application independent
+`Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format and
+the command line, rather than any particular font editor.
 
 Documentation
 -------------
 
-SMufoLib’s documentation is presently limited to its docstrings.
-However, the library should be easy to grasp for anyone familiar with
-FontParts and SMuFL in addition to Python.
+SMufoLib’s documentation is available at `smufolib.readthedocs.io
+<https://smufolib.readthedocs.io/en/latest/index.html>`_.
 
 Installation
 ------------
 
-SMufoLib requires `Python <http://www.python.org/download/>`__ 3.7 or
+SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
 later. It is listed in the Python Package Index (PyPI) and can be
 installed with `pip <https://pip.pypa.io/>`__:
 
@@ -27,101 +26,25 @@ installed with `pip <https://pip.pypa.io/>`__:
 
    $ python -m pip install smufolib
 
-Configuration
--------------
-
-Project specific settings are defined in ``smufolib.cfg``. This file is
-located inside the `smufolib` folder in python site packages by
-default, but can be moved to the home folder or a specific location
-defined in the environment variable ``SMUFOLIB_CFG`` or as
-``CONFIG_FILEPATH`` inside ``config.py``.
-
-The file is divided between the following sections:
-
-font.paths
-^^^^^^^^^^
-
-Filesystem (or URL) paths to various font-related files.
-
-smufl.paths
-^^^^^^^^^^^
-
-Filesystem (or URL) paths to various SMuFL-related files.
-
-The options in this section are primarily intended to serve as fallback
-values for **smufl.urls**.
-
-smufl.urls
-^^^^^^^^^^
-
-URLs to various specific SMuFL-related files.
-
-As mentioned above, fallback values for this section (e.g., in the event
-of a connection failure) can be provided in the **smufl.paths** section.
-
-A note about interpolation
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Interpolation strings ``${option}`` and ``${section:option}`` may be
-used to refer to an option in the current or specific foreign section
-respectively. This is particularly useful when specifying pathnames:
-
-::
-
-   [font.paths]
-   directory = ~/Documents/UFO
-   ufo = ${directory}/my_font.ufo (result: ~/Documents/UFO/my_font.ufo)
-   ...
-   [smufl.paths]
-   ...
-   classesJson = ${font.paths:directory}/classes.json
-   (result: ~/Documents/UFO/classes.json)
-
-For more information, see:
-https://docs.python.org/3/library/configparser.html#interpolation-of-values
-
-color.marks
-^^^^^^^^^^^
-
-Color values for glyph markings.
-
-color.anchors
-^^^^^^^^^^^^^
-
-Color values for glyph anchors.
-
-metadata.sizes
-^^^^^^^^^^^^^^
-
-Values for the optional prelimenary sizing keys in a generated font metadata file.
-
-
-metadata.engravingDefaults
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-Values for SMuFLs *engravingDefaults* metadata structure. Values left
-empty will be calculated automatically. See ``help`` for
-``smufolib.engraving.getEngravingDefaults.``
-
 Scripts
 -------
 
 SMufoLib comes bundled with several useful functions and scripts for
-building SMuFL metadata files, extracting engraving defaults,
-exporting/importing annotation and more.
+building SMuFL metadata files, calculating engraving defaults from
+glyphs, importing identification attributes and more.
 
-Scripts may be run via the Python interpreter or directly from the
-console, passing in any arguments in the familiar manner to each
-platform.
+Scripts may be run either via the Python interpreter or
+directly from the console, passing in any arguments in the familiar
+manner to each platform.
 
-As an example, check for missing or superflous SMuFL anchors
-with *checkAnchors* directly from console as follows:
+As an example, check for missing or superflous SMuFL anchors by running
+the :mod:`~bin.checkAnchors` script directly from console:
 
-.. code:: bash
+.. code:: zsh
 
-   $ checkAnchors --mark
+   $ check-anchors --mark
 
-Or with regular python:
+Or import it as a module in Python:
 
 .. code:: Py3
 

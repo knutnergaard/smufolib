@@ -11,7 +11,7 @@ from smufolib.constants import CONFIG_FILEPATH
 
 
 def load(path: Path | str | None = CONFIG_FILEPATH) -> dict[str, Any]:
-    """Loads parsed config file as :class:`dict`.
+    """Load parsed config file as :class:`dict`.
 
     If the `path=` parameter is an empty :class:`str` or ``None``, the
     following locations are checked in order:
@@ -35,7 +35,7 @@ def load(path: Path | str | None = CONFIG_FILEPATH) -> dict[str, Any]:
 
 
 def _readConfigFile(path: Path | str | None) -> dict[str, Any]:
-    # Reads config file from selected filepath.
+    # Read config file from selected filepath.
     config = ConfigParser(interpolation=ExtendedInterpolation())
     config.optionxform = str
 
@@ -45,7 +45,7 @@ def _readConfigFile(path: Path | str | None) -> dict[str, Any]:
 
 
 def _selectPath(path: Path | str | None) -> str:
-    # Selects filepath to config file.
+    # Select filepath to config file.
     if path and Path(path).exists():
         return str(path)
 
@@ -61,7 +61,7 @@ def _selectPath(path: Path | str | None) -> str:
 
 def _parse(config: ConfigParser, section: str, option: str
            ) -> int | float | bool | tuple[str] | str | None:
-    # Parses configured values.
+    # Parse configured values.
     try:
         return config.getint(section, option)
     except ValueError:
