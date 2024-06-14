@@ -1,8 +1,3 @@
-.. module:: bin
-.. module:: smufolib
-    :noindex:
-
-
 :mod:`calculateEngravingDefaults`
 ---------------------------------
 
