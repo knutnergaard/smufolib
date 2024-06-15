@@ -189,7 +189,7 @@ class Smufl(BaseObject):
     @sizeRange.setter
     def sizeRange(self, value: tuple[int, int] | None) -> None:
         if value is None:
-            self.font.lib.pop('_sizeRange', None)
+            self.font.lib.pop('_sizeRange', ())
         else:
             self.font.lib['_sizeRange'] = normalizers.normalizeSizeRange(value)
 
@@ -444,7 +444,7 @@ class Smufl(BaseObject):
 
     def _set_id(self, attribute: str, value: str | list | None) -> None:
         # Common ID property setter.
-        if self._glyph is None or self._names is None:
+        if self._glyph is None:
             return
         if value is None:
             if attribute not in self.glyph.lib.naked():

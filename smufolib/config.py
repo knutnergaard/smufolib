@@ -83,6 +83,3 @@ def _parse(config: ConfigParser, section: str, option: str
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
                 return string.replace('\n', '') if string else None
-
-
-print(_readConfigFile(None))

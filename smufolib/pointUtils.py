@@ -29,10 +29,10 @@ def getPoints(glyph: Glyph,
               types: str | tuple[str] = ('line', 'curve', 'qcurve')
               ) -> tuple[NamedTuple]:
     """Get tuple of points for a glyph."""
-    points = tuple(getContourPoints(c, types) for c in glyph)
+    points = (getContourPoints(c, types) for c in glyph)
     if glyph.components:
-        points += tuple(getCompositePoints(c, types) for c in glyph.components)
-    return points
+        points += (getCompositePoints(c, types) for c in glyph.components)
+    return tuple(stdUtils.flatten(points, 1))
 
 
 def getContourPoints(contour: RContour,

@@ -130,7 +130,7 @@ def normalizeSizeRange(value: tuple[int, int] | list[int] | None
         start, end = value
         if start >= end:
             raise ValueError("Size range values must be an increasing range.")
-        return tuple(normalizeDesignSize(start), normalizeDesignSize(end))
+        return normalizeDesignSize(start), normalizeDesignSize(end)
     except TypeError as exc:
         raise TypeError(f"Size range must be a list or None, "
                         f"not {type(value).__name__}.") from exc
