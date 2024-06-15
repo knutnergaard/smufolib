@@ -19,7 +19,7 @@
 
 .. automodule:: bin.generateMetadata
 
-.. autofunction:: bin.generateMetadata.generateMetadata(font, targetDir, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']))
+.. autofunction:: bin.generateMetadata.generateMetadata(font, targetPath, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), verbose=False)
 .. autofunction:: bin.generateMetadata.main
 
 
@@ -28,7 +28,7 @@
 
 .. automodule:: bin.importAnchors
 
-.. autofunction:: bin.importAnchors.importAnchors(font, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), mark=True, colors=CONFIG['color.anchors'], clear=False)
+.. autofunction:: bin.importAnchors.importAnchors(font, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), mark=True, colors=CONFIG['color.anchors'], clear=False, verbose=False)
 .. autofunction:: bin.importAnchors.main
 
 
@@ -37,5 +37,5 @@
 
 .. automodule:: bin.importID
 
-.. autofunction:: bin.importID.importID(font, attributes, classesData=Request(CONFIG['metadata.paths']['classes'], CONFIG['metadata.fallbacks']['classes']), glyphnamesData=Request(CONFIG['metadata.paths']['glyphnames'], CONFIG['metadata.fallbacks']['glyphnames']), fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), includeOptionals=False, overwrite=False)
+.. autofunction:: bin.importID.importID(font, attributes, classesData=Request(CONFIG['metadata.paths']['classes'], CONFIG['metadata.fallbacks']['classes']), glyphnamesData=Request(CONFIG['metadata.paths']['glyphnames'], CONFIG['metadata.fallbacks']['glyphnames']), fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), includeOptionals=False, overwrite=False, verbose=False)
 .. autofunction:: bin.importID.main
