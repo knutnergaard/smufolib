@@ -53,7 +53,8 @@ def _selectPath(path: Path | str | None) -> str:
     for selection in (Path.cwd() / '.'.join(nameExttension),
                       Path.home() / '.'.join(nameExttension),
                       os.getenv('_'.join(nameExttension).upper()),
-                      Path(__file__).parents[1] / '.'.join(nameExttension)):
+                      Path(__file__).parents[1] / 'smufolib'
+                      / '.'.join(nameExttension)):
         if selection and Path(selection).exists():
             return str(selection)
     raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
@@ -82,3 +83,6 @@ def _parse(config: ConfigParser, section: str, option: str
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
                 return string.replace('\n', '') if string else None
+
+
+print(_readConfigFile(None))

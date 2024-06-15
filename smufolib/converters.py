@@ -2,7 +2,6 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from pathlib import Path
 import re
-from typeguard import typechecked
 
 from smufolib import stdUtils
 
