@@ -44,7 +44,6 @@ the checkAnchors script directly from console:
 
    $ check-anchors --mark
 
-
 Or import it as a module in Python:
 
 .. code:: Py3
