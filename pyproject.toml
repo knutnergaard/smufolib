@@ -43,6 +43,6 @@ import-anchors = "bin.importAnchors:main"
 calculate-engraving-defaults = "bin.calculateEngravingDefaults:main"
 import-id = "bin.importID:main"
 
-[tool.setuptools.packages]
-find = {}  # Scan the project directory with the default parameters
-
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["smufolib*", "bin*"]
