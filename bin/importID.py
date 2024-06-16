@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-"""This script imports :class:`~smufolib.objects.smufl.Smufl`
-identification attribute values for all the glyphs in a SMufoLib
+"""
+This script imports :class:`~smufolib.objects.smufl.Smufl`
+identification attribute values for all glyphs in a SMufoLib
 :class:`~smufolib.objects.font.Font` from metadata files. More
 specifically, it automatically sets the values for
 :attr:`~smufolib.objects.smufl.Smufl.name`,
@@ -12,8 +12,9 @@ files of `SMuFL <https://w3c.github.io/smufl/latest/specification/smufl-metadata
 and `Bravura <https://github.com/steinbergmedia/bravura#bravura-music-font>`_,
 or any other compatible sources.
 
-If ``includeOptionals=True``, optional alternates and ligatures
-require that such glyphs be named with reference to their base glyph
+Attributes for optional glyphs may be included with
+``includeOptionals=True``, in which case stylistic alternates and
+ligatures must be named with reference to their base glyph
 (see :ref:`this note <about glyph naming>` for more information about
 glyph naming).
 
@@ -48,7 +49,7 @@ GLYPHNAMES_DATA = Request(CONFIG['metadata.paths']['glyphnames'],
                           CONFIG['metadata.fallbacks']['glyphnames'])
 FONT_DATA = Request(CONFIG['metadata.paths']['referenceFont'],
                     CONFIG['metadata.fallbacks']['referenceFont'])
-ID_ATTRIBUTES = ('name', 'classes', 'description')
+ATTRIBUTES = '*'
 INCLUDE_OPTIONALS = False
 OVERWRITE = False
 VERBOSE = False
@@ -58,7 +59,7 @@ VERBOSE = False
 
 
 def importID(font: Font | Path | str,
-             attributes: str | tuple[str, ...] = ID_ATTRIBUTES,
+             attributes: str | tuple[str, ...] = ATTRIBUTES,
              classesData: Request | Path | str = CLASSES_DATA,
              glyphnamesData: Request | Path | str = GLYPHNAMES_DATA,
              fontData: Request | Path | str = FONT_DATA,
@@ -68,10 +69,11 @@ def importID(font: Font | Path | str,
              ) -> None:
     """Import SMuFL identification attributes.
 
-    :param font: Object or path to target :class:`~smufolib.Font`.
+    :param font: Object or path to
+     target :class:`~smufolib.objects.font.Font`.
     :param attributes: ID attributes to be set. Value can be either
-     ``'name'``, ``'classes'``, ``'description'`` or :class:`tuple` of
-     several. Defaults to all.
+     ``'*'`` (all), ``'name'``, ``'classes'``, ``'description'``)
+     or :class:`tuple` of several. Defaults to ``'*'``.
     :param classesData: Object call or direct path to classes metadata
      file. Defaults to :class:`~smufolib.request.Request`
      with :attr:`~smufolib.request.Request.path`
@@ -143,13 +145,13 @@ def importID(font: Font | Path | str,
                 verboseprint(f"Unable to lookup {attribute} for glyph:", glyph)
                 continue
 
-            if (getattr(glyph.smufl, attribute) is not None and not overwrite):
+            if (getattr(glyph.smufl, attribute) and not overwrite):
                 continue
             setattr(glyph.smufl, attribute, glyphMaps[attribute][codepoint])
             verboseprint(f"Setting {attribute} for glyph:", glyph)
 
     font.save()
-    print('Done!')
+    print("\nDone!")
 
 
 def main():
@@ -165,17 +167,19 @@ def main():
              verbose=args.verbose)
 
 
-def _normalizeAttributes(value: str | tuple[str, ...] | list[str]):
+def _normalizeAttributes(value: str | tuple[str, ...] | list[str]
+                         ) -> tuple[str, ...] | list[str]:
     # Normalize values in the ``attributes`` parameter.
 
-    if isinstance(value, str):
-        value = (value,)
+    attrs = {'name', 'classes', 'description'}
+    value = tuple(attrs) if value == '*' else value
+    value = (value,) if isinstance(value, str) else value
     try:
         for val in value:
-            if val not in ID_ATTRIBUTES:
-                raise ValueError("Attribute names must be 'name', 'classes' "
-                                 f"or 'description', not '{val}'.")
-        return value
+            if val in attrs:
+                return value
+            raise ValueError("Attributes names must be 'name', 'classes' "
+                             f"or 'description', not '{val}'.")
     except TypeError as exc:
         raise TypeError("Attributes must be string or tuple of strings, "
                         f"not {type(value.__name__)}") from exc
@@ -250,7 +254,7 @@ def _parseArgs() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         parents=[cli.commonParser(
             'font',
-            attributes=ID_ATTRIBUTES,
+            attributes=ATTRIBUTES,
             classesData=CLASSES_DATA,
             glyphnamesData=GLYPHNAMES_DATA,
             fontData=FONT_DATA,
@@ -258,7 +262,6 @@ def _parseArgs() -> argparse.Namespace:
             overwrite=OVERWRITE,
             verbose=VERBOSE)],
         description='Set annotation attributes from SMuFL metadata.')
-
     return parser.parse_args()
 
 

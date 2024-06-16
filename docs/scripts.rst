@@ -13,6 +13,11 @@
 .. autofunction:: bin.checkAnchors.checkAnchors(font, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), mark=False, color=None, verbose=False)
 .. autofunction:: bin.checkAnchors.main
 
+:mod:`cleanFont`
+----------------
+
+.. automodule:: bin.cleanFont
+    :members:
 
 :mod:`generateMetadata`
 -----------------------

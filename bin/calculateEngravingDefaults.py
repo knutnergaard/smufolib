@@ -1,7 +1,7 @@
 #!/usr/bin python3
 # coding: utf-8
 
-"""This script measures and sets engraving defaults based on the
+"""This script calculates and sets engraving defaults based on the
 dimensions, registration, metrics and/or point placement of appropriate
 font glyphs.
 
@@ -13,14 +13,14 @@ values of
 :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
 attributes.
 
-The user has the option to override or skip any automatic measurements,
-as well as reassign attributes to different ruler functions or glyphs
-than the default. This is particularly useful for automatic
-measurements of line widths for e.g. octave lines, pedal lines or
-repeat endings, which are not represented by a particular SMuFL glyph,
-but are often based on the thickness of other lines, such as staff
-lines, leger lines, barlines, etc., depending on the desired
-thickness.
+The user has the option to override or skip any automatic contour
+measurements, as well as reassign attributes to different ruler
+functions or glyphs than the default. This is particularly useful with
+regard to primitive line widths (like octave lines, pedal lines or
+repeat endings) which are not represented by any particular SMuFL
+glyph, but are often based on the thickness of represented lines
+(such as staff lines, leger lines, barlines, etc.), depending on the
+desired thickness.
 
 .. note:: The setting
    for
@@ -37,15 +37,15 @@ following public functions:
     * :func:`boundsLeft` – Returns absolute value of bounds x minimum.
     * :func:`boundsHeight` – Returns absolute value of bounds height.
     * :func:`stemDot` – Measures distance between stem and dot
-       countour.
+      countour.
     * :func:`xInner` – Measures distance between two adjacent x points
-       of different contours.
+      of different contours.
     * :func:`xOrigin` – Measures distance between two adjacent x points
       closest to origin.
     * :func:`yInner` – Measures distance between two adjacent y points
-       of different contours.
+      of different contours.
     * :func:`yMinimum` – Measures distance between two adjacent
-       low-points on y axis.
+      low-points on y axis.
 
 """
 from __future__ import annotations
@@ -69,17 +69,19 @@ OVERRIDE = None
 SPACES = False
 REMAP = None
 MARGIN_OF_ERROR = 6
+VERBOSE = False
 
 # pylint: disable=invalid-name, too-many-arguments
 
 
 def calculateEngravingDefaults(font: Font | Path | str,
                                exclude: str | list | None = EXCLUDE,
-                               override: dict[str, int |
-                                              float] | None = OVERRIDE,
+                               override: dict[str, int | float]
+                               | None = OVERRIDE,
                                remap: dict[str, dict[str, str | int]
                                            ] | None = REMAP,
-                               spaces: bool = SPACES) -> None:
+                               spaces: bool = SPACES,
+                               verbose: bool = VERBOSE) -> None:
     """Calculate engraving defaults from glyph contours.
 
     :param font: Target font object or path to file.
@@ -150,6 +152,14 @@ def calculateEngravingDefaults(font: Font | Path | str,
 
     font.smufl.spaces = False
 
+    # Convert font path to object.
+    font = font if isinstance(font, Font) else Font(font)
+
+    # Define print function to be do-nothing if verbose=False.
+    verboseprint = print if verbose else lambda *a, **k: None
+
+    print("Processing...")
+
     for key, mapping in defaults.items():
         if exclude and key in exclude:
             continue
@@ -177,7 +187,7 @@ def calculateEngravingDefaults(font: Font | Path | str,
 
         if spaces:
             value = font.smufl.toSpaces(value)
-        print(f"Setting attribute '{key}': {value}")
+        verboseprint(f"Setting attribute '{key}': {value}")
 
     font.save()
     print("Done!")
@@ -215,7 +225,7 @@ def boundsLeft(glyph: Glyph) -> int:
     return abs(glyph.bounds[0])
 
 
-def stemDot(glyph: Glyph, referenceIndex: int=0) -> int:
+def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between stem and dot countour.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
@@ -235,7 +245,7 @@ def stemDot(glyph: Glyph, referenceIndex: int=0) -> int:
         return abs(point.position.x - reference.position.x)
 
 
-def xInner(glyph: Glyph, referenceIndex: int=3) -> int:
+def xInner(glyph: Glyph, referenceIndex: int = 3) -> int:
     """Distance between two adjacent x points of different contours.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
@@ -253,7 +263,7 @@ def xInner(glyph: Glyph, referenceIndex: int=3) -> int:
         return abs(point.position.x - reference.position.x)
 
 
-def xOrigin(glyph: Glyph, referenceIndex: int=0) -> int:
+def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent x points closest to origin.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
@@ -272,7 +282,7 @@ def xOrigin(glyph: Glyph, referenceIndex: int=0) -> int:
         return abs(point.position.x - reference.position.x)
 
 
-def yOrigin(glyph: Glyph, referenceIndex: int=0) -> int:
+def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent x points closest to origin.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
@@ -291,7 +301,7 @@ def yOrigin(glyph: Glyph, referenceIndex: int=0) -> int:
         return abs(point.position.x - reference.position.x)
 
 
-def yInner(glyph: Glyph, referenceIndex: int=3) -> int:
+def yInner(glyph: Glyph, referenceIndex: int = 3) -> int:
     """Distance between two adjacent y points of different contours.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
@@ -308,7 +318,7 @@ def yInner(glyph: Glyph, referenceIndex: int=3) -> int:
         return abs(point.position.y - reference.position.y)
 
 
-def yMinimum(glyph: Glyph, referenceIndex: int=0) -> int:
+def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent low-points on axis y.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of

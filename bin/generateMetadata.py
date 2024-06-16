@@ -1,9 +1,8 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
 # pylint: disable=C0301
-
-"""This script generates a full featured metadata `JSON
+"""
+This script generates a full featured metadata `JSON
 <https://www.json.org/json-en.html>`_ file for SMuFL fonts from
 metadata sources and user specifications, including the following
 metadata sections:
@@ -21,7 +20,11 @@ metadata sections:
     * `optionalGlyphs <https://w3c.github.io/smufl/latest/specification/optionalglyphs.html>`_
 
 Sections are automatically added depending on the font's scope and
-assigned values.
+assigned attribute values.
+
+.. tip:: As a starting point, identification and engraving defaults
+   attributes may be set automatically with the :mod:`~bin.importID`
+   and :mod:`~bin.calculateEngravingDefaults` scripts respectively.
 
 This script requires that SMufoLib be installed within its executive
 environment. It may also be imported as a module and contains the

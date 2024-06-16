@@ -48,6 +48,6 @@ Or import it as a module in Python:
 
 .. code:: Py3
 
-   from bin import checkAnchors
+   from bin.checkAnchors import checkAnchors
 
    checkAnchors(mark=True)

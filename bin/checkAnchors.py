@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # coding: utf-8
-
-"""This script checks font anchors against the metadata file of SMuFL's
+"""
+This script checks font anchors against the metadata file of SMuFL's
 reference font, Bravura, to find missing or superfluous glyph anchors
 according to the SMuFL standard.
 

@@ -3,7 +3,7 @@ requires = ["setuptools", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "SMufoLib"
+name = "smufolib"
 version = "0.1.2"
 dependencies = [
     "fontParts",

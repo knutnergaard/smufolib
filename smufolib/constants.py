@@ -52,3 +52,12 @@ ENGRAVING_DEFAULT_KEYS = {'arrowShaftThickness',
                           'tieEndpointThickness',
                           'tieMidpointThickness',
                           'tupletBracketThickness'}
+
+FONT_ATTRIBUTES = {'designSize',
+                   'engravingDefaults',
+                   'sizeRange',
+                   'spaces'}
+
+GLYPH_ATTRIBUTES = {'classes',
+                    'description',
+                    'name'}
