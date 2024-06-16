@@ -73,6 +73,7 @@ def generateMetadata(font: Font | Path | str,
 
     # Convert font path to object.
     font = font if isinstance(font, Font) else Font(font)
+    font.smufl.spaces = True
 
     # Define print function to be do-nothing if verbose=False.
     verboseprint = print if verbose else lambda *a, **k: None
