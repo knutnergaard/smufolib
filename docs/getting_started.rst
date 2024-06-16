@@ -54,7 +54,7 @@ help command on the script:
      -v, --verbose         make output verbose (default: False)
 
 
-Alternative each script can be imported as a module in Python:
+Alternatively each script can be imported as a module in Python:
 
 .. code:: Py3
 
