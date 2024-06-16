@@ -28,10 +28,36 @@ the :mod:`~bin.checkAnchors` script directly from console:
 
    $ check-anchors --mark
 
-Or import it as a module in Python:
+Mandatory arguments and available options can be listed by running the
+help command on the script:
+
+.. code:: zsh
+
+   $ generate-metadata --help
+
+   usage: generate-metadata [-h] [-F FONTDATA] [-v] font target-path
+
+   Generate font metadata JSON file.
+
+   positional arguments:
+     font                  path to UFO file
+     target-path           path to target file or directory
+
+   options:
+     -h, --help            show this help message and exit
+     -F FONTDATA, --font-data FONTDATA
+                           path to font metadata file (default: <Request 'https:/
+                           /raw.githubusercontent.com/steinbergmedia/bravura/mast
+                           er/redist/bravura_metadata.json' ('/Users/knutnergaard
+                           /smufolib/metadata/bravura_metadata.json') at
+                           4536272304>)
+     -v, --verbose         make output verbose (default: False)
+
+
+Alternative each script can be imported as a module in Python:
 
 .. code:: Py3
 
-   from bin import checkAnchors
+   from bin.checkAnchors import checkAnchors
 
-   checkAnchors.main(mark=True)
+   checkAnchors(mark=True)
