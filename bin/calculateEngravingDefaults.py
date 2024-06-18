@@ -86,11 +86,12 @@ def calculateEngravingDefaults(font: Font | Path | str,
 
     :param font: Target font object or path to file.
     :param exclude: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-     attributes to exclude. Defaults to :obj:`None.
+        attributes to exclude. Defaults to :obj:`None`.
     :param override: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-     attributes to manually override mapped to their values. Defaults to :obj:`None`.
+        attributes to manually override mapped to their values. Defaults
+        to :obj:`None`.
     :param remap: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-     attributes mapped to remappings :class:`dict`, e.g.:
+        attributes mapped to remappings :class:`dict`, e.g.:
 
         .. code-block:: python
 
@@ -102,10 +103,10 @@ def calculateEngravingDefaults(font: Font | Path | str,
                 }
             }
 
-     Defaults to :obj:`None.
+        Defaults to :obj:`None`.
     :param spaces: set units of measurement to font units
-     or :attr:`~smufolib.objects.smufl.Smufl.spaces`. Defaults to
-     :obj:`False`.
+        or :attr:`~smufolib.objects.smufl.Smufl.spaces`. Defaults to
+        :obj:`False`.
 
     """
     dispatcher = {
@@ -209,7 +210,7 @@ def boundsHeight(glyph: Glyph) -> int:
     """Height of the glyph bounds.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
 
     """
     return glyph.bounds[3] - glyph.bounds[1]
@@ -219,7 +220,7 @@ def boundsLeft(glyph: Glyph) -> int:
     """Absolute value of bounds x minimum.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
 
     """
     return abs(glyph.bounds[0])
@@ -229,7 +230,7 @@ def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between stem and dot countour.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """
@@ -249,7 +250,7 @@ def xInner(glyph: Glyph, referenceIndex: int = 3) -> int:
     """Distance between two adjacent x points of different contours.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """
@@ -267,7 +268,7 @@ def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent x points closest to origin.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """
@@ -286,7 +287,7 @@ def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent x points closest to origin.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """
@@ -305,7 +306,7 @@ def yInner(glyph: Glyph, referenceIndex: int = 3) -> int:
     """Distance between two adjacent y points of different contours.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """
@@ -322,7 +323,7 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int:
     """Distance between two adjacent low-points on axis y.
 
     :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-     contours to measure.
+        contours to measure.
     :param referenceIndex: index of reference point.
 
     """

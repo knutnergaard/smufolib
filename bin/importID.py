@@ -70,38 +70,38 @@ def importID(font: Font | Path | str,
     """Import SMuFL identification attributes.
 
     :param font: Object or path to
-     target :class:`~smufolib.objects.font.Font`.
+        target :class:`~smufolib.objects.font.Font`.
     :param attributes: ID attributes to be set. Value can be either
-     ``'*'`` (all), ``'name'``, ``'classes'``, ``'description'``)
-     or :class:`tuple` of several. Defaults to ``'*'``.
+        ``'*'`` (all), ``'name'``, ``'classes'``, ``'description'``)
+        or :class:`tuple` of several. Defaults to ``'*'``.
     :param classesData: Object call or direct path to classes metadata
-     file. Defaults to :class:`~smufolib.request.Request`
-     with :attr:`~smufolib.request.Request.path`
-     and :attr:`~smufolib.request.Request.fallback` set to
-     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-     ``classes`` configurations.
+        file. Defaults to :class:`~smufolib.request.Request`
+        with :attr:`~smufolib.request.Request.path`
+        and :attr:`~smufolib.request.Request.fallback` set to
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
+        ``classes`` configurations.
     :param glyphnamesData: Object call or direct path to glyphnames
-     metadata file. Defaults
-     to :class:`~smufolib.request.request.Request`
-     with :attr:`~smufolib.request.Request.path`
-     and :attr:`~smufolib.request.Request.fallback` set to
-     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-     ``glyphnames`` configurations.
+        metadata file. Defaults
+        to :class:`~smufolib.request.request.Request`
+        with :attr:`~smufolib.request.Request.path`
+        and :attr:`~smufolib.request.Request.fallback` set to
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
+        ``glyphnames`` configurations.
     :param fontData: Object call or direct path to reference font
-     metadata file. Defaults to :class:`~smufolib.request.Request`
-     with :attr:`~smufolib.request.Request.path`
-     and :attr:`~smufolib.request.Request.fallback` set to
-     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-     ``referenceFont`` configurations.
+        metadata file. Defaults to :class:`~smufolib.request.Request`
+        with :attr:`~smufolib.request.Request.path`
+        and :attr:`~smufolib.request.Request.fallback` set to
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
+        ``referenceFont`` configurations.
     :param includeOptionals: Include optional glyphs. Defaults to
-     :obj:`False`.
+        :obj:`False`.
     :param overwrite: Overwrite preexisting values. Defaults to
-     :obj:`False`.
+        :obj:`False`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
-    :raises TypeError: if any ``attributes`` value is not of the
-     accepted type.
+        :raises TypeError: if any ``attributes`` value is not of the
+        accepted type.
     :raises ValueError: if ``attributes`` value is not a valid ID
-     attribute.
+        attribute.
 
     """
     print("Processing...", end="\n\n")

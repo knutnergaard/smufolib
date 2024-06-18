@@ -46,18 +46,18 @@ def checkAnchors(font: Font | Path | str,
     """Check validity of SMuFL-specific glyph anchors.
 
     :param font: Object or path to
-     target :class:`~smufolib.objects.font.Font`.
+        target :class:`~smufolib.objects.font.Font`.
     :param fontData: Object call or direct path to reference font
-     metadata file. Defaults to :class:`~smufolib.request.Request`
-     with :attr:`~smufolib.request.Request.path`
-     and :attr:`~smufolib.request.Request.fallback` set to
-     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-     ``referenceFont`` configurations.
+        metadata file. Defaults to :class:`~smufolib.request.Request`
+        with :attr:`~smufolib.request.Request.path`
+        and :attr:`~smufolib.request.Request.fallback` set to
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
+        ``referenceFont`` configurations.
     :param mark: mark discrepant glyphs. Defaults to :obj:`False`.
     :param color: Color value to apply when ``mark=True``.
-     Defaults to
-     :ref:`[color.marks]` ``mark1`` configuration.
-     :param verbose: Make output verbose. Defaults to :obj:`False`.
+        Defaults to
+        :ref:`[color.marks]` ``mark1`` configuration.
+        :param verbose: Make output verbose. Defaults to :obj:`False`.
 
     """
     names = {}

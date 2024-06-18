@@ -79,12 +79,12 @@ def cleanFont(font: Font | Path | str,
     """Delete :class:`~smufolib.smufl.Smufl` class attribute values.
 
     :param font: Object or path to
-     target :class:`~smufolib.objects.font.Font`.
+        target :class:`~smufolib.objects.font.Font`.
     :param include: items to be deleted. May be ``'*'`` (all), an
-     individual attribute or anchor name as a :class:`str`
-     or :class:`tuple` of several.
+        individual attribute or anchor name as a :class:`str`
+        or :class:`tuple` of several.
     :param exclude: Items to be preserved if `ìnclude='*'``. Defaults to
-     :obj:`None`.
+        :obj:`None`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
 
     """
