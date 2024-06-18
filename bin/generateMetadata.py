@@ -35,15 +35,15 @@ following public functions:
 
 """
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
+from typing import Any
 import argparse
 import collections
 from pathlib import Path
-import json
 
 from tqdm import tqdm
 
-from smufolib import Font, Request, cli, config, stdUtils
+from smufolib import Font, cli, config, stdUtils
+from smufolib.request import Request, writeJson
 
 CONFIG = config.load()
 
@@ -79,11 +79,10 @@ def generateMetadata(font: Font | Path | str,
     verboseprint = print if verbose else lambda *a, **k: None
 
     metadata = _compileMetadata(font, fontData, verbose, verboseprint)
-    filename = Path(targetPath).resolve() / f'{font.smufl.name}_metadata.json'
+    filename = Path(targetPath).resolve() / f'{font.smufl.name}.json'
 
     verboseprint("Writing metadata to:", filename)
-    with open(filename, 'w', encoding='utf-8') as outfile:
-        json.dump(metadata, outfile, indent=4, sort_keys=False)
+    writeJson(filename, metadata)
 
     print("Done!")
 
@@ -170,8 +169,12 @@ def _compileMetadata(font, fontData, verbose, verboseprint) -> dict[str, Any]:
 def _getSetsTemplate(fontData) -> dict[str, dict[str, str]]:
     # Extract sets template from bravura_metadata.json.
     sets = {}
-    metadata = fontData.json()
-    for key, values in metadata['sets'].items():
+
+    try:
+        fontData = fontData.json()
+    except AttributeError:
+        Request(fontData).json()
+    for key, values in fontData['sets'].items():
         sets[key] = {}
         for subKey, value in values.items():
             if subKey not in ('description', 'type'):

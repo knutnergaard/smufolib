@@ -5,23 +5,21 @@ import errno
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 
-from smufolib.constants import CONFIG_FILEPATH
-
 # pylint: disable=invalid-name
 
 
-def load(path: Path | str | None = CONFIG_FILEPATH) -> dict[str, Any]:
+def load(path: Path | str | None = None) -> dict[str, Any]:
     """Load parsed config file as :class:`dict`.
 
-    If the `path=` parameter is an empty :class:`str` or ``None``, the
-    following locations are checked in order:
+    If the ``path`` parameter is an empty :class:`str` or :obj:`None`,
+    the following locations are checked in order:
 
     #. Current working directory
     #. Home directory
     #. Environment variable :envvar:`SMUFOLIB_CFG`
     #. SMufoLib package directory
 
-    :param path: Path to smufolib.cfg
+    :param path: Path to smufolib.cfg. Defaults to :obj:`None`.
 
     """
     config = _readConfigFile(path)

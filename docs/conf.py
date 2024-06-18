@@ -65,5 +65,5 @@ html_context = {'display_github': True,
                 'github_user': 'knutnergaard',
                 'github_repo': 'smufolib', }
 html_theme_options = {
-    'display_version': True,
+    'display_version': False,
 }

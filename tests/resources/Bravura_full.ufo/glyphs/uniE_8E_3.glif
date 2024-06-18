@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="uniE8E3" format="2">
-  <unicode hex="E8E3"/>
-  <note>
-{'name': 'controlEndTie', 'description': 'End tie'}
-</note>
-  <outline>
-  </outline>
-</glyph>

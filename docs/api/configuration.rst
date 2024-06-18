@@ -26,7 +26,7 @@ and file paths and colors.
 ---------
 
 This section contains configuration for
-the :class:`smufolib.request.Request` class.
+the :class:`~smufolib.request.Request` class.
 
 .. code-block:: cfg
 

@@ -8,12 +8,49 @@ from fontParts.base.base import BaseObject
 from smufolib.objects.range import Range
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib import converters, normalizers
-from smufolib.constants import ANCHOR_NAMES
 
 if TYPE_CHECKING:
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
     from smufolib.objects.glyph import Glyph
+
+#: Names of glyph anchors specified by the SMuFL standard.
+ANCHOR_NAMES: set = {'splitStemUpSE',
+                     'splitStemUpSW',
+                     'splitStemDownNE',
+                     'splitStemDownNW',
+                     'stemUpSE',
+                     'stemDownNW',
+                     'stemUpNW',
+                     'stemDownSW',
+                     'nominalWidth',
+                     'numeralTop',
+                     'numeralBottom',
+                     'cutOutNE',
+                     'cutOutSE',
+                     'cutOutSW',
+                     'cutOutNW',
+                     'graceNoteSlashSW',
+                     'graceNoteSlashNE',
+                     'graceNoteSlashNW',
+                     'graceNoteSlashSE',
+                     'repeatOffset',
+                     'noteheadOrigin',
+                     'opticalCenter'}
+
+#: Names of font-specific attributes of
+#: the :class:`~smufolib.objects.smufl.Smufl` class.
+FONT_ATTRIBUTES: set = {'designSize',
+                        'engravingDefaults',
+                        'sizeRange',
+                        'spaces'}
+
+#: Names of glyph-specific attributes of
+#: the :class:`~smufolib.objects.smufl.Smufl` class.
+GLYPH_ATTRIBUTES: set = {'classes',
+                         'description',
+                         'name'}
+
 
 
 class Smufl(BaseObject):
@@ -625,7 +662,7 @@ class Smufl(BaseObject):
         * :attr:`anchors`
         * :attr:`advanceWidth`
 
-        If :attr:`spaces` is ``True``, values are left unchanged.
+        If :attr:`spaces` is :obj:`True`, values are left unchanged.
 
         Examples::
 

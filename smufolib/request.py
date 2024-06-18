@@ -12,6 +12,8 @@ from smufolib.normalizers import normalizeRequestPath
 
 CONFIG = config.load()
 
+# pylint: disable=C0103
+
 
 class Request:
     """Send HTTP or filesystem request.
@@ -24,15 +26,15 @@ class Request:
 
     :param path: Primary URL or filepath.
     :param fallback: Fallback filepath to use if path raises URLError.
-    :param mode: File usage specification. See :func:`open` for details.
     :param encoding: File text encoding. See :func:`open` for details.
         Defaults to :ref:`[request]` ``encoding`` configuration.
     :param warn: Warn if URLError is raised before fallback request.
         Defaults to :ref:`[request]` ``warn`` configuration.
+    :param mode: File usage specification used with :attr:`raw`.
+     See :func:`open` for details. Defaults to 'r' (read).
 
     """
-
-    # pylint: disable=invalid-name, too-few-public-methods
+    # pylint: disable=R0913
 
     def __init__(self, path: Path | str | None = None,
                  fallback: Path | str | None = None,
@@ -106,3 +108,17 @@ class Request:
 
 class URLWarning(Warning):
     """URL connection failure warning."""
+
+
+def writeJson(filepath: Path | str,
+              source: dict[Any],
+              encoding=CONFIG['request']['encoding']):
+    """Writes JSON data to filepath.
+
+    :param filepath: Path to target file.
+    :param source: JSON data source.
+    :param encoding:
+
+    """
+    with open(filepath, 'w', encoding=encoding) as outfile:
+        json.dump(source, outfile, indent=4, sort_keys=False)

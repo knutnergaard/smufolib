@@ -1,7 +1,7 @@
 from __future__ import annotations
+from typing import Any
 from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
 import json
-import textwrap
 
 from smufolib import config, converters
 from smufolib.objects.font import Font
@@ -12,16 +12,96 @@ CONFIG = config.load()
 # pylint: disable=invalid-name, unused-argument, too-many-branches
 
 
+#: Available arguments and their settings.
+CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
+    'attributes': {
+        'nargs': '+',
+        'help': "Attribute names to include in processing."
+    },
+    'classesData': {
+        'type': Request,
+        'help': "Path to classes metadata file."
+    },
+    'clear': {
+        'action': 'store_true',
+        'help': "Erase preexisting objects on execution."
+    },
+    'color': {
+        'nargs': 4,
+        'type': converters.toNumber,
+        'help': "List of RGBA color values."
+    },
+    'colors': {
+        'type': json.loads,
+        'help': "Keys mapped to RGBA color arrays as JSON string."
+    },
+    'exclude': {
+        'nargs': '+',
+        'help': "Objects to exclude from processing."
+    },
+    'font': {
+        'type': Font,
+        'help': "Path to UFO file."
+    },
+    'fontData': {
+        'type': Request,
+        'help': "Path to font metadata file."
+    },
+    'glyphnamesData': {
+        'type': Request,
+        'help': "Path to glyphnames metadata file."
+    },
+    'include': {
+        'nargs': '+',
+        'help': "Objects to include in processing."
+    },
+    'includeOptionals': {
+        'action': 'store_true',
+        'help': "Include optional glyphs."
+    },
+    'mark': {
+        'action': 'store_true',
+        'help': "Apply defined color values to objects."
+    },
+    'overwrite': {
+        'action': 'store_true',
+        'help': "Overwrite preexisting values."
+    },
+    'rangesData': {
+        'type': Request,
+        'help': "Path to ranges metadata file."
+    },
+    'sourcePath': {
+        'type': Request,
+        'help': "Path to source file or directory."
+    },
+    'spaces': {
+        'action': 'store_true',
+        'help': "Set measurement unit to staff spaces."
+    },
+    'targetPath': {
+        'help': "Path to target file or directory."
+    },
+    'verbose': {
+        'action': 'store_true',
+        'help': "Make output verbose."
+    }
+}
+
+
 def commonParser(*args, addHelp: bool = False, description: str | None = None,
-                 **kwargs) -> ArgumentParser:
+                 customHelpers: dict[str] = None, **kwargs) -> ArgumentParser:
     r"""Provide generic command-line arguments and options.
 
     See the :ref:`Available Options` for details.
 
     :param \*args: Required positional arguments to assign.
-    :param addHelp: Add help message. Should be ``False`` when
-        function is parent and otherwise ``True``.
-    :param description: Program description when used directly.
+    :param addHelp: Add help message. Should be :obj:`False` when
+        function is parent and otherwise :obj:`True`. Defaults to False.
+    :param description: Program description when used directly. Defaults
+        to :obj:`None`
+    :param customHelpers: arguments mapped to custom help strings to
+        override the default. Defaults to :obj:`None`
     :param \**kwargs: Options and their default values to assign.
     :raises TypeError: Duplicate arguments in \*args and \**kwargs.
 
@@ -63,91 +143,14 @@ def commonParser(*args, addHelp: bool = False, description: str | None = None,
         Namespace(font=<Font 'MyFont' path='path/to/my/font.ufo' at 4377107232>, mark=True)
 
     """
+
     parser = ArgumentParser(add_help=addHelp,
                             formatter_class=ArgumentDefaultsHelpFormatter,
                             description=description)
 
-    settings = {
-        'attributes': {
-            'nargs': '+',
-            'help': "ID attributes to be set: name, classes and/or description"
-        },
-        'classesData': {
-            'type': Request,
-            'help': "path to classes metadata file"
-        },
-        'clear': {
-            'action': 'store_true',
-            'help': "erase preexisting objects on execution"
-        },
-        'color': {
-            'nargs': 4,
-            'type': converters.toNumber,
-            'help': "list of RGBA color values"
-        },
-        'colors': {
-            'type': json.loads,
-            'help': textwrap.dedent("""\
-            Keys mapped to RGBA color arrays as JSON string, e.g.
-            {"mark1": [1, 0, 0, 1], "cutOutNE": [0, 0.8, 0, 1]}
-            """)
-        },
-        'exclude': {
-            'nargs': '+',
-            'help': "objects to exclude from processing"
-        },
-        'font': {
-            'type': Font,
-            'help': "path to UFO file"
-        },
-        'fontData': {
-            'type': Request,
-            'help': "path to font metadata file"
-        },
-        'glyphnamesData': {
-            'type': Request,
-            'help': "path to glyphnames metadata file"
-        },
-        'include': {
-            'nargs': '+',
-            'help': "objects to include in processing"
-        },
-        'includeOptionals': {
-            'action': 'store_true',
-            'help': "include optional glyphs"
-        },
-        'mark': {
-            'action': 'store_true',
-            'help': "apply defined color values to objects"
-        },
-        'overwrite': {
-            'action': 'store_true',
-            'help': "overwrite preexisting values"
-        },
-        'rangesData': {
-            'type': Request,
-            'help': "path to ranges metadata file"
-        },
-        'sourcePath': {
-            'type': Request,
-            'help': "path to source file or directory"
-        },
-        'spaces': {
-            'action': 'store_true',
-            'help': "values are given in staff spaces"
-        },
-        'targetPath': {
-            'help': "path to target file or directory"
-        },
-        'verbose': {
-            'action': 'store_true',
-            'help': "make output verbose"
-        }
-    }
-
     for arg in args:
-        settings[arg]['metavar'] = converters.toKebab(arg)
-        parser.add_argument(arg, **settings[arg])
+        CLI_ARGUMENTS[arg]['metavar'] = converters.toKebab(arg)
+        parser.add_argument(arg, **CLI_ARGUMENTS[arg])
 
     seen = set()
     for key, value in kwargs.items():
@@ -159,10 +162,10 @@ def commonParser(*args, addHelp: bool = False, description: str | None = None,
         assert flags[0] not in seen, f"Short flag '{flags[0]}' is duplicate."
         seen.add(flags[0])
 
-        settings[key]['dest'] = key
+        CLI_ARGUMENTS[key]['dest'] = key
         if value is not None:
-            settings[key]['default'] = value
-        parser.add_argument(*flags, **settings[key])
+            CLI_ARGUMENTS[key]['default'] = value
+        parser.add_argument(*flags, **CLI_ARGUMENTS[key])
     return parser
 
 

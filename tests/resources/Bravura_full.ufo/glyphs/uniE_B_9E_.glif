@@ -1,9 +1,0 @@
-<?xml version='1.0' encoding='UTF-8'?>
-<glyph name="uniEB9E" format="2">
-  <unicode hex="EB9E"/>
-  <note>
-{'classes': ['forTextBasedApplications'], 'name': 'staffPosLower7', 'description': 'Lower 7 staff positions'}
-</note>
-  <outline>
-  </outline>
-</glyph>

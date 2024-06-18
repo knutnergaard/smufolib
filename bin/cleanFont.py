@@ -62,7 +62,7 @@ from pathlib import Path
 from tqdm import tqdm
 
 from smufolib import Font, cli
-from smufolib.constants import (
+from smufolib.objects.smufl import (
     ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES)
 
 # Parameter defaults

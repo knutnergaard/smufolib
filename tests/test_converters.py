@@ -1,49 +1,68 @@
-"""Test converters module for SMufoLib."""
-
 import unittest
-from smufolib import converters
+from smufolib.converters import (
+    convertMeasurement, toDecimal, toUniHex, toUniName, toKebab, toNumber)
 
-# pylint: disable=missing-function-docstring, invalid-name
+# pylint: disable=C0115, C0116, C0103
 
 
 class Converters(unittest.TestCase):
+
     def test_convertMeasurement(self):
-        self.assertEqual(converters.convertMeasurement(
+        self.assertEqual(convertMeasurement(
             125, convertTo='spaces', unitsPerEm=1000), 0.5)
-        self.assertEqual(converters.convertMeasurement(
-            0.5, convertTo='units', unitsPerEm=1000), 125)
+        self.assertEqual(convertMeasurement(
+            0.5, convertTo='units', unitsPerEm=1000), 125
+        )
+
         with self.assertRaises(TypeError):
-            converters.convertMeasurement(
+            convertMeasurement(
                 (125,), convertTo='spaces', unitsPerEm=1000)
         with self.assertRaises(ValueError):
-            converters.convertMeasurement(
+            convertMeasurement(
                 125, convertTo='something else', unitsPerEm=1000)
 
     def test_toDecimal(self):
         for value in ('U+E00C', 'uE00C', 'uniE00C'):
-            self.assertEqual(converters.toDecimal(value), 57356)
+            self.assertEqual(toDecimal(value), 57356)
             with self.assertRaises(ValueError):
-                converters.toDecimal(value[1:])
+                toDecimal(value[1:])
         with self.assertRaises(TypeError):
-            converters.toDecimal(57356)
+            toDecimal(57356)
 
+    def test_toUniHex(self):
+        self.assertEqual(toUniHex(57344), 'U+E000')
+        with self.assertRaises(TypeError):
+            toUniHex('57344')
+        with self.assertRaises(ValueError):
+            toUniHex(2000000)
 
-# def testToUniHex():
-#     for value in (57344, '57344'):
-#         assert converters.toUniHex(value) == 'U+E000'
+    def test_toUniName(self):
+        # for value in (57344, '57344', 'U+E000'):
+        self.assertEqual(toUniName(57344), 'uniE000')
+        self.assertEqual(toUniName('U+E000'), 'uniE000')
+        self.assertEqual(toUniName(57344, short=True), 'uE000')
+        with self.assertRaises(TypeError):
+            toUniName([57344])
+        with self.assertRaises(ValueError):
+            toUniName('57344')
+        with self.assertRaises(ValueError):
+            toUniName(2000000)
 
-#     with pytest.raises(ValueError):
-#         converters.toUniHex('23a45')
+    def test_toKebab(self):
+        self.assertEqual(toKebab('helloWorld!'), 'hello-world!')
+        # self.assertEqual(toKebab('setID'), 'set-id')
+        with self.assertRaises(TypeError):
+            toKebab(['485937'])
 
+    def test_toNumber(self):
+        self.assertEqual(toNumber('4598'), 4598)
+        self.assertEqual(toNumber('0x4598'), 0x4598)
+        self.assertEqual(toNumber('45.8'), 45.8)
+        with self.assertRaises(AttributeError):
+            toNumber(['485937'])
+        with self.assertRaises(ValueError):
+            toNumber('456h')
 
-# def testToUniName():
-#     for value in (57344, '57344', 'U+E000'):
-#         assert converters.toUniName(value, short=False) == 'uniE000'
-#         assert converters.toUniName(value, short=True) == 'uE000'
-
-#     with pytest.raises(ValueError):
-#         for value in ('U+ E000', 'U+E0G0'):
-#             converters.toUniName(value)
 
 if __name__ == '__main__':
     unittest.main()

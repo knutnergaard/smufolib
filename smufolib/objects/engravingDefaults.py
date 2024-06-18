@@ -4,7 +4,6 @@ from typing import TYPE_CHECKING
 from fontParts.base.base import BaseObject
 
 from smufolib import normalizers
-from smufolib.constants import ENGRAVING_DEFAULT_KEYS
 
 if TYPE_CHECKING:
     from smufolib.objects.smufl import Smufl
@@ -13,6 +12,38 @@ if TYPE_CHECKING:
     from smufolib.objects.layer import Layer
 
 # pylint: disable=invalid-name, too-many-public-methods
+
+#: Names of engraving defaults as specified in the SMuFL standard.
+ENGRAVING_DEFAULTS_KEYS: set = {'arrowShaftThickness',
+                                'barlineSeparation',
+                                'beamSpacing',
+                                'beamThickness',
+                                'bracketThickness',
+                                'dashedBarlineDashLength',
+                                'dashedBarlineGapLength',
+                                'dashedBarlineThickness',
+                                'hairpinThickness',
+                                'hBarThickness',
+                                'legerLineExtension',
+                                'legerLineThickness',
+                                'lyricLineThickness',
+                                'octaveLineThickness',
+                                'pedalLineThickness',
+                                'repeatBarlineDotSeparation',
+                                'repeatEndingLineThickness',
+                                'slurEndpointThickness',
+                                'slurMidpointThickness',
+                                'staffLineThickness',
+                                'stemThickness',
+                                'subBracketThickness',
+                                'textFontFamily',
+                                'textEnclosureThickness',
+                                'thickBarlineThickness',
+                                'thinBarlineThickness',
+                                'thinThickBarlineSeparation',
+                                'tieEndpointThickness',
+                                'tieMidpointThickness',
+                                'tupletBracketThickness'}
 
 
 class EngravingDefaults(BaseObject):
@@ -91,7 +122,7 @@ class EngravingDefaults(BaseObject):
             ['arrowShaftThickness', 'barlineSeparation', ...]
 
         """
-        return sorted(ENGRAVING_DEFAULT_KEYS)
+        return sorted(ENGRAVING_DEFAULTS_KEYS)
 
     def update(self, other: EngravingDefaults
                | dict[str, int | float | tuple[str, ...] | None] = None,

@@ -11,5 +11,9 @@ The :class:`~smufolib.request.Request` class allows simultanous URL and
 filepath requests for maximum reliability and access to updated data.
 
 .. automodule:: smufolib.request
-    :members:
 
+.. autoclass:: smufolib.request.Request(path=None, fallback=None, encoding=CONFIG['request']['encoding'], warn=CONFIG['request']['warn'])
+
+.. autoclass:: smufolib.request.URLWarning
+
+.. autofunction:: writeJson

@@ -126,7 +126,7 @@ def toKebab(string):
     :param string: The string to convert.
 
     """
-    return re.sub(r'(?<!^)(?=[A-Z])', '-', string).lower()
+    return re.sub(r'(?<!^)(?=[A-Z]{1})', '-', string).lower()
 
 
 def toNumber(string: str) -> int | float:
@@ -136,25 +136,31 @@ def toNumber(string: str) -> int | float:
     :raises ValueError: if ``string`` is not a valid int or float.
 
     """
-    if stdUtils.isFloat(string):
-        return float(string)
-    if string.isnumeric():
-        return int(string)
     try:
+        if stdUtils.isFloat(string):
+            return float(string)
+        if string.isnumeric():
+            return int(string)
         return int(string, 16)
+    except (AttributeError, TypeError) as exc:
+        raise TypeError(
+            "String must be str, not {type(value).__name__}.") from exc
     except ValueError as exc:
         raise ValueError("Value must be a valid int or float.") from exc
 
 
 def _findUnicodeHex(string: str) -> str | None:
     # Find the ending hex in various unicode value configurations.
-    pattern = r'((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}'
-    result = re.search(pattern, string, flags=re.IGNORECASE)
-    if result:
-        try:
-            return result.group(0)
-        except AttributeError:
+    try:
+        pattern = r'((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}'
+        result = re.search(pattern, string, flags=re.IGNORECASE)
+        if not result:
             return None
+        return result.group(0)
+
+    except TypeError as exc:
+        raise TypeError(
+            f"String must be str, not {type(value).__name__}.") from exc
 
 
 def _isInUnicodeRange(number: int) -> bool:
