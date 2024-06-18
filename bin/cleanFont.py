@@ -112,7 +112,7 @@ def cleanFont(font: Font | Path | str,
     for glyph in font if verbose else tqdm(font):
         # Clean glyph attributes
         for index, attr in enumerate(itemsToClean['glyphAttributes']):
-            if not getattr(glyph.smufl, attr):
+            if getattr(glyph.smufl, attr) is None:
                 continue
             if index == 0:
                 verboseprint("\nCleaning attributes from glyph:", glyph)
