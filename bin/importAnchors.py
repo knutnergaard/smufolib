@@ -53,7 +53,7 @@ def importAnchors(font: Font | Path | str = None,
         metadata file. Defaults to :class:`~smufolib.request.Request`
         with :attr:`~smufolib.request.Request.path`
         and :attr:`~smufolib.request.Request.fallback` set to
-     :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
         ``referenceFont`` configurations.
     :param mark: Apply defined anchor colors. Defaults to :obj:`True`
     :param colors: dict of anchorNames mapped to UFO color values to
