@@ -64,7 +64,7 @@ def generateMetadata(font: Font | Path | str,
     :param font: Object or path to
      targetPath :class:`~smufolib.objects.font.Font`.
     :param targetPath: Target directory for Metadata JSON file.
-    :param verbose: Make output verbose. Defaults to ``False``.
+    :param verbose: Make output verbose. Defaults to :obj:`False`.
 
     """
     # Check if targetPath exists.

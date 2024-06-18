@@ -86,9 +86,9 @@ def calculateEngravingDefaults(font: Font | Path | str,
 
     :param font: Target font object or path to file.
     :param exclude: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-     attributes to exclude. Defaults to ``None``.
+     attributes to exclude. Defaults to :obj:`None.
     :param override: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-     attributes to manually override mapped to their values. Defaults to ``None``.
+     attributes to manually override mapped to their values. Defaults to :obj:`None`.
     :param remap: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
      attributes mapped to remappings :class:`dict`, e.g.:
 
@@ -102,10 +102,10 @@ def calculateEngravingDefaults(font: Font | Path | str,
                 }
             }
 
-     Defaults to ``None``.
+     Defaults to :obj:`None.
     :param spaces: set units of measurement to font units
      or :attr:`~smufolib.objects.smufl.Smufl.spaces`. Defaults to
-     ``False``.
+     :obj:`False`.
 
     """
     dispatcher = {

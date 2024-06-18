@@ -55,12 +55,12 @@ def importAnchors(font: Font | Path | str = None,
      and :attr:`~smufolib.request.Request.fallback` set to
      :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
      ``referenceFont`` configurations.
-    :param mark: Apply defined anchor colors. Defaults to ``True``
+    :param mark: Apply defined anchor colors. Defaults to :obj:`True`
     :param colors: dict of anchorNames mapped to UFO color values to
      apply when ``mark=True``.
     :param clear: erase preexisting anchors on append. Defaults to
-     ``False``.
-     :param verbose: Make output verbose. Defaults to ``False``.
+     :obj:`False`.
+     :param verbose: Make output verbose. Defaults to :obj:`False`.
 
     """
     # Convert font path to object.

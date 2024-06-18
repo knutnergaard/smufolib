@@ -94,10 +94,10 @@ def importID(font: Font | Path | str,
      :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
      ``referenceFont`` configurations.
     :param includeOptionals: Include optional glyphs. Defaults to
-     ``False``.
+     :obj:`False`.
     :param overwrite: Overwrite preexisting values. Defaults to
-     ``False``.
-    :param verbose: Make output verbose. Defaults to ``False``.
+     :obj:`False`.
+    :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: if any ``attributes`` value is not of the
      accepted type.
     :raises ValueError: if ``attributes`` value is not a valid ID

@@ -84,8 +84,8 @@ def cleanFont(font: Font | Path | str,
      individual attribute or anchor name as a :class:`str`
      or :class:`tuple` of several.
     :param exclude: Items to be preserved if `ìnclude='*'``. Defaults to
-     ``None``.
-    :param verbose: Make output verbose. Defaults to ``False``.
+     :obj:`None`.
+    :param verbose: Make output verbose. Defaults to :obj:`False`.
 
     """
     print("Processing...", end="\n\n")
