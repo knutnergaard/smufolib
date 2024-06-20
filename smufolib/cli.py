@@ -16,75 +16,75 @@ CONFIG = config.load()
 CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
     'attributes': {
         'nargs': '+',
-        'help': "Attribute names to include in processing."
+        'help': "attribute names to include in processing"
     },
     'classesData': {
         'type': Request,
-        'help': "Path to classes metadata file."
+        'help': "path to classes metadata file"
     },
     'clear': {
         'action': 'store_true',
-        'help': "Erase preexisting objects on execution."
+        'help': "erase preexisting objects on execution"
     },
     'color': {
         'nargs': 4,
         'type': converters.toNumber,
-        'help': "List of RGBA color values."
+        'help': "list of RGBA color values"
     },
     'colors': {
         'type': json.loads,
-        'help': "Keys mapped to RGBA color arrays as JSON string."
+        'help': "keys mapped to RGBA color arrays as JSON string"
     },
     'exclude': {
         'nargs': '+',
-        'help': "Objects to exclude from processing."
+        'help': "objects to exclude from processing"
     },
     'font': {
         'type': Font,
-        'help': "Path to UFO file."
+        'help': "path to UFO file"
     },
     'fontData': {
         'type': Request,
-        'help': "Path to font metadata file."
+        'help': "path to font metadata file"
     },
     'glyphnamesData': {
         'type': Request,
-        'help': "Path to glyphnames metadata file."
+        'help': "path to glyphnames metadata file"
     },
     'include': {
         'nargs': '+',
-        'help': "Objects to include in processing."
+        'help': "objects to include in processing"
     },
     'includeOptionals': {
         'action': 'store_true',
-        'help': "Include optional glyphs."
+        'help': "include optional glyphs"
     },
     'mark': {
         'action': 'store_true',
-        'help': "Apply defined color values to objects."
+        'help': "apply defined color values to objects"
     },
     'overwrite': {
         'action': 'store_true',
-        'help': "Overwrite preexisting values."
+        'help': "overwrite preexisting values"
     },
     'rangesData': {
         'type': Request,
-        'help': "Path to ranges metadata file."
+        'help': "path to ranges metadata file"
     },
     'sourcePath': {
         'type': Request,
-        'help': "Path to source file or directory."
+        'help': "path to source file or directory"
     },
     'spaces': {
         'action': 'store_true',
-        'help': "Set measurement unit to staff spaces."
+        'help': "set unit of measurement to staff spaces"
     },
     'targetPath': {
-        'help': "Path to target file or directory."
+        'help': "path to target file or directory"
     },
     'verbose': {
         'action': 'store_true',
-        'help': "Make output verbose."
+        'help': "make output verbose"
     }
 }
 

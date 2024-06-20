@@ -36,10 +36,14 @@ with open('docs/options.csv', 'w', encoding='utf-8', newline='') as csvfile:
                 optionType = directives[str]
         else:
             optionType = directives[optionType]
+        description = settings['help']
         writer.writerow(
-            {'Argument': f'``{name}``',
-             # Non-breaking spaces between flags necessary to avoid break in some cells.
-             'Option': f'``--{longFlag}, {shortFlags[name]}``',
-             'Type': optionType,
-             'Description': settings['help']}
+            {
+                'Argument': f'``{name}``',
+                # Non-breaking spaces between flags necessary to avoid break in some cells.
+                'Option': f'``--{longFlag}, {shortFlags[name]}``',
+                'Type': optionType,
+                # Add capital letter and period to help strings.
+                'Description': f'{description[0].upper()}{description[1:]}.'
+            }
         )

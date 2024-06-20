@@ -45,7 +45,7 @@ def normalizeClasses(value: tuple[str, ...] | list[str] | None
     :raises TypeError: if ``value`` is not an accepted type.
     :raises ValueError:
         - if any ``value`` item does not normalize.
-          with :func:`normalizeSmuflName`.
+            with :func:`normalizeSmuflName`.
         - if any ``value`` item is :obj:`None`.
         - if any ``value`` items are duplicates.
 
@@ -200,8 +200,7 @@ def normalizeEngravingDefaultsAttr(name: str,
 
     :param name: The name of the attribute to normalize.
     :param value: The value to normalize.
-    :raises TypeError: if ``name`` or ``value`` is not an accepted
-     type.
+    :raises TypeError: if ``value`` is not an accepted type.
     :raises ValueError: if ``name='textFontFamily'`` and ``value``
      contains an empty string.
 

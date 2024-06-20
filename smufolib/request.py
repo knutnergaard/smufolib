@@ -117,7 +117,8 @@ def writeJson(filepath: Path | str,
 
     :param filepath: Path to target file.
     :param source: JSON data source.
-    :param encoding:
+    :param encoding: File text encoding. See :func:`open` for details.
+        Defaults to :ref:`[request]` ``encoding`` configuration.
 
     """
     with open(filepath, 'w', encoding=encoding) as outfile:

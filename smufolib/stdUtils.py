@@ -7,7 +7,13 @@ import operator
 
 
 def flatten(iterable: Iterable[Any], depth: int = None) -> Iterable[Any]:
-    """Flatten irregularly nested iterables of any depth."""
+    """Flatten irregularly nested iterables of any depth.
+
+    :param iterable: iterable to flatten.
+    :param debt: number of levels to flatten. ``debt=None`` employs
+        maximum flattening. Defaults to :obj:`None`.
+
+    """
     for item in iterable:
         if (not isinstance(item, Iterable)
                 or isinstance(item, (str, bytes)) or depth == 0):
@@ -19,12 +25,25 @@ def flatten(iterable: Iterable[Any], depth: int = None) -> Iterable[Any]:
 
 
 def addTuples(*tuples) -> tuple[int | float]:
-    """Sumize tuple values."""
+    r"""Sumize tuple values.
+
+    :param\*tubles: tuples to add.
+
+    Example::
+
+        >>> addTuples((2, 4), (2, 4))
+        (4, 8)
+
+    """
     return tuple(map(sum, zip(*tuples)))
 
 
 def isFloat(string: str) -> bool:
-    """Check if string is float."""
+    """Check if string represents a :class:`float`.
+
+    param string: string to check.
+
+    """
     if '.' not in string:
         return False
     try:
@@ -37,9 +56,9 @@ def isFloat(string: str) -> bool:
 def validateClassAttr(obj, attributes: Iterable | None = None) -> bool:
     """Check for class and attribute exsistence.
 
-    Vvalidates object based on its existence and specified attributes.
+    Validates object based on its existence and specified attributes.
 
-    :param obj: Object to validate
+    :param obj: Object to validate.
     :param attributes: Attribute names to check.
 
     """

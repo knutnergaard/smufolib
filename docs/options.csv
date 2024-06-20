@@ -14,6 +14,6 @@
 "``overwrite``","``--overwrite, -o``",":class:`bool`","Overwrite preexisting values."
 "``rangesData``","``--ranges-data, -r``",":class:`~smufolib.request.Request`","Path to ranges metadata file."
 "``sourcePath``","``--source-path, -S``",":class:`~smufolib.request.Request`","Path to source file or directory."
-"``spaces``","``--spaces, -s``",":class:`bool`","Set measurement unit to staff spaces."
+"``spaces``","``--spaces, -s``",":class:`bool`","Set unit of measurement to staff spaces."
 "``targetPath``","``--target-path, -T``",":class:`str`","Path to target file or directory."
 "``verbose``","``--verbose, -v``",":class:`bool`","Make output verbose."

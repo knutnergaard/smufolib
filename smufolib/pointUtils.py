@@ -1,5 +1,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, NamedTuple
+import itertools
 
 from smufolib import stdUtils
 
@@ -28,26 +29,51 @@ class Position(NamedTuple):
 def getPoints(glyph: Glyph,
               types: str | tuple[str] = ('line', 'curve', 'qcurve')
               ) -> tuple[NamedTuple]:
-    """Get tuple of points for a glyph."""
+    """Get tuple of points for a glyph.
+
+    :param glyph: The :class:`Glyph` object from which to get the
+        points.
+    :param types: The types of points to get as a :class:`tuple` of
+     ``'line'``, ``'curve'`` and/or ``'qcurve'``. Defaults to a tuple
+     of all three types.
+
+    """
     points = (getContourPoints(c, types) for c in glyph)
     if glyph.components:
-        points += (getCompositePoints(c, types) for c in glyph.components)
+        points = itertools.chain(
+            points, (getCompositePoints(c, types) for c in glyph.components))
     return tuple(stdUtils.flatten(points, 1))
 
 
 def getContourPoints(contour: RContour,
-                     types: str | tuple[str]
+                     types: str | tuple[str] = ('line', 'curve', 'qcurve')
                      ) -> tuple[NamedTuple]:
-    """Get tuple of points for all glyph contours."""
+    """Get tuple of points for all glyph contours.
+
+    :param glyph: The :class:`Glyph` object from which to get the
+        points.
+    :param types: The types of points to get as a :class:`tuple` of
+     ``'line'``, ``'curve'`` and/or ``'qcurve'``. Defaults to a tuple
+     of all three types.
+
+     """
     rawPoints = stdUtils.flatten(contour)
     return tuple(Point(p.type, Position(*p.position), p.contour.index)
                  for p in rawPoints if p.type in types)
 
 
 def getCompositePoints(component: RComponent,
-                       types: str | tuple[str]
+                       types: str | tuple[str] = ('line', 'curve', 'qcurve')
                        ) -> tuple[str, tuple[int], int]:
-    """Get points and offset position from glyph component."""
+    """Get points and offset position from glyph component.
+
+    :param glyph: The :class:`Glyph` object from which to get the
+        points.
+    :param types: The types of points to get as a :class:`tuple` of
+     ``'line'``, ``'curve'`` and/or ``'qcurve'``. Defaults to a tuple
+     of all three types.
+
+     """
     baseGlyph = component.font[component.baseGlyph]
     rawPoints = stdUtils.flatten(baseGlyph.contours)
     offset, index = component.offset, component.index
