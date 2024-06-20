@@ -13,7 +13,8 @@ filepath requests for maximum reliability and access to updated data.
 .. automodule:: smufolib.request
 
 .. autoclass:: smufolib.request.Request(path=None, fallback=None, encoding=CONFIG['request']['encoding'], warn=CONFIG['request']['warn'])
+    :members:
 
 .. autoclass:: smufolib.request.URLWarning
 
-.. autofunction:: writeJson
+.. autofunction:: writeJson(filepath, source, encoding=CONFIG['request']['encoding'])
