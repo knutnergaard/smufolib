@@ -12,16 +12,21 @@ from smufolib.stdUtils import (
 class StdUtils(unittest.TestCase):
 
     def test_flatten(self):
-        pass
+        matrix = [[[i for i in range(5)]for j in range(5)] for h in range(5)]
+        self.assertEqual(list(flatten(matrix)), list(range(5)) * 25)
+        self.assertEqual(list(flatten(matrix, 1)),
+                         [[i for i in range(5)] for j in range(25)])
 
     def test_addTuples(self):
-        pass
+        self.assertEqual(addTuples((2, 4), (2, 4)), (4, 8))
 
     def test_isFloat(self):
-        pass
+        self.assertTrue(isFloat('1.2'))
+        self.assertFalse(isFloat('1'))
 
     def test_validateClassAttr(self):
-        pass
+        with self.assertRaises(TypeError):
+            validateClassAttr(object, 42)
 
 
 if __name__ == '__main__':

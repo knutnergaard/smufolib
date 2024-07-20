@@ -1,65 +1,103 @@
 #!/usr/bin python3
 # coding: utf-8
 
-"""This script calculates and sets engraving defaults based on the
-dimensions, registration, metrics and/or point placement of appropriate
-font glyphs.
+"""
+This script calculates and sets attribute values for
+the :class:`.EngravingDefaults` class based on glyph dimensions,
+registration, metrics, and point placement.
 
-With limited means of identification and control over the necessary
-parameters, the script presently relies on a rather rudimentary and
-somewhat error-prone process for calculating values. For this reason,
-the results should be used only as a starting point for setting the
-values of
-:class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-attributes.
+The script provides options to override automatic contour measurements
+and reassign attributes to different ruler functions or glyphs. It aims
+to automate the process, but due to limitations in parameter
+identification and control, it should only be used as a starting point.
 
-The user has the option to override or skip any automatic contour
-measurements, as well as reassign attributes to different ruler
-functions or glyphs than the default. This is particularly useful with
-regard to primitive line widths (like octave lines, pedal lines or
-repeat endings) which are not represented by any particular SMuFL
-glyph, but are often based on the thickness of represented lines
-(such as staff lines, leger lines, barlines, etc.), depending on the
-desired thickness.
+By default, attributes are mapped to the following functions and
+glyphs:
 
-.. note:: The setting
-   for
-   :attr:`~smufolib.objects.engravingDefaults.EngravingDefaults.textFontFamily`,
-   which involves no measuring or calculation, has to be set manually
-   with the ``override`` parameter.
+    ===================================   ====================   ===========
+    Attribute                             Function               Glyph
+    ===================================   ====================   ===========
+    :attr:`.arrowShaftThickness`          :func:`xOrigin`        `uniEB60`
+    :attr:`.barlineSeparation`            :func:`xInner`         `uniE031`
+    :attr:`.beamSpacing`                  :func:`yInner`         `uniE1F9`
+    :attr:`.beamThickness`                :func:`boundsHeight`   `uniE1F7`
+    :attr:`.bracketThickness`             :func:`xOrigin`        `uniE003`
+    :attr:`.dashedBarlineDashLength`      :func:`yMinimum`       `uniE036`
+    :attr:`.dashedBarlineGapLength`       :func:`yInner`         `uniE036`
+    :attr:`.dashedBarlineThickness`       :func:`xOrigin`        `uniE036`
+    :attr:`.hairpinThickness`             :func:`yMinimum`       `uniE53E`
+    :attr:`.hBarThickness`                :func:`yMinimum`       `uniE4F0`
+    :attr:`.legerLineExtension`           :func:`boundsLeft`     `uniE022`
+    :attr:`.legerLineThickness`           :func:`boundsHeight`   `uniE022`
+    :attr:`.lyricLineThickness`           :func:`boundsHeight`   `uniE010`
+    :attr:`.octaveLineThickness`          :func:`boundsHeight`   `uniE010`
+    :attr:`.pedalLineThickness`           :func:`boundsHeight`   `uniE010`
+    :attr:`.repeatBarlineDotSeparation`   :func:`stemDot`        `uniE040`
+    :attr:`.repeatEndingLineThickness`    :func:`xOrigin`        `uniE030`
+    :attr:`.slurEndpointThickness`        :func:`xOrigin`        `uniE1FD`
+    :attr:`.slurMidpointThickness`        :func:`yMinimum`       `uniE1FD`
+    :attr:`.staffLineThickness`           :func:`boundsHeight`   `uniE010`
+    :attr:`.stemThickness`                :func:`xOrigin`        `uniE210`
+    :attr:`.subBracketThickness`          :func:`xOrigin`        `uniE030`
+    :attr:`.textEnclosureThickness`       :func:`boundsHeight`   `uniE010`
+    :attr:`.thickBarlineThickness`        :func:`xOrigin`        `uniE034`
+    :attr:`.thinBarlineThickness`         :func:`xOrigin`        `uniE030`
+    :attr:`.thinThickBarlineSeparation`   :func:`xInner`         `uniE032`
+    :attr:`.tieEndpointThickness`         :func:`xOrigin`        `uniE1FD`
+    :attr:`.tieMidpointThickness`         :func:`yMinimum`       `uniE1FD`
+    :attr:`.tupletBracketThickness`       :func:`xOrigin`        `uniE1FE`
+    ===================================   ====================   ===========
 
-This script requires that SMufoLib be installed within its executive
+.. note:: The setting for :attr:`.textFontFamily` must be set manually
+   within the `override` parameter.
+
+This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
 following public functions:
 
-    * :func:`calculateEngravingDefaults` - The scripts program function.
-    * :func:`main` – Command line entry point.
-    * :func:`boundsLeft` – Returns absolute value of bounds x minimum.
-    * :func:`boundsHeight` – Returns absolute value of bounds height.
-    * :func:`stemDot` – Measures distance between stem and dot
+    - :func:`calculateEngravingDefaults` - The scripts program function.
+    - :func:`main` – Command line entry point.
+    - :func:`boundsLeft` – Returns absolute value of bounds x minimum.
+    - :func:`boundsHeight` – Returns absolute value of bounds height.
+    - :func:`stemDot` – Measures distance between stem and dot
       countour.
-    * :func:`xInner` – Measures distance between two adjacent x points
+    - :func:`xInner` – Measures distance between two adjacent x points
       of different contours.
-    * :func:`xOrigin` – Measures distance between two adjacent x points
+    - :func:`xOrigin` – Measures distance between two adjacent x points
       closest to origin.
-    * :func:`yInner` – Measures distance between two adjacent y points
+    - :func:`yInner` – Measures distance between two adjacent y points
       of different contours.
-    * :func:`yMinimum` – Measures distance between two adjacent
+    - :func:`yMinimum` – Measures distance between two adjacent
       low-points on y axis.
+
+For command-line options, run the script with :option:`--help`
+argument.
 
 """
 from __future__ import annotations
 from typing import TYPE_CHECKING
+from collections.abc import Callable
 import argparse
 import json
 import textwrap
 from pathlib import Path
 
-from smufolib import Font, cli, config, pointUtils
+from tqdm import tqdm
+
+from smufolib import (
+    Font, cli, config, converters, error, normalizers, pointUtils, stdUtils
+)
 
 if TYPE_CHECKING:
     from fontParts.fontshell.point import RPoint
     from smufolib.objects.glyph import Glyph
+
+Exclude = tuple[str] | list[str]
+OverrideValue = int | float | tuple[str, ...] | None
+Override = dict[str, OverrideValue]
+MappingValue = str | int
+Mapping = dict[str, MappingValue]
+Remapping = dict[str, Mapping]
 
 CONFIG = config.load()
 
@@ -70,28 +108,174 @@ SPACES = False
 REMAP = None
 MARGIN_OF_ERROR = 6
 VERBOSE = False
+MAPPING = {
+    'arrowShaftThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniEB60',
+        'referenceIndex': 0
+    },
+    'barlineSeparation': {
+        'ruler': 'xInner',
+        'glyph': 'uniE031',
+        'referenceIndex': 3
+    },
+    'beamSpacing': {
+        'ruler': 'yInner',
+        'glyph': 'uniE1F9',
+        'referenceIndex': 3
+    },
+    'beamThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE1F7',
+        'referenceIndex': 0
+    },
+    'bracketThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE003',
+        'referenceIndex': 0
+    },
+    'dashedBarlineDashLength': {
+        'ruler': 'yMinimum',
+        'glyph': 'uniE036',
+        'referenceIndex': 0
+    },
+    'dashedBarlineGapLength': {
+        'ruler': 'yInner',
+        'glyph': 'uniE036',
+        'referenceIndex': 3
+    },
+    'dashedBarlineThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE036',
+        'referenceIndex': 0
+    },
+    'hairpinThickness': {
+        'ruler': 'yMinimum',
+        'glyph': 'uniE53E',
+        'referenceIndex': 0
+    },
+    'hBarThickness': {
+        'ruler': 'yMinimum',
+        'glyph': 'uniE4F0',
+        'referenceIndex': 0
+    },
+    'legerLineExtension': {
+        'ruler': 'boundsLeft',
+        'glyph': 'uniE022',
+        'referenceIndex': 0
+    },
+    'legerLineThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE022',
+        'referenceIndex': 0
+    },
+    'lyricLineThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE010',
+        'referenceIndex': 0
+    },
+    'octaveLineThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE010',
+        'referenceIndex': 0
+    },
+    'pedalLineThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE010',
+        'referenceIndex': 0
+    },
+    'repeatBarlineDotSeparation': {
+        'ruler': 'stemDot',
+        'glyph': 'uniE040',
+        'referenceIndex': 0
+    },
+    'repeatEndingLineThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE030',
+        'referenceIndex': 0
+    },
+    'slurEndpointThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE1FD',
+        'referenceIndex': 0
+    },
+    'slurMidpointThickness': {
+        'ruler': 'yMinimum',
+        'glyph': 'uniE1FD',
+        'referenceIndex': 0
+    },
+    'staffLineThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE010',
+        'referenceIndex': 0
+    },
+    'stemThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE210',
+        'referenceIndex': 0
+    },
+    'subBracketThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE030',
+        'referenceIndex': 0
+    },
+    'textEnclosureThickness': {
+        'ruler': 'boundsHeight',
+        'glyph': 'uniE010',
+        'referenceIndex': 0
+    },
+    'textFontFamily': {},
+    'thickBarlineThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE034',
+        'referenceIndex': 0
+    },
+    'thinBarlineThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE030',
+        'referenceIndex': 0
+    },
+    'thinThickBarlineSeparation': {
+        'ruler': 'xInner',
+        'glyph': 'uniE032',
+        'referenceIndex': 3
+    },
+    'tieEndpointThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE1FD',
+        'referenceIndex': 0
+    },
+    'tieMidpointThickness': {
+        'ruler': 'yMinimum',
+        'glyph': 'uniE1FD',
+        'referenceIndex': 0
+    },
+    'tupletBracketThickness': {
+        'ruler': 'xOrigin',
+        'glyph': 'uniE1FE',
+        'referenceIndex': 0
+    }
+}
 
-# pylint: disable=invalid-name, too-many-arguments
+
+# pylint: disable=R0913, C0103, R0914
 
 
 def calculateEngravingDefaults(font: Font | Path | str,
-                               exclude: str | list | None = EXCLUDE,
-                               override: dict[str, int | float]
-                               | None = OVERRIDE,
-                               remap: dict[str, dict[str, str | int]
-                                           ] | None = REMAP,
+                               exclude: Exclude | None = EXCLUDE,
+                               override: Override | None = OVERRIDE,
+                               remap: Remapping | None = REMAP,
                                spaces: bool = SPACES,
                                verbose: bool = VERBOSE) -> None:
     """Calculate engraving defaults from glyph contours.
 
     :param font: Target font object or path to file.
-    :param exclude: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-        attributes to exclude. Defaults to :obj:`None`.
-    :param override: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-        attributes to manually override mapped to their values. Defaults
-        to :obj:`None`.
-    :param remap: :class:`~smufolib.objects.engravingDefaults.EngravingDefaults`
-        attributes mapped to remappings :class:`dict`, e.g.:
+    :param exclude: :class:`.EngravingDefaults` attributes to exclude.
+        Defaults to :obj:`None`.
+    :param override: :class:`.EngravingDefaults` attributes to manually
+        override mapped to their values. Defaults to :obj:`None`.
+    :param remap: :class:`.EngravingDefaults` attributes mapped to
+        remappings :class:`dict`, e.g.:
 
         .. code-block:: python
 
@@ -104,11 +288,15 @@ def calculateEngravingDefaults(font: Font | Path | str,
             }
 
         Defaults to :obj:`None`.
-    :param spaces: set units of measurement to font units
-        or :attr:`~smufolib.objects.smufl.Smufl.spaces`. Defaults to
-        :obj:`False`.
+    :param spaces: Whether values for overrides are given in staff
+        spaces as opposed to font units. Defaults to :obj:`False`.
+    :param verbose: Make output verbose. Defaults to :obj:`False`.
+    :raises TypeError: If any parameter value is not the expected type.
+    :raises ValueError: If any parameter value item is not the expected
+        type or value.
 
     """
+
     dispatcher = {
         'boundsHeight': boundsHeight,
         'boundsLeft': boundsLeft,
@@ -119,119 +307,106 @@ def calculateEngravingDefaults(font: Font | Path | str,
         'yMinimum': yMinimum,
     }
 
-    defaults = {
-        'arrowShaftThickness': (xOrigin, 'uniEB60'),
-        'barlineSeparation': (xInner, 'uniE031'),
-        'beamSpacing': (yInner, 'uniE1F9'),
-        'beamThickness': (boundsHeight, 'uniE1F7'),
-        'bracketThickness': (xOrigin, 'uniE003'),
-        'dashedBarlineDashLength': (yMinimum, 'uniE036'),
-        'dashedBarlineGapLength': (yInner, 'uniE036'),
-        'dashedBarlineThickness': (xOrigin, 'uniE036'),
-        'hairpinThickness': (yMinimum, 'uniE53E'),
-        'hBarThickness': (yMinimum, 'uniE4F0'),
-        'legerLineExtension': (boundsLeft, 'uniE022'),
-        'legerLineThickness': (boundsHeight, 'uniE022'),
-        'lyricLineThickness': (boundsHeight, 'uniE010'),
-        'octaveLineThickness': (boundsHeight, 'uniE010'),
-        'pedalLineThickness': (boundsHeight, 'uniE010'),
-        'repeatBarlineDotSeparation': (stemDot, 'uniE040'),
-        'repeatEndingLineThickness': (xOrigin, 'uniE030'),
-        'slurEndpointThickness': (xOrigin, 'uniE1FD'),
-        'slurMidpointThickness': (yMinimum, 'uniE1FD'),
-        'staffLineThickness': (boundsHeight, 'uniE010'),
-        'stemThickness': (xOrigin, 'uniE210'),
-        'subBracketThickness': (xOrigin, 'uniE030'),
-        'textEnclosureThickness': (boundsHeight, 'uniE010'),
-        'thickBarlineThickness': (xOrigin, 'uniE034'),
-        'thinBarlineThickness': (xOrigin, 'uniE030'),
-        'thinThickBarlineSeparation': (xInner, 'uniE032'),
-        'tieEndpointThickness': (xOrigin, 'uniE1FD'),
-        'tieMidpointThickness': (yMinimum, 'uniE1FD'),
-        'tupletBracketThickness': (xOrigin, 'uniE1FE')
-    }
+    print("Starting...")
+
+    font = _normalizeFont(font)
+    exclude = _normalizeExclude(exclude)
+    override = _normalizeOverride(override)
+    remap = _normalizeRemap(remap)
 
     font.smufl.spaces = False
 
-    # Convert font path to object.
-    font = font if isinstance(font, Font) else Font(font)
+    iterator = MAPPING.items()
+    if not verbose:
+        iterator = tqdm(MAPPING.items())
 
-    # Define print function to be do-nothing if verbose=False.
-    verboseprint = print if verbose else lambda *a, **k: None
+    stdUtils.verbosePrint("\nSetting attributes:", verbose)
+    for key, mapping in iterator:
+        if exclude:
+            if key in exclude:
+                continue
 
-    print("Processing...")
-
-    for key, mapping in defaults.items():
-        if exclude and key in exclude:
+        if key == 'textFontFamily':
+            if override and key in override:
+                value = override[key]
+                setattr(font.smufl.engravingDefaults, key, value)
+                stdUtils.verbosePrint(f"\t'{key}': {value}", verbose)
             continue
 
-        ruler, glyph = mapping
-        referenceIndex = None
-        if remap and key in remap:
-            if 'ruler' in remap[key]:
-                ruler = dispatcher[remap[key]['ruler']]
-            if 'glyph' in remap[key]:
-                glyph = remap[key]['glyph']
-            referenceIndex = remap[key].get('referenceIndex')
+        ruler = mapping['ruler']
+        glyph = mapping['glyph']
+        referenceIndex = mapping['referenceIndex']
+        remapping = remap.get(key, {}) if remap else {}
+        ruler = dispatcher[remapping.get('ruler', ruler)]  # type: ignore
+        glyph = remapping.get('glyph', glyph)
+        referenceIndex = remapping.get('referenceIndex', referenceIndex)
 
-        value = ruler(font[glyph])
-        if referenceIndex:
-            value = ruler(font[glyph], referenceIndex=referenceIndex)
-        if override:
-            value = override.get(key)
-            if spaces:
-                value = font.smufl.toUnits(override.get(key))
-            elif 'textFontFamily' in override:
-                value = override['textFontFamily']
+        rulerValue = _getValue(key=key,
+                               glyph=font[glyph],
+                               ruler=ruler,  # type: ignore
+                               referenceIndex=referenceIndex,  # type: ignore
+                               verbose=verbose)
+        if rulerValue is None:
+            continue
+
+        if override and key in override:
+            value = override[key]
+        else:
+            value = rulerValue
+        if spaces and isinstance(value, (int, float)):
+            value = font.smufl.toUnits(value)
 
         setattr(font.smufl.engravingDefaults, key, value)
-
-        if spaces:
+        if spaces and value and isinstance(value, (int, float)):
             value = font.smufl.toSpaces(value)
-        verboseprint(f"Setting attribute '{key}': {value}")
+        stdUtils.verbosePrint(f"\t'{key}': {value}", verbose)
 
+    stdUtils.verbosePrint("\nSaving font...", verbose)
     font.save()
-    print("Done!")
+    print("\nDone!")
 
 
-def main():
+def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     calculateEngravingDefaults(
-        args.font, args.exclude, args.remap, args.override, args.spaces)
-
+        font=args.font,
+        exclude=args.exclude,
+        override=args.override,
+        remap=args.remap,
+        spaces=args.spaces,
+        verbose=args.verbose
+    )
 
 # ------
 # Rulers
 # ------
 
 
-def boundsHeight(glyph: Glyph) -> int:
+def boundsHeight(glyph: Glyph) -> int | float | None:
     """Height of the glyph bounds.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
 
     """
-    return glyph.bounds[3] - glyph.bounds[1]
+    return converters.toIntIfWhole(glyph.bounds[3] - glyph.bounds[1])
 
 
-def boundsLeft(glyph: Glyph) -> int:
-    """Absolute value of bounds x minimum.
+def boundsLeft(glyph: Glyph) -> int | float | None:
+    """Return absolute value of the glyph bounds x minimum value.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
 
     """
-    return abs(glyph.bounds[0])
+    return converters.toIntIfWhole(abs(glyph.bounds[0]))
 
 
-def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int:
-    """Distance between stem and dot countour.
+def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between stem and dot countour.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
 
     """
     curves = sorted(pointUtils.getPoints(glyph, 'curve'),
@@ -240,18 +415,22 @@ def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int:
                    reverse=True, key=lambda p: p.position.x)
 
     reference = curves[referenceIndex]
+
     for point in lines:
         if not point.contourIndex != reference.contourIndex:
             continue
-        return abs(point.position.x - reference.position.x)
+        return converters.toIntIfWhole(
+            abs(point.position.x - reference.position.x))
+
+    return None
 
 
-def xInner(glyph: Glyph, referenceIndex: int = 3) -> int:
-    """Distance between two adjacent x points of different contours.
+def xInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between adjacent x points of two contours.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.x)
@@ -261,34 +440,18 @@ def xInner(glyph: Glyph, referenceIndex: int = 3) -> int:
         if not (point.contourIndex != reference.contourIndex
                 and _areAdjacent(point, reference, axis='y')):
             continue
-        return abs(point.position.x - reference.position.x)
+        return converters.toIntIfWhole(
+            abs(point.position.x - reference.position.x))
+
+    return None
 
 
-def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
-    """Distance between two adjacent x points closest to origin.
+def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between adjacent x points closest to origin.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
-
-    """
-    points = sorted(pointUtils.getPoints(glyph), key=lambda p: sum(p.position))
-    reference = points[referenceIndex]
-
-    for point in points:
-        if not (point.position.x != reference.position.x
-                and point.contourIndex == reference.contourIndex
-                and _areAdjacent(point, reference, axis='y')):
-            continue
-        return abs(point.position.x - reference.position.x)
-
-
-def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
-    """Distance between two adjacent x points closest to origin.
-
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: sum(p.position))
@@ -299,15 +462,40 @@ def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int:
                 and point.contourIndex == reference.contourIndex
                 and _areAdjacent(point, reference, axis='y')):
             continue
-        return abs(point.position.x - reference.position.x)
+        return converters.toIntIfWhole(
+            abs(point.position.x - reference.position.x))
+
+    return None
 
 
-def yInner(glyph: Glyph, referenceIndex: int = 3) -> int:
-    """Distance between two adjacent y points of different contours.
+def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between adjacent x points closest to origin.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
+
+    """
+    points = sorted(pointUtils.getPoints(glyph), key=lambda p: sum(p.position))
+    reference = points[referenceIndex]
+
+    for point in points:
+        if not (point.position.x != reference.position.x
+                and point.contourIndex == reference.contourIndex
+                and _areAdjacent(point, reference, axis='y')):
+            continue
+        return converters.toIntIfWhole(
+            abs(point.position.x - reference.position.x))
+
+    return None
+
+
+def yInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between adjacent y points of two contours.
+
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.y)
@@ -316,15 +504,18 @@ def yInner(glyph: Glyph, referenceIndex: int = 3) -> int:
         if not (point.contourIndex != reference.contourIndex
                 and _areAdjacent(point, reference, axis='x')):
             continue
-        return abs(point.position.y - reference.position.y)
+        return converters.toIntIfWhole(
+            abs(point.position.y - reference.position.y))
+
+    return None
 
 
-def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int:
-    """Distance between two adjacent low-points on axis y.
+def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
+    """Calculate distance between adjacent low-points on axis y.
 
-    :param glyph: Source :class:`~smufolib.objects.glyph.Glyph` of
-        contours to measure.
-    :param referenceIndex: index of reference point.
+    :param glyph: Source :class:`.Glyph` of contours to measure.
+    :param referenceIndex: referenceIndex of reference point. Defaults
+        to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.y)
@@ -335,11 +526,141 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int:
                 and point.contourIndex == reference.contourIndex
                 and _areAdjacent(point, reference, axis='x')):
             continue
-        return abs(point.position.y - reference.position.y)
+        return converters.toIntIfWhole(
+            abs(point.position.y - reference.position.y))
+
+    return None
+
+# -------
+# Helpers
+# -------
 
 
-def _areAdjacent(point1: RPoint, point2: RPoint,
-                 axis: str | None) -> bool:
+def _normalizeFont(font: Font | Path | str) -> Font:
+    # Convert font path to object if necessary.
+    error.validateType(font, (Font, Path, str), 'font')
+    if isinstance(font, Font):
+        return font
+    return Font(font)
+
+
+def _normalizeExclude(exclude: Exclude | None) -> Exclude | None:
+    # Noralize `exclude`.
+    if exclude is None:
+        return None
+
+    error.validateType(exclude, (tuple, list), 'exclude')
+
+    for item in exclude:
+        error.suggestValue(
+            item, list(MAPPING.keys()), 'exclude', items=True
+        )
+    return exclude
+
+
+def _normalizeOverride(override: Override | None) -> Override | None:
+    # Normalize override dictionary.
+    if override is None:
+        return None
+
+    error.validateType(override, dict, 'override')
+    for key, value in override.items():
+        attributes = list(MAPPING.keys())
+        error.suggestValue(
+            key, attributes, 'override', items=True
+        )
+        normalizers.normalizeEngravingDefaultsAttr(key, value)
+
+    return override
+
+
+def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
+    # Normalize remap dictionary.
+    if remap is None:
+        return None
+
+    error.validateType(remap, dict, 'remap')
+
+    for key, value in remap.items():
+        error.suggestValue(
+            key, list(MAPPING.keys()), 'remap', items=True
+        )
+
+        for k, v in value.items():
+            error.suggestValue(
+                k,
+                ('ruler', 'glyph', 'referenceIndex'),
+                f"'remap'['{value}']",
+                items=True
+            )
+
+            error.validateType(
+                v, (str, int), f"'remap'['{value}']", items=True
+            )
+
+    return remap
+
+
+def _getValue(key: str,
+              glyph: Glyph,
+              ruler: Callable,
+              referenceIndex: int,
+              verbose: bool
+              ) -> int | float | None:
+    # Get value from ruler function and print error message.
+    try:
+        if referenceIndex:
+            return ruler(glyph, referenceIndex)
+        return ruler(glyph)
+    except KeyError:
+        stdUtils.verbosePrint("Skipping attribute assigned to non-"
+                              f"existent glyph: '{key}' ('{glyph.name}')",
+                              verbose)
+        return None
+
+
+def _parseArgs() -> argparse.Namespace:
+    # Parse command line arguments and options.
+    parser = argparse.ArgumentParser(
+        description=stdUtils.getSummary(calculateEngravingDefaults.__doc__),
+        parents=[
+            cli.commonParser(
+                'font',
+                exclude=EXCLUDE,
+                spaces=SPACES,
+                verbose=VERBOSE,
+                addHelp=False)
+        ],
+        formatter_class=cli.createHelpFormatter(
+            ('ArgumentDefaultsHelpFormatter', 'RawDescriptionHelpFormatter')
+        )
+    )
+
+    parser.add_argument(
+        '-o', '--override',
+        default=OVERRIDE,
+        type=json.loads,
+        help=textwrap.dedent(
+            """JSON string of attributes and values to manually override;
+            in the format '{"<attribute name>": <value>, ...}'"""
+        )
+    )
+
+    parser.add_argument(
+        '-r', '--remap',
+        default=REMAP,
+        type=json.loads,
+        help=textwrap.dedent(
+            """JSON string of ruler, glyph and referenceIndex remappings
+            in the format: {"<attribute name>":
+            '{"ruler": "<function name>", "glyph": "<glyph name>",
+            "referenceIndex": <integer>}, ...}'"""
+        )
+    )
+    return parser.parse_args()
+
+
+def _areAdjacent(point1: RPoint, point2: RPoint, axis: str | None) -> bool:
     # Check if points are adjacent on axis.
     # Employ margin of error for point placement.
 
@@ -356,45 +677,6 @@ def _areAdjacent(point1: RPoint, point2: RPoint,
     else:
         checkAxis = withinRange(x1, x2) or withinRange(y1, y2)
     return point1 != point2 and checkAxis
-
-
-def _parseArgs() -> argparse.Namespace:
-    # Parse command line arguments and options.
-    parser = argparse.ArgumentParser(
-        parents=[cli.commonParser('font', exclude=EXCLUDE, spaces=SPACES)],
-        formatter_class=argparse.RawTextHelpFormatter,
-        description=__doc__)
-
-    parser.add_argument(
-        '-o', '--override',
-        default=OVERRIDE,
-        type=json.loads,
-        help=textwrap.dedent("""\
-            JSON string of attributes and values to manually override, e.g.
-            {
-                "arrowShaftThickness": <number>,
-                "barlineSeparation": <number>
-            }
-            """)
-    )
-
-    parser.add_argument(
-        '-r', '--remap',
-        default=REMAP,
-        type=json.loads,
-        help=textwrap.dedent("""\
-            JSON string of ruler, glyph and referenceIndex remappings, e.g.
-            {
-                "arrowShaftThickness": {
-                    "ruler": "<function name>",
-                    "glyph": "<glyph name>",
-                    "referenceIndex": <number>
-                }
-            }
-            """)
-    )
-
-    return parser.parse_args()
 
 
 if __name__ == '__main__':

@@ -8,7 +8,7 @@ To simplify the creation of command-line options and streamline script
 interfaces, :func:`cli.commonParser` provides a set of predefined argument definitions
 for the standard library :mod:`argparse` module. These may be combined
 with any script specific definitions by
-passing :func:`~cli.commonParser` to the ``parents`` parameter
+passing :func:`~cli.commonParser` to the `parents` parameter
 of :class:`argparse.ArgumentParser` as a :class:`list`.
 
 .. _Available Options:

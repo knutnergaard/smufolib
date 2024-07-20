@@ -1,6 +1,5 @@
 # pylint: disable=C0114
 from fontParts.fontshell.font import RFont
-
 from smufolib.objects.layer import Layer
 from smufolib.objects.smufl import Smufl
 

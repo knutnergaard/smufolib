@@ -9,7 +9,17 @@ throughout SMufoLib.
 .. automodule:: smufolib.converters
     :members:
 
+.. _error:
+
+:mod:`error`
+------------
+
+This module contains error related messages and functions.
+
 .. _normalizers:
+
+.. automodule:: smufolib.error
+    :members:
 
 :mod:`normalizers`
 ------------------
@@ -26,10 +36,12 @@ contains all normalization functionality used throughout SMufoLib.
 -----------------
 
 This module contains utility functions to simplify the syntax
-of :class:`fontParts.base.Point`.
+of :class:`fontParts.base.BasePoint`.
 
 .. automodule:: smufolib.pointUtils
     :members:
+    :exclude-members: contourIndex, position, type, x, y
+
 
 .. _stdtUtils:
 

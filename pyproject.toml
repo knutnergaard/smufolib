@@ -38,6 +38,7 @@ Homepage = "https://github.com/knutnergaard/SMufoLib"
 
 [project.scripts]
 check-anchors = "bin.checkAnchors:main"
+clean-font = "bin.cleanFont:main"
 generate-metadata = "bin.generateMetadata:main"
 import-anchors = "bin.importAnchors:main"
 calculate-engraving-defaults = "bin.calculateEngravingDefaults:main"

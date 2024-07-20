@@ -1,19 +1,25 @@
+# pylint: disable=C0114
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Any
+from collections.abc import Callable
 from pathlib import Path
 
-
-from fontParts.base.normalizers import normalizeBoolean  # pylint: disable=unused-import
-from fontParts.base.normalizers import normalizeColor  # pylint: disable=unused-import
-from fontParts.base.normalizers import normalizeInternalObjectType  # pylint: disable=unused-import
-from fontParts.base.normalizers import normalizeVisualRounding  # pylint: disable=unused-import
-from fontParts.base.normalizers import normalizeGlyph  # pylint: disable=unused-import
+from fontParts.base.normalizers import normalizeInternalObjectType
+from fontParts.base.normalizers import normalizeBoolean  # pylint: disable=W0611
+from fontParts.base.normalizers import normalizeColor  # pylint: disable=W0611
+from fontParts.base.normalizers import normalizeVisualRounding  # pylint: disable=W0611
+from fontParts.base.normalizers import normalizeGlyph  # pylint: disable=W0611
+from smufolib import error
 
 if TYPE_CHECKING:
     from smufolib.objects.font import Font
     from smufolib.request import Request
     from smufolib.objects.smufl import Smufl
     from smufolib.objects.engravingDefaults import EngravingDefaults
+
+# Type aliases
+EngravingDefaultsInput = int | float | tuple[str, ...] | list[str]
+EngravingDefaultsReturn = int | float | tuple[str, ...]
 
 # pylint: disable=C0103, C0415
 
@@ -26,47 +32,47 @@ def normalizeFont(value: Font) -> Font:
     """Normalize Font object.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not the accepted type.
+    :raises TypeError: If `value` is not the accepted type.
 
     """
     from smufolib.objects.font import Font
-    return normalizeInternalObjectType(value, Font, "Font object")
+    return normalizeInternalObjectType(value, Font, "Font")
 
 
 # -----
 # Smufl
 # -----
 
-def normalizeClasses(value: tuple[str, ...] | list[str] | None
-                     ) -> tuple[str] | None:
+def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...] | None:
     """Normalize smufl classes.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
+    :raises TypeError: If `value` is not an accepted type.
     :raises ValueError:
-        - if any ``value`` item does not normalize.
-            with :func:`normalizeSmuflName`.
-        - if any ``value`` item is :obj:`None`.
-        - if any ``value`` items are duplicates.
+        - If any `value` item does not normalize
+          with :func:`normalizeSmuflName`.
+        - If any `value` items are duplicates.
 
     """
     if value is None:
         return None
-    if not isinstance(value, (tuple, list)):
-        raise TypeError(
-            f"Classes must be tuple, list or None, not {type(value).__name__}.")
+
+    objectName = 'Smufl.classes'
+    error.validateType(value, (tuple, list), objectName)
 
     for val in value:
-        if val is None:
-            raise ValueError("Class names cannot be None.")
+        error.validateType(val, str, objectName, items=True)
         for v in val.split('_'):
             normalizeSmuflName(v)
 
     duplicates = {v for v in value if value.count(v) > 1}
     if len(duplicates) != 0:
         raise ValueError(
-            "Duplicate class names are not allowed. Class "
-            f"name(s) '{','.join(duplicates)}' are duplicate.")
+            error.generateErrorMessage(
+                'duplicateItems', objectName=objectName
+            )
+        )
+
     return tuple(v for v in value if v)
 
 
@@ -74,106 +80,142 @@ def normalizeDescription(value: str | None) -> str | None:
     """Normalize smufl descriptions.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
-    :raises ValueError: if ``value`` is an empty string.
+    :raises TypeError: If `value` is not an accepted type.
+    :raises ValueError: If `value` is an empty string.
 
     """
     if value is None:
         return None
-    try:
-        if len(value) == 0:
-            raise ValueError("The description is empty.")
-        return value
-    except TypeError as exc:
-        raise TypeError("Descriptions must be strings or None, "
-                        f"not {type(value).__name__}.") from exc
+
+    error.validateType(value, (str, type(None)), 'Smufl.description')
+
+    if len(value) == 0:
+        raise ValueError(
+            error.generateErrorMessage(
+                'emptyValue', objectName='Smufl.description'
+            )
+        )
+
+    return value
 
 
 def normalizeDesignSize(value: int | None) -> int | None:
     """Normalize design size.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
-    :raises ValueError: if ``value`` is less than 10.
+    :raises TypeError: If `value` is not an accepted type.
+    :raises ValueError: If `value` is less than ``10``.
 
     """
+    error.validateType(value, (int, type(None)), 'Smufl.designSize')
+
     if value is None:
         return None
-    try:
-        if value < 10:
-            raise ValueError("Design size must not be less than 10.")
-        return value
-    except TypeError as exc:
-        raise TypeError("Design size must be an integer or None, "
-                        f"not {type(value).__name__}.") from exc
+
+    if value < 10:
+        raise ValueError(
+            error.generateErrorMessage(
+                'valueTooLow', objectName='Smufl.designSize', value=10
+            )
+        )
+
+    return value
 
 
-def normalizeSizeRange(value: tuple[int, int] | list[int] | None
+def normalizeSizeRange(value: tuple[int, int] | None
                        ) -> tuple[int, int] | None:
     """Normalize design size.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
+    :raises TypeError: If `value` or it's contents is not an accepted
+        type.
     :raises ValueError:
-        - if ``value`` does not contain a value pair.
-        - if ``value`` is not an increasing range.
-        - if ``value`` items do not normalize
+        - If `value` does not contain a value pair.
+        - If `value` is not an increasing range.
+        - If `value` items do not normalize
           with :func:`normalizeDesignSize`, except not be :obj:`None`.
 
     """
     if value is None:
         return None
-    try:
-        length = len(value)
-        if length != 2:
-            raise ValueError(f"Size range must be of length 2, not {length}.")
-        start, end = value
-        if start >= end:
-            raise ValueError("Size range values must be an increasing range.")
-        return normalizeDesignSize(start), normalizeDesignSize(end)
-    except TypeError as exc:
-        raise TypeError(f"Size range must be a list or None, "
-                        f"not {type(value).__name__}.") from exc
+
+    objectName = 'Smufl.sizeRange'
+
+    error.validateType(value, (tuple, list, type(None)), objectName)
+
+    if len(value) != 2:
+        raise ValueError(
+            error.generateErrorMessage(
+                'singleItem', objectName='Smufl.sizeRange'
+            )
+        )
+
+    start, end = value
+
+    startNormalized = normalizeDesignSize(start)
+    endNormalized = normalizeDesignSize(end)
+
+    if start >= end:
+        raise ValueError(
+            error.generateErrorMessage(
+                'nonIncreasingRange', objectName=objectName
+            )
+        )
+
+    return startNormalized, endNormalized  # type: ignore
 
 
 def normalizeSmufl(value: Smufl) -> Smufl:
     """Normalize Smufl object.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not the accepted type.
+    :raises TypeError: If `value` is not the accepted type.
 
     """
     from smufolib.objects.smufl import Smufl
-    return normalizeInternalObjectType(value, Smufl, "Smufl object")
+    return normalizeInternalObjectType(value, Smufl, "Smufl")
 
 
 def normalizeSmuflName(value: str | None) -> str | None:
     """Normalize smufl names.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
+    :raises TypeError: If `value` is not an accepted type.
     :raises ValueError:
-        - if ``value`` is an empty string.
-        - if ``value`` is value contains non-alphanumeric characters.
-        - if ``value`` does not start with a lowercase letter or number.
+        - If `value` is an empty string.
+        - If `value` is value contains non-alphanumeric characters.
+        - If `value` does not start with a lowercase letter or number.
 
     """
     if value is None:
         return None
-    try:
-        if len(value) == 0:
-            raise ValueError("The name is empty.")
-        for val in value:
-            if not val.isalnum():
-                raise ValueError(f"The name '{value}' contains "
-                                 f"an invalid character: '{val}'.")
-        if value[0].isupper():
+
+    objectName = 'Smufl.name'
+
+    error.validateType(value, (str, type(None)), objectName)
+    if not value:
+        raise ValueError(
+            error.generateErrorMessage(
+                'emptyValue', objectName=objectName
+            )
+        )
+
+    for val in value:
+        if not val.isalnum():
             raise ValueError(
-                "Names must start with a lowercase letter or number.")
-        return value
-    except TypeError as exc:
-        raise TypeError("Names must be str or None, "
-                        f"not {type(value).__name__}.") from exc
+                error.generateErrorMessage(
+                    'alphanumericValue', objectName=objectName
+                )
+            )
+
+    if value[0].isupper():
+        raise ValueError(
+            error.generateErrorMessage(
+                'invalidInitialCharacter', objectName=objectName
+            )
+        )
+
+    return value
 
 
 # ------------------
@@ -184,51 +226,91 @@ def normalizeEngravingDefaults(value: EngravingDefaults) -> EngravingDefaults:
     """Normalize EngravingDefaults object.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not the accepted type.
+    :raises TypeError: If `value` is not the accepted type.
 
     """
     from smufolib.objects.engravingDefaults import EngravingDefaults
     return normalizeInternalObjectType(
-        value, EngravingDefaults, "EngravingDefaults object")
+        value, EngravingDefaults, "EngravingDefaults"
+    )
 
 
 def normalizeEngravingDefaultsAttr(name: str,
-                                   value: int | float
-                                   | tuple[str, ...] | list[str] | None
-                                   ) -> int | float | tuple[str, ...] | None:
+                                   value: EngravingDefaultsInput | None
+                                   ) -> EngravingDefaultsReturn | None:
     """Normalize engraving defaults attribute value based on name.
 
     :param name: The name of the attribute to normalize.
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not an accepted type.
-    :raises ValueError: if ``name='textFontFamily'`` and ``value``
-     contains an empty string.
+    :raises TypeError: If any parameter value is not an accepted type.
+    :raises AttributeError: If name is not a
+        valid :class:`EngravingDefaults` attribute name.
+    :raises ValueError: If  ``'name=textFontFamily'`` and `value` is not
+        a :class:`str` or empty.
 
     """
+    from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
+
+    if not isinstance(name, str):
+        raise TypeError(
+            error.generateTypeError(
+                value=name, validTypes=str, objectName='name'
+            )
+        )
+
+    className = 'EngravingDefaults'
+    if name not in ENGRAVING_DEFAULTS_KEYS:
+        raise AttributeError(
+            error.generateErrorMessage(
+                'attributeError',
+                objectName=className,
+                attribute=name
+            )
+        )
+
     if value is None:
-        return None
+        return () if value == 'textFontFamily' else None
+
+    objectName = f'{className}.{name}'
     if name == 'textFontFamily':
-        value = _normalizeStringList(name, value)
-    elif not isinstance(value, (int, float)):
-        raise TypeError(f"{name} must be an int, float or None, "
-                        f"not {type(value).__name__}.")
+        if not isinstance(name, (tuple, list)):
+            raise TypeError(
+                error.generateTypeError(
+                    value=value,
+                    validTypes=(tuple, list),
+                    objectName=objectName
+                )
+            )
+
+        value = _normalizeStringTuple(objectName, value)
+
+    elif not isinstance(name, (int, float)):
+        raise TypeError(
+            error.generateTypeError(
+                value=value,
+                validTypes=(int, float),
+                objectName=objectName
+            )
+        )
+
     return value
 
 
-def _normalizeStringList(name: str,
-                         value: tuple['str', ...] | list[str]
-                         ) -> tuple['str']:
-    # Normalize string list.
-    if not isinstance(value, (tuple, list)):
-        raise TypeError(f"{name} must be a list or None, "
-                        f"not {type(value).__name__}.")
+def _normalizeStringTuple(objectName: str,
+                          value: tuple[str, ...] | list[str]
+                          ) -> tuple[str, ...]:
+    # Normalize string tuple.
+    error.validateType(value, (tuple, list), objectName)
+
     for val in value:
-        if not isinstance(val, str):
-            raise TypeError(f"{name} items must be strings, "
-                            f"not {type(value).__name__}.")
-        if len(val) == 0:
-            index = value.index(val)
-            raise ValueError(f"{name} item at index {index} is empty.")
+        error.validateType(val, str, objectName, items=True)
+        if not val:
+            raise ValueError(
+                error.generateErrorMessage(
+                    'emptyValueItems', objectName=objectName
+                )
+            )
+
     return tuple(value)
 
 
@@ -241,28 +323,28 @@ def normalizeRequest(value: Request) -> Request:
     """Normalize Request object.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not the accepted type.
+    :raises TypeError: If `value` is not the accepted type.
 
     """
     from smufolib.request import Request
-    return normalizeInternalObjectType(value, Request, "Request object")
+    return normalizeInternalObjectType(value, Request, "Request")
 
 
-def normalizeRequestPath(value: str | Path | None) -> str | None:
+def normalizeRequestPath(value: Path | str | None,
+                         parameter: str
+                         ) -> str | None:
     """Normalize Request path.
 
     Relative paths are resolved automatically.
 
     :param value: The value to normalize.
-    :raises TypeError: if ``value`` is not the accepted type.
+    :param parameter: The name of the parameter being validated.
+    :raises TypeError: If `value` is not the accepted type.
 
     """
     if value is None:
         return None
-    try:
-        if isinstance(value, Path) or value.startswith('.'):
-            return str(Path(value).resolve())
-        return value
-    except TypeError as exc:
-        raise TypeError("Expected str or Path, not "
-                        f"'{value.__class__.__name__}'.") from exc
+    error.validateType(value, (str, Path), parameter)
+    if isinstance(value, Path) or value.startswith('.'):
+        return str(Path(value).resolve())
+    return str(value)

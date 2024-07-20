@@ -1,133 +1,134 @@
 import unittest
-from smufolib import Smufl
+from smufolib import EngravingDefaults
 
 # pylint: disable=C0115, C0116, C0103
 
 
 class EngravingDefaults(unittest.TestCase):
-    def test_clear:
+    def test_clear(self):
         pass
 
-    def test_items:
+    def test_items(self):
         pass
 
-    def test_keys:
+    def test_keys(self):
         pass
 
-    def test_update:
+    def test_update(self):
         pass
 
-    def test_values:
+    def test_values(self):
         pass
 
-    def test_smufl:
+    def test_smufl(self):
         pass
 
-    def test_font:
+    def test_font(self):
         pass
 
-    def test_glyph:
+    def test_glyph(self):
         pass
 
-    def test_layer:
+    def test_layer(self):
         pass
 
-    def test_arrowShaftThickness:
+    def test_arrowShaftThickness(self):
         pass
 
-    def test_barlineSeparation:
+    def test_barlineSeparation(self):
         pass
 
-    def test_beamSpacing:
+    def test_beamSpacing(self):
         pass
 
-    def test_beamThickness:
+    def test_beamThickness(self):
         pass
 
-    def test_bracketThickness:
+    def test_bracketThickness(self):
         pass
 
-    def test_dashedBarlineDashLength:
+    def test_dashedBarlineDashLength(self):
         pass
 
-    def test_dashedBarlineGapLength:
+    def test_dashedBarlineGapLength(self):
         pass
 
-    def test_dashedBarlineThickness:
-        pass
-        def test_hairpinThickness:
+    def test_dashedBarlineThickness(self):
         pass
 
-    def test_hBarThickness:
+    def test_hairpinThickness(self):
         pass
 
-    def test_legerLineExtension:
+    def test_hBarThickness(self):
         pass
 
-    def test_legerLineThickness:
+    def test_legerLineExtension(self):
         pass
 
-    def test_lyricLineThickness:
+    def test_legerLineThickness(self):
         pass
 
-    def test_octaveLineThickness:
+    def test_lyricLineThickness(self):
         pass
 
-    def test_pedalLineThickness:
+    def test_octaveLineThickness(self):
         pass
 
-    def test_repeatBarlineDotSeparation:
+    def test_pedalLineThickness(self):
         pass
 
-    def test_repeatEndingLineThickness:
+    def test_repeatBarlineDotSeparation(self):
         pass
 
-    def test_slurEndpointThickness:
+    def test_repeatEndingLineThickness(self):
         pass
 
-    def test_slurMidpointThickness:
+    def test_slurEndpointThickness(self):
         pass
 
-    def test_staffLineThickness:
+    def test_slurMidpointThickness(self):
         pass
 
-    def test_stemThickness:
+    def test_staffLineThickness(self):
         pass
 
-    def test_subBracketThickness:
+    def test_stemThickness(self):
         pass
 
-    def test_textFontFamily:
+    def test_subBracketThickness(self):
         pass
 
-    def test_textEnclosureThickness:
+    def test_textFontFamily(self):
         pass
 
-    def test_thickBarlineThickness:
+    def test_textEnclosureThickness(self):
         pass
 
-    def test_thinBarlineThickness:
+    def test_thickBarlineThickness(self):
         pass
 
-    def test_thinThickBarlineSeparation:
+    def test_thinBarlineThickness(self):
         pass
 
-    def test_tieEndpointThickness:
+    def test_thinThickBarlineSeparation(self):
         pass
 
-    def test_tieMidpointThickness:
+    def test_tieEndpointThickness(self):
         pass
 
-    def test_tieMidpointThickness:
+    def test_tieMidpointThickness(self):
         pass
 
-    def test_tupletBracketThickness:
+    def test_tieMidpointThickness(self):
         pass
 
-    def test_round:
+    def test_tupletBracketThickness(self):
         pass
 
-    def test_spaces:
+    def test_round(self):
+        pass
+
+    def test_spaces(self):
         pass
 
 

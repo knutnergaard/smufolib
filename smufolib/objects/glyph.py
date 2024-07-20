@@ -1,6 +1,5 @@
 # pylint: disable=C0114
 from fontParts.fontshell.glyph import RGlyph
-
 from smufolib.objects.smufl import Smufl
 
 
@@ -9,7 +8,7 @@ class Glyph(RGlyph):
 
     Glyphs are usually accessed through
     a :class:`~smufolib.objects.font.Font` objects inherent glyph
-    dictionary. To instantiate the SMuFL glyph named ``uniE030``
+    dictionary. To instantiate the SMuFL glyph named `uniE030`
     (single barline)::
 
         >>> glyph = font['uniE030']

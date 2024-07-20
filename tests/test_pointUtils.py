@@ -1,4 +1,6 @@
 import unittest
+
+from smufolib.objects.font import Font
 from smufolib.pointUtils import (
     Point,
     Position,
@@ -13,14 +15,6 @@ from smufolib.pointUtils import (
 class PointUtils(unittest.TestCase):
 
     def setUp(self):
-        self.position1 = Position(0.0, 0.0)
-        self.position2 = Position(0.0, 0.0)
-        self.position3 = Position(0.0, 0.0)
-        self.point1 = Point(self.position1, 'line', 0)
-        self.point2 = Point(self.position2, 'curve', 0)
-        self.point3 = Point(self.position2, 'qcurve', 0)
-
-    def tearDown(self):
         pass
 
     def test_getPoints(self):

@@ -1,16 +1,23 @@
+# pylint: disable=C0114
 from __future__ import annotations
 from typing import Any
-from argparse import ArgumentParser, ArgumentDefaultsHelpFormatter
+from argparse import (
+    ArgumentParser,
+    HelpFormatter,
+    RawDescriptionHelpFormatter,
+    RawTextHelpFormatter,
+    ArgumentDefaultsHelpFormatter,
+    MetavarTypeHelpFormatter
+)
 import json
 
-from smufolib import config, converters
+from smufolib import config, converters, error
 from smufolib.objects.font import Font
 from smufolib.request import Request
 
 CONFIG = config.load()
 
-# pylint: disable=invalid-name, unused-argument, too-many-branches
-
+# pylint: disable=C0103
 
 #: Available arguments and their settings.
 CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
@@ -89,18 +96,23 @@ CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
 }
 
 
-def commonParser(*args, addHelp: bool = False, description: str | None = None,
-                 customHelpers: dict[str] = None, **kwargs) -> ArgumentParser:
+def commonParser(*args: str,
+                 addHelp: bool = True,
+                 description: str | None = None,
+                 customHelpers: dict[str, str] | None = None,
+                 **kwargs: Any
+                 ) -> ArgumentParser:
     r"""Provide generic command-line arguments and options.
 
     See the :ref:`Available Options` for details.
 
     :param \*args: Required positional arguments to assign.
     :param addHelp: Add help message. Should be :obj:`False` when
-        function is parent and otherwise :obj:`True`. Defaults to False.
+        function is parent and otherwise :obj:`True`. Defaults
+        to :obj:`True`.
     :param description: Program description when used directly. Defaults
         to :obj:`None`
-    :param customHelpers: arguments mapped to custom help strings to
+    :param customHelpers: Arguments mapped to custom help strings to
         override the default. Defaults to :obj:`None`
     :param \**kwargs: Options and their default values to assign.
     :raises TypeError: Duplicate arguments in \*args and \**kwargs.
@@ -109,13 +121,12 @@ def commonParser(*args, addHelp: bool = False, description: str | None = None,
 
         >>> import argparse
         >>> from smufolib import Font, cli
-        >>> args = cli.commonParser('font', clear=True)
+        >>> args = cli.commonParser('font', clear=True, addHelp=False)
         >>> parser = argparse.ArgumentParser(parents=[args],
         ...             description='showcase commonParser')
         >>> parser.add_argument(
         ...     '-O', '--include-optionals',
         ...     action='store_true',
-        ...     default=includeOptionals,
         ...     help="include optional glyphs",
         ...     dest='includeOptionals'
         ... )
@@ -144,33 +155,109 @@ def commonParser(*args, addHelp: bool = False, description: str | None = None,
 
     """
 
-    parser = ArgumentParser(add_help=addHelp,
-                            formatter_class=ArgumentDefaultsHelpFormatter,
-                            description=description)
+    parser = ArgumentParser(add_help=addHelp, description=description)
+    seen = set()
+
+    def checkSeen(flag: str) -> None:
+        # Check if a flag has been seen before to avoid duplicates.
+        if flag in seen:
+            duplicateFlags = [
+                key for key, value in CONFIG['cli.shortFlags'].items()
+                if value == flag
+            ]
+
+            if len(duplicateFlags) >= 2:
+                raise ValueError(
+                    error.generateErrorMessage(
+                        'duplicateFlags',
+                        argument1=duplicateFlags[0],
+                        argument2=duplicateFlags[1],
+                        flag=flag
+                    )
+                )
+
+        if flag.startswith('-'):
+            seen.add(flag)
+
+    def addArgument(arg: str,
+                    flags: tuple[str, ...],
+                    customHelpers: dict[str, str] | None) -> None:
+        # Add argument to parser.
+        checkSeen(flags[0])
+        if customHelpers and arg in customHelpers:
+            CLI_ARGUMENTS[arg]['help'] = customHelpers[arg]
+        parser.add_argument(*flags, **CLI_ARGUMENTS[arg])
+
+    def generateFlags(argument: str) -> tuple[str, str]:
+        # Generates tuple of option flags.
+        shortFlags = CONFIG['cli.shortFlags']
+        longFlag = f'--{converters.toKebab(argument)}'
+        return (shortFlags[argument], longFlag)
 
     for arg in args:
-        CLI_ARGUMENTS[arg]['metavar'] = converters.toKebab(arg)
-        parser.add_argument(arg, **CLI_ARGUMENTS[arg])
+        flags: tuple[str, ...] = generateFlags(arg)
+        if not CLI_ARGUMENTS[arg].get('action') == 'store_true':
+            flags = (arg,)
+            CLI_ARGUMENTS[arg]['metavar'] = converters.toKebab(arg)
+        addArgument(arg, flags, customHelpers)
 
-    seen = set()
     for key, value in kwargs.items():
         if key in args:
-            raise TypeError(
-                f"Option '{key}' is already added as positional argument.")
+            raise ValueError(
+                error.generateErrorMessage('argumentConflict', key=key)
+            )
 
-        flags = _generateFlags(key)
-        assert flags[0] not in seen, f"Short flag '{flags[0]}' is duplicate."
-        seen.add(flags[0])
-
+        flags = generateFlags(key)
         CLI_ARGUMENTS[key]['dest'] = key
         if value is not None:
             CLI_ARGUMENTS[key]['default'] = value
-        parser.add_argument(*flags, **CLI_ARGUMENTS[key])
+        addArgument(key, flags, customHelpers)
+
     return parser
 
 
-def _generateFlags(argument):
-    # Generates tuple of option flags.
-    shortFlags = CONFIG['cli.shortFlags']
-    longFlag = f'--{converters.toKebab(argument)}'
-    return (shortFlags[argument], longFlag)
+def createHelpFormatter(formatters: str | tuple[str, ...]
+                        ) -> type[HelpFormatter]:
+    """Create child class of multiple help formatters.
+
+    The returned :class:`HelpFormatter` class can be passed to the
+    `formatter_class` parameter of :class:`argparse.ArgumentParser` to
+    combine different formatters, despite the parameter only taking a
+    single class as argument.
+
+    :param formatters: Name of the formatter class or tuple of class
+        names to be enabled as :class:`str` corresponding to
+        either :class:`~argparse.RawDescriptionHelpFormatter`,
+        :class:`~argparse.RawTextHelpFormatter`,
+        :class:`~argparse.ArgumentDefaultsHelpFormatter`,
+        :class:`~argparse.RawDescriptionHelpFormatter` or
+        :class:`~argparse.MetavarTypeHelpFormatter`, or a :class:`tuple`
+        of class names.
+    :raises TypeError: If `formatters` is not an accepted type.
+    :raises KeyError: If any `formatters` item is not recognised.
+
+    """
+
+    baseFormatters = {
+        'HelpFormatter': HelpFormatter,
+        'RawDescriptionHelpFormatter': RawDescriptionHelpFormatter,
+        'RawTextHelpFormatter': RawTextHelpFormatter,
+        'ArgumentDefaultsHelpFormatter': ArgumentDefaultsHelpFormatter,
+        'MetavarTypeHelpFormatter': MetavarTypeHelpFormatter
+    }
+
+    error.validateType(formatters, (str, tuple), 'formatters')
+    if isinstance(formatters, str):
+        formatters = (formatters,)
+
+    try:
+        employed = tuple(baseFormatters[v] for v in formatters)
+    except KeyError as exc:
+        raise ValueError(
+            error.suggestValue(
+                # Casting exc to str to please mypy.
+                str(exc), list(baseFormatters), 'formatters', items=True
+            )
+        ) from exc
+
+    return type('HelpFormatter', employed, {})

@@ -1,3 +1,4 @@
+# pylint: disable=C0114
 from __future__ import annotations
 from typing import Any
 import os
@@ -11,7 +12,7 @@ from pathlib import Path
 def load(path: Path | str | None = None) -> dict[str, Any]:
     """Load parsed config file as :class:`dict`.
 
-    If the ``path`` parameter is an empty :class:`str` or :obj:`None`,
+    If the `path` parameter is an empty :class:`str` or :obj:`None`,
     the following locations are checked in order:
 
     #. Current working directory
@@ -23,19 +24,19 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
 
     """
     config = _readConfigFile(path)
-    parsed = {}
+    parsed: dict[str, Any] = {}
     for section in config.sections():
         parsed[section] = {}
-        for option, value in config[section].items():
-            value = _parse(config, section, option)
-            parsed[section][option] = value
+        for option in config[section]:
+            parsed[section][option] = _parse(config, section, option)
     return parsed
 
 
-def _readConfigFile(path: Path | str | None) -> dict[str, Any]:
+def _readConfigFile(path: Path | str | None) -> ConfigParser:
     # Read config file from selected filepath.
     config = ConfigParser(interpolation=ExtendedInterpolation())
-    config.optionxform = str
+
+    config.optionxform = str  # type: ignore
 
     with open(_selectPath(path), encoding='utf-8') as f:
         config.read_file(f)
@@ -59,7 +60,7 @@ def _selectPath(path: Path | str | None) -> str:
 
 
 def _parse(config: ConfigParser, section: str, option: str
-           ) -> int | float | bool | tuple[str] | str | None:
+           ) -> str | int | float | bool | tuple[str | float, ...] | None:
     # Parse configured values.
     try:
         return config.getint(section, option)

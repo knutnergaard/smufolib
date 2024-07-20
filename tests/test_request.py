@@ -1,10 +1,10 @@
 import unittest
-from smufolib.request import Request, URLWarning
+from smufolib.request import Request, test_writeJson
 
 # pylint: disable=C0115, C0116, C0103
 
 
-class RequestTest(unittest.TestCase):
+class Request(unittest.TestCase):
 
     def test_json(self):
         pass
@@ -22,6 +22,12 @@ class RequestTest(unittest.TestCase):
         pass
 
     def test_encoding(self):
+        pass
+
+
+class TestWriteJson(unittest.TestCase):
+
+    def test_writeJson(self):
         pass
 
 

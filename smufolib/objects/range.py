@@ -1,8 +1,6 @@
-
-"""Range metadata module for SMufoLib."""
+# pylint: disable=C0114
 from __future__ import annotations
-from typing import TYPE_CHECKING, List, Dict, Tuple
-from pathlib import Path
+from typing import TYPE_CHECKING
 
 from smufolib.request import Request
 from smufolib import config
@@ -91,7 +89,10 @@ class Range:
             timeSignatures
 
         """
-        return self._getAttribute('range_name')
+        result = self._getAttribute('range_name')
+        if isinstance(result, str):
+            return result
+        return None
 
     @property
     def description(self) -> str | None:
@@ -103,10 +104,13 @@ class Range:
             Time signatures
 
         """
-        return self._getAttribute('description')
+        result = self._getAttribute('description')
+        if isinstance(result, str):
+            return result
+        return None
 
     @property
-    def glyphs(self) -> Tuple[Glyph, ...] | None:
+    def glyphs(self) -> tuple[Glyph, ...] | None:
         """:class:`~smufolib.objects.glyph.Glyph` objects of Affiliated SMuFL range.
 
         Example::
@@ -117,7 +121,10 @@ class Range:
             <Glyph 'uniE09F' ('public.default') at 4632755792>)
 
         """
-        return self._getAttribute('glyphs')
+        result = self._getAttribute('glyphs')
+        if isinstance(result, tuple):
+            return result
+        return None
 
     @property
     def start(self) -> int | None:
@@ -129,7 +136,10 @@ class Range:
             U+E080
 
         """
-        return self._getAttribute('range_start')
+        result = self._getAttribute('range_start')
+        if isinstance(result, int):
+            return result
+        return None
 
     @property
     def end(self) -> int | None:
@@ -141,17 +151,24 @@ class Range:
             U+E09F
 
         """
-        return self._getAttribute('range_end')
+        result = self._getAttribute('range_end')
+        if isinstance(result, int):
+            return result
+        return None
 
-    def _getAttribute(self, name: str) -> str | List[str] | None:
+    def _getAttribute(self, name: str) -> str | tuple[Glyph, ...] | None:
         # Get metadata attributes from ranges.json.
         if self.glyph is None or METADATA is None:
             return None
         for range_, attributes in METADATA.items():
-            if self.smufl.name not in attributes['glyphs']:
+            if (self._smufl is None
+                    or self._smufl.name not in attributes['glyphs']):
                 continue
             if name == 'range_name':
                 return range_
             if name == 'glyphs':
-                return tuple(self.smufl.findGlyph(n) for n in attributes[name])
-            return attributes[name]
+                glyphs = tuple(g for n in attributes[name]
+                               if (g := self._smufl.findGlyph(n)) is not None)
+                return glyphs
+            return attributes.get(name)
+        return None

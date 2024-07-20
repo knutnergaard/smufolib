@@ -4,7 +4,6 @@
 .. automodule:: bin.calculateEngravingDefaults
     :members:
 
-
 :mod:`checkAnchors`
 -------------------
 

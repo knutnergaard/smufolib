@@ -7,17 +7,17 @@ This script generates a full featured metadata `JSON
 metadata sources and user specifications, including the following
 metadata sections:
 
-    * `mandatory (fontName and fontVersion)
+    - `mandatory (fontName and fontVersion)
       <https://w3c.github.io/smufl/latest/specification/font-specific-metadata.html>`_
-    * `size <https://w3c.github.io/smufl/latest/specification/font-specific-metadata.html>`_
-    * `engravingDefaults <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
-    * `glyphAdvanceWidths <https://w3c.github.io/smufl/latest/specification/glyphadvancewidths.html>`_
-    * `glyphsWithAnchors <https://w3c.github.io/smufl/latest/specification/glyphswithanchors.html>`_
-    * `glyphsWithAlternates <https://w3c.github.io/smufl/latest/specification/glyphswithalternates.html>`_
-    * `glyphBBoxes <https://w3c.github.io/smufl/latest/specification/glyphbboxes.html>`_
-    * `ligatures <https://w3c.github.io/smufl/latest/specification/ligatures.html>`_
-    * `sets <https://w3c.github.io/smufl/latest/specification/sets.html>`_
-    * `optionalGlyphs <https://w3c.github.io/smufl/latest/specification/optionalglyphs.html>`_
+    - `size <https://w3c.github.io/smufl/latest/specification/font-specific-metadata.html>`_
+    - `engravingDefaults <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
+    - `glyphAdvanceWidths <https://w3c.github.io/smufl/latest/specification/glyphadvancewidths.html>`_
+    - `glyphsWithAnchors <https://w3c.github.io/smufl/latest/specification/glyphswithanchors.html>`_
+    - `glyphsWithAlternates <https://w3c.github.io/smufl/latest/specification/glyphswithalternates.html>`_
+    - `glyphBBoxes <https://w3c.github.io/smufl/latest/specification/glyphbboxes.html>`_
+    - `ligatures <https://w3c.github.io/smufl/latest/specification/ligatures.html>`_
+    - `sets <https://w3c.github.io/smufl/latest/specification/sets.html>`_
+    - `optionalGlyphs <https://w3c.github.io/smufl/latest/specification/optionalglyphs.html>`_
 
 Sections are automatically added depending on the font's scope and
 assigned attribute values.
@@ -26,12 +26,15 @@ assigned attribute values.
    attributes may be set automatically with the :mod:`~bin.importID`
    and :mod:`~bin.calculateEngravingDefaults` scripts respectively.
 
-This script requires that SMufoLib be installed within its executive
+Glyphs outside the SMuFL range as well as unencoded or unnamed glyphs,
+are automatically skipped.
+
+This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
 following public functions:
 
-    * :func:`generateMetadata` – The scripts program function.
-    * :func:`main` - Command line entry point.
+    - :func:`generateMetadata` – The scripts program function.
+    - :func:`main` - Command line entry point.
 
 """
 from __future__ import annotations
@@ -42,9 +45,14 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, cli, config, stdUtils
+from smufolib import Font, cli, config, error, stdUtils
 from smufolib.request import Request, writeJson
 
+# Type aliases
+JsonDict = dict[str, Any]
+SetsTemplate = dict[str, dict[str, str]]
+
+# Configuration
 CONFIG = config.load()
 
 # Parameter defaults
@@ -64,30 +72,33 @@ def generateMetadata(font: Font | Path | str,
     :param font: Object or path to
         targetPath :class:`~smufolib.objects.font.Font`.
     :param targetPath: Target directory for Metadata JSON file.
+    :param fontData: Object call or direct path to reference font
+        metadata file. Defaults to :class:`~.Request`
+        with :attr:`~.Request.path` and :attr:`~.Request.fallback` set
+        to :ref:`[metadata.paths]` and :ref:`
+        [metadata.fallbacks]` respective `referenceFont` configurations.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
+    :raises TypeError: If any parameter value is not the expected type.
+    :raises FileNotFoundError: If `targetPath` does not exist.
 
     """
-    # Check if targetPath exists.
-    if not Path(targetPath).exists():
-        raise FileNotFoundError("Target path does not exist.")
+    print("Starting...")
 
-    # Convert font path to object.
-    font = font if isinstance(font, Font) else Font(font)
+    targetPath = _normalizeTargetPath(targetPath)
+    font = _normalizeFont(font)
+    fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
     font.smufl.spaces = True
 
-    # Define print function to be do-nothing if verbose=False.
-    verboseprint = print if verbose else lambda *a, **k: None
+    metadata = _compileMetadata(font, fontDataJson, verbose)
 
-    metadata = _compileMetadata(font, fontData, verbose, verboseprint)
     filename = Path(targetPath).resolve() / f'{font.smufl.name}.json'
-
-    verboseprint("Writing metadata to:", filename)
+    stdUtils.verbosePrint(f"\nWriting metadata to: '{filename}'", verbose)
     writeJson(filename, metadata)
 
-    print("Done!")
+    print("\nDone.")
 
 
-def main():
+def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     generateMetadata(args.font,
@@ -96,13 +107,15 @@ def main():
                      verbose=args.verbose)
 
 
-def _compileMetadata(font, fontData, verbose, verboseprint) -> dict[str, Any]:
+def _compileMetadata(font: Font,
+                     fontData: JsonDict,
+                     verbose: bool) -> JsonDict:
     # Build SMuFL-specific metadata dictionary.
     # pylint: disable=R0912, R0914
+    stdUtils.verbosePrint("\nCompiling font metadata...", verbose)
 
-    print("Compiling metadata...")
-
-    metadata = collections.defaultdict(dict)
+    metadata: collections.defaultdict[
+        str, JsonDict] = collections.defaultdict(dict)
 
     keys = ('fontName', 'fontVersion', 'designSize',
             'sizeRange', 'engravingDefaults')
@@ -116,64 +129,65 @@ def _compileMetadata(font, fontData, verbose, verboseprint) -> dict[str, Any]:
             continue
         metadata[key] = value
 
-    sets, setglyphs = {}, []
+    sets, setGlyphs = {}, []
     setsTemplate = _getSetsTemplate(fontData)
-    attributes = ('name', 'unicode')
-    # Set up progress bar if verbose is True
-    font = font if verbose else tqdm(font)
-    # skipped = []
 
-    for glyph in font:
-        if not glyph or not stdUtils.validateClassAttr(glyph, attributes):
-            verboseprint("Skipping unnamed or unencoded glyph:", glyph)
+    stdUtils.verbosePrint("\nCompiling metadata for glyphs:", verbose)
+    for glyph in font if verbose else tqdm(font):
+        if glyph is None or not stdUtils.validateClassAttr(
+                glyph, ('name', 'unicode', 'smufl.isMember')
+        ):
+            stdUtils.verbosePrint(
+                "\tSkipping invalid glyph:", verbose, glyph
+            )
             continue
+        stdUtils.verbosePrint(f"\t{glyph}", verbose)
 
         s = glyph.smufl
         metadata['glyphAdvanceWidths'][s.name] = s.advanceWidth
         metadata['glyphBBoxes'][s.name] = s.bBox
 
         if s.alternates:
-            baseglyphs = {}
-            baseglyphs['alternates'] = s.alternates
-            metadata['glyphsWithAlternates'][s.name] = baseglyphs
+            metadata['glyphsWithAlternates'][s.name] = {
+                'alternates': s.alternates
+            }
 
         if s.anchors:
             metadata['glyphsWithAnchors'][s.name] = s.anchors
 
         if s.isLigature:
-            metadata['ligatures'][s.name] = {}
-            metadata['ligatures'][s.name]["codepoint"] = s.codepoint
-            if s.componentGlyphs:
-                metadata['ligatures'][s.name]['componentGlyphs'] = s.componentGlyphs
-            metadata['ligatures'][s.name]["description"] = s.description
+            metadata['ligatures'][s.name] = {
+                "codepoint": s.codepoint,
+                "componentGlyphs": s.componentNames,
+                "description": s.description
+            }
 
         if s.isOptional:
-            metadata['optionalGlyphs'][s.name] = {}
-            metadata['optionalGlyphs'][s.name]['codepoint'] = s.codepoint
-            metadata['optionalGlyphs'][s.name]['description'] = s.description
-            metadata['optionalGlyphs'][s.name]['classes'] = s.classes
+            metadata['optionalGlyphs'][s.name] = {
+                "codepoint": s.codepoint,
+                "description": s.description,
+                "classes": s.classes
+            }
 
         if s.isSet:
             sets[s.suffix] = setsTemplate[s.suffix]
-            glyphinfo = {"alternateFor": s.base.name,
-                         "codepoint": s.codepoint,
-                         "description": s.description,
-                         "name": s.name}
-            setglyphs.append(glyphinfo)
+            glyphInfo = {
+                "alternateFor": s.base.name,
+                "codepoint": s.codepoint,
+                "description": s.description,
+                "name": s.name
+            }
+            setGlyphs.append(glyphInfo)
             metadata['sets'] = sets
-            metadata['sets'][s.suffix]['glyphs'] = setglyphs
+            metadata['sets'][s.suffix]['glyphs'] = setGlyphs
 
     return metadata
 
 
-def _getSetsTemplate(fontData) -> dict[str, dict[str, str]]:
+def _getSetsTemplate(fontData: JsonDict) -> SetsTemplate:
     # Extract sets template from bravura_metadata.json.
-    sets = {}
+    sets: dict[str, dict[str, str]] = {}
 
-    try:
-        fontData = fontData.json()
-    except AttributeError:
-        Request(fontData).json()
     for key, values in fontData['sets'].items():
         sets[key] = {}
         for subKey, value in values.items():
@@ -183,15 +197,49 @@ def _getSetsTemplate(fontData) -> dict[str, dict[str, str]]:
     return sets
 
 
+def _normalizeFont(font: Font | Path | str) -> Font:
+    # Convert font path to object if necessary.
+    error.validateType(font, (Font, Path, str), 'font')
+    if isinstance(font, Font):
+        return font
+    return Font(font)
+
+
+def _normalizeRequest(request: Request | Path | str) -> Request:
+    # Convert request path to object if necessary.
+    error.validateType(request, (Request, Path, str), 'request')
+    if isinstance(request, Request):
+        return request
+    return Request(request)
+
+
+def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
+    # Ensure `jsonDict` is not None.
+    if jsonDict is None:
+        raise TypeError(
+            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
+        )
+    return jsonDict
+
+
+def _normalizeTargetPath(targetPath: str | Path) -> str | Path:
+    # Ensure targetPath exists.
+    if not Path(targetPath).exists():
+        raise FileNotFoundError(
+            error.generateErrorMessage('fileNotFound', objectName='targetPath')
+        )
+    return targetPath
+
+
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
-    parser = cli.commonParser('font',
-                              'targetPath',
-                              addHelp=True,
-                              description="Generate font metadata JSON file.",
-                              fontData=FONT_DATA,
-                              verbose=VERBOSE)
-
+    parser = cli.commonParser(
+        'font',
+        'targetPath',
+        description=stdUtils.getSummary(generateMetadata.__doc__),
+        fontData=FONT_DATA,
+        verbose=VERBOSE
+    )
     return parser.parse_args()
 
 

@@ -1,98 +1,99 @@
 import unittest
-from smufolib import Smufl
+# from smufolib import Smufl
 
 # pylint: disable=C0115, C0116, C0103
 
 
 class Smufl(unittest.TestCase):
-    def test_font:
+
+    def test_font(self):
         pass
 
-    def test_glyph:
+    def test_glyph(self):
         pass
 
-    def test_layer:
+    def test_layer(self):
         pass
 
-    def test_designSize:
+    def test_designSize(self):
         pass
 
-    def test_engravingDefaults:
+    def test_engravingDefaults(self):
         pass
 
-    def test_sizeRange:
+    def test_sizeRange(self):
         pass
 
-    def test_alternates:
+    def test_alternates(self):
         pass
 
-    def test_anchors:
+    def test_anchors(self):
         pass
 
-    def test_bBox:
+    def test_bBox(self):
         pass
 
-    def test_codepoint:
+    def test_codepoint(self):
         pass
 
-    def test_componentGlyphs:
+    def test_componentGlyphs(self):
         pass
 
-    def test_range:
+    def test_range(self):
         pass
 
-    def test_advanceWidth:
+    def test_advanceWidth(self):
         pass
 
-    def test_version:
+    def test_version(self):
         pass
 
-    def test_classes:
+    def test_classes(self):
         pass
 
-    def test_description:
+    def test_description(self):
         pass
 
-    def test_name:
+    def test_name(self):
         pass
 
-    def test_isLigature:
+    def test_isLigature(self):
         pass
 
-    def test_isMember:
+    def test_isMember(self):
         pass
 
-    def test_isOptional:
+    def test_isOptional(self):
         pass
 
-    def test_isRecommended:
+    def test_isRecommended(self):
         pass
 
-    def test_isSalt:
+    def test_isSalt(self):
         pass
 
-    def test_isSet:
+    def test_isSet(self):
         pass
 
-    def test_round:
+    def test_round(self):
         pass
 
-    def test_toSpaces:
+    def test_toSpaces(self):
         pass
 
-    def test_toUnits:
+    def test_toUnits(self):
         pass
 
-    def test_spaces:
+    def test_spaces(self):
         pass
 
-    def test_base:
+    def test_base(self):
         pass
 
-    def test_findGlyph:
+    def test_findGlyph(self):
         pass
 
-    def test_suffix:
+    def test_suffix(self):
         pass
 
 

@@ -1,6 +1,5 @@
 # pylint: disable=C0114
 from fontParts.fontshell.layer import RLayer
-
 from smufolib.objects.glyph import Glyph
 
 

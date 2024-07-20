@@ -13,51 +13,57 @@ later. It is listed in the `Python Package Index
 Running Scripts
 ===============
 
-SMufoLib comes bundled with several useful functions and scripts for
-building SMuFL metadata files, calculating engraving defaults from
-glyphs, importing identification attributes and more.
+SMufoLib comes bundled with several useful scripts for building SMuFL
+metadata files, calculating engraving defaults from glyphs, importing
+identification attributes and more.
 
-Scripts may be run either via the Python interpreter or
-directly from the console, passing in any arguments in the familiar
-manner to each platform.
+Scripts may be run either directly from the command line or imported as
+regular python modules, passing in any arguments in the familiar manner
+to each platform.
 
-As an example, check for missing or superflous SMuFL anchors by running
-the :mod:`~bin.checkAnchors` script directly from console:
+As an example, check for missing or superflous SMuFL anchors and mark
+discrepant glyphs by running the :mod:`~bin.checkAnchors` script with
+the ``--mark`` flag directly from the command line:
 
 .. code:: zsh
 
-   $ check-anchors --mark
+   $ check-anchors path/to/my/font.ufo --mark
 
-Mandatory arguments and available options can be listed by running the
+Positional arguments and available options can be listed by running the
 help command on the script:
 
 .. code:: zsh
 
-   $ generate-metadata --help
+   $ check-anchors --help
 
-   usage: generate-metadata [-h] [-F FONTDATA] [-v] font target-path
+   usage: check-anchors [-h] [-F FONTDATA] [-m] [-c COLOR COLOR COLOR COLOR] [-v]
+                        font
 
-   Generate font metadata JSON file.
+   Find missing or superfluous SMuFL anchors.
 
    positional arguments:
-     font                  path to UFO file
-     target-path           path to target file or directory
+      font                  path to UFO file
 
    options:
-     -h, --help            show this help message and exit
-     -F FONTDATA, --font-data FONTDATA
-                           path to font metadata file (default: <Request 'https:/
-                           /raw.githubusercontent.com/steinbergmedia/bravura/mast
-                           er/redist/bravura_metadata.json' ('/Users/knutnergaard
-                           /smufolib/metadata/bravura_metadata.json') at
-                           4536272304>)
-     -v, --verbose         make output verbose (default: False)
+      -h, --help           show this help message and exit
+      -F FONTDATA, --font-data FONTDATA
+                           path to font metadata file (default: <Request '/url/path
+                           /to/reference/font/metadata.json' ('/file/path/to/refere
+                           nce/font/metadata.json') at 4536666000>)
+      -m, --mark           apply defined color values to objects (default: False)
+      -c COLOR COLOR COLOR COLOR, --color COLOR COLOR COLOR COLOR
+                           list of RGBA color values (default: None)
+      -v, --verbose        make output verbose (default: False)
 
 
-Alternatively each script can be imported as a module in Python:
+Alternatively, scripts can be imported as modules in Python:
 
 .. code:: Py3
 
    from bin.checkAnchors import checkAnchors
 
    checkAnchors(mark=True)
+
+This imports and executes the script's program
+function :func:`checkAnchors` from the script module of the same
+name. The documentation for either one is accessible via :func:`help`.

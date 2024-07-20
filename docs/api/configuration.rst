@@ -28,11 +28,10 @@ and file paths and colors.
 This section contains configuration for
 the :class:`~smufolib.request.Request` class.
 
-.. code-block:: cfg
-
-    [request]
-    encoding = utf-8
-    warn = true
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [request]
+    :end-before: [metadata.paths]
 
 .. _[metadata.paths]:
 
@@ -42,15 +41,10 @@ the :class:`~smufolib.request.Request` class.
 Primary metadata paths are configured in this section.
 
 
-.. code-block:: cfg
-
-    [metadata.paths]
-    directory = https://raw.githubusercontent.com/w3c/smufl/gh-pages/metadata/
-    classes = ${directory}classes.json
-    glyphnames = ${directory}glyphnames.json
-    ranges = ${directory}ranges.json
-    referenceFont = https://raw.githubusercontent.com/steinbergmedia/
-        bravura/master/redist/bravura_metadata.json
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [metadata.paths]
+    :end-before: [metadata.fallbacks]
 
 .. _[metadata.fallbacks]:
 
@@ -59,14 +53,10 @@ Primary metadata paths are configured in this section.
 
 Metadata fallback paths are configured in this section.
 
-.. code-block:: cfg
-
-    [metadata.fallbacks]
-    directory = ./smufolib/metadata/
-    classes = ${directory}classes.json
-    glyphnames = ${directory}glyphnames.json
-    ranges = ${directory}ranges.json
-    referenceFont = ${directory}bravura_metadata.json
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [metadata.fallbacks]
+    :end-before: [cli.shortFlags]
 
 .. _[cli.shortFlags]:
 
@@ -76,23 +66,10 @@ Metadata fallback paths are configured in this section.
 Short flags for :ref:`Command Line Interface` options to be used
 with :func:`~smufolib.cli.commonParser` are configured in this section.
 
-.. code-block:: cfg
-
-    [cli.shortFlags]
-    classData = -C
-    clear = -x
-    color = -c
-    exclude = -e
-    font = -f
-    fontData = -F
-    glyphnameData = -G
-    include = -i
-    mark = -m
-    overwrite = -o
-    rangeData = -r
-    sourcePath = -S
-    spaces = -s
-    targetPath = -T
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [cli.shortFlags]
+    :end-before: [color.marks]
 
 .. _[color.marks]:
 
@@ -101,12 +78,10 @@ with :func:`~smufolib.cli.commonParser` are configured in this section.
 
 :ref:`type-color` values for glyph marks are configured in this section.
 
-.. code-block:: cfg
-
-    [color.marks]
-    mark1 =
-    mark2 =
-    mark3 =
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [color.marks]
+    :end-before: [color.anchors]
 
 .. _[color.anchors]:
 
@@ -115,28 +90,6 @@ with :func:`~smufolib.cli.commonParser` are configured in this section.
 
 :ref:`type-color` values for glyph anchors are configured in this section.
 
-.. code-block:: cfg
-
-    [color.anchors]
-    cutOutNE =
-    cutOutNW =
-    cutOutSE =
-    cutOutSW =
-    graceNoteSlashNE =
-    graceNoteSlashNW =
-    graceNoteSlashSE =
-    graceNoteSlashSW =
-    nominalWidth =
-    noteheadOrigin =
-    numeralBottom =
-    numeralTop =
-    opticalCenter =
-    repeatOffset =
-    splitStemDownNE =
-    splitStemDownNW =
-    splitStemUpSE =
-    splitStemUpSW =
-    stemDownNW =
-    stemDownSW =
-    stemUpNW =
-    stemUpSE =
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [color.anchors]

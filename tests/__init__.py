@@ -1,4 +1,0 @@
-"""Where SMuFL meets UFO
-
-
-"""

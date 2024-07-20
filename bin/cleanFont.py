@@ -5,54 +5,54 @@ This script deletes SMuFL-specific metadata and glyph anchors from a UFO
 font file.
 
 To prevent unwanted data loss, items to delete *must* be specifically
-included and may also be specifically exlcuded. If ``exclude='None'``,
+included and may also be specifically excluded. If ``exclude=None``,
 ``include='*'`` (all) will delete everything, essentially resetting the
-font to a Non-SMuFL state. Individual attribute and anchor names may
+font to a non-SMuFL state. Individual attribute and anchor names may
 otherwise be specified in both parameters as a single string or tuple
 of any of the following values:
 
     Attributes
-        ``'designSize'``
-        ``'sizeRange'``
-        ``'engravingDefaults'``
-        ``'name'``
-        ``'classes'``
-        ``'description'``
-        ``'spaces'``
+        - `designSize`
+        - `sizeRange`
+        - `engravingDefaults`
+        - `name`
+        - `classes`
+        - `description`
+        - `spaces`
 
     Anchors
-        ``'splitStemUpSE'``
-        ``'splitStemUpSW'``
-        ``'splitStemDownNE'``
-        ``'splitStemDownNW'``
-        ``'stemUpSE'``
-        ``'stemDownNW'``
-        ``'stemUpNW'``
-        ``'stemDownSW'``
-        ``'nominalWidth'``
-        ``'numeralTop'``
-        ``'numeralBottom'``
-        ``'cutOutNE'``
-        ``'cutOutSE'``
-        ``'cutOutSW'``
-        ``'cutOutNW'``
-        ``'graceNoteSlashSW'``
-        ``'graceNoteSlashNE'``
-        ``'graceNoteSlashNW'``
-        ``'graceNoteSlashSE'``
-        ``'repeatOffset'``
-        ``'noteheadOrigin'``
-        ``'opticalCenter'``
+        - `splitStemUpSE`
+        - `splitStemUpSW`
+        - `splitStemDownNE`
+        - `splitStemDownNW`
+        - `stemUpSE`
+        - `stemDownNW`
+        - `stemUpNW`
+        - `stemDownSW`
+        - `nominalWidth`
+        - `numeralTop`
+        - `numeralBottom`
+        - `cutOutNE`
+        - `cutOutSE`
+        - `cutOutSW`
+        - `cutOutNW`
+        - `graceNoteSlashSW`
+        - `graceNoteSlashNE`
+        - `graceNoteSlashNW`
+        - `graceNoteSlashSE`
+        - `repeatOffset`
+        - `noteheadOrigin`
+        - `opticalCenter`
 
 .. Warning:: This script will permanently delete data. Remember to
    always back up your file before running.
 
-This script requires that SMufoLib be installed within its executive
+This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
 following public funcitons:
 
-    * :func:`importID` – The scripts program function.
-    * :func:`main` - Command line entry point.
+    - :func:`importID` – The scripts program function.
+    - :func:`main` - Command line entry point.
 
 """
 from collections.abc import Iterable
@@ -61,7 +61,7 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, cli
+from smufolib import Font, cli, error, stdUtils
 from smufolib.objects.smufl import (
     ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES)
 
@@ -74,32 +74,30 @@ VERBOSE = False
 
 def cleanFont(font: Font | Path | str,
               include: Iterable,
-              exclude: Iterable = EXCLUDE,
+              exclude: Iterable | None = EXCLUDE,
               verbose: bool = VERBOSE):
-    """Delete :class:`~smufolib.smufl.Smufl` class attribute values.
+    """Delete Smufl-specific attribute values.
 
     :param font: Object or path to
         target :class:`~smufolib.objects.font.Font`.
     :param include: items to be deleted. May be ``'*'`` (all), an
         individual attribute or anchor name as a :class:`str`
         or :class:`tuple` of several.
-    :param exclude: Items to be preserved if `ìnclude='*'``. Defaults to
-        :obj:`None`.
+    :param exclude: Items to be preserved if ``ìnclude='*'``. Defaults
+        to :obj:`None`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
+    :raises TypeError: If any parameter value is not the expected type.
+    :raises ValueError: If any item in `include` or `exclude` is
+        invalid.
 
     """
-    print("Processing...", end="\n\n")
+    print("Starting...")
 
-    # Convert font path to object.
-    font = font if isinstance(font, Font) else Font(font)
-
-    # Define print function to be do-nothing if verbose=False.
-    verboseprint = print if verbose else lambda *a, **k: None
-
+    font = _normalizeFont(font)
     itemsToClean = _buildItemsDict(include, exclude)
 
     # Clean font attributes
-    print("Cleaning font attributes...", end="\n\n")
+    stdUtils.verbosePrint("\nCleaning attributes for font:", verbose)
     for attr in itemsToClean['fontAttributes']:
         if attr == 'engravingDefaults':
             font.smufl.engravingDefaults.clear()
@@ -107,34 +105,47 @@ def cleanFont(font: Font | Path | str,
             setattr(font.smufl, attr, False)
         else:
             setattr(font.smufl, attr, None)
+        stdUtils.verbosePrint(f"\t'{attr}'", verbose)
 
-    print("Cleaning glyph items...")
     for glyph in font if verbose else tqdm(font):
         # Clean glyph attributes
-        for index, attr in enumerate(itemsToClean['glyphAttributes']):
-            if getattr(glyph.smufl, attr) is None:
+        glyphAttributesCleaned = False
+        for attr in itemsToClean['glyphAttributes']:
+            if not getattr(glyph.smufl, attr):
                 continue
-            if index == 0:
-                verboseprint("\nCleaning attributes from glyph:", glyph)
+
+            if not glyphAttributesCleaned:
+                stdUtils.verbosePrint(
+                    f"\nCleaning attributes from glyph '{glyph.name}':",
+                    verbose
+                )
+                glyphAttributesCleaned = True
+
             setattr(glyph.smufl, attr, None)
-            verboseprint(f"\t{attr}")
+            stdUtils.verbosePrint(f"\t'{attr}'", verbose)
 
         # Clean Anchors
-        if not any(a in itemsToClean['anchors'] for a in glyph.anchors):
-            continue
+        anchorsCleaned = False
         for anchor in glyph.anchors:
-            if not anchor or anchor.name not in itemsToClean['anchors']:
+            if anchor.name not in itemsToClean['anchors']:
                 continue
-            if anchor.index == 0:
-                verboseprint("\nCleaning anchors from glyph:", glyph)
+
+            if not anchorsCleaned:
+                stdUtils.verbosePrint(
+                    f"\nCleaning anchors from glyph '{glyph.name}':", verbose
+                )
+                anchorsCleaned = True
+
             glyph.removeAnchor(anchor.index)
-            verboseprint(f"\t{anchor.name}")
+            stdUtils.verbosePrint(f"\t'{anchor.name}'", verbose)
 
+    stdUtils.verbosePrint("\nSaving font...", verbose)
     font.save()
-    print("\nDone!")
+
+    print("\nDone.")
 
 
-def main():
+def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     cleanFont(args.font,
@@ -143,24 +154,39 @@ def main():
               verbose=args.verbose)
 
 
+def _normalizeFont(font: Font | Path | str) -> Font:
+    # Convert font path to object if necessary.
+    error.validateType(font, (Font, Path, str), 'font')
+    if isinstance(font, Font):
+        return font
+    return Font(font)
+
+
 def _buildItemsDict(include, exclude):
     # Build dict of attribute and anchor items to remove.
 
-    itemsToClean = {}
-    itemsToClean['fontAttributes'] = []
-    itemsToClean['glyphAttributes'] = []
-    itemsToClean['anchors'] = []
+    itemsToClean = {
+        'fontAttributes': [],
+        'glyphAttributes': [],
+        'anchors': []
+    }
 
-    if include == '*':
-        include = FONT_ATTRIBUTES | GLYPH_ATTRIBUTES | ANCHOR_NAMES
-    include = (include,) if isinstance(include, str) else include
-
+    allItems = FONT_ATTRIBUTES | GLYPH_ATTRIBUTES | ANCHOR_NAMES
     exclude = () if exclude is None else exclude
     exclude = (exclude,) if isinstance(exclude, str) else exclude
+
+    for item in exclude:
+        error.suggestValue(item, allItems, 'exclude')
+
+    if include == '*':
+        include = allItems
+    elif isinstance(include, str):
+        include = (include,)
 
     for item in include:
         if item in exclude:
             continue
+
         if item in FONT_ATTRIBUTES:
             itemsToClean['fontAttributes'].append(item)
         elif item in GLYPH_ATTRIBUTES:
@@ -168,20 +194,20 @@ def _buildItemsDict(include, exclude):
         elif item in ANCHOR_NAMES:
             itemsToClean['anchors'].append(item)
         else:
-            raise ValueError(f"Invalid item: '{item}'.")
+            error.suggestValue(item, allItems, 'include')
 
     return itemsToClean
 
 
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
-    parser = argparse.ArgumentParser(
-        parents=[cli.commonParser(
-            'font',
-            'include',
-            exclude=EXCLUDE,
-            verbose=VERBOSE)],
-        description='Set annotation include from SMuFL metadata.')
+    parser = cli.commonParser(
+        'font',
+        'include',
+        description=stdUtils.getSummary(cleanFont.__doc__),
+        exclude=EXCLUDE,
+        verbose=VERBOSE,
+    )
     return parser.parse_args()
 
 

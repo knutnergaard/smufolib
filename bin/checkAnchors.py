@@ -9,12 +9,12 @@ Discrepancies are printed to console, and glyphs may be marked with
 color value specified in smufolib.cfg. Glyphs without annotated smufl
 names or glyph names will be skipped.
 
-This script requires that SMufoLib be installed within its executive
+This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
 following public funcitons:
 
-    * :func:`checkAnchors` - The scripts program function.
-    * :func:`main` – Command line entry point.
+    - :func:`checkAnchors` - The scripts program function.
+    - :func:`main` – Command line entry point.
 
 """
 from __future__ import annotations
@@ -24,8 +24,14 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, Request, cli, config, normalizers
+from smufolib import Font, Request, cli, config, error, normalizers, stdUtils
 
+# Type aliases
+JsonDict = dict[str, Any]
+ColorValue = int | float
+ColorTuple = tuple[ColorValue, ColorValue, ColorValue, ColorValue]
+
+# Configuration
 CONFIG = config.load()
 
 # Parameter defaults
@@ -41,7 +47,7 @@ VERBOSE = False
 def checkAnchors(font: Font | Path | str,
                  fontData: Request | Path | str = FONT_DATA,
                  mark: bool = MARK,
-                 color: tuple[int | float] | None = MARK_COLOR,
+                 color: ColorTuple | None = MARK_COLOR,
                  verbose: bool = VERBOSE) -> None:
     """Check validity of SMuFL-specific glyph anchors.
 
@@ -51,70 +57,61 @@ def checkAnchors(font: Font | Path | str,
         metadata file. Defaults to :class:`~smufolib.request.Request`
         with :attr:`~smufolib.request.Request.path`
         and :attr:`~smufolib.request.Request.fallback` set to
-        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-        ``referenceFont`` configurations.
+        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]`
+        respective `referenceFont` configurations.
     :param mark: mark discrepant glyphs. Defaults to :obj:`False`.
     :param color: Color value to apply when ``mark=True``.
-        Defaults to
-        :ref:`[color.marks]` ``mark1`` configuration.
-        :param verbose: Make output verbose. Defaults to :obj:`False`.
+        Defaults to :ref:`[color.marks]` `mark1` configuration.
+    :param verbose: Make output verbose. Defaults to :obj:`False`.
+    :raises TypeError: If any parameter value is not the expected type
+        or if `mark` is :obj:`True` while `color` is :obj:`None`.
 
     """
+    print("Starting...")
+
     names = {}
     fontAnchors = {}
     referenceAnchors = {}
-    if color is not None:
-        color = normalizers.normalizeColor(color)
-
-    # Convert font path to object.
-    font = font if isinstance(font, Font) else Font(font)
-
-    # Define print function to be do-nothing if verbose=False.
-    verboseprint = print if verbose else lambda *a, **k: None
+    font = _normalizeFont(font)
+    metadata = _normalizeJsonDict(_normalizeRequest(fontData).json())
+    color = _normalizeColor(color, mark)
 
     # Build dicts of glyph names and anchors indexed on smufl names.
-    print("Processing...")
-    for glyph in tqdm(font):
+    stdUtils.verbosePrint("\nCompiling font anchors...", verbose)
+    for glyph in font if verbose else tqdm(font):
         names[glyph.smufl.name] = glyph.name
-        if not glyph.anchors:
-            continue
-        fontAnchors[glyph.smufl.name] = [a.name for a in glyph.anchors]
+        if glyph.anchors:
+            fontAnchors[glyph.smufl.name] = [a.name for a in glyph.anchors]
 
-    # Get JSON from metadata path.
-    try:
-        metadata = fontData.json()
-    except AttributeError:
-        metadata = Request(fontData).json()
-
-    # Build dict of reference anchors indexed on smufl names.
-    for name, anchors in metadata['glyphsWithAnchors'].items():
-        if name in fontAnchors:
-            referenceAnchors[name] = anchors.keys()
-
-    # Compare reference anchors to font anchors to get deficit.
     if not fontAnchors:
-        verboseprint("\nNo anchors found.")
+        stdUtils.verbosePrint("\nNo font anchors found.", verbose)
     else:
-        verboseprint("\nMissing anchors:".upper(), end='\n\n')
-        result = _evaluate(referenceAnchors, fontAnchors, names, verboseprint)
+        # Build dict of reference anchors indexed on smufl names.
+        stdUtils.verbosePrint("\nCompiling reference anchors...", verbose)
+        for name, anchors in metadata['glyphsWithAnchors'].items():
+            if name in fontAnchors:
+                referenceAnchors[name] = anchors.keys()
+
+        # Compare reference anchors to font anchors to get deficit.
+        stdUtils.verbosePrint("\nGlyphs with missing anchors:", verbose)
+        result = _evaluate(referenceAnchors, fontAnchors, names, verbose)
         if mark and color and result:
             for name in result:
                 glyph = font[names[name]]
                 glyph.markColor = color
 
         # Compare font anchors to reference anchors to get surplus.
-        verboseprint("\nSuperfluous anchors:".upper(), end='\n\n')
-        result = _evaluate(fontAnchors, referenceAnchors, names, verboseprint)
+        stdUtils.verbosePrint("\nGlyphs with superfluous anchors:", verbose)
+        result = _evaluate(fontAnchors, referenceAnchors, names, verbose)
         if mark and color and result:
             for name in result:
                 glyph = font[names[name]]
                 glyph.markColor = color
 
-        font.save()
-        print("Done!")
+        print("\nDone.")
 
 
-def main():
+def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     checkAnchors(args.font,
@@ -124,15 +121,54 @@ def main():
                  verbose=args.verbose)
 
 
-def _evaluate(test: dict[str:Any],
-              reference: dict[str:Any],
-              names: dict[str:str],
-              verboseprint) -> list[str]:
-    # Compare sources and print results.
-    findings = []
-    if not findings:
-        verboseprint("None")
+def _normalizeFont(font: Font | Path | str) -> Font:
+    # Convert font path to object if necessary.
+    error.validateType(font, (Font, Path, str), 'font')
+    if isinstance(font, Font):
+        return font
+    return Font(font)
+
+
+def _normalizeRequest(request: Request | Path | str) -> Request:
+    # Convert request path to object if necessary.
+    error.validateType(request, (Request, Path, str), 'request')
+    if isinstance(request, Request):
+        return request
+    return Request(request)
+
+
+def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
+    # Ensure `jsonDict` is not None.
+    if jsonDict is None:
+        raise TypeError(
+            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
+        )
+    return jsonDict
+
+
+def _normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
+    # Normalize `color` value.
+    if color is None:
+        if mark:
+            raise TypeError(
+                error.generateTypeError(
+                    value=color,
+                    validTypes=tuple,
+                    objectName='color',
+                    dependency="'mark' is True"
+                )
+            )
         return None
+    return normalizers.normalizeColor(color)
+
+
+def _evaluate(test: JsonDict,
+              reference: JsonDict,
+              names: dict[str, str],
+              verbose: bool,
+              ) -> list[str]:
+    # Compare sources and print results.
+    findings: list[str] = []
 
     for name, anchors in test.items():
         if name not in reference:
@@ -144,8 +180,13 @@ def _evaluate(test: dict[str:Any],
 
             if name not in findings:
                 findings.append(name)
-                verboseprint(f"\t{names[name]} ({name}):")
-            verboseprint(f"\t\t{anchor}")
+                stdUtils.verbosePrint(
+                    f"\t'{names[name]}' ('{name}'):", verbose
+                )
+            stdUtils.verbosePrint(f"\t\t'{anchor}'", verbose)
+
+    if not findings:
+        stdUtils.verbosePrint("\tNone", verbose)
 
     return findings
 
@@ -154,9 +195,7 @@ def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
         'font',
-        addHelp=True,
-        description=(
-            "Find missing or superfluous SMuFL anchors."),
+        description=stdUtils.getSummary(checkAnchors.__doc__),
         fontData=FONT_DATA,
         mark=MARK,
         color=MARK_COLOR,

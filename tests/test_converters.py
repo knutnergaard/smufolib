@@ -37,7 +37,6 @@ class Converters(unittest.TestCase):
             toUniHex(2000000)
 
     def test_toUniName(self):
-        # for value in (57344, '57344', 'U+E000'):
         self.assertEqual(toUniName(57344), 'uniE000')
         self.assertEqual(toUniName('U+E000'), 'uniE000')
         self.assertEqual(toUniName(57344, short=True), 'uE000')
@@ -58,7 +57,7 @@ class Converters(unittest.TestCase):
         self.assertEqual(toNumber('4598'), 4598)
         self.assertEqual(toNumber('0x4598'), 0x4598)
         self.assertEqual(toNumber('45.8'), 45.8)
-        with self.assertRaises(AttributeError):
+        with self.assertRaises(TypeError):
             toNumber(['485937'])
         with self.assertRaises(ValueError):
             toNumber('456h')
