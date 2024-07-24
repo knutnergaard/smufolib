@@ -1,4 +1,15 @@
-# pylint: disable=C0114
+"""This module is an extension of :mod:`fontParts.base.normalizers` and
+contains all normalization functionality used throughout SMufoLib.
+
+In addition to the documented functions below, it provides direct access
+to the following external normalizers for convenience:
+
+    - :func:`~fontParts.base.normalizers.normalizeBoolean`
+    - :func:`~fontParts.base.normalizers.normalizeColor`
+    - :func:`~fontParts.base.normalizers.normalizeVisualRounding`
+    - :func:`~fontParts.base.normalizers.normalizeGlyph`
+
+    """
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 from collections.abc import Callable
@@ -273,7 +284,7 @@ def normalizeEngravingDefaultsAttr(name: str,
 
     objectName = f'{className}.{name}'
     if name == 'textFontFamily':
-        if not isinstance(name, (tuple, list)):
+        if not isinstance(value, (tuple, list)):
             raise TypeError(
                 error.generateTypeError(
                     value=value,
