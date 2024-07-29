@@ -1,11 +1,19 @@
-# pylint: disable=C0114
+"""Miscellaneous general-purpose utility functions.
+
+This module provides a set of utility functions for various common
+tasks, including flattening nested iterables, summing tuples, and
+extracting summary lines from docstrings. It also includes functions for
+validating class attributes and string representations of floats,
+printing verbose messages, as well as a a no-op function for
+placeholder purposes.
+
+"""
 from __future__ import annotations
 from typing import Any
 from collections.abc import Generator, Iterable
 import operator
 
 # pylint: disable=C0103
-
 
 def flatten(iterable: Iterable[Any],
             depth: int | None = None
@@ -15,6 +23,16 @@ def flatten(iterable: Iterable[Any],
     :param iterable: The :term:`iterable` to flatten.
     :param depth: The number of levels to flatten. `depth=None` employs
         maximum flattening. Defaults to :obj:`None`.
+
+    :return: A generator yielding the flattened elements.
+
+    Examples::
+
+        >>> list(flatten([1, [2, [3, [4, 5]]]], depth=2))
+        [1, 2, 3, [4, 5]]
+
+        >>> list(flatten([1, [2, [3, [4, [5]]]]], depth=None))
+        [1, 2, 3, 4, 5]
 
     """
     for item in iterable:
@@ -42,11 +60,25 @@ def addTuples(*tuples: tuple[int | float, ...]) -> tuple[int | float, ...]:
 
 
 def getSummary(docstring: str | None) -> str | None:
-    """Get summary line from docstring.
+    '''Extract the summary line from a docstring.
 
     :param docstring: The docstring from which to get the summary line.
 
-    """
+    Example::
+
+        >>> def showcaseGetSummary():
+        ...     """Provide an example for the `getSummary()` function.
+        ...
+        ...     This function provides an example to show how to
+        ...     extract a summary line from a docstring.
+        ...
+        ...     """
+        ...
+        >>> docstring = showcaseGetSummary.__doc__
+        >>> getSummary(docstring)
+        "Give example for `getSummary()` function."
+
+    '''
     if docstring is None:
         return None
 
@@ -56,7 +88,15 @@ def getSummary(docstring: str | None) -> str | None:
 def isFloat(string: str) -> bool:
     """Check if string represents a :class:`float`.
 
-    param string: The string to check.
+    :param string: The string to check.
+
+    Examples::
+
+        >>> isFloat("3.14")
+        True
+
+        >>> isFloat("314")
+        False
 
     """
     if '.' not in string:
@@ -69,12 +109,23 @@ def isFloat(string: str) -> bool:
 
 
 def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
-    """Check for class and attribute exsistence.
-
-    Validates object based on its existence and specified attributes.
+    """Validate an object based on class and attribute exsistence.
 
     :param obj: The object to validate.
     :param attributes: The attribute names to check.
+
+    Example::
+
+        >>> class MyClass:
+        ...     def __init__(self):
+        ...         self.attr1 = 1
+        ...         self.attr2 = 2
+        ...
+        >>> obj = MyClass()
+        >>> validateClassAttr(obj, ['attr1', 'attr2'])
+        True
+        >>> validateClassAttr(obj, 'attr3')
+        False
 
     """
     if isinstance(attributes, str):
@@ -91,18 +142,27 @@ def doNothing(*args: Any, **kwargs: Any) -> None:
     # pylint: disable=W0613
     r"""Do nothing at all.
 
+    This function accepts any arguments but does nothing with them.
+
     :param \*args: Positional arguments.
     :param \**kwargs: Keyword arguments.
+
+    Example::
+
+        >>> doNothing(1, 2, 3)
+        >>> doNothing(a=1, b=2)
 
     """
 
 
-def verbosePrint(message: str, verbose: bool,
-                 *args: Any, **kwargs: Any) -> None:
+def verbosePrint(message: str,
+                 verbose: bool,
+                 *args: Any,
+                 **kwargs: Any) -> None:
     r"""Print a message if `verbose` is :obj:`True`.
 
-    Behaves like the built-in :func:`print` function, but only prints
-    the message if `verbose` is :obj:`True`. If `verbose`
+    This function behaves like the built-in :func:`print` function, but
+    only prints the message if `verbose` is :obj:`True`. If `verbose`
     is :obj:`False`, it does nothing.
 
     :param message: The message to be printed.
@@ -111,6 +171,14 @@ def verbosePrint(message: str, verbose: bool,
         the :func:`print` function.
     :param \**kwargs: Additional keyword arguments passed to
         the :func:`print` function.
+
+    Example::
+
+        >>> verbosePrint('Hello, world!', True)
+        Hello, world!
+        >>> verbosePrint('Hello, world!', False)
+        >>> verbosePrint('Hello, {}!', True, 'Alice')
+        Hello, Alice!
 
     """
     if verbose:

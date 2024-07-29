@@ -1,10 +1,20 @@
-# pylint: disable=C0103, C0114
+"""Utility functions for error message generation and type validation.
+
+This module provides functions to generate and validate error messages,
+check types, and suggest corrections for invalid values. It includes
+a dictionary of error message templates to ensure streamlined and
+consistent error reporting.
+
+"""
+from __future__ import annotations
 from types import UnionType
 from typing import Any, get_args
 import difflib
 
+# pylint: disable=C0103
+
 #: Dictionary of error message templates.
-ERROR_TEMPLATES = {
+ERROR_TEMPLATES: dict[str, str] = {
     'alphanumericValue': (
         "The value for '{objectName}' must be alphanumeric."
     ),
@@ -55,7 +65,7 @@ ERROR_TEMPLATES = {
         "The value for '{objectName}' must have a {extension} extension."
     ),
     'missingValue': (
-        "Required value(s) for '{objectName}' are missing."
+        "Required values for '{objectName}' are missing."
     ),
     'nonIncreasingRange': (
         "The values in '{objectName}' must form an increasing range."
@@ -115,6 +125,14 @@ def generateErrorMessage(*templateNames: str, **kwargs) -> str:
     :raises KeyError: If a placeholder in the template does not have a
         corresponding keyword argument.
 
+    Example::
+
+        >>> generateErrorMessage('alphanumericValue', objectName='unicode')
+        "The value for 'unicode' must be alphanumeric."
+
+        >>> generateErrorMessage('typeError', objectName='index', validTypes='int', value='str')
+        "Expected 'index' to be of type int, but got str."
+
     """
     messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
     return ''.join(messages)
@@ -130,21 +148,6 @@ def generateTypeError(value: Any,
     This function generates an error message based on the number of
     valid types. By default, the message is generated from
     :obj:`ERROR_TEMPLATES`:``'typeError'``.
-
-    Examples::
-
-        >>> generateTypeError(123, (str,), 'path')
-        Expected 'path' to be of type str, but got int.
-
-    ::
-
-        >>> generateTypeError(123, (str, Path), 'path')
-        Expected 'path' to be of type str or Path, but got int.
-
-    ::
-
-        >>> generateTypeError(123, (str, Path, Request), 'path')
-        Expected 'path' to be of type str, Path or Request, but got int.
 
     If `dependency` in not :obj:`None` (or empty) and `items`
     is :obj:`False`, :obj:`ERROR_TEMPLATES`:``'dependentTypeError'``
@@ -164,6 +167,17 @@ def generateTypeError(value: Any,
         types.
     :raises ValueError: If `items` is :obj:`True` and `value` is not
         an iterable.
+
+    Example::
+
+        >>> generateTypeError(123, (str,), 'path')
+        Expected 'path' to be of type str, but got int.
+
+        >>> generateTypeError(123, (str, Path), 'path')
+        Expected 'path' to be of type str or Path, but got int.
+
+        >>> generateTypeError(123, (str, Path, Request), 'path')
+        Expected 'path' to be of type str, Path or Request, but got int.
 
     """
 
@@ -205,6 +219,19 @@ def validateType(value: Any,
     :raises ValueError: If  `items` is :obj:`True` and any `value` item
         does not match any of the valid types.
 
+    Example::
+
+        >>> validateType(123, str, 'glyphName')
+        Traceback (most recent call last):
+        ...
+        TypeError: Expected 'glyphName' to be of type str, but got int.
+
+        >>> validateType(['uniE000', 'uniE001'], str, 'glyphNames', items=True)
+        >>> validateType(['uniE000', 1], str, 'glyphNames', items=True)
+        Traceback (most recent call last):
+        ...
+        ValueError: Items in 'glyphNames' must be str, not int.
+
     """
     if isinstance(validTypes, type):
         validTypes = (validTypes,)
@@ -223,7 +250,7 @@ def validateType(value: Any,
 def suggestValue(value: str,
                  possibilities: list[str] | tuple[str, ...],
                  objectName: str,
-                 cutoff: float=0.6,
+                 cutoff: float = 0.6,
                  items=False) -> str:
     """Validate value and uggests a valid close match.
 
@@ -241,6 +268,12 @@ def suggestValue(value: str,
     :raises ValueError: If the provided value is not found in
         `possibilities` or if `items` is :obj:`True` and `value` is
         not an iterable.
+
+    Example::
+
+        >>> suggestValue('spiltStemUpSE', ['splitStemUpSE', 'splitStemUpSW'],
+        ... 'anchorName', cutoff=0.5)
+        "Invalid value for 'anchorName': spiltStemUpSE. Did you mean 'splitStemUpSE'?"
 
     """
     if value in possibilities:

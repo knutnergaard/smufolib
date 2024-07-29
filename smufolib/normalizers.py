@@ -1,5 +1,16 @@
-"""This module is an extension of :mod:`fontParts.base.normalizers` and
-contains all normalization functionality used throughout SMufoLib.
+"""Utilities for normalizing various data types in SMufoLib.
+
+This module extends :mod:`fontParts.base.normalizers` and provides
+functions to normalize objects and data related to SMuFL fonts and
+metadata requests. It includes normalization for:
+
+    - :class:`.Font` objects
+    - :class:`.Smufl` objects and attributes
+    - :class:`.EngravingDefaults` objects and attributes
+    - :class:`.Request` objects and attributes
+
+These functions ensure that the data adheres to expected formats and
+values, handling type validation and normalization as needed.
 
 In addition to the documented functions below, it provides direct access
 to the following external normalizers for convenience:
@@ -9,10 +20,9 @@ to the following external normalizers for convenience:
     - :func:`~fontParts.base.normalizers.normalizeVisualRounding`
     - :func:`~fontParts.base.normalizers.normalizeGlyph`
 
-    """
+"""
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
-from collections.abc import Callable
+from typing import TYPE_CHECKING
 from pathlib import Path
 
 from fontParts.base.normalizers import normalizeInternalObjectType

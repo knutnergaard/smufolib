@@ -1,4 +1,12 @@
-# pylint: disable=C0114
+"""Utilities for extracting and representing point data.
+
+This module provides classes and functions to retrieve points from
+contours and components within font-related objects and to simplify
+the representation of :class:`fontParts.base.BasePoint`. It includes
+utilities for handling both direct glyph shapes and composite glyphs,
+supporting point types, positions, and contour indices.
+
+"""
 from __future__ import annotations
 from typing import NamedTuple
 from collections.abc import Iterator
@@ -19,10 +27,11 @@ TYPES = ('line', 'curve', 'qcurve')
 class Point(NamedTuple):
     """Named tuple for point values.
 
-    :param type: The :attr:`~fontParts.base.BasePoint.type` of the point.
+    :param type: The :attr:`~fontParts.base.BasePoint.type` of the
+        point.
     :param position: The :class:`~Position` of the point.
-    :param contourIndex: The :attr:`~fontParts.base.BaseContour.index` of
-        the point's parent contour.
+    :param contourIndex: The :attr:`~fontParts.base.BaseContour.index`
+        of the point's parent contour.
 
     """
     type: str
@@ -58,6 +67,21 @@ def getPoints(obj: Glyph | tuple[Glyph, ...] | Layer | Font,
     :raises TypeError: If `obj` is not an accepted type.
     :raises ValueError: If `obj` items is not an accepted type.
 
+    Example::
+
+        >>> glyph = font['uniE071'] # schaefferGClefToFClef (contour and component parts)
+        >>> points = pointUtils.getPoints(glyph)
+        >>> tuple(points)
+        (Point(type='line', position=Position(x=618, y=0), contourIndex=0),
+        Point(type='line', position=Position(x=309, y=250), contourIndex=0),
+        Point(type='line', position=Position(x=309, y=-249), contourIndex=0),
+        Point(type='line', position=Position(x=309, y=-749), contourIndex=1),
+        Point(type='line', position=Position(x=309, y=-250), contourIndex=1),
+        Point(type='line', position=Position(x=0, y=-500), contourIndex=1),
+        Point(type='line', position=Position(x=281, y=-691), contourIndex=2),
+        Point(type='line', position=Position(x=45, y=-500), contourIndex=2),
+        Point(type='line', position=Position(x=281, y=-309), contourIndex=2))
+
     """
     error.validateType(obj, (tuple, Glyph, Layer, Font), 'obj')
     if isinstance(obj, tuple):
@@ -73,12 +97,25 @@ def getContourPoints(obj: RContour | tuple[RContour, ...]
                      ) -> Iterator[Point]:
     """Get contour points from a font-related object.
 
+    Contour points are those that define the shape of a glyph directly
+    through its outline.
+
     :param obj: The object from which to get the points. This can be a
-        single contour object, a :class:`tuple` of contours or any parent
-        object (:class:`.Glyph`, :class:`.Layer` or :class:`.Font`).
+        single contour object, a :class:`tuple` of contours or any
+        parent object (:class:`.Glyph`, :class:`.Layer`
+        or :class:`.Font`).
     :param types: The :attr:`fontParts.base.BasePoint.type` to include.
         Defaults to ``('line', 'curve', 'qcurve')``.
     :raises TypeError: If `obj` is not an accepted type.
+
+    Example::
+
+        >>> glyph = font['uniE071'] # schaefferGClefToFClef (contour part)
+        >>> points = pointUtils.getContourPoints(glyph)
+        >>> tuple(points)
+        (Point(type='line', position=Position(x=618, y=0), contourIndex=0),
+        Point(type='line', position=Position(x=309, y=250), contourIndex=0),
+        Point(type='line', position=Position(x=309, y=-249), contourIndex=0))
 
     """
     error.validateType(obj, (tuple, RContour, Glyph, Layer, Font), 'obj')
@@ -100,6 +137,9 @@ def getCompositePoints(obj: RComponent | tuple[RComponent, ...]
                        ) -> Iterator[Point]:
     """Get composite points from font-related object.
 
+    Composite points are those that come from glyphs that are used as
+    components in building more complex glyphs.
+
     The component's offset position is taken into account.
 
     :param obj: The object from which to get the points. This can be a
@@ -109,6 +149,18 @@ def getCompositePoints(obj: RComponent | tuple[RComponent, ...]
     :param types: The :attr:`fontParts.base.BasePoint.type` to include.
         Defaults to ``('line', 'curve', 'qcurve')``.
     :raises TypeError: If `obj` is not an accepted type.
+
+    Example::
+
+        >>> glyph = font['uniE071'] # schaefferGClefToFClef (component part)
+        >>> points = pointUtils.getCompositePoints(glyph)
+        >>> tuple(points)
+        (Point(type='line', position=Position(x=309, y=-749), contourIndex=1),
+        Point(type='line', position=Position(x=309, y=-250), contourIndex=1),
+        Point(type='line', position=Position(x=0, y=-500), contourIndex=1),
+        Point(type='line', position=Position(x=281, y=-691), contourIndex=2),
+        Point(type='line', position=Position(x=45, y=-500), contourIndex=2),
+        Point(type='line', position=Position(x=281, y=-309), contourIndex=2))
 
     """
     components = _getComponents(obj)

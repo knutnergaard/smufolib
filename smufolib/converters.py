@@ -1,11 +1,16 @@
+"""Utility functions for converting values between various formats.
+
+These functions focus on conversion different string and number formats
+related to measurements, Unicode codepoints and letter case.
+
+"""
 from __future__ import annotations
 import re
 
 from smufolib import error, stdUtils
 
-# pylint: disable=invalid-name
 
-
+# pylint: disable=C0103
 def convertMeasurement(measurement: int | float | str,
                        targetUnit: str,
                        unitsPerEm: int | float,
@@ -19,6 +24,15 @@ def convertMeasurement(measurement: int | float | str,
     :raises TypeError: If `measurement` is not an accepted type.
     :raises ValueError: If `targetUnit` is neither ``'spaces'``
      nor ``'units'``.
+
+    Example::
+
+        >>> convertMeasurement(0.795, 'units', 1000, rounded=False)
+        198.75
+        >>> convertMeasurement(0.795, 'units', 1000, rounded=True)
+        199
+        >>> convertMeasurement('198.75', 'spaces', 1000, rounded=True)
+        0.795
 
     """
     error.validateType(measurement, (int, float, str), 'measurement')
@@ -42,8 +56,18 @@ def toDecimal(unicodeString: str) -> int:
 
     :param unicodeString: The value to convert.
     :raises TypeError: If `unicodeString` is not the accepted type.
-    :raises ValueError: If `unicodeString` is not a valid formatted unicode
-        codepoint.
+    :raises ValueError: If `unicodeString` is not a valid formatted
+        unicode codepoint or outside the unicode range
+        (U+0000 – U+10FFFF).
+
+    Example::
+
+        >>> toDecimal('uniE000')
+        57344
+        >>> toDecimal('u1D100')
+        119040
+        >>> toDecimal('U+0A00')
+        2560
 
     """
     error.validateType(unicodeString, str, 'unicodeString')
@@ -61,7 +85,7 @@ def toDecimal(unicodeString: str) -> int:
 
     raise ValueError(
         error.generateErrorMessage(
-            'outsideUnicode', objectName='unicodeString'
+            'unicodeOutOfRange', objectName='unicodeString'
         )
     )
 
@@ -72,7 +96,12 @@ def toUniHex(codepoint: int) -> str:
     :param codepoint: The decimal value to convert.
     :raises TypeError: If `codepoint` is not the accepted type.
     :raises ValueError: If `codepoint` is outside the Unicode range
-     (U+0000 – U+10FFFF).
+        (U+0000 – U+10FFFF).
+
+    Example::
+
+        >>> toUniHex(2560)
+        'U+0A00'
 
     """
     error.validateType(codepoint, int, 'codepoint')
@@ -94,7 +123,16 @@ def toUniName(value: str | int, short: bool = False) -> str:
     :param short: Whether to return name with single ``'u'`` prefix.
     :raises TypeError: If `value` is not an accepted type.
     :raises ValueError: If `value` is outside the Unicode range
-     (U+0000 – U+10FFFF) or not a valid formatted string.
+        (U+0000 – U+10FFFF) or not a valid formatted string.
+
+    Example::
+
+        >>> toUniName('U+E000')
+        'uniE000'
+        >>> toUniName('U+E000', short=True)
+        'uE000'
+        >>> toUniName(57344)
+        'uniE000'
 
     """
     prefix = 'u' if short else 'uni'
@@ -122,6 +160,11 @@ def toKebab(camelCaseString: str) -> str:
 
     :param camelCaseString: The string to convert.
 
+    Example::
+
+        >>> toKebab('camelCase')
+        'camel-case'
+
     """
     return re.sub(r'(?<!^)(?=[A-Z]{1})', '-', camelCaseString).lower()
 
@@ -131,6 +174,15 @@ def toNumber(numericString: str) -> int | float:
 
     :param numericString: The value to convert.
     :raises ValueError: If `numericString` is not a valid int or float.
+
+    Example::
+
+        >>> toNumber('57344')
+        57344
+        >>> toNumber('57.344')
+        57.344
+        >>> toNumber('E000')
+        57344
 
     """
     error.validateType(numericString, str, 'numericString')
@@ -155,6 +207,13 @@ def toIntIfWhole(number: int | float) -> int | float:
     fractional part, it is left unchanged.
 
     :param number: The value to convert.
+
+    Example::
+
+        >>> toIntIfWhole(34.0)
+        34
+        >>> toIntIfWhole(34.1)
+        34.1
 
     """
 
