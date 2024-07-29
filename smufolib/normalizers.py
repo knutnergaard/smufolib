@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 """Utilities for normalizing various data types in SMufoLib.
 
 This module extends :mod:`fontParts.base.normalizers` and provides
@@ -21,6 +22,8 @@ to the following external normalizers for convenience:
     - :func:`~fontParts.base.normalizers.normalizeGlyph`
 
 """
+=======
+>>>>>>> 92782955a2f1ed85ddaca26fbd4aa4db19922388
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from pathlib import Path
