@@ -3,9 +3,6 @@
 :mod:`converters`
 -----------------
 
-This module contains various general conversion functions used
-throughout SMufoLib.
-
 .. automodule:: smufolib.converters
     :members:
 
@@ -14,18 +11,23 @@ throughout SMufoLib.
 :mod:`error`
 ------------
 
-This module contains error related messages and functions.
+.. automodule:: smufolib.error
+    :members:
+    :exclude-members: ERROR_TEMPLATES
+
+    .. py:data:: ERROR_TEMPLATES
+        :type: dict[str, str]
+
+    Dictionary of error message templates.
+
+    .. csv-table::
+        :file: error_templates.csv
+        :header-rows: 1
 
 .. _normalizers:
 
-.. automodule:: smufolib.error
-    :members:
-
 :mod:`normalizers`
 ------------------
-
-This module is an extension of :mod:`fontParts.base.normalizers` and
-contains all normalization functionality used throughout SMufoLib.
 
 .. automodule:: smufolib.normalizers
     :members:
@@ -34,9 +36,6 @@ contains all normalization functionality used throughout SMufoLib.
 
 :mod:`pointUtils`
 -----------------
-
-This module contains utility functions to simplify the syntax
-of :class:`fontParts.base.BasePoint`.
 
 .. automodule:: smufolib.pointUtils
     :members:
@@ -47,9 +46,6 @@ of :class:`fontParts.base.BasePoint`.
 
 :mod:`stdUtils`
 ---------------
-
-This module contains various standard utility functions used throughout
-SMufoLib.
 
 .. automodule:: smufolib.stdUtils
     :members:
