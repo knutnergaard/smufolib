@@ -22,7 +22,7 @@ def main():
         writer.writeheader()
 
         for key, template in error.ERROR_TEMPLATES.items():
-            formattedKey = f'``{key}``'
+            formattedKey = f"``'{key}'``"
             formattedTemplate = _replaceBracesWithBackticks(template).strip()
             writer.writerow(
                 {
