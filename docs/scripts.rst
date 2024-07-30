@@ -1,25 +1,25 @@
-:mod:`calculateEngravingDefaults`
----------------------------------
+:mod:`.calculateEngravingDefaults`
+----------------------------------
 
 .. automodule:: bin.calculateEngravingDefaults
     :members:
 
-:mod:`checkAnchors`
--------------------
+:mod:`.checkAnchors`
+--------------------
 
 .. automodule:: bin.checkAnchors
 
 .. autofunction:: bin.checkAnchors.checkAnchors(font, fontData=Request(CONFIG['metadata.paths']['referenceFont'], CONFIG['metadata.fallbacks']['referenceFont']), mark=False, color=None, verbose=False)
 .. autofunction:: bin.checkAnchors.main
 
-:mod:`cleanFont`
-----------------
+:mod:`.cleanFont`
+-----------------
 
 .. automodule:: bin.cleanFont
     :members:
 
-:mod:`generateMetadata`
------------------------
+:mod:`.generateMetadata`
+------------------------
 
 .. automodule:: bin.generateMetadata
 
@@ -27,8 +27,8 @@
 .. autofunction:: bin.generateMetadata.main
 
 
-:mod:`importAnchors`
---------------------
+:mod:`.importAnchors`
+---------------------
 
 .. automodule:: bin.importAnchors
 
@@ -36,8 +36,8 @@
 .. autofunction:: bin.importAnchors.main
 
 
-:mod:`importID`
----------------
+:mod:`.importID`
+----------------
 
 .. automodule:: bin.importID
 

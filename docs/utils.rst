@@ -1,15 +1,11 @@
-.. _converters:
-
-:mod:`converters`
------------------
+:mod:`.converters`
+------------------
 
 .. automodule:: smufolib.converters
     :members:
 
-.. _error:
-
-:mod:`error`
-------------
+:mod:`.error`
+-------------
 
 .. automodule:: smufolib.error
     :members:
@@ -24,28 +20,21 @@
         :file: error_templates.csv
         :header-rows: 1
 
-.. _normalizers:
-
-:mod:`normalizers`
-------------------
+:mod:`.normalizers`
+-------------------
 
 .. automodule:: smufolib.normalizers
     :members:
 
-.. _pointUtils:
-
-:mod:`pointUtils`
------------------
+:mod:`.pointUtils`
+------------------
 
 .. automodule:: smufolib.pointUtils
     :members:
     :exclude-members: contourIndex, position, type, x, y
 
-
-.. _stdtUtils:
-
-:mod:`stdUtils`
----------------
+:mod:`.stdUtils`
+----------------
 
 .. automodule:: smufolib.stdUtils
     :members:

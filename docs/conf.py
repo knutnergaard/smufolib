@@ -42,6 +42,7 @@ exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
 templates_path = ['_templates']
 highlight_language = 'python3'
 add_module_names = False
+nitpicky = True
 
 # -- Options for HTML output --------------------------------------------------
 
