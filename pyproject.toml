@@ -14,7 +14,7 @@ authors = [
     {name = "Knut Nergaard", email = "knut.nergaard@gmail.com"}
 ]
 
-description = "FontParts based library for SMuFL font scripting"
+description = "FontParts-based library for SMuFL font scripting"
 readme = "README.rst"
 license = {file = "LICENSE.txt"}
 keywords = [

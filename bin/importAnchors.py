@@ -12,7 +12,6 @@ the following public funcitons:
     - :func:`main` - Command line entry point.
 
 """
-
 from __future__ import annotations
 from typing import Any
 import argparse
@@ -134,7 +133,7 @@ def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     importAnchors(args.font, args.fontData,
-                  args.color, args.clear, args.verbose)
+                  args.colors, args.clear, args.verbose)
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:

@@ -133,7 +133,7 @@ def commonParser(*args: str,
         >>> parser.parse_args("-h".split()))
         usage: test.py [-h] [-x] [-O] font
 
-        showcase commonParser
+        Showcase commonParser.
 
         positional arguments:
             font         path to UFO file

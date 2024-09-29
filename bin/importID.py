@@ -148,11 +148,13 @@ def importID(font: Font | Path | str,
                     f"\nSkipping unencoded glyph: '{glyph.name}'", verbose
                 )
                 continue
+
             if not glyph.smufl.isMember:
                 stdUtils.verbosePrint(
                     f"\nSkipping non-SMuFL glyph: '{glyph.name}'", verbose
                 )
                 continue
+
             if glyph.smufl.isOptional and not includeOptionals:
                 stdUtils.verbosePrint(
                     f"\nSkipping optional glyph: '{glyph.name}'", verbose
@@ -168,11 +170,13 @@ def importID(font: Font | Path | str,
                         f"\t'{attribute}': not found", verbose
                     )
                     continue
+
                 if getattr(glyph.smufl, attribute) and not overwrite:
                     stdUtils.verbosePrint(
                         f"\t'{attribute}': preset", verbose
                     )
                     continue
+
                 setattr(glyph.smufl, attribute, glyphMaps[attribute][codepoint])
                 stdUtils.verbosePrint(
                     f"\t'{attribute}': set", verbose

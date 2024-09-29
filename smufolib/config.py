@@ -1,12 +1,10 @@
-# pylint: disable=C0114
+# pylint: disable=C0103, C0114
 from __future__ import annotations
 from typing import Any
 import os
 import errno
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
-
-# pylint: disable=invalid-name
 
 
 def load(path: Path | str | None = None) -> dict[str, Any]:
@@ -21,6 +19,13 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
     #. SMufoLib package directory
 
     :param path: Path to smufolib.cfg. Defaults to :obj:`None`.
+
+    Example::
+
+        >>> from smufolib import config
+        >>> cfg = config.load()
+        >>> cfg['request']
+        {'encoding': 'utf-8', 'warn': True}
 
     """
     config = _readConfigFile(path)

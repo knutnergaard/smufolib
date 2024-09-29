@@ -1,4 +1,4 @@
-# pylint: disable=C0114, C0103, W0212
+# pylint: disable=C0114, C0103, W0212, W0221
 from __future__ import annotations
 from typing import TYPE_CHECKING
 
@@ -76,7 +76,6 @@ class EngravingDefaults(BaseObject):
         >>> d = EngravingDefaults()
 
     """
-    # pylint: disable=W0221, W0212
 
     def _init(self, smufl: Smufl | None = None) -> None:
         self._smufl = smufl

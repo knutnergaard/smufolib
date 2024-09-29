@@ -1,4 +1,4 @@
-# pylint: disable=C0114
+# pylint: disable=C0103, C0114, R0913
 from __future__ import annotations
 from typing import Any
 from pathlib import Path
@@ -11,8 +11,6 @@ from smufolib import config, error, normalizers
 JsonDict = dict[str, Any]
 
 CONFIG = config.load()
-
-# pylint: disable=C0103
 
 
 class Request:
@@ -35,7 +33,6 @@ class Request:
         See :func:`open` for details. Defaults to 'r' (read).
 
     """
-    # pylint: disable=R0913
 
     def __init__(self,
                  path: Path | str | None = None,
