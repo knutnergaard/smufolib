@@ -116,6 +116,7 @@ def importAnchors(font: Font | Path | str,
                 f"\nAppending anchors to glyph '{glyphName}':", verbose,
             )
             for anchorName, position in anchors.items():
+                position = [font.smufl.toUnits(p) for p in position]
                 if mark and colors:
                     anchorColor = colors.get(anchorName, None)
                 font[glyphName].appendAnchor(anchorName, position, anchorColor)
