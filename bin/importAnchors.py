@@ -132,8 +132,12 @@ def importAnchors(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    importAnchors(args.font, args.fontData,
-                  args.colors, args.clear, args.verbose)
+    importAnchors(args.font,
+                  fontData=args.fontData,
+                  mark=args.mark,
+                  colors=args.colors,
+                  clear=args.clear,
+                  verbose=args.verbose)
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:
