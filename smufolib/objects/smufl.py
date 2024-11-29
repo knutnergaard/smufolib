@@ -812,13 +812,14 @@ class Smufl(BaseObject):
             unitsPerEm=self.font.info.unitsPerEm,
             rounded=False)
 
-    def toUnits(self, value: int | float) -> int | float | None:
+    def toUnits(self, value: int | float, rounded=True) -> int | float | None:
         """Convert staff spaces to font units based on font UPM size.
 
         The inverse of :meth:`toSpaces`.
         Result is always rounded.
 
         :param value: Value to convert.
+        :param rounded: Whether to round result to nearest integer.
 
         Example::
 
@@ -836,7 +837,7 @@ class Smufl(BaseObject):
             measurement=value,
             targetUnit='units',
             unitsPerEm=self.font.info.unitsPerEm,
-            rounded=True)
+            rounded=rounded)
 
     @property
     def spaces(self) -> bool:
