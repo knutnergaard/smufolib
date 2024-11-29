@@ -137,7 +137,7 @@ class Range:
 
         """
         result = self._getAttribute('range_start')
-        if isinstance(result, int):
+        if isinstance(result, str):
             return result
         return None
 
@@ -152,7 +152,7 @@ class Range:
 
         """
         result = self._getAttribute('range_end')
-        if isinstance(result, int):
+        if isinstance(result, str):
             return result
         return None
 
