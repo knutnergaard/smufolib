@@ -588,15 +588,15 @@ class EngravingDefaults(BaseObject):
         # Dynamic dict in font.lib.naked().
         if self.font is None:
             return None
-        return self.font.lib.naked().get('_engravingDefaults')
+        return self.font.lib.naked().get('com.smufolib.engravingDefaults')
 
     @_engravingDefaults.setter
     def _engravingDefaults(self, value: EngravingDefaultsDict) -> None:
         if self.font:
             if value is None:
-                self.font.lib.naked().pop('_engravingDefaults', None)
+                self.font.lib.naked().pop('com.smufolib.engravingDefaults', None)
             else:
-                self.font.lib.naked()['_engravingDefaults'] = value
+                self.font.lib.naked()['com.smufolib.engravingDefaults'] = value
 
     # -----------------------------
     # Normalization and Measurement

@@ -495,12 +495,12 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return tuple(self.glyph.lib.get('_classes', ()))
+        return tuple(self.glyph.lib.get('com.smufolib.classes', ()))
 
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._updateGlyphLib(
-            '_classes', normalizers.normalizeClasses(value)
+            'com.smufolib.classes', normalizers.normalizeClasses(value)
         )
 
     @property
@@ -515,12 +515,12 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return self.glyph.lib.get('_description', None)
+        return self.glyph.lib.get('com.smufolib.description', None)
 
     @description.setter
     def description(self, value: str | None) -> None:
         self._updateGlyphLib(
-            '_description', normalizers.normalizeDescription(value)
+            'com.smufolib.description', normalizers.normalizeDescription(value)
         )
 
     @property
@@ -543,11 +543,11 @@ class Smufl(BaseObject):
             return None
         if self.glyph is None:
             return self.font.info.naked().familyName
-        return self.glyph.lib.get('_name', None)
+        return self.glyph.lib.get('com.smufolib.name', None)
 
     @name.setter
     def name(self, value: str | None) -> None:
-        # Update _names before ID property
+        # Update com.smufolib.names before ID property
         if self.font is None:
             return
 
@@ -558,7 +558,7 @@ class Smufl(BaseObject):
                 normalizers.normalizeSmuflName(value)
             )
             self._updateGlyphLib(
-                '_name', normalizers.normalizeSmuflName(value)
+                'com.smufolib.name', normalizers.normalizeSmuflName(value)
             )
 
     def _updateGlyphLib(self, key: str, value: Any) -> None:
@@ -581,7 +581,7 @@ class Smufl(BaseObject):
                 return
 
             if self.font is not None:
-                namesDict = self.font.lib.get('_names', {})
+                namesDict = self.font.lib.get('com.smufolib.names', {})
                 if self.name in namesDict:
                     del namesDict[self.name]
             return
@@ -597,11 +597,11 @@ class Smufl(BaseObject):
         # Dict of glyph names in font.lib.
         if self.font is None:
             return None
-        return self.font.lib.get('_names')
+        return self.font.lib.get('com.smufolib.names')
 
     @_names.setter
     def _names(self, value: dict[str, str] | None) -> None:
-        self._updateFontLib('_names', value)
+        self._updateFontLib('com.smufolib.names', value)
 
     # ----------
     # Validation
