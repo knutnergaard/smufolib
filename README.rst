@@ -1,4 +1,4 @@
-|PyPI| |versions|
+|PyPI| |versions| |docs|
 
 SMufoLib: Where SMuFL meets UFO
 ===============================
@@ -94,3 +94,7 @@ name.
 .. |versions| image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fknutnergaard%2Fsmufolib%2Frefs%2Fheads%2Fmain%2Fpyproject.toml
    :alt: Python Version from PEP 621 TOML
    :target: https://www.python.org
+
+.. |docs| image:: https://img.shields.io/readthedocs/smufolib
+   :alt: Read the Docs
+   :target: https://smufolib.readthedocs.io/en/latest/
