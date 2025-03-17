@@ -80,7 +80,7 @@ jobs:
           --notes ""
       - name: Upload artifact signatures to GitHub Release
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ github.token }}
         run: >-
           gh release upload
           "$GITHUB_REF_NAME" dist/**
