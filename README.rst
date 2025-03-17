@@ -1,4 +1,4 @@
-|PyPI| |versions| |license| |docs|
+|PyPI| |versions| |docs| |license| 
 
 SMufoLib: Where SMuFL meets UFO
 ===============================
@@ -95,10 +95,10 @@ name.
    :alt: Python Version from PEP 621 TOML
    :target: https://www.python.org
 
-.. |license| image:: https://img.shields.io/pypi/l/smufolib
-   :alt: PyPI - License
-   :target: https://opensource.org/license/mit
-
 .. |docs| image:: https://img.shields.io/readthedocs/smufolib
    :alt: Read the Docs
    :target: https://smufolib.readthedocs.io/en/latest/
+
+.. |license| image:: https://img.shields.io/pypi/l/smufolib
+   :alt: PyPI - License
+   :target: https://opensource.org/license/mit
