@@ -95,8 +95,8 @@ name.
    :alt: Python Version from PEP 621 TOML
    :target: https://www.python.org
 
-.. |license| https://img.shields.io/pypi/l/smufolib
-   :alt: PYPI - Lisence
+.. |license| image:: https://img.shields.io/pypi/l/smufolib
+   :alt: PyPI - License
    :target: https://opensource.org/license/mit
 
 .. |docs| image:: https://img.shields.io/readthedocs/smufolib
