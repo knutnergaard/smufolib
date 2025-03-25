@@ -63,7 +63,3 @@ class TestRange(unittest.TestCase):
 
     def test_glyphs(self):
         self.assertEqual(self.range.glyphs, (self.glyph1, self.glyph2))
-
-
-if __name__ == "__main__":
-    unittest.main()

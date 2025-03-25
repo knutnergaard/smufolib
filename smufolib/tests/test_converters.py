@@ -65,7 +65,3 @@ class Converters(unittest.TestCase):
             toNumber(["485937"])
         with self.assertRaises(ValueError):
             toNumber("456h")
-
-
-if __name__ == "__main__":
-    unittest.main()

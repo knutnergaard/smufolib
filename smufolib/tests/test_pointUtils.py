@@ -78,7 +78,3 @@ class TestPointUtils(unittest.TestCase):
             + self.expectedCompositePoints
         )
         self.assertPointListsEqual(points, expectedPoints)
-
-
-if __name__ == "__main__":
-    unittest.main()

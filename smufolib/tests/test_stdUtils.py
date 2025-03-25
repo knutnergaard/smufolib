@@ -22,7 +22,3 @@ class StdUtils(unittest.TestCase):
     def test_validateClassAttr(self):
         with self.assertRaises(TypeError):
             validateClassAttr(object, 42)
-
-
-if __name__ == "__main__":
-    unittest.main()

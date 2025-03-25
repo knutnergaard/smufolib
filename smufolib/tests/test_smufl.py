@@ -412,7 +412,3 @@ class TestSmufl(unittest.TestCase):
 
     def test_suffix(self):
         self.assertEqual(self.salt.smufl.suffix, "salt01")
-
-
-if __name__ == "__main__":
-    unittest.main()

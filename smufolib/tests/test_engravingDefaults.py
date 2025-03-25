@@ -103,7 +103,3 @@ class TestEngravingDefaults(unittest.TestCase):
 
     def test_layer(self):
         self.assertIs(self.glyph.smufl.engravingDefaults.layer, self.glyph.layer)
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -77,7 +77,3 @@ class TestError(unittest.TestCase):
         self.assertEqual(_listTypes(str), "str")
         self.assertEqual(_listTypes((str, int)), "str or int")
         self.assertEqual(_listTypes((str, int, float)), "str, int or float")
-
-
-if __name__ == "__main__":
-    unittest.main()

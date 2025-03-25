@@ -109,7 +109,3 @@ class TestWriteJson(unittest.TestCase):
         source = {"key": set()}
         with self.assertRaises(ValueError):
             writeJson("test.json", source)
-
-
-if __name__ == "__main__":
-    unittest.main()

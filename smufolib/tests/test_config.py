@@ -59,7 +59,3 @@ class TestConfig(unittest.TestCase):
         self.assertEqual(_parse(config, "section", "bool_option"), True)
         self.assertEqual(_parse(config, "section", "str_option"), "string")
         self.assertEqual(_parse(config, "section", "tuple_option"), (1, 2.2, "string"))
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -66,7 +66,3 @@ class TestCLI(unittest.TestCase):
         with self.assertRaises(ValueError) as context:
             createHelpFormatter("InvalidFormatter")
         self.assertIn("InvalidFormatter", str(context.exception))
-
-
-if __name__ == "__main__":
-    unittest.main()

@@ -107,7 +107,3 @@ class Normalizers(unittest.TestCase):
     def test_normalizeRequestPath_with_invalid_type(self):
         with self.assertRaises(TypeError):
             normalizeRequestPath(["path"], parameter="path")
-
-
-if __name__ == "__main__":
-    unittest.main()
