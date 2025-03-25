@@ -3,7 +3,6 @@ from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
 
 
 class TestEngravingDefaults(unittest.TestCase):
-
     def setUp(self):
         # Create generic objects
         # pylint: disable=E1101

@@ -8,6 +8,7 @@ printing verbose messages, as well as a a no-op function for
 placeholder purposes.
 
 """
+
 from __future__ import annotations
 from typing import Any
 from collections.abc import Generator, Iterable
@@ -15,9 +16,8 @@ import operator
 
 # pylint: disable=C0103
 
-def flatten(iterable: Iterable[Any],
-            depth: int | None = None
-            ) -> Generator:
+
+def flatten(iterable: Iterable[Any], depth: int | None = None) -> Generator:
     """Flatten irregularly nested iterables of any depth.
 
     :param iterable: The :term:`iterable` to flatten.
@@ -36,8 +36,11 @@ def flatten(iterable: Iterable[Any],
 
     """
     for item in iterable:
-        if (not isinstance(item, Iterable)
-                or isinstance(item, (str, bytes)) or depth == 0):
+        if (
+            not isinstance(item, Iterable)
+            or isinstance(item, (str, bytes))
+            or depth == 0
+        ):
             yield item
         elif depth is None:
             yield from flatten(item)
@@ -82,7 +85,7 @@ def getSummary(docstring: str | None) -> str | None:
     if docstring is None:
         return None
 
-    return docstring.split('\n', maxsplit=1)[0]
+    return docstring.split("\n", maxsplit=1)[0]
 
 
 def isFloat(string: str) -> bool:
@@ -99,7 +102,7 @@ def isFloat(string: str) -> bool:
         False
 
     """
-    if '.' not in string:
+    if "." not in string:
         return False
     try:
         float(string)
@@ -155,10 +158,7 @@ def doNothing(*args: Any, **kwargs: Any) -> None:
     """
 
 
-def verbosePrint(message: str,
-                 verbose: bool,
-                 *args: Any,
-                 **kwargs: Any) -> None:
+def verbosePrint(message: str, verbose: bool, *args: Any, **kwargs: Any) -> None:
     r"""Print a message if `verbose` is :obj:`True`.
 
     This function behaves like the built-in :func:`print` function, but

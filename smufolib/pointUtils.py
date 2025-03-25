@@ -7,6 +7,7 @@ utilities for handling both direct glyph shapes and composite glyphs,
 supporting point types, positions, and contour indices.
 
 """
+
 from __future__ import annotations
 from typing import NamedTuple
 from collections.abc import Iterator
@@ -19,7 +20,7 @@ from smufolib.objects.layer import Layer
 from smufolib.objects.font import Font
 from smufolib import error, stdUtils
 
-TYPES = ('line', 'curve', 'qcurve')
+TYPES = ("line", "curve", "qcurve")
 
 # pylint: disable=C0103
 
@@ -34,6 +35,7 @@ class Point(NamedTuple):
         of the point's parent contour.
 
     """
+
     type: str
     position: Position
     contourIndex: int
@@ -46,13 +48,14 @@ class Position(NamedTuple):
     :param y: The vertical position of the point.
 
     """
+
     x: int | float
     y: int | float
 
 
-def getPoints(obj: Glyph | tuple[Glyph, ...] | Layer | Font,
-              types: str | tuple[str, ...] = TYPES
-              ) -> Iterator[Point]:
+def getPoints(
+    obj: Glyph | tuple[Glyph, ...] | Layer | Font, types: str | tuple[str, ...] = TYPES
+) -> Iterator[Point]:
     """Get points from font-related object.
 
     This function simply concatinates the results
@@ -83,18 +86,17 @@ def getPoints(obj: Glyph | tuple[Glyph, ...] | Layer | Font,
         Point(type='line', position=Position(x=281, y=-309), contourIndex=2))
 
     """
-    error.validateType(obj, (tuple, Glyph, Layer, Font), 'obj')
+    error.validateType(obj, (tuple, Glyph, Layer, Font), "obj")
     if isinstance(obj, tuple):
-        error.validateType(obj[0], Glyph, 'obj', items=True)
+        error.validateType(obj[0], Glyph, "obj", items=True)
 
-    return itertools.chain(getContourPoints(obj, types),
-                           getCompositePoints(obj, types))
+    return itertools.chain(getContourPoints(obj, types), getCompositePoints(obj, types))
 
 
-def getContourPoints(obj: RContour | tuple[RContour, ...]
-                     | Glyph | Layer | Font,
-                     types: str | tuple[str, ...] = TYPES
-                     ) -> Iterator[Point]:
+def getContourPoints(
+    obj: RContour | tuple[RContour, ...] | Glyph | Layer | Font,
+    types: str | tuple[str, ...] = TYPES,
+) -> Iterator[Point]:
     """Get contour points from a font-related object.
 
     Contour points are those that define the shape of a glyph directly
@@ -118,23 +120,26 @@ def getContourPoints(obj: RContour | tuple[RContour, ...]
         Point(type='line', position=Position(x=309, y=-249), contourIndex=0))
 
     """
-    error.validateType(obj, (tuple, RContour, Glyph, Layer, Font), 'obj')
+    error.validateType(obj, (tuple, RContour, Glyph, Layer, Font), "obj")
     if isinstance(obj, tuple):
         for component in obj:
-            error.validateType(component, RContour, 'obj', items=True)
+            error.validateType(component, RContour, "obj", items=True)
     if isinstance(obj, RContour):
         obj = (obj,)
 
     rawPoints = stdUtils.flatten(obj)
 
-    return (Point(p.type, Position(*p.position), p.contour.index)
-            for p in rawPoints if p.type in types or p.type == types)
+    return (
+        Point(p.type, Position(*p.position), p.contour.index)
+        for p in rawPoints
+        if p.type in types or p.type == types
+    )
 
 
-def getCompositePoints(obj: RComponent | tuple[RComponent, ...]
-                       | Glyph | Layer | Font,
-                       types: str | tuple[str, ...] = TYPES
-                       ) -> Iterator[Point]:
+def getCompositePoints(
+    obj: RComponent | tuple[RComponent, ...] | Glyph | Layer | Font,
+    types: str | tuple[str, ...] = TYPES,
+) -> Iterator[Point]:
     """Get composite points from font-related object.
 
     Composite points are those that come from glyphs that are used as
@@ -172,20 +177,19 @@ def getCompositePoints(obj: RComponent | tuple[RComponent, ...]
             offset, index = component.offset, component.index
             for point in rawPoints:
                 if point.type in types or point.type == types:
-                    newPosition = stdUtils.addTuples(
-                        point.position, offset)
+                    newPosition = stdUtils.addTuples(point.position, offset)
                     yield Point(point.type, Position(*newPosition), index)
 
     return pointGenerator()
 
 
-def _getComponents(obj: RComponent
-                   | tuple[RComponent, ...] | Glyph | Layer | Font
-                   ) -> tuple[RComponent, ...] | Iterator[RComponent]:
+def _getComponents(
+    obj: RComponent | tuple[RComponent, ...] | Glyph | Layer | Font,
+) -> tuple[RComponent, ...] | Iterator[RComponent]:
     # Get components from font-related object.
     if isinstance(obj, tuple):
         for component in obj:
-            error.validateType(component, RComponent, 'obj', items=True)
+            error.validateType(component, RComponent, "obj", items=True)
         return obj
     if isinstance(obj, RComponent):
         return (obj,)
@@ -194,7 +198,5 @@ def _getComponents(obj: RComponent
     if isinstance(obj, (Layer, Font)):
         return stdUtils.flatten(g.components for g in obj)
     raise TypeError(
-        error.generateTypeError(
-            obj, (RComponent, tuple, Glyph, Layer, Font), 'obj'
-        )
+        error.generateTypeError(obj, (RComponent, tuple, Glyph, Layer, Font), "obj")
     )

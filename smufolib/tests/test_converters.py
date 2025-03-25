@@ -12,7 +12,6 @@ from smufolib.converters import (
 
 
 class Converters(unittest.TestCase):
-
     def test_convertMeasurement(self):
         self.assertEqual(
             convertMeasurement(125, targetUnit="spaces", unitsPerEm=1000), 0.5

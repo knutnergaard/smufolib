@@ -16,7 +16,6 @@ from smufolib.normalizers import (
 
 
 class Normalizers(unittest.TestCase):
-
     faultyNames = ["", "smufl-name42", "SmuflName42"]
     font = Font()
     for name in ["uniE001", "uniE002", "uniE003", "uniE004"]:

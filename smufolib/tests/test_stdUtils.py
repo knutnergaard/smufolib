@@ -5,7 +5,6 @@ from smufolib.stdUtils import flatten, addTuples, isFloat, validateClassAttr
 
 
 class StdUtils(unittest.TestCase):
-
     def test_flatten(self):
         matrix = [[[i for i in range(5)] for j in range(5)] for h in range(5)]
         self.assertEqual(list(flatten(matrix)), list(range(5)) * 25)

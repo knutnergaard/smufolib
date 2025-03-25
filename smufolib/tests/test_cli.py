@@ -9,7 +9,6 @@ from smufolib.cli import commonParser, createHelpFormatter
 
 
 class TestCLI(unittest.TestCase):
-
     def test_commonParser_basic(self):
         parser = commonParser(clear=True, addHelp=False)
         args = parser.parse_args(["--clear"])

@@ -11,7 +11,6 @@ from smufolib.error import URLWarning
 
 
 class TestRequest(unittest.TestCase):
-
     def setUp(self):
         self.path = "http://example.com"
         self.fallback = "fallback.txt"
@@ -84,7 +83,6 @@ class TestRequest(unittest.TestCase):
 
 
 class TestWriteJson(unittest.TestCase):
-
     @patch("builtins.open", new_callable=mock_open)
     def test_writeJson(self, mock_file):
         filepath = "test.json"

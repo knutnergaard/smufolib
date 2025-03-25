@@ -3,7 +3,6 @@ from smufolib import converters
 
 
 class TestSmufl(unittest.TestCase):
-
     def setUp(self):
         # Create generic objects
         # pylint: disable=E1101

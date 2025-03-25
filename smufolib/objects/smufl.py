@@ -82,7 +82,6 @@ class Smufl(BaseObject):
     """
 
     def _init(self, font: Font | None = None, glyph: Glyph | None = None) -> None:
-
         self._font = font
         self._glyph = glyph
         self._layer = None
@@ -125,7 +124,7 @@ class Smufl(BaseObject):
     def font(self, value: Font) -> None:
         if self._font is not None and self._font != value:
             raise AssertionError(
-                "Font for Smufl object is already " "set and is not same as value."
+                "Font for Smufl object is already set and is not same as value."
             )
         if self._glyph is not None:
             raise AssertionError("Glyph for Smufl object is already set.")
@@ -151,7 +150,7 @@ class Smufl(BaseObject):
             raise AssertionError("Font for Smufl object is already set.")
         if self._glyph is not None and self._glyph != value:
             raise AssertionError(
-                "Glyph for Smufl object is already " "set and is not same as value."
+                "Glyph for Smufl object is already set and is not same as value."
             )
         self._glyph = normalizers.normalizeGlyph(value)
 

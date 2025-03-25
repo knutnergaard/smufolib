@@ -4,6 +4,7 @@ These functions focus on conversion different string and number formats
 related to measurements, Unicode codepoints and letter case.
 
 """
+
 from __future__ import annotations
 import re
 
@@ -11,10 +12,12 @@ from smufolib import error, stdUtils
 
 
 # pylint: disable=C0103
-def convertMeasurement(measurement: int | float | str,
-                       targetUnit: str,
-                       unitsPerEm: int | float,
-                       rounded: bool = False) -> int | float | None:
+def convertMeasurement(
+    measurement: int | float | str,
+    targetUnit: str,
+    unitsPerEm: int | float,
+    rounded: bool = False,
+) -> int | float | None:
     """Convert between units of measurement based on UPM size.
 
     :param measurement: The value to convert.
@@ -35,12 +38,12 @@ def convertMeasurement(measurement: int | float | str,
         0.795
 
     """
-    error.validateType(measurement, (int, float, str), 'measurement')
-    error.suggestValue(targetUnit, ('spaces', 'units'), 'targetUnit')
+    error.validateType(measurement, (int, float, str), "measurement")
+    error.suggestValue(targetUnit, ("spaces", "units"), "targetUnit")
 
     space = unitsPerEm / 4
     measurement = float(measurement)
-    if targetUnit == 'spaces':
+    if targetUnit == "spaces":
         measurement /= space
         return round(measurement, 3)
 
@@ -70,13 +73,11 @@ def toDecimal(unicodeString: str) -> int:
         2560
 
     """
-    error.validateType(unicodeString, str, 'unicodeString')
+    error.validateType(unicodeString, str, "unicodeString")
     unicodeHex = _findUnicodeHex(unicodeString)
     if not unicodeHex:
         raise ValueError(
-            error.generateErrorMessage(
-                'invalidFormat', objectName='unicodeString'
-            )
+            error.generateErrorMessage("invalidFormat", objectName="unicodeString")
         )
 
     decimal = int(toNumber(unicodeHex))  # Casting to int to please mypy.
@@ -84,9 +85,7 @@ def toDecimal(unicodeString: str) -> int:
         return decimal
 
     raise ValueError(
-        error.generateErrorMessage(
-            'unicodeOutOfRange', objectName='unicodeString'
-        )
+        error.generateErrorMessage("unicodeOutOfRange", objectName="unicodeString")
     )
 
 
@@ -104,12 +103,12 @@ def toUniHex(codepoint: int) -> str:
         'U+0A00'
 
     """
-    error.validateType(codepoint, int, 'codepoint')
+    error.validateType(codepoint, int, "codepoint")
 
     if _isInUnicodeRange(codepoint):
-        return f'U+{str(hex(codepoint).upper()[2:]).zfill(4)}'
+        return f"U+{str(hex(codepoint).upper()[2:]).zfill(4)}"
     raise ValueError(
-        error.generateErrorMessage('unicodeOutOfRange', objectName='codepoint')
+        error.generateErrorMessage("unicodeOutOfRange", objectName="codepoint")
     )
 
 
@@ -135,21 +134,21 @@ def toUniName(value: str | int, short: bool = False) -> str:
         'uniE000'
 
     """
-    prefix = 'u' if short else 'uni'
+    prefix = "u" if short else "uni"
 
-    error.validateType(value, (str, int), 'value')
+    error.validateType(value, (str, int), "value")
     if isinstance(value, str):
         unicodeHex = _findUnicodeHex(value)
         if unicodeHex is None:
             raise ValueError(
-                error.generateErrorMessage('invalidFormat', objectName='value')
+                error.generateErrorMessage("invalidFormat", objectName="value")
             )
     elif isinstance(value, int):
-        unicodeHex = format(value, 'X').zfill(4)
+        unicodeHex = format(value, "X").zfill(4)
 
     if not _isInUnicodeRange(int(unicodeHex, 16)):
         raise ValueError(
-            error.generateErrorMessage('unicodeOutOfRange', objectName='value')
+            error.generateErrorMessage("unicodeOutOfRange", objectName="value")
         )
 
     return prefix + unicodeHex.upper()
@@ -166,7 +165,7 @@ def toKebab(camelCaseString: str) -> str:
         'camel-case'
 
     """
-    return re.sub(r'(?<!^)(?=[A-Z]{1})', '-', camelCaseString).lower()
+    return re.sub(r"(?<!^)(?=[A-Z]{1})", "-", camelCaseString).lower()
 
 
 def toNumber(numericString: str) -> int | float:
@@ -185,7 +184,7 @@ def toNumber(numericString: str) -> int | float:
         57344
 
     """
-    error.validateType(numericString, str, 'numericString')
+    error.validateType(numericString, str, "numericString")
     try:
         if stdUtils.isFloat(numericString):
             return float(numericString)
@@ -194,9 +193,7 @@ def toNumber(numericString: str) -> int | float:
         return int(numericString, 16)
     except ValueError as exc:
         raise ValueError(
-            error.generateErrorMessage(
-                'numericValue', objectName='numericString'
-            )
+            error.generateErrorMessage("numericValue", objectName="numericString")
         ) from exc
 
 
@@ -225,8 +222,8 @@ def toIntIfWhole(number: int | float) -> int | float:
 def _findUnicodeHex(unicodeString: str) -> str | None:
     # Find the ending hex in various unicode value configurations.
 
-    error.validateType(unicodeString, str, 'unicodeString')
-    pattern = r'((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}'
+    error.validateType(unicodeString, str, "unicodeString")
+    pattern = r"((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}"
     result = re.search(pattern, unicodeString, flags=re.IGNORECASE)
     if not result:
         return None

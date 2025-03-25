@@ -11,7 +11,6 @@ from smufolib.error import (
 
 
 class TestError(unittest.TestCase):
-
     def test_generateErrorMessage(self):
         message = generateErrorMessage("alphanumericValue", objectName="unicode")
         expected_message = "The value for 'unicode' must be alphanumeric."
