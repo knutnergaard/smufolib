@@ -177,7 +177,7 @@ class TestSmufl(unittest.TestCase):
         self.smufl.font = self.font
         self.font.lib["com.smufolib.sizeRange"] = (10, 36)
         self.smufl.sizeRange = None
-        self.assertEqual(self.smufl.sizeRange, ())
+        self.assertEqual(self.smufl.sizeRange, None)
         self.assertNotIn("com.smufolib.sizeRange", self.font.lib)
 
     # --------------

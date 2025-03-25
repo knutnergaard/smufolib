@@ -223,7 +223,7 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.get("com.smufolib.sizeRange", ())
+        return self.font.lib.get("com.smufolib.sizeRange", None)
 
     @sizeRange.setter
     def sizeRange(self, value: tuple[int, int] | None) -> None:

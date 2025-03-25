@@ -148,7 +148,7 @@ def normalizeDesignSize(value: int | None) -> int | None:
     return value
 
 
-def normalizeSizeRange(value: tuple[int, int] | None) -> tuple[int, int]:
+def normalizeSizeRange(value: tuple[int, int] | None) -> tuple[int, int] | None:
     """Normalize design size.
 
     :param value: The value to normalize.
@@ -162,7 +162,7 @@ def normalizeSizeRange(value: tuple[int, int] | None) -> tuple[int, int]:
 
     """
     if value is None:
-        return ()
+        return None
 
     objectName = "Smufl.sizeRange"
 
