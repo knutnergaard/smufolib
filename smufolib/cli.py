@@ -7,7 +7,7 @@ from argparse import (
     RawDescriptionHelpFormatter,
     RawTextHelpFormatter,
     ArgumentDefaultsHelpFormatter,
-    MetavarTypeHelpFormatter
+    MetavarTypeHelpFormatter,
 )
 import json
 
@@ -18,6 +18,7 @@ from smufolib.request import Request
 CONFIG = config.load()
 
 # pylint: disable=C0103
+# fmt: off
 
 #: Available arguments and their settings.
 CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
@@ -95,13 +96,16 @@ CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
     }
 }
 
+# fmt: on
 
-def commonParser(*args: str,
-                 addHelp: bool = True,
-                 description: str | None = None,
-                 customHelpers: dict[str, str] | None = None,
-                 **kwargs: Any
-                 ) -> ArgumentParser:
+
+def commonParser(
+    *args: str,
+    addHelp: bool = True,
+    description: str | None = None,
+    customHelpers: dict[str, str] | None = None,
+    **kwargs: Any,
+) -> ArgumentParser:
     r"""Provide generic command-line arguments and options.
 
     See the :ref:`Available Options` for details.
@@ -115,7 +119,6 @@ def commonParser(*args: str,
     :param customHelpers: Arguments mapped to custom help strings to
         override the default. Defaults to :obj:`None`
     :param \**kwargs: Options and their default values to assign.
-    :raises TypeError: Duplicate arguments in \*args and \**kwargs.
 
     Examples::
 
@@ -156,68 +159,42 @@ def commonParser(*args: str,
     """
 
     parser = ArgumentParser(add_help=addHelp, description=description)
-    seen = set()
 
-    def checkSeen(flag: str) -> None:
-        # Check if a flag has been seen before to avoid duplicates.
-        if flag in seen:
-            duplicateFlags = [
-                key for key, value in CONFIG['cli.shortFlags'].items()
-                if value == flag
-            ]
-
-            if len(duplicateFlags) >= 2:
-                raise ValueError(
-                    error.generateErrorMessage(
-                        'duplicateFlags',
-                        argument1=duplicateFlags[0],
-                        argument2=duplicateFlags[1],
-                        flag=flag
-                    )
-                )
-
-        if flag.startswith('-'):
-            seen.add(flag)
-
-    def addArgument(arg: str,
-                    flags: tuple[str, ...],
-                    customHelpers: dict[str, str] | None) -> None:
+    def addArgument(
+        arg: str, flags: tuple[str, ...], customHelpers: dict[str, str] | None
+    ) -> None:
         # Add argument to parser.
-        checkSeen(flags[0])
         if customHelpers and arg in customHelpers:
-            CLI_ARGUMENTS[arg]['help'] = customHelpers[arg]
+            CLI_ARGUMENTS[arg]["help"] = customHelpers[arg]
         parser.add_argument(*flags, **CLI_ARGUMENTS[arg])
 
     def generateFlags(argument: str) -> tuple[str, str]:
         # Generates tuple of option flags.
-        shortFlags = CONFIG['cli.shortFlags']
-        longFlag = f'--{converters.toKebab(argument)}'
+        shortFlags = CONFIG["cli.shortFlags"]
+        longFlag = f"--{converters.toKebab(argument)}"
         return (shortFlags[argument], longFlag)
 
     for arg in args:
         flags: tuple[str, ...] = generateFlags(arg)
-        if not CLI_ARGUMENTS[arg].get('action') == 'store_true':
+        if not CLI_ARGUMENTS[arg].get("action") == "store_true":
             flags = (arg,)
-            CLI_ARGUMENTS[arg]['metavar'] = converters.toKebab(arg)
+            CLI_ARGUMENTS[arg]["metavar"] = converters.toKebab(arg)
         addArgument(arg, flags, customHelpers)
 
     for key, value in kwargs.items():
         if key in args:
-            raise ValueError(
-                error.generateErrorMessage('argumentConflict', key=key)
-            )
+            raise ValueError(error.generateErrorMessage("argumentConflict", key=key))
 
         flags = generateFlags(key)
-        CLI_ARGUMENTS[key]['dest'] = key
+        CLI_ARGUMENTS[key]["dest"] = key
         if value is not None:
-            CLI_ARGUMENTS[key]['default'] = value
+            CLI_ARGUMENTS[key]["default"] = value
         addArgument(key, flags, customHelpers)
 
     return parser
 
 
-def createHelpFormatter(formatters: str | tuple[str, ...]
-                        ) -> type[HelpFormatter]:
+def createHelpFormatter(formatters: str | tuple[str, ...]) -> type[HelpFormatter]:
     """Create child class of multiple help formatters.
 
     The returned :class:`HelpFormatter` class can be passed to the
@@ -234,19 +211,19 @@ def createHelpFormatter(formatters: str | tuple[str, ...]
         :class:`~argparse.MetavarTypeHelpFormatter`, or a :class:`tuple`
         of class names.
     :raises TypeError: If `formatters` is not an accepted type.
-    :raises KeyError: If any `formatters` item is not recognised.
+    :raises ValueError: If any `formatters` item is not recognised.
 
     """
 
     baseFormatters = {
-        'HelpFormatter': HelpFormatter,
-        'RawDescriptionHelpFormatter': RawDescriptionHelpFormatter,
-        'RawTextHelpFormatter': RawTextHelpFormatter,
-        'ArgumentDefaultsHelpFormatter': ArgumentDefaultsHelpFormatter,
-        'MetavarTypeHelpFormatter': MetavarTypeHelpFormatter
+        "HelpFormatter": HelpFormatter,
+        "RawDescriptionHelpFormatter": RawDescriptionHelpFormatter,
+        "RawTextHelpFormatter": RawTextHelpFormatter,
+        "ArgumentDefaultsHelpFormatter": ArgumentDefaultsHelpFormatter,
+        "MetavarTypeHelpFormatter": MetavarTypeHelpFormatter,
     }
 
-    error.validateType(formatters, (str, tuple), 'formatters')
+    error.validateType(formatters, (str, tuple), "formatters")
     if isinstance(formatters, str):
         formatters = (formatters,)
 
@@ -256,8 +233,11 @@ def createHelpFormatter(formatters: str | tuple[str, ...]
         raise ValueError(
             error.suggestValue(
                 # Casting exc to str to please mypy.
-                str(exc), list(baseFormatters), 'formatters', items=True
+                str(exc),
+                list(baseFormatters),
+                "formatters",
+                items=True,
             )
         ) from exc
 
-    return type('HelpFormatter', employed, {})
+    return type("HelpFormatter", employed, {})
