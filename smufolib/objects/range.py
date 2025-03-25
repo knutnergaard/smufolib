@@ -3,7 +3,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from smufolib.request import Request
-from smufolib import config
+from smufolib import config, normalizers
 
 if TYPE_CHECKING:
     from smufolib.objects.smufl import Smufl
@@ -12,8 +12,9 @@ if TYPE_CHECKING:
     from smufolib.objects.layer import Layer
 
 CONFIG = config.load()
-METADATA = Request(CONFIG['metadata.paths']['ranges'],
-                   CONFIG['metadata.fallbacks']['ranges']).json()
+METADATA = Request(
+    CONFIG["metadata.paths"]["ranges"], CONFIG["metadata.fallbacks"]["ranges"]
+).json()
 
 
 class Range:
@@ -36,14 +37,17 @@ class Range:
         >>> range = Range()
 
     """
+
     # pylint: disable=invalid-name
 
     def __init__(self, smufl: Smufl | None = None) -> None:
         self._smufl = smufl
 
     def __repr__(self):
-        return (f"<{self.__class__.__name__} '{self.name}' "
-                f"('{self.start}–{self.end}') at {id(self)}>")
+        return (
+            f"<{self.__class__.__name__} '{self.name}' "
+            f"('{self.start}–{self.end}') at {id(self)}>"
+        )
 
     # -------
     # Parents
@@ -53,6 +57,11 @@ class Range:
     def smufl(self) -> Smufl | None:
         """Parent :class:`~smufolib.objects.smufl.Smufl` object."""
         return self._smufl
+
+    @smufl.setter
+    def smufl(self, value: Smufl | None) -> None:
+        if value is not None:
+            self._smufl = normalizers.normalizeSmufl(value)
 
     @property
     def glyph(self) -> Glyph | None:
@@ -89,7 +98,7 @@ class Range:
             timeSignatures
 
         """
-        result = self._getAttribute('range_name')
+        result = self._getAttribute("range_name")
         if isinstance(result, str):
             return result
         return None
@@ -104,7 +113,7 @@ class Range:
             Time signatures
 
         """
-        result = self._getAttribute('description')
+        result = self._getAttribute("description")
         if isinstance(result, str):
             return result
         return None
@@ -121,13 +130,13 @@ class Range:
             <Glyph 'uniE09F' ('public.default') at 4632755792>)
 
         """
-        result = self._getAttribute('glyphs')
+        result = self._getAttribute("glyphs")
         if isinstance(result, tuple):
             return result
         return None
 
     @property
-    def start(self) -> int | None:
+    def start(self) -> str | None:
         """Start unicode of affiliated SMuFL range.
 
         Example::
@@ -136,13 +145,13 @@ class Range:
             U+E080
 
         """
-        result = self._getAttribute('range_start')
+        result = self._getAttribute("range_start")
         if isinstance(result, str):
             return result
         return None
 
     @property
-    def end(self) -> int | None:
+    def end(self) -> str | None:
         """End unicode of affiliated SMuFL range.
 
         Example::
@@ -151,7 +160,7 @@ class Range:
             U+E09F
 
         """
-        result = self._getAttribute('range_end')
+        result = self._getAttribute("range_end")
         if isinstance(result, str):
             return result
         return None
@@ -161,14 +170,16 @@ class Range:
         if self.glyph is None or METADATA is None:
             return None
         for range_, attributes in METADATA.items():
-            if (self._smufl is None
-                    or self._smufl.name not in attributes['glyphs']):
+            if self._smufl is None or self._smufl.name not in attributes["glyphs"]:
                 continue
-            if name == 'range_name':
+            if name == "range_name":
                 return range_
-            if name == 'glyphs':
-                glyphs = tuple(g for n in attributes[name]
-                               if (g := self._smufl.findGlyph(n)) is not None)
+            if name == "glyphs":
+                glyphs = tuple(
+                    g
+                    for n in attributes[name]
+                    if (g := self._smufl.findGlyph(n)) is not None
+                )
                 return glyphs
             return attributes.get(name)
         return None
