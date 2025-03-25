@@ -48,4 +48,4 @@ jobs:
           pip install -r requirements-dev.txt
 
       - name: Run mypy
-        run: mypy Lib/fontParts
+        run: mypy smufolib
