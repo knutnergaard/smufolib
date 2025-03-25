@@ -26,12 +26,17 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 from pathlib import Path
 
+# ruff: noqa: F401
+# pylint: disable=W0611
 from fontParts.base.normalizers import normalizeInternalObjectType
-from fontParts.base.normalizers import normalizeBoolean  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeColor  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeVisualRounding  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeGlyph  # pylint: disable=W0611
+from fontParts.base.normalizers import normalizeBoolean
+from fontParts.base.normalizers import normalizeColor
+from fontParts.base.normalizers import normalizeVisualRounding
+from fontParts.base.normalizers import normalizeGlyph
 from smufolib import error
+
+# ruff: noqa: F401
+# pylint: enable=W0611
 
 if TYPE_CHECKING:
     from smufolib.objects.font import Font
