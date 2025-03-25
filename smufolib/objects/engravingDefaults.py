@@ -17,36 +17,36 @@ EngravingDefaultsDict = dict[str, EngravingDefaultsValue]
 
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
-    'arrowShaftThickness',
-    'barlineSeparation',
-    'beamSpacing',
-    'beamThickness',
-    'bracketThickness',
-    'dashedBarlineDashLength',
-    'dashedBarlineGapLength',
-    'dashedBarlineThickness',
-    'hairpinThickness',
-    'hBarThickness',
-    'legerLineExtension',
-    'legerLineThickness',
-    'lyricLineThickness',
-    'octaveLineThickness',
-    'pedalLineThickness',
-    'repeatBarlineDotSeparation',
-    'repeatEndingLineThickness',
-    'slurEndpointThickness',
-    'slurMidpointThickness',
-    'staffLineThickness',
-    'stemThickness',
-    'subBracketThickness',
-    'textFontFamily',
-    'textEnclosureThickness',
-    'thickBarlineThickness',
-    'thinBarlineThickness',
-    'thinThickBarlineSeparation',
-    'tieEndpointThickness',
-    'tieMidpointThickness',
-    'tupletBracketThickness'
+    "arrowShaftThickness",
+    "barlineSeparation",
+    "beamSpacing",
+    "beamThickness",
+    "bracketThickness",
+    "dashedBarlineDashLength",
+    "dashedBarlineGapLength",
+    "dashedBarlineThickness",
+    "hairpinThickness",
+    "hBarThickness",
+    "legerLineExtension",
+    "legerLineThickness",
+    "lyricLineThickness",
+    "octaveLineThickness",
+    "pedalLineThickness",
+    "repeatBarlineDotSeparation",
+    "repeatEndingLineThickness",
+    "slurEndpointThickness",
+    "slurMidpointThickness",
+    "staffLineThickness",
+    "stemThickness",
+    "subBracketThickness",
+    "textFontFamily",
+    "textEnclosureThickness",
+    "thickBarlineThickness",
+    "thinBarlineThickness",
+    "thinThickBarlineSeparation",
+    "tieEndpointThickness",
+    "tieMidpointThickness",
+    "tupletBracketThickness",
 }
 
 
@@ -88,6 +88,10 @@ class EngravingDefaults(BaseObject):
             contents += self.font._reprContents()
         return contents
 
+    def naked(self):
+        # BaseObject override for __eq__ and __hash__
+        return self
+
     # ------------------
     # Dictionary methods
     # ------------------
@@ -104,7 +108,8 @@ class EngravingDefaults(BaseObject):
             {'arrowShaftThickness': None, 'barlineSeparation': None, ...}
 
         """
-        self._engravingDefaults = None
+        if self.font is not None:
+            self.font.lib.naked().pop("com.smufolib.engravingDefaults")
 
     def items(self) -> EngravingDefaultsDict:
         """Return dict of all available settings and their values.
@@ -130,10 +135,11 @@ class EngravingDefaults(BaseObject):
         """
         return sorted(ENGRAVING_DEFAULTS_KEYS)
 
-    def update(self,
-               other: EngravingDefaults
-               | EngravingDefaultsDict | None = None,
-               **kwargs: EngravingDefaultsValue) -> None:
+    def update(
+        self,
+        other: EngravingDefaults | EngravingDefaultsDict | None = None,
+        **kwargs: EngravingDefaultsValue,
+    ) -> None:
         r"""Update settings attributes with other object or values.
 
         :param other: Other :class:`EngravingDefaults` or :class:`dict`
@@ -174,26 +180,30 @@ class EngravingDefaults(BaseObject):
         if not other or self.font is None:
             return
 
-        for key, value in other.items():  # type: ignore
+        self.font.lib["com.smufolib.engravingDefaults"] = {}
+        for key, value in other.items():  # type: ignore[misc]
             if key not in self.keys():
+                self.font.lib.pop("com.smufolib.engravingDefaults")
                 raise AttributeError(
                     error.generateErrorMessage(
-                        'attributeError',
-                        objectName=type(self).__name__,
-                        attribute=key
+                        "attributeError", objectName=type(self).__name__, attribute=key
                     )
                 )
 
             normalizedValue = normalizers.normalizeEngravingDefaultsAttr(key, value)
-            if isinstance(normalizedValue, (int, float)) and self.spaces:
-                setattr(self, key, self.font.smufl.toUnits(normalizedValue))
-            else:
-                setattr(self, key, normalizedValue)
+            if (
+                self.smufl is not None
+                and isinstance(normalizedValue, (int, float))
+                and self.spaces
+            ):
+                normalizedValue = self.smufl.toUnits(normalizedValue)
+            self.font.lib["com.smufolib.engravingDefaults"][key] = normalizedValue
 
-    def _normalizeOthers(self,
-                         other: EngravingDefaults | EngravingDefaultsDict | None,
-                         kwargs: EngravingDefaultsDict
-                         ) -> EngravingDefaultsDict | None:
+    def _normalizeOthers(
+        self,
+        other: EngravingDefaults | EngravingDefaultsDict | None,
+        kwargs: EngravingDefaultsDict,
+    ) -> EngravingDefaultsDict | None:
         # Normalize update(other)
         if isinstance(other, EngravingDefaults):
             other = other.items()
@@ -205,7 +215,7 @@ class EngravingDefaults(BaseObject):
         error.validateType(
             other,
             (EngravingDefaults, dict, type(None)),
-            f'{self.__class__.__name__}.update()'
+            f"{self.__class__.__name__}.update()",
         )
 
         other |= kwargs
@@ -239,9 +249,11 @@ class EngravingDefaults(BaseObject):
     @smufl.setter
     def smufl(self, value: Smufl) -> None:
         if self._smufl is not None and self._smufl != value:
-            raise AssertionError("Smufl for EngravingDefaults object is "
-                                 "already set and is not same as value.")
-        self.font = normalizers.normalizeSmufl(value)
+            raise AssertionError(
+                "Smufl for EngravingDefaults object is "
+                "already set and is not same as value."
+            )
+        self._smufl = normalizers.normalizeSmufl(value)
 
     @property
     def font(self) -> Font | None:
@@ -252,11 +264,15 @@ class EngravingDefaults(BaseObject):
 
     @font.setter
     def font(self, value: Font) -> None:
-        if (self.smufl is not None
+        if (
+            self.smufl is not None
             and self.smufl.font is not None
-                and self.smufl.font != value):
-            raise AssertionError("Font for EngravingDefaults object is "
-                                 "already set and is not same as value.")
+            and self.smufl.font != value
+        ):
+            raise AssertionError(
+                "Font for EngravingDefaults object is "
+                "already set and is not same as value."
+            )
         self.font = normalizers.normalizeFont(value)
 
     @property
@@ -280,323 +296,318 @@ class EngravingDefaults(BaseObject):
     @property
     def arrowShaftThickness(self) -> int | float | None:
         """Thickness of the line used for the shaft of an arrow."""
-        return self._getValue('arrowShaftThickness')  # type: ignore
+        return self._getValue("arrowShaftThickness")  # type: ignore
 
     @arrowShaftThickness.setter
     def arrowShaftThickness(self, value: int | float | None) -> None:
-        self._setValue('arrowShaftThickness', value)
+        self._setValue("arrowShaftThickness", value)
 
     @property
     def barlineSeparation(self) -> int | float | None:
         """Distance between multiple thin barlines."""
-        return self._getValue('barlineSeparation')  # type: ignore
+        return self._getValue("barlineSeparation")  # type: ignore
 
     @barlineSeparation.setter
     def barlineSeparation(self, value: int | float | None) -> None:
-        self._setValue('barlineSeparation', value)
+        self._setValue("barlineSeparation", value)
 
     @property
     def beamSpacing(self) -> int | float | None:
         """Distance between beams."""
-        return self._getValue('beamSpacing')  # type: ignore
+        return self._getValue("beamSpacing")  # type: ignore
 
     @beamSpacing.setter
     def beamSpacing(self, value: int | float | None) -> None:
-        self._setValue('beamSpacing', value)
+        self._setValue("beamSpacing", value)
 
     @property
     def beamThickness(self) -> int | float | None:
         """Thickness of a beam."""
-        return self._getValue('beamThickness')  # type: ignore
+        return self._getValue("beamThickness")  # type: ignore
 
     @beamThickness.setter
     def beamThickness(self, value: int | float | None) -> None:
-        self._setValue('beamThickness', value)
+        self._setValue("beamThickness", value)
 
     @property
     def bracketThickness(self) -> int | float | None:
         """Thickness of the vertical line of a grouping bracket."""
-        return self._getValue('bracketThickness')  # type: ignore
+        return self._getValue("bracketThickness")  # type: ignore
 
     @bracketThickness.setter
     def bracketThickness(self, value: int | float | None) -> None:
-        self._setValue('bracketThickness', value)
+        self._setValue("bracketThickness", value)
 
     @property
     def dashedBarlineDashLength(self) -> int | float | None:
         """Length of the dashes to be used in a dashed barline."""
-        return self._getValue('dashedBarlineDashLength')  # type: ignore
+        return self._getValue("dashedBarlineDashLength")  # type: ignore
 
     @dashedBarlineDashLength.setter
     def dashedBarlineDashLength(self, value: int | float | None) -> None:
-        self._setValue('dashedBarlineDashLength', value)
+        self._setValue("dashedBarlineDashLength", value)
 
     @property
     def dashedBarlineGapLength(self) -> int | float | None:
         """Length of the gap between dashes in a dashed barline."""
-        return self._getValue('dashedBarlineGapLength')  # type: ignore
+        return self._getValue("dashedBarlineGapLength")  # type: ignore
 
     @dashedBarlineGapLength.setter
     def dashedBarlineGapLength(self, value: int | float | None) -> None:
-        self._setValue('dashedBarlineGapLength', value)
+        self._setValue("dashedBarlineGapLength", value)
 
     @property
     def dashedBarlineThickness(self) -> int | float | None:
         """Thickness of a dashed barline."""
-        return self._getValue('dashedBarlineThickness')  # type: ignore
+        return self._getValue("dashedBarlineThickness")  # type: ignore
 
     @dashedBarlineThickness.setter
     def dashedBarlineThickness(self, value: int | float | None) -> None:
-        self._setValue('dashedBarlineThickness', value)
+        self._setValue("dashedBarlineThickness", value)
 
     @property
     def hairpinThickness(self) -> int | float | None:
         """Thickness of a crescendo/diminuendo hairpin."""
-        return self._getValue('hairpinThickness')  # type: ignore
+        return self._getValue("hairpinThickness")  # type: ignore
 
     @hairpinThickness.setter
     def hairpinThickness(self, value: int | float | None) -> None:
-        self._setValue('hairpinThickness', value)
+        self._setValue("hairpinThickness", value)
 
     @property
     def hBarThickness(self) -> int | float | None:
         """Thickness of a crescendo/diminuendo hairpin."""
-        return self._getValue('hBarThickness')  # type: ignore
+        return self._getValue("hBarThickness")  # type: ignore
 
     @hBarThickness.setter
     def hBarThickness(self, value: int | float | None) -> None:
-        self._setValue('hBarThickness', value)
+        self._setValue("hBarThickness", value)
 
     @property
     def legerLineExtension(self) -> int | float | None:
         """Amount of leger line extension from notehead."""
-        return self._getValue('legerLineExtension')  # type: ignore
+        return self._getValue("legerLineExtension")  # type: ignore
 
     @legerLineExtension.setter
     def legerLineExtension(self, value: int | float | None) -> None:
-        self._setValue('legerLineExtension', value)
+        self._setValue("legerLineExtension", value)
 
     @property
     def legerLineThickness(self) -> int | float | None:
         """Thickness of a leger line."""
-        return self._getValue('legerLineThickness')  # type: ignore
+        return self._getValue("legerLineThickness")  # type: ignore
 
     @legerLineThickness.setter
     def legerLineThickness(self, value: int | float | None) -> None:
-        self._setValue('legerLineThickness', value)
+        self._setValue("legerLineThickness", value)
 
     @property
     def lyricLineThickness(self) -> int | float | None:
         """Thickness of the lyric extension line."""
-        return self._getValue('lyricLineThickness')  # type: ignore
+        return self._getValue("lyricLineThickness")  # type: ignore
 
     @lyricLineThickness.setter
     def lyricLineThickness(self, value: int | float | None) -> None:
-        self._setValue('lyricLineThickness', value)
+        self._setValue("lyricLineThickness", value)
 
     @property
     def octaveLineThickness(self) -> int | float | None:
         """Thickness of the dashed line used for an octave line."""
-        return self._getValue('octaveLineThickness')  # type: ignore
+        return self._getValue("octaveLineThickness")  # type: ignore
 
     @octaveLineThickness.setter
     def octaveLineThickness(self, value: int | float | None) -> None:
-        self._setValue('octaveLineThickness', value)
+        self._setValue("octaveLineThickness", value)
 
     @property
     def pedalLineThickness(self) -> int | float | None:
         """Thickness of the line used for piano pedaling."""
-        return self._getValue('pedalLineThickness')  # type: ignore
+        return self._getValue("pedalLineThickness")  # type: ignore
 
     @pedalLineThickness.setter
     def pedalLineThickness(self, value: int | float | None) -> None:
-        self._setValue('pedalLineThickness', value)
+        self._setValue("pedalLineThickness", value)
 
     @property
     def repeatBarlineDotSeparation(self) -> int | float | None:
         """Distance between dots and inner line of a repeat barline."""
-        return self._getValue('repeatBarlineDotSeparation')  # type: ignore
+        return self._getValue("repeatBarlineDotSeparation")  # type: ignore
 
     @repeatBarlineDotSeparation.setter
     def repeatBarlineDotSeparation(self, value: int | float | None) -> None:
-        self._setValue('repeatBarlineDotSeparation', value)
+        self._setValue("repeatBarlineDotSeparation", value)
 
     @property
     def repeatEndingLineThickness(self) -> int | float | None:
         """Thickness of repeat ending brackets."""
-        return self._getValue('repeatEndingLineThickness')  # type: ignore
+        return self._getValue("repeatEndingLineThickness")  # type: ignore
 
     @repeatEndingLineThickness.setter
     def repeatEndingLineThickness(self, value: int | float | None) -> None:
-        self._setValue('repeatEndingLineThickness', value)
+        self._setValue("repeatEndingLineThickness", value)
 
     @property
     def slurEndpointThickness(self) -> int | float | None:
         """Thickness of the end of a slur."""
-        return self._getValue('slurEndpointThickness')  # type: ignore
+        return self._getValue("slurEndpointThickness")  # type: ignore
 
     @slurEndpointThickness.setter
     def slurEndpointThickness(self, value: int | float | None) -> None:
-        self._setValue('slurEndpointThickness', value)
+        self._setValue("slurEndpointThickness", value)
 
     @property
     def slurMidpointThickness(self) -> int | float | None:
         """Thickness of the mid-point of a slur."""
-        return self._getValue('slurMidpointThickness')  # type: ignore
+        return self._getValue("slurMidpointThickness")  # type: ignore
 
     @slurMidpointThickness.setter
     def slurMidpointThickness(self, value: int | float | None) -> None:
-        self._setValue('slurMidpointThickness', value)
+        self._setValue("slurMidpointThickness", value)
 
     @property
     def staffLineThickness(self) -> int | float | None:
         """Thickness of each staff line."""
-        return self._getValue('staffLineThickness')  # type: ignore
+        return self._getValue("staffLineThickness")  # type: ignore
 
     @staffLineThickness.setter
     def staffLineThickness(self, value: int | float | None) -> None:
-        self._setValue('staffLineThickness', value)
+        self._setValue("staffLineThickness", value)
 
     @property
     def stemThickness(self) -> int | float | None:
         """Thickness of a stem."""
-        return self._getValue('stemThickness')  # type: ignore
+        return self._getValue("stemThickness")  # type: ignore
 
     @stemThickness.setter
     def stemThickness(self, value: int | float | None) -> None:
-        self._setValue('stemThickness', value)
+        self._setValue("stemThickness", value)
 
     @property
     def subBracketThickness(self) -> int | float | None:
         """Thickness of the vertical line of a grouping sub-bracket."""
-        return self._getValue('subBracketThickness')  # type: ignore
+        return self._getValue("subBracketThickness")  # type: ignore
 
     @subBracketThickness.setter
     def subBracketThickness(self, value: int | float | None) -> None:
-        self._setValue('subBracketThickness', value)
+        self._setValue("subBracketThickness", value)
 
     @property
     def textFontFamily(self) -> tuple[str, ...]:
         """tuple of text font pairings."""
-        return self._getValue('textFontFamily')  # type: ignore
+        return self._getValue("textFontFamily")  # type: ignore
 
     @textFontFamily.setter
     def textFontFamily(self, value: tuple[str, ...]) -> None:
-        self._setValue('textFontFamily', value)
+        self._setValue("textFontFamily", value)
 
     @property
     def textEnclosureThickness(self) -> int | float | None:
         """Thickness of box drawn around text instructions."""
-        return self._getValue('textEnclosureThickness')  # type: ignore
+        return self._getValue("textEnclosureThickness")  # type: ignore
 
     @textEnclosureThickness.setter
     def textEnclosureThickness(self, value: int | float | None) -> None:
-        self._setValue('textEnclosureThickness', value)
+        self._setValue("textEnclosureThickness", value)
 
     @property
     def thickBarlineThickness(self) -> int | float | None:
         """Thickness of a thick barline."""
-        return self._getValue('thickBarlineThickness')  # type: ignore
+        return self._getValue("thickBarlineThickness")  # type: ignore
 
     @thickBarlineThickness.setter
     def thickBarlineThickness(self, value: int | float | None) -> None:
-        self._setValue('thickBarlineThickness', value)
+        self._setValue("thickBarlineThickness", value)
 
     @property
     def thinBarlineThickness(self) -> int | float | None:
         """Thickness of a thin barline."""
-        return self._getValue('thinBarlineThickness')  # type: ignore
+        return self._getValue("thinBarlineThickness")  # type: ignore
 
     @thinBarlineThickness.setter
     def thinBarlineThickness(self, value: int | float | None) -> None:
-        self._setValue('thinBarlineThickness', value)
+        self._setValue("thinBarlineThickness", value)
 
     @property
     def thinThickBarlineSeparation(self) -> int | float | None:
         """Thickness of a thin barline."""
-        return self._getValue('thinThickBarlineSeparation')  # type: ignore
+        return self._getValue("thinThickBarlineSeparation")  # type: ignore
 
     @thinThickBarlineSeparation.setter
     def thinThickBarlineSeparation(self, value: int | float | None) -> None:
-        self._setValue('thinThickBarlineSeparation', value)
+        self._setValue("thinThickBarlineSeparation", value)
 
     @property
     def tieEndpointThickness(self) -> int | float | None:
         """Thickness of the end of a tie."""
-        return self._getValue('tieEndpointThickness')  # type: ignore
+        return self._getValue("tieEndpointThickness")  # type: ignore
 
     @tieEndpointThickness.setter
     def tieEndpointThickness(self, value: int | float | None) -> None:
-        self._setValue('tieEndpointThickness', value)
+        self._setValue("tieEndpointThickness", value)
 
     @property
     def tieMidpointThickness(self) -> int | float | None:
         """Thickness of the mid-point of a tie."""
-        return self._getValue('tieMidpointThickness')  # type: ignore
+        return self._getValue("tieMidpointThickness")  # type: ignore
 
     @tieMidpointThickness.setter
     def tieMidpointThickness(self, value: int | float | None) -> None:
-        self._setValue('tieMidpointThickness', value)
+        self._setValue("tieMidpointThickness", value)
 
     @property
     def tupletBracketThickness(self) -> int | float | None:
         """Thickness of tuplet brackets."""
-        return self._getValue('tupletBracketThickness')  # type: ignore
+        return self._getValue("tupletBracketThickness")  # type: ignore
 
     @tupletBracketThickness.setter
     def tupletBracketThickness(self, value: int | float | None) -> None:
-        self._setValue('tupletBracketThickness', value)
+        self._setValue("tupletBracketThickness", value)
 
     def _getValue(self, name: str) -> EngravingDefaultsValue:
         # Common settings property getter.
         if not self._engravingDefaults:
-            return () if name == 'textFontFamily' else None
+            return () if name == "textFontFamily" else None
 
         value = self._engravingDefaults.get(name, None)
-        if name == 'textFontFamily':
+        if name == "textFontFamily":
             value = self._engravingDefaults.get(name, ())
 
-        elif (self.spaces and isinstance(value, (int, float))
-              and self.font is not None):
+        elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             return self.font.smufl.toSpaces(value)
         return value
 
-    def _setValue(self,
-                  name: str,
-                  value: EngravingDefaultsValue) -> None:
+    def _setValue(self, name: str, value: EngravingDefaultsValue) -> None:
         # Common settings property setter.
         # Keeps dynamic dict of settings in font.lib().
         value = normalizers.normalizeEngravingDefaultsAttr(name, value)
 
-        if self._engravingDefaults is None:
-            self._engravingDefaults = {}
+        self._engravingDefaults = {}
 
+        if self.font is None:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "missingDependencyError", objectName=name, dependency="font"
+                )
+            )
         if not value:
             self._engravingDefaults.pop(name, None)
-            if not self._engravingDefaults:
-                self.clear()
 
-        elif (self.spaces and isinstance(value, (int, float))
-              and self.font is not None):
+        elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             self._engravingDefaults[name] = self.font.smufl.toUnits(value)
         else:
             self._engravingDefaults[name] = value
 
     @property
-    def _engravingDefaults(self) -> dict[
-            str, EngravingDefaultsValue] | None:
+    def _engravingDefaults(self) -> dict[str, EngravingDefaultsValue]:
         # Dynamic dict in font.lib.naked().
         if self.font is None:
-            return None
-        return self.font.lib.naked().get('com.smufolib.engravingDefaults')
+            return {}
+        return self.font.lib.naked().get("com.smufolib.engravingDefaults", {})
 
     @_engravingDefaults.setter
     def _engravingDefaults(self, value: EngravingDefaultsDict) -> None:
-        if self.font:
-            if value is None:
-                self.font.lib.naked().pop('com.smufolib.engravingDefaults', None)
-            else:
-                self.font.lib.naked()['com.smufolib.engravingDefaults'] = value
+        if self.font is not None:
+            self.font.lib.naked()["com.smufolib.engravingDefaults"] = value
 
     # -----------------------------
     # Normalization and Measurement
@@ -680,15 +691,15 @@ class EngravingDefaults(BaseObject):
             0.12
 
         """
-        if self._smufl is None:
+        if self.smufl is None:
             return False
-        return self._smufl.spaces
+        return self.smufl.spaces
 
     @spaces.setter
     def spaces(self, value: bool) -> None:
-        if self._smufl is None:
+        if self.smufl is None:
             return
-        self._smufl.spaces = value
+        self.smufl.spaces = value
 
     # ------------------------
     # Override from BaseObject
@@ -699,6 +710,7 @@ class EngravingDefaults(BaseObject):
         the base classes. So, it's here for convenience.
         """
         raise NotImplementedError(
-            error.generateErrorMessage('notImplementedError'),
-            objectName=self.__class__.__name__
+            error.generateErrorMessage(
+                "notImplementedError", objectName=self.__class__.__name__
+            )
         )
