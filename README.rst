@@ -1,3 +1,5 @@
+|PyPI| |versions| |docs| |license| 
+
 SMufoLib: Where SMuFL meets UFO
 ===============================
 
@@ -84,3 +86,19 @@ Alternatively, scripts can be imported as modules in Python:
 This imports and executes the script's program
 function `checkAnchors` from the script module of the same
 name.
+
+.. |PyPI| image:: https://img.shields.io/pypi/v/smufolib
+   :alt: PyPI - Version
+   :target: https://pypi.org/project/smufolib/
+
+.. |versions| image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fknutnergaard%2Fsmufolib%2Frefs%2Fheads%2Fmain%2Fpyproject.toml
+   :alt: Python Version from PEP 621 TOML
+   :target: https://www.python.org
+
+.. |docs| image:: https://img.shields.io/readthedocs/smufolib
+   :alt: Read the Docs
+   :target: https://smufolib.readthedocs.io/en/latest/
+
+.. |license| image:: https://img.shields.io/pypi/l/smufolib
+   :alt: PyPI - License
+   :target: https://opensource.org/license/mit
