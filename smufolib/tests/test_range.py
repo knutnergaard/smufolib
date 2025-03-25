@@ -26,16 +26,16 @@ class TestRange(unittest.TestCase):
         glyph.smufl.name = smufl_name
         return glyph
 
-    def test_smufl_property(self):
+    def test_smufl(self):
         self.assertEqual(self.range.smufl, self.smufl)
 
-    def test_glyph_property(self):
+    def test_glyph(self):
         self.assertEqual(self.range.glyph, self.glyph1)
 
-    def test_font_property(self):
+    def test_font(self):
         self.assertEqual(self.range.font, self.font)
 
-    def test_layer_property(self):
+    def test_layer(self):
         self.assertEqual(self.range.layer, self.layer)
 
     @patch(
@@ -49,19 +49,19 @@ class TestRange(unittest.TestCase):
             }
         },
     )
-    def test_name_property(self):
+    def test_name(self):
         self.assertEqual(self.range.name, "timeSignatures")
 
-    def test_description_property(self):
+    def test_description(self):
         self.assertEqual(self.range.description, "Time signatures")
 
-    def test_start_property(self):
+    def test_start(self):
         self.assertEqual(self.range.start, "U+E080")
 
-    def test_end_property(self):
+    def test_end(self):
         self.assertEqual(self.range.end, "U+E09F")
 
-    def test_glyphs_property(self):
+    def test_glyphs(self):
         self.assertEqual(self.range.glyphs, (self.glyph1, self.glyph2))
 
 

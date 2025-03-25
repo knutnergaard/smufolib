@@ -70,16 +70,16 @@ class TestRequest(unittest.TestCase):
         result = self.request.json()
         self.assertEqual(result, {"key": "value"})
 
-    def test_path_property(self):
+    def test_path(self):
         self.assertEqual(self.request.path, self.path)
 
-    def test_fallback_property(self):
+    def test_fallback(self):
         self.assertEqual(self.request.fallback, self.fallback)
 
-    def test_mode_property(self):
+    def test_mode(self):
         self.assertEqual(self.request.mode, "r")
 
-    def test_encoding_property(self):
+    def test_encoding(self):
         self.assertEqual(self.request.encoding, CONFIG["request"]["encoding"])
 
 

@@ -111,7 +111,7 @@ class TestSmufl(unittest.TestCase):
     # Parents
     # -------
 
-    def test_parent_glyph(self):
+    def test_glyph(self):
         self.smufl.glyph = self.glyph
         self.assertIsNotNone(self.smufl.glyph)
         self.assertIs(self.smufl.glyph, self.glyph)
@@ -121,12 +121,12 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.smufl.layer)
         self.assertIsNone(self.smufl.glyph)
 
-    def test_parent_font(self):
+    def test_font(self):
         self.smufl.font = self.font
         self.assertIsNotNone(self.smufl.font)
         self.assertIs(self.smufl.font, self.font)
 
-    def test_parent_no_font(self):
+    def test_no_font(self):
         self.smufl.glyph = self.glyph
         self.assertIsNone(self.smufl.font)
 
