@@ -15,45 +15,36 @@ if TYPE_CHECKING:
 
 #: Names of glyph anchors specified by the SMuFL standard.
 ANCHOR_NAMES: set[str] = {
-    'splitStemUpSE',
-    'splitStemUpSW',
-    'splitStemDownNE',
-    'splitStemDownNW',
-    'stemUpSE',
-    'stemDownNW',
-    'stemUpNW',
-    'stemDownSW',
-    'nominalWidth',
-    'numeralTop',
-    'numeralBottom',
-    'cutOutNE',
-    'cutOutSE',
-    'cutOutSW',
-    'cutOutNW',
-    'graceNoteSlashSW',
-    'graceNoteSlashNE',
-    'graceNoteSlashNW',
-    'graceNoteSlashSE',
-    'repeatOffset',
-    'noteheadOrigin',
-    'opticalCenter'
+    "splitStemUpSE",
+    "splitStemUpSW",
+    "splitStemDownNE",
+    "splitStemDownNW",
+    "stemUpSE",
+    "stemDownNW",
+    "stemUpNW",
+    "stemDownSW",
+    "nominalWidth",
+    "numeralTop",
+    "numeralBottom",
+    "cutOutNE",
+    "cutOutSE",
+    "cutOutSW",
+    "cutOutNW",
+    "graceNoteSlashSW",
+    "graceNoteSlashNE",
+    "graceNoteSlashNW",
+    "graceNoteSlashSE",
+    "repeatOffset",
+    "noteheadOrigin",
+    "opticalCenter",
 }
 
 
 #: Names of font-specific attributes of the :class:`Smufl` class.
-FONT_ATTRIBUTES: set[str] = {
-    'designSize',
-    'engravingDefaults',
-    'sizeRange',
-    'spaces'
-}
+FONT_ATTRIBUTES: set[str] = {"designSize", "engravingDefaults", "sizeRange", "spaces"}
 
 #: Names of glyph-specific attributes of the :class:`Smufl` class.
-GLYPH_ATTRIBUTES: set[str] = {
-    'classes',
-    'description',
-    'name'
-}
+GLYPH_ATTRIBUTES: set[str] = {"classes", "description", "name"}
 
 
 class Smufl(BaseObject):
@@ -90,9 +81,7 @@ class Smufl(BaseObject):
 
     """
 
-    def _init(self,
-              font: Font | None = None,
-              glyph: Glyph | None = None) -> None:
+    def _init(self, font: Font | None = None, glyph: Glyph | None = None) -> None:
 
         self._font = font
         self._glyph = glyph
@@ -107,6 +96,10 @@ class Smufl(BaseObject):
             contents.append("in font")
             contents += self.font._reprContents()
         return contents
+
+    def naked(self):
+        # BaseObject override for __eq__ and __hash__
+        return self
 
     # -------
     # Parents
@@ -131,8 +124,9 @@ class Smufl(BaseObject):
     @font.setter
     def font(self, value: Font) -> None:
         if self._font is not None and self._font != value:
-            raise AssertionError("Font for Smufl object is already "
-                                 "set and is not same as value.")
+            raise AssertionError(
+                "Font for Smufl object is already " "set and is not same as value."
+            )
         if self._glyph is not None:
             raise AssertionError("Glyph for Smufl object is already set.")
         self._font = normalizers.normalizeFont(value)
@@ -156,8 +150,9 @@ class Smufl(BaseObject):
         if self._font is not None:
             raise AssertionError("Font for Smufl object is already set.")
         if self._glyph is not None and self._glyph != value:
-            raise AssertionError("Glyph for Smufl object is already "
-                                 "set and is not same as value.")
+            raise AssertionError(
+                "Glyph for Smufl object is already " "set and is not same as value."
+            )
         self._glyph = normalizers.normalizeGlyph(value)
 
     @property
@@ -192,12 +187,12 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.get('_designSize', None)
+        return self.font.lib.get("com.smufolib.designSize", None)
 
     @designSize.setter
     def designSize(self, value: int | None) -> None:
         self._updateFontLib(
-            '_designSize', normalizers.normalizeDesignSize(value)
+            "com.smufolib.designSize", normalizers.normalizeDesignSize(value)
         )
 
     @property
@@ -214,9 +209,7 @@ class Smufl(BaseObject):
 
     @engravingDefaults.setter
     def engravingDefaults(self, value: EngravingDefaults) -> None:
-        self.engravingDefaults.update(
-            normalizers.normalizeEngravingDefaults(value)
-        )
+        self.engravingDefaults.update(normalizers.normalizeEngravingDefaults(value))
 
     @property
     def sizeRange(self) -> tuple[int, int] | None:
@@ -230,18 +223,18 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.get('_sizeRange', ())
+        return self.font.lib.get("com.smufolib.sizeRange", ())
 
     @sizeRange.setter
     def sizeRange(self, value: tuple[int, int] | None) -> None:
         self._updateFontLib(
-            '_sizeRange', normalizers.normalizeSizeRange(value)
+            "com.smufolib.sizeRange", normalizers.normalizeSizeRange(value)
         )
 
     def _updateFontLib(self, key: str, value: Any) -> None:
         # Common font metadata setter.
         if self.font is not None:
-            if value is None:
+            if value in (None, ()):
                 if key in self.font.lib:
                     del self.font.lib[key]
             else:
@@ -267,14 +260,15 @@ class Smufl(BaseObject):
         if self.glyph is None or self.font is None:
             return None
         # find alt names among string of glyph names
-        string = ' '.join(sorted(self.font.keys()))
-        pattern = fr'\b{self.glyph.name}\.(?:s?alt|ss)[0-9]{{2}}\b'
+        string = " ".join(sorted(self.font.keys()))
+        pattern = rf"\b{self.glyph.name}\.(?:s?alt|ss)[0-9]{{2}}\b"
         results = re.findall(pattern, string)
         alternates = []
         for name in results:
             glyph = self.font[name]
-            alternates.append({'codepoint': glyph.smufl.codepoint,
-                               'name': glyph.smufl.name})
+            alternates.append(
+                {"codepoint": glyph.smufl.codepoint, "name": glyph.smufl.name}
+            )
         return tuple(alternates)
 
     @property
@@ -327,8 +321,7 @@ class Smufl(BaseObject):
             return None
         xMin, yMin, xMax, yMax = self.glyph.bounds
         if self.spaces:
-            xMin, yMin, xMax, yMax = [
-                self.toSpaces(b) for b in self.glyph.bounds]
+            xMin, yMin, xMax, yMax = [self.toSpaces(b) for b in self.glyph.bounds]
         return {"bBoxSW": (xMin, yMin), "bBoxNE": (xMax, yMax)}
 
     @property
@@ -348,7 +341,7 @@ class Smufl(BaseObject):
 
     @codepoint.setter
     def codepoint(self, value: str | None) -> None:
-        if self.glyph:
+        if self.glyph is not None:
             if value is None:
                 self.glyph.unicode = None
             else:
@@ -376,12 +369,12 @@ class Smufl(BaseObject):
             return ()
 
         components = [
-            self.font[n] for n in self.glyph.name.split('_') if n in self.font
+            self.font[n] for n in self.glyph.name.split("_") if n in self.font
         ]
         return tuple(components)
 
     @property
-    def componentNames(self) -> tuple[str, ...] | None:
+    def componentNames(self) -> tuple[str | None, ...] | None:
         """Ligature components by :attr:`name`.
 
         This property is read-only.
@@ -399,9 +392,7 @@ class Smufl(BaseObject):
         if not self.componentGlyphs:
             return ()
 
-        components = [
-            g.smufl.name for g in self.componentGlyphs if g.smufl.name
-        ]
+        components = [g.smufl.name for g in self.componentGlyphs]
         return tuple(components)
 
     @property
@@ -440,7 +431,7 @@ class Smufl(BaseObject):
 
     @advanceWidth.setter
     def advanceWidth(self, value: int | float | None) -> None:
-        if self.glyph:
+        if self.glyph is not None:
             if self.spaces and value is not None:
                 self.glyph.width = self.toUnits(value)
             else:
@@ -467,15 +458,17 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return float(f'{self.font.info.naked().versionMajor}.'
-                     f'{self.font.info.naked().versionMinor}')
+        return float(
+            f"{self.font.info.naked().versionMajor}."
+            f"{self.font.info.naked().versionMinor}"
+        )
 
     @version.setter
     def version(self, value: float | None) -> None:
         if value is None:
             major, minor = None, None
         else:
-            major, minor = [int(n) for n in str(value).split('.')]
+            major, minor = [int(n) for n in str(value).split(".")]
         if self.font:
             self.font.info.naked().versionMajor = major
             self.font.info.naked().versionMinor = minor
@@ -495,12 +488,12 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return tuple(self.glyph.lib.get('com.smufolib.classes', ()))
+        return tuple(self.glyph.lib.get("com.smufolib.classes", ()))
 
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._updateGlyphLib(
-            'com.smufolib.classes', normalizers.normalizeClasses(value)
+            "com.smufolib.classes", normalizers.normalizeClasses(value)
         )
 
     @property
@@ -515,12 +508,12 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return self.glyph.lib.get('com.smufolib.description', None)
+        return self.glyph.lib.get("com.smufolib.description", None)
 
     @description.setter
     def description(self, value: str | None) -> None:
         self._updateGlyphLib(
-            'com.smufolib.description', normalizers.normalizeDescription(value)
+            "com.smufolib.description", normalizers.normalizeDescription(value)
         )
 
     @property
@@ -543,7 +536,7 @@ class Smufl(BaseObject):
             return None
         if self.glyph is None:
             return self.font.info.naked().familyName
-        return self.glyph.lib.get('com.smufolib.name', None)
+        return self.glyph.lib.get("com.smufolib.name", None)
 
     @name.setter
     def name(self, value: str | None) -> None:
@@ -554,16 +547,14 @@ class Smufl(BaseObject):
         if self.glyph is None:
             self.font.info.naked().familyName = value
         else:
-            self._updateNames(
-                normalizers.normalizeSmuflName(value)
-            )
+            self._updateNames(normalizers.normalizeSmuflName(value))
             self._updateGlyphLib(
-                'com.smufolib.name', normalizers.normalizeSmuflName(value)
+                "com.smufolib.name", normalizers.normalizeSmuflName(value)
             )
 
     def _updateGlyphLib(self, key: str, value: Any) -> None:
         if self.glyph is not None:
-            if value is None:
+            if value in (None, ()):
                 if key in self.glyph.lib:
                     del self.glyph.lib[key]
             else:
@@ -575,13 +566,14 @@ class Smufl(BaseObject):
             if not self._names:
                 return
 
-            if (len(self._names) == 0
-                    or len(self._names) == 1 and self.name in self._names):
+            if len(self._names) == 0 or (
+                len(self._names) == 1 and self.name in self._names
+            ):
                 self._names = None
                 return
 
             if self.font is not None:
-                namesDict = self.font.lib.get('com.smufolib.names', {})
+                namesDict = self.font.lib.get("com.smufolib.names", {})
                 if self.name in namesDict:
                     del namesDict[self.name]
             return
@@ -590,6 +582,8 @@ class Smufl(BaseObject):
             self._names = {}
 
         if self.glyph is not None:
+            if self.name in self._names and self._names != value:
+                del self._names[self.name]
             self._names[value] = self.glyph.name
 
     @property
@@ -597,11 +591,11 @@ class Smufl(BaseObject):
         # Dict of glyph names in font.lib.
         if self.font is None:
             return None
-        return self.font.lib.get('com.smufolib.names')
+        return self.font.lib.get("com.smufolib.names")
 
     @_names.setter
     def _names(self, value: dict[str, str] | None) -> None:
-        self._updateFontLib('com.smufolib.names', value)
+        self._updateFontLib("com.smufolib.names", value)
 
     # ----------
     # Validation
@@ -623,9 +617,12 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.name
-            and self.glyph.name.count('uni') > 1
-                and '_' in self.glyph.name):
+        if (
+            self.glyph is not None
+            and self.glyph.name
+            and self.glyph.name.count("uni") > 1
+            and "_" in self.glyph.name
+        ):
             return True
         return False
 
@@ -647,8 +644,11 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.unicode
-                and 0xe000 <= self.glyph.unicode <= 0xf8ff):
+        if (
+            self.glyph is not None
+            and self.glyph.unicode
+            and 0xE000 <= self.glyph.unicode <= 0xF8FF
+        ):
             return True
         return False
 
@@ -669,8 +669,11 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.unicode
-                and 0xF400 <= self.glyph.unicode <= 0xF8FF):
+        if (
+            self.glyph is not None
+            and self.glyph.unicode
+            and 0xF400 <= self.glyph.unicode <= 0xF8FF
+        ):
             return True
         return False
 
@@ -691,8 +694,11 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.unicode
-                and 0xE000 <= self.glyph.unicode <= 0xF3FF):
+        if (
+            self.glyph is not None
+            and self.glyph.unicode
+            and 0xE000 <= self.glyph.unicode <= 0xF3FF
+        ):
             return True
         return False
 
@@ -716,9 +722,14 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.name
-                and (self.glyph.name.endswith('.salt', 7, -2)
-                     or self.glyph.name.endswith('.alt', 7, -2))):
+        if (
+            self.glyph is not None
+            and self.glyph.name
+            and (
+                self.glyph.name.endswith(".salt", 7, -2)
+                or self.glyph.name.endswith(".alt", 7, -2)
+            )
+        ):
             return True
         return False
 
@@ -740,8 +751,11 @@ class Smufl(BaseObject):
             False
 
         """
-        if (self.glyph is not None and self.glyph.name
-                and self.glyph.name.endswith('.ss', 7, -2)):
+        if (
+            self.glyph is not None
+            and self.glyph.name
+            and self.glyph.name.endswith(".ss", 7, -2)
+        ):
             return True
         return False
 
@@ -754,9 +768,16 @@ class Smufl(BaseObject):
 
         Method applies to the following attributes:
 
-        * :attr:`engravingDefaults`
-        * :attr:`anchors`
-        * :attr:`advanceWidth`
+        - :attr:`Smufl.engravingDefaults`
+        - :attr:`Smufl.anchors`
+        - :attr:`Smufl.advanceWidth`
+        - :attr:`.BaseGlyph.width`
+        - :attr:`.BaseGlyph.height`
+        - :attr:`.BaseGlyph.contours`
+        - :attr:`.BaseGlyph.components`
+        - :attr:`.BaseGlyph.anchors`
+        - :attr:`.BaseGlyph.guidelines`
+
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.
 
@@ -765,8 +786,8 @@ class Smufl(BaseObject):
             >>> glyph.smufl.advanceWidth
             230.5
             >>> glyph.smufl.round()
-            >>> glyph.smufl.wiadvanceWidthdth
-            230.5
+            >>> glyph.smufl.advanceWidthdth
+            231
 
         ::
 
@@ -781,11 +802,8 @@ class Smufl(BaseObject):
         if self.spaces:
             return
         self.engravingDefaults.round()
-        if self.font:
-            if self.glyph is None:
-                self.font.round()
-            else:
-                self.glyph.round()
+        if self.glyph is not None:
+            self.glyph.round()
 
     def toSpaces(self, value: int | float) -> float | None:
         """Convert font units to staff spaces based on font UPM size.
@@ -808,9 +826,10 @@ class Smufl(BaseObject):
 
         return converters.convertMeasurement(
             measurement=value,
-            targetUnit='spaces',
+            targetUnit="spaces",
             unitsPerEm=self.font.info.unitsPerEm,
-            rounded=False)
+            rounded=False,
+        )
 
     def toUnits(self, value: int | float, rounded=True) -> int | float | None:
         """Convert staff spaces to font units based on font UPM size.
@@ -835,9 +854,10 @@ class Smufl(BaseObject):
 
         return converters.convertMeasurement(
             measurement=value,
-            targetUnit='units',
+            targetUnit="units",
             unitsPerEm=self.font.info.unitsPerEm,
-            rounded=rounded)
+            rounded=rounded,
+        )
 
     @property
     def spaces(self) -> bool:
@@ -852,19 +872,31 @@ class Smufl(BaseObject):
             0.922
 
         """
-        if not self.font:
+        if self.font is None:
             return False
-        if '_spaces' in self.font.lib:
-            return True
-        return False
+        return self.font.lib.get("com.smufolib.spaces", False)
 
     @spaces.setter
     def spaces(self, value):
+        if self.font is None:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "missingDependencyError", objectName="spaces", dependency="font"
+                )
+            )
+        elif not self.font.info.unitsPerEm:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "missingDependencyError",
+                    objectName="spaces",
+                    dependency="unitsPerEm",
+                )
+            )
         value = normalizers.normalizeBoolean(value)
-        if value is False:
-            self.font.lib.pop('_spaces', False)
+        if value:
+            self.font.lib["com.smufolib.spaces"] = True
         else:
-            self.font.lib['_spaces'] = True
+            self.font.lib.pop("com.smufolib.spaces", False)
 
     # -----
     # Other
@@ -883,8 +915,9 @@ class Smufl(BaseObject):
             <Glyph 'uniE050' ('public.default') at 4373577008>
 
         """
-        if self.font and self._getBasename():
-            return self.font[self._getBasename()]
+        baseName = self._getBasename()
+        if self.font and baseName:
+            return self.font[baseName]
         return None
 
     def _getBasename(self) -> str | None:
@@ -909,8 +942,11 @@ class Smufl(BaseObject):
         if normalizedName is None:
             return None
 
-        if (self.font is None or self._names is None
-                or normalizedName not in self._names):
+        if (
+            self.font is None
+            or self._names is None
+            or normalizedName not in self._names
+        ):
             return None
 
         return self.font[self._names[normalizedName]]
@@ -929,7 +965,7 @@ class Smufl(BaseObject):
 
         """
         if self.glyph is not None and (self.isSalt or self.isSet):
-            return self.glyph.name.split('.')[1]
+            return self.glyph.name.split(".")[1]
         return None
 
     # ------------------------
@@ -943,6 +979,6 @@ class Smufl(BaseObject):
         """
         raise NotImplementedError(
             error.generateErrorMessage(
-                'notImplementedError', objectName=self.__class__.__name__
+                "notImplementedError", objectName=self.__class__.__name__
             )
         )
