@@ -22,7 +22,16 @@ from tqdm import tqdm
 
 from smufolib import Font
 
-PRIVATE_KEYS = {'_names', '_engravingDefaults', '_name', '_classes', '_description'}
+PRIVATE_KEYS = {
+    "_classes",
+    "_designSize",
+    "_description",
+    "_engravingDefaults",
+    "_name",
+    "_names",
+    "_sizeRange",
+    "_spaces",
+}
 
 
 def rename_keys(lib: dict[str, Any]) -> None:
@@ -56,7 +65,7 @@ def expand_paths(paths: list[str]) -> list[str]:
     fonts = []
     for path in paths:
         if os.path.isdir(path):
-            fonts.extend(glob.glob(os.path.join(path, '*.ufo')))
+            fonts.extend(glob.glob(os.path.join(path, "*.ufo")))
         else:
             fonts.append(path)
     return fonts
@@ -71,12 +80,12 @@ def main(paths: list[str]) -> None:
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(
         description=__doc__,
-        epilog="Please backup your files before running this script."
+        epilog="Please backup your files before running this script.",
     )
     parser.add_argument(
         "paths",
         nargs="+",
-        help="list of paths to UFO font files or directories containing UFO font files"
+        help="list of paths to UFO font files or directories containing UFO font files",
     )
     args = parser.parse_args()
     print("Starting...")
