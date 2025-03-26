@@ -93,6 +93,12 @@ jobs:
       # Debugging after installing dependencies
       - name: Verify installed dependencies
         run: pip list
+
+      - name: Debug Test Execution
+        run: python -m unittest discover -v smufolib
+
+      - name: Debug Installed Packages
+        run: python -m pip check
   
       - name: Run tests with coverage
         run: | 
