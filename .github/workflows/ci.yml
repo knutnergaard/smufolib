@@ -89,7 +89,7 @@ jobs:
         uses: codecov/codecov-action@v4
         with:
           file: coverage.xml
-          flags: flags: python-${{ matrix.python-version }}
+          flags: python-${{ matrix.python-version }}
           name: codecov-umbrella
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
