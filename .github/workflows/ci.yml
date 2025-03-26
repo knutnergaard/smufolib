@@ -67,7 +67,7 @@ jobs:
         uses: actions/cache@v3
         with:
           path: ~/.cache/pip
-          key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
+          key: ${{ runner.os }}-pip-${{ hashFiles('requirements-dev.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
 
@@ -82,12 +82,12 @@ jobs:
           coverage run --parallel-mode smufolib/test.py
           coverage report -m
 
-      - name: Combine coverage reports
-        run: |
-          coverage combine
+      - name: Check if coverage files exist
+        run: ls -la .coverage*
 
       - name: Generate coverage report
         run: |
+          coverage combine  
           coverage xml
 
       - name: Upload coverage to Codecov
