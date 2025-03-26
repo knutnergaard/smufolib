@@ -79,7 +79,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          coverage run --parallel-mode smufolib/test.py
+          coverage run --parallel-mode --source=smufolib smufolib/test.py
           coverage report -m
 
       - name: Check if coverage files exist
