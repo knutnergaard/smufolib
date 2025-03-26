@@ -16,7 +16,7 @@ authors = [
 
 description = "FontParts-based library for SMuFL font scripting"
 readme = "README.rst"
-license = {file = "LICENSE.txt"}
+license = {file = "LICENSE"}
 keywords = [
     "music notation",
     "font design",
