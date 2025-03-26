@@ -78,13 +78,16 @@ jobs:
           python -m pip install -e .
 
       - name: Run tests with coverage
-        run: | 
-          coverage run smufolib/test.py
+        run: |
+          coverage run --parallel-mode smufolib/test.py
           coverage report -m
+
+      - name: Combine coverage reports
+        run: |
+          coverage combine
 
       - name: Generate coverage report
         run: |
-          coverage combine
           coverage xml
 
       - name: Upload coverage to Codecov
