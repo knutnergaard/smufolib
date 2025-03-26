@@ -78,7 +78,7 @@ jobs:
 
       - name: Run tests with coverage
         run: | 
-          coverage run --source=smufolib -m pytest
+          coverage run --source=smufolib -m unittest smufolib.test
           coverage report -m
 
       - name: Generate coverage report
