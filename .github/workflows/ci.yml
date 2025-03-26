@@ -85,7 +85,9 @@ jobs:
       
       - name: Show Coverage Debug Information
         if: always()  # Ensures this runs even if the previous step fails
-        run: coverage debug data
+        run: | 
+          coverage debug data
+          ls -lah .coverage*
 
       - name: Generate coverage report
         run: |
