@@ -2,6 +2,8 @@ name: Publish Python distribution to PyPI
 
 on:
   push:
+    tags: 
+      - "v*" 
 
 jobs:
   build:
@@ -17,6 +19,27 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: "3.x"
+
+      - name: Install dependencies
+        run: python -m pip install toml --user
+
+      - name: Extract version from tag
+        id: extract_version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
+  
+      - name: Update version in pyproject.toml
+        run: |
+          python <<EOF
+          import toml
+
+          with open("pyproject.toml", "r") as f:
+              data = toml.load(f)
+
+          data["project"]["version"] = "${{ env.VERSION }}"
+
+          with open("pyproject.toml", "w") as f:
+              toml.dump(data, f)
+          EOF
           
       - name: Install pypa/build
         run: >-
@@ -36,7 +59,6 @@ jobs:
 
   publish:
     name: Publish to PyPI
-    if: startsWith(github.ref, 'refs/tags/')
     needs:
       - build
     runs-on: ubuntu-latest
