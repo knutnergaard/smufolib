@@ -1,4 +1,4 @@
-|PyPI| |versions| |license| |docs| |CI|
+|PyPI| |versions| |license| |docs| |CI| |coverage|
 
 SMufoLib: Where SMuFL meets UFO
 ===============================
@@ -104,6 +104,12 @@ name.
    :alt: Read the Docs
    :target: https://smufolib.readthedocs.io/en/latest/
 
-.. |CI| image:: https://github.com/knutnergaard/smufolib/actions/workflows/ci.yml/badge.svg
+.. |CI| image:: https://img.shields.io/github/actions/workflow/status/knutnergaard/smufolib/ci.yml?event=push&label=CI
+   :alt: GitHub Actions Workflow Status
    :target: https://github.com/knutnergaard/smufolib/actions
+
+.. |coverage| image:: https://img.shields.io/codecov/c/github/knutnergaard/smufolib?labelColor=grey&color=%23FF69B4
+   :alt: Codecov
+   :target: https://app.codecov.io/github/knutnergaard/smufolib
+
 
