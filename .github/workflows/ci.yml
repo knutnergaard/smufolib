@@ -82,23 +82,14 @@ jobs:
           coverage run smufolib/test.py
           coverage report -m
 
-      
-      - name: Show Coverage Debug Information
-        if: always()  # Ensures this runs even if the previous step fails
-        run: | 
-          coverage debug data
-          ls -lah .coverage*
-
       - name: Generate coverage report
-        run: |
-          coverage combine  
-          coverage xml
+        run: coverage xml
 
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v4
         with:
           file: coverage.xml
-          flags: unittests
+          flags: flags: python-${{ matrix.python-version }}
           name: codecov-umbrella
           fail_ci_if_error: true
           token: ${{ secrets.CODECOV_TOKEN }}
