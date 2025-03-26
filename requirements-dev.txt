@@ -2,8 +2,8 @@ coverage==7.7.1
 mypy==1.13.0
 ruff==0.11.2
 smufolib==0.3.0
-fontParts
-tqdm
+fontParts==0.12.1
+tqdm==4.67.1
 sphinx-rtd-theme==3.0.2
 Sphinx>=6,<9
 twine==6.1.0
