@@ -57,18 +57,22 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+  
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
-
+  
+      # Debugging before installation
       - name: Debug Python version
         run: python --version
-
-      - name: List installed packages
+  
+      - name: Debug pip version
+        run: pip --version
+  
+      - name: List installed packages before installing dependencies
         run: pip list
-
+  
       - name: Cache pip dependencies
         uses: actions/cache@v3
         with:
@@ -76,19 +80,24 @@ jobs:
           key: ${{ runner.os }}-pip-${{ hashFiles('requirements*.txt') }}
           restore-keys: |
             ${{ runner.os }}-pip-
-
+  
+      # Force reinstall pip before installing anything else
+      - name: Force reinstall pip
+        run: python -m pip install --upgrade --force-reinstall pip
+  
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
           python -m pip install -r requirements.txt -r requirements-dev.txt
-
-      - name: Reinstall pip
-        run: python -m ensurepip --default-pip
-
+  
+      # Debugging after installing dependencies
+      - name: Verify installed dependencies
+        run: pip list
+  
       - name: Run tests with coverage
         run: | 
           coverage run --source=smufolib -m unittest smufolib.test
           coverage report -m
-
+  
       - name: Generate coverage report
         run: coverage xml
+  
