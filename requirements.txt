@@ -1,2 +1,2 @@
 fontParts==0.12.1
-tqdm==4.66.4
+tqdm==4.67.1
