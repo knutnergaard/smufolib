@@ -82,8 +82,10 @@ jobs:
           coverage run --parallel-mode --source=smufolib smufolib/test.py
           coverage report -m
 
-      - name: Check if coverage files exist
-        run: ls -la .coverage*
+      
+      - name: Show Coverage Debug Information
+        if: always()  # Ensures this runs even if the previous step fails
+        run: coverage debug data
 
       - name: Generate coverage report
         run: |
