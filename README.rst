@@ -1,4 +1,4 @@
-|PyPI| |versions| |license| |docs| |tests|
+|PyPI| |versions| |license| |docs| |CI|
 
 SMufoLib: Where SMuFL meets UFO
 ===============================
@@ -104,6 +104,6 @@ name.
    :alt: Read the Docs
    :target: https://smufolib.readthedocs.io/en/latest/
 
-.. |tests| image:: https://github.com/knutnergaard/smufolib/actions/workflows/ci.yml/badge.svg
+.. |CI| image:: https://github.com/knutnergaard/smufolib/actions/workflows/ci.yml/badge.svg
    :target: https://github.com/knutnergaard/smufolib/actions
 
