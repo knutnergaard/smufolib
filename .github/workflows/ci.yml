@@ -82,6 +82,9 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt -r requirements-dev.txt
 
+      - name: Reinstall pip
+        run: python -m ensurepip --default-pip
+
       - name: Run tests with coverage
         run: | 
           coverage run --source=smufolib -m unittest smufolib.test
