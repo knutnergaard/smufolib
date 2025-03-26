@@ -99,6 +99,9 @@ jobs:
 
       - name: Debug Installed Packages
         run: python -m pip check
+
+      - name: Debug Test Execution
+        run: python smufolib/test.py
   
       - name: Run tests with coverage
         run: | 
