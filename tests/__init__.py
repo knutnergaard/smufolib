@@ -1,16 +1,16 @@
 import sys
 import unittest
-from smufolib.tests import test_cli
-from smufolib.tests import test_config
-from smufolib.tests import test_converters
-from smufolib.tests import test_engravingDefaults
-from smufolib.tests import test_error
-from smufolib.tests import test_normalizers
-from smufolib.tests import test_pointUtils
-from smufolib.tests import test_range
-from smufolib.tests import test_request
-from smufolib.tests import test_smufl
-from smufolib.tests import test_stdUtils
+from tests import test_cli
+from tests import test_config
+from tests import test_converters
+from tests import test_engravingDefaults
+from tests import test_error
+from tests import test_normalizers
+from tests import test_pointUtils
+from tests import test_range
+from tests import test_request
+from tests import test_smufl
+from tests import test_stdUtils
 
 
 def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=True):

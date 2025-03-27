@@ -1,6 +1,6 @@
 from fontParts.fontshell.component import RComponent
 from fontParts.fontshell.contour import RContour
-from smufolib.tests import testEnvironment
+from tests import testEnvironment
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib.objects.font import Font
 from smufolib.objects.glyph import Glyph
