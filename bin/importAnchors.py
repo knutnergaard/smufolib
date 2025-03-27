@@ -121,8 +121,8 @@ def importAnchors(
             )
             for anchorName, position in anchors.items():
                 position = [font.smufl.toUnits(p) for p in position]
-                if mark and colors:
-                    anchorColor = colors.get(anchorName, None)
+
+                anchorColor = colors.get(anchorName) if mark and colors else None
                 font[glyphName].appendAnchor(anchorName, position, anchorColor)
                 stdUtils.verbosePrint(f"\t{anchorName}", verbose)
 
@@ -179,7 +179,7 @@ def _normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | 
                     value=colorDict,
                     validTypes=ColorDict,
                     objectName="colors",
-                    dependency="'mark' is True",
+                    dependencyInfo="'mark' is True",
                 )
             )
         return None
