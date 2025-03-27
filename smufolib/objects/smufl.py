@@ -233,7 +233,7 @@ class Smufl(BaseObject):
     def _updateFontLib(self, key: str, value: Any) -> None:
         # Common font metadata setter.
         if self.font is not None:
-            if value in (None, ()):
+            if value is None:
                 if key in self.font.lib:
                     del self.font.lib[key]
             else:
