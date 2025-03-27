@@ -13,13 +13,13 @@ jobs:
         uses: astral-sh/ruff-action@v3
         with:
           version: "latest"
-          src: "./smufolib"
+          src: "./smufolib ./bin ./tests"
 
       - name: Ruff Format Check
         uses: astral-sh/ruff-action@v3
         with:
           version: "latest"
-          src: "./smufolib"
+          src: "./smufolib ./bin ./tests"
           args: "format --check"
 
   mypy:
@@ -47,7 +47,7 @@ jobs:
           python -m pip install -r requirements-dev.txt
 
       - name: Run mypy
-        run: mypy smufolib
+        run: mypy smufolib bin
 
   tests:
     strategy:
@@ -79,7 +79,7 @@ jobs:
 
       - name: Run tests with coverage
         run: |
-          coverage run smufolib/test.py
+          coverage run test.py
           coverage report -m
 
       - name: Generate coverage report
