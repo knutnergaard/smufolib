@@ -37,6 +37,7 @@ following public functions:
     - :func:`main` - Command line entry point.
 
 """
+
 from __future__ import annotations
 from typing import Any
 import argparse
@@ -56,17 +57,21 @@ SetsTemplate = dict[str, dict[str, str]]
 CONFIG = config.load()
 
 # Parameter defaults
-FONT_DATA = Request(CONFIG['metadata.paths']['referenceFont'],
-                    CONFIG['metadata.fallbacks']['referenceFont'])
+FONT_DATA = Request(
+    CONFIG["metadata.paths"]["referenceFont"],
+    CONFIG["metadata.fallbacks"]["referenceFont"],
+)
 VERBOSE = False
 
 # pylint: disable=C0103
 
 
-def generateMetadata(font: Font | Path | str,
-                     targetPath: str | Path,
-                     fontData: str | Path | Request = FONT_DATA,
-                     verbose: bool = VERBOSE) -> None:
+def generateMetadata(
+    font: Font | Path | str,
+    targetPath: str | Path,
+    fontData: str | Path | Request = FONT_DATA,
+    verbose: bool = VERBOSE,
+) -> None:
     """Generate metadata JSON file.
 
     :param font: Object or path to
@@ -91,7 +96,7 @@ def generateMetadata(font: Font | Path | str,
 
     metadata = _compileMetadata(font, fontDataJson, verbose)
 
-    filename = Path(targetPath).resolve() / f'{font.smufl.name}.json'
+    filename = Path(targetPath).resolve() / f"{font.smufl.name}.json"
     stdUtils.verbosePrint(f"\nWriting metadata to: '{filename}'", verbose)
     writeJson(filename, metadata)
 
@@ -101,29 +106,24 @@ def generateMetadata(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    generateMetadata(args.font,
-                     args.targetPath,
-                     fontData=args.fontData,
-                     verbose=args.verbose)
+    generateMetadata(
+        args.font, args.targetPath, fontData=args.fontData, verbose=args.verbose
+    )
 
 
-def _compileMetadata(font: Font,
-                     fontData: JsonDict,
-                     verbose: bool) -> JsonDict:
+def _compileMetadata(font: Font, fontData: JsonDict, verbose: bool) -> JsonDict:
     # Build SMuFL-specific metadata dictionary.
     # pylint: disable=R0912, R0914
     stdUtils.verbosePrint("\nCompiling font metadata...", verbose)
 
-    metadata: collections.defaultdict[
-        str, JsonDict] = collections.defaultdict(dict)
+    metadata: collections.defaultdict[str, JsonDict] = collections.defaultdict(dict)
 
-    keys = ('fontName', 'fontVersion', 'designSize',
-            'sizeRange', 'engravingDefaults')
+    keys = ("fontName", "fontVersion", "designSize", "sizeRange", "engravingDefaults")
 
     for key in keys:
-        attribute = key[4:].lower() if 'font' in key else key
+        attribute = key[4:].lower() if "font" in key else key
         value = getattr(font.smufl, attribute)
-        if attribute == 'engravingDefaults':
+        if attribute == "engravingDefaults":
             value = value.items()
         elif value is None:
             continue
@@ -135,38 +135,34 @@ def _compileMetadata(font: Font,
     stdUtils.verbosePrint("\nCompiling metadata for glyphs:", verbose)
     for glyph in font if verbose else tqdm(font):
         if glyph is None or not stdUtils.validateClassAttr(
-                glyph, ('name', 'unicode', 'smufl.isMember')
+            glyph, ("name", "unicode", "smufl.isMember")
         ):
-            stdUtils.verbosePrint(
-                "\tSkipping invalid glyph:", verbose, glyph
-            )
+            stdUtils.verbosePrint("\tSkipping invalid glyph:", verbose, glyph)
             continue
         stdUtils.verbosePrint(f"\t{glyph}", verbose)
 
         s = glyph.smufl
-        metadata['glyphAdvanceWidths'][s.name] = s.advanceWidth
-        metadata['glyphBBoxes'][s.name] = s.bBox
+        metadata["glyphAdvanceWidths"][s.name] = s.advanceWidth
+        metadata["glyphBBoxes"][s.name] = s.bBox
 
         if s.alternates:
-            metadata['glyphsWithAlternates'][s.name] = {
-                'alternates': s.alternates
-            }
+            metadata["glyphsWithAlternates"][s.name] = {"alternates": s.alternates}
 
         if s.anchors:
-            metadata['glyphsWithAnchors'][s.name] = s.anchors
+            metadata["glyphsWithAnchors"][s.name] = s.anchors
 
         if s.isLigature:
-            metadata['ligatures'][s.name] = {
+            metadata["ligatures"][s.name] = {
                 "codepoint": s.codepoint,
                 "componentGlyphs": s.componentNames,
-                "description": s.description
+                "description": s.description,
             }
 
         if s.isOptional:
-            metadata['optionalGlyphs'][s.name] = {
+            metadata["optionalGlyphs"][s.name] = {
                 "codepoint": s.codepoint,
                 "description": s.description,
-                "classes": s.classes
+                "classes": s.classes,
             }
 
         if s.isSet:
@@ -175,11 +171,11 @@ def _compileMetadata(font: Font,
                 "alternateFor": s.base.name,
                 "codepoint": s.codepoint,
                 "description": s.description,
-                "name": s.name
+                "name": s.name,
             }
             setGlyphs.append(glyphInfo)
-            metadata['sets'] = sets
-            metadata['sets'][s.suffix]['glyphs'] = setGlyphs
+            metadata["sets"] = sets
+            metadata["sets"][s.suffix]["glyphs"] = setGlyphs
 
     return metadata
 
@@ -188,10 +184,10 @@ def _getSetsTemplate(fontData: JsonDict) -> SetsTemplate:
     # Extract sets template from bravura_metadata.json.
     sets: dict[str, dict[str, str]] = {}
 
-    for key, values in fontData['sets'].items():
+    for key, values in fontData["sets"].items():
         sets[key] = {}
         for subKey, value in values.items():
-            if subKey not in ('description', 'type'):
+            if subKey not in ("description", "type"):
                 continue
             sets[key][subKey] = value
     return sets
@@ -199,7 +195,7 @@ def _getSetsTemplate(fontData: JsonDict) -> SetsTemplate:
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -207,7 +203,7 @@ def _normalizeFont(font: Font | Path | str) -> Font:
 
 def _normalizeRequest(request: Request | Path | str) -> Request:
     # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), 'request')
+    error.validateType(request, (Request, Path, str), "request")
     if isinstance(request, Request):
         return request
     return Request(request)
@@ -216,9 +212,7 @@ def _normalizeRequest(request: Request | Path | str) -> Request:
 def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
     # Ensure `jsonDict` is not None.
     if jsonDict is None:
-        raise TypeError(
-            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
-        )
+        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
     return jsonDict
 
 
@@ -226,7 +220,7 @@ def _normalizeTargetPath(targetPath: str | Path) -> str | Path:
     # Ensure targetPath exists.
     if not Path(targetPath).exists():
         raise FileNotFoundError(
-            error.generateErrorMessage('fileNotFound', objectName='targetPath')
+            error.generateErrorMessage("fileNotFound", objectName="targetPath")
         )
     return targetPath
 
@@ -234,14 +228,14 @@ def _normalizeTargetPath(targetPath: str | Path) -> str | Path:
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
-        'font',
-        'targetPath',
+        "font",
+        "targetPath",
         description=stdUtils.getSummary(generateMetadata.__doc__),
         fontData=FONT_DATA,
-        verbose=VERBOSE
+        verbose=VERBOSE,
     )
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

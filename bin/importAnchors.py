@@ -12,6 +12,7 @@ the following public funcitons:
     - :func:`main` - Command line entry point.
 
 """
+
 from __future__ import annotations
 from typing import Any
 import argparse
@@ -33,22 +34,26 @@ ColorDict = dict[str, ColorTuple]
 CONFIG = config.load()
 
 # Parameter defaults
-FONT_DATA = Request(CONFIG['metadata.paths']['referenceFont'],
-                    CONFIG['metadata.fallbacks']['referenceFont'])
+FONT_DATA = Request(
+    CONFIG["metadata.paths"]["referenceFont"],
+    CONFIG["metadata.fallbacks"]["referenceFont"],
+)
 MARK = True
-COLORS = CONFIG['color.anchors']
+COLORS = CONFIG["color.anchors"]
 CLEAR = False
 VERBOSE = False
 
 # pylint: disable=invalid-name, too-many-arguments, too-many-locals
 
 
-def importAnchors(font: Font | Path | str,
-                  fontData: Request | Path | str = FONT_DATA,
-                  mark: bool = MARK,
-                  colors: ColorDict | None = COLORS,
-                  clear: bool = CLEAR,
-                  verbose: bool = VERBOSE) -> None:
+def importAnchors(
+    font: Font | Path | str,
+    fontData: Request | Path | str = FONT_DATA,
+    mark: bool = MARK,
+    colors: ColorDict | None = COLORS,
+    clear: bool = CLEAR,
+    verbose: bool = VERBOSE,
+) -> None:
     """Import anchors from font metadata.
 
     :param font: font object to which the script applies.
@@ -75,14 +80,13 @@ def importAnchors(font: Font | Path | str,
     font = _normalizeFont(font)
     metadata = _normalizeJsonDict(_normalizeRequest(fontData).json())
     colors = _normalizeColorDict(colors, mark)
-    sourceAnchors = metadata['glyphsWithAnchors']
+    sourceAnchors = metadata["glyphsWithAnchors"]
 
     ticks = len(font) + len(sourceAnchors) + 1
     with tqdm(total=ticks) if not verbose else nullcontext() as progressBar:
         stdUtils.verbosePrint("\nCompiling glyph data...", verbose)
         names = {}
         for glyph in font:
-
             if progressBar:
                 progressBar.update(1)
                 time.sleep(0.0001)
@@ -93,15 +97,14 @@ def importAnchors(font: Font | Path | str,
         if not names:
             raise ValueError(
                 error.generateErrorMessage(
-                    'missingValue',
-                    'recommendScript',
-                    objectName='Smufl.name',
-                    scriptName='importID'
+                    "missingValue",
+                    "recommendScript",
+                    objectName="Smufl.name",
+                    scriptName="importID",
                 )
             )
 
         for smuflName, anchors in sourceAnchors.items():
-
             if progressBar:
                 progressBar.update(1)
                 time.sleep(0.0001)
@@ -113,7 +116,8 @@ def importAnchors(font: Font | Path | str,
             if clear:
                 font[glyphName].clearAnchors()
             stdUtils.verbosePrint(
-                f"\nAppending anchors to glyph '{glyphName}':", verbose,
+                f"\nAppending anchors to glyph '{glyphName}':",
+                verbose,
             )
             for anchorName, position in anchors.items():
                 position = [font.smufl.toUnits(p) for p in position]
@@ -133,17 +137,19 @@ def importAnchors(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    importAnchors(args.font,
-                  fontData=args.fontData,
-                  mark=args.mark,
-                  colors=args.colors,
-                  clear=args.clear,
-                  verbose=args.verbose)
+    importAnchors(
+        args.font,
+        fontData=args.fontData,
+        mark=args.mark,
+        colors=args.colors,
+        clear=args.clear,
+        verbose=args.verbose,
+    )
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -151,7 +157,7 @@ def _normalizeFont(font: Font | Path | str) -> Font:
 
 def _normalizeRequest(request: Request | Path | str) -> Request:
     # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), 'request')
+    error.validateType(request, (Request, Path, str), "request")
     if isinstance(request, Request):
         return request
     return Request(request)
@@ -160,15 +166,11 @@ def _normalizeRequest(request: Request | Path | str) -> Request:
 def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
     # Ensure `jsonDict` is not None.
     if jsonDict is None:
-        raise TypeError(
-            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
-        )
+        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
     return jsonDict
 
 
-def _normalizeColorDict(colorDict: ColorDict | None,
-                        mark: bool
-                        ) -> ColorDict | None:
+def _normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | None:
     # Normalize dict of color values.
     if colorDict is None:
         if mark:
@@ -176,13 +178,13 @@ def _normalizeColorDict(colorDict: ColorDict | None,
                 error.generateTypeError(
                     value=colorDict,
                     validTypes=ColorDict,
-                    objectName='colors',
-                    dependency="'mark' is True"
+                    objectName="colors",
+                    dependency="'mark' is True",
                 )
             )
         return None
 
-    error.validateType(colorDict, dict, 'colors')
+    error.validateType(colorDict, dict, "colors")
     for value in colorDict.values():
         normalizers.normalizeColor(value)
 
@@ -192,15 +194,16 @@ def _normalizeColorDict(colorDict: ColorDict | None,
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
-        'font',
+        "font",
         description=stdUtils.getSummary(importAnchors.__doc__),
         fontData=FONT_DATA,
         mark=MARK,
         colors=COLORS,
         clear=CLEAR,
-        verbose=VERBOSE)
+        verbose=VERBOSE,
+    )
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

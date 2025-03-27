@@ -30,6 +30,7 @@ the following public functions:
     - :func:`main` - Command line entry point.
 
 """
+
 from __future__ import annotations
 from typing import Any
 import argparse
@@ -51,13 +52,17 @@ AttributesMap = dict[str, GlyphMap]
 CONFIG = config.load()
 
 # Parameter defaults
-CLASSES_DATA = Request(CONFIG['metadata.paths']['classes'],
-                       CONFIG['metadata.fallbacks']['classes'])
-GLYPHNAMES_DATA = Request(CONFIG['metadata.paths']['glyphnames'],
-                          CONFIG['metadata.fallbacks']['glyphnames'])
-FONT_DATA = Request(CONFIG['metadata.paths']['referenceFont'],
-                    CONFIG['metadata.fallbacks']['referenceFont'])
-ATTRIBUTES = ('name', 'classes', 'description')
+CLASSES_DATA = Request(
+    CONFIG["metadata.paths"]["classes"], CONFIG["metadata.fallbacks"]["classes"]
+)
+GLYPHNAMES_DATA = Request(
+    CONFIG["metadata.paths"]["glyphnames"], CONFIG["metadata.fallbacks"]["glyphnames"]
+)
+FONT_DATA = Request(
+    CONFIG["metadata.paths"]["referenceFont"],
+    CONFIG["metadata.fallbacks"]["referenceFont"],
+)
+ATTRIBUTES = ("name", "classes", "description")
 INCLUDE_OPTIONALS = False
 OVERWRITE = False
 VERBOSE = False
@@ -65,15 +70,16 @@ VERBOSE = False
 # pylint: disable=R0913, R0914, C0103
 
 
-def importID(font: Font | Path | str,
-             attributes: str | tuple[str, ...] = '*',
-             classesData: Request | Path | str = CLASSES_DATA,
-             glyphnamesData: Request | Path | str = GLYPHNAMES_DATA,
-             fontData: Request | Path | str = FONT_DATA,
-             includeOptionals: bool = INCLUDE_OPTIONALS,
-             overwrite: bool = OVERWRITE,
-             verbose: bool = VERBOSE
-             ) -> None:
+def importID(
+    font: Font | Path | str,
+    attributes: str | tuple[str, ...] = "*",
+    classesData: Request | Path | str = CLASSES_DATA,
+    glyphnamesData: Request | Path | str = GLYPHNAMES_DATA,
+    fontData: Request | Path | str = FONT_DATA,
+    includeOptionals: bool = INCLUDE_OPTIONALS,
+    overwrite: bool = OVERWRITE,
+    verbose: bool = VERBOSE,
+) -> None:
     """Import SMuFL identification attributes.
 
     :param font: Object or path to target :class:`.Font`.
@@ -111,15 +117,11 @@ def importID(font: Font | Path | str,
     ticks = len(font) * 2 + 2
     with tqdm(total=ticks) if not verbose else nullcontext() as progressBar:
         attributes = _normalizeAttributes(attributes)
-        classesDataJson = _normalizeJsonDict(
-            _normalizeRequest(classesData).json()
-        )
+        classesDataJson = _normalizeJsonDict(_normalizeRequest(classesData).json())
         glyphnamesDataJson = _normalizeJsonDict(
             _normalizeRequest(glyphnamesData).json()
         )
-        fontDataJson = _normalizeJsonDict(
-            _normalizeRequest(fontData).json()
-        )
+        fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
 
         if progressBar:
             progressBar.update(1)
@@ -133,11 +135,10 @@ def importID(font: Font | Path | str,
             classesDataJson=classesDataJson,
             glyphnamesDataJson=glyphnamesDataJson,
             fontDataJson=fontDataJson,
-            progressBar=progressBar
+            progressBar=progressBar,
         )
 
         for glyph in font:
-
             if progressBar:
                 progressBar.update(1)
                 time.sleep(0.0001)
@@ -166,21 +167,15 @@ def importID(font: Font | Path | str,
             )
             for attribute in attributes:
                 if codepoint not in glyphMaps[attribute]:
-                    stdUtils.verbosePrint(
-                        f"\t'{attribute}': not found", verbose
-                    )
+                    stdUtils.verbosePrint(f"\t'{attribute}': not found", verbose)
                     continue
 
                 if getattr(glyph.smufl, attribute) and not overwrite:
-                    stdUtils.verbosePrint(
-                        f"\t'{attribute}': preset", verbose
-                    )
+                    stdUtils.verbosePrint(f"\t'{attribute}': preset", verbose)
                     continue
 
                 setattr(glyph.smufl, attribute, glyphMaps[attribute][codepoint])
-                stdUtils.verbosePrint(
-                    f"\t'{attribute}': set", verbose
-                )
+                stdUtils.verbosePrint(f"\t'{attribute}': set", verbose)
 
         stdUtils.verbosePrint("\nSaving font...", verbose)
         font.save()
@@ -194,19 +189,21 @@ def importID(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    importID(args.font,
-             args.attributes,
-             classesData=args.classesData,
-             glyphnamesData=args.glyphnamesData,
-             fontData=args.fontData,
-             includeOptionals=args.includeOptionals,
-             overwrite=args.overwrite,
-             verbose=args.verbose)
+    importID(
+        args.font,
+        args.attributes,
+        classesData=args.classesData,
+        glyphnamesData=args.glyphnamesData,
+        fontData=args.fontData,
+        includeOptionals=args.includeOptionals,
+        overwrite=args.overwrite,
+        verbose=args.verbose,
+    )
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -214,7 +211,7 @@ def _normalizeFont(font: Font | Path | str) -> Font:
 
 def _normalizeRequest(request: Request | Path | str) -> Request:
     # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), 'request')
+    error.validateType(request, (Request, Path, str), "request")
     if isinstance(request, Request):
         return request
     return Request(request)
@@ -223,32 +220,31 @@ def _normalizeRequest(request: Request | Path | str) -> Request:
 def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
     # Ensure `jsonDict` is not None.
     if jsonDict is None:
-        raise TypeError(
-            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
-        )
+        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
     return jsonDict
 
 
 def _normalizeAttributes(value: str | tuple[str, ...]) -> tuple[str, ...]:
     # Normalize values in the ``attributes`` parameter.
 
-    value = ATTRIBUTES if value == '*' else value
+    value = ATTRIBUTES if value == "*" else value
     value = (value,) if isinstance(value, str) else value
-    error.validateType(value, (str, tuple), 'attributes')
+    error.validateType(value, (str, tuple), "attributes")
     for val in value:
         if val not in ATTRIBUTES:
-            error.suggestValue(val, ATTRIBUTES, 'attributes', items=True)
+            error.suggestValue(val, ATTRIBUTES, "attributes", items=True)
     return value
 
 
-def _buildAttributesMap(font: Font,
-                        attributes: str | tuple[str, ...],
-                        includeOptionals: bool,
-                        classesDataJson: JsonDict,
-                        glyphnamesDataJson: JsonDict,
-                        fontDataJson: JsonDict,
-                        progressBar: tqdm
-                        ) -> AttributesMap:
+def _buildAttributesMap(
+    font: Font,
+    attributes: str | tuple[str, ...],
+    includeOptionals: bool,
+    classesDataJson: JsonDict,
+    glyphnamesDataJson: JsonDict,
+    fontDataJson: JsonDict,
+    progressBar: tqdm,
+) -> AttributesMap:
     # Build dictionary of ID attributes mapped to glyph maps.
 
     def _buildGlyphMap(attribute: str, metadata: JsonDict) -> GlyphMap:
@@ -259,21 +255,20 @@ def _buildAttributesMap(font: Font,
         # lookups in both sections are therefore needed.
 
         glyphMap: GlyphMap = {}
-        if 'optionalGlyphs' in metadata:
-            metadata = metadata['optionalGlyphs'] | metadata['ligatures']
+        if "optionalGlyphs" in metadata:
+            metadata = metadata["optionalGlyphs"] | metadata["ligatures"]
         for name, data in metadata.items():
-            codepoint = converters.toDecimal(data['codepoint'])
-            if attribute == 'name':
+            codepoint = converters.toDecimal(data["codepoint"])
+            if attribute == "name":
                 glyphMap[codepoint] = name
             else:
                 glyphMap[codepoint] = data.get(attribute, None)
 
         return glyphMap
 
-    def _buildClassMap(font: Font,
-                       classesDataJson: JsonDict,
-                       glyphnamesDataJson: JsonDict
-                       ) -> GlyphMap:
+    def _buildClassMap(
+        font: Font, classesDataJson: JsonDict, glyphnamesDataJson: JsonDict
+    ) -> GlyphMap:
         # Build glyph map for 'classes'.
 
         # GlyphnamesData has a number of unused codepoints and
@@ -285,8 +280,7 @@ def _buildAttributesMap(font: Font,
         classes = collections.defaultdict(list)
         for clas, glyphs in classesDataJson.items():
             for glyph in glyphs:
-                name = converters.toUniName(
-                    glyphnamesDataJson[glyph]['codepoint'])
+                name = converters.toUniName(glyphnamesDataJson[glyph]["codepoint"])
                 classes[name].append(clas)
 
         # Loop through basenames to get classes for optional glyphs and
@@ -306,21 +300,19 @@ def _buildAttributesMap(font: Font,
 
     glyphMaps: AttributesMap = {}
     for attribute in attributes:
-        if attribute == 'classes':
+        if attribute == "classes":
             glyphMaps[attribute] = _buildClassMap(
                 font=font,
                 classesDataJson=classesDataJson,
-                glyphnamesDataJson=glyphnamesDataJson
+                glyphnamesDataJson=glyphnamesDataJson,
             )
         else:
             glyphMaps[attribute] = _buildGlyphMap(
-                attribute=attribute,
-                metadata=glyphnamesDataJson
+                attribute=attribute, metadata=glyphnamesDataJson
             )
             if includeOptionals:
                 glyphMaps[attribute] |= _buildGlyphMap(
-                    attribute=attribute,
-                    metadata=fontDataJson
+                    attribute=attribute, metadata=fontDataJson
                 )
 
     return glyphMaps
@@ -329,17 +321,18 @@ def _buildAttributesMap(font: Font,
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
-        'font',
+        "font",
         description=stdUtils.getSummary(importID.__doc__),
-        attributes='*',
+        attributes="*",
         classesData=CLASSES_DATA,
         glyphnamesData=GLYPHNAMES_DATA,
         fontData=FONT_DATA,
         includeOptionals=INCLUDE_OPTIONALS,
         overwrite=OVERWRITE,
-        verbose=VERBOSE)
+        verbose=VERBOSE,
+    )
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

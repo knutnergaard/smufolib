@@ -17,6 +17,7 @@ following public funcitons:
     - :func:`main` – Command line entry point.
 
 """
+
 from __future__ import annotations
 from typing import Any
 import argparse

@@ -74,6 +74,7 @@ For command-line options, run the script with :option:`--help`
 argument.
 
 """
+
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from collections.abc import Callable
@@ -85,7 +86,14 @@ from pathlib import Path
 from tqdm import tqdm
 
 from smufolib import (
-    Font, cli, config, converters, error, normalizers, pointUtils, stdUtils
+    Font,
+    cli,
+    config,
+    converters,
+    error,
+    normalizers,
+    pointUtils,
+    stdUtils,
 )
 
 if TYPE_CHECKING:
@@ -109,164 +117,138 @@ REMAP = None
 MARGIN_OF_ERROR = 6
 VERBOSE = False
 MAPPING = {
-    'arrowShaftThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniEB60',
-        'referenceIndex': 0
+    "arrowShaftThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniEB60",
+        "referenceIndex": 0,
     },
-    'barlineSeparation': {
-        'ruler': 'xInner',
-        'glyph': 'uniE031',
-        'referenceIndex': 3
+    "barlineSeparation": {"ruler": "xInner", "glyph": "uniE031", "referenceIndex": 3},
+    "beamSpacing": {"ruler": "yInner", "glyph": "uniE1F9", "referenceIndex": 3},
+    "beamThickness": {"ruler": "boundsHeight", "glyph": "uniE1F7", "referenceIndex": 0},
+    "bracketThickness": {"ruler": "xOrigin", "glyph": "uniE003", "referenceIndex": 0},
+    "dashedBarlineDashLength": {
+        "ruler": "yMinimum",
+        "glyph": "uniE036",
+        "referenceIndex": 0,
     },
-    'beamSpacing': {
-        'ruler': 'yInner',
-        'glyph': 'uniE1F9',
-        'referenceIndex': 3
+    "dashedBarlineGapLength": {
+        "ruler": "yInner",
+        "glyph": "uniE036",
+        "referenceIndex": 3,
     },
-    'beamThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE1F7',
-        'referenceIndex': 0
+    "dashedBarlineThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE036",
+        "referenceIndex": 0,
     },
-    'bracketThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE003',
-        'referenceIndex': 0
+    "hairpinThickness": {"ruler": "yMinimum", "glyph": "uniE53E", "referenceIndex": 0},
+    "hBarThickness": {"ruler": "yMinimum", "glyph": "uniE4F0", "referenceIndex": 0},
+    "legerLineExtension": {
+        "ruler": "boundsLeft",
+        "glyph": "uniE022",
+        "referenceIndex": 0,
     },
-    'dashedBarlineDashLength': {
-        'ruler': 'yMinimum',
-        'glyph': 'uniE036',
-        'referenceIndex': 0
+    "legerLineThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE022",
+        "referenceIndex": 0,
     },
-    'dashedBarlineGapLength': {
-        'ruler': 'yInner',
-        'glyph': 'uniE036',
-        'referenceIndex': 3
+    "lyricLineThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE010",
+        "referenceIndex": 0,
     },
-    'dashedBarlineThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE036',
-        'referenceIndex': 0
+    "octaveLineThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE010",
+        "referenceIndex": 0,
     },
-    'hairpinThickness': {
-        'ruler': 'yMinimum',
-        'glyph': 'uniE53E',
-        'referenceIndex': 0
+    "pedalLineThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE010",
+        "referenceIndex": 0,
     },
-    'hBarThickness': {
-        'ruler': 'yMinimum',
-        'glyph': 'uniE4F0',
-        'referenceIndex': 0
+    "repeatBarlineDotSeparation": {
+        "ruler": "stemDot",
+        "glyph": "uniE040",
+        "referenceIndex": 0,
     },
-    'legerLineExtension': {
-        'ruler': 'boundsLeft',
-        'glyph': 'uniE022',
-        'referenceIndex': 0
+    "repeatEndingLineThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE030",
+        "referenceIndex": 0,
     },
-    'legerLineThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE022',
-        'referenceIndex': 0
+    "slurEndpointThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE1FD",
+        "referenceIndex": 0,
     },
-    'lyricLineThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE010',
-        'referenceIndex': 0
+    "slurMidpointThickness": {
+        "ruler": "yMinimum",
+        "glyph": "uniE1FD",
+        "referenceIndex": 0,
     },
-    'octaveLineThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE010',
-        'referenceIndex': 0
+    "staffLineThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE010",
+        "referenceIndex": 0,
     },
-    'pedalLineThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE010',
-        'referenceIndex': 0
+    "stemThickness": {"ruler": "xOrigin", "glyph": "uniE210", "referenceIndex": 0},
+    "subBracketThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE030",
+        "referenceIndex": 0,
     },
-    'repeatBarlineDotSeparation': {
-        'ruler': 'stemDot',
-        'glyph': 'uniE040',
-        'referenceIndex': 0
+    "textEnclosureThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE010",
+        "referenceIndex": 0,
     },
-    'repeatEndingLineThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE030',
-        'referenceIndex': 0
+    "textFontFamily": {},
+    "thickBarlineThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE034",
+        "referenceIndex": 0,
     },
-    'slurEndpointThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE1FD',
-        'referenceIndex': 0
+    "thinBarlineThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE030",
+        "referenceIndex": 0,
     },
-    'slurMidpointThickness': {
-        'ruler': 'yMinimum',
-        'glyph': 'uniE1FD',
-        'referenceIndex': 0
+    "thinThickBarlineSeparation": {
+        "ruler": "xInner",
+        "glyph": "uniE032",
+        "referenceIndex": 3,
     },
-    'staffLineThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE010',
-        'referenceIndex': 0
+    "tieEndpointThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE1FD",
+        "referenceIndex": 0,
     },
-    'stemThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE210',
-        'referenceIndex': 0
+    "tieMidpointThickness": {
+        "ruler": "yMinimum",
+        "glyph": "uniE1FD",
+        "referenceIndex": 0,
     },
-    'subBracketThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE030',
-        'referenceIndex': 0
+    "tupletBracketThickness": {
+        "ruler": "xOrigin",
+        "glyph": "uniE1FE",
+        "referenceIndex": 0,
     },
-    'textEnclosureThickness': {
-        'ruler': 'boundsHeight',
-        'glyph': 'uniE010',
-        'referenceIndex': 0
-    },
-    'textFontFamily': {},
-    'thickBarlineThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE034',
-        'referenceIndex': 0
-    },
-    'thinBarlineThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE030',
-        'referenceIndex': 0
-    },
-    'thinThickBarlineSeparation': {
-        'ruler': 'xInner',
-        'glyph': 'uniE032',
-        'referenceIndex': 3
-    },
-    'tieEndpointThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE1FD',
-        'referenceIndex': 0
-    },
-    'tieMidpointThickness': {
-        'ruler': 'yMinimum',
-        'glyph': 'uniE1FD',
-        'referenceIndex': 0
-    },
-    'tupletBracketThickness': {
-        'ruler': 'xOrigin',
-        'glyph': 'uniE1FE',
-        'referenceIndex': 0
-    }
 }
 
 
 # pylint: disable=R0913, C0103, R0914
 
 
-def calculateEngravingDefaults(font: Font | Path | str,
-                               exclude: Exclude | None = EXCLUDE,
-                               override: Override | None = OVERRIDE,
-                               remap: Remapping | None = REMAP,
-                               spaces: bool = SPACES,
-                               verbose: bool = VERBOSE) -> None:
+def calculateEngravingDefaults(
+    font: Font | Path | str,
+    exclude: Exclude | None = EXCLUDE,
+    override: Override | None = OVERRIDE,
+    remap: Remapping | None = REMAP,
+    spaces: bool = SPACES,
+    verbose: bool = VERBOSE,
+) -> None:
     """Calculate engraving defaults from glyph contours.
 
     :param font: Target font object or path to file.
@@ -298,13 +280,13 @@ def calculateEngravingDefaults(font: Font | Path | str,
     """
 
     dispatcher = {
-        'boundsHeight': boundsHeight,
-        'boundsLeft': boundsLeft,
-        'stemDot': stemDot,
-        'xInner': xInner,
-        'xOrigin': xOrigin,
-        'yInner': yInner,
-        'yMinimum': yMinimum,
+        "boundsHeight": boundsHeight,
+        "boundsLeft": boundsLeft,
+        "stemDot": stemDot,
+        "xInner": xInner,
+        "xOrigin": xOrigin,
+        "yInner": yInner,
+        "yMinimum": yMinimum,
     }
 
     print("Starting...")
@@ -326,26 +308,28 @@ def calculateEngravingDefaults(font: Font | Path | str,
             if key in exclude:
                 continue
 
-        if key == 'textFontFamily':
+        if key == "textFontFamily":
             if override and key in override:
                 value = override[key]
                 setattr(font.smufl.engravingDefaults, key, value)
                 stdUtils.verbosePrint(f"\t'{key}': {value}", verbose)
             continue
 
-        ruler = mapping['ruler']
-        glyph = mapping['glyph']
-        referenceIndex = mapping['referenceIndex']
+        ruler = mapping["ruler"]
+        glyph = mapping["glyph"]
+        referenceIndex = mapping["referenceIndex"]
         remapping = remap.get(key, {}) if remap else {}
-        ruler = dispatcher[remapping.get('ruler', ruler)]  # type: ignore
-        glyph = remapping.get('glyph', glyph)
-        referenceIndex = remapping.get('referenceIndex', referenceIndex)
+        ruler = dispatcher[remapping.get("ruler", ruler)]  # type: ignore
+        glyph = remapping.get("glyph", glyph)
+        referenceIndex = remapping.get("referenceIndex", referenceIndex)
 
-        rulerValue = _getValue(key=key,
-                               glyph=font[glyph],
-                               ruler=ruler,  # type: ignore
-                               referenceIndex=referenceIndex,  # type: ignore
-                               verbose=verbose)
+        rulerValue = _getValue(
+            key=key,
+            glyph=font[glyph],
+            ruler=ruler,  # type: ignore
+            referenceIndex=referenceIndex,  # type: ignore
+            verbose=verbose,
+        )
         if rulerValue is None:
             continue
 
@@ -375,8 +359,9 @@ def main() -> None:
         override=args.override,
         remap=args.remap,
         spaces=args.spaces,
-        verbose=args.verbose
+        verbose=args.verbose,
     )
+
 
 # ------
 # Rulers
@@ -409,18 +394,17 @@ def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
         to ``0``.
 
     """
-    curves = sorted(pointUtils.getPoints(glyph, 'curve'),
-                    key=lambda p: p.position.x)
-    lines = sorted(pointUtils.getPoints(glyph, 'line'),
-                   reverse=True, key=lambda p: p.position.x)
+    curves = sorted(pointUtils.getPoints(glyph, "curve"), key=lambda p: p.position.x)
+    lines = sorted(
+        pointUtils.getPoints(glyph, "line"), reverse=True, key=lambda p: p.position.x
+    )
 
     reference = curves[referenceIndex]
 
     for point in lines:
         if not point.contourIndex != reference.contourIndex:
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.x - reference.position.x))
+        return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
     return None
 
@@ -437,11 +421,12 @@ def xInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     reference = points[referenceIndex]
 
     for point in points:
-        if not (point.contourIndex != reference.contourIndex
-                and _areAdjacent(point, reference, axis='y')):
+        if not (
+            point.contourIndex != reference.contourIndex
+            and _areAdjacent(point, reference, axis="y")
+        ):
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.x - reference.position.x))
+        return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
     return None
 
@@ -458,12 +443,13 @@ def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     reference = points[referenceIndex]
 
     for point in points:
-        if not (point.position.x != reference.position.x
-                and point.contourIndex == reference.contourIndex
-                and _areAdjacent(point, reference, axis='y')):
+        if not (
+            point.position.x != reference.position.x
+            and point.contourIndex == reference.contourIndex
+            and _areAdjacent(point, reference, axis="y")
+        ):
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.x - reference.position.x))
+        return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
     return None
 
@@ -480,12 +466,13 @@ def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     reference = points[referenceIndex]
 
     for point in points:
-        if not (point.position.x != reference.position.x
-                and point.contourIndex == reference.contourIndex
-                and _areAdjacent(point, reference, axis='y')):
+        if not (
+            point.position.x != reference.position.x
+            and point.contourIndex == reference.contourIndex
+            and _areAdjacent(point, reference, axis="y")
+        ):
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.x - reference.position.x))
+        return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
     return None
 
@@ -501,11 +488,12 @@ def yInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.y)
     reference = points[referenceIndex]
     for point in points:
-        if not (point.contourIndex != reference.contourIndex
-                and _areAdjacent(point, reference, axis='x')):
+        if not (
+            point.contourIndex != reference.contourIndex
+            and _areAdjacent(point, reference, axis="x")
+        ):
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.y - reference.position.y))
+        return converters.toIntIfWhole(abs(point.position.y - reference.position.y))
 
     return None
 
@@ -522,14 +510,16 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     reference = points[referenceIndex]
 
     for point in points:
-        if not (point.position.y != reference.position.y
-                and point.contourIndex == reference.contourIndex
-                and _areAdjacent(point, reference, axis='x')):
+        if not (
+            point.position.y != reference.position.y
+            and point.contourIndex == reference.contourIndex
+            and _areAdjacent(point, reference, axis="x")
+        ):
             continue
-        return converters.toIntIfWhole(
-            abs(point.position.y - reference.position.y))
+        return converters.toIntIfWhole(abs(point.position.y - reference.position.y))
 
     return None
+
 
 # -------
 # Helpers
@@ -538,7 +528,7 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -549,12 +539,10 @@ def _normalizeExclude(exclude: Exclude | None) -> Exclude | None:
     if exclude is None:
         return None
 
-    error.validateType(exclude, (tuple, list), 'exclude')
+    error.validateType(exclude, (tuple, list), "exclude")
 
     for item in exclude:
-        error.suggestValue(
-            item, list(MAPPING.keys()), 'exclude', items=True
-        )
+        error.suggestValue(item, list(MAPPING.keys()), "exclude", items=True)
     return exclude
 
 
@@ -563,12 +551,10 @@ def _normalizeOverride(override: Override | None) -> Override | None:
     if override is None:
         return None
 
-    error.validateType(override, dict, 'override')
+    error.validateType(override, dict, "override")
     for key, value in override.items():
         attributes = list(MAPPING.keys())
-        error.suggestValue(
-            key, attributes, 'override', items=True
-        )
+        error.suggestValue(key, attributes, "override", items=True)
         normalizers.normalizeEngravingDefaultsAttr(key, value)
 
     return override
@@ -579,43 +565,38 @@ def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
     if remap is None:
         return None
 
-    error.validateType(remap, dict, 'remap')
+    error.validateType(remap, dict, "remap")
 
     for key, value in remap.items():
-        error.suggestValue(
-            key, list(MAPPING.keys()), 'remap', items=True
-        )
+        error.suggestValue(key, list(MAPPING.keys()), "remap", items=True)
 
         for k, v in value.items():
             error.suggestValue(
                 k,
-                ('ruler', 'glyph', 'referenceIndex'),
+                ("ruler", "glyph", "referenceIndex"),
                 f"'remap'['{value}']",
-                items=True
+                items=True,
             )
 
-            error.validateType(
-                v, (str, int), f"'remap'['{value}']", items=True
-            )
+            error.validateType(v, (str, int), f"'remap'['{value}']", items=True)
 
     return remap
 
 
-def _getValue(key: str,
-              glyph: Glyph,
-              ruler: Callable,
-              referenceIndex: int,
-              verbose: bool
-              ) -> int | float | None:
+def _getValue(
+    key: str, glyph: Glyph, ruler: Callable, referenceIndex: int, verbose: bool
+) -> int | float | None:
     # Get value from ruler function and print error message.
     try:
         if referenceIndex:
             return ruler(glyph, referenceIndex)
         return ruler(glyph)
     except KeyError:
-        stdUtils.verbosePrint("Skipping attribute assigned to non-"
-                              f"existent glyph: '{key}' ('{glyph.name}')",
-                              verbose)
+        stdUtils.verbosePrint(
+            "Skipping attribute assigned to non-"
+            f"existent glyph: '{key}' ('{glyph.name}')",
+            verbose,
+        )
         return None
 
 
@@ -625,29 +606,28 @@ def _parseArgs() -> argparse.Namespace:
         description=stdUtils.getSummary(calculateEngravingDefaults.__doc__),
         parents=[
             cli.commonParser(
-                'font',
-                exclude=EXCLUDE,
-                spaces=SPACES,
-                verbose=VERBOSE,
-                addHelp=False)
+                "font", exclude=EXCLUDE, spaces=SPACES, verbose=VERBOSE, addHelp=False
+            )
         ],
         formatter_class=cli.createHelpFormatter(
-            ('ArgumentDefaultsHelpFormatter', 'RawDescriptionHelpFormatter')
-        )
+            ("ArgumentDefaultsHelpFormatter", "RawDescriptionHelpFormatter")
+        ),
     )
 
     parser.add_argument(
-        '-o', '--override',
+        "-o",
+        "--override",
         default=OVERRIDE,
         type=json.loads,
         help=textwrap.dedent(
             """JSON string of attributes and values to manually override;
             in the format '{"<attribute name>": <value>, ...}'"""
-        )
+        ),
     )
 
     parser.add_argument(
-        '-r', '--remap',
+        "-r",
+        "--remap",
         default=REMAP,
         type=json.loads,
         help=textwrap.dedent(
@@ -655,7 +635,7 @@ def _parseArgs() -> argparse.Namespace:
             in the format: {"<attribute name>":
             '{"ruler": "<function name>", "glyph": "<glyph name>",
             "referenceIndex": <integer>}, ...}'"""
-        )
+        ),
     )
     return parser.parse_args()
 
@@ -670,14 +650,14 @@ def _areAdjacent(point1: RPoint, point2: RPoint, axis: str | None) -> bool:
     x1, x2 = point1.position.x, point2.position.x
     y1, y2 = point1.position.y, point2.position.y
 
-    if axis == 'x':
+    if axis == "x":
         checkAxis = withinRange(x1, x2)
-    elif axis == 'y':
+    elif axis == "y":
         checkAxis = withinRange(y1, y2)
     else:
         checkAxis = withinRange(x1, x2) or withinRange(y1, y2)
     return point1 != point2 and checkAxis
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
