@@ -17,6 +17,7 @@ following public funcitons:
     - :func:`main` – Command line entry point.
 
 """
+
 from __future__ import annotations
 from typing import Any
 import argparse
@@ -35,20 +36,24 @@ ColorTuple = tuple[ColorValue, ColorValue, ColorValue, ColorValue]
 CONFIG = config.load()
 
 # Parameter defaults
-FONT_DATA = Request(CONFIG['metadata.paths']['referenceFont'],
-                    CONFIG['metadata.fallbacks']['referenceFont'])
+FONT_DATA = Request(
+    CONFIG["metadata.paths"]["referenceFont"],
+    CONFIG["metadata.fallbacks"]["referenceFont"],
+)
 MARK = False
-MARK_COLOR = CONFIG['color.marks']['mark1']
+MARK_COLOR = CONFIG["color.marks"]["mark1"]
 VERBOSE = False
 
 # pylint: disable=invalid-name
 
 
-def checkAnchors(font: Font | Path | str,
-                 fontData: Request | Path | str = FONT_DATA,
-                 mark: bool = MARK,
-                 color: ColorTuple | None = MARK_COLOR,
-                 verbose: bool = VERBOSE) -> None:
+def checkAnchors(
+    font: Font | Path | str,
+    fontData: Request | Path | str = FONT_DATA,
+    mark: bool = MARK,
+    color: ColorTuple | None = MARK_COLOR,
+    verbose: bool = VERBOSE,
+) -> None:
     """Check validity of SMuFL-specific glyph anchors.
 
     :param font: Object or path to
@@ -88,7 +93,7 @@ def checkAnchors(font: Font | Path | str,
     else:
         # Build dict of reference anchors indexed on smufl names.
         stdUtils.verbosePrint("\nCompiling reference anchors...", verbose)
-        for name, anchors in metadata['glyphsWithAnchors'].items():
+        for name, anchors in metadata["glyphsWithAnchors"].items():
             if name in fontAnchors:
                 referenceAnchors[name] = anchors.keys()
 
@@ -114,16 +119,18 @@ def checkAnchors(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    checkAnchors(args.font,
-                 fontData=args.fontData,
-                 mark=args.mark,
-                 color=args.color,
-                 verbose=args.verbose)
+    checkAnchors(
+        args.font,
+        fontData=args.fontData,
+        mark=args.mark,
+        color=args.color,
+        verbose=args.verbose,
+    )
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -131,7 +138,7 @@ def _normalizeFont(font: Font | Path | str) -> Font:
 
 def _normalizeRequest(request: Request | Path | str) -> Request:
     # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), 'request')
+    error.validateType(request, (Request, Path, str), "request")
     if isinstance(request, Request):
         return request
     return Request(request)
@@ -140,9 +147,7 @@ def _normalizeRequest(request: Request | Path | str) -> Request:
 def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
     # Ensure `jsonDict` is not None.
     if jsonDict is None:
-        raise TypeError(
-            error.generateTypeError(jsonDict, JsonDict, 'JSON file')
-        )
+        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
     return jsonDict
 
 
@@ -154,19 +159,20 @@ def _normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
                 error.generateTypeError(
                     value=color,
                     validTypes=tuple,
-                    objectName='color',
-                    dependency="'mark' is True"
+                    objectName="color",
+                    dependencyInfo="'mark' is True",
                 )
             )
         return None
     return normalizers.normalizeColor(color)
 
 
-def _evaluate(test: JsonDict,
-              reference: JsonDict,
-              names: dict[str, str],
-              verbose: bool,
-              ) -> list[str]:
+def _evaluate(
+    test: JsonDict,
+    reference: JsonDict,
+    names: dict[str, str],
+    verbose: bool,
+) -> list[str]:
     # Compare sources and print results.
     findings: list[str] = []
 
@@ -180,9 +186,7 @@ def _evaluate(test: JsonDict,
 
             if name not in findings:
                 findings.append(name)
-                stdUtils.verbosePrint(
-                    f"\t'{names[name]}' ('{name}'):", verbose
-                )
+                stdUtils.verbosePrint(f"\t'{names[name]}' ('{name}'):", verbose)
             stdUtils.verbosePrint(f"\t\t'{anchor}'", verbose)
 
     if not findings:
@@ -194,14 +198,15 @@ def _evaluate(test: JsonDict,
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
-        'font',
+        "font",
         description=stdUtils.getSummary(checkAnchors.__doc__),
         fontData=FONT_DATA,
         mark=MARK,
         color=MARK_COLOR,
-        verbose=VERBOSE)
+        verbose=VERBOSE,
+    )
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

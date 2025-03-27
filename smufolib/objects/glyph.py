@@ -15,7 +15,13 @@ class Glyph(RGlyph):
 
     """
 
-    # pylint: disable=too-few-public-methods
+    def _set_name(self, value):
+        # Set the name of the glyph and update :attr:`.Font.lib` if necessary.
+        if self.font is not None:
+            namesDict = self.font.lib.get("com.smufolib.names", {})
+            if self.naked().name in namesDict.values():
+                namesDict[self.smufl.name] = value
+        self.naked().name = value
 
     @property
     def smufl(self) -> Smufl:

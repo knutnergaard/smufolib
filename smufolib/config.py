@@ -43,7 +43,7 @@ def _readConfigFile(path: Path | str | None) -> ConfigParser:
 
     config.optionxform = str  # type: ignore
 
-    with open(_selectPath(path), encoding='utf-8') as f:
+    with open(_selectPath(path), encoding="utf-8") as f:
         config.read_file(f)
     return config
 
@@ -53,19 +53,21 @@ def _selectPath(path: Path | str | None) -> str:
     if path and Path(path).exists():
         return str(path)
 
-    nameExttension = ('smufolib', 'cfg')
-    for selection in (Path.cwd() / '.'.join(nameExttension),
-                      Path.home() / '.'.join(nameExttension),
-                      os.getenv('_'.join(nameExttension).upper()),
-                      Path(__file__).parents[1] / 'smufolib'
-                      / '.'.join(nameExttension)):
+    nameExttension = ("smufolib", "cfg")
+    for selection in (
+        Path.cwd() / ".".join(nameExttension),
+        Path.home() / ".".join(nameExttension),
+        os.getenv("_".join(nameExttension).upper()),
+        Path(__file__).parents[1] / "smufolib" / ".".join(nameExttension),
+    ):
         if selection and Path(selection).exists():
             return str(selection)
     raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
 
 
-def _parse(config: ConfigParser, section: str, option: str
-           ) -> str | int | float | bool | tuple[str | float, ...] | None:
+def _parse(
+    config: ConfigParser, section: str, option: str
+) -> str | int | float | bool | tuple[str | float, ...] | None:
     # Parse configured values.
     try:
         return config.getint(section, option)
@@ -77,13 +79,15 @@ def _parse(config: ConfigParser, section: str, option: str
                 return config.getboolean(section, option)
             except ValueError:
                 string = config.get(section, option)
-                if any((c in {')', ']'}) for c in string):
-                    iterable = tuple(string.strip(')][(').split(', '))
+                if any((c in {")", "]"}) for c in string):
+                    iterable = tuple(string.strip(")][(").split(", "))
                     try:
-                        return tuple(float(i) if '.' in i
-                                     else int(i) for i in iterable)
+                        return tuple(
+                            float(i) if "." in i else int(i) if i.isdigit() else i
+                            for i in iterable
+                        )
                     except ValueError:
                         return iterable
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
-                return string.replace('\n', '') if string else None
+                return string.replace("\n", "") if string else None

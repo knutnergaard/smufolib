@@ -34,12 +34,14 @@ class Request:
 
     """
 
-    def __init__(self,
-                 path: Path | str | None = None,
-                 fallback: Path | str | None = None,
-                 mode: str = 'r',
-                 encoding: str = CONFIG['request']['encoding'],
-                 warn: bool = CONFIG['request']['warn']) -> None:
+    def __init__(
+        self,
+        path: Path | str | None = None,
+        fallback: Path | str | None = None,
+        mode: str = "r",
+        encoding: str = CONFIG["request"]["encoding"],
+        warn: bool = CONFIG["request"]["warn"],
+    ) -> None:
         self._path = path
         self._fallback = fallback
         self._mode = mode
@@ -47,8 +49,10 @@ class Request:
         self._warn = warn
 
     def __repr__(self):
-        return (f"<{self.__class__.__name__} '{self.path}' "
-                f"('{self.fallback}') at {id(self)}>")
+        return (
+            f"<{self.__class__.__name__} '{self.path}' "
+            f"('{self.fallback}') at {id(self)}>"
+        )
 
     def json(self) -> JsonDict | None:
         """Parse request as JSON.
@@ -88,9 +92,7 @@ class Request:
         # Read data from URL.
         if self.path is None:
             raise TypeError(
-                error.generateTypeError(
-                    self.path, (str, Path, Request), 'Request.path'
-                )
+                error.generateTypeError(self.path, (str, Path, Request), "Request.path")
             )
         try:
             with urllib.request.urlopen(self.path) as raw:
@@ -103,48 +105,48 @@ class Request:
         if self.fallback is None:
             raise TypeError(
                 error.generateTypeError(
-                    self.fallback, (str, Path, Request), 'Request.fallback'
+                    self.fallback, (str, Path, Request), "Request.fallback"
                 )
             )
         try:
             with open(self.fallback, self.mode, encoding=self.encoding) as raw:
                 return raw.read()
         except ValueError as exc:
-            raise ValueError(error.generateErrorMessage(
-                'valueError', parameter='fallback', value=self.fallback)
+            raise ValueError(
+                error.generateErrorMessage(
+                    "valueError", parameter="fallback", value=self.fallback
+                )
             ) from exc
 
     def _readFromPath(self) -> bytes:
         # Read data from path.
         if self.path is None:
             raise TypeError(
-                error.generateTypeError(
-                    self.path, (str, Path, Request), 'Request.path'
-                )
+                error.generateTypeError(self.path, (str, Path, Request), "Request.path")
             )
         try:
             with open(self.path, self.mode, encoding=self.encoding) as raw:
                 return raw.read()
         except ValueError as exc:
-            raise ValueError(error.generateErrorMessage(
-                'valueError', parameter='path', value=self.path)
+            raise ValueError(
+                error.generateErrorMessage(
+                    "valueError", parameter="path", value=self.path
+                )
             ) from exc
 
     def _handleURLError(self, exc: urllib.error.URLError) -> bytes:
         # Handle URL error during online request.
         if not self.fallback:
             raise urllib.error.URLError(
-                error.generateErrorMessage('urlError', url=self.path)
+                error.generateErrorMessage("urlError", url=self.path)
             ) from exc
 
         if self._warn:
             warnings.warn(
-                error.generateErrorMessage('urlError', url=self.path),
-                error.URLWarning
+                error.generateErrorMessage("urlError", url=self.path), error.URLWarning
             )
 
-        with open(self.fallback, self.mode,
-                  encoding=self.encoding) as fallback_file:
+        with open(self.fallback, self.mode, encoding=self.encoding) as fallback_file:
             return fallback_file.read()
 
     @property
@@ -154,7 +156,7 @@ class Request:
         :raises TypeError: If the path cannot be normalized.
 
         """
-        return normalizers.normalizeRequestPath(self._path, 'path')
+        return normalizers.normalizeRequestPath(self._path, "path")
 
     @property
     def fallback(self) -> str | None:
@@ -163,7 +165,7 @@ class Request:
         :raises TypeError: If the fallback path cannot be normalized.
 
         """
-        return normalizers.normalizeRequestPath(self._fallback, 'fallback')
+        return normalizers.normalizeRequestPath(self._fallback, "fallback")
 
     @property
     def mode(self) -> str:
@@ -176,9 +178,11 @@ class Request:
         return self._encoding
 
 
-def writeJson(filepath: Path | str,
-              source: JsonDict,
-              encoding: str = CONFIG['request']['encoding']) -> None:
+def writeJson(
+    filepath: Path | str,
+    source: JsonDict,
+    encoding: str = CONFIG["request"]["encoding"],
+) -> None:
     """Writes JSON data to filepath.
 
     :param filepath: Path to target file.
@@ -193,15 +197,15 @@ def writeJson(filepath: Path | str,
     :raises UnsupportedOperation: If the operation is not supported.
 
     """
-    error.validateType(filepath, (Path, str), 'filepath')
-    if not str(filepath).endswith('.json'):
+    error.validateType(filepath, (Path, str), "filepath")
+    if not str(filepath).endswith(".json"):
         raise ValueError(
             error.generateErrorMessage(
-                'missingExtension', objectName='filepath', extension='.json'
+                "missingExtension", objectName="filepath", extension=".json"
             )
         )
     try:
-        with open(filepath, 'w', encoding=encoding) as outfile:
+        with open(filepath, "w", encoding=encoding) as outfile:
             json.dump(source, outfile, indent=4, sort_keys=False)
     except (TypeError, ValueError) as e:
-        raise ValueError('serializationError') from e
+        raise ValueError("serializationError") from e

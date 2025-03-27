@@ -21,16 +21,22 @@ to the following external normalizers for convenience:
     - :func:`~fontParts.base.normalizers.normalizeGlyph`
 
 """
+
 from __future__ import annotations
 from typing import TYPE_CHECKING
 from pathlib import Path
 
+# ruff: noqa: F401
+# pylint: disable=W0611
 from fontParts.base.normalizers import normalizeInternalObjectType
-from fontParts.base.normalizers import normalizeBoolean  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeColor  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeVisualRounding  # pylint: disable=W0611
-from fontParts.base.normalizers import normalizeGlyph  # pylint: disable=W0611
+from fontParts.base.normalizers import normalizeBoolean
+from fontParts.base.normalizers import normalizeColor
+from fontParts.base.normalizers import normalizeVisualRounding
+from fontParts.base.normalizers import normalizeGlyph
 from smufolib import error
+
+# ruff: noqa: F401
+# pylint: enable=W0611
 
 if TYPE_CHECKING:
     from smufolib.objects.font import Font
@@ -49,6 +55,7 @@ EngravingDefaultsReturn = int | float | tuple[str, ...]
 # Font
 # ----
 
+
 def normalizeFont(value: Font) -> Font:
     """Normalize Font object.
 
@@ -57,6 +64,7 @@ def normalizeFont(value: Font) -> Font:
 
     """
     from smufolib.objects.font import Font
+
     return normalizeInternalObjectType(value, Font, "Font")
 
 
@@ -64,7 +72,8 @@ def normalizeFont(value: Font) -> Font:
 # Smufl
 # -----
 
-def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...] | None:
+
+def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...]:
     """Normalize smufl classes.
 
     :param value: The value to normalize.
@@ -76,22 +85,20 @@ def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...] | None:
 
     """
     if value is None:
-        return None
+        return ()
 
-    objectName = 'Smufl.classes'
+    objectName = "Smufl.classes"
     error.validateType(value, (tuple, list), objectName)
 
     for val in value:
         error.validateType(val, str, objectName, items=True)
-        for v in val.split('_'):
+        for v in val.split("_"):
             normalizeSmuflName(v)
 
     duplicates = {v for v in value if value.count(v) > 1}
     if len(duplicates) != 0:
         raise ValueError(
-            error.generateErrorMessage(
-                'duplicateItems', objectName=objectName
-            )
+            error.generateErrorMessage("duplicateItems", objectName=objectName)
         )
 
     return tuple(v for v in value if v)
@@ -108,13 +115,11 @@ def normalizeDescription(value: str | None) -> str | None:
     if value is None:
         return None
 
-    error.validateType(value, (str, type(None)), 'Smufl.description')
+    error.validateType(value, (str, type(None)), "Smufl.description")
 
     if len(value) == 0:
         raise ValueError(
-            error.generateErrorMessage(
-                'emptyValue', objectName='Smufl.description'
-            )
+            error.generateErrorMessage("emptyValue", objectName="Smufl.description")
         )
 
     return value
@@ -128,7 +133,7 @@ def normalizeDesignSize(value: int | None) -> int | None:
     :raises ValueError: If `value` is less than ``10``.
 
     """
-    error.validateType(value, (int, type(None)), 'Smufl.designSize')
+    error.validateType(value, (int, type(None)), "Smufl.designSize")
 
     if value is None:
         return None
@@ -136,15 +141,14 @@ def normalizeDesignSize(value: int | None) -> int | None:
     if value < 10:
         raise ValueError(
             error.generateErrorMessage(
-                'valueTooLow', objectName='Smufl.designSize', value=10
+                "valueTooLow", objectName="Smufl.designSize", value=10
             )
         )
 
     return value
 
 
-def normalizeSizeRange(value: tuple[int, int] | None
-                       ) -> tuple[int, int] | None:
+def normalizeSizeRange(value: tuple[int, int] | None) -> tuple[int, int] | None:
     """Normalize design size.
 
     :param value: The value to normalize.
@@ -160,15 +164,13 @@ def normalizeSizeRange(value: tuple[int, int] | None
     if value is None:
         return None
 
-    objectName = 'Smufl.sizeRange'
+    objectName = "Smufl.sizeRange"
 
     error.validateType(value, (tuple, list, type(None)), objectName)
 
     if len(value) != 2:
         raise ValueError(
-            error.generateErrorMessage(
-                'singleItem', objectName='Smufl.sizeRange'
-            )
+            error.generateErrorMessage("singleItem", objectName="Smufl.sizeRange")
         )
 
     start, end = value
@@ -178,9 +180,7 @@ def normalizeSizeRange(value: tuple[int, int] | None
 
     if start >= end:
         raise ValueError(
-            error.generateErrorMessage(
-                'nonIncreasingRange', objectName=objectName
-            )
+            error.generateErrorMessage("nonIncreasingRange", objectName=objectName)
         )
 
     return startNormalized, endNormalized  # type: ignore
@@ -194,6 +194,7 @@ def normalizeSmufl(value: Smufl) -> Smufl:
 
     """
     from smufolib.objects.smufl import Smufl
+
     return normalizeInternalObjectType(value, Smufl, "Smufl")
 
 
@@ -211,29 +212,23 @@ def normalizeSmuflName(value: str | None) -> str | None:
     if value is None:
         return None
 
-    objectName = 'Smufl.name'
+    objectName = "Smufl.name"
 
     error.validateType(value, (str, type(None)), objectName)
     if not value:
         raise ValueError(
-            error.generateErrorMessage(
-                'emptyValue', objectName=objectName
-            )
+            error.generateErrorMessage("emptyValue", objectName=objectName)
         )
 
     for val in value:
         if not val.isalnum():
             raise ValueError(
-                error.generateErrorMessage(
-                    'alphanumericValue', objectName=objectName
-                )
+                error.generateErrorMessage("alphanumericValue", objectName=objectName)
             )
 
     if value[0].isupper():
         raise ValueError(
-            error.generateErrorMessage(
-                'invalidInitialCharacter', objectName=objectName
-            )
+            error.generateErrorMessage("invalidInitialCharacter", objectName=objectName)
         )
 
     return value
@@ -243,6 +238,7 @@ def normalizeSmuflName(value: str | None) -> str | None:
 # Engraving defaults
 # ------------------
 
+
 def normalizeEngravingDefaults(value: EngravingDefaults) -> EngravingDefaults:
     """Normalize EngravingDefaults object.
 
@@ -251,14 +247,13 @@ def normalizeEngravingDefaults(value: EngravingDefaults) -> EngravingDefaults:
 
     """
     from smufolib.objects.engravingDefaults import EngravingDefaults
-    return normalizeInternalObjectType(
-        value, EngravingDefaults, "EngravingDefaults"
-    )
+
+    return normalizeInternalObjectType(value, EngravingDefaults, "EngravingDefaults")
 
 
-def normalizeEngravingDefaultsAttr(name: str,
-                                   value: EngravingDefaultsInput | None
-                                   ) -> EngravingDefaultsReturn | None:
+def normalizeEngravingDefaultsAttr(
+    name: str, value: EngravingDefaultsInput | None
+) -> EngravingDefaultsReturn | None:
     """Normalize engraving defaults attribute value based on name.
 
     :param name: The name of the attribute to normalize.
@@ -274,52 +269,44 @@ def normalizeEngravingDefaultsAttr(name: str,
 
     if not isinstance(name, str):
         raise TypeError(
-            error.generateTypeError(
-                value=name, validTypes=str, objectName='name'
-            )
+            error.generateTypeError(value=name, validTypes=str, objectName="name")
         )
 
-    className = 'EngravingDefaults'
+    className = "EngravingDefaults"
     if name not in ENGRAVING_DEFAULTS_KEYS:
         raise AttributeError(
             error.generateErrorMessage(
-                'attributeError',
-                objectName=className,
-                attribute=name
+                "attributeError", objectName=className, attribute=name
             )
         )
 
     if value is None:
-        return () if value == 'textFontFamily' else None
+        return () if value == "textFontFamily" else None
 
-    objectName = f'{className}.{name}'
-    if name == 'textFontFamily':
+    objectName = f"{className}.{name}"
+    if name == "textFontFamily":
         if not isinstance(value, (tuple, list)):
             raise TypeError(
                 error.generateTypeError(
-                    value=value,
-                    validTypes=(tuple, list),
-                    objectName=objectName
+                    value=value, validTypes=(tuple, list), objectName=objectName
                 )
             )
 
         value = _normalizeStringTuple(objectName, value)
 
-    elif not isinstance(name, (int, float)):
+    elif not isinstance(value, (int, float)):
         raise TypeError(
             error.generateTypeError(
-                value=value,
-                validTypes=(int, float),
-                objectName=objectName
+                value=value, validTypes=(int, float), objectName=objectName
             )
         )
 
     return value
 
 
-def _normalizeStringTuple(objectName: str,
-                          value: tuple[str, ...] | list[str]
-                          ) -> tuple[str, ...]:
+def _normalizeStringTuple(
+    objectName: str, value: tuple[str, ...] | list[str]
+) -> tuple[str, ...]:
     # Normalize string tuple.
     error.validateType(value, (tuple, list), objectName)
 
@@ -327,9 +314,7 @@ def _normalizeStringTuple(objectName: str,
         error.validateType(val, str, objectName, items=True)
         if not val:
             raise ValueError(
-                error.generateErrorMessage(
-                    'emptyValueItems', objectName=objectName
-                )
+                error.generateErrorMessage("emptyValueItems", objectName=objectName)
             )
 
     return tuple(value)
@@ -348,12 +333,11 @@ def normalizeRequest(value: Request) -> Request:
 
     """
     from smufolib.request import Request
+
     return normalizeInternalObjectType(value, Request, "Request")
 
 
-def normalizeRequestPath(value: Path | str | None,
-                         parameter: str
-                         ) -> str | None:
+def normalizeRequestPath(value: Path | str | None, parameter: str) -> str | None:
     """Normalize Request path.
 
     Relative paths are resolved automatically.
@@ -366,6 +350,6 @@ def normalizeRequestPath(value: Path | str | None,
     if value is None:
         return None
     error.validateType(value, (str, Path), parameter)
-    if isinstance(value, Path) or value.startswith('.'):
+    if isinstance(value, Path) or value.startswith("."):
         return str(Path(value).resolve())
     return str(value)

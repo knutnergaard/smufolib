@@ -55,6 +55,7 @@ following public funcitons:
     - :func:`main` - Command line entry point.
 
 """
+
 from collections.abc import Iterable
 import argparse
 from pathlib import Path
@@ -62,8 +63,7 @@ from pathlib import Path
 from tqdm import tqdm
 
 from smufolib import Font, cli, error, stdUtils
-from smufolib.objects.smufl import (
-    ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES)
+from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 
 # Parameter defaults
 EXCLUDE = None
@@ -72,10 +72,12 @@ VERBOSE = False
 # pylint: disable=C0103
 
 
-def cleanFont(font: Font | Path | str,
-              include: Iterable,
-              exclude: Iterable | None = EXCLUDE,
-              verbose: bool = VERBOSE):
+def cleanFont(
+    font: Font | Path | str,
+    include: Iterable,
+    exclude: Iterable | None = EXCLUDE,
+    verbose: bool = VERBOSE,
+):
     """Delete Smufl-specific attribute values.
 
     :param font: Object or path to
@@ -98,10 +100,10 @@ def cleanFont(font: Font | Path | str,
 
     # Clean font attributes
     stdUtils.verbosePrint("\nCleaning attributes for font:", verbose)
-    for attr in itemsToClean['fontAttributes']:
-        if attr == 'engravingDefaults':
+    for attr in itemsToClean["fontAttributes"]:
+        if attr == "engravingDefaults":
             font.smufl.engravingDefaults.clear()
-        elif attr == 'spaces':
+        elif attr == "spaces":
             setattr(font.smufl, attr, False)
         else:
             setattr(font.smufl, attr, None)
@@ -110,14 +112,13 @@ def cleanFont(font: Font | Path | str,
     for glyph in font if verbose else tqdm(font):
         # Clean glyph attributes
         glyphAttributesCleaned = False
-        for attr in itemsToClean['glyphAttributes']:
+        for attr in itemsToClean["glyphAttributes"]:
             if not getattr(glyph.smufl, attr):
                 continue
 
             if not glyphAttributesCleaned:
                 stdUtils.verbosePrint(
-                    f"\nCleaning attributes from glyph '{glyph.name}':",
-                    verbose
+                    f"\nCleaning attributes from glyph '{glyph.name}':", verbose
                 )
                 glyphAttributesCleaned = True
 
@@ -127,7 +128,7 @@ def cleanFont(font: Font | Path | str,
         # Clean Anchors
         anchorsCleaned = False
         for anchor in glyph.anchors:
-            if anchor.name not in itemsToClean['anchors']:
+            if anchor.name not in itemsToClean["anchors"]:
                 continue
 
             if not anchorsCleaned:
@@ -148,15 +149,12 @@ def cleanFont(font: Font | Path | str,
 def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
-    cleanFont(args.font,
-              args.include,
-              exclude=args.exclude,
-              verbose=args.verbose)
+    cleanFont(args.font, args.include, exclude=args.exclude, verbose=args.verbose)
 
 
 def _normalizeFont(font: Font | Path | str) -> Font:
     # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), 'font')
+    error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
     return Font(font)
@@ -165,20 +163,16 @@ def _normalizeFont(font: Font | Path | str) -> Font:
 def _buildItemsDict(include, exclude):
     # Build dict of attribute and anchor items to remove.
 
-    itemsToClean = {
-        'fontAttributes': [],
-        'glyphAttributes': [],
-        'anchors': []
-    }
+    itemsToClean = {"fontAttributes": [], "glyphAttributes": [], "anchors": []}
 
     allItems = FONT_ATTRIBUTES | GLYPH_ATTRIBUTES | ANCHOR_NAMES
     exclude = () if exclude is None else exclude
     exclude = (exclude,) if isinstance(exclude, str) else exclude
 
     for item in exclude:
-        error.suggestValue(item, allItems, 'exclude')
+        error.suggestValue(item, allItems, "exclude")
 
-    if include == '*':
+    if include == "*":
         include = allItems
     elif isinstance(include, str):
         include = (include,)
@@ -188,13 +182,13 @@ def _buildItemsDict(include, exclude):
             continue
 
         if item in FONT_ATTRIBUTES:
-            itemsToClean['fontAttributes'].append(item)
+            itemsToClean["fontAttributes"].append(item)
         elif item in GLYPH_ATTRIBUTES:
-            itemsToClean['glyphAttributes'].append(item)
+            itemsToClean["glyphAttributes"].append(item)
         elif item in ANCHOR_NAMES:
-            itemsToClean['anchors'].append(item)
+            itemsToClean["anchors"].append(item)
         else:
-            error.suggestValue(item, allItems, 'include')
+            error.suggestValue(item, allItems, "include")
 
     return itemsToClean
 
@@ -202,8 +196,8 @@ def _buildItemsDict(include, exclude):
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
-        'font',
-        'include',
+        "font",
+        "include",
         description=stdUtils.getSummary(cleanFont.__doc__),
         exclude=EXCLUDE,
         verbose=VERBOSE,
@@ -211,5 +205,5 @@ def _parseArgs() -> argparse.Namespace:
     return parser.parse_args()
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()
