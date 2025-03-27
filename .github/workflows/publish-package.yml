@@ -1,4 +1,4 @@
-name: Publish Python distribution to PyPI
+name: Publish Python distribution to TestPyPI
 
 on:
   push:
@@ -28,25 +28,26 @@ jobs:
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
   
       - name: Update version in pyproject.toml
+        env:
+          VERSION: ${{ env.VERSION }}
         run: |
           python <<EOF
           import toml
+          import os
+
+          version = os.getenv("VERSION")
 
           with open("pyproject.toml", "r") as f:
               data = toml.load(f)
 
-          data["project"]["version"] = "${{ env.VERSION }}"
+          data["project"]["version"] = version
 
           with open("pyproject.toml", "w") as f:
               toml.dump(data, f)
           EOF
           
       - name: Install pypa/build
-        run: >-
-          python3 -m
-          pip install
-          build
-          --user
+        run: python3 -m pip install build --user
 
       - name: Build binary wheel and source tarball
         run: python3 -m build
@@ -58,9 +59,8 @@ jobs:
           path: dist/
 
   publish:
-    name: Publish to PyPI
-    needs:
-      - build
+    name: Publish to TestPyPI
+    needs: build
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -72,15 +72,15 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Publish distribution to PyPI
+      - name: Publish to TestPyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://test.pypi.org/legacy/
 
   release:
-    name: Sign with Sigstore and upload to GitHub Release
-    needs:
-      - publish
+    name: Create Draft GitHub Release
+    needs: publish
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
       id-token: write
@@ -99,7 +99,7 @@ jobs:
             ./dist/*.tar.gz
             ./dist/*.whl
 
-      - name: Create GitHub Release
+      - name: Create Draft GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >-
@@ -107,7 +107,8 @@ jobs:
           "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
           --notes ""
-          
+          --draft
+
       - name: Upload artifact signatures to GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
