@@ -15,6 +15,13 @@ jobs:
         with: 
           persist-credentials: false
 
+      - name: Verify release-notes.md exists
+        run: |
+          if [ ! -f release-notes.md ]; then
+            echo "Error: release-notes.md not found!"
+            exit 1
+          fi
+
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -90,6 +97,9 @@ jobs:
       id-token: write
 
     steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
       - name: Download all dists
         uses: actions/download-artifact@v4
         with:
