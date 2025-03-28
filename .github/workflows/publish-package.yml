@@ -3,7 +3,7 @@ name: Publish Python distribution to TestPyPI
 on:
   push:
     tags: 
-      - "v*" 
+      - "v*"  # Trigger workflow on tags that start with 'v'
 
 jobs:
   build:
@@ -59,8 +59,9 @@ jobs:
           path: dist/
 
   publish:
-    name: Publish to TestPyPI
-    needs: build
+    name: Publish to TestPyPI (Draft Release)
+    needs:
+      - build
     runs-on: ubuntu-latest
     permissions:
       id-token: write
@@ -72,15 +73,18 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Publish to TestPyPI
+      - name: Publish distribution to TestPyPI
+        if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref_name, '-test') 
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
 
   release:
     name: Create Draft GitHub Release
-    needs: publish
+    needs:
+      - publish
     runs-on: ubuntu-latest
+
     permissions:
       contents: write
       id-token: write
@@ -92,27 +96,20 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Sign dists with Sigstore
-        uses: sigstore/gh-action-sigstore-python@v3.0.0
-        with:
-          inputs: >-
-            ./dist/*.tar.gz
-            ./dist/*.whl
-
       - name: Create Draft GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: >-
+        run: >
           gh release create
           "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
-          --notes ""
-          --draft
+          --notes "Draft release for testing"
+          --draft  # This makes the release a draft
 
       - name: Upload artifact signatures to GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: >-
+        run: >
           gh release upload
           "$GITHUB_REF_NAME" dist/**
           --repo "$GITHUB_REPOSITORY"
