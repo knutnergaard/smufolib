@@ -1,9 +1,9 @@
-name: Publish Python distribution to TestPyPI
+name: Publish Python distribution to PyPI
 
 on:
   push:
     tags: 
-      - "v*"  # Trigger workflow on tags that start with 'v'
+      - "v*"
 
 jobs:
   build:
@@ -59,7 +59,7 @@ jobs:
           path: dist/
 
   publish:
-    name: Publish to TestPyPI (Draft Release)
+    name: Publish to PyPI
     needs:
       - build
     runs-on: ubuntu-latest
@@ -73,14 +73,13 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Publish distribution to TestPyPI
-        if: startsWith(github.ref, 'refs/tags/v') && !contains(github.ref_name, '-test') 
+      - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
         with:
-          repository-url: https://test.pypi.org/legacy/
+          repository-url: https://upload.pypi.org/legacy/
 
   release:
-    name: Create Draft GitHub Release
+    name: Create GitHub Release
     needs:
       - publish
     runs-on: ubuntu-latest
@@ -103,13 +102,4 @@ jobs:
           gh release create
           "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
-          --notes "Draft release for testing"
-          --draft  # This makes the release a draft
-
-      - name: Upload artifact signatures to GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >
-          gh release upload
-          "$GITHUB_REF_NAME" dist/**
-          --repo "$GITHUB_REPOSITORY"
+          --notes-file release-notes.md
