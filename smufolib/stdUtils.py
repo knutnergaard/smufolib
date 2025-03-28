@@ -12,7 +12,6 @@ placeholder purposes.
 from __future__ import annotations
 from typing import Any
 from collections.abc import Generator, Iterable
-import operator
 
 # pylint: disable=C0103
 
@@ -135,10 +134,8 @@ def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
         attributes = (attributes,)
     if attributes is None:
         attributes = ()
-    getter = operator.attrgetter(*attributes)
-    if all(getter(obj)):
-        return True
-    return False
+
+    return all(hasattr(obj, attr) for attr in attributes)
 
 
 def doNothing(*args: Any, **kwargs: Any) -> None:
