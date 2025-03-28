@@ -91,10 +91,9 @@ name.
    :alt: PyPI - Version
    :target: https://pypi.org/project/smufolib/
 
-.. |versions| image:: https://img.shields.io/python/required-version-toml?tomlFilePath=https%3A%2F%2Fraw.githubusercontent.com%2Fknutnergaard%2Fsmufolib%2Frefs%2Fheads%2Fmain%2Fpyproject.toml
-   :alt: Python Version from PEP 621 TOML
+.. |versions| image:: https://img.shields.io/pypi/pyversions/smufolib
+   :alt: PyPI - Python Version
    :target: https://www.python.org
-
 
 .. |license| image:: https://img.shields.io/pypi/l/smufolib
    :alt: PyPI - License
