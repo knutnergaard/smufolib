@@ -88,8 +88,12 @@ def getPoints(
     """
     error.validateType(obj, (tuple, Glyph, Layer, Font), "obj")
     if isinstance(obj, tuple):
-        error.validateType(obj[0], Glyph, "obj", items=True)
-
+        for item in obj:
+            error.validateType(item, Glyph, "obj", items=True)
+        return itertools.chain.from_iterable(
+            itertools.chain(getContourPoints(g, types), getCompositePoints(g, types))
+            for g in obj
+        )
     return itertools.chain(getContourPoints(obj, types), getCompositePoints(obj, types))
 
 
