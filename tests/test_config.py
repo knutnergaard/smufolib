@@ -1,5 +1,6 @@
 import unittest
 from unittest.mock import patch, mock_open
+from pathlib import Path
 from configparser import ConfigParser
 import errno
 from smufolib.config import load, _readConfigFile, _selectPath, _parse
@@ -30,11 +31,15 @@ class TestConfig(unittest.TestCase):
         self.assertTrue(result.has_section("section"))
         self.assertEqual(result.get("section", "option"), "value")
 
+    @patch("pathlib.Path.exists", return_value=True)
+    def test_selectPath_with_path(self, mock_exists):
+        path = "path/to/smufolib.cfg"
+        result = _selectPath(Path(path))
+        self.assertEqual(result, path)
+
     @patch("os.getenv", return_value=None)
-    @patch(
-        "pathlib.Path.exists", side_effect=[False, False, True]
-    )  # Only three checks needed
-    def test_selectPath(self, mock_exists, mock_getenv):
+    @patch("pathlib.Path.exists", side_effect=[False, False, True])
+    def test_selectPath_with_none(self, mock_exists, mock_getenv):
         result = _selectPath(None)
         self.assertTrue(result.endswith("smufolib.cfg"))
 
@@ -53,9 +58,11 @@ class TestConfig(unittest.TestCase):
         config.set("section", "bool_option", "True")
         config.set("section", "str_option", "string")
         config.set("section", "tuple_option", "(1, 2.2, string)")
+        config.set("section", "iterable_option", "(string.)")
 
         self.assertEqual(_parse(config, "section", "int_option"), 1)
         self.assertEqual(_parse(config, "section", "float_option"), 1.1)
         self.assertEqual(_parse(config, "section", "bool_option"), True)
         self.assertEqual(_parse(config, "section", "str_option"), "string")
         self.assertEqual(_parse(config, "section", "tuple_option"), (1, 2.2, "string"))
+        self.assertEqual(_parse(config, "section", "iterable_option"), ("string.",))
