@@ -1,9 +1,9 @@
-name: Publish Python distribution to PyPI
+name: Publish Python Package
 
 on:
   push:
     tags: 
-      - "v*" 
+      - "v*"
 
 jobs:
   build:
@@ -28,25 +28,26 @@ jobs:
         run: echo "VERSION=${GITHUB_REF#refs/tags/v}" >> $GITHUB_ENV
   
       - name: Update version in pyproject.toml
+        env:
+          VERSION: ${{ env.VERSION }}
         run: |
           python <<EOF
           import toml
+          import os
+
+          version = os.getenv("VERSION")
 
           with open("pyproject.toml", "r") as f:
               data = toml.load(f)
 
-          data["project"]["version"] = "${{ env.VERSION }}"
+          data["project"]["version"] = version
 
           with open("pyproject.toml", "w") as f:
               toml.dump(data, f)
           EOF
           
       - name: Install pypa/build
-        run: >-
-          python3 -m
-          pip install
-          build
-          --user
+        run: python3 -m pip install build --user
 
       - name: Build binary wheel and source tarball
         run: python3 -m build
@@ -76,7 +77,7 @@ jobs:
         uses: pypa/gh-action-pypi-publish@release/v1
 
   release:
-    name: Sign with Sigstore and upload to GitHub Release
+    name: Create GitHub Release
     needs:
       - publish
     runs-on: ubuntu-latest
@@ -92,26 +93,11 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Sign dists with Sigstore
-        uses: sigstore/gh-action-sigstore-python@v3.0.0
-        with:
-          inputs: >-
-            ./dist/*.tar.gz
-            ./dist/*.whl
-
-      - name: Create GitHub Release
+      - name: Create Draft GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: >-
+        run: >
           gh release create
           "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
-          --notes ""
-          
-      - name: Upload artifact signatures to GitHub Release
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-        run: >-
-          gh release upload
-          "$GITHUB_REF_NAME" dist/**
-          --repo "$GITHUB_REPOSITORY"
+          --notes-file release-notes.md
