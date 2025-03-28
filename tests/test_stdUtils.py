@@ -1,24 +1,77 @@
+import io
+import sys
 import unittest
-from smufolib.stdUtils import flatten, addTuples, isFloat, validateClassAttr
-
-# pylint: disable=C0115, C0116, C0103
+from smufolib.stdUtils import (
+    flatten,
+    addTuples,
+    getSummary,
+    isFloat,
+    validateClassAttr,
+    doNothing,
+    verbosePrint,
+)
 
 
 class StdUtils(unittest.TestCase):
     def test_flatten(self):
-        matrix = [[[i for i in range(5)] for j in range(5)] for h in range(5)]
-        self.assertEqual(list(flatten(matrix)), list(range(5)) * 25)
         self.assertEqual(
-            list(flatten(matrix, 1)), [[i for i in range(5)] for j in range(25)]
+            list(flatten([1, [2, [3, [4, 5]]]], depth=2)), [1, 2, 3, [4, 5]]
         )
+        self.assertEqual(
+            list(flatten([1, [2, [3, [4, [5]]]]], depth=None)), [1, 2, 3, 4, 5]
+        )
+        self.assertEqual(list(flatten([])), [])
+        self.assertEqual(list(flatten([1, 2, 3])), [1, 2, 3])
 
     def test_addTuples(self):
         self.assertEqual(addTuples((2, 4), (2, 4)), (4, 8))
+        self.assertEqual(addTuples((1.5, 2.5), (2.5, 3.5)), (4.0, 6.0))
+        self.assertEqual(addTuples((1,)), (1,))
+
+    def test_getSummary(self):
+        def example_function():
+            """Example summary line.
+
+            Detailed explanation follows.
+            """
+
+        self.assertEqual(getSummary(example_function.__doc__), "Example summary line.")
+        self.assertIsNone(getSummary(None))
+        self.assertEqual(getSummary(""), "")
 
     def test_isFloat(self):
-        self.assertTrue(isFloat("1.2"))
-        self.assertFalse(isFloat("1"))
+        self.assertTrue(isFloat("3.14"))
+        self.assertFalse(isFloat("314"))
+        self.assertFalse(isFloat("abc"))
+        self.assertTrue(isFloat("0.0"))
 
     def test_validateClassAttr(self):
-        with self.assertRaises(TypeError):
-            validateClassAttr(object, 42)
+        class MyClass:
+            def __init__(self):
+                self.attr1 = 1
+                self.attr2 = 2
+
+        obj = MyClass()
+        self.assertTrue(validateClassAttr(obj, ["attr1", "attr2"]))
+        self.assertFalse(validateClassAttr(obj, "attr3"))
+        self.assertTrue(validateClassAttr(obj, None))
+
+    def test_doNothing(self):
+        self.assertIsNone(doNothing(1, 2, 3))
+        self.assertIsNone(doNothing(a=1, b=2))
+
+    def test_verbosePrint(self):
+
+        captured_output = io.StringIO()
+        sys.stdout = captured_output
+
+        verbosePrint("Hello, world!", True)
+        self.assertEqual(captured_output.getvalue().strip(), "Hello, world!")
+
+        captured_output.truncate(0)
+        captured_output.seek(0)
+
+        verbosePrint("Hello, world!", False)
+        self.assertEqual(captured_output.getvalue(), "")
+
+        sys.stdout = sys.__stdout__  # Reset stdout

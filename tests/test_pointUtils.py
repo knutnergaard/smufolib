@@ -65,14 +65,16 @@ class TestPointUtils(unittest.TestCase):
             self.assertIsInstance(point, Point)
             self.assertIsInstance(point.position, Position)
 
-    def test_getContourPoints_with_glyph(self):
-        points = tuple(getContourPoints(self.glyph1))
-        self.assertPointListsEqual(points, self.expectedContourPoints1)
-
-    def test_getCompositePoints_with_glyph(self):
-        points = tuple(getCompositePoints(self.glyph1))
-        self.assertPointListsEqual(points, self.expectedCompositePoints1)
-        assert isinstance(points, tuple)
+    def test_getPoints_with_font(self):
+        points = tuple(getPoints(self.font))
+        expectedPoints = (
+            self.expectedContourPoints1
+            + self.expectedContourPoints2
+            + self.expectedContourPoints3
+            + self.expectedCompositePoints1
+            + self.expectedCompositePoints2
+        )
+        self.assertPointListsEqual(points, expectedPoints)
 
     def test_getPoints_with_glyph(self):
         points = tuple(getPoints(self.glyph1))
@@ -84,13 +86,9 @@ class TestPointUtils(unittest.TestCase):
         points = tuple(getPoints((self.glyph1, self.glyph2)))
         assert isinstance(points, tuple)
 
-    def test_getCompositePoints_with_component(self):
-        points = tuple(getCompositePoints(self.component1))
-        assert isinstance(points, tuple)
-
-    def test_getCompositePoints_with_tuple_of_components(self):
-        points = tuple(getCompositePoints((self.component1, self.component2)))
-        assert isinstance(points, tuple)
+    def test_getContourPoints_with_glyph(self):
+        points = tuple(getContourPoints(self.glyph1))
+        self.assertPointListsEqual(points, self.expectedContourPoints1)
 
     def test_getContourPoints_with_contour(self):
         points = tuple(getContourPoints(self.glyph1.contours[0]))
@@ -109,18 +107,24 @@ class TestPointUtils(unittest.TestCase):
         )
         self.assertPointListsEqual(points, expectedPoints)
 
+    def test_getCompositePoints_with_glyph(self):
+        points = tuple(getCompositePoints(self.glyph1))
+        self.assertPointListsEqual(points, self.expectedCompositePoints1)
+        assert isinstance(points, tuple)
+
+    def test_getCompositePoints_with_component(self):
+        points = tuple(getCompositePoints(self.component1))
+        assert isinstance(points, tuple)
+
+    def test_getCompositePoints_with_tuple_of_components(self):
+        points = tuple(getCompositePoints((self.component1, self.component2)))
+        assert isinstance(points, tuple)
+
     def test_getCompositePoints_with_font(self):
         points = tuple(getCompositePoints(self.font))
         expectedPoints = self.expectedCompositePoints1 + self.expectedCompositePoints2
         self.assertPointListsEqual(points, expectedPoints)
 
-    def test_getPoints_with_font(self):
-        points = tuple(getPoints(self.font))
-        expectedPoints = (
-            self.expectedContourPoints1
-            + self.expectedContourPoints2
-            + self.expectedContourPoints3
-            + self.expectedCompositePoints1
-            + self.expectedCompositePoints2
-        )
-        self.assertPointListsEqual(points, expectedPoints)
+    def test_getCompositePoints_invalid_type(self):
+        with self.assertRaises(TypeError):
+            getCompositePoints("invalid_type")
