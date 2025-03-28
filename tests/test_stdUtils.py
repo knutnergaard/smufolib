@@ -41,9 +41,11 @@ class StdUtils(unittest.TestCase):
 
     def test_isFloat(self):
         self.assertTrue(isFloat("3.14"))
+        self.assertTrue(isFloat("0.0"))
         self.assertFalse(isFloat("314"))
         self.assertFalse(isFloat("abc"))
-        self.assertTrue(isFloat("0.0"))
+        self.assertFalse(isFloat("a.b"))
+        self.assertFalse(isFloat(""))
 
     def test_validateClassAttr(self):
         class MyClass:
