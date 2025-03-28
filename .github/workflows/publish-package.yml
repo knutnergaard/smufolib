@@ -1,4 +1,4 @@
-name: Publish Python Package
+name: Publish Package
 
 on:
   push:
@@ -75,6 +75,9 @@ jobs:
 
       - name: Publish distribution to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1
+        with:
+          repository-url: https://upload.pypi.org/legacy/
+          verbose: true
 
   release:
     name: Create GitHub Release
@@ -93,7 +96,7 @@ jobs:
           name: python-package-distributions
           path: dist/
 
-      - name: Create Draft GitHub Release
+      - name: Create GitHub Release
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: >
