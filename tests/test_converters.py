@@ -6,6 +6,7 @@ from smufolib.converters import (
     toUniName,
     toKebab,
     toNumber,
+    toIntIfWhole,
 )
 
 # pylint: disable=C0115, C0116, C0103
@@ -26,10 +27,14 @@ class Converters(unittest.TestCase):
             convertMeasurement(125, targetUnit="something else", unitsPerEm=1000)
 
     def test_toDecimal(self):
-        for value in ("U+E00C", "uE00C", "uniE00C"):
+        for prefix in ("U+", "u", "uni"):
+            value = f"{prefix}E00C"
             self.assertEqual(toDecimal(value), 57356)
             with self.assertRaises(ValueError):
                 toDecimal(value[1:])
+            with self.assertRaises(ValueError):
+                toDecimal(f"{prefix}110000")
+
         with self.assertRaises(TypeError):
             toDecimal(57356)
 
@@ -65,3 +70,18 @@ class Converters(unittest.TestCase):
             toNumber(["485937"])
         with self.assertRaises(ValueError):
             toNumber("456h")
+
+    def test_toIntIfWhole(self):
+        self.assertEqual(toIntIfWhole(10), 10)
+        self.assertEqual(toIntIfWhole(-5), -5)
+
+        self.assertEqual(toIntIfWhole(10.0), 10)
+        self.assertEqual(toIntIfWhole(-5.0), -5)
+
+        self.assertEqual(toIntIfWhole(10.1), 10.1)
+        self.assertEqual(toIntIfWhole(-5.9), -5.9)
+
+        self.assertEqual(toIntIfWhole(0.0), 0)
+        self.assertEqual(toIntIfWhole(-0.0), 0)
+        self.assertEqual(toIntIfWhole(1.0000000000001), 1.0000000000001)
+        self.assertEqual(toIntIfWhole(1.9999999999999), 1.9999999999999)

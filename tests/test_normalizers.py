@@ -1,4 +1,5 @@
 import unittest
+from pathlib import Path
 from smufolib import Font, Glyph
 from smufolib.normalizers import (
     normalizeFont,
@@ -85,20 +86,28 @@ class Normalizers(unittest.TestCase):
             with self.assertRaises(ValueError):
                 normalizeSmuflName(name)
 
+    def test_normalizeEngravingDefaults_with_invalid_value(self):
+        with self.assertRaises(ValueError):
+            normalizeEngravingDefaultsAttr("textFontFamily", [""])
+
     def test_normalizeEngravingDefaults_with_invalid_type(self):
         with self.assertRaises(TypeError):
             normalizeEngravingDefaults(self.font)
 
-    def test_normalizeEngravingDefaultsAttr_with_invalid_values(self):
-        for wrongAttr, wrongVal in [
-            ("attribute", "23"),
-            ("attribute", [23]),
-            ("textFontFamily", [23]),
-        ]:
-            with self.assertRaises((TypeError, AttributeError, ValueError)):
-                normalizeEngravingDefaultsAttr(wrongAttr, wrongVal)
-        with self.assertRaises(ValueError):
-            normalizeEngravingDefaultsAttr("textFontFamily", [""])
+    def test_normalizeEngravingDefaultsAttr_with_invalid_attribute(self):
+        with self.assertRaises(AttributeError):
+            normalizeEngravingDefaultsAttr("someWrongAttribute", 42)
+
+    def test_normalizeEngravingDefaultsAttr_with_invalid_types(self):
+        with self.assertRaises(TypeError):
+            normalizeEngravingDefaultsAttr(42, 42)
+        with self.assertRaises(TypeError):
+            normalizeEngravingDefaultsAttr("textFontFamily", "someFont")
+        with self.assertRaises(TypeError):
+            normalizeEngravingDefaultsAttr("stemThickness", "")
+
+    def test_normalizeEngravingDefaultsAttr_with_value_None(self):
+        self.assertIsNotNone(normalizeEngravingDefaultsAttr("textFontFamily", None))
 
     def test_normalizeRequest_with_invalid_type(self):
         with self.assertRaises(TypeError):
@@ -107,3 +116,8 @@ class Normalizers(unittest.TestCase):
     def test_normalizeRequestPath_with_invalid_type(self):
         with self.assertRaises(TypeError):
             normalizeRequestPath(["path"], parameter="path")
+
+    def test_normalizeRequestPath_with_relative_path(self):
+        relative_path = "./some_dir/some_file.txt"
+        expected = str(Path(relative_path).resolve())
+        self.assertEqual(normalizeRequestPath(relative_path, "testParam"), expected)

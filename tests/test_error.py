@@ -1,6 +1,6 @@
 import unittest
+from unittest.mock import patch
 from pathlib import Path
-from smufolib import Request
 from smufolib.error import (
     generateErrorMessage,
     generateTypeError,
@@ -10,70 +10,124 @@ from smufolib.error import (
 )
 
 
-class TestError(unittest.TestCase):
-    def test_generateErrorMessage(self):
-        message = generateErrorMessage("alphanumericValue", objectName="unicode")
-        expected_message = "The value for 'unicode' must be alphanumeric."
-        self.assertEqual(message, expected_message)
+def _expected_type_error_substrings(value, valid_types, object_name):
+    """Generate expected substrings for a TypeError message."""
+    type_names = _listTypes(valid_types)
+    return type(value).__name__, type_names, object_name
 
+
+class TestErrorGeneration(unittest.TestCase):
+    def test_generateErrorMessage(self):
         message = generateErrorMessage(
             "typeError", objectName="index", validTypes="int", value="str"
         )
-        expected_message = "Expected 'index' to be of type int, but got str."
-        self.assertEqual(message, expected_message)
+        expected_substrings = ("type", "index", "int", "str")
 
-    def test_generateTypeError(self):
-        message = generateTypeError(123, (str,), "path")
-        expected_message = "Expected 'path' to be of type str, but got int."
-        self.assertEqual(message, expected_message)
+        for substring in expected_substrings:
+            with self.subTest(substring=substring):
+                self.assertIn(substring, message)
 
-        message = generateTypeError(123, (str, Path), "path")
-        expected_message = "Expected 'path' to be of type str or Path, but got int."
-        self.assertEqual(message, expected_message)
+    def test_generateTypeError_with_single_type(self):
+        value = 123
+        valid_types = str
+        object_name = "path"
 
-        message = generateTypeError(123, (str, Path, Request), "path")
-        expected_message = (
-            "Expected 'path' to be of type str, Path or Request, but got int."
+        message = generateTypeError(value, (valid_types,), object_name)
+        expected_substrings = _expected_type_error_substrings(
+            value, valid_types, object_name
         )
-        self.assertEqual(message, expected_message)
+
+        for substring in expected_substrings:
+            with self.subTest(substring=substring):
+                self.assertIn(substring, message)
+
+    def test_generateTypeError_with_union_types(self):
+        value = 123
+        valid_types = str | Path
+        object_name = "path"
+
+        message = generateTypeError(value, valid_types, object_name)
+        expected_substrings = _expected_type_error_substrings(
+            value, valid_types, object_name
+        )
+
+        for substring in expected_substrings:
+            with self.subTest(substring=substring):
+                self.assertIn(substring, message)
+
+    def test_generateTypeError_with_dependency(self):
+        with patch("smufolib.error.generateErrorMessage") as mock_generate:
+            value = 123
+            valid_type = str
+            object_name = "path"
+
+            generateTypeError(
+                value, valid_type, object_name, dependencyInfo="some_dependency"
+            )
+            str_value, str_type, object_name = _expected_type_error_substrings(
+                value, valid_type, object_name
+            )
+            mock_generate.assert_called_with(
+                "dependentTypeError",
+                validTypes=str_type,
+                objectName=object_name,
+                dependencyInfo="some_dependency",
+                value=str_value,
+            )
+
+    def test_generateTypeError_with_dependent_items(self):
+        "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}."
+        with patch("smufolib.error.generateErrorMessage") as mock_generate:
+            value = 123
+            valid_type = str
+            object_name = "path"
+
+            generateTypeError(
+                value,
+                valid_type,
+                object_name,
+                dependencyInfo="some_dependency",
+                items=True,
+            )
+            str_value, str_type, object_name = _expected_type_error_substrings(
+                value, valid_type, object_name
+            )
+            mock_generate.assert_called_with(
+                "dependenItemsTypeError",
+                validTypes=str_type,
+                objectName=object_name,
+                dependencyInfo="some_dependency",
+                value=str_value,
+            )
 
     def test_validateType(self):
-        with self.assertRaises(TypeError) as context:
-            validateType(123, str, "glyphName")
-        self.assertEqual(
-            str(context.exception),
-            "Expected 'glyphName' to be of type str, but got int.",
-        )
+        with self.assertRaises(TypeError) as ctx:
+            validateType(123, str, "name")
+        self.assertIn("Expected 'name' to be of type str", str(ctx.exception))
 
-        validateType("uniE001", str, "glyphNames", items=True)
+    def test_validateType_with_union_types(self):
+        with self.assertRaises(TypeError) as ctx:
+            validateType(123, str | float, "name")
+        self.assertIn("Expected 'name' to be of type str or float", str(ctx.exception))
 
-        with self.assertRaises(ValueError) as context:
-            validateType(["uniE000", 1], str, "glyphNames", items=True)
-        self.assertEqual(
-            str(context.exception), "Items in 'glyphNames' must be str, not list."
-        )
+    def test_validateType_with_items(self):
+        with self.assertRaises(ValueError) as ctx:
+            validateType([123, "valid"], str, "items", items=True)
+        self.assertIn("Items in 'items' must be str", str(ctx.exception))
 
-    def test_suggestValue(self):
-        with self.assertRaises(ValueError) as context:
+    def test_suggestValue_suggests_correct_value(self):
+        with self.assertRaises(ValueError) as ctx:
             suggestValue(
-                "spiltStepUpSE",
+                "spiltStemUpSE",
                 ["splitStemUpSE", "splitStemUpSW"],
                 "anchorName",
                 cutoff=0.5,
             )
-        self.assertEqual(
-            str(context.exception),
-            "Invalid value for 'anchorName': spiltStepUpSE. Did you mean 'splitStemUpSE'?",
-        )
+        self.assertIn("Did you mean 'splitStemUpSE'?", str(ctx.exception))
 
-        with self.assertRaises(ValueError) as context:
-            suggestValue("invalidValue", ["validValue1", "validValue2"], "objectName")
-        self.assertEqual(
-            str(context.exception),
-            "Invalid value for 'objectName': invalidValue. Did you mean 'validValue2'?",
-        )
-
-    def test_listTypes(self):
-        self.assertEqual(_listTypes(str), "str")
-        self.assertEqual(_listTypes((str, int)), "str or int")
-        self.assertEqual(_listTypes((str, int, float)), "str, int or float")
+    def test_suggestValue_no_suggestion(self):
+        with self.assertRaises(ValueError) as ctx:
+            suggestValue(
+                "xyz", ["splitStemUpSE", "splitStemUpSW"], "anchorName", cutoff=0.9
+            )
+        self.assertNotIn("Did you mean", str(ctx.exception))

@@ -1,5 +1,5 @@
 import unittest
-from unittest.mock import patch, mock_open, MagicMock
+from unittest.mock import patch, mock_open, MagicMock, PropertyMock
 import urllib.error
 import warnings
 import json
@@ -16,25 +16,45 @@ class TestRequest(unittest.TestCase):
         self.fallback = "fallback.txt"
         self.request = Request(path=self.path, fallback=self.fallback, warn=False)
 
+    def test_repr(self):
+        repr_string = (
+            f"<Request '{self.path}' ('{self.fallback}') at {id(self.request)}>"
+        )
+        self.assertEqual(repr(self.request), repr_string)
+
     @patch("urllib.request.urlopen")
     def test_readFromURL(self, mock_urlopen):
         mock_response = MagicMock()
         mock_response.read.return_value = b"data from URL"
         mock_urlopen.return_value.__enter__.return_value = mock_response
-
         result = self.request._readFromURL()
         self.assertEqual(result, b"data from URL")
+
+    def test_readFromUrl_with_path_none(self):
+        self.request._path = None
+        with self.assertRaises(TypeError):
+            self.request._readFromURL()
 
     @patch("builtins.open", new_callable=mock_open, read_data="data from file")
     def test_readFromFallback(self, mock_file):
         result = self.request._readFromFallback()
         self.assertEqual(result, "data from file")
 
+    def test_readFromFallback_without_fallback(self):
+        self.request._fallback = None
+        with self.assertRaises(TypeError):
+            self.request._readFromFallback()
+
     @patch("builtins.open", new_callable=mock_open, read_data="data from file")
     def test_readFromPath(self, mock_file):
         self.request._path = "path.txt"
         result = self.request._readFromPath()
         self.assertEqual(result, "data from file")
+
+    def test_readFromPath_without_path(self):
+        self.request._path = None
+        with self.assertRaises(TypeError):
+            self.request._readFromPath()
 
     @patch("urllib.request.urlopen", side_effect=urllib.error.URLError("URL error"))
     @patch("builtins.open", new_callable=mock_open, read_data="data from fallback")
@@ -63,11 +83,26 @@ class TestRequest(unittest.TestCase):
         result = self.request.raw
         self.assertEqual(result, "data from file")
 
+    @patch("builtins.open", new_callable=mock_open, read_data="data from fallback")
+    def test_raw_without_path(self, mock_file):
+        self.request._path = None
+        result = self.request.raw
+        self.assertEqual(result, "data from fallback")
+
+    def test_raw_without_path_and_fallback(self):
+        self.request._path = None
+        self.request._fallback = None
+        self.assertIsNone(self.request.raw)
+
     @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
     def test_json(self, mock_file):
         self.request._path = "path.json"
         result = self.request.json()
         self.assertEqual(result, {"key": "value"})
+
+    @patch.object(Request, "raw", new_callable=PropertyMock, return_value=None)
+    def test_json_without_raw(self, mock_raw):
+        self.assertIsNone(self.request.json())
 
     def test_path(self):
         self.assertEqual(self.request.path, self.path)
