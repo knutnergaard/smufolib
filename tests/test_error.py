@@ -93,7 +93,7 @@ class TestErrorGeneration(unittest.TestCase):
                 value, valid_type, object_name
             )
             mock_generate.assert_called_with(
-                "dependenItemsTypeError",
+                "dependentItemsTypeError",
                 validTypes=str_type,
                 objectName=object_name,
                 dependencyInfo="some_dependency",
