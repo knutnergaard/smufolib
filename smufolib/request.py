@@ -108,15 +108,9 @@ class Request:
                     self.fallback, (str, Path, Request), "Request.fallback"
                 )
             )
-        try:
-            with open(self.fallback, self.mode, encoding=self.encoding) as raw:
-                return raw.read()
-        except ValueError as exc:
-            raise ValueError(
-                error.generateErrorMessage(
-                    "valueError", parameter="fallback", value=self.fallback
-                )
-            ) from exc
+
+        with open(self.fallback, self.mode, encoding=self.encoding) as raw:
+            return raw.read()
 
     def _readFromPath(self) -> bytes:
         # Read data from path.
@@ -124,15 +118,8 @@ class Request:
             raise TypeError(
                 error.generateTypeError(self.path, (str, Path, Request), "Request.path")
             )
-        try:
-            with open(self.path, self.mode, encoding=self.encoding) as raw:
-                return raw.read()
-        except ValueError as exc:
-            raise ValueError(
-                error.generateErrorMessage(
-                    "valueError", parameter="path", value=self.path
-                )
-            ) from exc
+        with open(self.path, self.mode, encoding=self.encoding) as raw:
+            return raw.read()
 
     def _handleURLError(self, exc: urllib.error.URLError) -> bytes:
         # Handle URL error during online request.
