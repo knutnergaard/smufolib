@@ -5,6 +5,7 @@ from tests import test_config
 from tests import test_converters
 from tests import test_engravingDefaults
 from tests import test_error
+from tests import test_glyph
 from tests import test_normalizers
 from tests import test_pointUtils
 from tests import test_range
@@ -20,6 +21,7 @@ def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=T
         test_converters,
         test_engravingDefaults,
         test_error,
+        test_glyph,
         test_pointUtils,
         test_range,
         test_request,
