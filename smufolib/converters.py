@@ -144,14 +144,14 @@ def toUniName(value: str | int, short: bool = False) -> str:
                 error.generateErrorMessage("invalidFormat", objectName="value")
             )
     elif isinstance(value, int):
-        unicodeHex = format(value, "X").zfill(4)
+        unicodeHex = "0x" + format(value, "X").zfill(4)
 
     if not _isInUnicodeRange(int(unicodeHex, 16)):
         raise ValueError(
             error.generateErrorMessage("unicodeOutOfRange", objectName="value")
         )
 
-    return prefix + unicodeHex.upper()
+    return prefix + unicodeHex[2:].upper()
 
 
 def toKebab(camelCaseString: str) -> str:
@@ -220,14 +220,14 @@ def toIntIfWhole(number: int | float) -> int | float:
 
 
 def _findUnicodeHex(unicodeString: str) -> str | None:
-    # Find the ending hex in various unicode value configurations.
-
+    # Find the hex in various unicode value configurations.
+    # If found, add prefix and return value or None.
     error.validateType(unicodeString, str, "unicodeString")
     pattern = r"((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}"
     result = re.search(pattern, unicodeString, flags=re.IGNORECASE)
     if not result:
         return None
-    return result.group(0)
+    return f"0x{result.group(0)}"
 
 
 def _isInUnicodeRange(codepoint: int) -> bool:
