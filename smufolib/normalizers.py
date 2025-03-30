@@ -37,8 +37,7 @@ from smufolib import error
 
 # ruff: noqa: F401
 # pylint: enable=W0611
-
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.font import Font
     from smufolib.request import Request
     from smufolib.objects.smufl import Smufl
@@ -281,7 +280,7 @@ def normalizeEngravingDefaultsAttr(
         )
 
     if value is None:
-        return () if value == "textFontFamily" else None
+        return () if name == "textFontFamily" else None
 
     objectName = f"{className}.{name}"
     if name == "textFontFamily":
@@ -350,6 +349,6 @@ def normalizeRequestPath(value: Path | str | None, parameter: str) -> str | None
     if value is None:
         return None
     error.validateType(value, (str, Path), parameter)
-    if isinstance(value, Path) or value.startswith("."):
+    if str(value).startswith("."):
         return str(Path(value).resolve())
     return str(value)
