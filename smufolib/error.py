@@ -20,7 +20,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
     "attributeError": "'{objectName}' has no attribute '{attribute}'.",
     "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {value}.",
-    "dependenItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}.",
+    "dependentItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}.",
     "duplicateFlags": "Arguments '{argument1}' and '{argument2}' have duplicate short flag: {flag}.",
     "duplicateItems": "Items in '{objectName}' cannot be duplicates.",
     "emptyValue": "The value for '{objectName}' cannot be empty.",
@@ -124,22 +124,24 @@ def generateTypeError(
     typeNames = _listTypes(validTypes)
     valueType = type(value).__name__
 
-    if items:
-        template = "itemsTypeError"
+    kwargs = {
+        "validTypes": typeNames,
+        "objectName": objectName,
+        "value": valueType,
+    }
+
+    if items and dependencyInfo:
+        template = "dependentItemsTypeError"
+        kwargs["dependencyInfo"] = dependencyInfo
     elif dependencyInfo:
         template = "dependentTypeError"
-    elif items and dependencyInfo:
-        template = "dependenItemsTypeError"
+        kwargs["dependencyInfo"] = dependencyInfo
+    elif items:
+        template = "itemsTypeError"
     else:
         template = "typeError"
 
-    return generateErrorMessage(
-        template,
-        validTypes=typeNames,
-        objectName=objectName,
-        dependencyInfo=dependencyInfo,
-        value=valueType,
-    )
+    return generateErrorMessage(template, **kwargs)
 
 
 def validateType(
