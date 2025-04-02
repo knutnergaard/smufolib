@@ -17,7 +17,7 @@ def convertMeasurement(
     targetUnit: str,
     unitsPerEm: int | float,
     rounded: bool = False,
-) -> int | float | None:
+) -> int | float:
     """Convert between units of measurement based on UPM size.
 
     :param measurement: The value to convert.
