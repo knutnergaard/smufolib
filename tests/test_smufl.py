@@ -1,5 +1,6 @@
 import unittest
-from smufolib import converters
+from unittest.mock import patch, PropertyMock
+from smufolib import converters, Smufl
 
 
 class TestSmufl(unittest.TestCase):
@@ -237,6 +238,12 @@ class TestSmufl(unittest.TestCase):
         self.assign_anchors(self.glyph)
         self.smufl.glyph = self.glyph
         self.assertEqual(self.smufl.anchors, {"stemUpNW": (1.5, 2.5)})
+
+    @patch.object(Smufl, "spaces", new_callable=PropertyMock, return_value=True)
+    def test_anchors_with_toSpaces_None(self, mock_spaces):
+        self.smufl.glyph = self.glyph
+        self.assign_anchors(self.glyph)
+        self.assertIsNone(self.glyph.smufl.anchors)
 
     def test_bBox(self):
         self.assertIsNone(self.smufl.bBox)
