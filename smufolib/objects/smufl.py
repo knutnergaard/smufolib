@@ -295,6 +295,9 @@ class Smufl(BaseObject):
                 x = self.toSpaces(a.x) if self.spaces else a.x
                 y = self.toSpaces(a.y) if self.spaces else a.y
 
+                if x is None or y is None:
+                    return None
+
                 anchors[a.name] = (x, y)
 
         return anchors
