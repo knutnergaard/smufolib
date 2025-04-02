@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from fontParts.base.base import BaseObject
 from smufolib import normalizers, error
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
     from smufolib.objects.glyph import Glyph
     from smufolib.objects.font import Font
@@ -82,15 +82,54 @@ class EngravingDefaults(BaseObject):
 
     def _reprContents(self) -> list[str]:
         contents = []
-        contents.append("in font")
-        # pylint: disable-next=W0212
         if self.font is not None:
-            contents += self.font._reprContents()
+            contents.append("in font")
+
+            contents += self.font._reprContents()  # pylint: disable-next=W0212
         return contents
 
     def naked(self):
         # BaseObject override for __eq__ and __hash__
-        return self
+        return self  # pragma: no cover
+
+    # -------
+    # Parents
+    # -------
+
+    @property
+    def smufl(self) -> Smufl | None:
+        """Parent :class:`~smufolib.objects.smufl.Smufl`."""
+        return self._smufl
+
+    @smufl.setter
+    def smufl(self, value: Smufl) -> None:
+        if self._smufl is not None and self._smufl != value:
+            raise AssertionError(
+                "Smufl for EngravingDefaults object is "
+                "already set and is not same as value."
+            )
+        self._smufl = normalizers.normalizeSmufl(value)
+
+    @property
+    def font(self) -> Font | None:
+        """Parent :class:`~smufolib.objects.font.Font` object."""
+        if self._smufl is None:
+            return None
+        return self._smufl.font
+
+    @property
+    def glyph(self) -> Glyph | None:
+        """Parent :class:`~smufolib.objects.glyph.Glyph` object."""
+        if self._smufl is None:
+            return None
+        return self._smufl.glyph
+
+    @property
+    def layer(self) -> Layer | None:
+        """Parent :class:`~smufolib.objects.layer.Layer` object."""
+        if self._smufl is None:
+            return None
+        return self._smufl.layer
 
     # ------------------
     # Dictionary methods
@@ -180,10 +219,11 @@ class EngravingDefaults(BaseObject):
         if not other or self.font is None:
             return
 
-        self.font.lib["com.smufolib.engravingDefaults"] = {}
+        if "com.smufolib.engravingDefaults" not in self.font.lib:
+            self.font.lib["com.smufolib.engravingDefaults"] = {}
+
         for key, value in other.items():  # type: ignore[misc]
             if key not in self.keys():
-                self.font.lib.pop("com.smufolib.engravingDefaults")
                 raise AttributeError(
                     error.generateErrorMessage(
                         "attributeError", objectName=type(self).__name__, attribute=key
@@ -191,12 +231,14 @@ class EngravingDefaults(BaseObject):
                 )
 
             normalizedValue = normalizers.normalizeEngravingDefaultsAttr(key, value)
+            if value is None:
+                continue
             if (
-                self.smufl is not None
+                self._smufl is not None
                 and isinstance(normalizedValue, (int, float))
                 and self.spaces
             ):
-                normalizedValue = self.smufl.toUnits(normalizedValue)
+                normalizedValue = self._smufl.toUnits(normalizedValue)
             self.font.lib["com.smufolib.engravingDefaults"][key] = normalizedValue
 
     def _normalizeOthers(
@@ -234,60 +276,6 @@ class EngravingDefaults(BaseObject):
 
         """
         return [getattr(self, k) for k in self.keys()]
-
-    # -------
-    # Parents
-    # -------
-
-    @property
-    def smufl(self) -> Smufl | None:
-        """Parent :class:`~smufolib.objects.smufl.Smufl`."""
-        if self._smufl is None:
-            return None
-        return normalizers.normalizeSmufl(self._smufl)
-
-    @smufl.setter
-    def smufl(self, value: Smufl) -> None:
-        if self._smufl is not None and self._smufl != value:
-            raise AssertionError(
-                "Smufl for EngravingDefaults object is "
-                "already set and is not same as value."
-            )
-        self._smufl = normalizers.normalizeSmufl(value)
-
-    @property
-    def font(self) -> Font | None:
-        """Parent :class:`~smufolib.objects.font.Font` object."""
-        if self._smufl is None:
-            return None
-        return self._smufl.font
-
-    @font.setter
-    def font(self, value: Font) -> None:
-        if (
-            self.smufl is not None
-            and self.smufl.font is not None
-            and self.smufl.font != value
-        ):
-            raise AssertionError(
-                "Font for EngravingDefaults object is "
-                "already set and is not same as value."
-            )
-        self.font = normalizers.normalizeFont(value)
-
-    @property
-    def glyph(self) -> Glyph | None:
-        """Parent :class:`~smufolib.objects.glyph.Glyph` object."""
-        if self._smufl is None:
-            return None
-        return self._smufl.glyph
-
-    @property
-    def layer(self) -> Layer | None:
-        """Parent :class:`~smufolib.objects.layer.Layer` object."""
-        if self._smufl is None:
-            return None
-        return self._smufl.layer
 
     # -------------------
     # Settings Properties
@@ -492,7 +480,7 @@ class EngravingDefaults(BaseObject):
         self._setValue("subBracketThickness", value)
 
     @property
-    def textFontFamily(self) -> tuple[str, ...]:
+    def textFontFamily(self) -> tuple[str, ...] | None:
         """tuple of text font pairings."""
         return self._getValue("textFontFamily")  # type: ignore
 
@@ -566,7 +554,7 @@ class EngravingDefaults(BaseObject):
     def _getValue(self, name: str) -> EngravingDefaultsValue:
         # Common settings property getter.
         if not self._engravingDefaults:
-            return () if name == "textFontFamily" else None
+            return None
 
         value = self._engravingDefaults.get(name, None)
         if name == "textFontFamily":
@@ -579,18 +567,14 @@ class EngravingDefaults(BaseObject):
     def _setValue(self, name: str, value: EngravingDefaultsValue) -> None:
         # Common settings property setter.
         # Keeps dynamic dict of settings in font.lib().
-        value = normalizers.normalizeEngravingDefaultsAttr(name, value)
-
-        self._engravingDefaults = {}
 
         if self.font is None:
-            raise AttributeError(
-                error.generateErrorMessage(
-                    "missingDependencyError", objectName=name, dependency="font"
-                )
-            )
+            return
+
+        self._engravingDefaults = {}
+        value = normalizers.normalizeEngravingDefaultsAttr(name, value)
         if not value:
-            self._engravingDefaults.pop(name, None)
+            self._engravingDefaults[name] = None
 
         elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             self._engravingDefaults[name] = self.font.smufl.toUnits(value)
@@ -691,15 +675,15 @@ class EngravingDefaults(BaseObject):
             0.12
 
         """
-        if self.smufl is None:
+        if self._smufl is None:
             return False
-        return self.smufl.spaces
+        return self._smufl.spaces
 
     @spaces.setter
     def spaces(self, value: bool) -> None:
-        if self.smufl is None:
+        if self._smufl is None:
             return
-        self.smufl.spaces = value
+        self._smufl.spaces = value
 
     # ------------------------
     # Override from BaseObject
@@ -709,7 +693,7 @@ class EngravingDefaults(BaseObject):
         """This exception needs to be raised frequently by
         the base classes. So, it's here for convenience.
         """
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             error.generateErrorMessage(
                 "notImplementedError", objectName=self.__class__.__name__
             )

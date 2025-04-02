@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from smufolib.request import Request
 from smufolib import config, normalizers
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
     from smufolib.objects.glyph import Glyph
     from smufolib.objects.font import Font
@@ -46,7 +46,7 @@ class Range:
     def __repr__(self):
         return (
             f"<{self.__class__.__name__} '{self.name}' "
-            f"('{self.start}–{self.end}') at {id(self)}>"
+            f"('{self.start}-{self.end}') at {id(self)}>"
         )
 
     # -------
@@ -119,7 +119,7 @@ class Range:
         return None
 
     @property
-    def glyphs(self) -> tuple[Glyph, ...] | None:
+    def glyphs(self) -> tuple[Glyph, ...]:
         """:class:`~smufolib.objects.glyph.Glyph` objects of Affiliated SMuFL range.
 
         Example::
@@ -133,7 +133,7 @@ class Range:
         result = self._getAttribute("glyphs")
         if isinstance(result, tuple):
             return result
-        return None
+        return ()
 
     @property
     def start(self) -> str | None:

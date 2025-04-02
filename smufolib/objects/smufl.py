@@ -8,7 +8,7 @@ from smufolib.objects.range import Range
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib import converters, error, normalizers
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
     from smufolib.objects.glyph import Glyph
@@ -115,7 +115,7 @@ class Smufl(BaseObject):
 
         """
         if self._font is not None:
-            return normalizers.normalizeFont(self._font)
+            return self._font
         if self._glyph is not None:
             return self._glyph.font
         return None
@@ -140,9 +140,7 @@ class Smufl(BaseObject):
             <Glyph 'uniE587' ('public.default') at 4536458160>
 
         """
-        if self._glyph is None:
-            return None
-        return normalizers.normalizeGlyph(self._glyph)
+        return self._glyph
 
     @glyph.setter
     def glyph(self, value: Glyph) -> None:
@@ -298,7 +296,7 @@ class Smufl(BaseObject):
                 y = self.toSpaces(a.y) if self.spaces else a.y
 
                 if x is None or y is None:
-                    continue
+                    return None
 
                 anchors[a.name] = (x, y)
 
@@ -553,37 +551,31 @@ class Smufl(BaseObject):
 
     def _updateGlyphLib(self, key: str, value: Any) -> None:
         if self.glyph is not None:
-            if value in (None, ()):
+            if not value:
                 if key in self.glyph.lib:
                     del self.glyph.lib[key]
             else:
                 self.glyph.lib[key] = value
 
+    def _clearNames(self) -> None:
+        if self.font is not None:
+            if self._names:
+                self.font.lib["com.smufolib.names"].pop(self.name)
+            if not self._names:
+                self.font.lib.pop("com.smufolib.names")
+
+    def _addNames(self, value: Any) -> None:
+        if self._names is None:
+            self._names = {}
+        if self.glyph is not None:
+            self._names[value] = self.glyph.name
+
     def _updateNames(self, value: str | None) -> None:
         # Keep dynamic dict of glyph names in font.lib.
         if value is None:
-            if not self._names:
-                return
-
-            if len(self._names) == 0 or (
-                len(self._names) == 1 and self.name in self._names
-            ):
-                self._names = None
-                return
-
-            if self.font is not None:
-                namesDict = self.font.lib.get("com.smufolib.names", {})
-                if self.name in namesDict:
-                    del namesDict[self.name]
-            return
-
-        if self._names is None:
-            self._names = {}
-
-        if self.glyph is not None:
-            if self.name in self._names and self._names != value:
-                del self._names[self.name]
-            self._names[value] = self.glyph.name
+            self._clearNames()
+        else:
+            self._addNames(value)
 
     @property
     def _names(self) -> dict[str, str] | None:
@@ -877,25 +869,20 @@ class Smufl(BaseObject):
 
     @spaces.setter
     def spaces(self, value):
-        if self.font is None:
-            raise AttributeError(
-                error.generateErrorMessage(
-                    "missingDependencyError", objectName="spaces", dependency="font"
+        if self.font is not None:
+            if not self.font.info.unitsPerEm:
+                raise AttributeError(
+                    error.generateErrorMessage(
+                        "missingDependencyError",
+                        objectName="spaces",
+                        dependency="unitsPerEm",
+                    )
                 )
-            )
-        elif not self.font.info.unitsPerEm:
-            raise AttributeError(
-                error.generateErrorMessage(
-                    "missingDependencyError",
-                    objectName="spaces",
-                    dependency="unitsPerEm",
-                )
-            )
-        value = normalizers.normalizeBoolean(value)
-        if value:
-            self.font.lib["com.smufolib.spaces"] = True
-        else:
-            self.font.lib.pop("com.smufolib.spaces", False)
+            value = normalizers.normalizeBoolean(value)
+            if value:
+                self.font.lib["com.smufolib.spaces"] = True
+            else:
+                self.font.lib.pop("com.smufolib.spaces", False)
 
     # -----
     # Other
@@ -937,9 +924,10 @@ class Smufl(BaseObject):
             <Glyph 'uniE030' ('public.default') at 4393557200>
 
         """
-        normalizedName = normalizers.normalizeSmuflName(name)
-        if normalizedName is None:
+        if name is None:
             return None
+
+        normalizedName = normalizers.normalizeSmuflName(name)
 
         if (
             self.font is None
@@ -976,7 +964,7 @@ class Smufl(BaseObject):
         the base classes. So, it's here for convenience.
 
         """
-        raise NotImplementedError(
+        raise NotImplementedError(  # pragma: no cover
             error.generateErrorMessage(
                 "notImplementedError", objectName=self.__class__.__name__
             )

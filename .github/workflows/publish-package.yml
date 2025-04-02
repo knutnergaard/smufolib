@@ -15,13 +15,6 @@ jobs:
         with: 
           persist-credentials: false
 
-      - name: Verify release-notes.md exists
-        run: |
-          if [ ! -f release-notes.md ]; then
-            echo "Error: release-notes.md not found!"
-            exit 1
-          fi
-
       - name: Set up Python
         uses: actions/setup-python@v5
         with:
@@ -113,4 +106,5 @@ jobs:
           gh release create
           "$GITHUB_REF_NAME"
           --repo "$GITHUB_REPOSITORY"
-          --notes-file release-notes.md
+          --generate-notes
+          --draft
