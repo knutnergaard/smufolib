@@ -80,6 +80,7 @@ jobs:
       - name: Run tests with coverage
         run: |
           coverage run test.py
+          coverage combine
           coverage report -m
 
       - name: Generate coverage report
