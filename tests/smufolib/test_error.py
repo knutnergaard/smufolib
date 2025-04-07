@@ -10,10 +10,10 @@ from smufolib.error import (
 )
 
 
-def _expected_type_error_substrings(value, valid_types, object_name):
+def _expected_type_error_substrings(value, validTypes, objectName):
     """Generate expected substrings for a TypeError message."""
-    type_names = _listTypes(valid_types)
-    return type(value).__name__, type_names, object_name
+    typeNames = _listTypes(validTypes)
+    return type(value).__name__, typeNames, objectName
 
 
 class TestErrorGeneration(unittest.TestCase):
@@ -21,37 +21,37 @@ class TestErrorGeneration(unittest.TestCase):
         message = generateErrorMessage(
             "typeError", objectName="index", validTypes="int", value="str"
         )
-        expected_substrings = ("type", "index", "int", "str")
+        expectedSubstrings = ("type", "index", "int", "str")
 
-        for substring in expected_substrings:
+        for substring in expectedSubstrings:
             with self.subTest(substring=substring):
                 self.assertIn(substring, message)
 
     def test_generateTypeError_with_single_type(self):
         value = 123
-        valid_types = str
-        object_name = "path"
+        validTypes = str
+        objectName = "path"
 
-        message = generateTypeError(value, (valid_types,), object_name)
-        expected_substrings = _expected_type_error_substrings(
-            value, valid_types, object_name
+        message = generateTypeError(value, (validTypes,), objectName)
+        expectedSubstrings = _expected_type_error_substrings(
+            value, validTypes, objectName
         )
 
-        for substring in expected_substrings:
+        for substring in expectedSubstrings:
             with self.subTest(substring=substring):
                 self.assertIn(substring, message)
 
     def test_generateTypeError_with_union_types(self):
         value = 123
-        valid_types = str | Path
-        object_name = "path"
+        validTypes = str | Path
+        objectName = "path"
 
-        message = generateTypeError(value, valid_types, object_name)
-        expected_substrings = _expected_type_error_substrings(
-            value, valid_types, object_name
+        message = generateTypeError(value, validTypes, objectName)
+        expectedSubstrings = _expected_type_error_substrings(
+            value, validTypes, objectName
         )
 
-        for substring in expected_substrings:
+        for substring in expectedSubstrings:
             with self.subTest(substring=substring):
                 self.assertIn(substring, message)
 
@@ -59,20 +59,20 @@ class TestErrorGeneration(unittest.TestCase):
         with patch("smufolib.error.generateErrorMessage") as mock_generate:
             value = 123
             valid_type = str
-            object_name = "path"
+            objectName = "path"
 
             generateTypeError(
-                value, valid_type, object_name, dependencyInfo="some_dependency"
+                value, valid_type, objectName, dependencyInfo="some_dependency"
             )
-            str_value, str_type, object_name = _expected_type_error_substrings(
-                value, valid_type, object_name
+            strValue, strType, objectName = _expected_type_error_substrings(
+                value, valid_type, objectName
             )
             mock_generate.assert_called_with(
                 "dependentTypeError",
-                validTypes=str_type,
-                objectName=object_name,
+                validTypes=strType,
+                objectName=objectName,
                 dependencyInfo="some_dependency",
-                value=str_value,
+                value=strValue,
             )
 
     def test_generateTypeError_with_dependent_items(self):
@@ -80,24 +80,24 @@ class TestErrorGeneration(unittest.TestCase):
         with patch("smufolib.error.generateErrorMessage") as mock_generate:
             value = 123
             valid_type = str
-            object_name = "path"
+            objectName = "path"
 
             generateTypeError(
                 value,
                 valid_type,
-                object_name,
+                objectName,
                 dependencyInfo="some_dependency",
                 items=True,
             )
-            str_value, str_type, object_name = _expected_type_error_substrings(
-                value, valid_type, object_name
+            strValue, strType, objectName = _expected_type_error_substrings(
+                value, valid_type, objectName
             )
             mock_generate.assert_called_with(
                 "dependentItemsTypeError",
-                validTypes=str_type,
-                objectName=object_name,
+                validTypes=strType,
+                objectName=objectName,
                 dependencyInfo="some_dependency",
-                value=str_value,
+                value=strValue,
             )
 
     def test_validateType(self):

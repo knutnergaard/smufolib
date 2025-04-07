@@ -118,6 +118,6 @@ class Normalizers(unittest.TestCase):
             normalizeRequestPath(["path"], parameter="path")
 
     def test_normalizeRequestPath_with_relative_path(self):
-        relative_path = "./some_dir/some_file.txt"
-        expected = str(Path(relative_path).resolve())
-        self.assertEqual(normalizeRequestPath(relative_path, "testParam"), expected)
+        relativePath = "./some_dir/some_file.txt"
+        expected = str(Path(relativePath).resolve())
+        self.assertEqual(normalizeRequestPath(relativePath, "testParam"), expected)

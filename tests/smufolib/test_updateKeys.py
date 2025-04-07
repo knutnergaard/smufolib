@@ -53,6 +53,7 @@ class TestUpdateKeys(unittest.TestCase):
         # Check that rename_keys was called for font lib and each glyph lib
         rename_calls = [call(self.mock_lib)] * 4  # 1 for font, 3 for glyphs
         self.assertEqual(mock_rename_keys.call_count, 4)
+        mock_rename_keys.assert_has_calls(rename_calls)
 
         # Check that font.save() was called
         mock_font_instance.save.assert_called_once()

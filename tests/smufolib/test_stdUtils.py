@@ -63,17 +63,16 @@ class StdUtils(unittest.TestCase):
         self.assertIsNone(doNothing(a=1, b=2))
 
     def test_verbosePrint(self):
-
-        captured_output = io.StringIO()
-        sys.stdout = captured_output
+        capturedOutput = io.StringIO()
+        sys.stdout = capturedOutput
 
         verbosePrint("Hello, world!", True)
-        self.assertEqual(captured_output.getvalue().strip(), "Hello, world!")
+        self.assertEqual(capturedOutput.getvalue().strip(), "Hello, world!")
 
-        captured_output.truncate(0)
-        captured_output.seek(0)
+        capturedOutput.truncate(0)
+        capturedOutput.seek(0)
 
         verbosePrint("Hello, world!", False)
-        self.assertEqual(captured_output.getvalue(), "")
+        self.assertEqual(capturedOutput.getvalue(), "")
 
         sys.stdout = sys.__stdout__  # Reset stdout

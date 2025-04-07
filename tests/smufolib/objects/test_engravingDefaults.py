@@ -75,19 +75,20 @@ class TestEngravingDefaults(unittest.TestCase):
     # Attributes
     # ----------
 
-    def _set_and_assert_attribute(self, attr, value):
-        setattr(self.engravingDefaults, attr, value)
-        self.assertEqual(getattr(self.engravingDefaults, attr), value)
-
     def _test_attribute_assignment(self, spaces):
         testFonts = ("font1", "font2")
         if spaces:
             self._set_spaces()
+        result = {}
         for attr in ENGRAVING_DEFAULTS_KEYS:
             with self.subTest(attr=attr):
                 numeric_value = 1.0 if spaces else 250
                 value = testFonts if attr == "textFontFamily" else numeric_value
-                self._set_and_assert_attribute(attr, value)
+                result[attr] = value
+                setattr(self.engravingDefaults, attr, value)
+                self.assertEqual(getattr(self.engravingDefaults, attr), value)
+        self.maxDiff = None
+        self.assertEqual(self.engravingDefaults.items(), result)
 
     def test_attributes(self):
         self._test_attribute_assignment(False)

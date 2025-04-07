@@ -17,10 +17,10 @@ class TestRequest(unittest.TestCase):
         self.request = Request(path=self.path, fallback=self.fallback, warn=False)
 
     def test_repr(self):
-        repr_string = (
+        reprString = (
             f"<Request '{self.path}' ('{self.fallback}') at {id(self.request)}>"
         )
-        self.assertEqual(repr(self.request), repr_string)
+        self.assertEqual(repr(self.request), reprString)
 
     @patch("urllib.request.urlopen")
     def test_readFromURL(self, mock_urlopen):
@@ -127,9 +127,9 @@ class TestWriteJson(unittest.TestCase):
             filepath, "w", encoding=CONFIG["request"]["encoding"]
         )
         handle = mock_file()
-        written_content = "".join(call.args[0] for call in handle.write.call_args_list)
-        expected_content = json.dumps(source, indent=4, sort_keys=False)
-        self.assertEqual(written_content, expected_content)
+        writtenContent = "".join(call.args[0] for call in handle.write.call_args_list)
+        expectedContent = json.dumps(source, indent=4, sort_keys=False)
+        self.assertEqual(writtenContent, expectedContent)
 
     def test_writeJson_invalid_type(self):
         with self.assertRaises(TypeError):

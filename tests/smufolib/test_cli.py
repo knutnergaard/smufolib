@@ -32,8 +32,8 @@ class TestCLI(unittest.TestCase):
         self.assertTrue(parsed_args.includeOptionals)
 
     def test_commonParser_with_custom_helpers(self):
-        custom_helpers = {"color": "custom help for color"}
-        parser = commonParser("color", clear=True, customHelpers=custom_helpers)
+        customHelper = {"color": "custom help for color"}
+        parser = commonParser("color", clear=True, customHelpers=customHelper)
         args = parser.parse_args(["1", "2", "3", "4", "--clear"])
         self.assertEqual(args.color, [1, 2, 3, 4])
         self.assertTrue(args.clear)

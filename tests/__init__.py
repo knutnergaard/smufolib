@@ -1,17 +1,29 @@
 import sys
 import unittest
-from tests import test_cli
-from tests import test_config
-from tests import test_converters
-from tests import test_engravingDefaults
-from tests import test_error
-from tests import test_glyph
-from tests import test_normalizers
-from tests import test_pointUtils
-from tests import test_range
-from tests import test_request
-from tests import test_smufl
-from tests import test_stdUtils
+from tests.smufolib import (
+    test_cli,
+    test_config,
+    test_converters,
+    test_error,
+    test_normalizers,
+    test_pointUtils,
+    test_request,
+    test_stdUtils,
+)
+from tests.smufolib.objects import (
+    test_engravingDefaults,
+    test_glyph,
+    test_range,
+    test_smufl,
+)
+from tests.bin import (
+    test_calculateEngravingDefaults,
+    test_checkAnchors,
+    test_cleanFont,
+    test_generateMetadata,
+    test_importAnchors,
+    test_importID,
+)
 
 
 def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=True):
@@ -27,6 +39,12 @@ def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=T
         test_request,
         test_smufl,
         test_stdUtils,
+        test_calculateEngravingDefaults,
+        test_checkAnchors,
+        test_cleanFont,
+        test_generateMetadata,
+        test_importAnchors,
+        test_importID,
     ]
     if testNormalizers:
         modules.append(test_normalizers)

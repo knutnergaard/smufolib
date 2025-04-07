@@ -1,6 +1,7 @@
 import unittest
 from unittest.mock import patch, PropertyMock
-from smufolib import converters, Smufl
+from smufolib import Smufl
+from tests.testUtils import generateGlyph, generateLigatureComponents, drawLines
 
 
 class TestSmufl(unittest.TestCase):
@@ -8,11 +9,11 @@ class TestSmufl(unittest.TestCase):
         # Create generic objects
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
-        self.other_font, _ = self.objectGenerator("font")
+        self.otherFont, _ = self.objectGenerator("font")
         self.smufl, _ = self.objectGenerator("smufl")
         self.engravingDefaults, _ = self.objectGenerator("engravingDefaults")
         self.glyph, _ = self.objectGenerator("glyph")
-        self.other_glyph, _ = self.objectGenerator("glyph")
+        self.otherGlyph, _ = self.objectGenerator("glyph")
         self.range, _ = self.objectGenerator("range")
 
         # pylint: enable=E1101
@@ -21,84 +22,21 @@ class TestSmufl(unittest.TestCase):
         self.font.defaultLayer = self.layer
 
         # Generate different types of glyphs to layer
-        self.recommended1, self.recommended2 = self.generate_recommended_glyphs()
-        self.ligature = self.generate_ligature()
-        self.ligature_components = self.generate_ligature_components(self.ligature)
-        self.optional = self.generate_optional()
-        self.salt = self.generate_salt()
-        self.set = self.generate_set()
-        self.non_member1, self.non_member2 = self.generate_non_member_glyphs()
+        self.recommended1 = generateGlyph(self.font, "uniE000", 0xE000)
+        self.recommended2 = generateGlyph(self.font, "uniF3FF", 0xF3FF)
+        self.ligature = generateGlyph(self.font, "uniE000_uniE001_uniE002", 0xF400)
+        self.ligature_components = generateLigatureComponents(self.ligature)
+        self.optional = generateGlyph(self.font, "optionalGlyph", 0xF400)
+        self.salt = generateGlyph(self.font, "uniE000.salt01", 0xF8FF)
+        self.set = generateGlyph(self.font, "uniE000.ss01", 0xF400)
+        self.nonMember = generateGlyph(self.font, "nonSmuflGlyph1", 0xE000 - 1)
+        self.nonMember2 = generateGlyph(self.font, "nonSmuflGlyph2", 0xF8FF + 1)
 
-    # -------
-    # Helpers
-    # -------
-
-    def generate_recommended_glyphs(self):
-        glyph1 = self.layer.newGlyph("uniE000")
-        glyph1.unicode = 0xE000
-        glyph2 = self.layer.newGlyph("uniF3FF")
-        glyph2.unicode = 0xF3FF
-        return glyph1, glyph2
-
-    def generate_ligature(self):
-        glyph = self.layer.newGlyph("uniE000_uniE001_uniE002")
-        glyph.unicode = 0xF400
-        return glyph
-
-    def generate_ligature_components(self, ligature):
-        glyphs = []
-        for i, component_name in enumerate(ligature.name.split("_")):
-            glyph = self.layer.newGlyph(component_name)
-            glyph.unicode = converters.toDecimal(component_name)
-            glyph.lib["com.smufolib.name"] = f"smuflName{i}"
-            glyphs.append(glyph)
-        return tuple(glyphs)
-
-    def generate_optional(self):
-        glyph = self.layer.newGlyph("optionalGlyph")
-        glyph.unicode = 0xF400
-        return glyph
-
-    def generate_salt(self):
-        glyph = self.layer.newGlyph("uniE000.salt01")
-        glyph.unicode = 0xF8FF
-        return glyph
-
-    def generate_set(self):
-        glyph = self.layer.newGlyph("uniE000.ss01")
-        glyph.unicode = 0xF400
-        return glyph
-
-    def generate_non_member_glyphs(self):
-        glyph1 = self.layer.newGlyph("nonSmuflGlyph1")
-        glyph1.unicode = 0xE000 - 1
-        glyph2 = self.layer.newGlyph("nonSmuflGlyph2")
-        glyph2.unicode = 0xF8FF + 1
-        return glyph1, glyph2
-
-    def set_dimensionsions(self, glyph, width, height):
-        glyph.width = width
-        glyph.height = height
-        return glyph
-
-    def draw_paths(self, glyph):
-        pen = glyph.getPen()
-        pen.moveTo((100, -10))
-        pen.lineTo((100, 100))
-        pen.lineTo((200, 100))
-        pen.lineTo((200, 0))
-        pen.closePath()
-        pen.moveTo((110, 10))
-        pen.lineTo((110, 90))
-        pen.lineTo((190, 90))
-        pen.lineTo((190, 10))
-        pen.closePath()
-
-    def assign_anchors(self, glyph):
+    def assignAnchors(self, glyph):
         glyph.appendAnchor("stemUpNW", (1.5, 2.5))
         glyph.appendAnchor("nonSmuflAnchor", (3.5, 4.5))
 
-    def set_spaces(self, font):
+    def setSpaces(self, font):
         font.info.unitsPerEm = 1000
         font.lib["com.smufolib.spaces"] = True
         return font
@@ -140,7 +78,7 @@ class TestSmufl(unittest.TestCase):
     def test_set_glyph_with_same_preset_glyph(self):
         self.smufl.glyph = self.glyph
         with self.assertRaises(AssertionError):
-            self.smufl.glyph = self.other_glyph
+            self.smufl.glyph = self.otherGlyph
 
     def test_parent_no_glyph(self):
         self.assertIsNone(self.smufl.font)
@@ -159,7 +97,7 @@ class TestSmufl(unittest.TestCase):
     def test_set_font_with_same_preset_font(self):
         self.smufl.font = self.font
         with self.assertRaises(AssertionError):
-            self.smufl.font = self.other_font
+            self.smufl.font = self.otherFont
 
     def test_set_font_with_preset_glyph(self):
         self.smufl.glyph = self.glyph
@@ -194,8 +132,8 @@ class TestSmufl(unittest.TestCase):
         )
 
     def test_set_engravingDefaults(self):
-        self.other_font.smufl.engravingDefaults.stemThickness = 10
-        self.font.smufl.engravingDefaults = self.other_font.smufl.engravingDefaults
+        self.otherFont.smufl.engravingDefaults.stemThickness = 10
+        self.font.smufl.engravingDefaults = self.otherFont.smufl.engravingDefaults
         self.assertEqual(self.font.smufl.engravingDefaults.stemThickness, 10)
 
     def test_get_sizeRange(self):
@@ -235,26 +173,26 @@ class TestSmufl(unittest.TestCase):
 
     def test_anchors(self):
         self.assertIsNone(self.smufl.anchors)
-        self.assign_anchors(self.glyph)
+        self.assignAnchors(self.glyph)
         self.smufl.glyph = self.glyph
         self.assertEqual(self.smufl.anchors, {"stemUpNW": (1.5, 2.5)})
 
     @patch.object(Smufl, "spaces", new_callable=PropertyMock, return_value=True)
     def test_anchors_with_toSpaces_None(self, mock_spaces):
         self.smufl.glyph = self.glyph
-        self.assign_anchors(self.glyph)
+        self.assignAnchors(self.glyph)
         self.assertIsNone(self.glyph.smufl.anchors)
 
     def test_bBox(self):
         self.assertIsNone(self.smufl.bBox)
-        self.draw_paths(self.glyph)
+        drawLines(self.glyph, ((100, -10), (100, 100), (200, 100), (200, 0)))
         self.smufl.glyph = self.glyph
         self.assertEqual(self.smufl.bBox, {"bBoxSW": (100, -10), "bBoxNE": (200, 100)})
 
     def test_bBox_with_spaces(self):
-        self.draw_paths(self.recommended1)
-        self.assign_anchors(self.glyph)
-        self.set_spaces(self.font)
+        drawLines(self.recommended1, ((100, -10), (100, 100), (200, 100), (200, 0)))
+        self.assignAnchors(self.glyph)
+        self.setSpaces(self.font)
         self.assertEqual(
             self.recommended1.smufl.bBox,
             {"bBoxSW": (100 / 250, -10 / 250), "bBoxNE": (200 / 250, 100 / 250)},
@@ -299,7 +237,7 @@ class TestSmufl(unittest.TestCase):
         self.assertEqual(self.smufl.advanceWidth, 500)
 
     def test_set_advanceWidth_with_spaces(self):
-        self.set_spaces(self.font)
+        self.setSpaces(self.font)
         self.recommended1.smufl.advanceWidth = 2
         self.font.lib.pop("com.smufolib.spaces")
         self.assertEqual(self.recommended1.smufl.advanceWidth, 500)
@@ -408,8 +346,8 @@ class TestSmufl(unittest.TestCase):
     def test_isMember(self):
         self.assertTrue(self.recommended1.smufl.isMember)
         self.assertTrue(self.recommended2.smufl.isMember)
-        self.assertFalse(self.non_member1.smufl.isMember)
-        self.assertFalse(self.non_member2.smufl.isMember)
+        self.assertFalse(self.nonMember.smufl.isMember)
+        self.assertFalse(self.nonMember2.smufl.isMember)
 
     def test_isOptional(self):
         self.assertTrue(self.optional.smufl.isOptional)
@@ -433,9 +371,10 @@ class TestSmufl(unittest.TestCase):
     # -----------------------------
 
     def test_round(self):
-        self.set_dimensionsions(self.recommended1, 100.5, 100.5)
-        self.assign_anchors(self.recommended1)
-        self.set_spaces(self.font)
+        self.recommended1.width = 100.5
+        self.recommended1.height = 100.5
+        self.assignAnchors(self.recommended1)
+        self.setSpaces(self.font)
         self.recommended1.smufl.round()
         self.assertEqual(self.recommended1.smufl.advanceWidth, 100.5 / 250)
         self.assertEqual(
