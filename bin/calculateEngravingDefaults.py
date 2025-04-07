@@ -56,18 +56,18 @@ environment. It may also be imported as a module and contains the
 following public functions:
 
     - :func:`calculateEngravingDefaults` - The scripts program function.
-    - :func:`main` – Command line entry point.
-    - :func:`boundsLeft` – Returns absolute value of bounds x minimum.
-    - :func:`boundsHeight` – Returns absolute value of bounds height.
-    - :func:`stemDot` – Measures distance between stem and dot
+    - :func:`main` - Command line entry point.
+    - :func:`boundsLeft` - Returns absolute value of bounds x minimum.
+    - :func:`boundsHeight` - Returns absolute value of bounds height.
+    - :func:`stemDot` - Measures distance between stem and dot
       countour.
-    - :func:`xInner` – Measures distance between two adjacent x points
+    - :func:`xInner` - Measures distance between two adjacent x points
       of different contours.
-    - :func:`xOrigin` – Measures distance between two adjacent x points
+    - :func:`xOrigin` - Measures distance between two adjacent x points
       closest to origin.
-    - :func:`yInner` – Measures distance between two adjacent y points
+    - :func:`yInner` - Measures distance between two adjacent y points
       of different contours.
-    - :func:`yMinimum` – Measures distance between two adjacent
+    - :func:`yMinimum` - Measures distance between two adjacent
       low-points on y axis.
 
 For command-line options, run the script with :option:`--help`
@@ -76,7 +76,7 @@ argument.
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
 from collections.abc import Callable
 import argparse
 import json
@@ -87,6 +87,7 @@ from tqdm import tqdm
 
 from smufolib import (
     Font,
+    Glyph,
     cli,
     config,
     converters,
@@ -96,16 +97,19 @@ from smufolib import (
     stdUtils,
 )
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell.point import RPoint
-    from smufolib.objects.glyph import Glyph
+
 
 Exclude = tuple[str] | list[str]
 OverrideValue = int | float | tuple[str, ...] | None
 Override = dict[str, OverrideValue]
-MappingValue = str | int
+MappingValue = str | int | None
 Mapping = dict[str, MappingValue]
 Remapping = dict[str, Mapping]
+RulerType = (
+    Callable[[Glyph], int | float | None] | Callable[[Glyph, int], int | float | None]
+)
 
 CONFIG = config.load()
 
@@ -116,7 +120,7 @@ SPACES = False
 REMAP = None
 MARGIN_OF_ERROR = 6
 VERBOSE = False
-MAPPING = {
+MAPPING: Remapping = {
     "arrowShaftThickness": {
         "ruler": "xOrigin",
         "glyph": "uniEB60",
@@ -124,7 +128,10 @@ MAPPING = {
     },
     "barlineSeparation": {"ruler": "xInner", "glyph": "uniE031", "referenceIndex": 3},
     "beamSpacing": {"ruler": "yInner", "glyph": "uniE1F9", "referenceIndex": 3},
-    "beamThickness": {"ruler": "boundsHeight", "glyph": "uniE1F7", "referenceIndex": 0},
+    "beamThickness": {
+        "ruler": "boundsHeight",
+        "glyph": "uniE1F7",
+    },
     "bracketThickness": {"ruler": "xOrigin", "glyph": "uniE003", "referenceIndex": 0},
     "dashedBarlineDashLength": {
         "ruler": "yMinimum",
@@ -146,27 +153,22 @@ MAPPING = {
     "legerLineExtension": {
         "ruler": "boundsLeft",
         "glyph": "uniE022",
-        "referenceIndex": 0,
     },
     "legerLineThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE022",
-        "referenceIndex": 0,
     },
     "lyricLineThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE010",
-        "referenceIndex": 0,
     },
     "octaveLineThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE010",
-        "referenceIndex": 0,
     },
     "pedalLineThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE010",
-        "referenceIndex": 0,
     },
     "repeatBarlineDotSeparation": {
         "ruler": "stemDot",
@@ -191,7 +193,6 @@ MAPPING = {
     "staffLineThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE010",
-        "referenceIndex": 0,
     },
     "stemThickness": {"ruler": "xOrigin", "glyph": "uniE210", "referenceIndex": 0},
     "subBracketThickness": {
@@ -202,7 +203,6 @@ MAPPING = {
     "textEnclosureThickness": {
         "ruler": "boundsHeight",
         "glyph": "uniE010",
-        "referenceIndex": 0,
     },
     "textFontFamily": {},
     "thickBarlineThickness": {
@@ -279,7 +279,7 @@ def calculateEngravingDefaults(
 
     """
 
-    dispatcher = {
+    dispatcher: dict[str, RulerType] = {
         "boundsHeight": boundsHeight,
         "boundsLeft": boundsLeft,
         "stemDot": stemDot,
@@ -304,9 +304,8 @@ def calculateEngravingDefaults(
 
     stdUtils.verbosePrint("\nSetting attributes:", verbose)
     for key, mapping in iterator:
-        if exclude:
-            if key in exclude:
-                continue
+        if exclude and key in exclude:
+            continue
 
         if key == "textFontFamily":
             if override and key in override:
@@ -315,19 +314,24 @@ def calculateEngravingDefaults(
                 stdUtils.verbosePrint(f"\t'{key}': {value}", verbose)
             continue
 
-        ruler = mapping["ruler"]
-        glyph = mapping["glyph"]
-        referenceIndex = mapping["referenceIndex"]
+        rulerName = mapping.get("ruler", "")
+        glyphName = mapping.get("glyph", "")
+        referenceIndex = mapping.get("referenceIndex")
         remapping = remap.get(key, {}) if remap else {}
-        ruler = dispatcher[remapping.get("ruler", ruler)]  # type: ignore
-        glyph = remapping.get("glyph", glyph)
+        rulerName = remapping.get("ruler", rulerName)
+        rulerName = cast(str, rulerName)
+        ruler: RulerType = dispatcher[rulerName]
+        glyphName = remapping.get("glyph", glyphName)
+        glyphName = cast(str, glyphName)
         referenceIndex = remapping.get("referenceIndex", referenceIndex)
+        referenceIndex = cast(int | None, referenceIndex)
 
         rulerValue = _getValue(
+            font=font,
             key=key,
-            glyph=font[glyph],
-            ruler=ruler,  # type: ignore
-            referenceIndex=referenceIndex,  # type: ignore
+            glyphName=glyphName,
+            ruler=ruler,
+            referenceIndex=referenceIndex,
             verbose=verbose,
         )
         if rulerValue is None:
@@ -344,7 +348,6 @@ def calculateEngravingDefaults(
         if spaces and value and isinstance(value, (int, float)):
             value = font.smufl.toSpaces(value)
         stdUtils.verbosePrint(f"\t'{key}': {value}", verbose)
-
     stdUtils.verbosePrint("\nSaving font...", verbose)
     font.save()
     print("\nDone!")
@@ -390,19 +393,20 @@ def stemDot(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     """Calculate distance between stem and dot countour.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
-    :param referenceIndex: referenceIndex of reference point. Defaults
-        to ``0``.
+    :param referenceIndex: referenceIndex of reference point. Defaults to ``0``.
 
     """
     curves = sorted(pointUtils.getPoints(glyph, "curve"), key=lambda p: p.position.x)
     lines = sorted(
         pointUtils.getPoints(glyph, "line"), reverse=True, key=lambda p: p.position.x
     )
+    if not lines or not curves:
+        return None
 
     reference = curves[referenceIndex]
 
     for point in lines:
-        if not point.contourIndex != reference.contourIndex:
+        if point.contourIndex == reference.contourIndex:
             continue
         return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
@@ -413,19 +417,18 @@ def xInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     """Calculate distance between adjacent x points of two contours.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
-    :param referenceIndex: referenceIndex of reference point. Defaults
-        to ``0``.
+    :param referenceIndex: referenceIndex of reference point. Defaults to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.x)
     reference = points[referenceIndex]
 
     for point in points:
-        if not (
-            point.contourIndex != reference.contourIndex
-            and _areAdjacent(point, reference, axis="y")
+        if point.contourIndex == reference.contourIndex or not _areAdjacent(
+            point, reference, axis="y"
         ):
             continue
+
         return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
 
     return None
@@ -435,41 +438,17 @@ def xOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     """Calculate distance between adjacent x points closest to origin.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
-    :param referenceIndex: referenceIndex of reference point. Defaults
-        to ``0``.
+    :param referenceIndex: referenceIndex of reference point. Defaults to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: sum(p.position))
     reference = points[referenceIndex]
 
     for point in points:
-        if not (
-            point.position.x != reference.position.x
-            and point.contourIndex == reference.contourIndex
-            and _areAdjacent(point, reference, axis="y")
-        ):
-            continue
-        return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
-
-    return None
-
-
-def yOrigin(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
-    """Calculate distance between adjacent x points closest to origin.
-
-    :param glyph: Source :class:`.Glyph` of contours to measure.
-    :param referenceIndex: referenceIndex of reference point. Defaults
-        to ``0``.
-
-    """
-    points = sorted(pointUtils.getPoints(glyph), key=lambda p: sum(p.position))
-    reference = points[referenceIndex]
-
-    for point in points:
-        if not (
-            point.position.x != reference.position.x
-            and point.contourIndex == reference.contourIndex
-            and _areAdjacent(point, reference, axis="y")
+        if (
+            point.position.x == reference.position.x
+            or point.contourIndex != reference.contourIndex
+            or not _areAdjacent(point, reference, axis="y")
         ):
             continue
         return converters.toIntIfWhole(abs(point.position.x - reference.position.x))
@@ -481,16 +460,14 @@ def yInner(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     """Calculate distance between adjacent y points of two contours.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
-    :param referenceIndex: referenceIndex of reference point. Defaults
-        to ``0``.
+    :param referenceIndex: referenceIndex of reference point. Defaults to ``0``.
 
     """
     points = sorted(pointUtils.getPoints(glyph), key=lambda p: p.position.y)
     reference = points[referenceIndex]
     for point in points:
-        if not (
-            point.contourIndex != reference.contourIndex
-            and _areAdjacent(point, reference, axis="x")
+        if point.contourIndex == reference.contourIndex or not _areAdjacent(
+            point, reference, axis="x"
         ):
             continue
         return converters.toIntIfWhole(abs(point.position.y - reference.position.y))
@@ -510,10 +487,10 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
     reference = points[referenceIndex]
 
     for point in points:
-        if not (
-            point.position.y != reference.position.y
-            and point.contourIndex == reference.contourIndex
-            and _areAdjacent(point, reference, axis="x")
+        if (
+            point.position.y == reference.position.y
+            or point.contourIndex != reference.contourIndex
+            or not _areAdjacent(point, reference, axis="x")
         ):
             continue
         return converters.toIntIfWhole(abs(point.position.y - reference.position.y))
@@ -578,23 +555,33 @@ def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
                 items=True,
             )
 
-            error.validateType(v, (str, int), f"'remap'['{value}']", items=True)
+            error.validateType(
+                v, (str, int, type(None)), f"'remap'['{value}']", items=True
+            )
 
     return remap
 
 
 def _getValue(
-    key: str, glyph: Glyph, ruler: Callable, referenceIndex: int, verbose: bool
+    font: Font,
+    key: str,
+    glyphName: str,
+    ruler: RulerType,
+    referenceIndex: int | None,
+    verbose: bool,
 ) -> int | float | None:
     # Get value from ruler function and print error message.
     try:
-        if referenceIndex:
-            return ruler(glyph, referenceIndex)
-        return ruler(glyph)
+        glyph = font[glyphName]
+        if referenceIndex is None:
+            ruler = cast(Callable[[Glyph], int | float | None], ruler)
+            return ruler(glyph)
+        ruler = cast(Callable[[Glyph, int], int | float | None], ruler)
+        return ruler(glyph, referenceIndex)
     except KeyError:
         stdUtils.verbosePrint(
             "Skipping attribute assigned to non-"
-            f"existent glyph: '{key}' ('{glyph.name}')",
+            f"existent glyph: '{key}' ('{glyphName}')",
             verbose,
         )
         return None
@@ -652,10 +639,9 @@ def _areAdjacent(point1: RPoint, point2: RPoint, axis: str | None) -> bool:
 
     if axis == "x":
         checkAxis = withinRange(x1, x2)
-    elif axis == "y":
-        checkAxis = withinRange(y1, y2)
     else:
-        checkAxis = withinRange(x1, x2) or withinRange(y1, y2)
+        checkAxis = withinRange(y1, y2)
+
     return point1 != point2 and checkAxis
 
 
