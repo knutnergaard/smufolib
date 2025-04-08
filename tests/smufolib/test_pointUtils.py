@@ -125,6 +125,10 @@ class TestPointUtils(unittest.TestCase):
         expectedPoints = self.expectedCompositePoints1 + self.expectedCompositePoints2
         self.assertPointListsEqual(points, expectedPoints)
 
-    def test_getCompositePoints_invalid_type(self):
+    def test_getCompositePoints_invalid_obj_type(self):
         with self.assertRaises(TypeError):
             getCompositePoints("invalid_type")
+
+    def test_getCompositePoints_invalid_types_value(self):
+        result = getCompositePoints(self.component1, types="invalidType")
+        self.assertTupleEqual(tuple(result), ())

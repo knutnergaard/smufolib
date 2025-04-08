@@ -41,10 +41,12 @@ class TestRange(unittest.TestCase):
         self.assertEqual(repr(self.range), expected_repr)
 
     def test_smufl(self):
+        self.range.smufl = None
         self.assertEqual(self.range.smufl, self.smufl)
         self.range.smufl = self.otherSmufl
         self.assertEqual(self.range.smufl, self.otherSmufl)
         self.assertIsNone(self.otherRange.smufl)
+        self.range.smufl = None
 
     def test_glyph(self):
         self.assertEqual(self.range.glyph, self.glyph1)

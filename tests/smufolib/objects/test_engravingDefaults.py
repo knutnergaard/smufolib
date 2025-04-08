@@ -11,7 +11,7 @@ class TestEngravingDefaults(unittest.TestCase):
         self.smufl, _ = self.objectGenerator("smufl")
         self.other_smufl, _ = self.objectGenerator("smufl")
         self.engravingDefaults, _ = self.objectGenerator("engravingDefaults")
-        self.other_engravingDefaults, _ = self.objectGenerator("engravingDefaults")
+        self.otherEngravingDefaults, _ = self.objectGenerator("engravingDefaults")
 
         # Assign font to engravingDefaults
         self.smufl.font = self.font
@@ -21,6 +21,12 @@ class TestEngravingDefaults(unittest.TestCase):
         # Assign glyph to font
         self.font.newGlyph("testGlyph")
         self.glyph = self.font["testGlyph"]
+
+        # Define libDict key
+        self.libDictKey = "com.smufolib.engravingDefaults"
+
+        # Define default update dict
+        self.defaultDict = {"stemThickness": 1.0, "beamThickness": 2.0}
 
     def _set_spaces(self):
         self.engravingDefaults.font.info.unitsPerEm = 1000
@@ -47,13 +53,16 @@ class TestEngravingDefaults(unittest.TestCase):
         for i in value:
             self.assertIsInstance(i, str)
 
+    def test_reprContents_no_font(self):
+        self.assertListEqual(self.otherEngravingDefaults._reprContents(), [])
+
     # -------
     # Parents
     # -------
 
     def test_get_smufl(self):
         self.assertIs(self.engravingDefaults.smufl, self.smufl)
-        self.assertIsNone(self.other_engravingDefaults.smufl)
+        self.assertIsNone(self.otherEngravingDefaults.smufl)
 
     def test_set_smufl_with_preset_smufl(self):
         with self.assertRaises(AssertionError):
@@ -61,15 +70,15 @@ class TestEngravingDefaults(unittest.TestCase):
 
     def test_get_font(self):
         self.assertIs(self.engravingDefaults.font, self.font)
-        self.assertIsNone(self.other_engravingDefaults.font)
+        self.assertIsNone(self.otherEngravingDefaults.font)
 
     def test_get_glyph(self):
         self.assertIs(self.glyph.smufl.engravingDefaults.glyph, self.glyph)
-        self.assertIsNone(self.other_engravingDefaults.glyph)
+        self.assertIsNone(self.otherEngravingDefaults.glyph)
 
     def test_get_layer(self):
         self.assertIs(self.glyph.smufl.engravingDefaults.layer, self.glyph.layer)
-        self.assertIsNone(self.other_engravingDefaults.layer)
+        self.assertIsNone(self.otherEngravingDefaults.layer)
 
     # ----------
     # Attributes
@@ -88,24 +97,34 @@ class TestEngravingDefaults(unittest.TestCase):
                 setattr(self.engravingDefaults, attr, value)
                 self.assertEqual(getattr(self.engravingDefaults, attr), value)
         self.maxDiff = None
-        self.assertEqual(self.engravingDefaults.items(), result)
+        self.assertDictEqual(self.engravingDefaults.items(), result)
 
-    def test_attributes(self):
+    def test_set_attributes(self):
         self._test_attribute_assignment(False)
         self._test_attribute_assignment(True)
 
+    def test_set_attributes_None(self):
+        self.font.lib[self.libDictKey] = self.defaultDict
+        self.engravingDefaults.stemThickness = None
+        self.assertNotIn("stemThickness", self.font.lib[self.libDictKey])
+        self.engravingDefaults.beamThickness = None
+        self.assertNotIn(self.libDictKey, self.font.lib)
+
     def test_set_attribute_no_font(self):
-        self.other_engravingDefaults.stemThickness = 1.0
-        self.assertIsNone(self.other_engravingDefaults.stemThickness)
+        self.otherEngravingDefaults.stemThickness = 1.0
+        self.assertIsNone(self.otherEngravingDefaults.stemThickness)
 
     def test_set_attribute_no_value(self):
         self.engravingDefaults.stemThickness = 0
         self.assertIsNone(self.engravingDefaults.stemThickness)
 
     def test_clear(self):
-        self.font.lib["com.smufolib.engravingDefaults"] = {"stemThickness": 1.0}
+        self.font.lib[self.libDictKey] = self.defaultDict
         self.engravingDefaults.clear()
         self.assertIsNone(self.engravingDefaults.stemThickness)
+
+    def test_clear_no_font(self):
+        self.assertIsNone(self.otherEngravingDefaults.clear())
 
     def test_items(self):
         self.engravingDefaults.stemThickness = 1.0
@@ -119,29 +138,34 @@ class TestEngravingDefaults(unittest.TestCase):
         self.assertIsInstance(keys, list)
         self.assertIn("stemThickness", keys)
 
-    def test_update(self):
+    def test_update_basic(self):
         self.assertIsNone(self.engravingDefaults.update(None))
-        update_dict = {"stemThickness": 1.0, "beamThickness": 2.0}
-        self.engravingDefaults.update(update_dict)
+        self.engravingDefaults.update(self.defaultDict)
+        self.assertEqual(self.engravingDefaults.stemThickness, 1.0)
+        self.assertEqual(self.engravingDefaults.beamThickness, 2.0)
+
+    def test_update_kwargs(self):
+        self.engravingDefaults.update(**self.defaultDict)
+        self.assertEqual(self.engravingDefaults.stemThickness, 1.0)
+        self.assertEqual(self.engravingDefaults.beamThickness, 2.0)
+
+    def test_update_preexisting_libDict(self):
+        self.font.lib[self.libDictKey] = {"stemThickness": 2.0}
+        self.engravingDefaults.update(self.defaultDict)
         self.assertEqual(self.engravingDefaults.stemThickness, 1.0)
         self.assertEqual(self.engravingDefaults.beamThickness, 2.0)
 
     def test_update_with_spaces(self):
         self.font.info.unitsPerEm = 1000
         self.engravingDefaults.spaces = True
-        update_dict = {"stemThickness": 1.0, "beamThickness": 2.0}
-        self.engravingDefaults.update(update_dict)
-        self.assertEqual(
-            self.font.lib["com.smufolib.engravingDefaults"]["stemThickness"], 250
-        )
-        self.assertEqual(
-            self.font.lib["com.smufolib.engravingDefaults"]["beamThickness"], 500
-        )
+        self.engravingDefaults.update(self.defaultDict)
+        self.assertEqual(self.font.lib[self.libDictKey]["stemThickness"], 250)
+        self.assertEqual(self.font.lib[self.libDictKey]["beamThickness"], 500)
 
-    def test_update_with_invalid_attribute(self):
-        update_dict = {"invalidAttribute": 1.0, "beamThickness": 2.0}
+    def test_update_invalid_attribute(self):
+        updateDict = {"invalidAttribute": 1.0, "beamThickness": 2.0}
         with self.assertRaises(AttributeError):
-            self.engravingDefaults.update(update_dict)
+            self.engravingDefaults.update(updateDict)
 
     def test_values(self):
         self.engravingDefaults.stemThickness = 1.0
@@ -167,6 +191,10 @@ class TestEngravingDefaults(unittest.TestCase):
         self.assertTrue(self.smufl.spaces)
 
     def test_spaces_no_font(self):
-        self.other_engravingDefaults.spaces = None
-        self.other_engravingDefaults.spaces = True
-        self.assertFalse(self.other_engravingDefaults.spaces)
+        self.otherEngravingDefaults.spaces = None
+        self.otherEngravingDefaults.spaces = True
+        self.assertFalse(self.otherEngravingDefaults.spaces)
+
+    def test_libDict_no_font(self):
+        self.otherEngravingDefaults._libDict = {"testAttribute": 0}
+        self.assertDictEqual(self.engravingDefaults._libDict, {})
