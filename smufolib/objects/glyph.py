@@ -19,8 +19,9 @@ class Glyph(RGlyph):
         # Set the name of the glyph and update :attr:`.Font.lib` if necessary.
         if self.font is not None:
             namesDict = self.font.lib.get("com.smufolib.names", {})
-            if self.naked().name in namesDict.values():
-                namesDict[self.smufl.name] = value
+            smuflName = self.smufl.name
+            if smuflName and self.naked().name in namesDict.values():
+                namesDict[smuflName] = value
         self.naked().name = value
 
     @property
