@@ -1,4 +1,7 @@
+import tempfile
 import unittest
+from pathlib import Path
+
 from argparse import (
     ArgumentParser,
     HelpFormatter,
@@ -10,12 +13,12 @@ from smufolib.cli import commonParser, createHelpFormatter
 
 class TestCLI(unittest.TestCase):
     def test_commonParser_basic(self):
-        parser = commonParser(clear=True, addHelp=False)
+        parser = commonParser("clear", addHelp=False)
         args = parser.parse_args(["--clear"])
         self.assertTrue(args.clear)
 
     def test_commonParser_as_parent(self):
-        args = commonParser("color", clear=True, addHelp=False)
+        args = commonParser("color", "clear", addHelp=False)
         parser = ArgumentParser(parents=[args], description="showcase commonParser")
         parser.add_argument(
             "-O",
@@ -33,7 +36,7 @@ class TestCLI(unittest.TestCase):
 
     def test_commonParser_with_custom_helpers(self):
         customHelper = {"color": "custom help for color"}
-        parser = commonParser("color", clear=True, customHelpers=customHelper)
+        parser = commonParser("color", "clear", customHelpers=customHelper)
         args = parser.parse_args(["1", "2", "3", "4", "--clear"])
         self.assertEqual(args.color, [1, 2, 3, 4])
         self.assertTrue(args.clear)

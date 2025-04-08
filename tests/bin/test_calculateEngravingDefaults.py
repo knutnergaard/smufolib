@@ -53,11 +53,9 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
             glyph = self.font.newGlyph(name)
             drawLines(glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
 
-    def test_calculateEngravingDefaults(self):
+    def test_calculateEngravingDefaults_basic(self):
         calculateEngravingDefaults(self.font)
         ed = self.font.smufl.engravingDefaults
-
-        # Check a few known mappings
         self.assertTrue(hasattr(ed, "tupletBracketThickness"))
         self.assertIsInstance(ed.tupletBracketThickness, (int, float))
         self.mock_save.assert_called_once()
@@ -215,21 +213,20 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
     def test_saveFont(self):
         self.patcher.stop()
 
-        temp_dir = tempfile.TemporaryDirectory()
-        font_path = Path(temp_dir.name) / "testFont.ufo"
+        with tempfile.TemporaryDirectory() as tempDir:
+            fontPath = Path(tempDir) / "testFont.ufo"
 
-        self.font.save(str(font_path))
-        result = _normalizeFont(font_path)
-        self.assertIsInstance(result, type(self.font))
-        temp_dir.cleanup()
+            self.font.save(str(fontPath))
+            result = _normalizeFont(fontPath)
+            self.assertIsInstance(result, type(self.font))
 
     @patch("bin.calculateEngravingDefaults.calculateEngravingDefaults")
     def test_main(self, mock_calc):
         self.patcher.stop()
         # Create a temporary UFO
-        with tempfile.TemporaryDirectory() as temp_dir:
-            font_path = Path(temp_dir) / "TestFont.ufo"
-            self.font.save(str(font_path))
+        with tempfile.TemporaryDirectory() as tempDir:
+            fontPath = Path(tempDir) / "TestFont.ufo"
+            self.font.save(str(fontPath))
 
             override = {"tupletBracketThickness": 0.5}
             remap = {
@@ -242,7 +239,7 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
 
             test_args = [
                 "calculateEngravingDefaults",
-                str(font_path),
+                str(fontPath),
                 "--override",
                 json.dumps(override),
                 "--remap",

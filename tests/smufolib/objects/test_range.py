@@ -10,8 +10,10 @@ class TestRange(unittest.TestCase):
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
         self.smufl, _ = self.objectGenerator("smufl")
+        self.otherSmufl, _ = self.objectGenerator("smufl")
         self.layer, _ = self.objectGenerator("layer")
         self.range, _ = self.objectGenerator("range")
+        self.otherRange, _ = self.objectGenerator("range")
 
         # pylint: enable=E1101
         # Create layer and assign to font
@@ -40,6 +42,9 @@ class TestRange(unittest.TestCase):
 
     def test_smufl(self):
         self.assertEqual(self.range.smufl, self.smufl)
+        self.range.smufl = self.otherSmufl
+        self.assertEqual(self.range.smufl, self.otherSmufl)
+        self.assertIsNone(self.otherRange.smufl)
 
     def test_glyph(self):
         self.assertEqual(self.range.glyph, self.glyph1)
