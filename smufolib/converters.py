@@ -143,7 +143,7 @@ def toUniName(value: str | int, short: bool = False) -> str:
             raise ValueError(
                 error.generateErrorMessage("invalidFormat", objectName="value")
             )
-    elif isinstance(value, int):
+    else:
         unicodeHex = "0x" + format(value, "X").zfill(4)
 
     if not _isInUnicodeRange(int(unicodeHex, 16)):
