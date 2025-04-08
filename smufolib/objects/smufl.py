@@ -232,8 +232,7 @@ class Smufl(BaseObject):
         # Common font metadata setter.
         if self.font is not None:
             if value is None:
-                if key in self.font.lib:
-                    del self.font.lib[key]
+                self.font.lib.pop(key, None)
             else:
                 self.font.lib[key] = value
 
@@ -466,7 +465,7 @@ class Smufl(BaseObject):
             major, minor = None, None
         else:
             major, minor = [int(n) for n in str(value).split(".")]
-        if self.font:
+        if self.font is not None:
             self.font.info.naked().versionMajor = major
             self.font.info.naked().versionMinor = minor
 
