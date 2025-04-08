@@ -176,7 +176,7 @@ def commonParser(
 
     for arg in args:
         flags: tuple[str, ...] = generateFlags(arg)
-        if not CLI_ARGUMENTS[arg].get("action") == "store_true":
+        if CLI_ARGUMENTS[arg].get("action") != "store_true":
             flags = (arg,)
             CLI_ARGUMENTS[arg]["metavar"] = converters.toKebab(arg)
         addArgument(arg, flags, customHelpers)
