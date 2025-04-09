@@ -120,7 +120,7 @@ def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     checkAnchors(
-        args.font,
+        font=args.font,
         fontData=args.fontData,
         mark=args.mark,
         color=args.color,
