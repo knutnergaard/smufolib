@@ -1,6 +1,7 @@
 # pylint: disable=C0114
 from __future__ import annotations
 from typing import Any
+from copy import deepcopy
 from argparse import (
     ArgumentParser,
     HelpFormatter,
@@ -159,14 +160,15 @@ def commonParser(
     """
 
     parser = ArgumentParser(add_help=addHelp, description=description)
+    localArguments = deepcopy(CLI_ARGUMENTS)
 
     def addArgument(
         arg: str, flags: tuple[str, ...], customHelpers: dict[str, str] | None
     ) -> None:
         # Add argument to parser.
         if customHelpers and arg in customHelpers:
-            CLI_ARGUMENTS[arg]["help"] = customHelpers[arg]
-        parser.add_argument(*flags, **CLI_ARGUMENTS[arg])
+            localArguments[arg]["help"] = customHelpers[arg]
+        parser.add_argument(*flags, **localArguments[arg])
 
     def generateFlags(argument: str) -> tuple[str, str]:
         # Generates tuple of option flags.
@@ -176,9 +178,9 @@ def commonParser(
 
     for arg in args:
         flags: tuple[str, ...] = generateFlags(arg)
-        if CLI_ARGUMENTS[arg].get("action") != "store_true":
+        if localArguments[arg].get("action") != "store_true":
             flags = (arg,)
-            CLI_ARGUMENTS[arg]["metavar"] = converters.toKebab(arg)
+            localArguments[arg]["metavar"] = converters.toKebab(arg)
         addArgument(arg, flags, customHelpers)
 
     for key, value in kwargs.items():
@@ -186,9 +188,9 @@ def commonParser(
             raise ValueError(error.generateErrorMessage("argumentConflict", key=key))
 
         flags = generateFlags(key)
-        CLI_ARGUMENTS[key]["dest"] = key
+        localArguments[key]["dest"] = key
         if value is not None:
-            CLI_ARGUMENTS[key]["default"] = value
+            localArguments[key]["default"] = value
         addArgument(key, flags, customHelpers)
 
     return parser
