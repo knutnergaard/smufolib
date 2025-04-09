@@ -7,6 +7,7 @@ from io import StringIO
 from pathlib import Path
 from unittest.mock import patch
 
+from tests.testUtils import SuppressOutputMixin, drawCircle, drawLines
 from bin.calculateEngravingDefaults import (
     MAPPING,
     calculateEngravingDefaults,
@@ -20,10 +21,9 @@ from bin.calculateEngravingDefaults import (
     yMinimum,
     _normalizeFont,
 )
-from tests.testUtils import suppressOutput, drawCircle, drawLines
 
 
-class TestCalculateEngravingDefaults(unittest.TestCase):
+class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
     def setUp(self):
         # Define generic objects
         # pylint: disable=E1101
@@ -39,9 +39,7 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
         self.addCleanup(self.patcher.stop)
 
         # Supress console output
-        self._suppress = suppressOutput()
-        self._suppress.__enter__()
-        self.addCleanup(self._suppress.__exit__, None, None, None)
+        self.suppressOutput()
 
         # Build font
         self.font.info.familyName = "testFont"
@@ -210,22 +208,19 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
         result = yMinimum(self.glyph)
         self.assertIsNone(result)
 
-    def test_saveFont(self):
+    def test_normalizeFont_accepts_path(self):
         self.patcher.stop()
-
         with tempfile.TemporaryDirectory() as tempDir:
             fontPath = Path(tempDir) / "testFont.ufo"
-
             self.font.save(str(fontPath))
             result = _normalizeFont(fontPath)
             self.assertIsInstance(result, type(self.font))
 
     @patch("bin.calculateEngravingDefaults.calculateEngravingDefaults")
-    def test_main(self, mock_calc):
+    def test_main(self, mock_calculateEngravingDefaults):
         self.patcher.stop()
-        # Create a temporary UFO
         with tempfile.TemporaryDirectory() as tempDir:
-            fontPath = Path(tempDir) / "TestFont.ufo"
+            fontPath = Path(tempDir) / "testFont.ufo"
             self.font.save(str(fontPath))
 
             override = {"tupletBracketThickness": 0.5}
@@ -253,11 +248,11 @@ class TestCalculateEngravingDefaults(unittest.TestCase):
             with patch.object(sys, "argv", test_args):
                 main()
 
-            mock_calc.assert_called_once()
-            kwargs = mock_calc.call_args.kwargs
+            mock_calculateEngravingDefaults.assert_called_once()
+            kwargs = mock_calculateEngravingDefaults.call_args.kwargs
+            self.assertIsInstance(kwargs["font"], type(self.font))
             self.assertEqual(kwargs["exclude"], ["textFontFamily"])
             self.assertEqual(kwargs["override"], override)
             self.assertEqual(kwargs["remap"], remap)
             self.assertTrue(kwargs["spaces"])
             self.assertTrue(kwargs["verbose"])
-            self.assertIsInstance(kwargs["font"], type(self.font))

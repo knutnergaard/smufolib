@@ -68,10 +68,17 @@ def drawCircle(glyph, center, radius):
     return drawCurves(glyph, points)
 
 
-@contextlib.contextmanager
-def suppressOutput():
-    with (
-        contextlib.redirect_stdout(io.StringIO()),
-        contextlib.redirect_stderr(io.StringIO()),
-    ):
-        yield
+class SuppressOutputMixin:
+    def suppressOutput(self):
+        self._suppress = self._suppressOutput()
+        self._suppress.__enter__()
+        self.addCleanup(self._suppress.__exit__, None, None, None)
+
+    @staticmethod
+    @contextlib.contextmanager
+    def _suppressOutput():
+        with (
+            contextlib.redirect_stdout(io.StringIO()),
+            contextlib.redirect_stderr(io.StringIO()),
+        ):
+            yield
