@@ -14,7 +14,7 @@ environment. It may also be imported as a module and contains the
 following public funcitons:
 
     - :func:`checkAnchors` - The scripts program function.
-    - :func:`main` – Command line entry point.
+    - :func:`main` - Command line entry point.
 
 """
 
@@ -120,7 +120,7 @@ def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     checkAnchors(
-        font=args.font,
+        args.font,
         fontData=args.fontData,
         mark=args.mark,
         color=args.color,
