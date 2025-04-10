@@ -1,13 +1,15 @@
 import json
 import sys
-import tempfile
 import unittest
-from contextlib import redirect_stdout
-from io import StringIO
-from pathlib import Path
 from unittest.mock import patch
 
-from tests.testUtils import SuppressOutputMixin, drawCircle, drawLines
+from tests.testUtils import (
+    SavedFontMixin,
+    SuppressOutputMixin,
+    drawCircle,
+    drawLines,
+    getVerboseOutput,
+)
 from bin.calculateEngravingDefaults import (
     MAPPING,
     calculateEngravingDefaults,
@@ -23,9 +25,11 @@ from bin.calculateEngravingDefaults import (
 )
 
 
-class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
+class TestCalculateEngravingDefaults(
+    SavedFontMixin, SuppressOutputMixin, unittest.TestCase
+):
     def setUp(self):
-        # Define generic objects
+        super().setUp()
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
         self.glyph, _ = self.objectGenerator("glyph")
@@ -33,15 +37,6 @@ class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
         self.otherContour, _ = self.objectGenerator("contour")
         # pylint: enable=E1101
 
-        # patch font.save
-        self.patcher = patch("bin.calculateEngravingDefaults.Font.save")
-        self.mock_save = self.patcher.start()
-        self.addCleanup(self.patcher.stop)
-
-        # Supress console output
-        self.suppressOutput()
-
-        # Build font
         self.font.info.familyName = "testFont"
         self.font.info.unitsPerEm = 1000
         for attribute, mapping in MAPPING.items():
@@ -51,24 +46,24 @@ class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
             glyph = self.font.newGlyph(name)
             drawLines(glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
 
+        self.saveFontToTemp()
+        self.suppressOutput()
+
     def test_calculateEngravingDefaults_basic(self):
         calculateEngravingDefaults(self.font)
         ed = self.font.smufl.engravingDefaults
         self.assertTrue(hasattr(ed, "tupletBracketThickness"))
         self.assertIsInstance(ed.tupletBracketThickness, (int, float))
-        self.mock_save.assert_called_once()
 
     def test_calculateEngravingDefaults_exclude(self):
         calculateEngravingDefaults(self.font, exclude=["arrowShaftThickness"])
         ed = self.font.smufl.engravingDefaults
         self.assertIsNone(ed.arrowShaftThickness)
-        self.mock_save.assert_called_once()
 
     def test_calculateEngravingDefaults_override(self):
         override = {"arrowShaftThickness": 1234, "textFontFamily": ("font1", "font2")}
         calculateEngravingDefaults(self.font, override=override)
         self.assertEqual(self.font.smufl.engravingDefaults.arrowShaftThickness, 1234)
-        self.mock_save.assert_called_once()
 
     def test_calculateEngravingDefaults_remap(self):
         remapGlyph = self.font.newGlyph("testGlyph")
@@ -102,20 +97,21 @@ class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
         self.font.smufl.staffSpaces = 200  # units per space
         calculateEngravingDefaults(self.font, spaces=True)
         self.assertIsNotNone(self.font.smufl.engravingDefaults.arrowShaftThickness)
-        self.mock_save.assert_called_once()
+
+    @patch("bin.calculateEngravingDefaults.Font.save")
+    def test_calculateEngravingDefaults_calls_save(self, mock_save):
+        calculateEngravingDefaults(self.font)
+        mock_save.assert_called_once()
 
     def test_calculateEngravingDefaults_verbose(self):
-        buffer = StringIO()
-        with redirect_stdout(buffer):
-            calculateEngravingDefaults(
-                font=self.font,
-                verbose=True,
-                exclude=["textFontFamily"],  # skip the manual one for simplicity
-            )
-
-        output = buffer.getvalue()
+        output = getVerboseOutput(
+            calculateEngravingDefaults,
+            font=self.font,
+            verbose=True,
+            exclude=["textFontFamily"],
+        )
         self.assertIn("Setting attributes:", output)
-        self.assertIn("'stemThickness':", output)  # check for one known attribute
+        self.assertIn("'stemThickness':", output)
         self.assertIn("Done!", output)
 
     def test_boundsHeight(self):
@@ -209,50 +205,41 @@ class TestCalculateEngravingDefaults(unittest.TestCase, SuppressOutputMixin):
         self.assertIsNone(result)
 
     def test_normalizeFont_accepts_path(self):
-        self.patcher.stop()
-        with tempfile.TemporaryDirectory() as tempDir:
-            fontPath = Path(tempDir) / "testFont.ufo"
-            self.font.save(str(fontPath))
-            result = _normalizeFont(fontPath)
-            self.assertIsInstance(result, type(self.font))
+        result = _normalizeFont(self.fontPath)
+        self.assertIsInstance(result, type(self.font))
 
     @patch("bin.calculateEngravingDefaults.calculateEngravingDefaults")
     def test_main(self, mock_calculateEngravingDefaults):
-        self.patcher.stop()
-        with tempfile.TemporaryDirectory() as tempDir:
-            fontPath = Path(tempDir) / "testFont.ufo"
-            self.font.save(str(fontPath))
-
-            override = {"tupletBracketThickness": 0.5}
-            remap = {
-                "tupletBracketThickness": {
-                    "ruler": "boundsHeight",
-                    "glyph": "noteheadBlack",
-                    "referenceIndex": 0,
-                }
+        override = {"tupletBracketThickness": 0.5}
+        remap = {
+            "tupletBracketThickness": {
+                "ruler": "boundsHeight",
+                "glyph": "noteheadBlack",
+                "referenceIndex": 0,
             }
+        }
 
-            test_args = [
-                "calculateEngravingDefaults",
-                str(fontPath),
-                "--override",
-                json.dumps(override),
-                "--remap",
-                json.dumps(remap),
-                "--exclude",
-                "textFontFamily",
-                "--spaces",
-                "--verbose",
-            ]
+        test_args = [
+            "calculateEngravingDefaults",
+            str(self.fontPath),
+            "--override",
+            json.dumps(override),
+            "--remap",
+            json.dumps(remap),
+            "--exclude",
+            "textFontFamily",
+            "--spaces",
+            "--verbose",
+        ]
 
-            with patch.object(sys, "argv", test_args):
-                main()
+        with patch.object(sys, "argv", test_args):
+            main()
 
-            mock_calculateEngravingDefaults.assert_called_once()
-            kwargs = mock_calculateEngravingDefaults.call_args.kwargs
-            self.assertIsInstance(kwargs["font"], type(self.font))
-            self.assertEqual(kwargs["exclude"], ["textFontFamily"])
-            self.assertEqual(kwargs["override"], override)
-            self.assertEqual(kwargs["remap"], remap)
-            self.assertTrue(kwargs["spaces"])
-            self.assertTrue(kwargs["verbose"])
+        mock_calculateEngravingDefaults.assert_called_once()
+        args, kwargs = mock_calculateEngravingDefaults.call_args
+        self.assertIsInstance(args[0], type(self.font))
+        self.assertEqual(kwargs["exclude"], ["textFontFamily"])
+        self.assertEqual(kwargs["override"], override)
+        self.assertEqual(kwargs["remap"], remap)
+        self.assertTrue(kwargs["spaces"])
+        self.assertTrue(kwargs["verbose"])

@@ -1,11 +1,8 @@
-import json
 import sys
-import tempfile
 import unittest
 from unittest.mock import patch, MagicMock
-from pathlib import Path
 
-from tests.testUtils import SuppressOutputMixin
+from tests.testUtils import SavedFontMixin, SavedMetadataMixin, SuppressOutputMixin
 from bin.checkAnchors import (
     checkAnchors,
     main,
@@ -17,15 +14,15 @@ from bin.checkAnchors import (
 )
 
 
-class TestCheckAnchors(unittest.TestCase, SuppressOutputMixin):
+class TestCheckAnchors(
+    SavedFontMixin, SavedMetadataMixin, SuppressOutputMixin, unittest.TestCase
+):
     def setUp(self):
-        # Define generic objects
-        # pylint: disable=E1101
-        self.font, _ = self.objectGenerator("font")
+        super().setUp()
+        self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.font.info.familyName = "testFont"
         self.font.info.styleName = "Regular"
         self.glyph = self.font.newGlyph("glyph")
-        # pylint: enable=E1101
 
         self.glyph.smufl.name = "noteheadBlack"
         self.glyph.name = "noteheadBlack"
@@ -39,7 +36,8 @@ class TestCheckAnchors(unittest.TestCase, SuppressOutputMixin):
             "glyphsWithAnchors": {"noteheadBlack": {"anchor1": {}, "anchor3": {}}}
         }
 
-        # Supress console output
+        self.saveFontToTemp()
+        self.saveMetadataToTemp()
         self.suppressOutput()
 
     @patch("bin.checkAnchors._normalizeJsonDict")
@@ -68,51 +66,37 @@ class TestCheckAnchors(unittest.TestCase, SuppressOutputMixin):
 
     @patch("bin.checkAnchors.checkAnchors")
     def test_main(self, mock_checkAnchors):
-        with tempfile.TemporaryDirectory() as tempDir:
-            fontPath = Path(tempDir) / "testFont.ufo"
-            self.font.save(str(fontPath))
+        test_color = ["1", "0", "0", "1"]
 
-            metadataPath = Path(tempDir) / "metadata.json"
-            metadataPath.write_text(json.dumps(self.metadata))
+        test_args = [
+            "checkAnchors",
+            str(self.fontPath),
+            "--font-data",
+            str(self.metadataPath),
+            "--mark",
+            "--color",
+            *test_color,
+            "--verbose",
+        ]
 
-            test_color = ["1", "0", "0", "1"]
+        with patch.object(sys, "argv", test_args):
+            main()
 
-            test_args = [
-                "checkAnchors",
-                str(fontPath),
-                "--font-data",
-                str(metadataPath),
-                "--mark",
-                "--color",
-                *test_color,
-                "--verbose",
-            ]
-
-            with patch.object(sys, "argv", test_args):
-                main()
-
-            mock_checkAnchors.assert_called_once()
-            kwargs = mock_checkAnchors.call_args.kwargs
-
-            self.assertIsInstance(kwargs["font"], type(self.font))
-            self.assertEqual(kwargs["fontData"].path, str(metadataPath))
-            self.assertTrue(kwargs["mark"])
-            self.assertListEqual(kwargs["color"], [int(i) for i in test_color])
-            self.assertTrue(kwargs["verbose"])
+        mock_checkAnchors.assert_called_once()
+        args, kwargs = mock_checkAnchors.call_args
+        self.assertIsInstance(args[0], type(self.font))
+        self.assertEqual(kwargs["fontData"].path, str(self.metadataPath))
+        self.assertTrue(kwargs["mark"])
+        self.assertListEqual(kwargs["color"], [int(i) for i in test_color])
+        self.assertTrue(kwargs["verbose"])
 
     def test_normalizeFont_accepts_path(self):
-        with tempfile.TemporaryDirectory() as tempDir:
-            fontPath = Path(tempDir) / "testFont.ufo"
-            self.font.save(str(fontPath))
-            result = _normalizeFont(fontPath)
-            self.assertIsInstance(result, type(self.font))
+        result = _normalizeFont(self.fontPath)
+        self.assertIsInstance(result, type(self.font))
 
     def test_normalizeRequest_accepts_path(self):
-        with tempfile.TemporaryDirectory() as tempDir:
-            metadataPath = Path(tempDir) / "metadata.json"
-            metadataPath.write_text(json.dumps(self.metadata))
-            result = _normalizeRequest(metadataPath)
-            self.assertEqual(result.path, str(metadataPath))
+        result = _normalizeRequest(self.metadataPath)
+        self.assertEqual(result.path, str(self.metadataPath))
 
     def test_normalizeColor_raises_if_mark_and_color_None(self):
         with self.assertRaises(TypeError):
