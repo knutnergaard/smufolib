@@ -1,5 +1,8 @@
-import io
 import contextlib
+import json
+from io import StringIO
+from tempfile import TemporaryDirectory
+from pathlib import Path
 
 from smufolib import converters
 
@@ -68,17 +71,47 @@ def drawCircle(glyph, center, radius):
     return drawCurves(glyph, points)
 
 
+def getVerboseOutput(function, *args, **kwargs):
+    buffer = StringIO()
+    with contextlib.redirect_stdout(buffer):
+        function(*args, **kwargs)
+
+    return buffer.getvalue()
+
+
+class TempDirMixin:
+    def setUp(self):
+        super().setUp()
+        self._tempDir = TemporaryDirectory()
+        self.addCleanup(self._tempDir.cleanup)
+        self.tempPath = Path(self._tempDir.name)
+
+
+class SavedFontMixin(TempDirMixin):
+    def saveFontToTemp(self, filename="test.ufo"):
+        self.fontPath = self.tempPath / filename
+        self.font.save(str(self.fontPath))
+        return self.fontPath
+
+
+class SavedMetadataMixin(TempDirMixin):
+    def saveMetadataToTemp(self, filename="metadata.json"):
+        self.metadataPath = self.tempPath / filename
+        self.metadataPath.write_text(json.dumps(self.metadata))
+        return self.metadataPath
+
+
 class SuppressOutputMixin:
     def suppressOutput(self):
-        self._suppress = self._suppressOutput()
+        self._suppress = self.redirectOutput()
         self._suppress.__enter__()
         self.addCleanup(self._suppress.__exit__, None, None, None)
 
     @staticmethod
     @contextlib.contextmanager
-    def _suppressOutput():
+    def redirectOutput():
         with (
-            contextlib.redirect_stdout(io.StringIO()),
-            contextlib.redirect_stderr(io.StringIO()),
+            contextlib.redirect_stdout(StringIO()),
+            contextlib.redirect_stderr(StringIO()),
         ):
             yield
