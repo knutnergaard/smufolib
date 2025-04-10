@@ -357,7 +357,7 @@ def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     calculateEngravingDefaults(
-        font=args.font,
+        args.font,
         exclude=args.exclude,
         override=args.override,
         remap=args.remap,
