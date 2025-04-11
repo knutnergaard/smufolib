@@ -94,6 +94,7 @@ from smufolib import (
     error,
     normalizers,
     pointUtils,
+    scriptUtils,
     stdUtils,
 )
 
@@ -292,7 +293,7 @@ def calculateEngravingDefaults(
 
     print("Starting...")
 
-    font = _normalizeFont(font)
+    font = scriptUtils.normalizeFont(font)
     exclude = _normalizeExclude(exclude)
     override = _normalizeOverride(override)
     remap = _normalizeRemap(remap)
@@ -502,14 +503,6 @@ def yMinimum(glyph: Glyph, referenceIndex: int = 0) -> int | float | None:
 # -------
 # Helpers
 # -------
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
 
 
 def _normalizeExclude(exclude: Exclude | None) -> Exclude | None:
