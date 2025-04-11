@@ -62,8 +62,10 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, cli, error, stdUtils
+from smufolib import Font
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
+from smufolib import cli
+from smufolib.utils import error, stdUtils
 
 # Parameter defaults
 EXCLUDE = None

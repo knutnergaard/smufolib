@@ -1,7 +1,7 @@
 import io
 import sys
 import unittest
-from smufolib.stdUtils import (
+from smufolib.utils.stdUtils import (
     flatten,
     addTuples,
     getSummary,

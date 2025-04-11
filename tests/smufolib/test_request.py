@@ -4,7 +4,7 @@ import urllib.error
 import warnings
 import json
 from smufolib.request import Request, writeJson, CONFIG
-from smufolib.error import URLWarning
+from smufolib.utils.error import URLWarning
 
 
 # pylint: disable=W0212, W0613

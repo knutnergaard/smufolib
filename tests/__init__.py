@@ -3,12 +3,8 @@ import unittest
 from tests.smufolib import (
     test_cli,
     test_config,
-    test_converters,
-    test_error,
     test_normalizers,
-    test_pointUtils,
     test_request,
-    test_stdUtils,
 )
 from tests.smufolib.objects import (
     test_engravingDefaults,
@@ -23,6 +19,12 @@ from tests.bin import (
     test_generateMetadata,
     test_importAnchors,
     test_importID,
+)
+from tests.smufolib.utils import (
+    test_converters,
+    test_error,
+    test_pointUtils,
+    test_stdUtils,
 )
 
 

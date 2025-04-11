@@ -1,5 +1,5 @@
 import unittest
-from smufolib.converters import (
+from smufolib.utils.converters import (
     convertMeasurement,
     toDecimal,
     toUniHex,

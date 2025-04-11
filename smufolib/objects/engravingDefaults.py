@@ -3,7 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from fontParts.base.base import BaseObject
-from smufolib import normalizers, error
+from smufolib import normalizers
+from smufolib.utils import error
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl

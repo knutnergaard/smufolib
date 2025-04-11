@@ -1,5 +1,5 @@
 import unittest
-from smufolib.pointUtils import (
+from smufolib.utils.pointUtils import (
     Point,
     Position,
     getPoints,

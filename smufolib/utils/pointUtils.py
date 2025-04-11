@@ -18,7 +18,7 @@ from fontParts.fontshell import RContour
 from smufolib.objects.glyph import Glyph
 from smufolib.objects.layer import Layer
 from smufolib.objects.font import Font
-from smufolib import error, stdUtils
+from smufolib.utils import error, stdUtils
 
 TYPES = ("line", "curve", "qcurve")
 

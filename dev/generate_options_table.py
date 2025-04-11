@@ -12,7 +12,9 @@ in /../smufolib/docs/_static/css/custom.css
 
 import csv
 import json
-from smufolib import Font, Request, cli, config, converters
+from smufolib import Font, Request, config
+from smufolib import cli
+from smufolib.utils import converters
 
 CONFIG = config.load()
 
@@ -22,50 +24,49 @@ def main():
 
     # pylint: disable=C0103
 
-    shortFlags = CONFIG['cli.shortFlags']
+    shortFlags = CONFIG["cli.shortFlags"]
 
     directives = {
-        bool: ':class:`bool`',
-        list: ':class:`list`',
-        str: ':class:`str`',
-        json.loads: ':func:`~json.loads`',
-        Request: ':class:`~smufolib.request.Request`',
-        Font: ':class:`~smufolib.font.Font`',
-        converters.toNumber: ':class:`list`'
+        bool: ":class:`bool`",
+        list: ":class:`list`",
+        str: ":class:`str`",
+        json.loads: ":func:`~json.loads`",
+        Request: ":class:`~smufolib.request.Request`",
+        Font: ":class:`~smufolib.font.Font`",
+        converters.toNumber: ":class:`list`",
     }
 
-    with open('../docs/options.csv', 'w', encoding='utf-8', newline='') as csvfile:
-        fieldnames = ['Argument', 'Option', 'Type', 'Description']
-        writer = csv.DictWriter(
-            csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
+    with open("../docs/options.csv", "w", encoding="utf-8", newline="") as csvfile:
+        fieldnames = ["Argument", "Option", "Type", "Description"]
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
 
         writer.writeheader()
         for name, settings in cli.CLI_ARGUMENTS.items():
             longFlag = converters.toKebab(name)
-            optionType = settings.get('type', None)
+            optionType = settings.get("type", None)
 
             if not optionType:
-                if settings.get('action', None) == 'store_true':
+                if settings.get("action", None) == "store_true":
                     optionType = directives[bool]
-                elif 'nargs' in settings:
+                elif "nargs" in settings:
                     optionType = directives[list]
                 else:
                     optionType = directives[str]
             else:
                 optionType = directives[optionType]
-            description = settings['help']
+            description = settings["help"]
             writer.writerow(
                 {
-                    'Argument': f'`{name}`',
+                    "Argument": f"`{name}`",
                     # Non-breaking space (<0xa0>) between flags are
                     # necessary to avoid break in some cells.
-                    'Option': f'``--{longFlag}, {shortFlags[name]}``',
-                    'Type': optionType,
+                    "Option": f"``--{longFlag}, {shortFlags[name]}``",
+                    "Type": optionType,
                     # Add capital letter and period to help strings.
-                    'Description': f'{description[0].upper()}{description[1:]}.'
+                    "Description": f"{description[0].upper()}{description[1:]}.",
                 }
             )
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -46,8 +46,10 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, cli, config, error, stdUtils
+from smufolib import Font, config
 from smufolib.request import Request, writeJson
+from smufolib import cli
+from smufolib.utils import error, stdUtils
 
 # Type aliases
 JsonDict = dict[str, Any]

@@ -12,9 +12,10 @@ from argparse import (
 )
 import json
 
-from smufolib import config, converters, error
+from smufolib import config
 from smufolib.objects.font import Font
 from smufolib.request import Request
+from smufolib.utils import converters, error
 
 CONFIG = config.load()
 

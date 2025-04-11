@@ -4,7 +4,7 @@ from io import StringIO
 from tempfile import TemporaryDirectory
 from pathlib import Path
 
-from smufolib import converters
+from smufolib.utils import converters
 
 
 def generateGlyph(font, name, unicode=None, smuflName=None):

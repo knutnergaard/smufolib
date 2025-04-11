@@ -6,7 +6,8 @@ import json
 import urllib.request
 import warnings
 
-from smufolib import config, error, normalizers
+from smufolib import config, normalizers
+from smufolib.utils import error
 
 JsonDict = dict[str, Any]
 

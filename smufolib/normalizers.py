@@ -33,7 +33,7 @@ from fontParts.base.normalizers import normalizeBoolean
 from fontParts.base.normalizers import normalizeColor
 from fontParts.base.normalizers import normalizeVisualRounding
 from fontParts.base.normalizers import normalizeGlyph
-from smufolib import error
+from smufolib.utils import error
 
 # ruff: noqa: F401
 # pylint: enable=W0611

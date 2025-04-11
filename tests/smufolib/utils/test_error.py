@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 from pathlib import Path
-from smufolib.error import (
+from smufolib.utils.error import (
     generateErrorMessage,
     generateTypeError,
     validateType,

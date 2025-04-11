@@ -1,7 +1,4 @@
-import tempfile
 import unittest
-from pathlib import Path
-
 from argparse import (
     ArgumentParser,
     HelpFormatter,

@@ -8,7 +8,7 @@ related to measurements, Unicode codepoints and letter case.
 from __future__ import annotations
 import re
 
-from smufolib import error, stdUtils
+from smufolib.utils import error, stdUtils
 
 
 # pylint: disable=C0103

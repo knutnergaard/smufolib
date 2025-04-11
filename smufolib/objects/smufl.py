@@ -6,7 +6,8 @@ import re
 from fontParts.base.base import BaseObject
 from smufolib.objects.range import Range
 from smufolib.objects.engravingDefaults import EngravingDefaults
-from smufolib import converters, error, normalizers
+from smufolib import normalizers
+from smufolib.utils import converters, error
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer

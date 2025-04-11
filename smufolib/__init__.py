@@ -12,6 +12,11 @@ from smufolib.objects.smufl import ANCHOR_NAMES
 from smufolib.objects.smufl import FONT_ATTRIBUTES
 from smufolib.objects.smufl import GLYPH_ATTRIBUTES
 from smufolib.request import Request
+from smufolib.utils import converters
+from smufolib.utils import error
+from smufolib.utils import pointUtils
+from smufolib.utils import stdUtils
+from smufolib.utils import scriptUtils
 
 __all__ = [
     "EngravingDefaults",
@@ -25,4 +30,9 @@ __all__ = [
     "FONT_ATTRIBUTES",
     "GLYPH_ATTRIBUTES",
     "Request",
+    "converters",
+    "error",
+    "pointUtils",
+    "stdUtils",
+    "scriptUtils",
 ]

@@ -97,6 +97,7 @@ from smufolib import (
     stdUtils,
 )
 
+
 if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell.point import RPoint
 
