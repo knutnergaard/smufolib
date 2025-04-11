@@ -25,7 +25,14 @@ from pathlib import Path
 
 from tqdm import tqdm
 
-from smufolib import Font, Request, cli, config, error, normalizers, stdUtils
+from smufolib import (
+    Font,
+    Request,
+    cli,
+    config,
+    scriptUtils,
+    stdUtils,
+)
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -77,9 +84,11 @@ def checkAnchors(
     names = {}
     fontAnchors = {}
     referenceAnchors = {}
-    font = _normalizeFont(font)
-    metadata = _normalizeJsonDict(_normalizeRequest(fontData).json())
-    color = _normalizeColor(color, mark)
+    font = scriptUtils.normalizeFont(font)
+    metadata = scriptUtils.normalizeJsonDict(
+        scriptUtils.normalizeRequest(fontData).json()
+    )
+    color = scriptUtils.normalizeColor(color, mark)
 
     # Build dicts of glyph names and anchors indexed on smufl names.
     stdUtils.verbosePrint("\nCompiling font anchors...", verbose)
@@ -126,45 +135,6 @@ def main() -> None:
         color=args.color,
         verbose=args.verbose,
     )
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
-
-
-def _normalizeRequest(request: Request | Path | str) -> Request:
-    # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), "request")
-    if isinstance(request, Request):
-        return request
-    return Request(request)
-
-
-def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
-    # Ensure `jsonDict` is not None.
-    if jsonDict is None:
-        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
-    return jsonDict
-
-
-def _normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
-    # Normalize `color` value.
-    if color is None:
-        if mark:
-            raise TypeError(
-                error.generateTypeError(
-                    value=color,
-                    validTypes=tuple,
-                    objectName="color",
-                    dependencyInfo="'mark' is True",
-                )
-            )
-        return None
-    return normalizers.normalizeColor(color)
 
 
 def _evaluate(

@@ -26,7 +26,7 @@ from smufolib.objects.font import Font
 from smufolib.request import Request
 from smufolib import config, normalizers
 from smufolib import cli
-from smufolib.utils import error, stdUtils
+from smufolib.utils import error, scriptUtils, stdUtils
 
 JsonDict = dict[str, Any]
 ColorValue = int | float
@@ -79,8 +79,10 @@ def importAnchors(
     """
     print("Starting...")
 
-    font = _normalizeFont(font)
-    metadata = _normalizeJsonDict(_normalizeRequest(fontData).json())
+    font = scriptUtils.normalizeFont(font)
+    metadata = scriptUtils.normalizeJsonDict(
+        scriptUtils.normalizeRequest(fontData).json()
+    )
     colors = _normalizeColorDict(colors, mark)
     sourceAnchors = metadata["glyphsWithAnchors"]
 
@@ -147,29 +149,6 @@ def main() -> None:
         clear=args.clear,
         verbose=args.verbose,
     )
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
-
-
-def _normalizeRequest(request: Request | Path | str) -> Request:
-    # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), "request")
-    if isinstance(request, Request):
-        return request
-    return Request(request)
-
-
-def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
-    # Ensure `jsonDict` is not None.
-    if jsonDict is None:
-        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
-    return jsonDict
 
 
 def _normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | None:

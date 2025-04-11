@@ -6,10 +6,6 @@ from tests.testUtils import SavedFontMixin, SavedMetadataMixin, SuppressOutputMi
 from bin.checkAnchors import (
     checkAnchors,
     main,
-    _normalizeFont,
-    _normalizeColor,
-    _normalizeJsonDict,
-    _normalizeRequest,
     _evaluate,
 )
 
@@ -40,8 +36,8 @@ class TestCheckAnchors(
         self.saveMetadataToTemp()
         self.suppressOutput()
 
-    @patch("bin.checkAnchors._normalizeJsonDict")
-    @patch("bin.checkAnchors._normalizeRequest")
+    @patch("smufolib.utils.scriptUtils.normalizeJsonDict")
+    @patch("smufolib.utils.scriptUtils.normalizeRequest")
     def test_checkAnchors_discrepancies_logged(self, mock_request, mock_json):
         mock_request.return_value = MagicMock(json=lambda: self.metadata)
         mock_json.return_value = self.metadata
@@ -89,25 +85,6 @@ class TestCheckAnchors(
         self.assertTrue(kwargs["mark"])
         self.assertListEqual(kwargs["color"], [int(i) for i in test_color])
         self.assertTrue(kwargs["verbose"])
-
-    def test_normalizeFont_accepts_path(self):
-        result = _normalizeFont(self.fontPath)
-        self.assertIsInstance(result, type(self.font))
-
-    def test_normalizeRequest_accepts_path(self):
-        result = _normalizeRequest(self.metadataPath)
-        self.assertEqual(result.path, str(self.metadataPath))
-
-    def test_normalizeColor_raises_if_mark_and_color_None(self):
-        with self.assertRaises(TypeError):
-            _normalizeColor(None, mark=True)
-
-    def test_normalizeJsonDict_raises_on_none(self):
-        with self.assertRaises(TypeError):
-            _normalizeJsonDict(None)
-
-    def test_normalizeColor_mark_None(self):
-        self.assertIsNone(_normalizeColor(color=None, mark=False))
 
     def test_evaluate_name_not_in_reference(self):
         test = {"noteheadWhite": {}}

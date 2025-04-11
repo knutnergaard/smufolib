@@ -24,6 +24,7 @@ from tests.smufolib.utils import (
     test_converters,
     test_error,
     test_pointUtils,
+    test_scriptUtils,
     test_stdUtils,
 )
 
@@ -40,6 +41,7 @@ def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=T
         test_range,
         test_request,
         test_smufl,
+        test_scriptUtils,
         test_stdUtils,
         test_calculateEngravingDefaults,
         test_checkAnchors,

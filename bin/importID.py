@@ -41,7 +41,16 @@ import time
 
 from tqdm import tqdm
 
-from smufolib import Font, Request, cli, config, converters, error, stdUtils
+from smufolib import (
+    Font,
+    Request,
+    cli,
+    config,
+    converters,
+    error,
+    scriptUtils,
+    stdUtils,
+)
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -113,15 +122,19 @@ def importID(
     """
     print("Starting...")
 
-    font = _normalizeFont(font)
+    font = scriptUtils.normalizeFont(font)
     ticks = len(font) * 2 + 2
     with tqdm(total=ticks) if not verbose else nullcontext() as progressBar:
         attributes = _normalizeAttributes(attributes)
-        classesDataJson = _normalizeJsonDict(_normalizeRequest(classesData).json())
-        glyphnamesDataJson = _normalizeJsonDict(
-            _normalizeRequest(glyphnamesData).json()
+        classesDataJson = scriptUtils.normalizeJsonDict(
+            scriptUtils.normalizeRequest(classesData).json()
         )
-        fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
+        glyphnamesDataJson = scriptUtils.normalizeJsonDict(
+            scriptUtils.normalizeRequest(glyphnamesData).json()
+        )
+        fontDataJson = scriptUtils.normalizeJsonDict(
+            scriptUtils.normalizeRequest(fontData).json()
+        )
 
         if progressBar:
             progressBar.update(1)
@@ -199,29 +212,6 @@ def main() -> None:
         overwrite=args.overwrite,
         verbose=args.verbose,
     )
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
-
-
-def _normalizeRequest(request: Request | Path | str) -> Request:
-    # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), "request")
-    if isinstance(request, Request):
-        return request
-    return Request(request)
-
-
-def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
-    # Ensure `jsonDict` is not None.
-    if jsonDict is None:
-        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
-    return jsonDict
 
 
 def _normalizeAttributes(value: str | tuple[str, ...]) -> tuple[str, ...]:

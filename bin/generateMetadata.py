@@ -49,7 +49,7 @@ from tqdm import tqdm
 from smufolib import Font, config
 from smufolib.request import Request, writeJson
 from smufolib import cli
-from smufolib.utils import error, stdUtils
+from smufolib.utils import scriptUtils, stdUtils
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -91,9 +91,11 @@ def generateMetadata(
     """
     print("Starting...")
 
-    targetPath = _normalizeTargetPath(targetPath)
-    font = _normalizeFont(font)
-    fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
+    targetPath = scriptUtils.normalizeTargetPath(targetPath)
+    font = scriptUtils.normalizeFont(font)
+    fontDataJson = scriptUtils.normalizeJsonDict(
+        scriptUtils.normalizeRequest(fontData).json()
+    )
     font.smufl.spaces = True
 
     metadata = _compileMetadata(font, fontDataJson, verbose)
@@ -193,38 +195,6 @@ def _getSetsTemplate(fontData: JsonDict) -> SetsTemplate:
                 continue
             sets[key][subKey] = value
     return sets
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
-
-
-def _normalizeRequest(request: Request | Path | str) -> Request:
-    # Convert request path to object if necessary.
-    error.validateType(request, (Request, Path, str), "request")
-    if isinstance(request, Request):
-        return request
-    return Request(request)
-
-
-def _normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
-    # Ensure `jsonDict` is not None.
-    if jsonDict is None:
-        raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
-    return jsonDict
-
-
-def _normalizeTargetPath(targetPath: str | Path) -> str | Path:
-    # Ensure targetPath exists.
-    if not Path(targetPath).exists():
-        raise FileNotFoundError(
-            error.generateErrorMessage("fileNotFound", objectName="targetPath")
-        )
-    return targetPath
 
 
 def _parseArgs() -> argparse.Namespace:

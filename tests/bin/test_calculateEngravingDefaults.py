@@ -21,7 +21,6 @@ from bin.calculateEngravingDefaults import (
     xOrigin,
     yInner,
     yMinimum,
-    _normalizeFont,
 )
 
 
@@ -203,10 +202,6 @@ class TestCalculateEngravingDefaults(
         self.glyph.appendContour(self.contour)
         result = yMinimum(self.glyph)
         self.assertIsNone(result)
-
-    def test_normalizeFont_accepts_path(self):
-        result = _normalizeFont(self.fontPath)
-        self.assertIsInstance(result, type(self.font))
 
     @patch("bin.calculateEngravingDefaults.calculateEngravingDefaults")
     def test_main(self, mock_calculateEngravingDefaults):

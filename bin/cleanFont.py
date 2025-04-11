@@ -65,7 +65,7 @@ from tqdm import tqdm
 from smufolib import Font
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 from smufolib import cli
-from smufolib.utils import error, stdUtils
+from smufolib.utils import error, scriptUtils, stdUtils
 
 # Parameter defaults
 EXCLUDE = None
@@ -97,7 +97,7 @@ def cleanFont(
     """
     print("Starting...")
 
-    font = _normalizeFont(font)
+    font = scriptUtils.normalizeFont(font)
     itemsToClean = _buildItemsDict(include, exclude)
 
     # Clean font attributes
@@ -152,14 +152,6 @@ def main() -> None:
     """Command line entry point."""
     args = _parseArgs()
     cleanFont(args.font, args.include, exclude=args.exclude, verbose=args.verbose)
-
-
-def _normalizeFont(font: Font | Path | str) -> Font:
-    # Convert font path to object if necessary.
-    error.validateType(font, (Font, Path, str), "font")
-    if isinstance(font, Font):
-        return font
-    return Font(font)
 
 
 def _buildItemsDict(include, exclude):

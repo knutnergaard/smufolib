@@ -1,10 +1,10 @@
 import sys
 import unittest
-from unittest.mock import MagicMock, patch
+from unittest.mock import patch
 
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 from tests.testUtils import SavedFontMixin, SuppressOutputMixin, getVerboseOutput
-from bin.cleanFont import cleanFont, main, _normalizeFont, _buildItemsDict, _parseArgs
+from bin.cleanFont import cleanFont, main
 
 
 class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
@@ -107,7 +107,3 @@ class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
         self.assertEqual(args[1], [include])
         self.assertEqual(kwargs["exclude"], exclude)
         self.assertTrue(kwargs["verbose"])
-
-    def test_normalizeFont_accepts_path(self):
-        result = _normalizeFont(self.fontPath)
-        self.assertIsInstance(result, type(self.font))
