@@ -7,7 +7,6 @@ from smufolib.objects.glyph import Glyph
 from smufolib.objects.layer import Layer
 from smufolib.objects.range import Range
 from smufolib.objects.smufl import Smufl
-from smufolib.request import Request
 
 
 classMapping = {
@@ -19,7 +18,6 @@ classMapping = {
     "layer": Layer,
     "range": Range,
     "smufl": Smufl,
-    "request": Request,
 }
 
 
