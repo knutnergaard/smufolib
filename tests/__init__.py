@@ -3,7 +3,6 @@ import unittest
 from tests.smufolib import (
     test_cli,
     test_config,
-    test_normalizers,
     test_request,
 )
 from tests.smufolib.objects import (
@@ -23,6 +22,7 @@ from tests.bin import (
 from tests.smufolib.utils import (
     test_converters,
     test_error,
+    test_normalizers,
     test_pointUtils,
     test_scriptUtils,
     test_stdUtils,

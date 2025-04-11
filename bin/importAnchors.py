@@ -24,9 +24,8 @@ from tqdm import tqdm
 
 from smufolib.objects.font import Font
 from smufolib.request import Request
-from smufolib import config, normalizers
-from smufolib import cli
-from smufolib.utils import error, scriptUtils, stdUtils
+from smufolib import cli, config
+from smufolib.utils import error, normalizers, scriptUtils, stdUtils
 
 JsonDict = dict[str, Any]
 ColorValue = int | float

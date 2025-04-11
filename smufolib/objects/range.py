@@ -3,7 +3,8 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from smufolib.request import Request
-from smufolib import config, normalizers
+from smufolib import config
+from smufolib.utils import normalizers
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl

@@ -1,7 +1,7 @@
 import unittest
 from pathlib import Path
 from smufolib import Font, Glyph
-from smufolib.normalizers import (
+from smufolib.utils.normalizers import (
     normalizeFont,
     normalizeClasses,
     normalizeDescription,

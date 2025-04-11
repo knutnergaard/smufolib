@@ -14,6 +14,7 @@ from smufolib.objects.smufl import GLYPH_ATTRIBUTES
 from smufolib.request import Request
 from smufolib.utils import converters
 from smufolib.utils import error
+from smufolib.utils import normalizers
 from smufolib.utils import pointUtils
 from smufolib.utils import stdUtils
 from smufolib.utils import scriptUtils
@@ -32,6 +33,7 @@ __all__ = [
     "Request",
     "converters",
     "error",
+    "normalizers",
     "pointUtils",
     "stdUtils",
     "scriptUtils",

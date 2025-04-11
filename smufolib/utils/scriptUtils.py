@@ -2,9 +2,8 @@ from pathlib import Path
 from typing import Any
 
 from smufolib.objects.font import Font
-from smufolib import normalizers
 from smufolib.request import Request
-from smufolib.utils import error
+from smufolib.utils import error, normalizers
 
 
 JsonDict = dict[str, Any]
