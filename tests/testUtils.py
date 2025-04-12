@@ -1,8 +1,8 @@
 import contextlib
 import json
 from io import StringIO
-from tempfile import TemporaryDirectory
 from pathlib import Path
+from tempfile import TemporaryDirectory
 
 from smufolib.utils import converters
 
