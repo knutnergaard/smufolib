@@ -814,6 +814,15 @@ class Smufl(BaseObject):
         if self.font is None:
             return None
 
+        if not self.font.info.unitsPerEm:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "missingDependencyError",
+                    objectName="value",
+                    dependency="font.info.unitsPerEm",
+                )
+            )
+
         return converters.convertMeasurement(
             measurement=value,
             targetUnit="spaces",
@@ -841,6 +850,15 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
+
+        if not self.font.info.unitsPerEm:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "missingDependencyError",
+                    objectName="value",
+                    dependency="font.info.unitsPerEm",
+                )
+            )
 
         return converters.convertMeasurement(
             measurement=value,
@@ -874,7 +892,7 @@ class Smufl(BaseObject):
                     error.generateErrorMessage(
                         "missingDependencyError",
                         objectName="spaces",
-                        dependency="unitsPerEm",
+                        dependency="font.info.unitsPerEm",
                     )
                 )
             value = normalizers.normalizeBoolean(value)

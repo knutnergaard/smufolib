@@ -48,9 +48,11 @@ from smufolib import (
     config,
     converters,
     error,
-    scriptUtils,
     stdUtils,
 )
+from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
+from smufolib.utils.scriptUtils import normalizeJsonDict as _normalizeJsonDict
+from smufolib.utils.scriptUtils import normalizeRequest as _normalizeRequest
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -122,19 +124,15 @@ def importID(
     """
     print("Starting...")
 
-    font = scriptUtils.normalizeFont(font)
+    font = _normalizeFont(font)
     ticks = len(font) * 2 + 2
     with tqdm(total=ticks) if not verbose else nullcontext() as progressBar:
         attributes = _normalizeAttributes(attributes)
-        classesDataJson = scriptUtils.normalizeJsonDict(
-            scriptUtils.normalizeRequest(classesData).json()
+        classesDataJson = _normalizeJsonDict(_normalizeRequest(classesData).json())
+        glyphnamesDataJson = _normalizeJsonDict(
+            _normalizeRequest(glyphnamesData).json()
         )
-        glyphnamesDataJson = scriptUtils.normalizeJsonDict(
-            scriptUtils.normalizeRequest(glyphnamesData).json()
-        )
-        fontDataJson = scriptUtils.normalizeJsonDict(
-            scriptUtils.normalizeRequest(fontData).json()
-        )
+        fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
 
         if progressBar:
             progressBar.update(1)

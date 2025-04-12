@@ -49,7 +49,11 @@ from tqdm import tqdm
 from smufolib import Font, config
 from smufolib.request import Request, writeJson
 from smufolib import cli
-from smufolib.utils import scriptUtils, stdUtils
+from smufolib.utils import stdUtils
+from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
+from smufolib.utils.scriptUtils import normalizeJsonDict as _normalizeJsonDict
+from smufolib.utils.scriptUtils import normalizeRequest as _normalizeRequest
+from smufolib.utils.scriptUtils import normalizeTargetPath as _normalizeTargetPath
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -91,11 +95,9 @@ def generateMetadata(
     """
     print("Starting...")
 
-    targetPath = scriptUtils.normalizeTargetPath(targetPath)
-    font = scriptUtils.normalizeFont(font)
-    fontDataJson = scriptUtils.normalizeJsonDict(
-        scriptUtils.normalizeRequest(fontData).json()
-    )
+    targetPath = _normalizeTargetPath(targetPath)
+    font = _normalizeFont(font)
+    fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
     font.smufl.spaces = True
 
     metadata = _compileMetadata(font, fontDataJson, verbose)

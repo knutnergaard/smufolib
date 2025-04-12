@@ -94,9 +94,9 @@ from smufolib import (
     error,
     normalizers,
     pointUtils,
-    scriptUtils,
     stdUtils,
 )
+from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -293,7 +293,7 @@ def calculateEngravingDefaults(
 
     print("Starting...")
 
-    font = scriptUtils.normalizeFont(font)
+    font = _normalizeFont(font)
     exclude = _normalizeExclude(exclude)
     override = _normalizeOverride(override)
     remap = _normalizeRemap(remap)
