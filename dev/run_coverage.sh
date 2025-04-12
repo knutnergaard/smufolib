@@ -1,0 +1,1 @@
+coverage run test.py && coverage combine && coverage html
