@@ -17,6 +17,7 @@ import difflib
 #: Dictionary of error message templates.
 ERROR_TEMPLATES: dict[str, str] = {
     "alphanumericValue": "The value for '{objectName}' must be alphanumeric.",
+    "alphanumericValueItems": "Value items for '{objectName}' must be alphanumeric.",
     "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
     "attributeError": "'{objectName}' has no attribute '{attribute}'.",
     "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {value}.",
@@ -28,6 +29,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "fileNotFound": "The file or directory for '{objectName}' does not exist.",
     "invalidFormat": "The value for '{objectName}' is not correctly formatted.",
     "invalidInitialCharacter": "The value for '{objectName}' must start with a lowercase letter or number.",
+    "invalidInitialItemsCharacter": "Value items for '{objectName}' must start with a lowercase letter or number.",
     "itemsTypeError": "Items in '{objectName}' must be {validTypes}, not {value}.",
     "itemsValueError": "Invalid value for item in '{objectName}': {value}.",
     "missingExtension": "The value for '{objectName}' must have a {extension} extension.",
