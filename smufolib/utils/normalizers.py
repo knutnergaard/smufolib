@@ -92,7 +92,7 @@ def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...]:
     for val in value:
         error.validateType(val, str, objectName, items=True)
         for v in val.split("_"):
-            normalizeSmuflName(v)
+            normalizeSmuflName(v, items=True)
 
     duplicates = {v for v in value if value.count(v) > 1}
     if len(duplicates) != 0:
@@ -197,10 +197,12 @@ def normalizeSmufl(value: Smufl) -> Smufl:
     return normalizeInternalObjectType(value, Smufl, "Smufl")
 
 
-def normalizeSmuflName(value: str | None) -> str | None:
+def normalizeSmuflName(value: str | None, items: bool = False) -> str | None:
     """Normalize smufl names.
 
     :param value: The value to normalize.
+    :param items: Whether to normalize `value` items rather than `value`
+        itself. Defaults to :obj:`False`.
     :raises TypeError: If `value` is not an accepted type.
     :raises ValueError:
         - If `value` is an empty string.
@@ -212,23 +214,27 @@ def normalizeSmuflName(value: str | None) -> str | None:
         return None
 
     objectName = "Smufl.name"
+    if items:
+        objectName = "Smufl.classes"
 
     error.validateType(value, (str, type(None)), objectName)
+
     if not value:
-        raise ValueError(
-            error.generateErrorMessage("emptyValue", objectName=objectName)
-        )
+        template = "emptyValueItems" if items else "emptyValue"
+        raise ValueError(error.generateErrorMessage(template, objectName=objectName))
 
     for val in value:
         if not val.isalnum():
+            template = "alphanumericValueItems" if items else "alphanumericValue"
             raise ValueError(
-                error.generateErrorMessage("alphanumericValue", objectName=objectName)
+                error.generateErrorMessage(template, objectName=objectName)
             )
 
     if value[0].isupper():
-        raise ValueError(
-            error.generateErrorMessage("invalidInitialCharacter", objectName=objectName)
+        template = (
+            "invalidInitialItemsCharacter" if items else "invalidInitialCharacter"
         )
+        raise ValueError(error.generateErrorMessage(template, objectName=objectName))
 
     return value
 
