@@ -30,9 +30,12 @@ from smufolib import (
     Request,
     cli,
     config,
-    scriptUtils,
     stdUtils,
 )
+from smufolib.utils.scriptUtils import normalizeColor as _normalizeColor
+from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
+from smufolib.utils.scriptUtils import normalizeJsonDict as _normalizeJsonDict
+from smufolib.utils.scriptUtils import normalizeRequest as _normalizeRequest
 
 # Type aliases
 JsonDict = dict[str, Any]
@@ -84,11 +87,9 @@ def checkAnchors(
     names = {}
     fontAnchors = {}
     referenceAnchors = {}
-    font = scriptUtils.normalizeFont(font)
-    metadata = scriptUtils.normalizeJsonDict(
-        scriptUtils.normalizeRequest(fontData).json()
-    )
-    color = scriptUtils.normalizeColor(color, mark)
+    font = _normalizeFont(font)
+    metadata = _normalizeJsonDict(_normalizeRequest(fontData).json())
+    color = _normalizeColor(color, mark)
 
     # Build dicts of glyph names and anchors indexed on smufl names.
     stdUtils.verbosePrint("\nCompiling font anchors...", verbose)

@@ -65,7 +65,11 @@ from tqdm import tqdm
 from smufolib import Font
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 from smufolib import cli
-from smufolib.utils import error, scriptUtils, stdUtils
+from smufolib.utils import error, stdUtils
+
+
+from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
+
 
 # Parameter defaults
 EXCLUDE = None
@@ -97,7 +101,7 @@ def cleanFont(
     """
     print("Starting...")
 
-    font = scriptUtils.normalizeFont(font)
+    font = _normalizeFont(font)
     itemsToClean = _buildItemsDict(include, exclude)
 
     # Clean font attributes
