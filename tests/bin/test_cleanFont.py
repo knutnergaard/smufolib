@@ -30,45 +30,54 @@ class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
         self.saveFontToTemp()
         self.suppressOutput()
 
-    def verifyCleanup(self, exclude=None):
+    def verifyCleanup(self, include=None, exclude=None):
         for attr in FONT_ATTRIBUTES:
             result = getattr(self.font.smufl, attr)
             if attr == "engravingDefaults":
                 result = getattr(self.font.smufl.engravingDefaults, "stemThickness")
-            if exclude and attr in exclude:
+            if (include and attr not in include) or (exclude and attr in exclude):
+                print(attr, result)
                 self.assertTrue(result)
             else:
                 self.assertFalse(result)
 
         for attr in GLYPH_ATTRIBUTES:
             result = getattr(self.glyph.smufl, attr)
-            if exclude and attr in exclude:
+            if (include and attr not in include) or (exclude and attr in exclude):
                 self.assertTrue(result)
             else:
                 self.assertFalse(result)
 
         anchorNames = [a.name for a in self.glyph.anchors]
-        for name in ANCHOR_NAMES:
-            if exclude and name in exclude:
+        for name in anchorNames:
+            if name not in ANCHOR_NAMES:
+                continue
+            if (include and name not in include) or (exclude and name in exclude):
                 self.assertIn(name, anchorNames)
             else:
                 self.assertNotIn(name, anchorNames)
         self.assertIn(self.nonSmuflAnchor.name, anchorNames)
 
-    def test_cleanFont_removes_all(self):
+    def test_cleanFont_include_all(self):
         cleanFont(self.font, include="*")
         self.verifyCleanup()
 
-    def test_cleanFont_removes_exclude_anchor(self):
-        cleanFont(self.font, include="*", exclude=["splitStemUpSE"])
-        self.verifyCleanup(exclude=["splitStemUpSE"])
+    def test_cleanFont_include_list(self):
+        itemsToInclude = ["engravingDefaults", "spaces", "splitStemUpSE"]
+        cleanFont(self.font, include=itemsToInclude)
+        self.verifyCleanup(include=itemsToInclude)
 
-    def test_cleanFont_falsy_attribute(self):
+    def test_cleanFont_exclude_list(self):
+        itemsToExclude = ["engravingDefaults", "spaces", "splitStemUpSE"]
+        cleanFont(self.font, include="*", exclude=itemsToExclude)
+        self.verifyCleanup(exclude=itemsToExclude)
+
+    def test_cleanFont_include_falsy_attribute(self):
         self.glyph.smufl.name = None
-        cleanFont(self.font, include=["name"])
+        cleanFont(self.font, include="name")
         self.assertIsNone(self.glyph.smufl.name)
 
-    def test_cleanFont_invalid_attribute(self):
+    def test_cleanFont_include_invalid_attribute(self):
         with self.assertRaises(ValueError):
             cleanFont(self.font, include="invalidAttribute")
 
