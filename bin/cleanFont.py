@@ -100,6 +100,7 @@ def cleanFont(
     print("Starting...")
 
     font = _normalizeFont(font)
+    font = _normalizeFont(font)
     itemsToClean = _buildItemsDict(include, exclude)
 
     # Clean font attributes
