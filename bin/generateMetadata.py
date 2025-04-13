@@ -140,7 +140,7 @@ def _compileMetadata(font: Font, fontData: JsonDict, verbose: bool) -> JsonDict:
 
     stdUtils.verbosePrint("\nCompiling metadata for glyphs:", verbose)
     for glyph in font if verbose else tqdm(font):
-        if glyph is None or not stdUtils.validateClassAttr(
+        if glyph is None or not stdUtils.validateAttr(
             glyph, ("name", "unicode", "smufl.isMember")
         ):
             stdUtils.verbosePrint("\tSkipping invalid glyph:", verbose, glyph)

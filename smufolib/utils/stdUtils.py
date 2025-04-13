@@ -110,7 +110,7 @@ def isFloat(string: str) -> bool:
         return False
 
 
-def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
+def validateAttr(obj, attributes: Iterable[str] | None = None) -> bool:
     """Validate `obj` based on whether the given attributes have been set.
 
     This function returns :obj:`False` if any given attribute is not :obj:`None`,
@@ -129,13 +129,13 @@ def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
         ...         self.attr3 = False
         ...
         >>> obj = MyClass()
-        >>> validateClassAttr(obj, 'attr1')
+        >>> validateAttr(obj, 'attr1')
         True
-        >>> validateClassAttr(obj, 'attr2')
+        >>> validateAttr(obj, 'attr2')
         False
-        >>> validateClassAttr(obj, 'attr3')
+        >>> validateAttr(obj, 'attr3')
         True
-        >>> validateClassAttr(obj, ['attr1', 'attr2'])
+        >>> validateAttr(obj, ['attr1', 'attr2'])
         False
 
     """

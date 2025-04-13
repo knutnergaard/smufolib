@@ -6,7 +6,7 @@ from smufolib.utils.stdUtils import (
     addTuples,
     getSummary,
     isFloat,
-    validateClassAttr,
+    validateAttr,
     doNothing,
     verbosePrint,
 )
@@ -47,7 +47,7 @@ class StdUtils(unittest.TestCase):
         self.assertFalse(isFloat("a.b"))
         self.assertFalse(isFloat(""))
 
-    def test_validateClassAttr(self):
+    def test_validateAttr(self):
         class MyClass:
             def __init__(self):
                 self.attr1 = 1
@@ -55,10 +55,10 @@ class StdUtils(unittest.TestCase):
                 self.attr3 = False
 
         obj = MyClass()
-        self.assertTrue(validateClassAttr(obj, "attr1"))
-        self.assertFalse(validateClassAttr(obj, "attr2"))
-        self.assertTrue(validateClassAttr(obj, "attr3"))
-        self.assertFalse(validateClassAttr(obj, ["attr1", "attr2"]))
+        self.assertTrue(validateAttr(obj, "attr1"))
+        self.assertFalse(validateAttr(obj, "attr2"))
+        self.assertTrue(validateAttr(obj, "attr3"))
+        self.assertFalse(validateAttr(obj, ["attr1", "attr2"]))
 
     def test_doNothing(self):
         self.assertIsNone(doNothing(1, 2, 3))
