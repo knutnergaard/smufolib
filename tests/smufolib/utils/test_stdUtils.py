@@ -59,6 +59,7 @@ class StdUtils(unittest.TestCase):
         self.assertFalse(validateAttr(obj, "attr2"))
         self.assertTrue(validateAttr(obj, "attr3"))
         self.assertFalse(validateAttr(obj, ["attr1", "attr2"]))
+        self.assertFalse(validateAttr(obj, []))
 
     def test_doNothing(self):
         self.assertIsNone(doNothing(1, 2, 3))
