@@ -51,12 +51,14 @@ class StdUtils(unittest.TestCase):
         class MyClass:
             def __init__(self):
                 self.attr1 = 1
-                self.attr2 = 2
+                self.attr2 = None
+                self.attr3 = False
 
         obj = MyClass()
-        self.assertTrue(validateClassAttr(obj, ["attr1", "attr2"]))
-        self.assertFalse(validateClassAttr(obj, "attr3"))
-        self.assertTrue(validateClassAttr(obj, None))
+        self.assertTrue(validateClassAttr(obj, "attr1"))
+        self.assertFalse(validateClassAttr(obj, "attr2"))
+        self.assertTrue(validateClassAttr(obj, "attr3"))
+        self.assertFalse(validateClassAttr(obj, ["attr1", "attr2"]))
 
     def test_doNothing(self):
         self.assertIsNone(doNothing(1, 2, 3))

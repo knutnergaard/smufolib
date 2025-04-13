@@ -410,12 +410,16 @@ class TestSmufl(unittest.TestCase):
         self.smufl.round()
 
     def test_toSpaces(self):
-        self.assertIsNone(self.glyph.smufl.toSpaces(0.5))
+        self.assertIsNone(self.glyph.smufl.toSpaces(125))
+        with self.assertRaises(AttributeError):
+            self.recommended1.smufl.toSpaces(125)
         self.recommended1.font.info.unitsPerEm = 1000
         self.assertEqual(self.recommended1.smufl.toSpaces(125), 0.5)
 
     def test_toUnits(self):
         self.assertIsNone(self.glyph.smufl.toUnits(0.5))
+        with self.assertRaises(AttributeError):
+            self.recommended1.smufl.toUnits(0.5)
         self.recommended1.font.info.unitsPerEm = 1000
         self.assertEqual(self.recommended1.smufl.toUnits(0.499), 125)
         self.assertEqual(self.recommended1.smufl.toUnits(0.499, rounded=False), 124.75)

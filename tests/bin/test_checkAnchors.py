@@ -29,7 +29,10 @@ class TestCheckAnchors(
             a.name = f"anchor{i + 1}"
 
         self.metadata = {
-            "glyphsWithAnchors": {"noteheadBlack": {"anchor1": {}, "anchor3": {}}}
+            "glyphsWithAnchors": {
+                "noteheadBlack": {"anchor1": (), "anchor3": ()},
+                "noteheadWhite": {"anchor2": ()},
+            },
         }
 
         self.saveFontToTemp()
@@ -87,7 +90,14 @@ class TestCheckAnchors(
         self.assertTrue(kwargs["verbose"])
 
     def test_evaluate_name_not_in_reference(self):
-        test = {"noteheadWhite": {}}
+        test = {"noteheadHalf": {}}
+        reference = self.metadata["glyphsWithAnchors"]
+        self.assertListEqual(
+            _evaluate(test=test, reference=reference, names={}, verbose=False), []
+        )
+
+    def test_evaluate_ahchor_in_reference_name(self):
+        test = {"noteheadWhite": {"anchor2": ()}}
         reference = self.metadata["glyphsWithAnchors"]
         self.assertListEqual(
             _evaluate(test=test, reference=reference, names={}, verbose=False), []
