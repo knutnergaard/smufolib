@@ -454,10 +454,13 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return float(
-            f"{self.font.info.naked().versionMajor}."
-            f"{self.font.info.naked().versionMinor}"
-        )
+        try:
+            return float(
+                f"{self.font.info.naked().versionMajor}."
+                f"{self.font.info.naked().versionMinor}"
+            )
+        except ValueError:
+            return None
 
     @version.setter
     def version(self, value: float | None) -> None:
