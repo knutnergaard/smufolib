@@ -33,7 +33,7 @@ This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
 following public functions:
 
-    - :func:`generateMetadata` – The scripts program function.
+    - :func:`generateMetadata` - The scripts program function.
     - :func:`main` - Command line entry point.
 
 """
@@ -174,7 +174,7 @@ def _compileMetadata(font: Font, fontData: JsonDict, verbose: bool) -> JsonDict:
         if s.isSet:
             sets[s.suffix] = setsTemplate[s.suffix]
             glyphInfo = {
-                "alternateFor": s.base.name,
+                "alternateFor": s.base.smufl.name,
                 "codepoint": s.codepoint,
                 "description": s.description,
                 "name": s.name,
