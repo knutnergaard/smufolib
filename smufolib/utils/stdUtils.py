@@ -9,7 +9,7 @@ placeholder purposes.
 
 """
 
-from __future__ import annotations
+import operator
 from typing import Any
 from collections.abc import Generator, Iterable
 
@@ -111,7 +111,11 @@ def isFloat(string: str) -> bool:
 
 
 def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
-    """Validate an object based on class and attribute exsistence.
+    """Validate `obj` based on whether the given attributes have been set.
+
+    This function returns :obj:`False` if any given attribute is not :obj:`None`,
+    otherwise itreturns :obj:`True`. It supports validation of nested
+    attributes, e.g.: ``"attr1.attr2.attr3"``.
 
     :param obj: The object to validate.
     :param attributes: The attribute names to check.
@@ -121,21 +125,27 @@ def validateClassAttr(obj, attributes: Iterable[str] | None = None) -> bool:
         >>> class MyClass:
         ...     def __init__(self):
         ...         self.attr1 = 1
-        ...         self.attr2 = 2
+        ...         self.attr2 = None
+        ...         self.attr3 = False
         ...
         >>> obj = MyClass()
-        >>> validateClassAttr(obj, ['attr1', 'attr2'])
+        >>> validateClassAttr(obj, 'attr1')
         True
+        >>> validateClassAttr(obj, 'attr2')
+        False
         >>> validateClassAttr(obj, 'attr3')
+        True
+        >>> validateClassAttr(obj, ['attr1', 'attr2'])
         False
 
     """
+    if not attributes:
+        return False
+
     if isinstance(attributes, str):
         attributes = (attributes,)
-    if attributes is None:
-        attributes = ()
 
-    return all(hasattr(obj, attr) for attr in attributes)
+    return all(operator.attrgetter(attr)(obj) is not None for attr in attributes)
 
 
 def doNothing(*args: Any, **kwargs: Any) -> None:
