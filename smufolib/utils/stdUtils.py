@@ -23,8 +23,6 @@ def flatten(iterable: Iterable[Any], depth: int | None = None) -> Generator:
     :param depth: The number of levels to flatten. `depth=None` employs
         maximum flattening. Defaults to :obj:`None`.
 
-    :return: A generator yielding the flattened elements.
-
     Examples::
 
         >>> list(flatten([1, [2, [3, [4, 5]]]], depth=2))

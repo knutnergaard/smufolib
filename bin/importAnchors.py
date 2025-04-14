@@ -68,10 +68,10 @@ def importAnchors(
         and :obj:`~smufolib.request.Request.fallback` set to
         :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
         `referenceFont` configurations.
-    :param mark: Apply defined anchor colors. Defaults to :obj:`True`
+    :param mark: Apply defined anchor colors. Defaults to :obj:`True`.
     :param colors: dict of anchorNames mapped to UFO color values to
         apply when `mark` is :obj:`True`.
-    :param clear: erase preexisting anchors on append. Defaults to
+    :param clear: Erase preexisting anchors on append. Defaults to
         :obj:`False`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type

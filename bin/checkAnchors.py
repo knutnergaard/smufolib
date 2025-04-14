@@ -74,7 +74,7 @@ def checkAnchors(
         and :attr:`~smufolib.request.Request.fallback` set to
         :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]`
         respective `referenceFont` configurations.
-    :param mark: mark discrepant glyphs. Defaults to :obj:`False`.
+    :param mark: Mark discrepant glyphs. Defaults to :obj:`False`.
     :param color: Color value to apply when ``mark=True``.
         Defaults to :ref:`[color.marks]` `mark1` configuration.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
