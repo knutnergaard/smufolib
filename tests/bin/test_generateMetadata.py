@@ -1,12 +1,10 @@
 import json
 import sys
-from pathlib import Path
 import unittest
-from unittest.mock import patch, MagicMock
+from unittest.mock import patch
 
 
 from smufolib import Request
-from smufolib.utils import converters
 from tests.testUtils import (
     SavedFontMixin,
     SavedMetadataMixin,
