@@ -26,7 +26,7 @@ This script requires SMufoLib to be installed within its
 executive environment. It may also be imported as a module and contains
 the following public functions:
 
-    - :func:`importID` – The scripts program function.
+    - :func:`importID` - The scripts program function.
     - :func:`main` - Command line entry point.
 
 """
