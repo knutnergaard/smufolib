@@ -4,6 +4,7 @@ from smufolib.utils.scriptUtils import (
     normalizeFont,
     normalizeRequest,
     normalizeColor,
+    normalizeColorDict,
     normalizeJsonDict,
     normalizeTargetPath,
 )
@@ -31,6 +32,13 @@ class TestSCriptUitls(SavedFontMixin, SavedMetadataMixin, unittest.TestCase):
     def test_normalizeColor_raises_if_mark_and_color_None(self):
         with self.assertRaises(TypeError):
             normalizeColor(None, mark=True)
+
+    def test_normalizeColorDict_not_mark_color_None(self):
+        self.assertIsNone(normalizeColorDict(None, mark=False))
+
+    def test_normalizeColorDict_raises_if_mark_and_color_None(self):
+        with self.assertRaises(TypeError):
+            normalizeColorDict(None, mark=True)
 
     def test_normalizeJsonDict_raises_on_none(self):
         with self.assertRaises(TypeError):

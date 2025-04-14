@@ -22,15 +22,17 @@ class TestSmufl(unittest.TestCase):
         self.font.defaultLayer = self.layer
 
         # Generate different types of glyphs to layer
-        self.recommended1 = generateGlyph(self.font, "uniE000", 0xE000)
-        self.recommended2 = generateGlyph(self.font, "uniF3FF", 0xF3FF)
-        self.ligature = generateGlyph(self.font, "uniE000_uniE001_uniE002", 0xF400)
+        self.recommended1 = generateGlyph(self.font, "uniE000", unicode=0xE000)
+        self.recommended2 = generateGlyph(self.font, "uniF3FF", unicode=0xF3FF)
+        self.ligature = generateGlyph(
+            self.font, "uniE000_uniE001_uniE002", unicode=0xF400
+        )
         self.ligature_components = generateLigatureComponents(self.ligature)
-        self.optional = generateGlyph(self.font, "optionalGlyph", 0xF400)
-        self.salt = generateGlyph(self.font, "uniE000.salt01", 0xF8FF)
-        self.set = generateGlyph(self.font, "uniE000.ss01", 0xF400)
-        self.nonMember = generateGlyph(self.font, "nonSmuflGlyph1", 0xE000 - 1)
-        self.nonMember2 = generateGlyph(self.font, "nonSmuflGlyph2", 0xF8FF + 1)
+        self.optional = generateGlyph(self.font, "optionalGlyph", unicode=0xF400)
+        self.salt = generateGlyph(self.font, "uniE000.salt01", unicode=0xF8FF)
+        self.set = generateGlyph(self.font, "uniE000.ss01", unicode=0xF400)
+        self.nonMember = generateGlyph(self.font, "nonSmuflGlyph1", unicode=0xE000 - 1)
+        self.nonMember2 = generateGlyph(self.font, "nonSmuflGlyph2", unicode=0xF8FF + 1)
 
     def assignAnchors(self, glyph):
         glyph.appendAnchor("stemUpNW", (1.5, 2.5))

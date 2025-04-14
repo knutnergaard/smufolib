@@ -20,8 +20,12 @@ class TestRange(unittest.TestCase):
         self.layer = self.font.newLayer("testLayer")
         self.font.defaultLayer = self.layer
         self.range.smufl = self.smufl
-        self.glyph1 = generateGlyph(self.font, "uniE080", 0xE080, "timeSig0")
-        self.glyph2 = generateGlyph(self.font, "uniE081", 0xE081, "timeSig1")
+        self.glyph1 = generateGlyph(
+            self.font, "uniE080", unicode=0xE080, smuflName="timeSig0"
+        )
+        self.glyph2 = generateGlyph(
+            self.font, "uniE081", unicode=0xE081, smuflName="timeSig1"
+        )
         self.smufl.glyph = self.glyph1
 
         smufolib.objects.range.METADATA = {
