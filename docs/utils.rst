@@ -1,13 +1,13 @@
 :mod:`.converters`
 ------------------
 
-.. automodule:: smufolib.converters
+.. automodule:: smufolib.utils.converters
     :members:
 
 :mod:`.error`
 -------------
 
-.. automodule:: smufolib.error
+.. automodule:: smufolib.utils.error
     :members:
     :exclude-members: ERROR_TEMPLATES
 
@@ -23,13 +23,13 @@
 :mod:`.normalizers`
 -------------------
 
-.. automodule:: smufolib.normalizers
+.. automodule:: smufolib.utils.normalizers
     :members:
 
 :mod:`.pointUtils`
 ------------------
 
-.. automodule:: smufolib.pointUtils
+.. automodule:: smufolib.utils.pointUtils
     :members:
     :exclude-members: contourIndex, position, type, x, y
 
@@ -37,11 +37,11 @@
 :mod:`.scriptUtils`
 ----------------
 
-.. automodule:: smufolib.scriptUtils
+.. automodule:: smufolib.utils.scriptUtils
     :members:
 
 :mod:`.stdUtils`
 ----------------
 
-.. automodule:: smufolib.stdUtils
+.. automodule:: smufolib.utils.stdUtils
     :members:
