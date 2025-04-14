@@ -17,18 +17,19 @@ from smufolib.utils import error, normalizers
 JsonDict = dict[str, Any]
 ColorValue = int | float
 ColorTuple = tuple[ColorValue, ColorValue, ColorValue, ColorValue]
+ColorDict = dict[str, ColorTuple]
 
 
 def normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
-    """ "Ensure that `color` is valid based on the `mark` setting."
+    """Ensure that `color` is valid based on the `mark` setting."
 
-    If the input `color` is :obj:`None` and `mark` is :obj:`True`, a :class:`TypeError`
-    is raised. Otherwise, the color is normalized using :func:`.normalizeColor`.
+        If the input `color` is :obj:`None` and `mark` is :obj:`True`, a :class:`TypeError`
+        is raised. Otherwise, the color is normalized
+    each dictionary value
 
-
-    :param color: The color value to normalize.
-    :param mark: Mark objects with the specified `color`.
-    :raises TypeError: If `color` is not the expected type.
+        :param color: The color value to normalize.
+        :param mark: Mark objects with the specified `color`.
+        :raises TypeError: If `color` is not the expected type.
 
     """
     # Normalize `color` value.
@@ -44,6 +45,38 @@ def normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
             )
         return None
     return normalizers.normalizeColor(color)
+
+
+def normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | None:
+    """Ensure that `ColorDict` is valid based on the `mark` setting."
+
+    If the input `ColorDict` is :obj:`None` and `mark` is :obj:`True`,
+    a :class:`TypeError` is raised. Otherwise, each value is normalized
+    using :func:`.normalizeColor`.
+
+
+    :param colorDict: The color dictionary to normalize.
+    :param mark: Mark objects with the specified colors in `colorDict`.
+    :raises TypeError: If `colorDict` is not the expected type.
+
+    """
+    if colorDict is None:
+        if mark:
+            raise TypeError(
+                error.generateTypeError(
+                    value=colorDict,
+                    validTypes=ColorDict,
+                    objectName="colors",
+                    dependencyInfo="'mark' is True",
+                )
+            )
+        return None
+
+    error.validateType(colorDict, dict, "colors")
+    for value in colorDict.values():
+        normalizers.normalizeColor(value)
+
+    return colorDict
 
 
 def normalizeFont(font: Font | Path | str) -> Font:

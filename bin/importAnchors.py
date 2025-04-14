@@ -29,6 +29,7 @@ from smufolib.utils import error, normalizers, stdUtils
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 from smufolib.utils.scriptUtils import normalizeJsonDict as _normalizeJsonDict
 from smufolib.utils.scriptUtils import normalizeRequest as _normalizeRequest
+from smufolib.utils.scriptUtils import normalizeColorDict as _normalizeColorDict
 
 
 JsonDict = dict[str, Any]
@@ -114,10 +115,7 @@ def importAnchors(
                 progressBar.update(1)
                 time.sleep(0.0001)
 
-            try:
-                glyphName = names[smuflName]
-            except KeyError:
-                continue
+            glyphName = names[smuflName]
             if clear:
                 font[glyphName].clearAnchors()
             stdUtils.verbosePrint(
@@ -150,27 +148,6 @@ def main() -> None:
         clear=args.clear,
         verbose=args.verbose,
     )
-
-
-def _normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | None:
-    # Normalize dict of color values.
-    if colorDict is None:
-        if mark:
-            raise TypeError(
-                error.generateTypeError(
-                    value=colorDict,
-                    validTypes=ColorDict,
-                    objectName="colors",
-                    dependencyInfo="'mark' is True",
-                )
-            )
-        return None
-
-    error.validateType(colorDict, dict, "colors")
-    for value in colorDict.values():
-        normalizers.normalizeColor(value)
-
-    return colorDict
 
 
 def _parseArgs() -> argparse.Namespace:
