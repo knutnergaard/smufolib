@@ -7,12 +7,23 @@ from tempfile import TemporaryDirectory
 from smufolib.utils import converters
 
 
-def generateGlyph(font, name, unicode=None, smuflName=None):
+def generateGlyph(font, name, **kwargs):
     glyph = font.newGlyph(name)
-    if unicode:
-        glyph.unicode = unicode
-    if smuflName:
-        glyph.smufl.name = smuflName
+    glyph.unicode = kwargs.get("unicode")
+    for attr, value in kwargs.items():
+        if value is None:
+            continue
+        if attr == "points":
+            drawLines(glyph, value)
+        elif attr == "anchors":
+            for anchorName, position in value:
+                glyph.appendAnchor(anchorName, position)
+        elif attr == "smuflName":
+            (setattr(glyph.smufl, "name", value))
+        elif attr in {"description", "classes"}:
+            (setattr(glyph.smufl, attr, value))
+        else:
+            setattr(glyph, attr, value)
     return glyph
 
 

@@ -9,7 +9,7 @@ from tests.testUtils import (
     SavedFontMixin,
     SavedMetadataMixin,
     SuppressOutputMixin,
-    drawLines,
+    generateGlyph,
 )
 from bin.generateMetadata import generateMetadata, main, _compileMetadata
 
@@ -145,8 +145,9 @@ class TestGenerateMetadataScript(
         self.font.smufl.sizeRange = self.metadata["sizeRange"]
         self.font.smufl.engravingDefaults.update(self.metadata["engravingDefaults"])
 
-        self.buildGlyph(
-            name="uniE001",
+        generateGlyph(
+            self.font,
+            "uniE001",
             unicode=0xE001,
             smuflName="testGlyph1",
             anchors=[("stemUpNW", (250, 250))],
@@ -155,8 +156,9 @@ class TestGenerateMetadataScript(
             classes=["testClass"],
             points=((0, 0), (500, 0), (500, 500), (0, 500)),
         )
-        self.buildGlyph(
-            name="uniE002",
+        generateGlyph(
+            self.font,
+            "uniE002",
             unicode=0xE002,
             smuflName="testGlyph2",
             width=500,
@@ -164,8 +166,9 @@ class TestGenerateMetadataScript(
             classes=["testClass"],
             points=((0, 0), (500, 0), (500, 500), (0, 500)),
         )
-        self.buildGlyph(
-            name="uniE001.ss01",
+        generateGlyph(
+            self.font,
+            "uniE001.ss01",
             unicode=0xF401,
             smuflName="testAlternate",
             width=500,
@@ -173,8 +176,9 @@ class TestGenerateMetadataScript(
             classes=["testClass"],
             points=((0, 0), (500, 0), (500, 500), (0, 500)),
         )
-        self.buildGlyph(
-            name="uniE001_uniE002",
+        generateGlyph(
+            self.font,
+            "uniE001_uniE002",
             unicode=0xF402,
             smuflName="testLigature",
             width=500,
@@ -184,20 +188,6 @@ class TestGenerateMetadataScript(
         )
         self.saveFontToTemp()
         self.suppressOutput()
-
-    def buildGlyph(self, **kwargs):
-        glyph = self.font.newGlyph(kwargs.get("name"))
-        glyph.unicode = kwargs.get("unicode")
-        for name, position in kwargs.get("anchors", []):
-            glyph.appendAnchor(name, position)
-        drawLines(glyph, ((0, 0), (500, 0), (500, 500), (0, 500)))
-        glyph.width = kwargs.get("width", 0)
-
-        glyph.smufl.name = kwargs.get("smuflName", "")
-        glyph.smufl.description = kwargs.get("description", "")
-        glyph.smufl.classes = kwargs.get("classes", [])
-
-        return glyph
 
     def test_generate_metadata(self):
         generateMetadata(
