@@ -1,3 +1,11 @@
+"""Script utility functions.
+
+This module provides a set of utility functions specifically intended for use in
+scripts and applications. Particualarly, it provides a set of noramlizers to ensure the
+integrity of objects frequently passed by the user in an application setting.
+
+"""
+
 from pathlib import Path
 from typing import Any
 
