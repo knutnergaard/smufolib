@@ -25,7 +25,7 @@ from tqdm import tqdm
 from smufolib.objects.font import Font
 from smufolib.request import Request
 from smufolib import cli, config
-from smufolib.utils import error, normalizers, stdUtils
+from smufolib.utils import error, stdUtils
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 from smufolib.utils.scriptUtils import normalizeJsonDict as _normalizeJsonDict
 from smufolib.utils.scriptUtils import normalizeRequest as _normalizeRequest
