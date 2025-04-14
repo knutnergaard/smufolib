@@ -12,6 +12,8 @@ in /../smufolib/docs/_static/css/custom.css
 
 import csv
 import json
+from pathlib import Path
+
 from smufolib import Font, Request, config
 from smufolib import cli
 from smufolib.utils import converters
@@ -36,7 +38,9 @@ def main():
         converters.toNumber: ":class:`list`",
     }
 
-    with open("../docs/options.csv", "w", encoding="utf-8", newline="") as csvfile:
+    filePath = Path(__file__) / "docs" / "options.csv"
+
+    with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Argument", "Option", "Type", "Description"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
 

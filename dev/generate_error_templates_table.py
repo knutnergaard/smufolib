@@ -6,6 +6,7 @@ for documentation purposes.
 """
 
 import csv
+from pathlib import Path
 
 from smufolib.utils import error
 
@@ -15,9 +16,9 @@ from smufolib.utils import error
 def main():
     """Main function of the script."""
 
-    with open(
-        "../docs/error_templates.csv", "w", encoding="utf-8", newline=""
-    ) as csvfile:
+    filePath = Path(__file__).parent.parent / "docs" / "error_templates.csv"
+
+    with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Key", "Template"]
         writer = csv.DictWriter(csvfile, fieldnames=fieldnames, quoting=csv.QUOTE_ALL)
 
