@@ -562,9 +562,9 @@ class Smufl(BaseObject):
     def _clearNames(self) -> None:
         if self.font is not None:
             if self._names:
-                self.font.lib["com.smufolib.names"].pop(self.name)
+                self.font.lib["com.smufolib.names"].pop(self.name, None)
             if not self._names:
-                self.font.lib.pop("com.smufolib.names")
+                self.font.lib.pop("com.smufolib.names", None)
 
     def _addNames(self, value: Any) -> None:
         if self._names is None:
