@@ -133,13 +133,16 @@ def importID(
             _normalizeRequest(glyphnamesData).json()
         )
         fontDataJson = _normalizeJsonDict(_normalizeRequest(fontData).json())
+        fontDataJson = fontDataJson.get("optionalGlyphs", {}) | fontDataJson.get(
+            "ligatures", {}
+        )
 
         if progressBar:
             progressBar.update(1)
             time.sleep(0.0001)
 
-        stdUtils.verbosePrint("\nBuilding glyphmaps...", verbose)
-        glyphMaps = _buildAttributesMap(
+        stdUtils.verbosePrint("\nBuilding attributesMap...", verbose)
+        attributesMap = _buildAttributesMap(
             font=font,
             attributes=attributes,
             includeOptionals=includeOptionals,
@@ -177,7 +180,7 @@ def importID(
                 f"\nSetting attributes for glyph '{glyph.name}':", verbose
             )
             for attribute in attributes:
-                if codepoint not in glyphMaps[attribute]:
+                if codepoint not in attributesMap[attribute]:
                     stdUtils.verbosePrint(f"\t'{attribute}': not found", verbose)
                     continue
 
@@ -185,7 +188,7 @@ def importID(
                     stdUtils.verbosePrint(f"\t'{attribute}': preset", verbose)
                     continue
 
-                setattr(glyph.smufl, attribute, glyphMaps[attribute][codepoint])
+                setattr(glyph.smufl, attribute, attributesMap[attribute][codepoint])
                 stdUtils.verbosePrint(f"\t'{attribute}': set", verbose)
 
         stdUtils.verbosePrint("\nSaving font...", verbose)
@@ -212,16 +215,16 @@ def main() -> None:
     )
 
 
-def _normalizeAttributes(value: str | tuple[str, ...]) -> tuple[str, ...]:
+def _normalizeAttributes(value: str | tuple[str, ...] | list[str]) -> tuple[str, ...]:
     # Normalize values in the ``attributes`` parameter.
 
-    value = ATTRIBUTES if value == "*" else value
+    value = ATTRIBUTES if value in ("*", ["*"]) else value
     value = (value,) if isinstance(value, str) else value
-    error.validateType(value, (str, tuple), "attributes")
+    error.validateType(value, (str, tuple, list), "attributes")
     for val in value:
         if val not in ATTRIBUTES:
             error.suggestValue(val, ATTRIBUTES, "attributes", items=True)
-    return value
+    return tuple(value)
 
 
 def _buildAttributesMap(
@@ -243,8 +246,6 @@ def _buildAttributesMap(
         # lookups in both sections are therefore needed.
 
         glyphMap: GlyphMap = {}
-        if "optionalGlyphs" in metadata:
-            metadata = metadata["optionalGlyphs"] | metadata["ligatures"]
         for name, data in metadata.items():
             codepoint = converters.toDecimal(data["codepoint"])
             if attribute == "name":
@@ -277,33 +278,40 @@ def _buildAttributesMap(
             if progressBar:
                 progressBar.update(1)
                 time.sleep(0.0001)
-            if not glyph.smufl.codepoint or not glyph.smufl.base:
+
+            baseGlyph = glyph.smufl.base
+            if not glyph.smufl.codepoint or not glyph.smufl.isMember:
                 continue
-            if glyph.smufl.base.name not in classes:
+
+            if baseGlyph.name not in classes:
                 continue
-            if includeOptionals or not glyph.smufl.isOptional:
-                classMap[glyph.unicode] = classes[glyph.smufl.base.name]
+
+            classMap[glyph.unicode] = classes[baseGlyph.name]
 
         return classMap
 
-    glyphMaps: AttributesMap = {}
+    attributesMap: AttributesMap = {}
     for attribute in attributes:
         if attribute == "classes":
-            glyphMaps[attribute] = _buildClassMap(
+            attributesMap[attribute] = _buildClassMap(
                 font=font,
                 classesDataJson=classesDataJson,
                 glyphnamesDataJson=glyphnamesDataJson,
             )
+            if includeOptionals:
+                attributesMap[attribute] |= _buildGlyphMap(
+                    attribute=attribute, metadata=fontDataJson
+                )
         else:
-            glyphMaps[attribute] = _buildGlyphMap(
+            attributesMap[attribute] = _buildGlyphMap(
                 attribute=attribute, metadata=glyphnamesDataJson
             )
             if includeOptionals:
-                glyphMaps[attribute] |= _buildGlyphMap(
+                attributesMap[attribute] |= _buildGlyphMap(
                     attribute=attribute, metadata=fontDataJson
                 )
 
-    return glyphMaps
+    return attributesMap
 
 
 def _parseArgs() -> argparse.Namespace:
