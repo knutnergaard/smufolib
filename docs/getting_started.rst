@@ -1,62 +1,36 @@
 Installation
 ============
 
-SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or later. It is listed in the `Python Package Index <https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with `pip <https://pip.pypa.io/>`__:
+SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
+later. It is listed in the `Python Package Index
+<https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
+`pip <https://pip.pypa.io/>`__:
 
 .. code:: zsh
 
     $ python -m pip install smufolib
 
-
-Setting attributes
-==================
-
-SMufoLib provides easy storage of SMuFL-specific font and glyph metadata attributes within the font file itself. Attributes can be set individually during the design process:
-
-.. code:: Py3
-
-   from smufolib import Font
-
-   font = Font("path/to/myFont.ufo")
-
-   font.smufl.name = "myFont"
-   font.smufl.version = 1.0
-   font.smufl.designSize = 20
-   font.smufl.sizeRange = (16, 24)
-   font.smufl.engravingDefaults.stemThickness = 40
-
-   glyph = font["uniE000"]
-   glyph.smufl.name = "gClef"
-   glyph.smufl.description = "G clef"
-   glyph.smufl.classes = (clefs,)
-
-Attribute values may also be imported from preexisting metadata files using the various provided scripts like :mod:`~bin.importID` , :mod:`calculateEngravingDefaults` and :mod:`importAnchors`, either from the command line or by importing them into Python (see :ref:`running-scripts`).
-
-Working with metadata
-=====================
-
-Once SMuFL sepcific glyph names and other attributes have been set, SMufoLib provides the following features:
-
-
-
-
-
-.. _running-scripts
-
 Running Scripts
 ===============
 
-SMufoLib comes bundled with several useful scripts for building SMuFL metadata files calculating engraving defaults from glyphs, importing identification attributes and more.
+SMufoLib comes bundled with several useful scripts for building SMuFL
+metadata files, calculating engraving defaults from glyphs, importing
+identification attributes and more.
 
-Scripts may be run either directly from the command line or imported as regular python modules, passing in any arguments in the familiar manner to each platform.
+Scripts may be run either directly from the command line or imported as
+regular python modules, passing in any arguments in the familiar manner
+to each platform.
 
-As an example, check for missing or superflous SMuFL anchors and mark discrepant glyphs by running the :mod:`~bin.checkAnchors` script with the ``--mark`` flag directly from the command line:
+As an example, check for missing or superflous SMuFL anchors and mark
+discrepant glyphs by running the :mod:`~bin.checkAnchors` script with
+the ``--mark`` flag directly from the command line:
 
 .. code:: zsh
 
    $ check-anchors path/to/my/font.ufo --mark
 
-Positional arguments and available options can be listed by running the help command on the script:
+Positional arguments and available options can be listed by running the
+help command on the script:
 
 .. code:: zsh
 
@@ -90,4 +64,6 @@ Alternatively, scripts can be imported as modules in Python:
 
    checkAnchors(mark=True)
 
-This imports and executes the script's program function, :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name. The documentation for either one is accessible via :func:`help`.
+This imports and executes the script's program
+function, :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same
+name. The documentation for either one is accessible via :func:`help`.
