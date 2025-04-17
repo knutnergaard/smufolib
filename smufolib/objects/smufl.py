@@ -184,7 +184,7 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.get("com.smufolib.designSize", None)
+        return self.font.lib.naked().get("com.smufolib.designSize", None)
 
     @designSize.setter
     def designSize(self, value: int | None) -> None:
@@ -220,7 +220,7 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.get("com.smufolib.sizeRange", None)
+        return self.font.lib.naked().get("com.smufolib.sizeRange", None)
 
     @sizeRange.setter
     def sizeRange(self, value: tuple[int, int] | None) -> None:
@@ -232,9 +232,9 @@ class Smufl(BaseObject):
         # Common font metadata setter.
         if self.font is not None:
             if value is None:
-                self.font.lib.pop(key, None)
+                self.font.lib.naked().pop(key)
             else:
-                self.font.lib[key] = value
+                self.font.lib.naked()[key] = value
 
     # --------------
     # Glyph metadata
@@ -487,7 +487,7 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return tuple(self.glyph.lib.get("com.smufolib.classes", ()))
+        return tuple(self.glyph.lib.naked().get("com.smufolib.classes", ()))
 
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
@@ -507,7 +507,7 @@ class Smufl(BaseObject):
         """
         if self.glyph is None:
             return None
-        return self.glyph.lib.get("com.smufolib.description", None)
+        return self.glyph.lib.naked().get("com.smufolib.description", None)
 
     @description.setter
     def description(self, value: str | None) -> None:
@@ -535,7 +535,7 @@ class Smufl(BaseObject):
             return None
         if self.glyph is None:
             return self.font.info.naked().familyName
-        return self.glyph.lib.get("com.smufolib.name", None)
+        return self.glyph.lib.naked().get("com.smufolib.name", None)
 
     @name.setter
     def name(self, value: str | None) -> None:
@@ -554,17 +554,17 @@ class Smufl(BaseObject):
     def _updateGlyphLib(self, key: str, value: Any) -> None:
         if self.glyph is not None:
             if not value:
-                if key in self.glyph.lib:
-                    del self.glyph.lib[key]
+                if key in self.glyph.lib.naked():
+                    del self.glyph.lib.naked()[key]
             else:
-                self.glyph.lib[key] = value
+                self.glyph.lib.naked()[key] = value
 
     def _clearNames(self) -> None:
         if self.font is not None:
             if self._names:
-                self.font.lib["com.smufolib.names"].pop(self.name, None)
+                self.font.lib.naked()["com.smufolib.names"].pop(self.name, None)
             if not self._names:
-                self.font.lib.pop("com.smufolib.names", None)
+                self.font.lib.naked().pop("com.smufolib.names", None)
 
     def _addNames(self, value: Any) -> None:
         if self._names is None:
@@ -584,7 +584,7 @@ class Smufl(BaseObject):
         # Dict of glyph names in font.lib.
         if self.font is None:
             return None
-        return self.font.lib.get("com.smufolib.names")
+        return self.font.lib.naked().get("com.smufolib.names")
 
     @_names.setter
     def _names(self, value: dict[str, str] | None) -> None:
@@ -885,7 +885,7 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return False
-        return self.font.lib.get("com.smufolib.spaces", False)
+        return self.font.lib.naked().get("com.smufolib.spaces", False)
 
     @spaces.setter
     def spaces(self, value):
@@ -900,9 +900,9 @@ class Smufl(BaseObject):
                 )
             value = normalizers.normalizeBoolean(value)
             if value:
-                self.font.lib["com.smufolib.spaces"] = True
+                self.font.lib.naked()["com.smufolib.spaces"] = True
             else:
-                self.font.lib.pop("com.smufolib.spaces", False)
+                self.font.lib.naked().pop("com.smufolib.spaces", False)
 
     # -----
     # Other
