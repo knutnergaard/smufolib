@@ -20,7 +20,7 @@ def generateGlyph(font, name, **kwargs):
                 glyph.appendAnchor(anchorName, position)
         elif attr == "smuflName":
             (setattr(glyph.smufl, "name", value))
-        elif attr in {"description", "classes"}:
+        elif attr in {"description", "classes", "codepoint"}:
             (setattr(glyph.smufl, attr, value))
         else:
             setattr(glyph, attr, value)
@@ -100,16 +100,17 @@ class TempDirMixin:
 
 class SavedFontMixin(TempDirMixin):
     def saveFontToTemp(self, filename="test.ufo"):
-        self.fontPath = self.tempPath / filename
-        self.font.save(str(self.fontPath))
-        return self.fontPath
+        fontPath = self.tempPath / filename
+        self.font.save(str(fontPath))
+        return fontPath
 
 
 class SavedMetadataMixin(TempDirMixin):
-    def saveMetadataToTemp(self, filename="metadata.json"):
-        self.metadataPath = self.tempPath / filename
-        self.metadataPath.write_text(json.dumps(self.metadata))
-        return self.metadataPath
+    def saveMetadataToTemp(self, metadata=None, filename="metadata.json"):
+        metadataToSave = metadata if metadata else self.metadata
+        metadataPath = self.tempPath / filename
+        metadataPath.write_text(json.dumps(metadataToSave))
+        return metadataPath
 
 
 class SuppressOutputMixin:
