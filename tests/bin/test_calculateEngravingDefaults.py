@@ -29,6 +29,8 @@ class TestCalculateEngravingDefaults(
 ):
     def setUp(self):
         super().setUp()
+        self.suppressOutput()
+
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
         self.glyph, _ = self.objectGenerator("glyph")
@@ -45,8 +47,7 @@ class TestCalculateEngravingDefaults(
             glyph = self.font.newGlyph(name)
             drawLines(glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
 
-        self.saveFontToTemp()
-        self.suppressOutput()
+        self.fontPath = self.saveFontToTemp()
 
     def test_calculateEngravingDefaults_basic(self):
         calculateEngravingDefaults(self.font)

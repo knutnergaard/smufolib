@@ -27,7 +27,7 @@ class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
         self.smuflAnchor2 = self.glyph.appendAnchor("cutOutNW", (1, 2))
         self.nonSmuflAnchor = self.glyph.appendAnchor("nonSmuflAnchor", (3, 4))
 
-        self.saveFontToTemp()
+        self.fontPath = self.saveFontToTemp()
         self.suppressOutput()
 
     def verifyCleanup(self, include=None, exclude=None):

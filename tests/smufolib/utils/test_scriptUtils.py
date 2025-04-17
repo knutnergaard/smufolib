@@ -11,15 +11,15 @@ from smufolib.utils.scriptUtils import (
 from tests.testUtils import SavedFontMixin, SavedMetadataMixin
 
 
-class TestSCriptUitls(SavedFontMixin, SavedMetadataMixin, unittest.TestCase):
+class TestScriptUitls(SavedFontMixin, SavedMetadataMixin, unittest.TestCase):
     def setUp(self):
         super().setUp()
         self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.metadata = {
             "glyphsWithAnchors": {"noteheadBlack": {"anchor1": {}, "anchor3": {}}}
         }
-        self.saveFontToTemp()
-        self.saveMetadataToTemp()
+        self.fontPath = self.saveFontToTemp()
+        self.metadataPath = self.saveMetadataToTemp()
 
     def test_normalizeFont_accepts_path(self):
         result = normalizeFont(self.fontPath)

@@ -15,11 +15,13 @@ from tests.testUtils import (
 from bin.importAnchors import importAnchors, main
 
 
-class TestGenerateMetadataScript(
+class TestImportAnchors(
     SavedFontMixin, SavedMetadataMixin, SuppressOutputMixin, unittest.TestCase
 ):
     def setUp(self):
         super().setUp()
+        self.suppressOutput()
+
         # fmt: off
         self.metadata = {
             "glyphsWithAnchors": {
@@ -30,7 +32,7 @@ class TestGenerateMetadataScript(
             }
         }
         # fmt: on
-        self.saveMetadataToTemp()
+        self.metadataPath = self.saveMetadataToTemp()
 
         self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.font.smufl.name = "testFont"
@@ -50,8 +52,7 @@ class TestGenerateMetadataScript(
         self.anchorName = "stemUpNW"
         self.colorDict = {self.anchorName: (1, 0, 0, 1)}
 
-        self.saveFontToTemp()
-        self.suppressOutput()
+        self.fontPath = self.saveFontToTemp()
 
     def test_importAnchors_basic(self):
         importAnchors(self.font, fontData=self.metadataPath)
@@ -97,7 +98,7 @@ class TestGenerateMetadataScript(
         self.assertEqual(self.colorDict[self.anchorName], result)
 
     @patch("bin.importAnchors.importAnchors")
-    def test_main(self, mock_generateMetadata):
+    def test_main(self, mock_importAnchors):
         colorsJson = json.dumps(self.colorDict)
 
         test_args = [
@@ -115,8 +116,8 @@ class TestGenerateMetadataScript(
         with patch.object(sys, "argv", test_args):
             main()
 
-        mock_generateMetadata.assert_called_once()
-        args, kwargs = mock_generateMetadata.call_args
+        mock_importAnchors.assert_called_once()
+        args, kwargs = mock_importAnchors.call_args
         self.assertIsInstance(args[0], type(self.font))
         self.assertIsInstance(kwargs["fontData"], Request)
         self.assertTrue(kwargs["mark"])

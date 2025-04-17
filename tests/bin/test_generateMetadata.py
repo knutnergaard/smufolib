@@ -14,11 +14,13 @@ from tests.testUtils import (
 from bin.generateMetadata import generateMetadata, main, _compileMetadata
 
 
-class TestGenerateMetadataScript(
+class TestGenerateMetadata(
     SavedFontMixin, SavedMetadataMixin, SuppressOutputMixin, unittest.TestCase
 ):
     def setUp(self):
         super().setUp()
+        self.suppressOutput()
+
         # fmt: off
         self.metadata = {
             "fontName": "testFont",
@@ -134,7 +136,7 @@ class TestGenerateMetadataScript(
             }
         }
         # fmt: on
-        self.saveMetadataToTemp()
+        self.metadataPath = self.saveMetadataToTemp()
 
         self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.font.info.unitsPerEm = 1000
@@ -186,8 +188,7 @@ class TestGenerateMetadataScript(
             classes=["testClass"],
             points=((0, 0), (500, 0), (500, 500), (0, 500)),
         )
-        self.saveFontToTemp()
-        self.suppressOutput()
+        self.fontPath = self.saveFontToTemp()
 
     def test_generate_metadata(self):
         generateMetadata(

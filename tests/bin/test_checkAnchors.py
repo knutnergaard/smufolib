@@ -15,6 +15,8 @@ class TestCheckAnchors(
 ):
     def setUp(self):
         super().setUp()
+        self.suppressOutput()
+
         self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.font.info.familyName = "testFont"
         self.font.info.styleName = "Regular"
@@ -35,9 +37,8 @@ class TestCheckAnchors(
             },
         }
 
-        self.saveFontToTemp()
-        self.saveMetadataToTemp()
-        self.suppressOutput()
+        self.fontPath = self.saveFontToTemp()
+        self.metadataPath = self.saveMetadataToTemp()
 
     @patch("smufolib.utils.scriptUtils.normalizeJsonDict")
     @patch("smufolib.utils.scriptUtils.normalizeRequest")
