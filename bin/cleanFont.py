@@ -168,7 +168,7 @@ def _buildItemsDict(include, exclude):
     for item in exclude:
         error.suggestValue(item, allItems, "exclude")
 
-    if include == "*":
+    if include in ("*", ["*"]):
         include = allItems
     elif isinstance(include, str):
         include = (include,)
