@@ -1,10 +1,15 @@
 import unittest
 from unittest.mock import patch, PropertyMock
 from smufolib import Smufl
-from tests.testUtils import generateGlyph, generateLigatureComponents, drawLines
+from tests.testUtils import (
+    AssertNotRaisesMixin,
+    generateGlyph,
+    generateLigatureComponents,
+    drawLines,
+)
 
 
-class TestSmufl(unittest.TestCase):
+class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def setUp(self):
         # Create generic objects
         # pylint: disable=E1101
@@ -67,6 +72,8 @@ class TestSmufl(unittest.TestCase):
     # Parents
     # -------
 
+    # glyph
+
     def test_get_glyph(self):
         self.smufl.glyph = self.glyph
         self.assertIsNotNone(self.smufl.glyph)
@@ -86,6 +93,8 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.smufl.font)
         self.assertIsNone(self.smufl.layer)
         self.assertIsNone(self.smufl.glyph)
+
+    # font
 
     def test_get_font(self):
         self.smufl.font = self.font
@@ -110,6 +119,8 @@ class TestSmufl(unittest.TestCase):
     # Font Metadata
     # -------------
 
+    # designSize
+
     def test_get_designSize(self):
         self.smufl.font = self.font
         self.font.lib["com.smufolib.designSize"] = 1000
@@ -131,6 +142,8 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.smufl.designSize)
         self.assertNotIn("com.smufolib.desgnSize", self.font.lib)
 
+    # engravingDefaults
+
     def test_get_engravingDefaults(self):
         self.smufl.font = self.font
         self.assertIsInstance(
@@ -141,6 +154,8 @@ class TestSmufl(unittest.TestCase):
         self.otherFont.smufl.engravingDefaults.stemThickness = 10
         self.font.smufl.engravingDefaults = self.otherFont.smufl.engravingDefaults
         self.assertEqual(self.font.smufl.engravingDefaults.stemThickness, 10)
+
+    # sizeRange
 
     def test_get_sizeRange(self):
         self.smufl.font = self.font
@@ -166,6 +181,8 @@ class TestSmufl(unittest.TestCase):
     # Glyph metadata
     # --------------
 
+    # alternates
+
     def test_alternates(self):
         self.assertIsNone(self.smufl.alternates)
         self.assertEqual(self.optional.smufl.alternates, ())
@@ -176,6 +193,8 @@ class TestSmufl(unittest.TestCase):
                 {"codepoint": "U+F400", "name": None},
             ),
         )
+
+    # anchors
 
     def test_anchors(self):
         self.assertIsNone(self.smufl.anchors)
@@ -188,6 +207,8 @@ class TestSmufl(unittest.TestCase):
         self.smufl.glyph = self.glyph
         self.assignAnchors(self.glyph)
         self.assertIsNone(self.glyph.smufl.anchors)
+
+    # bBox
 
     def test_bBox(self):
         self.assertIsNone(self.smufl.bBox)
@@ -203,6 +224,8 @@ class TestSmufl(unittest.TestCase):
             self.recommended1.smufl.bBox,
             {"bBoxSW": (100 / 250, -10 / 250), "bBoxNE": (200 / 250, 100 / 250)},
         )
+
+    # codepoint
 
     def test_get_codepoint(self):
         self.smufl.glyph = self.glyph
@@ -222,6 +245,8 @@ class TestSmufl(unittest.TestCase):
         self.smufl.codepoint = "U+E111"
         self.assertIsNone(self.glyph.unicode)
 
+    # components
+
     def test_componentGlyphs(self):
         self.assertEqual(self.ligature.smufl.componentGlyphs, self.ligature_components)
         self.assertIsNone(self.smufl.componentGlyphs)
@@ -233,8 +258,12 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.smufl.componentNames)
         self.assertEqual(self.recommended1.smufl.componentNames, ())
 
+    # range
+
     def test_range(self):
         self.assertIsInstance(self.recommended1.smufl.range, type(self.range))
+
+    # advanceWidth
 
     def test_get_advanceWidth(self):
         self.assertIsNone(self.smufl.advanceWidth)
@@ -262,6 +291,8 @@ class TestSmufl(unittest.TestCase):
     # Identification
     # --------------
 
+    # version
+
     def test_get_version(self):
         self.assertIsNone(self.smufl.version)
         self.smufl.font = self.font
@@ -283,6 +314,8 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.font.info.versionMinor)
         self.assertIsNone(self.font.info.versionMajor)
 
+    # classes
+
     def test_get_classes(self):
         self.smufl.glyph = self.glyph
         self.glyph.lib["com.smufolib.classes"] = ["class1", "class2"]
@@ -303,6 +336,8 @@ class TestSmufl(unittest.TestCase):
         self.assertEqual(self.smufl.classes, ())
         self.assertNotIn("com.smufolib.classes", self.glyph.lib)
 
+    # description
+
     def test_get_description(self):
         self.assertIsNone(self.smufl.description)
         self.smufl.glyph = self.glyph
@@ -321,11 +356,15 @@ class TestSmufl(unittest.TestCase):
         self.assertIsNone(self.smufl.designSize)
         self.assertNotIn("com.smufolib.desgnSize", self.glyph.lib)
 
+    # name
+
     def test_get_font_name(self):
-        self.assertIsNone(self.smufl.name)
         self.smufl.font = self.font
         self.font.info.familyName = "testName"
         self.assertEqual(self.smufl.name, "testName")
+
+    def test_get_name_no_parent(self):
+        self.assertIsNone(self.smufl.name)
 
     def test_set_font_name(self):
         self.smufl.font = self.font
@@ -335,27 +374,40 @@ class TestSmufl(unittest.TestCase):
     def test_set_name_no_parent(self):
         self.smufl.name = "testName"
         self.assertIsNone(self.smufl.name)
-        self.assertIsNone(self.smufl._names)
+        self.assertIsNone(self.smufl._names)  # pylint: disable=W0212
 
     def test_get_glyph_name(self):
         self.recommended1.lib["com.smufolib.name"] = "testName"
         self.assertEqual(self.recommended1.smufl.name, "testName")
 
-    def test_set_glyph_name(self):
+    def test_set_glyph_name_new(self):
         self.recommended1.smufl.name = "testName1"
         self.assertEqual(self.recommended1.smufl.name, "testName1")
         self.assertEqual(
             self.recommended1.font.lib["com.smufolib.names"], {"testName1": "uniE000"}
         )
 
-        self.recommended2.smufl.name = "testName2"
+    def test_set_glyph_name_change(self):
+        self.recommended1.smufl.name = "testName1"
+        self.recommended1.smufl.name = "testName2"
+        self.assertNotIn("testName1", self.font.lib["com.smufolib.names"])
         self.assertIn("testName2", self.font.lib["com.smufolib.names"])
 
+    def test_set_glyph_name_none(self):
+        self.recommended1.smufl.name = "testName1"
+        self.recommended2.smufl.name = "testName2"
         self.recommended1.smufl.name = None
         self.assertNotIn("testName1", self.font.lib["com.smufolib.names"])
-
         self.recommended2.smufl.name = None
-        self.assertNotIn("com.smufolib.names", self.font.lib)
+        self.assertNotIn("com.smufolib.names", self.font.lib.naked())
+        # Make sure error isn't raised when setting a non-existent name to None
+        with self.assertNotRaises(ValueError):
+            self.recommended1.smufl.name = None
+
+    def test_set_glyph_name_exists(self):
+        self.recommended1.smufl.name = "testName1"
+        with self.assertRaises(ValueError):
+            self.recommended2.smufl.name = "testName1"
 
     # ----------
     # Validation
