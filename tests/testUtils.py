@@ -1,5 +1,6 @@
 import contextlib
 import json
+from contextlib import contextmanager
 from io import StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
@@ -127,3 +128,12 @@ class SuppressOutputMixin:
             contextlib.redirect_stderr(StringIO()),
         ):
             yield
+
+
+class AssertNotRaisesMixin:
+    @contextmanager
+    def assertNotRaises(self, exc_type):
+        try:
+            yield None
+        except exc_type:
+            raise self.failureException("{} raised".format(exc_type.__name__))
