@@ -23,6 +23,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {value}.",
     "dependentItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}.",
     "duplicateFlags": "Arguments '{argument1}' and '{argument2}' have duplicate short flag: {flag}",
+    "duplicateAttributeValue": "The value {value} for '{attribute}' is already assigned to another {objectName} instance: {conflictingInstance}.",
     "duplicateItems": "Items in '{objectName}' cannot be duplicates.",
     "emptyValue": "The value for '{objectName}' cannot be empty.",
     "emptyValueItems": "Value items for '{objectName}' cannot be empty.",
@@ -32,7 +33,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "invalidInitialItemsCharacter": "Value items for '{objectName}' must start with a lowercase letter or number.",
     "itemsTypeError": "Items in '{objectName}' must be {validTypes}, not {value}.",
     "itemsValueError": "Invalid value for item in '{objectName}': {value}",
-    "missingExtension": "The value for '{objectName}' must have a {extension} extension.",
+    "missingExtension": "The value for '{objectName}' must have a '{extension}' extension.",
     "missingDependencyError": "Cannot set '{objectName}' because '{dependency}' is None.",
     "missingValue": "Required values for '{objectName}' are missing.",
     "nonIncreasingRange": "The values in '{objectName}' must form an increasing range.",
@@ -43,8 +44,8 @@ ERROR_TEMPLATES: dict[str, str] = {
     "singleItem": "'{objectName}' must contain a value pair.",
     "suggestion": "Did you mean '{suggestion}'?",
     "typeError": "Expected '{objectName}' to be of type {validTypes}, but got {value}.",
-    "unicodeOutOfRange": "The value for '{objectName}' is outside the Unicode range (U+0000 – U+10FFFF).",
-    "urlError": "Could not connect to URL: {url}",
+    "unicodeOutOfRange": "The value for '{objectName}' is outside the Unicode range (U+0000 - U+10FFFF).",
+    "urlError": "Could not connect to URL: '{url}'",
     "valueError": "Invalid value for '{objectName}': {value}",
     "valueTooHigh": "The value for '{objectName}' must be {value} or lower.",
     "valueTooLow": "The value for '{objectName}' must be {value} or higher.",
@@ -74,6 +75,15 @@ def generateErrorMessage(*templateNames: str, **kwargs) -> str:
         "Expected 'index' to be of type int, but got str."
 
     """
+
+    def formatValue(v):
+        return f"'{v}'" if isinstance(v, str) else v
+
+    if "value" in kwargs:
+        kwargs["value"] = formatValue(kwargs["value"])
+    if "conflictingInstance" in kwargs:
+        kwargs["conflictingInstance"] = formatValue(kwargs["conflictingInstance"])
+
     messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
     return " ".join(messages)
 
