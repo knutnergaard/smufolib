@@ -570,6 +570,22 @@ class Smufl(BaseObject):
         if self._names is None:
             self._names = {}
         if self.glyph is not None:
+            if value in self._names and self._names[value] != self.glyph.name:
+                raise ValueError(
+                    error.generateErrorMessage(
+                        "duplicateAttributeValue",
+                        value=value,
+                        attribute="smufl.name",
+                        objectName="Glyph",
+                        conflictingInstance=self._names[value],
+                    )
+                )
+
+            if self.glyph.name in self._names.values():
+                self._names = {
+                    k: v for k, v in self._names.items() if v != self.glyph.name
+                }
+
             self._names[value] = self.glyph.name
 
     def _updateNames(self, value: str | None) -> None:
