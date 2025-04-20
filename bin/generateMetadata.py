@@ -155,7 +155,7 @@ def _compileMetadata(font: Font, fontData: JsonDict, verbose: bool) -> JsonDict:
             metadata["glyphsWithAlternates"][s.name] = {"alternates": s.alternates}
 
         if s.anchors:
-            metadata["glyphsWithAnchors"][s.name] = s.anchors
+            metadata["glyphsWithAnchors"][s.name] = s.anchors.asDict()
 
         if s.isLigature:
             metadata["ligatures"][s.name] = {
