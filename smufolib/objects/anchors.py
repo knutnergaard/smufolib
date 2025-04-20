@@ -49,13 +49,9 @@ class Anchors(BaseDict):
     def _reprContents(self) -> list[str]:
         contents = []
         if self.glyph is not None:
-            contents.append("in Glyph")
+            contents.append("in glyph")
             contents += self.glyph._reprContents()  # pylint: disable-next=W0212
         return contents
-
-    def __str__(self) -> str:
-        """String representation of the object."""
-        return str(dict(self._items()))
 
     def naked(self):
         # BaseObject override for __eq__ and __hash__
@@ -139,6 +135,10 @@ class Anchors(BaseDict):
                     self._cachedData[a.name] = (x, y)  # type: ignore[assignment]
 
         return self._cachedData
+
+    def asDict(self) -> dict[str, tuple[int | float]]:
+        """Return the internal data dictionary."""
+        return self._data
 
     @property
     def _data(self):
