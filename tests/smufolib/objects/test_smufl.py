@@ -196,17 +196,17 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     # anchors
 
-    def test_anchors(self):
+    def test_get_anchors(self):
         self.assertIsNone(self.smufl.anchors)
         self.assignAnchors(self.glyph)
         self.smufl.glyph = self.glyph
-        self.assertEqual(self.smufl.anchors, {"stemUpNW": (1.5, 2.5)})
+        self.assertEqual(self.smufl.anchors.asDict(), {"stemUpNW": (1.5, 2.5)})
 
     @patch.object(Smufl, "spaces", new_callable=PropertyMock, return_value=True)
     def test_anchors_with_toSpaces_None(self, mock_spaces):
         self.smufl.glyph = self.glyph
         self.assignAnchors(self.glyph)
-        self.assertIsNone(self.glyph.smufl.anchors)
+        self.assertDictEqual(self.glyph.smufl.anchors.asDict(), {})
 
     # bBox
 
@@ -452,7 +452,8 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.recommended1.smufl.round()
         self.assertEqual(self.recommended1.smufl.advanceWidth, 100.5 / 250)
         self.assertEqual(
-            self.recommended1.smufl.anchors, {"stemUpNW": (1.5 / 250, 2.5 / 250)}
+            self.recommended1.smufl.anchors.asDict(),
+            {"stemUpNW": (1.5 / 250, 2.5 / 250)},
         )
 
         self.recommended1.font.lib.pop("com.smufolib.spaces")

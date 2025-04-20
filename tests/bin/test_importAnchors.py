@@ -60,7 +60,7 @@ class TestImportAnchors(
         result = {
             k: tuple(self.font.smufl.toUnits(n) for n in v) for k, v in anchors.items()
         }
-        self.assertEqual(self.glyph.smufl.anchors, result)
+        self.assertEqual(self.glyph.smufl.anchors.asDict(), result)
         anchorNames = [a.name for a in self.glyph.anchors]
         self.assertIn("nonSmuflAnchor", anchorNames)
 
