@@ -136,8 +136,8 @@ class Anchors(BaseDict):
 
                     if x is None or y is None:
                         continue
-
-                    self._cachedData[a.name] = (x, y)
+                    # TODO: Remove type ignore when Anchor.x/y are typed
+                    self._cachedData[a.name] = (x, y)  # type: ignore[assignment]
 
         return self._cachedData
 
