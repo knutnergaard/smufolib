@@ -63,7 +63,8 @@ from pathlib import Path
 from tqdm import tqdm
 
 from smufolib import Font
-from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
+from smufolib.objects.smufl import FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
+from smufolib.objects.anchors import ANCHOR_NAMES
 from smufolib import cli
 from smufolib.utils import error, stdUtils
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
