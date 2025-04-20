@@ -1,10 +1,9 @@
 # pylint: disable=C0103, C0114, R0904, W0212, W0221
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
-import re
+from typing import TYPE_CHECKING
 
 from fontParts.base.base import BaseDict
-from smufolib.utils import converters, error, normalizers
+from smufolib.utils import normalizers
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer

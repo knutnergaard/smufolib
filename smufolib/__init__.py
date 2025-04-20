@@ -22,6 +22,7 @@ __all__ = [
     "ENGRAVING_DEFAULTS_KEYS",
     "FONT_ATTRIBUTES",
     "GLYPH_ATTRIBUTES",
+    "Anchors",
     "EngravingDefaults",
     "Font",
     "Glyph",
