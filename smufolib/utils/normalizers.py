@@ -239,6 +239,19 @@ def normalizeSmuflName(value: str | None, items: bool = False) -> str | None:
     return value
 
 
+# ------
+# Anchor
+# ------
+
+
+def normalizeAnchorName(value: str) -> str:
+    return value
+
+
+def normalizeAnchorValue(value: str) -> str:
+    return value
+
+
 # ------------------
 # Engraving defaults
 # ------------------
