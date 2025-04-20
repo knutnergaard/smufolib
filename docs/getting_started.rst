@@ -10,6 +10,70 @@ later. It is listed in the `Python Package Index
 
     $ python -m pip install smufolib
 
+First Steps
+===========
+
+Start by importing SMufoLib::
+
+   >>> from smufolib import Font
+
+Then instanciate a font object::
+
+   >>> font = Font("path/to/myFont.ufo")
+
+Setting attributes
+==================
+
+SMufoLib provides easy storage of SMuFL-specific font and glyph metadata attributes within the font file itself. Attributes can be set individually during the design process::
+
+   >>> font.smufl.name = "myFont"
+   >>> font.smufl.version = 1.0
+   >>> font.smufl.designSize = 20
+   >>> font.smufl.sizeRange = (16, 24)
+   >>> glyph = font["uniE000"]
+   >>> glyph.smufl.name = "gClef"
+   >>> glyph.smufl.description = "G clef"
+   >>> glyph.smufl.classes = (clefs,)
+
+Attribute values may also be imported from preexisting metadata files using the various provided scripts like :mod:`~bin.importID` , :mod:`calculateEngravingDefaults` and :mod:`importAnchors`, either from the command line or by importing them into Python (see :ref:`running-scripts`).
+
+Working with metadata
+=====================
+
+Once SMuFL sepcific glyph names and other attributes have been set, SMufoLib provides useful features like:
+
+Accessing SMuFL ranges and their attributes
+-------------------------------------------
+  
+::
+
+   >>> glyph = font["uniE000"]
+   >>> glyph.smufl.range.name
+   staffBracketsAndDividers
+
+These are useful when working with particular types of glyphs::
+
+   >>> for glyph in font:
+   ...     if glyph.smufl.range.name == "staffBracketsAndDividers":
+   ...         glyph.moveBy = (12, 0)
+
+
+They also make it really easy to color glyphs by range::
+
+   >>> import random
+   >>> def get_random_color():
+   ...    r = random.random()
+   ...    g = random.random()
+   ...    b = random.random()
+   ...    return (r, g, b, 1)
+   ...
+   >>> ranges = {glyph.smufl.range for glyph in font}
+   >>> for range in ranges:
+   ...     for glyph in range.glyphs:
+   ...         glyph.mark = get_random_color()
+
+.. _running-scripts
+
 Running Scripts
 ===============
 
