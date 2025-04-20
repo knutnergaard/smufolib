@@ -2,7 +2,8 @@ import sys
 import unittest
 from unittest.mock import patch
 
-from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
+from smufolib.objects.smufl import FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
+from smufolib.objects.anchors import ANCHOR_NAMES
 from tests.testUtils import SavedFontMixin, SuppressOutputMixin, getVerboseOutput
 from bin.cleanFont import cleanFont, main
 
