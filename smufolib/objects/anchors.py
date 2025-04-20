@@ -48,9 +48,8 @@ class Anchors(BaseDict):
 
     def _reprContents(self) -> list[str]:
         contents = []
-        if self.font is not None:
+        if self.glyph is not None:
             contents.append("in Glyph")
-
             contents += self.glyph._reprContents()  # pylint: disable-next=W0212
         return contents
 
