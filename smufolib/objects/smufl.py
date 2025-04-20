@@ -5,6 +5,7 @@ import re
 
 from fontParts.base.base import BaseObject
 from smufolib.objects.range import Range
+from smufolib.objects.anchors import Anchors
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib.utils import converters, error, normalizers
 
@@ -12,32 +13,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
     from smufolib.objects.glyph import Glyph
-
-#: Names of glyph anchors specified by the SMuFL standard.
-ANCHOR_NAMES: set[str] = {
-    "splitStemUpSE",
-    "splitStemUpSW",
-    "splitStemDownNE",
-    "splitStemDownNW",
-    "stemUpSE",
-    "stemDownNW",
-    "stemUpNW",
-    "stemDownSW",
-    "nominalWidth",
-    "numeralTop",
-    "numeralBottom",
-    "cutOutNE",
-    "cutOutSE",
-    "cutOutSW",
-    "cutOutNW",
-    "graceNoteSlashSW",
-    "graceNoteSlashNE",
-    "graceNoteSlashNW",
-    "graceNoteSlashSE",
-    "repeatOffset",
-    "noteheadOrigin",
-    "opticalCenter",
-}
 
 
 #: Names of font-specific attributes of the :class:`Smufl` class.
@@ -288,18 +263,7 @@ class Smufl(BaseObject):
         if self.glyph is None:
             return None
 
-        anchors = {}
-        for a in self.glyph.naked().anchors:
-            if a.name in ANCHOR_NAMES:
-                x = self.toSpaces(a.x) if self.spaces else a.x
-                y = self.toSpaces(a.y) if self.spaces else a.y
-
-                if x is None or y is None:
-                    return None
-
-                anchors[a.name] = (x, y)
-
-        return anchors
+        return Anchors(self)
 
     @property
     def bBox(self) -> dict[str, tuple[int | float, int | float]] | None:
