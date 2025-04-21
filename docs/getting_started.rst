@@ -44,21 +44,19 @@ Once SMuFL sepcific glyph names and other attributes have been set, SMufoLib pro
 
 Accessing SMuFL ranges and their attributes
 -------------------------------------------
-  
-::
 
    >>> glyph = font["uniE000"]
-   >>> glyph.smufl.range.name
-   staffBracketsAndDividers
+   >>> glyph.smufl.ranges
+   (<Range 'staffBracketsAndDividers' ('U+E000-U+E00F') at 4339747808>,)
 
 These are useful when working with particular types of glyphs::
 
    >>> for glyph in font:
-   ...     if glyph.smufl.range.name == "staffBracketsAndDividers":
+   ...     if glyph.smufl.ranges[0].name == "staffBracketsAndDividers":
    ...         glyph.moveBy = (12, 0)
 
 
-They also make it really easy to color glyphs by range::
+For example, coloring glyphs by range is really easy::
 
    >>> import random
    >>> def get_random_color():
@@ -67,10 +65,10 @@ They also make it really easy to color glyphs by range::
    ...    b = random.random()
    ...    return (r, g, b, 1)
    ...
-   >>> ranges = {glyph.smufl.range for glyph in font}
-   >>> for range in ranges:
+   >>> for range in font.smufl.ranges:
+   ...     color = get_random_color()
    ...     for glyph in range.glyphs:
-   ...         glyph.mark = get_random_color()
+   ...         glyph.mark = color
 
 .. _running-scripts
 
