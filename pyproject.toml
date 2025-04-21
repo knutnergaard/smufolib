@@ -54,6 +54,9 @@ update-keys = "migration.updateKeys:main"
 where = ["."]
 include = ["smufolib*", "bin*"]
 
+[tool.setuptools.package-data]
+"smufolib" = ["metadata/*.json"]
+
 [tool.mypy]
 files = "smufolib"
 strict = false
