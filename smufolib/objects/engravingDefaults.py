@@ -3,17 +3,23 @@ from __future__ import annotations
 from typing import TYPE_CHECKING
 
 from fontParts.base.base import BaseObject
+from smufolib import config
 from smufolib.utils import error, normalizers
+from smufolib.utils.rulers import DISPATCHER, MAPPING
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
-    from smufolib.objects.glyph import Glyph
     from smufolib.objects.font import Font
+    from smufolib.objects.glyph import Glyph
     from smufolib.objects.layer import Layer
 
 # Type aliases
 EngravingDefaultsValue = int | float | tuple[str, ...] | None
 EngravingDefaultsDict = dict[str, EngravingDefaultsValue]
+
+
+CONFIG = config.load()
+AUTO = CONFIG["engravingDefaults"]["auto"]
 
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
@@ -84,6 +90,7 @@ class EngravingDefaults(BaseObject):
         contents = []
         if self.font is not None:
             contents.append("in font")
+            contents.append(f"auto={AUTO}")
 
             contents += self.font._reprContents()  # pylint: disable-next=W0212
         return contents
@@ -553,12 +560,20 @@ class EngravingDefaults(BaseObject):
 
     def _getValue(self, name: str) -> EngravingDefaultsValue:
         # Common settings property getter.
-        if not self._libDict:
+        if not self._libDict and not AUTO:
             return None
 
         value = self._libDict.get(name, None)
         if name == "textFontFamily":
             value = self._libDict.get(name, ())
+
+        if self.font and value is None and AUTO:
+            glyphName = MAPPING[name]["glyph"]
+            glyph = self.font[glyphName]
+            rulerName = MAPPING[name]["ruler"]
+            ruler = DISPATCHER[rulerName]
+            referenceIndex = MAPPING[name].get("referenceIndex")
+            value = ruler(glyph, referenceIndex) if referenceIndex else ruler(glyph)
 
         elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             return self.font.smufl.toSpaces(value)
@@ -693,6 +708,10 @@ class EngravingDefaults(BaseObject):
         if self._smufl is None:
             return
         self._smufl.spaces = value
+
+    # --------
+    # Automate
+    # --------
 
     # ------------------------
     # Override from BaseObject
