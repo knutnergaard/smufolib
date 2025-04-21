@@ -3,6 +3,16 @@ import sys
 import unittest
 from unittest.mock import patch
 
+from smufolib.utils.rulers import (
+    boundsHeight,
+    boundsLeft,
+    stemDot,
+    xInner,
+    xOrigin,
+    yInner,
+    yMinimum,
+)
+
 from tests.testUtils import (
     SavedFontMixin,
     SuppressOutputMixin,
@@ -14,13 +24,6 @@ from bin.calculateEngravingDefaults import (
     MAPPING,
     calculateEngravingDefaults,
     main,
-    boundsHeight,
-    boundsLeft,
-    stemDot,
-    xInner,
-    xOrigin,
-    yInner,
-    yMinimum,
 )
 
 
@@ -31,12 +34,18 @@ class TestCalculateEngravingDefaults(
         super().setUp()
         self.suppressOutput()
 
+        self.patcher = patch(
+            "smufolib.objects.engravingDefaults.EngravingDefaults.getAutoFlag",
+            return_value=False,
+        )
+        self.mock_load = self.patcher.start()
+        self.addCleanup(self.patcher.stop)
+
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
         self.glyph, _ = self.objectGenerator("glyph")
         self.contour, _ = self.objectGenerator("contour")
         self.otherContour, _ = self.objectGenerator("contour")
-        # pylint: enable=E1101
 
         self.font.info.familyName = "testFont"
         self.font.info.unitsPerEm = 1000

@@ -17,10 +17,6 @@ if TYPE_CHECKING:  # pragma: no cover
 EngravingDefaultsValue = int | float | tuple[str, ...] | None
 EngravingDefaultsDict = dict[str, EngravingDefaultsValue]
 
-
-CONFIG = config.load()
-AUTO = CONFIG["engravingDefaults"]["auto"]
-
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
     "arrowShaftThickness",
@@ -90,7 +86,7 @@ class EngravingDefaults(BaseObject):
         contents = []
         if self.font is not None:
             contents.append("in font")
-            contents.append(f"auto={AUTO}")
+            contents.append(f"auto={self.getAutoFlag()}")
 
             contents += self.font._reprContents()  # pylint: disable-next=W0212
         return contents
@@ -560,16 +556,19 @@ class EngravingDefaults(BaseObject):
 
     def _getValue(self, name: str) -> EngravingDefaultsValue:
         # Common settings property getter.
-        if not self._libDict and not AUTO:
+        if not self._libDict and not self.getAutoFlag():
             return None
 
         value = self._libDict.get(name, None)
         if name == "textFontFamily":
             value = self._libDict.get(name, ())
 
-        if self.font and value is None and AUTO:
+        if self.font and value is None and self.getAutoFlag():
             glyphName = MAPPING[name]["glyph"]
-            glyph = self.font[glyphName]
+            try:
+                glyph = self.font[glyphName]
+            except KeyError:
+                return None
             rulerName = MAPPING[name]["ruler"]
             ruler = DISPATCHER[rulerName]
             referenceIndex = MAPPING[name].get("referenceIndex")
@@ -712,6 +711,9 @@ class EngravingDefaults(BaseObject):
     # --------
     # Automate
     # --------
+
+    def getAutoFlag(self):
+        return config.load()["engravingDefaults"]["auto"]
 
     # ------------------------
     # Override from BaseObject
