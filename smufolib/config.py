@@ -77,13 +77,13 @@ def _parse(
     config: ConfigParser, section: str, option: str
 ) -> str | int | float | bool | tuple[str | float, ...] | None:
     # Parse configured values.
-    value = config.get(section, option)
+    stringValue = config.get(section, option)
 
     # Normalize paths in fallback section
     if section == "metadata.fallbacks":
         basePath = getattr(config, "basePath", None)
         if basePath:
-            fullPath = Path(value)
+            fullPath = Path(stringValue)
             if not fullPath.is_absolute():
                 return str((basePath / fullPath).resolve())
     try:
@@ -95,9 +95,8 @@ def _parse(
             try:
                 return config.getboolean(section, option)
             except ValueError:
-                string = config.get(section, option)
-                if any((c in {")", "]"}) for c in string):
-                    iterable = tuple(string.strip(")][(").split(", "))
+                if any((c in {")", "]"}) for c in stringValue):
+                    iterable = tuple(stringValue.strip(")][(").split(", "))
                     try:
                         return tuple(
                             float(i) if "." in i else int(i) if i.isdigit() else i
@@ -107,4 +106,4 @@ def _parse(
                         return iterable
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
-                return string.replace("\n", "") if string else None
+                return stringValue.replace("\n", "") if stringValue else None
