@@ -114,6 +114,14 @@ class SavedMetadataMixin(TempDirMixin):
         return metadataPath
 
 
+class SavedConfigMixin(TempDirMixin):
+    def saveConfigToTemp(self, config=None, filename="metadata.json"):
+        configToSave = config if config else self.config
+        configPath = self.tempPath / filename
+        configPath.write_text(configToSave.strip(), encoding="utf-8")
+        return configPath
+
+
 class SuppressOutputMixin:
     def suppressOutput(self):
         self._suppress = self.redirectOutput()
