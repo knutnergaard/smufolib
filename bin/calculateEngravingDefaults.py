@@ -14,44 +14,50 @@ identification and control, it should only be used as a starting point.
 By default, attributes are mapped to the following functions and
 glyphs:
 
-    ===================================   ====================   ===========
-    Attribute                             Function               Glyph
-    ===================================   ====================   ===========
-    :attr:`.arrowShaftThickness`          :func:`xOrigin`        `uniEB60`
-    :attr:`.barlineSeparation`            :func:`xInner`         `uniE031`
-    :attr:`.beamSpacing`                  :func:`yInner`         `uniE1F9`
-    :attr:`.beamThickness`                :func:`boundsHeight`   `uniE1F7`
-    :attr:`.bracketThickness`             :func:`xOrigin`        `uniE003`
-    :attr:`.dashedBarlineDashLength`      :func:`yMinimum`       `uniE036`
-    :attr:`.dashedBarlineGapLength`       :func:`yInner`         `uniE036`
-    :attr:`.dashedBarlineThickness`       :func:`xOrigin`        `uniE036`
-    :attr:`.hairpinThickness`             :func:`yMinimum`       `uniE53E`
-    :attr:`.hBarThickness`                :func:`yMinimum`       `uniE4F0`
-    :attr:`.legerLineExtension`           :func:`boundsLeft`     `uniE022`
-    :attr:`.legerLineThickness`           :func:`boundsHeight`   `uniE022`
-    :attr:`.lyricLineThickness`           :func:`boundsHeight`   `uniE010`
-    :attr:`.octaveLineThickness`          :func:`boundsHeight`   `uniE010`
-    :attr:`.pedalLineThickness`           :func:`boundsHeight`   `uniE010`
-    :attr:`.repeatBarlineDotSeparation`   :func:`stemDot`        `uniE040`
-    :attr:`.repeatEndingLineThickness`    :func:`xOrigin`        `uniE030`
-    :attr:`.slurEndpointThickness`        :func:`xOrigin`        `uniE1FD`
-    :attr:`.slurMidpointThickness`        :func:`yMinimum`       `uniE1FD`
-    :attr:`.staffLineThickness`           :func:`boundsHeight`   `uniE010`
-    :attr:`.stemThickness`                :func:`xOrigin`        `uniE210`
-    :attr:`.subBracketThickness`          :func:`xOrigin`        `uniE030`
-    :attr:`.textEnclosureThickness`       :func:`boundsHeight`   `uniE010`
-    :attr:`.thickBarlineThickness`        :func:`xOrigin`        `uniE034`
-    :attr:`.thinBarlineThickness`         :func:`xOrigin`        `uniE030`
-    :attr:`.thinThickBarlineSeparation`   :func:`xInner`         `uniE032`
-    :attr:`.tieEndpointThickness`         :func:`xOrigin`        `uniE1FD`
-    :attr:`.tieMidpointThickness`         :func:`yMinimum`       `uniE1FD`
-    :attr:`.tupletBracketThickness`       :func:`xOrigin`        `uniE1FE`
-    ===================================   ====================   ===========
+    ===================================  ================================  =========
+    Attribute                            Ruler Function                    Glyph
+    ===================================  ================================  =========
+    :attr:`.arrowShaftThickness`         :func:`xStrokeWidthAtOrigin`      `uniEB60`
+    :attr:`.barlineSeparation`           :func:`xDistanceBetweenContours`  `uniE031`
+    :attr:`.beamSpacing`                 :func:`yDistanceBetweenContours`  `uniE1F9`
+    :attr:`.beamThickness`               :func:`glyphBoundsHeight`         `uniE1F7`
+    :attr:`.bracketThickness`            :func:`xStrokeWidthAtOrigin`      `uniE003`
+    :attr:`.dashedBarlineDashLength`     :func:`yStrokeWidthAtMinimum`     `uniE036`
+    :attr:`.dashedBarlineGapLength`      :func:`yDistanceBetweenContours`  `uniE036`
+    :attr:`.dashedBarlineThickness`      :func:`xStrokeWidthAtOrigin`      `uniE036`
+    :attr:`.hairpinThickness`            :func:`yStrokeWidthAtMinimum`     `uniE53E`
+    :attr:`.hBarThickness`               :func:`yStrokeWidthAtMinimum`     `uniE4F0`
+    :attr:`.legerLineExtension`          :func:`glyphBoundsXMinAbs`        `uniE022`
+    :attr:`.legerLineThickness`          :func:`glyphBoundsHeight`         `uniE022`
+    :attr:`.lyricLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
+    :attr:`.octaveLineThickness`         :func:`glyphBoundsHeight`         `uniE010`
+    :attr:`.pedalLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
+    :attr:`.repeatBarlineDotSeparation`  :func:`xDistanceStemToDot`        `uniE040`
+    :attr:`.repeatEndingLineThickness`   :func:`xStrokeWidthAtOrigin`      `uniE030`
+    :attr:`.slurEndpointThickness`       :func:`xStrokeWidthAtOrigin`      `uniE1FD`
+    :attr:`.slurMidpointThickness`       :func:`yStrokeWidthAtMinimum`     `uniE1FD`
+    :attr:`.staffLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
+    :attr:`.stemThickness`               :func:`xStrokeWidthAtOrigin`      `uniE210`
+    :attr:`.subBracketThickness`         :func:`xStrokeWidthAtOrigin`      `uniE030`
+    :attr:`.textEnclosureThickness`      :func:`glyphBoundsHeight`         `uniE010`
+    :attr:`.thickBarlineThickness`       :func:`xStrokeWidthAtOrigin`      `uniE034`
+    :attr:`.thinBarlineThickness`        :func:`xStrokeWidthAtOrigin`      `uniE030`
+    :attr:`.thinThickBarlineSeparation`  :func:`xDistanceBetweenContours`  `uniE032`
+    :attr:`.tieEndpointThickness`        :func:`xStrokeWidthAtOrigin`      `uniE1FD`
+    :attr:`.tieMidpointThickness`        :func:`yStrokeWidthAtMinimum`     `uniE1FD`
+    :attr:`.tupletBracketThickness`      :func:`xStrokeWidthAtOrigin`      `uniE1FE`
+    ===================================  ================================  =========
 
 .. note:: The setting for :attr:`.textFontFamily` must be set manually
    within the `override` parameter.
 
-The ruler functions are available in the :mod:`~smufolib.utils.rulers` module.
+.. versionadded:: 0.5
+
+    The `referenceIndex` paramter has been removed from all ruler functions and is no
+    longer needed when providing remappings.
+
+    The ruler functions have been removed from this script and are now available in
+    the :mod:`~smufolib.utils.rulers` module.
 
 This script requires SMufoLib to be installed within its executive
 environment. It may also be imported as a module and contains the
@@ -94,9 +100,7 @@ Override = dict[str, OverrideValue]
 MappingValue = str | int | None
 Mapping = dict[str, MappingValue]
 Remapping = dict[str, Mapping]
-RulerType = (
-    Callable[[Glyph], int | float | None] | Callable[[Glyph, int], int | float | None]
-)
+RulerType = Callable[[Glyph], int | float | None]
 
 CONFIG = config.load()
 
@@ -133,9 +137,8 @@ def calculateEngravingDefaults(
 
             r = {
                 'arrowShaftThickness': {
-                    'ruler': 'boundsLeft',
-                    'glyph': 'uniEB60',
-                    'referenceIndex': 2
+                    'ruler': 'glyphBoundsXMinAbs',
+                    'glyph': 'uniEB60'
                 }
             }
 
@@ -176,22 +179,18 @@ def calculateEngravingDefaults(
 
         rulerName = mapping.get("ruler", "")
         glyphName = mapping.get("glyph", "")
-        referenceIndex = mapping.get("referenceIndex")
         remapping = remap.get(key, {}) if remap else {}
         rulerName = remapping.get("ruler", rulerName)
         rulerName = cast(str, rulerName)
         ruler: RulerType = DISPATCHER[rulerName]
         glyphName = remapping.get("glyph", glyphName)
         glyphName = cast(str, glyphName)
-        referenceIndex = remapping.get("referenceIndex", referenceIndex)
-        referenceIndex = cast(int | None, referenceIndex)
 
         rulerValue = _getValue(
             font=font,
             key=key,
             glyphName=glyphName,
             ruler=ruler,
-            referenceIndex=referenceIndex,
             verbose=verbose,
         )
         if rulerValue is None:
@@ -270,7 +269,7 @@ def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
         for k, v in value.items():
             error.suggestValue(
                 k,
-                ("ruler", "glyph", "referenceIndex"),
+                ("ruler", "glyph"),
                 f"'remap'['{value}']",
                 items=True,
             )
@@ -287,17 +286,12 @@ def _getValue(
     key: str,
     glyphName: str,
     ruler: RulerType,
-    referenceIndex: int | None,
     verbose: bool,
 ) -> int | float | None:
     # Get value from ruler function and print error message.
     try:
         glyph = font[glyphName]
-        if referenceIndex is None:
-            ruler = cast(Callable[[Glyph], int | float | None], ruler)
-            return ruler(glyph)
-        ruler = cast(Callable[[Glyph, int], int | float | None], ruler)
-        return ruler(glyph, referenceIndex)
+        return ruler(glyph)
     except KeyError:
         stdUtils.verbosePrint(
             "Skipping attribute assigned to non-"
@@ -338,10 +332,9 @@ def _parseArgs() -> argparse.Namespace:
         default=REMAP,
         type=json.loads,
         help=textwrap.dedent(
-            """JSON string of ruler, glyph and referenceIndex remappings
-            in the format: {"<attribute name>":
-            '{"ruler": "<function name>", "glyph": "<glyph name>",
-            "referenceIndex": <integer>}, ...}'"""
+            """JSON string of ruler and glyph remappings
+            in the format: {"<attribute name>": '{"ruler": "<function name>", 
+            "glyph": "<glyph name>"}, ...}'"""
         ),
     )
     return parser.parse_args()
