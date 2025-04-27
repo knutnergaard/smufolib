@@ -2,10 +2,7 @@
 Configuration
 =============
 
-User defined default settings for SMufoLib are set in the configuration
-file :ref:`smufolib.cfg` and parsed by the :mod:`~smufolib.config`
-module. Detailed information on how SMufoLib handles configuration
-is provided in the following sections.
+User defined default settings for SMufoLib are set in the configuration file :ref:`smufolib.cfg` and parsed by the :mod:`~smufolib.config` module. Detailed information on how SMufoLib handles configuration is provided in the following sections.
 
 .. automodule:: smufolib.config
     :members:
@@ -15,10 +12,7 @@ is provided in the following sections.
 smufolib.cfg
 ============
 
-The SMufoLib configuration file `smufolib.cfg` contains default
-settings for SMufoLib. It contains three main sections, with
-sub-sections denoted by a preceding dot, and settings for warnings, URL
-and file paths and colors.
+The SMufoLib configuration file `smufolib.cfg` contains default settings for SMufoLib. It contains three main sections, with sub-sections denoted by a preceding dot, and settings for warnings, URL and file paths and colors.
 
 .. _[request]:
 
@@ -63,8 +57,7 @@ Metadata fallback paths are configured in this section.
 [cli.shortFlags]
 ----------------
 
-Short flags for :ref:`Command Line Interface` options to be used
-with :func:`~smufolib.cli.commonParser` are configured in this section.
+Short flags for :ref:`Command Line Interface` options to be used with :func:`~smufolib.cli.commonParser` are configured in this section.
 
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg
@@ -93,3 +86,16 @@ with :func:`~smufolib.cli.commonParser` are configured in this section.
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg
     :start-at: [color.anchors]
+    :end-before: [engravingDefaults]
+
+
+.. _[engravingDefaults]:
+
+[engravingDefaults]
+-------------------
+
+This section contains configuration for the :class:`~smufolib.objects.engravingDefaults.EngravingDefaults` class.
+
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [engravingDefaults]

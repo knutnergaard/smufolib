@@ -24,6 +24,7 @@ from tests.smufolib.utils import (
     test_error,
     test_normalizers,
     test_pointUtils,
+    test_rulers,
     test_scriptUtils,
     test_stdUtils,
 )
@@ -31,24 +32,25 @@ from tests.smufolib.utils import (
 
 def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=True):
     modules = [
+        test_calculateEngravingDefaults,
+        test_checkAnchors,
+        test_cleanFont,
         test_cli,
         test_config,
         test_converters,
         test_engravingDefaults,
         test_error,
+        test_generateMetadata,
         test_glyph,
+        test_importAnchors,
+        test_importID,
         test_pointUtils,
         test_range,
         test_request,
+        test_rulers,
         test_smufl,
         test_scriptUtils,
         test_stdUtils,
-        test_calculateEngravingDefaults,
-        test_checkAnchors,
-        test_cleanFont,
-        test_generateMetadata,
-        test_importAnchors,
-        test_importID,
     ]
     if testNormalizers:
         modules.append(test_normalizers)

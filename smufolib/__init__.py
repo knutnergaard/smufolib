@@ -16,6 +16,7 @@ from smufolib.utils import converters
 from smufolib.utils import error
 from smufolib.utils import normalizers
 from smufolib.utils import pointUtils
+from smufolib.utils import rulers
 from smufolib.utils import stdUtils
 from smufolib.utils import scriptUtils
 
@@ -35,6 +36,7 @@ __all__ = [
     "error",
     "normalizers",
     "pointUtils",
+    "rulers",
     "stdUtils",
     "scriptUtils",
 ]

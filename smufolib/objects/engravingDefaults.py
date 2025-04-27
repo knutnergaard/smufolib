@@ -1,19 +1,23 @@
 # pylint: disable=C0114, C0103, W0212, W0221
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, cast
+from collections.abc import Callable
 
 from fontParts.base.base import BaseObject
+from smufolib import config
 from smufolib.utils import error, normalizers
+from smufolib.utils.rulers import DISPATCHER, MAPPING
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
-    from smufolib.objects.glyph import Glyph
     from smufolib.objects.font import Font
+    from smufolib.objects.glyph import Glyph
     from smufolib.objects.layer import Layer
 
 # Type aliases
 EngravingDefaultsValue = int | float | tuple[str, ...] | None
 EngravingDefaultsDict = dict[str, EngravingDefaultsValue]
+RulerType = Callable[["Glyph"], int | float | None]
 
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
@@ -62,16 +66,58 @@ class EngravingDefaults(BaseObject):
     The :class:`EngravingDefaults` object is essentially a :class:`dict`
     with access to keys through regular class attributes.
 
-    .. tip:: Engraving default values can be calculated from the
-       contours of specific glyphs and set automatically with
-       the :mod:`~bin.calculateEngravingDefaults` script.
+    .. versionadded:: 0.5
+
+        If a value is unassigned (or explicitly set to :obj:`None`), the attribute
+        will be calculated automatically from the corresponding glyph in the font,
+        provided that glyph exists and the :ref:`[engravingDefaults]` `auto`
+        setting is enabled in the configuration file. Attributes are mapped to the
+        following glyphs:
+
+        ==================================   ===========================================
+        Attribute                            Glyph
+        ==================================   ===========================================
+        :attr:`arrowShaftThickness`          `uniEB60 (arrowBlackUp)`
+        :attr:`barlineSeparation`            `uniE031 (barlineDouble)`
+        :attr:`beamSpacing`                  `uniE1F9 (textCont16thBeamShortStem)`
+        :attr:`beamThickness`                `uniE1F7 (textCont8thBeamShortStem)`
+        :attr:`bracketThickness`             `uniE003 (bracketTop)`
+        :attr:`dashedBarlineDashLength`      `uniE036 (barlineDashed)`
+        :attr:`dashedBarlineGapLength`       `uniE036 (barlineDashed)`
+        :attr:`dashedBarlineThickness`       `uniE036 (barlineDashed)`
+        :attr:`hairpinThickness`             `uniE53E (dynamicCrescendoHairpin)`
+        :attr:`hBarThickness`                `uniE4F0 (restHBarMiddle)`
+        :attr:`legerLineExtension`           `uniE022 (legerLine)`
+        :attr:`legerLineThickness`           `uniE022 (legerLine)`
+        :attr:`lyricLineThickness`           `uniE010 (staff1Line)`
+        :attr:`octaveLineThickness`          `uniE010 (staff1Line)`
+        :attr:`pedalLineThickness`           `uniE010 (staff1Line)`
+        :attr:`repeatBarlineDotSeparation`   `uniE040 (repeatLeft)`
+        :attr:`repeatEndingLineThickness`    `uniE030 (barlineSingle)`
+        :attr:`slurEndpointThickness`        `uniE1FD (textTie)`
+        :attr:`slurMidpointThickness`        `uniE1FD (textTie)`
+        :attr:`staffLineThickness`           `uniE010 (staff1Line)`
+        :attr:`stemThickness`                `uniE210 (stem)`
+        :attr:`subBracketThickness`          `uniE030 (barlineSingle)`
+        :attr:`textEnclosureThickness`       `uniE010 (staff1Line)`
+        :attr:`thickBarlineThickness`        `uniE034 (barlineHeavy)`
+        :attr:`thinBarlineThickness`         `uniE030 (barlineSingle)`
+        :attr:`thinThickBarlineSeparation`   `uniE032 (barlineFinal)`
+        :attr:`tieEndpointThickness`         `uniE1FD (textTie)`
+        :attr:`tieMidpointThickness`         `uniE1FD (textTie)`
+        :attr:`tupletBracketThickness`       `uniE1FE (textTupletBracketStartShortStem)`
+        ==================================   ===========================================
+
+    .. tip::
+
+        Optionally, values may be explicitly set using glyph-based calculations provided
+        by the :mod:`~bin.calculateEngravingDefaults` script.
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
 
     While this object is normally created as part of
-    a :class:`~smufolib.objects.font.Font`, an
-    orphan :class:`EngravingDefaults` object may be created like
-    this::
+    a :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults`
+    object may be created like this::
 
         >>> d = EngravingDefaults()
 
@@ -84,6 +130,7 @@ class EngravingDefaults(BaseObject):
         contents = []
         if self.font is not None:
             contents.append("in font")
+            contents.append(f"auto={_getAutoFlag()}")
 
             contents += self.font._reprContents()  # pylint: disable-next=W0212
         return contents
@@ -553,12 +600,23 @@ class EngravingDefaults(BaseObject):
 
     def _getValue(self, name: str) -> EngravingDefaultsValue:
         # Common settings property getter.
-        if not self._libDict:
+        if not self._libDict and not _getAutoFlag():
             return None
 
         value = self._libDict.get(name, None)
         if name == "textFontFamily":
             value = self._libDict.get(name, ())
+
+        if self.font and value is None and _getAutoFlag():
+            glyphName = MAPPING[name]["glyph"]
+            try:
+                glyph = self.font[glyphName]
+            except KeyError:
+                return None
+            rulerName = MAPPING[name]["ruler"]
+            rulerName = cast(str, rulerName)
+            ruler: RulerType = DISPATCHER[rulerName]
+            value = ruler(glyph)
 
         elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             return self.font.smufl.toSpaces(value)
@@ -707,3 +765,7 @@ class EngravingDefaults(BaseObject):
                 "notImplementedError", objectName=self.__class__.__name__
             )
         )
+
+
+def _getAutoFlag():
+    return config.load()["engravingDefaults"]["auto"]
