@@ -23,13 +23,13 @@ ColorDict = dict[str, ColorTuple]
 def normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
     """Ensure that `color` is valid based on the `mark` setting."
 
-        If the input `color` is :obj:`None` and `mark` is :obj:`True`, a :class:`TypeError`
-        is raised. Otherwise, the color is normalized
+    If the input `color` is :obj:`None` and `mark` is :obj:`True`, a :class:`TypeError`
+    is raised. Otherwise, the color is normalized
     each dictionary value
 
-        :param color: The color value to normalize.
-        :param mark: Mark objects with the specified `color`.
-        :raises TypeError: If `color` is not the expected type.
+    :param color: The color value to normalize.
+    :param mark: Mark objects with the specified `color`.
+    :raises TypeError: If `color` is not the expected type.
 
     """
     # Normalize `color` value.

@@ -3,6 +3,7 @@ from __future__ import annotations
 from typing import Any
 import os
 import errno
+import importlib.resources
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 
@@ -40,11 +41,15 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
 def _readConfigFile(path: Path | str | None) -> ConfigParser:
     # Read config file from selected filepath.
     config = ConfigParser(interpolation=ExtendedInterpolation())
-
     config.optionxform = str  # type: ignore
 
-    with open(_selectPath(path), encoding="utf-8") as f:
+    selectedPath = Path(_selectPath(path))
+    with selectedPath.open(encoding="utf-8") as f:
         config.read_file(f)
+
+    # Store config file location
+    config.basePath = selectedPath.parent  # type: ignore
+
     return config
 
 
@@ -53,15 +58,18 @@ def _selectPath(path: Path | str | None) -> str:
     if path and Path(path).exists():
         return str(path)
 
-    nameExttension = ("smufolib", "cfg")
-    for selection in (
-        Path.cwd() / ".".join(nameExttension),
-        Path.home() / ".".join(nameExttension),
-        os.getenv("_".join(nameExttension).upper()),
-        Path(__file__).parents[1] / "smufolib" / ".".join(nameExttension),
-    ):
+    nameExtension = ("smufolib", "cfg")
+    fallbackCandidates = [
+        Path.cwd() / ".".join(nameExtension),
+        Path.home() / ".".join(nameExtension),
+        os.getenv("_".join(nameExtension).upper()),
+        str(importlib.resources.files("smufolib").joinpath("smufolib.cfg")),
+    ]
+
+    for selection in fallbackCandidates:
         if selection and Path(selection).exists():
             return str(selection)
+
     raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
 
 
@@ -69,6 +77,15 @@ def _parse(
     config: ConfigParser, section: str, option: str
 ) -> str | int | float | bool | tuple[str | float, ...] | None:
     # Parse configured values.
+    stringValue = config.get(section, option)
+
+    # Normalize paths in fallback section
+    if section == "metadata.fallbacks":
+        basePath = getattr(config, "basePath", None)
+        if basePath:
+            fullPath = Path(stringValue)
+            if not fullPath.is_absolute():
+                return str((basePath / fullPath).resolve())
     try:
         return config.getint(section, option)
     except ValueError:
@@ -78,9 +95,8 @@ def _parse(
             try:
                 return config.getboolean(section, option)
             except ValueError:
-                string = config.get(section, option)
-                if any((c in {")", "]"}) for c in string):
-                    iterable = tuple(string.strip(")][(").split(", "))
+                if any((c in {")", "]"}) for c in stringValue):
+                    iterable = tuple(stringValue.strip(")][(").split(", "))
                     try:
                         return tuple(
                             float(i) if "." in i else int(i) if i.isdigit() else i
@@ -90,4 +106,4 @@ def _parse(
                         return iterable
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
-                return string.replace("\n", "") if string else None
+                return stringValue.replace("\n", "") if stringValue else None

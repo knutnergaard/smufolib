@@ -33,7 +33,15 @@ from fontParts.base.normalizers import normalizeBoolean
 from fontParts.base.normalizers import normalizeColor
 from fontParts.base.normalizers import normalizeVisualRounding
 from fontParts.base.normalizers import normalizeGlyph
+
 from smufolib.utils import error
+from smufolib.utils._annotations import (
+    EngravingDefaultsInput,
+    EngravingDefaultsReturn,
+    CollectionType,
+    PairCollectionType,
+    PairType,
+)
 
 # ruff: noqa: F401
 # pylint: enable=W0611
@@ -42,10 +50,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.request import Request
     from smufolib.objects.smufl import Smufl
     from smufolib.objects.engravingDefaults import EngravingDefaults
-
-# Type aliases
-EngravingDefaultsInput = int | float | tuple[str, ...] | list[str]
-EngravingDefaultsReturn = int | float | tuple[str, ...]
 
 # pylint: disable=C0103, C0415
 
@@ -72,7 +76,7 @@ def normalizeFont(value: Font) -> Font:
 # -----
 
 
-def normalizeClasses(value: tuple[str, ...] | None) -> tuple[str, ...]:
+def normalizeClasses(value: CollectionType[str] | None) -> tuple[str, ...]:
     """Normalize smufl classes.
 
     :param value: The value to normalize.
@@ -147,7 +151,7 @@ def normalizeDesignSize(value: int | None) -> int | None:
     return value
 
 
-def normalizeSizeRange(value: tuple[int, int] | None) -> tuple[int, int] | None:
+def normalizeSizeRange(value: PairCollectionType[int] | None) -> PairType[int] | None:
     """Normalize design size.
 
     :param value: The value to normalize.
@@ -310,7 +314,7 @@ def normalizeEngravingDefaultsAttr(
 
 
 def _normalizeStringTuple(
-    objectName: str, value: tuple[str, ...] | list[str]
+    objectName: str, value: CollectionType[str]
 ) -> tuple[str, ...]:
     # Normalize string tuple.
     error.validateType(value, (tuple, list), objectName)

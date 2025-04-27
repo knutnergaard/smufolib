@@ -260,8 +260,29 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     # range
 
+    # TODO: Remove 'range' in 0.6
+
     def test_range(self):
         self.assertIsInstance(self.recommended1.smufl.range, type(self.range))
+
+    # ranges
+
+    def test_ranges_glyph(self):
+        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
+
+    def test_ranges_font(self):
+        self.recommended1.smufl.name = "brace"
+        self.recommended2.unicode = 0xE010
+        self.recommended2.smufl.name = "staff1Line"
+        self.assertEqual(len(self.font.smufl.ranges), 2)
+
+    def test_ranges_no_font(self):
+        self.assertIsNone(self.glyph.smufl.ranges)
+
+    def test_ranges_no_names(self):
+        for glyph in self.font:
+            glyph.smufl.name = None
+        self.assertIsNone(self.font.smufl.ranges)
 
     # advanceWidth
 

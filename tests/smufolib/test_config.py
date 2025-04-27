@@ -1,68 +1,104 @@
+import configparser
+import os
+import shutil
 import unittest
-from unittest.mock import patch, mock_open
 from pathlib import Path
-from configparser import ConfigParser
-import errno
-from smufolib.config import load, _readConfigFile, _selectPath, _parse
+from unittest import mock
+
+from tests.testUtils import SavedConfigMixin
+from smufolib import config
 
 
-class TestConfig(unittest.TestCase):
-    # pylint: disable=W0613
+class TestConfig(SavedConfigMixin, unittest.TestCase):
+    def setUp(self):
+        super().setUp()
+        self.config = """
+[request]
+encoding = utf-8
+warn = yes
 
-    @patch("smufolib.config._readConfigFile")
-    def test_load(self, mock_readConfigFile):
-        mock_config = ConfigParser()
-        mock_config.add_section("request")
-        mock_config.set("request", "encoding", "utf-8")
-        mock_config.set("request", "warn", "True")
-        mock_readConfigFile.return_value = mock_config
+[settings]
+number = 42
+factor = 2.5
+flag = true
+values = (1, 2.0, three)
+iterable = (string.)
 
-        result = load()
-        self.assertEqual(result["request"]["encoding"], "utf-8")
-        self.assertEqual(result["request"]["warn"], True)
+[metadata.fallbacks]
+source = rel/path/to/resource.json
+        """
+        self.configPath = self.saveConfigToTemp(filename="original.cfg")
 
-    @patch(
-        "builtins.open", new_callable=mock_open, read_data="[section]\noption=value\n"
+    def test_load_from_explicit_path(self):
+        loaded = config.load(self.configPath)
+        self.assertEqual(loaded["request"]["encoding"], "utf-8")
+        self.assertTrue(loaded["request"]["warn"])
+        self.assertEqual(loaded["settings"]["number"], 42)
+        self.assertEqual(loaded["settings"]["factor"], 2.5)
+        self.assertTrue(loaded["settings"]["flag"])
+        self.assertEqual(loaded["settings"]["values"], (1, 2.0, "three"))
+        self.assertEqual(loaded["settings"]["iterable"], ("string.",))
+
+    def test_relative_path_resolution(self):
+        loaded = config.load(self.configPath)
+        expectedPath = str(
+            (self.configPath.parent / "rel/path/to/resource.json").resolve()
+        )
+        self.assertEqual(loaded["metadata.fallbacks"]["source"], expectedPath)
+
+    @mock.patch("smufolib.config.Path.cwd")
+    def test_load_from_cwd(self, mock_cwd):
+        mock_cwd.return_value = self.tempPath
+        fallbackPath = self.tempPath / "smufolib.cfg"
+        shutil.copy(self.configPath, fallbackPath)
+        loaded = config.load(None)
+        self.assertIn("request", loaded)
+
+    @mock.patch("smufolib.config.Path.home")
+    def test_load_from_home(self, mock_home):
+        mock_home.return_value = self.tempPath
+        fallbackPath = self.tempPath / "smufolib.cfg"
+        shutil.copy(self.configPath, fallbackPath)
+        loaded = config.load(None)
+        self.assertIn("settings", loaded)
+
+    @mock.patch("smufolib.config.Path.cwd", return_value=Path("/nonexistent"))
+    @mock.patch("smufolib.config.Path.home", return_value=Path("/nonexistent"))
+    @mock.patch.dict(os.environ, {"SMUFOLIB_CFG": ""})
+    @mock.patch(
+        "smufolib.config.importlib.resources.files", return_value=Path("/nonexistent")
     )
-    @patch("smufolib.config._selectPath", return_value="dummy_path")
-    def test_readConfigFile(self, mock_selectPath, mock_open_file):
-        result = _readConfigFile("dummy_path")
-        self.assertIsInstance(result, ConfigParser)
-        self.assertTrue(result.has_section("section"))
-        self.assertEqual(result.get("section", "option"), "value")
+    def test_all_fallbacks_fail(self, *mocks):
+        with self.assertRaises(FileNotFoundError):
+            config.load(None)
 
-    @patch("pathlib.Path.exists", return_value=True)
-    def test_selectPath_with_path(self, mock_exists):
-        path = "path/to/smufolib.cfg"
-        result = _selectPath(Path(path))
-        self.assertEqual(result, path)
+    @mock.patch.dict(os.environ, {}, clear=True)
+    @mock.patch("smufolib.config.importlib.resources.files")
+    def test_load_from_package_resource(self, mock_files):
+        # Simulate importlib.resources.files("smufolib").joinpath("smufolib.cfg")
+        mock_files.return_value.joinpath.return_value = self.configPath
+        loaded = config.load(None)
+        self.assertEqual(loaded["settings"]["number"], 42)
 
-    @patch("os.getenv", return_value=None)
-    @patch("pathlib.Path.exists", side_effect=[False, False, True])
-    def test_selectPath_with_none(self, mock_exists, mock_getenv):
-        result = _selectPath(None)
-        self.assertTrue(result.endswith("smufolib.cfg"))
+    def test_no_basepath_in_metadata_fallbacks(self):
+        # pylint: disable=W0212
+        parser = config._readConfigFile(self.configPath)
 
-    @patch("os.getenv", return_value=None)
-    @patch("pathlib.Path.exists", return_value=False)
-    def test_selectPath_not_found(self, mock_exists, mock_getenv):
-        with self.assertRaises(FileNotFoundError) as context:
-            _selectPath(None)
-        self.assertEqual(context.exception.errno, errno.ENOENT)
+        if hasattr(parser, "basePath"):
+            delattr(parser, "basePath")
 
-    def test_parse(self):
-        config = ConfigParser()
-        config.add_section("section")
-        config.set("section", "int_option", "1")
-        config.set("section", "float_option", "1.1")
-        config.set("section", "bool_option", "True")
-        config.set("section", "str_option", "string")
-        config.set("section", "tuple_option", "(1, 2.2, string)")
-        config.set("section", "iterable_option", "(string.)")
+        result = config._parse(parser, "metadata.fallbacks", "source")
+        self.assertEqual(result, "rel/path/to/resource.json")  # result should be str
 
-        self.assertEqual(_parse(config, "section", "int_option"), 1)
-        self.assertEqual(_parse(config, "section", "float_option"), 1.1)
-        self.assertEqual(_parse(config, "section", "bool_option"), True)
-        self.assertEqual(_parse(config, "section", "str_option"), "string")
-        self.assertEqual(_parse(config, "section", "tuple_option"), (1, 2.2, "string"))
-        self.assertEqual(_parse(config, "section", "iterable_option"), ("string.",))
+    def test_absolute_path_not_resolved(self):
+        # pylint: disable=W0212
+        absPath = str(Path(self.tempPath / "some/absolute/path.json").resolve())
+        absPathConfig = f"""
+    [metadata.fallbacks]
+    source = {absPath}
+        """
+        configPath = self.saveConfigToTemp(config=absPathConfig, filename="abs.cfg")
+        parser = config._readConfigFile(configPath)
+        parser.basePath = Path("/should/not/be/used")
+        result = config._parse(parser, "metadata.fallbacks", "source")
+        self.assertEqual(result, absPath)

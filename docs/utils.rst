@@ -33,6 +33,11 @@
     :members:
     :exclude-members: contourIndex, position, type, x, y
 
+:mod:`.rulers`
+-------------------
+
+.. automodule:: smufolib.utils.rulers
+    :members:
 
 :mod:`.scriptUtils`
 ----------------

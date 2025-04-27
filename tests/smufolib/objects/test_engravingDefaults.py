@@ -1,5 +1,8 @@
 import unittest
+from unittest.mock import patch
+
 from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
+from tests.testUtils import generateGlyph
 
 
 class TestEngravingDefaults(unittest.TestCase):
@@ -99,7 +102,29 @@ class TestEngravingDefaults(unittest.TestCase):
         self.maxDiff = None
         self.assertDictEqual(self.engravingDefaults.items(), result)
 
-    def test_set_attributes(self):
+    @patch("smufolib.objects.engravingDefaults._getAutoFlag", return_value=True)
+    def test_get_attributes_auto_true(self, mock_autoFlag):
+        # Generate stem glyph
+        generateGlyph(
+            self.font,
+            "uniE210",
+            unicode=0xE210,
+            points=((0, 0), (20, 0), (20, 250), (0, 250)),
+        )
+        self.assertEqual(self.font.smufl.engravingDefaults.stemThickness, 20)
+
+    @patch("smufolib.objects.engravingDefaults._getAutoFlag", return_value=False)
+    def test_get_attributes_auto_false(self, mock_autoFlag):
+        # Generate stem glyph
+        generateGlyph(
+            self.font,
+            "uniE210",
+            unicode=0xE210,
+            points=((0, 0), (20, 0), (20, 250), (0, 250)),
+        )
+        self.assertIsNone(self.font.smufl.engravingDefaults.stemThickness)
+
+    def test_set_attributes_basic(self):
         self._test_attribute_assignment(False)
         self._test_attribute_assignment(True)
 

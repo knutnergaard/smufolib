@@ -3,10 +3,10 @@ import sys
 import unittest
 from unittest.mock import patch
 
+
 from tests.testUtils import (
     SavedFontMixin,
     SuppressOutputMixin,
-    drawCircle,
     drawLines,
     getVerboseOutput,
 )
@@ -14,13 +14,6 @@ from bin.calculateEngravingDefaults import (
     MAPPING,
     calculateEngravingDefaults,
     main,
-    boundsHeight,
-    boundsLeft,
-    stemDot,
-    xInner,
-    xOrigin,
-    yInner,
-    yMinimum,
 )
 
 
@@ -31,12 +24,17 @@ class TestCalculateEngravingDefaults(
         super().setUp()
         self.suppressOutput()
 
+        self.patcher = patch(
+            "smufolib.objects.engravingDefaults._getAutoFlag", return_value=False
+        )
+        self.mock_load = self.patcher.start()
+        self.addCleanup(self.patcher.stop)
+
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
         self.glyph, _ = self.objectGenerator("glyph")
         self.contour, _ = self.objectGenerator("contour")
         self.otherContour, _ = self.objectGenerator("contour")
-        # pylint: enable=E1101
 
         self.font.info.familyName = "testFont"
         self.font.info.unitsPerEm = 1000
@@ -70,9 +68,8 @@ class TestCalculateEngravingDefaults(
         drawLines(remapGlyph, ((0, 0), (0, 7), (7, 7), (7, 0)))
         remap = {
             "arrowShaftThickness": {
-                "ruler": "boundsHeight",
+                "ruler": "glyphBoundsHeight",
                 "glyph": "testGlyph",
-                "referenceIndex": None,
             }
         }
         calculateEngravingDefaults(self.font, remap=remap)
@@ -82,9 +79,8 @@ class TestCalculateEngravingDefaults(
     def test_calculateEngravingDefaults_remap_with_nonexistent(self, mock_print):
         remap = {
             "arrowShaftThickness": {
-                "ruler": "boundsHeight",
+                "ruler": "glyphBoundsHeight",
                 "glyph": "testGlyph",  # Reference non-existent glyph
-                "referenceIndex": None,
             }
         }
         calculateEngravingDefaults(self.font, verbose=True, remap=remap)
@@ -114,104 +110,13 @@ class TestCalculateEngravingDefaults(
         self.assertIn("'stemThickness':", output)
         self.assertIn("Done!", output)
 
-    def test_boundsHeight(self):
-        drawLines(self.glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
-        result = boundsHeight(self.glyph)
-        self.assertEqual(result, 15)
-
-    def test_boundsLeft(self):
-        drawLines(self.glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
-        result = boundsLeft(self.glyph)
-        self.assertEqual(result, 10)
-
-    def test_stemDot(self):
-        drawLines(self.glyph, ((0, 0), (10, 0), (10, 20), (0, 20)))
-        drawCircle(self.glyph, (30, 10), 10)
-        result = stemDot(self.glyph)
-        self.assertEqual(result, 10)
-
-    def test_stemDot_with_missing_lines(self):
-        drawCircle(self.glyph, (30, 10), 10)
-        result = stemDot(self.glyph)
-        self.assertIsNone(result)
-
-    def test_stemDot_with_missing_curves(self):
-        drawLines(self.glyph, ((0, 0), (10, 0), (10, 20), (0, 20)))
-        result = stemDot(self.glyph)
-        self.assertIsNone(result)
-
-    def test_stemDot_with_same_contour_index(self):
-        self.contour.appendPoint((10, 20), "curve")
-        self.contour.appendPoint((12, 20), "line")
-        self.glyph.appendContour(self.contour)
-        result = stemDot(self.glyph)
-        self.assertIsNone(result)
-
-    def test_xInner(self):
-        drawLines(self.glyph, ((0, 0), (10, 0), (10, 20), (0, 20)))
-        drawLines(self.glyph, ((20, 0), (30, 0), (30, 20), (20, 20)))
-        result = xInner(self.glyph, referenceIndex=3)
-        self.assertEqual(result, 10)
-
-    def test_xInner_with_same_contour_index(self):
-        self.contour.appendPoint((10, 20), "curve")
-        self.contour.appendPoint((12, 20), "line")
-        self.glyph.appendContour(self.contour)
-        result = xInner(self.glyph)
-        self.assertIsNone(result)
-
-    def test_xInner_with_non_adjacent_y(self):
-        drawLines(self.glyph, ((20, 20), (30, 30), (30, 40), (20, 40)))
-        drawLines(self.glyph, ((0, 0), (30, 0), (30, 20), (20, 20)))
-        result = xInner(self.glyph, referenceIndex=3)
-        self.assertEqual(result, 0)
-
-    def test_xOrigin(self):
-        drawLines(self.glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
-        result = xOrigin(self.glyph)
-        self.assertEqual(result, 10)
-
-    def test_xOrigin_with_same_point_position(self):
-        self.contour.appendPoint((10, 20), "curve")
-        self.contour.appendPoint((10, 20), "line")
-        self.glyph.appendContour(self.contour)
-        result = xOrigin(self.glyph)
-        self.assertIsNone(result)
-
-    def test_yInner(self):
-        drawLines(self.glyph, ((0, 0), (20, 0), (20, 10), (0, 10)))
-        drawLines(self.glyph, ((0, 20), (20, 20), (20, 30), (0, 30)))
-        result = yInner(self.glyph, referenceIndex=3)
-        self.assertEqual(result, 10)
-
-    def test_yInner_with_same_contour_index(self):
-        self.contour.appendPoint((10, 20), "curve")
-        self.contour.appendPoint((12, 20), "line")
-        self.glyph.appendContour(self.contour)
-        result = yInner(self.glyph)
-        self.assertIsNone(result)
-
-    def test_yMinimum(self):
-        drawLines(self.glyph, ((0, 0), (20, 0), (20, 10), (0, 10)))
-        drawLines(self.glyph, ((0, 20), (20, 20), (20, 30), (0, 30)))
-        result = yMinimum(self.glyph, referenceIndex=3)
-        self.assertEqual(result, 10)
-
-    def test_yMinimum_with_same_contour_index(self):
-        self.contour.appendPoint((10, 20), "curve")
-        self.contour.appendPoint((12, 20), "line")
-        self.glyph.appendContour(self.contour)
-        result = yMinimum(self.glyph)
-        self.assertIsNone(result)
-
     @patch("bin.calculateEngravingDefaults.calculateEngravingDefaults")
     def test_main(self, mock_calculateEngravingDefaults):
         override = {"tupletBracketThickness": 0.5}
         remap = {
             "tupletBracketThickness": {
-                "ruler": "boundsHeight",
+                "ruler": "glyphBoundsHeight",
                 "glyph": "noteheadBlack",
-                "referenceIndex": 0,
             }
         }
 
