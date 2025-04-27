@@ -276,6 +276,14 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.recommended2.smufl.name = "staff1Line"
         self.assertEqual(len(self.font.smufl.ranges), 2)
 
+    def test_ranges_no_font(self):
+        self.assertIsNone(self.glyph.smufl.ranges)
+
+    def test_ranges_no_names(self):
+        for glyph in self.font:
+            glyph.smufl.name = None
+        self.assertIsNone(self.font.smufl.ranges)
+
     # advanceWidth
 
     def test_get_advanceWidth(self):
