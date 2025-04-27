@@ -23,7 +23,6 @@ from smufolib.utils import error, stdUtils
 if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell import RComponent
     from fontParts.fontshell import RContour
-    from fontParts.fontshell import RPoint
     from smufolib.objects.glyph import Glyph
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font

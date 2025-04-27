@@ -1,6 +1,6 @@
 # pylint: disable=C0114, C0103, W0212, W0221
 from __future__ import annotations
-from typing import TYPE_CHECKING, cast, Any
+from typing import TYPE_CHECKING, cast
 from collections.abc import Callable
 
 from fontParts.base.base import BaseObject
