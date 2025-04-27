@@ -419,16 +419,17 @@ class Smufl(BaseObject):
 
     @property
     def ranges(self) -> tuple[Range, ...] | None:
-        """SMuFL range or ranges covered.
+        """SMuFL ranges covered by font or glyph.
 
         When accessed from a :class:`.Font` object, returns a :class:`tuple` of all
-        :class:`Range` objects covered by the font. When accessed from a
+        :class:`.Range` objects covered by the font. When accessed from a
         :class:`.Glyph` object, returns a singleton :class:`tuple` containing the
-        glyph's corresponding :class:`Range`.
+        glyph's corresponding :class:`.Range`.
 
         This property is read-only.
 
         Example::
+
             >>> font.smufl.ranges
             (<Range 'stringTechniques' ('U+E610-U+E62F') at 4449982528>,
             <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at 4449981712>,
