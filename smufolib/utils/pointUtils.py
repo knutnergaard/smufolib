@@ -1,5 +1,9 @@
 """Utilities for extracting and representing point data.
 
+.. deprecated:: 0.5.0
+
+    Use :func:`.getGlyphPoints` to retrieve points instead.
+
 This module provides classes and functions to retrieve points from
 contours and components within font-related objects and to simplify
 the representation of :class:`fontParts.base.BasePoint`. It includes
@@ -12,12 +16,14 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, NamedTuple
 from collections.abc import Iterator
 import itertools
+import warnings
 
 from smufolib.utils import error, stdUtils
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell import RComponent
     from fontParts.fontshell import RContour
+    from fontParts.fontshell import RPoint
     from smufolib.objects.glyph import Glyph
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
@@ -26,6 +32,13 @@ if TYPE_CHECKING:
 TYPES = ("line", "curve", "qcurve")
 
 # pylint: disable=C0103, C0415
+
+warnings.warn(
+    "This module is deprecated and will be removed in the next version of "
+    "SMufoLib (after 0.5). Use 'rulers.getPoints' to retrieve points instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 
 class Point(NamedTuple):
