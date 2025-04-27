@@ -7,6 +7,8 @@ from smufolib.utils.pointUtils import (
     getCompositePoints,
 )
 
+# TODO: Remove module in 0.6
+
 
 class TestPointUtils(unittest.TestCase):
     def setUp(self):

@@ -33,6 +33,8 @@ TYPES = ("line", "curve", "qcurve")
 
 # pylint: disable=C0103, C0415
 
+# TODO: Remove module in 0.6
+
 warnings.warn(
     "This module is deprecated and will be removed in the next version of "
     "SMufoLib (after 0.5). Use 'rulers.getPoints' to retrieve points instead.",
