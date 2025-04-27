@@ -1,12 +1,13 @@
 # pylint: disable=C0114, C0103, W0212, W0221
 from __future__ import annotations
-from typing import TYPE_CHECKING, cast
+from typing import TYPE_CHECKING, cast, Any
 from collections.abc import Callable
 
 from fontParts.base.base import BaseObject
 from smufolib import config
 from smufolib.utils import error, normalizers
 from smufolib.utils.rulers import DISPATCHER, MAPPING
+from smufolib.utils._annotations import EngravingDefaultsInput, EngravingDefaultsReturn
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
@@ -15,9 +16,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
 
 # Type aliases
-EngravingDefaultsValue = int | float | tuple[str, ...] | None
-EngravingDefaultsDict = dict[str, EngravingDefaultsValue]
-RulerType = Callable[["Glyph"], int | float | None]
+EngravingDefaultsDictInput = dict[str, EngravingDefaultsInput | None]
+EngravingDefaultsDictReturn = dict[str, EngravingDefaultsReturn | None]
 
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
@@ -197,7 +197,7 @@ class EngravingDefaults(BaseObject):
         if self.font is not None:
             self.font.lib.naked().pop("com.smufolib.engravingDefaults", None)
 
-    def items(self) -> EngravingDefaultsDict:
+    def items(self) -> EngravingDefaultsDictReturn:
         """Return dict of all available settings and their values.
 
         Example::
@@ -223,8 +223,8 @@ class EngravingDefaults(BaseObject):
 
     def update(
         self,
-        other: EngravingDefaults | EngravingDefaultsDict | None = None,
-        **kwargs: EngravingDefaultsValue,
+        other: EngravingDefaults | EngravingDefaultsDictInput | None = None,
+        **kwargs: EngravingDefaultsInput | None,
     ) -> None:
         r"""Update settings attributes with other object or values.
 
@@ -262,14 +262,14 @@ class EngravingDefaults(BaseObject):
             {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
 
         """
-        other = self._normalizeOthers(other, kwargs)
-        if not other or self.font is None:
+        normalizedOther = self._mergeOthers(other, kwargs)
+        if not normalizedOther or self.font is None:
             return
 
         if "com.smufolib.engravingDefaults" not in self.font.lib:
             self.font.lib["com.smufolib.engravingDefaults"] = {}
 
-        for key, value in other.items():  # type: ignore[misc]
+        for key, value in normalizedOther.items():
             if key not in self.keys():
                 raise AttributeError(
                     error.generateErrorMessage(
@@ -288,29 +288,31 @@ class EngravingDefaults(BaseObject):
                 normalizedValue = self._smufl.toUnits(normalizedValue)
             self.font.lib["com.smufolib.engravingDefaults"][key] = normalizedValue
 
-    def _normalizeOthers(
+    def _mergeOthers(
         self,
-        other: EngravingDefaults | EngravingDefaultsDict | None,
-        kwargs: EngravingDefaultsDict,
-    ) -> EngravingDefaultsDict | None:
-        # Normalize update(other)
-        if isinstance(other, EngravingDefaults):
-            other = other.items()
-        if other is None:
-            other = {}
-            if not kwargs:
-                return None
-
+        other: EngravingDefaults | EngravingDefaultsDictInput | None,
+        kwargs: EngravingDefaultsDictInput,
+    ) -> EngravingDefaultsDictInput | None:
         error.validateType(
             other,
             (EngravingDefaults, dict, type(None)),
             f"{self.__class__.__name__}.update()",
         )
 
-        other |= kwargs
-        return other
+        base: dict
+        if isinstance(other, EngravingDefaults):
+            base = other.items()
+        elif other is None:
+            if not kwargs:
+                return None
+            base = {}
+        else:
+            base = other
 
-    def values(self) -> list[EngravingDefaultsValue]:
+        base |= kwargs
+        return base
+
+    def values(self) -> list[EngravingDefaultsReturn]:
         """Return list of all available settings values.
 
         Order corresponds to :meth:`keys`.
@@ -598,7 +600,7 @@ class EngravingDefaults(BaseObject):
     def tupletBracketThickness(self, value: int | float | None) -> None:
         self._setValue("tupletBracketThickness", value)
 
-    def _getValue(self, name: str) -> EngravingDefaultsValue:
+    def _getValue(self, name: str) -> EngravingDefaultsReturn | None:
         # Common settings property getter.
         if not self._libDict and not _getAutoFlag():
             return None
@@ -615,14 +617,14 @@ class EngravingDefaults(BaseObject):
                 return None
             rulerName = MAPPING[name]["ruler"]
             rulerName = cast(str, rulerName)
-            ruler: RulerType = DISPATCHER[rulerName]
+            ruler: Callable[["Glyph"], int | float | None] = DISPATCHER[rulerName]
             value = ruler(glyph)
 
         elif self.spaces and isinstance(value, (int, float)) and self.font is not None:
             return self.font.smufl.toSpaces(value)
         return value
 
-    def _setValue(self, name: str, value: EngravingDefaultsValue) -> None:
+    def _setValue(self, name: str, value: EngravingDefaultsInput | None) -> None:
         # Common settings property setter.
         # Keeps dynamic dict of settings in font.lib().
 
@@ -648,7 +650,7 @@ class EngravingDefaults(BaseObject):
             self._libDict = libDict
 
     @property
-    def _libDict(self) -> dict[str, EngravingDefaultsValue]:
+    def _libDict(self) -> EngravingDefaultsDictReturn:
         # Dynamic dict in font.lib.naked().
         if self.font is None:
             return {}
@@ -656,7 +658,7 @@ class EngravingDefaults(BaseObject):
         return lib.setdefault("com.smufolib.engravingDefaults", {})
 
     @_libDict.setter
-    def _libDict(self, value: EngravingDefaultsDict) -> None:
+    def _libDict(self, value: EngravingDefaultsDictInput) -> None:
         if self.font is not None:
             self.font.lib.naked()["com.smufolib.engravingDefaults"] = value
 
