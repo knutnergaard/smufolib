@@ -1,5 +1,9 @@
 """Utilities for extracting and representing point data.
 
+.. deprecated:: 0.5.0
+
+    Use :func:`.getGlyphPoints` to retrieve points instead.
+
 This module provides classes and functions to retrieve points from
 contours and components within font-related objects and to simplify
 the representation of :class:`fontParts.base.BasePoint`. It includes
@@ -9,20 +13,33 @@ supporting point types, positions, and contour indices.
 """
 
 from __future__ import annotations
-from typing import NamedTuple
+from typing import TYPE_CHECKING, NamedTuple
 from collections.abc import Iterator
 import itertools
+import warnings
 
-from fontParts.fontshell import RComponent
-from fontParts.fontshell import RContour
-from smufolib.objects.glyph import Glyph
-from smufolib.objects.layer import Layer
-from smufolib.objects.font import Font
 from smufolib.utils import error, stdUtils
+
+if TYPE_CHECKING:  # pragma: no cover
+    from fontParts.fontshell import RComponent
+    from fontParts.fontshell import RContour
+    from smufolib.objects.glyph import Glyph
+    from smufolib.objects.layer import Layer
+    from smufolib.objects.font import Font
+
 
 TYPES = ("line", "curve", "qcurve")
 
-# pylint: disable=C0103
+# pylint: disable=C0103, C0415
+
+# TODO: Remove module in 0.6
+
+warnings.warn(
+    "This module is deprecated and will be removed in the next version of "
+    "SMufoLib (after 0.5). Use 'rulers.getPoints' to retrieve points instead.",
+    DeprecationWarning,
+    stacklevel=2,
+)
 
 
 class Point(NamedTuple):
@@ -86,6 +103,10 @@ def getPoints(
         Point(type='line', position=Position(x=281, y=-309), contourIndex=2))
 
     """
+    from smufolib.objects.glyph import Glyph
+    from smufolib.objects.layer import Layer
+    from smufolib.objects.font import Font
+
     error.validateType(obj, (tuple, Glyph, Layer, Font), "obj")
     if isinstance(obj, tuple):
         for item in obj:
@@ -124,6 +145,11 @@ def getContourPoints(
         Point(type='line', position=Position(x=309, y=-249), contourIndex=0))
 
     """
+    from smufolib.objects.glyph import Glyph
+    from smufolib.objects.layer import Layer
+    from smufolib.objects.font import Font
+    from fontParts.fontshell import RContour
+
     error.validateType(obj, (tuple, RContour, Glyph, Layer, Font), "obj")
     if isinstance(obj, tuple):
         for component in obj:
@@ -191,6 +217,11 @@ def _getComponents(
     obj: RComponent | tuple[RComponent, ...] | Glyph | Layer | Font,
 ) -> tuple[RComponent, ...] | Iterator[RComponent]:
     # Get components from font-related object.
+    from smufolib.objects.glyph import Glyph
+    from smufolib.objects.layer import Layer
+    from smufolib.objects.font import Font
+    from fontParts.fontshell import RComponent
+
     if isinstance(obj, tuple):
         for component in obj:
             error.validateType(component, RComponent, "obj", items=True)

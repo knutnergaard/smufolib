@@ -1,14 +1,22 @@
+from __future__ import annotations
 import contextlib
 import json
-from contextlib import contextmanager
+import unittest
+from collections.abc import Callable
 from io import StringIO
 from pathlib import Path
 from tempfile import TemporaryDirectory
+from typing import TYPE_CHECKING, Any
 
 from smufolib.utils import converters
+from smufolib.utils._annotations import CollectionType, PairCollectionType, PairType
+
+if TYPE_CHECKING:
+    from smufolib.objects.font import Font
+    from smufolib.objects.glyph import Glyph
 
 
-def generateGlyph(font, name, **kwargs):
+def generateGlyph(font: Font, name: str, **kwargs: Any) -> Glyph:
     glyph = font.newGlyph(name)
     glyph.unicode = kwargs.get("unicode")
     for attr, value in kwargs.items():
@@ -28,7 +36,7 @@ def generateGlyph(font, name, **kwargs):
     return glyph
 
 
-def generateLigatureComponents(ligature):
+def generateLigatureComponents(ligature: Glyph) -> tuple[Glyph, ...]:
     glyphs = []
     font = ligature.font
     for i, componentName in enumerate(ligature.name.split("_")):
@@ -39,35 +47,40 @@ def generateLigatureComponents(ligature):
     return tuple(glyphs)
 
 
-def drawLines(glyph, points):
+def drawLines(glyph, points: CollectionType[PairType[int | float]]) -> None:
     pen = glyph.getPen()
 
     if not points:
-        return glyph
+        return
 
-    pen.moveTo(points[0])
-    for point in points[1:]:
+    first, *rest = points
+    pen.moveTo(first)
+    for point in rest:
         pen.lineTo(point)
     pen.closePath()
 
-    return glyph
 
-
-def drawCurves(glyph, points):
+def drawCurves(
+    glyph: Glyph,
+    points: CollectionType[
+        PairType[int | float] | CollectionType[PairType[int | float]]
+    ],
+) -> None:
     pen = glyph.getPen()
 
     if not points:
-        return glyph
+        return
 
-    pen.moveTo(points[0])
-    for pointSet in points[1:]:
+    first, *rest = points
+    pen.moveTo(first)
+    for pointSet in rest:
         pen.curveTo(*pointSet)
     pen.closePath()
 
-    return glyph
 
-
-def drawCircle(glyph, center, radius):
+def drawCircle(
+    glyph: Glyph, center: PairType[int | float], radius: int | float
+) -> None:
     k = 0.552284749831
 
     cx, cy = center
@@ -80,10 +93,10 @@ def drawCircle(glyph, center, radius):
         ((cx - r, cy + k * r), (cx - k * r, cy + r), (cx, cy + r)),
     )
 
-    return drawCurves(glyph, points)
+    drawCurves(glyph, points)
 
 
-def getVerboseOutput(function, *args, **kwargs):
+def getVerboseOutput(function: Callable, *args: Any, **kwargs: Any) -> str:
     buffer = StringIO()
     with contextlib.redirect_stdout(buffer):
         function(*args, **kwargs)
@@ -91,8 +104,8 @@ def getVerboseOutput(function, *args, **kwargs):
     return buffer.getvalue()
 
 
-class TempDirMixin:
-    def setUp(self):
+class TempDirMixin(unittest.TestCase):
+    def setUp(self) -> None:
         super().setUp()
         self._tempDir = TemporaryDirectory()
         self.addCleanup(self._tempDir.cleanup)
@@ -114,6 +127,14 @@ class SavedMetadataMixin(TempDirMixin):
         return metadataPath
 
 
+class SavedConfigMixin(TempDirMixin):
+    def saveConfigToTemp(self, config=None, filename="metadata.json"):
+        configToSave = config if config else self.config
+        configPath = self.tempPath / filename
+        configPath.write_text(configToSave.strip(), encoding="utf-8")
+        return configPath
+
+
 class SuppressOutputMixin:
     def suppressOutput(self):
         self._suppress = self.redirectOutput()
@@ -131,9 +152,10 @@ class SuppressOutputMixin:
 
 
 class AssertNotRaisesMixin:
-    @contextmanager
+    @contextlib.contextmanager
     def assertNotRaises(self, exc_type):
         try:
             yield None
         except exc_type:
-            raise self.failureException("{} raised".format(exc_type.__name__))
+            # pylint: disable-next=W0707
+            raise self.failureException(f"{exc_type.__name__} raised")

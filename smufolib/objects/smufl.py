@@ -2,9 +2,10 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 import re
+import warnings
 
 from fontParts.base.base import BaseObject
-from smufolib.objects.range import Range
+from smufolib.objects.range import Range, METADATA
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib.utils import converters, error, normalizers
 
@@ -391,9 +392,13 @@ class Smufl(BaseObject):
         components = [g.smufl.name for g in self.componentGlyphs]
         return tuple(components)
 
+    # TODO: Remove 'range' in 0.6
     @property
     def range(self) -> Range:
         """Glyph's :class:`.Range` object.
+
+        .. deprecated:: 0.5.0
+            Use :attr:`ranges` instead.
 
         This property is read-only.
 
@@ -401,10 +406,63 @@ class Smufl(BaseObject):
 
             >>> glyph = font['uniE212'] # stemSwished
             >>> glyph.smufl.range
-            <Range 'stems' ('U+E210–U+E21F') at 4348391632>
+            <Range 'stems' ('U+E210-U+E21F') at 4348391632>
 
         """
+        warnings.warn(
+            "This property is deprecated and will be removed in the next version of "
+            "SMufoLib (after 0.5). Use 'ranges' instead.",
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return Range(self)
+
+    @property
+    def ranges(self) -> tuple[Range, ...] | None:
+        """SMuFL ranges covered by font or glyph.
+
+        When accessed from a :class:`.Font` object, returns a :class:`tuple` of all
+        :class:`.Range` objects covered by the font. When accessed from a
+        :class:`.Glyph` object, returns a singleton :class:`tuple` containing the
+        glyph's corresponding :class:`.Range`.
+
+        This property is read-only.
+
+        Example::
+
+            >>> font.smufl.ranges
+            (<Range 'stringTechniques' ('U+E610-U+E62F') at 4449982528>,
+            <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at 4449981712>,
+            <Range 'harpTechniques' ('U+E680-U+E69F') at 4449981376>, ...)
+            >>> glyph = font['uniE212'] # stemSwished
+            >>> glyph.smufl.ranges
+            (<Range 'stems' ('U+E210-U+E21F') at 4348391632>,)
+
+        """
+        if self.font is None:
+            return None
+        if self.glyph is None:
+            return self._getFontRanges()
+        return (Range(self),)
+
+    def _getFontRanges(self) -> tuple[Range, ...] | None:
+        if self.font is None or self._names is None or METADATA is None:
+            return None
+
+        ranges = []
+        for data in METADATA.values():
+            match = next(
+                (
+                    self._names[smuflName]
+                    for smuflName in data["glyphs"]
+                    if smuflName in self._names
+                ),
+                None,
+            )
+            if match:
+                ranges.append(Range(self.font[match].smufl))
+
+        return tuple(ranges)
 
     @property
     def advanceWidth(self) -> int | float | None:
