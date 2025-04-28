@@ -263,10 +263,10 @@ def normalizeEngravingDefaults(value: EngravingDefaults) -> EngravingDefaults:
 def normalizeEngravingDefaultsAttr(
     name: str, value: EngravingDefaultsInput | None
 ) -> EngravingDefaultsReturn | None:
-    """Normalize engraving defaults attribute value based on name.
+    """Normalize engraving defaults attribute.
 
-    :param name: The name of the attribute to normalize.
-    :param value: The value to normalize.
+    :param name: The attribute name to normalize.
+    :param value: The attribute value to normalize.
     :raises TypeError: If any parameter value is not an accepted type.
     :raises AttributeError: If name is not a
         valid :class:`.EngravingDefaults` attribute name.
