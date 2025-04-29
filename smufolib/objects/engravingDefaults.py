@@ -130,9 +130,8 @@ class EngravingDefaults(BaseObject):
         contents = []
         if self.font is not None:
             contents.append("in font")
-            contents.append(f"auto={_getAutoFlag()}")
-
             contents += self.font._reprContents()  # pylint: disable-next=W0212
+            contents.append(f"auto={_getAutoFlag()}")
         return contents
 
     def naked(self):
