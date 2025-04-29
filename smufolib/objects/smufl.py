@@ -200,7 +200,8 @@ class Smufl(BaseObject):
         Example::
 
             >>> font.smufl.engravingDefaults
-            <EngravingDefaults at 4540156752>
+            <EngravingDefaults in font 'MyFont' path='/path/to/myFont.ufo'
+            auto=True at 4425372944>
 
         """
         return EngravingDefaults(self)
@@ -665,7 +666,7 @@ class Smufl(BaseObject):
         self._updateFontLib("com.smufolib.names", value)
 
     # ----------
-    # Validation
+    # Predicates
     # ----------
 
     @property
