@@ -19,7 +19,7 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
     #. Environment variable :envvar:`SMUFOLIB_CFG`
     #. SMufoLib package directory
 
-    :param path: Path to smufolib.cfg. Defaults to :obj:`None`.
+    :param path: Path to `smufolib.cfg`. Defaults to :obj:`None`.
 
     Example::
 
