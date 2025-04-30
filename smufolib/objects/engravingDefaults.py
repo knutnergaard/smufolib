@@ -71,42 +71,9 @@ class EngravingDefaults(BaseObject):
         If a value is unassigned (or explicitly set to :obj:`None`), the attribute
         will be calculated automatically from the corresponding glyph in the font,
         provided that glyph exists and the :ref:`[engravingDefaults]` `auto`
-        setting is enabled in the configuration file. Attributes are mapped to the
-        following glyphs:
-
-        ==================================   ===========================================
-        Attribute                            Glyph
-        ==================================   ===========================================
-        :attr:`arrowShaftThickness`          `uniEB60 (arrowBlackUp)`
-        :attr:`barlineSeparation`            `uniE031 (barlineDouble)`
-        :attr:`beamSpacing`                  `uniE1F9 (textCont16thBeamShortStem)`
-        :attr:`beamThickness`                `uniE1F7 (textCont8thBeamShortStem)`
-        :attr:`bracketThickness`             `uniE003 (bracketTop)`
-        :attr:`dashedBarlineDashLength`      `uniE036 (barlineDashed)`
-        :attr:`dashedBarlineGapLength`       `uniE036 (barlineDashed)`
-        :attr:`dashedBarlineThickness`       `uniE036 (barlineDashed)`
-        :attr:`hairpinThickness`             `uniE53E (dynamicCrescendoHairpin)`
-        :attr:`hBarThickness`                `uniE4F0 (restHBarMiddle)`
-        :attr:`legerLineExtension`           `uniE022 (legerLine)`
-        :attr:`legerLineThickness`           `uniE022 (legerLine)`
-        :attr:`lyricLineThickness`           `uniE010 (staff1Line)`
-        :attr:`octaveLineThickness`          `uniE010 (staff1Line)`
-        :attr:`pedalLineThickness`           `uniE010 (staff1Line)`
-        :attr:`repeatBarlineDotSeparation`   `uniE040 (repeatLeft)`
-        :attr:`repeatEndingLineThickness`    `uniE030 (barlineSingle)`
-        :attr:`slurEndpointThickness`        `uniE1FD (textTie)`
-        :attr:`slurMidpointThickness`        `uniE1FD (textTie)`
-        :attr:`staffLineThickness`           `uniE010 (staff1Line)`
-        :attr:`stemThickness`                `uniE210 (stem)`
-        :attr:`subBracketThickness`          `uniE030 (barlineSingle)`
-        :attr:`textEnclosureThickness`       `uniE010 (staff1Line)`
-        :attr:`thickBarlineThickness`        `uniE034 (barlineHeavy)`
-        :attr:`thinBarlineThickness`         `uniE030 (barlineSingle)`
-        :attr:`thinThickBarlineSeparation`   `uniE032 (barlineFinal)`
-        :attr:`tieEndpointThickness`         `uniE1FD (textTie)`
-        :attr:`tieMidpointThickness`         `uniE1FD (textTie)`
-        :attr:`tupletBracketThickness`       `uniE1FE (textTupletBracketStartShortStem)`
-        ==================================   ===========================================
+        setting is enabled in the configuration file.
+        See :ref:`engraving-defaults-mapping` for a complete list of attributes and
+        their default corresponding glyphs and assigned ruler functions.
 
     .. tip::
 
