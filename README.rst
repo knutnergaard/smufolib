@@ -40,7 +40,7 @@ Scripts may be run either directly from the command line or imported as
 regular python modules, passing in any arguments in the familiar manner
 to each platform.
 
-As an example, check for missing or superflous SMuFL anchors and mark
+As an example, check for missing or superfluous SMuFL anchors and mark
 discrepant glyphs by running the `checkAnchors` script with
 the ``--mark`` flag directly from the command line:
 

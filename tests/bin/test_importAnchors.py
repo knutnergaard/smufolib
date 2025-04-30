@@ -16,7 +16,10 @@ from bin.importAnchors import importAnchors, main
 
 
 class TestImportAnchors(
-    SavedFontMixin, SavedMetadataMixin, SuppressOutputMixin, unittest.TestCase
+    SavedFontMixin,
+    SavedMetadataMixin,
+    SuppressOutputMixin,
+    unittest.TestCase,
 ):
     def setUp(self):
         super().setUp()
@@ -25,10 +28,12 @@ class TestImportAnchors(
         # fmt: off
         self.metadata = {
             "glyphsWithAnchors": {
-                "testGlyph1": {
+                "testSmuflGlyph1": {
                     "stemUpNW": [1.0, 1.0]
-                    }
-            
+                },
+                "uncoveredGlyph": {
+                    "stemUpSE": [1.5, 1.5]
+                }
             }
         }
         # fmt: on
@@ -40,13 +45,8 @@ class TestImportAnchors(
         self.glyph = generateGlyph(
             self.font,
             "testGlyph1",
-            smuflName="testGlyph1",
-            anchors=[
-                (
-                    "nonSmuflAnchor",
-                    (0, 0),
-                )
-            ],
+            smuflName="testSmuflGlyph1",
+            anchors=[("nonSmuflAnchor", (0, 0))],
         )
         generateGlyph(self.font, "nonSmuflGlyph")
         self.anchorName = "stemUpNW"
@@ -56,7 +56,7 @@ class TestImportAnchors(
 
     def test_importAnchors_basic(self):
         importAnchors(self.font, fontData=self.metadataPath)
-        anchors = self.metadata["glyphsWithAnchors"]["testGlyph1"]
+        anchors = self.metadata["glyphsWithAnchors"]["testSmuflGlyph1"]
         result = {
             k: tuple(self.font.smufl.toUnits(n) for n in v) for k, v in anchors.items()
         }
@@ -73,7 +73,8 @@ class TestImportAnchors(
         )
         self.assertIn("\nCompiling glyph data...", output)
         self.assertIn(
-            f"\nAppending anchors to glyph '{self.glyph.smufl.name}':", output
+            f"\nAppending anchors to glyph '{self.glyph.name}' ('{self.glyph.smufl.name}'):",
+            output,
         )
         for anchor in self.glyph.anchors:
             name = anchor.name
