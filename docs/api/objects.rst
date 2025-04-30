@@ -55,3 +55,20 @@ which may be imported directly from the main module.
    :members: ENGRAVING_DEFAULTS_KEYS
    :noindex:
 
+
+.. _engraving-defaults-mapping:
+
+Engraving Defaults Mapping
+==========================
+
+By default, the :class:`.EngravingDefaults` class and
+:mod:`~bin.calculateEngravingDefaults` script use the following mapping to calculate
+engraving default values from corresponding glyphs using particular ruler functions.
+
+.. csv-table::
+    :file: ../mappings.csv
+    :header-rows: 1
+
+The constant :data:`.utils.rulers.MAPPING` provides the mapping as a :class:`dict`. The
+default mapping may be modified with the `remap` parameter in
+:func:`~bin.calculateEngravingDefaults.calculateEngravingDefaults`.
