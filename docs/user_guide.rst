@@ -99,13 +99,17 @@ Coloring glyphs by range is also really easy with this feature::
    ...     for glyph in range.glyphs:
    ...         glyph.mark = color
 
+The :class:`.Range` object provides the values for any SMuFL range's 
+:attr:`~.Range.name`, :attr:`~.Range.description`, :attr:`~.Range.glyphs`, 
+:attr:`~.Range.start` and :attr:`~.Range.end` attributes.
+
 .. _engraving-defaults:
 
 Engraving Defaults
 ==================
 
-Engraving defaults are manage by their own appropriately named
-:class:`.EngravingDefaults` object, accessed through the :attr:`.Smufl.engravingDefaults` attribute::
+Engraving defaults are managed by their own appropriately named
+:class:`.EngravingDefaults` object, accessed with the :attr:`.Smufl.engravingDefaults` attribute::
 
    >>> font.smufl.engravingDefaults
    <EngravingDefaults in font 'MyFont' path='/path/to/myFont.ufo'
@@ -123,7 +127,7 @@ Each setting has it's own attribute within this object::
 .. versionadded:: 0.5.0
 
    Engraving defaults are calculated automatically from corresponding glyphs by default
-   -- provided these glyphs exist. See :ref:`engraving-defaults-mappings` for a full
+   -- provided these glyphs exist. See :ref:`engraving-defaults-mapping` for a full
    list of attributes and their corresponding glyphs.
 
    To override the automatic calculations, simply set the attributes to a value other
@@ -158,20 +162,6 @@ Anchors may be imported from another font's metadata file using the
 :mod:`~bin.checkAnchors` to keep track of missing or superfluous SMuFL-specific glyph
 anchors in a font. See :ref:`running-scripts` from more information.
 
-Status Indicators
-=================
-
-status indication. For instance whether a glyph
-The :class:`.Smufl` class includes a set of convenient :term:`boolean` checks to
-determine a glyphs membership status, including:
-
-- :attr:`~.Smufl.isLigature` 
-- :attr:`~.Smufl.isMember`
-- :attr:`~.Smufl.isOptional`
-- :attr:`~.Smufl.isRecommended`
-- :attr:`~.Smufl.isSalt`
-- :attr:`~.Smufl.isSet`
-
 .. _changing-measurement-units:
 
 Changing Measurement Units
@@ -189,21 +179,73 @@ spaces set either :attr:`.EngravingDefaults.spaces` or :attr:`.Smufl.spaces` to
    >>> ed.spaces = False
    >>> ed.stemThickness
    35
+   
+.. note::
+
+   Setting ``font.smufl.engravingDefaults.spaces=True`` is equivalent to setting
+   ``font.smufl.spaces=True``, so either one will affect all relevant
+   attributes across the entire library.
+   
+   The setting will be saved with the font.
+
+The :class:`.SMufl` class also provides methods to convert a given value between the
+different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
+value to staff spaces, and the :meth:`.toUnits` to do the opposite::
+
+   >>> font.smufl.toSpaces(250)
+   1.0
+   >>> font.smufl.toUnits(1.0)
+   250
 
 .. important::
 
-   The :attr:`.EngravingDefaults.spaces` depends on the font's units per em value
+   The attributes and methods mentioned above depend on the font's units per em value
    which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for measurement
    units conversion to work::
 
       >>> font.info.unitsPerEm = 1000
 
-   Note also that ``font.smufl.engravingDefaults.spaces=True`` is equivalent to
-   ``font.smufl.spaces=True``, and either one will affect all relevant attributes
-   across the entire library.
-   
-   The setting will be saved with the font.
+Finding glyphs
+==============
 
+You can search for a glyph by it's canonical SMuFL name with the
+:meth:`Smufl.findGlyph` method::
+
+   >>> font.smufl.findGlyph('barlineSingle')
+   <Glyph 'uniE030' ('public.default') at 4393557200>
+
+
+
+==============
+Other Features
+==============
+
+Status Indicators
+=================
+
+The :class:`.Smufl` class includes a set of convenient :term:`boolean` checks to
+determine a glyph's membership status:
+
+.. list-table::
+   
+   * - :attr:`~.Smufl.isLigature`
+     - Checks if the glyph is a valid ligature
+   * - :attr:`~.Smufl.isMember`
+     - Checks if the glyph is within the SMuFL glyph range
+   * - :attr:`~.Smufl.isOptional`
+     - Checks if the glyph is within the optional glyph range
+   * - :attr:`~.Smufl.isRecommended`
+     - Checks if the glyph is within the recommended glyph range
+   * - :attr:`~.Smufl.isSalt`
+     - Checks if the glyph is  a stylistic alternate
+   * - :attr:`~.Smufl.isSet`
+     - Checks if the glyph is a stylistic set glyph
+
+For instance, checking if a glyph is within the accepted range for recommended glyphs in
+SMuFL is as easy as::
+
+   >>> if glyph.smufl.isRecommended:
+   ...   # do something
 
 .. _running-scripts:
 
@@ -265,3 +307,16 @@ name. The documentation for either one is accessible via :func:`help`.
 Configuring SMufoLib
 ====================
 
+Content goes here
+
+========================
+Making Metadata Requests
+========================
+
+Content goes here
+
+================================
+Using the Command Line Interface
+================================
+
+Content goes here
