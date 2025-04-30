@@ -115,13 +115,18 @@ def importAnchors(
                 progressBar.update(1)
                 time.sleep(0.0001)
 
-            glyphName = names[smuflName]
+            glyphName = names.get(smuflName)
+            if not glyphName:
+                continue
+
             if clear:
                 font[glyphName].clearAnchors()
+
             stdUtils.verbosePrint(
-                f"\nAppending anchors to glyph '{glyphName}':",
+                f"\nAppending anchors to glyph '{glyphName}' ('{smuflName}'):",
                 verbose,
             )
+
             for anchorName, position in anchors.items():
                 position = [font.smufl.toUnits(p) for p in position]
 
