@@ -1,4 +1,3 @@
-============
 Installation
 ============
 
@@ -11,7 +10,6 @@ later. It is listed in the `Python Package Index
 
     $ python -m pip install smufolib
 
-===========
 First Steps
 ===========
 
@@ -23,7 +21,70 @@ Then instantiate a font object::
 
    >>> font = Font("path/to/myFont.ufo")
 
-==================
+.. _configuring-smufolib:
+
+Configuring SMufoLib
+====================
+
+SMufoLib supports customization through a configuration file named `smufolib.cfg`.
+This allows you to tailor the library's behavior to specific project needs, such as
+disabling automatic engraving calculation or changing default colors for mark glyphs.
+
+Configuration File Structure
+----------------------------
+
+The configuration file uses an INI-style format with sections and key-value pairs.
+
+Here is a minimal example:
+
+.. code-block:: ini
+
+   [color.marks]
+   mark1 = (1.0, 0.0, 1.0, 1.0)
+
+   [engravingDefaults]
+   auto = false
+
+This example changes the primary mark color and disables automatic calculation of
+:class:`EngravingDefaults`.
+
+For a complete list of sections, options, and default values, see the
+:ref:`configuration` section of the API documentation.
+
+Configuration File Location
+---------------------------
+
+SMufoLib will search for the configuration file in the following order:
+
+   #. The user's home directory (as returned by :func:`os.path.expanduser`)
+   #. The current working directory
+   #. The path specified by the :envvar:`SMUFOLIB_CFG` environment variable
+   #. The SMufoLib installation directory
+
+The first valid file found will be used.
+
+To set a custom configuration path, define the environment variable :envvar:`SMUFOLIB_CFG`:
+
+- On macOS or Linux:
+
+  .. code:: zsh
+
+     export SMUFOLIB_CFG=/path/to/smufolib.cfg
+
+  Add this to your shell startup file (e.g., `~/.zshrc` or `~/.bashrc`) to make it persistent.
+
+- On Windows, use the `set` command:
+
+  .. code:: bat
+
+     set SMUFOLIB_CFG=C:\path\to\smufolib.cfg
+
+.. note::
+
+   If no valid configuration file is found, SMufoLib falls back to the default
+   `smufolib.cfg` located in the library's installation directory.
+
+
 Setting attributes
 ==================
 
@@ -38,7 +99,7 @@ accessed through the :class:`.Smufl` object::
    >>> glyph = font["uniE000"]
    >>> glyph.smufl.name = "gClef"
    >>> glyph.smufl.description = "G clef"
-   >>> glyph.smufl.classes = (clefs,)
+   >>> glyph.smufl.classes = ("clefs",)
 
 .. note::
 
@@ -46,22 +107,21 @@ accessed through the :class:`.Smufl` object::
    on whether they are accessed through :class:`.Font` or :class:`.Glyph`.
 
    Font-specific :class:`.Smufl` attributes are generally available from either the
-   font or any of it's glyphs.
+   font or any of its glyphs.
 
 The essential glyph identification attributes (:attr:`.Smufl.name`,
 :attr:`.Smufl.description` and :attr:`.Smufl.classes`) may also be imported from preexisting metadata files using the :mod:`~bin.importID` script. See
-:ref:`running-scripts` from more information.
+:ref:`running-scripts` for more information.
 
 .. _working-with-metadata:
 
-=====================
 Working with metadata
 =====================
 
 Once SMuFL specific glyph names and other attributes have been set, SMufoLib provides useful features like:
 
 Glyph Ranges
-============
+------------
 
 The SMuFL-specific glyph ranges covered are available for an entire font or any
 specific glyph:: 
@@ -106,7 +166,7 @@ The :class:`.Range` object provides the values for any SMuFL range's
 .. _engraving-defaults:
 
 Engraving Defaults
-==================
+------------------
 
 Engraving defaults are managed by their own appropriately named
 :class:`.EngravingDefaults` object, accessed with the :attr:`.Smufl.engravingDefaults` attribute::
@@ -115,7 +175,7 @@ Engraving defaults are managed by their own appropriately named
    <EngravingDefaults in font 'MyFont' path='/path/to/myFont.ufo'
    auto=True at 4425372944>
 
-Each setting has it's own attribute within this object::
+Each setting has its own attribute within this object::
    
    >>> ed = font.smufl.engravingDefaults
    >>> ed.stemThickness
@@ -124,26 +184,24 @@ Each setting has it's own attribute within this object::
    >>> ed.stemThickness
    30
 
-.. versionadded:: 0.5.0
+Engraving defaults are calculated automatically from corresponding glyphs by default
+-- provided that these glyphs exist. See :ref:`engraving-defaults-mapping` for a full
+list of attributes and their corresponding glyphs.
 
-   Engraving defaults are calculated automatically from corresponding glyphs by default
-   -- provided these glyphs exist. See :ref:`engraving-defaults-mapping` for a full
-   list of attributes and their corresponding glyphs.
+To override the automatic calculations, simply set the attributes to a value other
+than :obj:`None`.
 
-   To override the automatic calculations, simply set the attributes to a value other
-   than :obj:`None`.
-
-   To turn the feature off entirely, disable `auto` in the :ref:`[engravingDefaults]`
-   section of `smufolib.cfg`. See :ref:`configuring-smufolib` for more information
-   about how to customize SMufoLib's behavior.
+To turn the feature off entirely, disable `auto` in the :ref:`[engravingDefaults]`
+section of `smufolib.cfg`. See :ref:`configuring-smufolib` for more information
+about how to customize SMufoLib's behavior.
 
 Engraving defaults are available in either font units or staff spaces. See
 :ref:`changing-measurement-units` for more information.
 
 Anchors
-=======
+-------
 
-SMufoLib does not currently provide it's own anchor object, but a SMuFL specific
+SMufoLib does not currently provide its own anchor object, but a SMuFL specific
 representation of a glyph's anchors is available from the :attr:`.Smufl.anchors`
 attribute::
    
@@ -160,12 +218,12 @@ Anchor coordinates are available in either font units or staff spaces. See
 Anchors may be imported from another font's metadata file using the
 :mod:`~bin.importAnchors` script. SMufoLib also provides the diagnostics script
 :mod:`~bin.checkAnchors` to keep track of missing or superfluous SMuFL-specific glyph
-anchors in a font. See :ref:`running-scripts` from more information.
+anchors in a font. See :ref:`running-scripts` for more information.
 
 .. _changing-measurement-units:
 
 Changing Measurement Units
-==========================
+--------------------------
 
 You can get or set engraving defaults, anchor coordinates and glyph advance width in
 either font units or staff spaces, whatever suits your workflow. To switch to staff
@@ -186,7 +244,7 @@ spaces set either :attr:`.EngravingDefaults.spaces` or :attr:`.Smufl.spaces` to
    ``font.smufl.spaces=True``, so either one will affect all relevant
    attributes across the entire library.
    
-   The setting will be saved with the font.
+   This setting is stored in the font's metadata and will persist when saving the font.
 
 The :class:`.SMufl` class also provides methods to convert a given value between the
 different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
@@ -206,22 +264,25 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite::
       >>> font.info.unitsPerEm = 1000
 
 Finding glyphs
-==============
+--------------
 
-You can search for a glyph by it's canonical SMuFL name with the
+You can search for a glyph by its canonical SMuFL name with the
 :meth:`Smufl.findGlyph` method::
 
    >>> font.smufl.findGlyph('barlineSingle')
    <Glyph 'uniE030' ('public.default') at 4393557200>
 
+::
+
+   >>> font.smufl.findGlyph('missingSmuflName')
+   None
 
 
-==============
 Other Features
 ==============
 
 Status Indicators
-=================
+-----------------
 
 The :class:`.Smufl` class includes a set of convenient :term:`boolean` checks to
 determine a glyph's membership status:
@@ -249,7 +310,6 @@ SMuFL is as easy as::
 
 .. _running-scripts:
 
-===============
 Running Scripts
 ===============
 
@@ -291,7 +351,7 @@ Positional arguments and available options can be listed by running the help com
 
 Alternatively, scripts can be imported as modules in Python:
 
-.. code:: Py3
+.. code:: python
 
    from bin.checkAnchors import checkAnchors
 
@@ -301,22 +361,83 @@ This imports and executes the script's program
 function, :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same
 name. The documentation for either one is accessible via :func:`help`.
 
-.. _configuring-smufolib:
-
-====================
-Configuring SMufoLib
-====================
-
-Content goes here
-
-========================
 Making Metadata Requests
 ========================
 
-Content goes here
+SMufoLib provides a :mod:`request` module to handle web requests and metadata file
+operations, facilitating access to updated SMuFL data. Most of this functionality is
+handled by the module's :class:`.Request` class.
 
-================================
+Standard Metadata Requests
+--------------------------
+
+The different metadata support files published under the SMuFL standard, as well as the
+metadata file for SMuFL's reference font, Bravura, can be easily retrieved using the
+appropriately named :class:`.Request` class methods:
+
+.. list-table::
+
+   * - :meth:`~.Request.classes`
+     - Retrieves the official `classes.json` metadata file
+   * - :meth:`~.Request.glyphnames`
+     - Retrieves the official `glyphnames.json` metadata file
+   * - :meth:`~.Request.ranges`
+     - Retrieves the official `ranges.json` metadata file
+   * - :meth:`~.Request.font`
+     - Retrieves the official `bravura.json` metadata file
+
+By default, these methods return a parsed Python :class:`dict`. To retrieve a raw
+:class:`str` response instead, set ``decode=False``::
+
+   >>> text = Request.classes(decode=False)
+
+Paths and Fallbacks
+-------------------
+
+:class:`Request` can handle both URL and filesystem paths. Pass the path as the first
+argument::
+
+   >>> file = Request("path/to/file.json")
+
+   >>> file = Request("https://path/to/file.json")
+
+You can also combine a remote URL with a local fallback file. This enables automatic
+fallback to a local copy if the remote request fails due to a connection error::
+
+   >>> file = Request("https://path/to/file.json", "path/to/file.json")
+
+.. note::
+
+   A fallback will only be attempted if a :class:`~urllib.error.URLError` is raised.
+   If the primary `path` points to a local file and it fails, the error will be raised
+   immediately.
+
+Raw Output
+----------
+
+The :class:`Request` object provides two properties for accessing raw response data:
+
+- Use the :attr:`text` property to get a decoded :class:`str`::
+
+    >>> data = Request("path/to/file.json").text
+
+- Use the :attr:`bytes` property to get the raw :class:`bytes` content::
+
+    >>> data = Request("path/to/file.json").bytes
+
+Unless an `encoding` is explicitly specified, text responses will be decoded using UTF-8.
+
+JSON Parsing
+------------
+
+If the file is a JSON file, use the built-in :meth:`~.Request.json` method to parse it::
+
+   >>> metadata = Request("https://path/to/file.json").json()
+
+
 Using the Command Line Interface
 ================================
 
-Content goes here
+.. todo::
+   
+   Summarize `smufolib` CLI entry points and subcommands (if any).
