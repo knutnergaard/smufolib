@@ -13,9 +13,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
 
 CONFIG = config.load()
-METADATA = Request(
-    CONFIG["metadata.paths"]["ranges"], CONFIG["metadata.fallbacks"]["ranges"]
-).json()
+METADATA = Request.ranges()
 
 
 class Range:
