@@ -1,6 +1,5 @@
 # pylint: disable=C0103, C0114, R0913
 from __future__ import annotations
-from typing import Any
 from pathlib import Path
 import json
 import urllib.request
@@ -8,8 +7,7 @@ import warnings
 
 from smufolib import config
 from smufolib.utils import error, normalizers
-
-JsonDict = dict[str, Any]
+from smufolib.utils._annotations import JsonDict
 
 CONFIG = config.load()
 
@@ -17,23 +15,85 @@ CONFIG = config.load()
 class Request:
     """Send HTTP or filesystem request.
 
-    A fallback path (e.g., a filesystem path to the same file), may be
-    specified in case of connection failure when the primary path is a
-    URL.
+    A fallback path (e.g., a filesystem path to the same file), may be specified in case
+    of connection failure when the primary path is a URL.
 
     An optional warning may be raised in the event of a fallback.
 
     :param path: Primary URL or filepath.
-    :param fallback: Fallback filepath to use if `path`
-        raises :class:`urllib.error.URLError`.
-    :param encoding: File text encoding. See :func:`open` for details.
-        Defaults to :ref:`[request]` `encoding` configuration.
-    :param warn: Warn if URLError is raised before fallback request.
-        Defaults to :ref:`[request]` `warn` configuration.
-    :param mode: File usage specification used with :attr:`raw`.
-        See :func:`open` for details. Defaults to 'r' (read).
+    :param fallback: Fallback filepath to use if `path` raises
+        :class:`urllib.error.URLError`.
+    :param encoding: File text encoding. See :func:`open` for details. Defaults to
+        :ref:`[request]` `encoding` configuration.
+    :param warn: Warn if URLError is raised before fallback request. Defaults to
+        :ref:`[request]` `warn` configuration.
+    :param mode: File usage specification used with :attr:`raw`. See :func:`open` for
+        details. Defaults to 'r' (read).
 
     """
+
+    @classmethod
+    def classes(cls, decode: bool = True) -> JsonDict | str | bytes | None:
+        """Retrieve `classes` metadata from configured paths.
+
+        This method attempts to load metadata from the path specified in the `classes`
+        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
+        `[metadata.fallbacks]` if necessary.
+
+        :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
+            response. Defaults to :obj:`True`.
+
+        """
+        return cls._getMetadata("classes", decode=decode)
+
+    @classmethod
+    def glyphnames(cls, decode: bool = True) -> JsonDict | str | bytes | None:
+        """Retrieve `glyphnanes` metadata from configured paths.
+
+        This method attempts to load metadata from the path specified in the
+        `glyphnanes` option of the `[metadata.paths]` section in `smufolib.cfg`, falling
+        back to `[metadata.fallbacks]` if necessary.
+
+        :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
+            response. Defaults to :obj:`True`.
+
+        """
+        return cls._getMetadata("glyphnames", decode=decode)
+
+    @classmethod
+    def ranges(cls, decode: bool = True) -> JsonDict | str | bytes | None:
+        """Retrieve `ranges` metadata from configured paths.
+
+        This method attempts to load metadata from the path specified in the `ranges`
+        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
+        `[metadata.fallbacks]` if necessary.
+
+        :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
+            response. Defaults to :obj:`True`.
+
+        """
+        return cls._getMetadata("ranges", decode=decode)
+
+    @classmethod
+    def font(cls, decode: bool = True) -> JsonDict | str | bytes | None:
+        """Retrieve `font` metadata from configured paths.
+
+        This method attempts to load metadata from the path specified in the `font`
+        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
+        `[metadata.fallbacks]` if necessary.
+
+        :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
+            response. Defaults to :obj:`True`.
+
+        """
+        return cls._getMetadata("font", decode=decode)
+
+    @classmethod
+    def _getMetadata(cls, filename: str, decode: bool = True):
+        path = CONFIG["metadata.paths"][filename]
+        fallback = CONFIG["metadata.fallbacks"][filename]
+        request = cls(path, fallback)
+        return request.json() if decode else request.raw
 
     def __init__(
         self,
@@ -58,8 +118,7 @@ class Request:
     def json(self) -> JsonDict | None:
         """Parse request as JSON.
 
-        :raises json.JSONDecodeError: If the response cannot be parsed
-            as JSON.
+        :raises json.JSONDecodeError: If the response cannot be parsed as JSON.
         :raises TypeError: If the raw data is None.
 
         """
@@ -71,12 +130,12 @@ class Request:
     def raw(self) -> str | bytes | None:
         """Make a request and return raw file contents.
 
-        :raises ValueError: If both path and fallback are :obj:`None` or
-            if the path or fallback file cannot be opened or read.
-        :raises urllib.error.URLError: If there is an error with the URL
-             request and no fallback is provided.
-        :raises FileNotFoundError: If the specified file or fallback
-            file cannot be found.
+        :raises ValueError: If both path and fallback are :obj:`None` or if the path or
+            fallback file cannot be opened or read.
+        :raises urllib.error.URLError: If there is an error with the URL request and no
+             fallback is provided.
+        :raises FileNotFoundError: If the specified file or fallback file cannot be
+            found.
 
         """
         if self.path is None and self.fallback is None:
@@ -175,11 +234,11 @@ def writeJson(
 
     :param filepath: Path to target file.
     :param source: JSON data source.
-    :param encoding: File text encoding. See :func:`open` for details.
-        Defaults to :ref:`[request]` `encoding` configuration.
+    :param encoding: File text encoding. See :func:`open` for details. Defaults to
+        :ref:`[request]` `encoding` configuration.
     :raises TypeError: If `filepath` is not the expected type.
-    :raises ValueError: If there is an error serializing the JSON data
-        or if `filepath` does not have a ``.json`` exctension.
+    :raises ValueError: If there is an error serializing the JSON data or if `filepath`
+        does not have a ``.json`` exctension.
     :raises FileNotFoundError: If the specified `filepath` cannot be found.
     :raises OSError: If there are any issues opening or writing to the file.
     :raises UnsupportedOperation: If the operation is not supported.
