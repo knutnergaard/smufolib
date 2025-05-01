@@ -41,8 +41,8 @@ CONFIG = config.load()
 
 # Parameter defaults
 FONT_DATA = Request(
-    CONFIG["metadata.paths"]["referenceFont"],
-    CONFIG["metadata.fallbacks"]["referenceFont"],
+    CONFIG["metadata.paths"]["font"],
+    CONFIG["metadata.fallbacks"]["font"],
 )
 MARK = True
 COLORS = CONFIG["color.anchors"]
@@ -68,7 +68,7 @@ def importAnchors(
         with :obj:`~smufolib.request.Request.path`
         and :obj:`~smufolib.request.Request.fallback` set to
         :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-        `referenceFont` configurations.
+        `font` configurations.
     :param mark: Apply defined anchor colors. Defaults to :obj:`True`.
     :param colors: dict of anchorNames mapped to UFO color values to
         apply when `mark` is :obj:`True`.

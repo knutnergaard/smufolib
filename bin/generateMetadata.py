@@ -64,8 +64,8 @@ CONFIG = config.load()
 
 # Parameter defaults
 FONT_DATA = Request(
-    CONFIG["metadata.paths"]["referenceFont"],
-    CONFIG["metadata.fallbacks"]["referenceFont"],
+    CONFIG["metadata.paths"]["font"],
+    CONFIG["metadata.fallbacks"]["font"],
 )
 VERBOSE = False
 
@@ -87,7 +87,7 @@ def generateMetadata(
         metadata file. Defaults to :class:`~.Request`
         with :attr:`~.Request.path` and :attr:`~.Request.fallback` set
         to :ref:`[metadata.paths]` and :ref:`
-        [metadata.fallbacks]` respective `referenceFont` configurations.
+        [metadata.fallbacks]` respective `font` configurations.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.
     :raises FileNotFoundError: If `targetPath` does not exist.

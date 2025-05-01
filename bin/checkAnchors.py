@@ -47,8 +47,8 @@ CONFIG = config.load()
 
 # Parameter defaults
 FONT_DATA = Request(
-    CONFIG["metadata.paths"]["referenceFont"],
-    CONFIG["metadata.fallbacks"]["referenceFont"],
+    CONFIG["metadata.paths"]["font"],
+    CONFIG["metadata.fallbacks"]["font"],
 )
 MARK = False
 MARK_COLOR = CONFIG["color.marks"]["mark1"]
@@ -73,7 +73,7 @@ def checkAnchors(
         with :attr:`~smufolib.request.Request.path`
         and :attr:`~smufolib.request.Request.fallback` set to
         :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]`
-        respective `referenceFont` configurations.
+        respective `font` configurations.
     :param mark: Mark discrepant glyphs. Defaults to :obj:`False`.
     :param color: Color value to apply when ``mark=True``.
         Defaults to :ref:`[color.marks]` `mark1` configuration.
