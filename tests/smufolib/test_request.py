@@ -22,6 +22,30 @@ class TestRequest(unittest.TestCase):
         )
         self.assertEqual(repr(self.request), reprString)
 
+    @patch.object(Request, "_getMetadata", return_value={"some": "data"})
+    def test_classes(self, mock_getMetadata):
+        result = Request.classes()
+        mock_getMetadata.assert_called_once_with("classes", decode=True)
+        self.assertEqual(result, {"some": "data"})
+
+    @patch.object(Request, "_getMetadata", return_value={"some": "data"})
+    def test_glyphnames(self, mock_getMetadata):
+        result = Request.glyphnames()
+        mock_getMetadata.assert_called_once_with("glyphnames", decode=True)
+        self.assertEqual(result, {"some": "data"})
+
+    @patch.object(Request, "_getMetadata", return_value={"some": "data"})
+    def test_ranges(self, mock_getMetadata):
+        result = Request.ranges()
+        mock_getMetadata.assert_called_once_with("ranges", decode=True)
+        self.assertEqual(result, {"some": "data"})
+
+    @patch.object(Request, "_getMetadata", return_value={"some": "data"})
+    def test_font(self, mock_getMetadata):
+        result = Request.font()
+        mock_getMetadata.assert_called_once_with("font", decode=True)
+        self.assertEqual(result, {"some": "data"})
+
     @patch("urllib.request.urlopen")
     def test_readFromURL(self, mock_urlopen):
         mock_response = MagicMock()
