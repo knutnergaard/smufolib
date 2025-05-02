@@ -113,9 +113,8 @@ class Request:
 
         if mode is not None:  # pragma: no cover
             warnings.warn(
-                (
-                    "The 'mode' parameter is deprecated and will be removed "
-                    "in the next version of SMufoLib (after 0.5)."
+                error.generateErrorMessage(
+                    "deprecated", objectName="mode", version=0.5
                 ),
                 DeprecationWarning,
                 stacklevel=2,
@@ -247,8 +246,7 @@ class Request:
 
         """
         warnings.warn(
-            "This property is deprecated and will be removed in the next version of "
-            "SMufoLib (after 0.5).",
+            error.generateErrorMessage("deprecated", objectName="mode", version=0.5),
             DeprecationWarning,
             stacklevel=2,
         )
@@ -274,8 +272,12 @@ class Request:
 
         """
         warnings.warn(
-            "This property is deprecated and will be removed in the next version of "
-            "SMufoLib (after 0.5).",
+            error.generateErrorMessage(
+                "deprecated",
+                string="Use 'content' or 'text' instead.",
+                objectName="raw",
+                version=0.5,
+            ),
             DeprecationWarning,
             stacklevel=2,
         )
