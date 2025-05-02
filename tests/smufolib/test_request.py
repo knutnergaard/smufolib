@@ -46,6 +46,30 @@ class TestRequest(unittest.TestCase):
         mock_getMetadata.assert_called_once_with("font", decode=True)
         self.assertEqual(result, {"some": "data"})
 
+    @patch("builtins.open", new_callable=mock_open, read_data="data from file")
+    def test_readPreferredSource(self, mock_file):
+        self.request._path = "path.txt"
+        result = self.request._readPreferredSource()
+        self.assertEqual(result, "data from file")
+
+    @patch("builtins.open", new_callable=mock_open, read_data="data from fallback")
+    def test_readPreferredSource_without_path(self, mock_file):
+        self.request._path = None
+        result = self.request._readPreferredSource()
+        self.assertEqual(result, "data from fallback")
+
+    @patch("urllib.request.urlopen", side_effect=urllib.error.URLError("URL error"))
+    def test_readPreferredSource_url_without_fallback(self, mock_urlopen):
+        self.request._fallback = None
+        with self.assertRaises(urllib.error.URLError):
+            self.request._readPreferredSource()
+
+    def test_readPreferredSource_without_path_and_fallback(self):
+        self.request._path = None
+        self.request._fallback = None
+        result = self.request._readPreferredSource()
+        self.assertIsNone(result)
+
     @patch("urllib.request.urlopen")
     def test_readFromURL(self, mock_urlopen):
         mock_response = MagicMock()
@@ -87,12 +111,6 @@ class TestRequest(unittest.TestCase):
         self.assertEqual(result, "data from fallback")
 
     @patch("urllib.request.urlopen", side_effect=urllib.error.URLError("URL error"))
-    def test_handleURLError_without_fallback(self, mock_urlopen):
-        self.request._fallback = None
-        with self.assertRaises(urllib.error.URLError):
-            self.request._readFromURL()
-
-    @patch("urllib.request.urlopen", side_effect=urllib.error.URLError("URL error"))
     @patch("builtins.open", new_callable=mock_open, read_data="data from fallback")
     def test_handleURLError_with_warning(self, mock_file, mock_urlopen):
         self.request._warn = True
@@ -101,8 +119,48 @@ class TestRequest(unittest.TestCase):
             self.assertEqual(result, "data from fallback")
             self.assertTrue(any(item.category == URLWarning for item in w))
 
+    @patch(
+        "builtins.open",
+        new_callable=mock_open,
+        read_data='{"key": "value"}'.encode("utf-8"),
+    )
+    def test_json_basic(self, mock_file):
+        self.request._path = "path.json"
+        result = self.request.json()
+        self.assertEqual(result, {"key": "value"})
+
+    @patch.object(Request, "text", new_callable=PropertyMock, return_value=None)
+    def test_json_without_text(self, mock_text):
+        self.assertIsNone(self.request.json())
+
     @patch("builtins.open", new_callable=mock_open, read_data="data from file")
-    def test_raw(self, mock_file):
+    def test_content(self, mock_file):
+        self.request._path = "path.txt"
+        result = self.request.content
+        self.assertEqual(result, "data from file")
+
+    @patch.object(Request, "_readPreferredSource", return_value=None)
+    def test_text_no_preferred_source(self, mock_readPreferredSource):
+        self.assertIsNone(self.request.text)
+
+    def test_path(self):
+        self.assertEqual(self.request.path, self.path)
+
+    def test_fallback(self):
+        self.assertEqual(self.request.fallback, self.fallback)
+
+    # TODO: Remove mode tests in 0.6
+
+    def test_mode(self):
+        self.assertIsNone(self.request.mode)
+
+    def test_encoding(self):
+        self.assertEqual(self.request.encoding, CONFIG["request"]["encoding"])
+
+    # TODO: Remove raw tests in 0.6
+
+    @patch("builtins.open", new_callable=mock_open, read_data="data from file")
+    def test_raw_basic(self, mock_file):
         self.request._path = "path.txt"
         result = self.request.raw
         self.assertEqual(result, "data from file")
@@ -117,28 +175,6 @@ class TestRequest(unittest.TestCase):
         self.request._path = None
         self.request._fallback = None
         self.assertIsNone(self.request.raw)
-
-    @patch("builtins.open", new_callable=mock_open, read_data='{"key": "value"}')
-    def test_json(self, mock_file):
-        self.request._path = "path.json"
-        result = self.request.json()
-        self.assertEqual(result, {"key": "value"})
-
-    @patch.object(Request, "raw", new_callable=PropertyMock, return_value=None)
-    def test_json_without_raw(self, mock_raw):
-        self.assertIsNone(self.request.json())
-
-    def test_path(self):
-        self.assertEqual(self.request.path, self.path)
-
-    def test_fallback(self):
-        self.assertEqual(self.request.fallback, self.fallback)
-
-    def test_mode(self):
-        self.assertEqual(self.request.mode, "r")
-
-    def test_encoding(self):
-        self.assertEqual(self.request.encoding, CONFIG["request"]["encoding"])
 
 
 class TestWriteJson(unittest.TestCase):
