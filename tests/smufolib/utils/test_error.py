@@ -19,7 +19,7 @@ def _expected_type_error_substrings(value, validTypes, objectName):
 class TestErrorGeneration(unittest.TestCase):
     def test_generateErrorMessage(self):
         message = generateErrorMessage(
-            "typeError", objectName="index", validTypes="int", value="str"
+            "typeError", objectName="index", validTypes="int", valueType="str"
         )
         expectedSubstrings = ("type", "index", "int", "str")
 
@@ -72,7 +72,7 @@ class TestErrorGeneration(unittest.TestCase):
                 validTypes=strType,
                 objectName=objectName,
                 dependencyInfo="some_dependency",
-                value=strValue,
+                valueType=strValue,
             )
 
     def test_generateTypeError_with_dependent_items(self):
@@ -97,7 +97,7 @@ class TestErrorGeneration(unittest.TestCase):
                 validTypes=strType,
                 objectName=objectName,
                 dependencyInfo="some_dependency",
-                value=strValue,
+                valueType=strValue,
             )
 
     def test_validateType(self):
