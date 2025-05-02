@@ -411,8 +411,13 @@ class Smufl(BaseObject):
 
         """
         warnings.warn(
-            "This property is deprecated and will be removed in the next version of "
-            "SMufoLib (after 0.5). Use 'ranges' instead.",
+            error.generateErrorMessage(
+                "deprecated",
+                "deprecatedReplacement",
+                objectName="range",
+                version=0.5,
+                replacement="ranges",
+            ),
             DeprecationWarning,
             stacklevel=2,
         )

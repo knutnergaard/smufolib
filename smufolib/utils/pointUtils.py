@@ -35,8 +35,12 @@ TYPES = ("line", "curve", "qcurve")
 # TODO: Remove module in 0.6
 
 warnings.warn(
-    "This module is deprecated and will be removed in the next version of "
-    "SMufoLib (after 0.5). Use 'rulers.getPoints' to retrieve points instead.",
+    error.generateErrorMessage(
+        "deprecated",
+        string="Use 'rulers.getPoints' to retrieve points instead.",
+        objectName=__name__,
+        version=0.5,
+    ),
     DeprecationWarning,
     stacklevel=2,
 )
