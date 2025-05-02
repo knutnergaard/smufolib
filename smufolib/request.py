@@ -111,7 +111,7 @@ class Request:
         self._warn = warn
         self._mode = mode
 
-        if mode is not None:
+        if mode is not None:  # pragma: no cover
             warnings.warn(
                 (
                     "The 'mode' parameter is deprecated and will be removed "
