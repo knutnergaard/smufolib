@@ -20,8 +20,10 @@ ERROR_TEMPLATES: dict[str, str] = {
     "alphanumericValueItems": "Value items for '{objectName}' must be alphanumeric.",
     "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
     "attributeError": "'{objectName}' has no attribute '{attribute}'.",
-    "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {value}.",
-    "dependentItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}.",
+    "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {valueType}.",
+    "dependentItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {valueType}.",
+    "deprecated": "'{objectName}' is deprecated and will be removed in the next version of SMufoLib (after {version}).",
+    "deprecatedReplacement": "Use '{replacement}' instead.",
     "duplicateFlags": "Arguments '{argument1}' and '{argument2}' have duplicate short flag: {flag}",
     "duplicateAttributeValue": "The value {value} for '{attribute}' is already assigned to another {objectName} instance: {conflictingInstance}.",
     "duplicateItems": "Items in '{objectName}' cannot be duplicates.",
@@ -31,7 +33,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "invalidFormat": "The value for '{objectName}' is not correctly formatted.",
     "invalidInitialCharacter": "The value for '{objectName}' must start with a lowercase letter or number.",
     "invalidInitialItemsCharacter": "Value items for '{objectName}' must start with a lowercase letter or number.",
-    "itemsTypeError": "Items in '{objectName}' must be {validTypes}, not {value}.",
+    "itemsTypeError": "Items in '{objectName}' must be {validTypes}, not {valueType}.",
     "itemsValueError": "Invalid value for item in '{objectName}': {value}",
     "missingExtension": "The value for '{objectName}' must have a '{extension}' extension.",
     "missingDependencyError": "Cannot set '{objectName}' because '{dependency}' is None.",
@@ -43,7 +45,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "serializationError": "Error serializing JSON data or writing to the file.",
     "singleItem": "'{objectName}' must contain a value pair.",
     "suggestion": "Did you mean '{suggestion}'?",
-    "typeError": "Expected '{objectName}' to be of type {validTypes}, but got {value}.",
+    "typeError": "Expected '{objectName}' to be of type {validTypes}, but got {valueType}.",
     "unicodeOutOfRange": "The value for '{objectName}' is outside the Unicode range (U+0000 - U+10FFFF).",
     "urlError": "Could not connect to URL: '{url}'",
     "valueError": "Invalid value for '{objectName}': {value}",
@@ -56,12 +58,15 @@ class URLWarning(Warning):
     """URL connection failure warning."""
 
 
-def generateErrorMessage(*templateNames: str, **kwargs) -> str:
-    """Generate an error message from a template and keyword arguments.
+def generateErrorMessage(*templateNames: str, string: str = "", **kwargs) -> str:
+    r"""Generate an error message from a template and keyword arguments.
 
-    :param errorTemplate: The error message template string, which
+    The `templateNames` and `string` will be concatenated in order.
+
+    :param \*templateNames: The error message template string, which
         should contain placeholders for keyword arguments.
-    :param kwargs: Arbitrary keyword arguments corresponding to the
+    :param string: An additional message string to include.
+    :param \**kwargs: Arbitrary keyword arguments corresponding to the
         placeholders in the template string.
     :raises KeyError: If a placeholder in the template does not have a
         corresponding keyword argument.
@@ -71,8 +76,11 @@ def generateErrorMessage(*templateNames: str, **kwargs) -> str:
         >>> generateErrorMessage('alphanumericValue', objectName='unicode')
         "The value for 'unicode' must be alphanumeric."
 
-        >>> generateErrorMessage('typeError', objectName='index', validTypes='int', value='str')
+        >>> generateErrorMessage('typeError', objectName='index', validTypes='int', valueType='str')
         "Expected 'index' to be of type int, but got str."
+
+        >>> >>> generateErrorMessage('urlError', string="Please try again.", url='some/url.com')
+        Could not connect to URL: 'some/url.com'. Please try again.
 
     """
 
@@ -84,7 +92,7 @@ def generateErrorMessage(*templateNames: str, **kwargs) -> str:
     if "conflictingInstance" in kwargs:
         kwargs["conflictingInstance"] = formatValue(kwargs["conflictingInstance"])
 
-    messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
+    messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames] + [string]
     return " ".join(messages)
 
 
@@ -139,7 +147,7 @@ def generateTypeError(
     kwargs = {
         "validTypes": typeNames,
         "objectName": objectName,
-        "value": valueType,
+        "valueType": valueType,
     }
 
     if items and dependencyInfo:
