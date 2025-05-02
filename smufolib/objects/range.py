@@ -166,7 +166,7 @@ class Range:
 
     def _getAttribute(self, name: str) -> str | tuple[Glyph, ...] | None:
         # Get metadata attributes from ranges.json.
-        if self.glyph is None or METADATA is None:
+        if self.glyph is None or METADATA is None or isinstance(METADATA, str):
             return None
         for range_, attributes in METADATA.items():
             if self._smufl is None or self._smufl.name not in attributes["glyphs"]:
