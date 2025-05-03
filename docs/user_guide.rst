@@ -149,19 +149,22 @@ These are particularly useful when working with multiple glyphs by type::
    ...         glyph.moveBy = (12, 0)
 
 
-Coloring glyphs by range is also really easy with this feature::
+Coloring glyphs by range is also really easy with this feature:
 
-   >>> import random
-   >>> def get_random_color():
-   ...    r = random.random()
-   ...    g = random.random()
-   ...    b = random.random()
-   ...    return (r, g, b, 1)
-   ...
-   >>> for range in font.smufl.ranges:
-   ...     color = get_random_color()
-   ...     for glyph in range.glyphs:
-   ...         glyph.mark = color
+.. code:: python
+
+   import random
+   
+   def get_random_color():
+      r = random.random()
+      g = random.random()
+      b = random.random()
+      return (r, g, b, 1)
+   
+   for range in font.smufl.ranges:
+       color = get_random_color()
+       for glyph in range.glyphs:
+           glyph.mark = color
 
 The :class:`.Range` object provides the values for any SMuFL range's 
 :attr:`~.Range.name`, :attr:`~.Range.description`, :attr:`~.Range.glyphs`, 
@@ -246,8 +249,8 @@ Even the glyph advance width is available as :attr:`.Smufl.advanceWidth`::
    >>> glyph.smufl.advanceWidth
    671 
    
-It differs from :attr:`fontParts.base.BaseGlyph.width` in optionally providing the value
-in staff spaces (see :ref:`changing-measurement-units`).
+It differs from the usual :attr:`fontParts.base.BaseGlyph.width` in optionally providing
+the value in staff spaces (see :ref:`changing-measurement-units`).
 
 Ligatures and Stylistic Alternates
 ----------------------------------
@@ -298,7 +301,7 @@ the :attr:`suffix` attribute is for::
 
 .. important::
 
-   The attributes in this section demands strict adherence to SMuFL's glyph naming
+   The attributes in this section demand strict adherence to SMuFL's glyph naming
    standards. See :ref:`this note about glyph naming <about-glyph-naming>` for details.
 
 Status Indicators
@@ -513,12 +516,112 @@ If the file is a JSON file, use the built-in :meth:`~.Request.json` method to pa
    >>> metadata = Request("https://path/to/file.json").json()
 
 
-Using the Command Line Interface
+Building Command Line Interfaces
 ================================
 
-.. todo::
+The smufolib.cli module provides a flexible and developer-friendly framework, based on
+Python's :mod:`argparse` module, for building command-line tools that operate on
+SMuFL-based font data and metadata. It is designed to streamline the development of
+scripts by offering consistent argument definitions, reusable parsing logic, and
+integration with the rest of the smufolib ecosystem.
+
+By using the :func:`.commonParser` utility and the pre-configured
+:data:`.CLI_ARGUMENTS`, you can easily construct robust and consistent parsers for your
+own scripts.
+
+See the :ref:`command-line-interface` section of the API documentation for a complete
+list of available arguments and their default flags.
+
+Features
+--------
+
+- A shared set of standardized CLI arguments covering common SMuFL workflows.
+- :func:`.commonParser` utility to quickly construct a parser with selected arguments.
+- Support for custom help messages and default values.
+- Compatibility with extended help formatters for improved :option:`--help` output.
+- Type-safe conversions for inputs like JSON strings, RGBA colors, or font file paths.
+
+Creating A Parser
+-----------------
+
+To create a simple parser using only predefined arguments:
+
+.. code:: python
+
+   from smufolib import cli
    
-   Add CLI guide
+   parser = cli.commonParser(
+       'font', 'clear', includeOtionals=False,
+       description="My SMuFL utility", addHelp=True
+   )
+   
+   args = parser.parse_args()
+   print(args.font)  # Automatically loaded as a Font object
+   print(args.clear)  # Boolean flag (True if --clear is passed)
+   print(args.includeOptionals)  # Boolean (False unless --include-optionals is passed))
+
+.. note::
+
+   :func:`.commonParser` automatically converts argument names from camelCase to kebab-case (e.g. ``includeOptionals`` becomes ``--include-optionals``)
+   to maintain consistency with common command-line interfaces.
+
+.. _combining-parsers:
+
+Combining Parsers
+-----------------
+
+If you want to define your own custom additional arguments, you can combine
+:func:`.commonParser` with your own parser by passing it to the `parents` parameter
+of :class:`argparse.ArgumentParser` as a :class:`list`:
+
+.. code:: python
+
+   import argparse
+   from smufolib import cli
+
+   args = cli.commonParser('font', clear=True, addHelp=False)
+   parser = argparse.ArgumentParser(parents=[args],
+               description='showcase commonParser')
+   parser.add_argument(
+       '-m', '--my-argument',
+       action='store_true',
+       help="do something",
+       dest='myArgument'
+   )  
+
+.. important::
+
+   When cobining parsers, the `addHelp` argument must be sett to :obj:`False`, otherwise
+   the parser will fail (see the `parents
+   <https://docs.python.org/3/library/argparse.html#parents>`_ section of the
+   :class:`argparse.ArgumentParser` documentation).
+
+
+Help Formatters
+---------------
+
+The CLI framework also supports custom help formatting by combining the different help
+fromatters available in the :mod:`argparse` module:
+
+- :class:`~argparse.RawDescriptionHelpFormatter`
+- :class:`~argparse.RawTextHelpFormatter`
+- :class:`~argparse.ArgumentDefaultsHelpFormatter`
+- :class:`~argparse.MetavarTypeHelpFormatter`
+
+Use the :func:`.createHelpFormatter` function to combine the formatters you want when creating your parser:
+
+.. code:: python
+
+   import argparse
+   from smufolib import cli
+   
+   formatter = cli.createHelpFormatter(
+      ('RawTextHelpFormatter', 'ArgumentDefaultsHelpFormatter')
+   )
+   parser = argparse.ArgumentParser(
+      formatter_class=formatter,
+      description='Process SMuFL metadata'
+   )
 
 
 Using the Utility Modules
