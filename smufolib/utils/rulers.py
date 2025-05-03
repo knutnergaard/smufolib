@@ -3,7 +3,7 @@
 This module provides functions to retrieve, measure and inspect various parts of glyphs.
 It also defines:
 
-- :data:`MAPPING`, the default association between ruler functions and glyphs used for
+- :data:`ENGRAVING_DEFAULTS_MAPPING`, the default association between ruler functions and glyphs used for
   calculating :class:`.EngravingDefaults` attribute values.
 - :data:`DISPATCHER`, for dynamically executing measurement operations by function name.
 
@@ -22,16 +22,14 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.glyph import Glyph
 
 Bounds = tuple[int | float, int | float, int | float, int | float]
-MappingValue = str | int | None
-Mapping = dict[str, MappingValue]
-Remapping = dict[str, Mapping]
+Remapping = dict[str, dict[str, str]]
 RulerType = Callable[["Glyph"], int | float | None]
 
 TOLERANCE: int | float = 6
 TYPES: str | tuple[str, ...] = ("line", "curve", "qcurve")
 
-#: Default mapping of ruler functions and glyphs to engravingDefaults attribute names.
-MAPPING: Remapping = {
+#: Default mapping of rulers and glyphs to :class:`EngravingDefaults` attributes.
+ENGRAVING_DEFAULTS_MAPPING: Remapping = {
     "arrowShaftThickness": {
         "ruler": "xStrokeWidthAtOrigin",
         "glyph": "uniEB60",
