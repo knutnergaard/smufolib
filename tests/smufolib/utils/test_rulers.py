@@ -1,8 +1,6 @@
 import unittest
 
 from smufolib.utils.rulers import (
-    MAPPING,
-    DISPATCHER,
     glyphBoundsHeight,
     glyphBoundsWidth,
     glyphBoundsXMinAbs,
@@ -13,8 +11,6 @@ from smufolib.utils.rulers import (
     yStrokeWidthAtMinimum,
     wedgeArmStrokeWidth,
     getGlyphContours,
-    getGlyphSegments,
-    getGlyphPoints,
     hasHorizontalOffCurve,
     hasVerticalOffCurve,
 )
