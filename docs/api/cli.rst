@@ -1,8 +1,8 @@
 .. _command-line-interface:
 
-======================
-Command Line Interface
-======================
+=============
+CLI Framework
+=============
 
 To simplify the creation of command-line options and streamline script
 interfaces, :func:`cli.commonParser` provides a set of predefined argument definitions
