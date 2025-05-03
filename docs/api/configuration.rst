@@ -59,7 +59,7 @@ Metadata fallback paths are configured in this section.
 [cli.shortFlags]
 ----------------
 
-Short flags for :ref:`Command Line Interface` options to be used with :func:`~smufolib.cli.commonParser` are configured in this section.
+Short flags for :ref:`command-line-interface` options to be used with :func:`~smufolib.cli.commonParser` are configured in this section.
 
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg

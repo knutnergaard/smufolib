@@ -124,21 +124,15 @@ def commonParser(
 
     Examples::
 
-        >>> import argparse
-        >>> from smufolib import Font, cli
-        >>> args = cli.commonParser('font', clear=True, addHelp=False)
-        >>> parser = argparse.ArgumentParser(parents=[args],
-        ...             description='showcase commonParser')
-        >>> parser.add_argument(
-        ...     '-O', '--include-optionals',
-        ...     action='store_true',
-        ...     help="include optional glyphs",
-        ...     dest='includeOptionals'
-        ... )
+        >>> from smufolib import cli
+        >>> parser = cli.commonParser(
+        ...   'font', 'clear', includeOtionals=False,
+        ...   description="Showcase commonParser", addHelp=True
+        ...   )
         >>> parser.parse_args("-h".split()))
         usage: test.py [-h] [-x] [-O] font
 
-        Showcase commonParser.
+        Showcase commonParser
 
         positional arguments:
             font         path to UFO file
