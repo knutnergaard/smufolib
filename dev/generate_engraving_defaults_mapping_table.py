@@ -1,7 +1,7 @@
 """Generate CSV table of engraving defaults mapping for SMufoLib documentaton.
 
 The script generates a CSV table reflecting the mapping of attributes to glyph names
-and ruler functions defined in :data:`.EngravingDefaults.MAPPING`.
+and ruler functions defined in :data:`.EngravingDefaults.ENGRAVING_DEFAULTS_MAPPING`.
 
 """
 
@@ -19,7 +19,7 @@ def main():
 
     namesMapping = _buildNamesMapping()
 
-    filePath = Path(__file__).parent.parent / "docs" / "mappings.csv"
+    filePath = Path(__file__).parent.parent / "docs" / "engraving_defaults_mapping.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Attribute", "Glyph", "Ruler Function"]
@@ -27,13 +27,13 @@ def main():
 
         writer.writeheader()
 
-        for attributeName, mapping in rulers.MAPPING.items():
+        for attributeName, mapping in rulers.ENGRAVING_DEFAULTS_MAPPING.items():
             if attributeName == "textFontFamily":
                 writer.writerow(
                     {
                         "Attribute": f":attr:`.{attributeName}`",
-                        "Glyph": "None",
-                        "Ruler Function": "None",
+                        "Glyph": "",
+                        "Ruler Function": "",
                     }
                 )
             else:
@@ -43,7 +43,7 @@ def main():
                 writer.writerow(
                     {
                         "Attribute": f":attr:`.{attributeName}`",
-                        "Glyph": f"`{glyphName} ({smuflName})`",
+                        "Glyph": f"`'{glyphName}'`",
                         "Ruler Function": f":func:`~.rulers.{rulerName}`",
                     }
                 )
@@ -51,7 +51,8 @@ def main():
 
 def _buildNamesMapping():
     # Create an inverted glyph name mapping from glyphnames.json
-    filepath = Path("../smufolib/smufolib/metadata/glyphnames.json").resolve()
+    scriptDir = Path(__file__).parent
+    filepath = scriptDir / "../smufolib/metadata/glyphnames.json"
     with filepath.open(encoding="utf-8") as jsonFile:
         metadata = json.load(jsonFile)
         return {converters.toUniName(v["codepoint"]): k for k, v in metadata.items()}
