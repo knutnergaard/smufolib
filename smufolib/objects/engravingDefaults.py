@@ -6,7 +6,7 @@ from collections.abc import Callable
 from fontParts.base.base import BaseObject
 from smufolib import config
 from smufolib.utils import error, normalizers
-from smufolib.utils.rulers import DISPATCHER, MAPPING
+from smufolib.utils.rulers import DISPATCHER, ENGRAVING_DEFAULTS_MAPPING
 from smufolib.utils._annotations import EngravingDefaultsInput, EngravingDefaultsReturn
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -576,12 +576,12 @@ class EngravingDefaults(BaseObject):
             value = self._libDict.get(name, ())
 
         if self.font and value is None and _getAutoFlag():
-            glyphName = MAPPING[name]["glyph"]
+            glyphName = ENGRAVING_DEFAULTS_MAPPING[name]["glyph"]
             try:
                 glyph = self.font[glyphName]
             except KeyError:
                 return None
-            rulerName = MAPPING[name]["ruler"]
+            rulerName = ENGRAVING_DEFAULTS_MAPPING[name]["ruler"]
             rulerName = cast(str, rulerName)
             ruler: Callable[["Glyph"], int | float | None] = DISPATCHER[rulerName]
             value = ruler(glyph)

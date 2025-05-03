@@ -11,7 +11,7 @@ from tests.testUtils import (
     getVerboseOutput,
 )
 from bin.calculateEngravingDefaults import (
-    MAPPING,
+    ENGRAVING_DEFAULTS_MAPPING,
     calculateEngravingDefaults,
     main,
 )
@@ -38,7 +38,7 @@ class TestCalculateEngravingDefaults(
 
         self.font.info.familyName = "testFont"
         self.font.info.unitsPerEm = 1000
-        for attribute, mapping in MAPPING.items():
+        for attribute, mapping in ENGRAVING_DEFAULTS_MAPPING.items():
             if attribute == "textFontFamily":
                 continue
             name = mapping["glyph"]

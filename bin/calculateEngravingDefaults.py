@@ -53,7 +53,7 @@ from smufolib import (
     normalizers,
     stdUtils,
 )
-from smufolib.utils.rulers import MAPPING, DISPATCHER
+from smufolib.utils.rulers import ENGRAVING_DEFAULTS_MAPPING, DISPATCHER
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 
 
@@ -124,9 +124,9 @@ def calculateEngravingDefaults(
 
     font.smufl.spaces = False
 
-    iterator = MAPPING.items()
+    iterator = ENGRAVING_DEFAULTS_MAPPING.items()
     if not verbose:
-        iterator = tqdm(MAPPING.items())
+        iterator = tqdm(ENGRAVING_DEFAULTS_MAPPING.items())
 
     stdUtils.verbosePrint("\nSetting attributes:", verbose)
     for key, mapping in iterator:
@@ -201,7 +201,9 @@ def _normalizeExclude(exclude: Exclude | None) -> Exclude | None:
     error.validateType(exclude, (tuple, list), "exclude")
 
     for item in exclude:
-        error.suggestValue(item, list(MAPPING.keys()), "exclude", items=True)
+        error.suggestValue(
+            item, list(ENGRAVING_DEFAULTS_MAPPING.keys()), "exclude", items=True
+        )
     return exclude
 
 
@@ -212,7 +214,7 @@ def _normalizeOverride(override: Override | None) -> Override | None:
 
     error.validateType(override, dict, "override")
     for key, value in override.items():
-        attributes = list(MAPPING.keys())
+        attributes = list(ENGRAVING_DEFAULTS_MAPPING.keys())
         error.suggestValue(key, attributes, "override", items=True)
         normalizers.normalizeEngravingDefaultsAttr(key, value)
 
@@ -227,7 +229,9 @@ def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
     error.validateType(remap, dict, "remap")
 
     for key, value in remap.items():
-        error.suggestValue(key, list(MAPPING.keys()), "remap", items=True)
+        error.suggestValue(
+            key, list(ENGRAVING_DEFAULTS_MAPPING.keys()), "remap", items=True
+        )
 
         for k, v in value.items():
             error.suggestValue(
