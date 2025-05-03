@@ -51,32 +51,33 @@ GLYPH_ATTRIBUTES: set[str] = {"classes", "description", "name"}
 class Smufl(BaseObject):
     """Provide SMuFL-related metadata and functionality.
 
-    This class may be called from either :class:`.Font`
-    or :class:`.Glyph`. Font-specific attributes with unique names may
-    be accessed from both, due to the consistent access to parent
-    classes in FontParts.
+    This class may be called from either :class:`.Font` or :class:`.Glyph`.
+    Font-specific attributes with unique names may be accessed from both, due to the
+    consistent access to parent classes in FontParts.
 
-    .. _about glyph naming:
-    .. note:: Attributes with the purpose of identifying ligatures
-       (:attr:`isLigature`), stylistic alternates (:attr:`isSalt`) and
-       stylistic sets (:attr:`isSet`) depend on strict adherence to the
-       descriptive naming schemes stipulated in the `Adobe Glyph List\
-       Specification <https://github.com/adobe-type-tools/agl-\
-       specification#readme>`_ and followed by the SMuFL standard
-       (see `Section 6 <https://github.com/adobe-type-tools/agl-\
-       specification#6-assigning-glyph-names-in-new-fonts>`_ for more
-       information).
+    .. _about-glyph-naming:
+
+    .. admonition:: About Glyph Naming
+    
+        Attributes dealing with ligatures (:attr:`isLigature`, :attr:`componentGlyphs`,
+        :attr:`componentNames`) and stylistic alternates (:attr:`isSalt`, :attr:`isSet`,
+        :attr:`alternates`, :attr:`base` and :attr:`suffix`) depend on strict adherence
+        to the descriptive naming schemes stipulated in the `Adobe Glyph List
+        Specification <https://github.com/adobe-type-tools/agl-\ specification#readme>`_
+        and followed by the SMuFL standard (see `Section 6
+        <https://github.com/adobe-type-tools/agl-\
+        specification#6-assigning-glyph-names-in-new-fonts>`_ for more information).
 
     .. tip:: To avoid having to set all the glyph identification
        attributes manually, it is advisable to run the
        script :mod:`.importID` prior to using this class with an
-       excisting font for the first time.
+       existing font for the first time.
 
     :param font: Parent :class:`.Font` object.
     :param glyph: Parent :class:`.Glyph` object.
 
-    While this object is normally created as part of a :class:`.Font`,
-    an orphan :class:`Smufl` object can be created like this::
+    While this object is normally created as part of a :class:`.Font`, an orphan
+    :class:`Smufl` object can be created like this::
 
         >>> smufl = Smufl()
 
