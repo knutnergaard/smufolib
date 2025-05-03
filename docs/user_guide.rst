@@ -88,8 +88,8 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 Setting attributes
 ==================
 
-SMufoLib provides easy storage of SMuFL-specific font and glyph metadata within the font
-file itself. Attributes can be set individually during the design process, and are
+SMufoLib provides easy storage of SMuFL-related font and glyph metadata within the font
+file itself. Attributes [#]_ can be set individually during the design process, and are
 accessed through the :class:`.Smufl` object::
 
    >>> font.smufl.name = "myFont"
@@ -103,15 +103,19 @@ accessed through the :class:`.Smufl` object::
 
 .. note::
 
-   Some attributes, like :attr:`.Smufl.name`, will be different depending
-   on whether they are accessed through :class:`.Font` or :class:`.Glyph`.
-
-   Font-specific :class:`.Smufl` attributes are generally available from either the
-   font or any of its glyphs.
+   - Some attributes, like :attr:`.Smufl.name`, will be different depending
+     on whether they are accessed through :class:`.Font` or :class:`.Glyph`.
+   - FontParts maintains consistent references to parent-level objects. As a result,
+     font-specific :class:`.Smufl` attributes remain accessible from both the font
+     itself and any of its glyphs.
 
 The essential glyph identification attributes (:attr:`.Smufl.name`,
 :attr:`.Smufl.description` and :attr:`.Smufl.classes`) may also be imported from preexisting metadata files using the :mod:`~bin.importID` script. See
 :ref:`running-scripts` for more information.
+
+.. [#] Most of the objects referred to as "attributes" in this user guide are
+   technically implemented as Python :term:`properties`, but for clarity and consistency
+   with SMuFL metadata terminology, "attribute" is used synonymously throughout.
 
 .. _working-with-metadata:
 
@@ -123,7 +127,7 @@ Once SMuFL specific glyph names and other attributes have been set, SMufoLib pro
 Glyph Ranges
 ------------
 
-The SMuFL-specific glyph ranges covered are available for an entire font or any
+The SMuFL glyph ranges covered are available for an entire font or any
 specific glyph:: 
    
    >>> font.smufl.ranges
@@ -184,12 +188,14 @@ Each setting has its own attribute within this object::
    >>> ed.stemThickness
    30
 
-Engraving defaults are calculated automatically from corresponding glyphs by default
--- provided that these glyphs exist. See :ref:`engraving-defaults-mapping` for a full
-list of attributes and their corresponding glyphs.
+Engraving defaults are calculated automatically from corresponding glyphs by default --
+provided that these glyphs exist. As an example, the value for :attr:`hairpinThickness`
+is based on the shape of the glyph ``'uniE53E'`` (``'dynamicCrescendoHairpin'``). See
+:ref:`engraving-defaults-mapping` for a full list of attributes and their corresponding
+glyphs.
 
-To override the automatic calculations, simply set the attributes to a value other
-than :obj:`None`.
+Override the automatic calculations by setting the attributes to a value other than
+:obj:`None`.
 
 To turn the feature off entirely, disable `auto` in the :ref:`[engravingDefaults]`
 section of `smufolib.cfg`. See :ref:`configuring-smufolib` for more information
@@ -217,69 +223,83 @@ Anchor coordinates are available in either font units or staff spaces. See
 
 Anchors may be imported from another font's metadata file using the
 :mod:`~bin.importAnchors` script. SMufoLib also provides the diagnostics script
-:mod:`~bin.checkAnchors` to keep track of missing or superfluous SMuFL-specific glyph
+:mod:`~bin.checkAnchors` to keep track of missing or superfluous SMuFL glyph
 anchors in a font. See :ref:`running-scripts` for more information.
 
-.. _changing-measurement-units:
-
-Changing Measurement Units
---------------------------
-
-You can get or set engraving defaults, anchor coordinates and glyph advance width in
-either font units or staff spaces, whatever suits your workflow. To switch to staff
-spaces set either :attr:`.EngravingDefaults.spaces` or :attr:`.Smufl.spaces` to
-:obj:`True`, e.g.::
-
-   >>> ed.spaces = True
-   >>> ed.stemThickness
-   0.12
-   >>> ed.stemThickness = 0.14
-   >>> ed.spaces = False
-   >>> ed.stemThickness
-   35
-   
 .. note::
 
-   Setting ``font.smufl.engravingDefaults.spaces=True`` is equivalent to setting
-   ``font.smufl.spaces=True``, so either one will affect all relevant
-   attributes across the entire library.
+   Only anchors with names specific to SMuFL are accessible through the :class:`.Smufl`
+   object's :attr:`.anchors` attribute. See :data:`.ANCHOR_NAMES` for a full
+   :class:`set` of available SMuFL anchors.
+
+Glyph Metrics and Dimensions
+----------------------------
+
+Similarly to :attr:`anchors`, the :class:`.Smufl` class also provides a SMuFL-specific
+:class:`dict` representation of the glyph bounding box::
+
+   >>> glyph.smufl.bBox
+   {'bBoxSW': (0.0, -0.5), 'bBoxNE': (1.18, 0.5)}
+
+Even the glyph advance width is available as :attr:`.Smufl.advanceWidth`::
    
-   This setting is stored in the font's metadata and will persist when saving the font.
+   >>> glyph.smufl.advanceWidth
+   671 
+   
+It differs from :attr:`fontParts.base.BaseGlyph.width` in optionally providing the value
+in staff spaces (see :ref:`changing-measurement-units`).
 
-The :class:`.SMufl` class also provides methods to convert a given value between the
-different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
-value to staff spaces, and the :meth:`.toUnits` to do the opposite::
+Ligatures and Stylistic Alternates
+----------------------------------
 
-   >>> font.smufl.toSpaces(250)
-   1.0
-   >>> font.smufl.toUnits(1.0)
-   250
+Ligatures have their component glyphs readily available with the
+:attr:`.componentGlyphs` attribute::
+
+   >>> ligature = font['uniE09E_uniE083_uniE09F_uniE084']
+   >>> ligature.smufl.componentGlyphs
+   (<Glyph 'uniE09E' ('public.default') at 4399803376>,
+   <Glyph 'uniE083' ('public.default') at 4399803184>,
+   <Glyph 'uniE09F' ('public.default') at 4399797952>,
+   <Glyph 'uniE084' ('public.default') at 4399797760>)
+
+Alternately, components can be listed by their canonical SMuFL names with the
+:attr:`.componentNames` attribute::
+   
+   >>> glyph.smufl.componentNames
+   ('timeSigCombNumerator', 'timeSig3',
+   'timeSigCombDenominator', 'timeSig4')
+   
+The :attr:`alternateGlyphs` and :attr:`alternateNames` attribute similarly provide
+convenient access to a glyph's stylistic alternates, by :class:`.Glyph` object and
+SMuFL name respectively::
+
+.. todo:: Add examples
+
+A SMuFL-specific metadata representation of the same alternates can be retrieved with
+the :attr:`alternates` attribute::
+
+   >>> glyph = font['uniE050'] # gClef
+   >>> glyph.smufl.alternates
+   ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
+
+The inverse base glyph is also accessible through the :attr:`base` attribute::
+
+   >>> alternate = font['uniE050.ss01']
+   >>> alternate.smufl.base
+   <Glyph 'uniE050' ('public.default') at 4373577008>
+
+The glyph name suffix is a common characteristic of different types of OpenType
+alternates and sets, and may therefore sometimes be necessary to isolate. This is what
+the :attr:`suffix` attribute is for::
+
+   >>> glyph = font['uniE050.ss01']
+   >>> glyph.smufl.suffix
+   ss01
 
 .. important::
 
-   The attributes and methods mentioned above depend on the font's units per em value
-   which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for measurement
-   units conversion to work::
-
-      >>> font.info.unitsPerEm = 1000
-
-Finding glyphs
---------------
-
-You can search for a glyph by its canonical SMuFL name with the
-:meth:`Smufl.findGlyph` method::
-
-   >>> font.smufl.findGlyph('barlineSingle')
-   <Glyph 'uniE030' ('public.default') at 4393557200>
-
-::
-
-   >>> font.smufl.findGlyph('missingSmuflName')
-   None
-
-
-Other Features
-==============
+   The attributes in this section demands strict adherence to SMuFL's glyph naming
+   standards. See :ref:`this note about glyph naming <about-glyph-naming>` for details.
 
 Status Indicators
 -----------------
@@ -307,6 +327,63 @@ SMuFL is as easy as::
 
    >>> if glyph.smufl.isRecommended:
    ...   # do something
+
+.. _changing-measurement-units:
+
+Changing Measurement Units
+--------------------------
+
+You can get or set engraving defaults, anchor coordinates, glyph bounding box and
+advance width in either font units or staff spaces, whatever suits your workflow. By default, all values are expressed in font units unless changed. To
+switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
+:attr:`.Smufl.spaces` to :obj:`True`, e.g.::
+
+   >>> ed.spaces = True
+   >>> ed.stemThickness
+   0.12
+   >>> ed.stemThickness = 0.14
+   >>> ed.spaces = False
+   >>> ed.stemThickness
+   35
+   
+.. note::
+
+   - Setting ``font.smufl.engravingDefaults.spaces=True`` is equivalent to setting
+     ``font.smufl.spaces=True``, so either one will affect all relevant
+     attributes across the entire library.
+   
+   - This setting is stored in the font's metadata and will persist when saving the font.
+
+The :class:`.SMufl` class also provides methods to convert a given value between the
+different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
+value to staff spaces, and the :meth:`.toUnits` to do the opposite::
+
+   >>> font.smufl.toSpaces(250)
+   1.0
+   >>> font.smufl.toUnits(1.0)
+   250
+
+.. important::
+
+   The attributes and methods mentioned above depend on the font's units-per-em value
+   which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for measurement
+   units conversion to work::
+
+      >>> font.info.unitsPerEm = 1000
+
+Finding glyphs
+--------------
+
+You can search for a glyph by its canonical SMuFL name with the
+:meth:`Smufl.findGlyph` method::
+
+   >>> font.smufl.findGlyph('barlineSingle')
+   <Glyph 'uniE030' ('public.default') at 4393557200>
+
+::
+
+   >>> font.smufl.findGlyph('missingSmuflName')
+   None
 
 .. _running-scripts:
 
@@ -386,8 +463,8 @@ appropriately named :class:`.Request` class methods:
    * - :meth:`~.Request.font`
      - Retrieves the official `bravura.json` metadata file
 
-By default, these methods return a parsed Python :class:`dict`. To retrieve a raw
-:class:`str` response instead, set ``decode=False``::
+By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
+:class:`str` response instead by setting ``decode=False``::
 
    >>> text = Request.classes(decode=False)
 
@@ -398,7 +475,6 @@ Paths and Fallbacks
 argument::
 
    >>> file = Request("path/to/file.json")
-
    >>> file = Request("https://path/to/file.json")
 
 You can also combine a remote URL with a local fallback file. This enables automatic
@@ -415,20 +491,22 @@ fallback to a local copy if the remote request fails due to a connection error::
 Raw Output
 ----------
 
-The :class:`Request` object provides two properties for accessing raw response data:
+Similarly to the well known HTTP library `Requests
+<https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`Request` object
+provides two properties for accessing raw response data:
 
 - Use the :attr:`text` property to get a decoded :class:`str`::
 
     >>> data = Request("path/to/file.json").text
 
-- Use the :attr:`bytes` property to get the raw :class:`bytes` content::
+- Use the :attr:`content` property to get the raw :class:`bytes` content::
 
-    >>> data = Request("path/to/file.json").bytes
+    >>> data = Request("path/to/file.json").content
 
 Unless an `encoding` is explicitly specified, text responses will be decoded using UTF-8.
 
-JSON Parsing
-------------
+Parsing JSON Files
+------------------
 
 If the file is a JSON file, use the built-in :meth:`~.Request.json` method to parse it::
 
@@ -440,4 +518,30 @@ Using the Command Line Interface
 
 .. todo::
    
-   Summarize `smufolib` CLI entry points and subcommands (if any).
+   Add CLI guide
+
+
+Using the Utility Modules
+=========================
+
+SMufoLib includes a whole host of utility functions, spread accross several modules.
+The sections below provide an introduction to some of the most useful ones.
+
+Converting Values
+-----------------
+
+Raising Errors and Warnings
+---------------------------
+
+Measuring Contours
+------------------
+
+Working with Rulers
+-------------------
+
+Using Script Utilities
+----------------------
+
+Using Standard Utilities
+------------------------
+
