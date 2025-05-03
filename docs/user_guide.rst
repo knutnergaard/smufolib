@@ -1,7 +1,7 @@
 Installation
 ============
 
-SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
+SMufoLib requires `Python <http://www.python.org/download/>`_ 3.10 or
 later. It is listed in the `Python Package Index
 <https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
 `pip <https://pip.pypa.io/>`__:
@@ -20,6 +20,10 @@ Start by importing SMufoLib::
 Then instantiate a font object::
 
    >>> font = Font("path/to/myFont.ufo")
+
+Before going further, it's a good idea to have a look at the FontParts `Object Reference
+<https://fontparts.robotools.dev/en/stable/objectref/index.html>`_. SMufoLib's
+:class:`.Font`, :class:`.Layer` and :class:`.Glyph` classes wrap the FontParts API and serve as the foundation for the features described below.
 
 .. _configuring-smufolib:
 
@@ -336,8 +340,8 @@ SMuFL is as easy as::
 Changing Measurement Units
 --------------------------
 
-You can get or set engraving defaults, anchor coordinates, glyph bounding box and
-advance width in either font units or staff spaces, whatever suits your workflow. By default, all values are expressed in font units unless changed. To
+You can get or set engraving defaults, anchor coordinates, glyph bounds and
+advance widths in either font units or staff spaces -- whatever suits your workflow. By default, all values are expressed in font units unless changed. To
 switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
 :attr:`.Smufl.spaces` to :obj:`True`, e.g.::
 
@@ -368,9 +372,9 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite::
 
 .. important::
 
-   The attributes and methods mentioned above depend on the font's units-per-em value
-   which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for measurement
-   units conversion to work::
+   The attributes and methods mentioned above depend on the font's units-per-em (UPM)
+   value which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for
+   measurement units conversion to work::
 
       >>> font.info.unitsPerEm = 1000
 
@@ -459,10 +463,13 @@ appropriately named :class:`.Request` class methods:
 
    * - :meth:`~.Request.classes`
      - Retrieves the official `classes.json` metadata file
+
    * - :meth:`~.Request.glyphnames`
      - Retrieves the official `glyphnames.json` metadata file
+     
    * - :meth:`~.Request.ranges`
      - Retrieves the official `ranges.json` metadata file
+
    * - :meth:`~.Request.font`
      - Retrieves the official `bravura.json` metadata file
 
@@ -470,6 +477,7 @@ By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
 :class:`str` response instead by setting ``decode=False``::
 
    >>> text = Request.classes(decode=False)
+   
 
 Paths and Fallbacks
 -------------------
@@ -513,15 +521,25 @@ Parsing JSON Files
 
 If the file is a JSON file, use the built-in :meth:`~.Request.json` method to parse it::
 
-   >>> metadata = Request("https://path/to/file.json").json()
+   >>> data = Request("https://path/to/file.json").json()
 
+
+Writing JSON Files
+------------------
+
+The :mod:`request` module also provides a helper function to simplify the logic
+concerned with writing JSON data to a file. Using the :func:`writeJson` function this is
+as simple as::
+
+   >>> jsonDict = {'font': 'MyFont'}
+   >>> writeJson('path/to/file.json', jsonDict)
 
 Building Command Line Interfaces
 ================================
 
-The smufolib.cli module provides a flexible and developer-friendly framework, based on
-Python's :mod:`argparse` module, for building command-line tools that operate on
-SMuFL-based font data and metadata. It is designed to streamline the development of
+The :mod:`.cli` module provides a flexible and developer-friendly framework,
+based on Python's :mod:`argparse` module, for building command-line tools that operate
+on SMuFL-based font data and metadata. It is designed to streamline the development of
 scripts by offering consistent argument definitions, reusable parsing logic, and
 integration with the rest of the smufolib ecosystem.
 
@@ -570,9 +588,9 @@ To create a simple parser using only predefined arguments:
 Combining Parsers
 -----------------
 
-If you want to define your own custom additional arguments, you can combine
-:func:`.commonParser` with your own parser by passing it to the `parents` parameter
-of :class:`argparse.ArgumentParser` as a :class:`list`:
+If you want to define your own additional custom arguments, you can combine
+:func:`.commonParser` with a separate :class:`argparse.ArgumentParser` object by passing
+the function output as a :class:`list` to the `parents` parameter of the class:
 
 .. code:: python
 
@@ -595,10 +613,13 @@ of :class:`argparse.ArgumentParser` as a :class:`list`:
    the parser will fail (see the `parents
    <https://docs.python.org/3/library/argparse.html#parents>`_ section of the
    :class:`argparse.ArgumentParser` documentation).
+   
 
+To avoid conflicts between standard and custom arguments, you can modify the short flag
+definitions for each argument in the :ref:`[cli.shortFlags]` section of `smufolib.cfg`.
 
-Help Formatters
----------------
+Creating Help Formatters
+------------------------
 
 The CLI framework also supports custom help formatting by combining the different help
 fromatters available in the :mod:`argparse` module:
@@ -623,28 +644,140 @@ Use the :func:`.createHelpFormatter` function to combine the formatters you want
       description='Process SMuFL metadata'
    )
 
-
 Using the Utility Modules
 =========================
 
 SMufoLib includes a whole host of utility functions, spread accross several modules.
-The sections below provide an introduction to some of the most useful ones.
+The sections below provide an introduction to some of the most useful features for
+external use.
 
-Converting Values
------------------
+Conversion
+----------
 
-Raising Errors and Warnings
----------------------------
+The :mod:`.converters` module provides helper functions for converting between different
+measurement formats, Unicode codepoints, and naming styles. Functions include:
+
+.. list-table::
+
+   * - :func:`.convertMeasurement`  
+     - Convert between ``'units'`` and ``'spaces'`` using a UPM value.
+
+   * - :func:`.toDecimal`
+     - Convert a formatted Unicode :class:`str` (e.g., ``'uniE000'``, ``'U+1D100'``) to
+       a decimal :class:`int`.
+
+   * - :func:`.toUniHex`
+     - Convert a decimal :class:`int` codepoint to a ``'U+XXXX'`` style :class:`str`.
+
+   * - :func:`.toUniName`
+     - Convert a Unicode-formatted :class:`str` or :class:`int` to ``'uniXXXX'`` or
+       ``'uXXXX'``.
+
+   * - :func:`.toNumber`
+     - Convert a :class:`str` to a :class:`float` or :class:`int`, including hex.
+
+   * - :func:`.toIntIfWhole`
+     - Return an :class:`int` if the :class:`float` has no fractional part; otherwise
+       return the original value.
+
+   * - :func:`.toKebab`
+     - Convert camelCase :class:`str` to kebab-case (e.g., ``'camelCase'`` →
+       ``'camel-case'``).
+
+
+Errors and Warnings
+-------------------
+
+The :mod:`error` module  provides functions to generate error messages, check types, and
+suggest corrections for invalid values. It includes a dictionary of
+:data:`.ERROR_TEMPLATES` to ensure streamlined and consistent error reporting. Functions
+include:
+
+.. list-table::
+
+   * - :func:`.generateErrorMessage`
+     - Generate an error message from one or more templates and keyword arguments.
+
+   * - :func:`.generateTypeError`
+     - Generate a :class:`TypeError` message based on expected types and dependencies.
+
+   * - :func:`.validateType`
+     - Validate that a value (or its items) is of an expected type.
+
+   * - :func:`.suggestValue`
+     - Raise a :class:`ValueError` with a suggestion for a close match if the value is
+       invalid.
 
 Measuring Contours
 ------------------
 
-Working with Rulers
--------------------
+The :mod:`.rulers` module provides utility functions to extract glyph contours, segments
+and points and calculate glyph geometry used in engraving analysis. Functions include:
 
-Using Script Utilities
-----------------------
+Rulers
+^^^^^^
 
-Using Standard Utilities
-------------------------
+.. list-table::
+
+   * - :func:`.glyphBoundsHeight`
+     - Return the bounding box height of a glyph.
+
+   * - :func:`.glyphBoundsWidth`
+     - Return the bounding box width of a glyph.
+
+   * - :func:`.glyphBoundsXMinAbs`
+     - Return the absolute minimum X coordinate of a glyph's bounds.
+
+   * - :func:`.xDistanceStemToDot`
+     - Measure horizontal distance between a stem and a dot contour.
+
+   * - :func:`.xDistanceBetweenContours`
+     - Measure horizontal distance between two contours in a glyph.
+
+   * - :func:`.yDistanceBetweenContours`
+     - Measure vertical distance between two contours in a glyph.
+
+   * - :func:`.xStrokeWidthAtOrigin`
+     - Measure horizontal stroke width near the origin, aligned on Y.
+
+   * - :func:`.yStrokeWidthAtMinimum`
+     - Measure vertical stroke width at the glyph's lowest point, aligned on X.
+
+   * - :func:`.wedgeArmStrokeWidth`
+     - Measure stroke thickness in wedge-shaped glyphs (e.g., hairpins).
+
+Boolean Checkers
+^^^^^^^^^^^^^^^^
+
+.. list-table:: 
+
+   * - :func:`.areAlligned`
+     - Check whether a group of points is aligned along the specified axis within
+       tolerance.
+   
+   * - :func:`.hasHorizontalOffCurve`
+     - Check whether a curve point has a predominantly horizontal off-curve.
+
+   * - :func:`.hasVerticalOffCurve`
+     - Check whether a curve point has a predominantly vertical off-curve.
+
+Contour Tools
+^^^^^^^^^^^^^
+
+.. list-table:: 
+
+   * - :func:`.getGlyphContours`
+     - Return all contours in a glyph, optionally including components.
+
+   * - :func:`.getGlyphSegments`
+     - Return all segments in the glyph matching given types.
+
+   * - :func:`.getGlyphPoints`
+     - Return all points in the glyph matching given types.
+
+   * - :func:`.getParentSegment`
+     - Return the segment which a point belongs to.
+
+   * - :func:`.combineBounds`
+     - Combine a list of bounds into one bounding box.
 
