@@ -256,12 +256,10 @@ class Smufl(BaseObject):
             ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
 
         """
-        if self.glyph is None or self.font is None:
+        if self.font is None:
             return None
-        # find alt names among string of glyph names
-        string = " ".join(sorted(self.font.keys()))
-        pattern = rf"\b{self.glyph.name}\.(?:s?alt|ss)[0-9]{{2}}\b"
-        results = re.findall(pattern, string)
+
+        results = self._findAlternates()
         alternates = []
         for name in results:
             glyph = self.font[name]
@@ -269,6 +267,43 @@ class Smufl(BaseObject):
                 {"codepoint": glyph.smufl.codepoint, "name": glyph.smufl.name}
             )
         return tuple(alternates)
+
+    @property
+    def alternateGlyphs(self):
+        """Alternates of base glyph by :class:`.Glyph` object.
+
+        This property is read-only.
+
+        Example::
+
+            >>> glyph.smufl.alternateGlyphs
+            (<Glyph 'uniE240.ss02' ('public.default') at 4391369312>,
+            <Glyph 'uniE240.ss03' ('public.default') at 4391367776>)
+
+        """
+        alternates = self._findAlternates()
+        return tuple(self.font[a] for a in alternates)
+
+    @property
+    def alternateNames(self):
+        """Alternates of base glyph by :attr:`name`.
+
+        This property is read-only.
+
+        Example::
+
+            >>> glyph.smufl.alternateGlyphs
+            (flag8thUpShort, flag8thUpSmall)
+
+        """
+        alternates = self._findAlternates()
+        return tuple(self.font[a].smufl.name for a in alternates)
+
+    def _findAlternates(self):
+        # find alt names among string of glyph names
+        string = " ".join(sorted(self.font.keys()))
+        pattern = rf"\b{self.glyph.name}\.(?:s?alt|ss)[0-9]{{2}}\b"
+        return re.findall(pattern, string)
 
     @property
     def anchors(self) -> dict[str, tuple[int | float, int | float]] | None:
