@@ -648,7 +648,7 @@ Using the Utility Modules
 =========================
 
 SMufoLib includes a whole host of utility functions, spread accross several modules.
-The sections below provide an introduction to some of the most useful features for
+The sections below provide a summary of some of the most useful features for
 external use.
 
 Conversion
@@ -686,13 +686,25 @@ include:
    validateType
    suggestValue
 
-Measuring Contours
-------------------
+Contours and Measuring
+----------------------
 
-The :mod:`.rulers` module provides utility functions to extract glyph contours, segments
-and points and calculate glyph geometry used in engraving analysis. Functions include:
+The :mod:`.rulers` module provides functions to extract glyph contours, segments and
+points and calculate glyph geometry used in engraving analysis. Functions include:
 
 .. module:: smufolib.utils.rulers
+
+Contour Tools
+^^^^^^^^^^^^^
+
+.. autosummary::
+   :nosignatures:
+
+   getGlyphContours
+   getGlyphSegments
+   getGlyphPoints
+   getParentSegment
+   combineBounds
 
 Rulers
 ^^^^^^
@@ -710,8 +722,8 @@ Rulers
    yStrokeWidthAtMinimum
    wedgeArmStrokeWidth
 
-Boolean Checkers
-^^^^^^^^^^^^^^^^
+Boolean Checks
+^^^^^^^^^^^^^^
 
 .. autosummary::
    :nosignatures:
@@ -720,15 +732,5 @@ Boolean Checkers
    hasHorizontalOffCurve
    hasVerticalOffCurve
 
-Contour Tools
-^^^^^^^^^^^^^
 
-.. autosummary::
-   :nosignatures:
-
-   getGlyphContours
-   getGlyphSegments
-   getGlyphPoints
-   getParentSegment
-   combineBounds
 
