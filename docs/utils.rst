@@ -34,7 +34,7 @@
     :exclude-members: contourIndex, position, type, x, y
 
 :mod:`.rulers`
--------------------
+--------------
 
 .. automodule:: smufolib.utils.rulers
     :members:
@@ -50,7 +50,7 @@
             :header-rows: 1
 
 :mod:`.scriptUtils`
-----------------
+-------------------
 
 .. automodule:: smufolib.utils.scriptUtils
     :members:
