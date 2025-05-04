@@ -844,12 +844,12 @@ class Smufl(BaseObject):
         - :attr:`Smufl.engravingDefaults`
         - :attr:`Smufl.anchors`
         - :attr:`Smufl.advanceWidth`
-        - :attr:`.BaseGlyph.width`
-        - :attr:`.BaseGlyph.height`
-        - :attr:`.BaseGlyph.contours`
-        - :attr:`.BaseGlyph.components`
-        - :attr:`.BaseGlyph.anchors`
-        - :attr:`.BaseGlyph.guidelines`
+        - :attr:`fontParts.base.BaseGlyph.width`
+        - :attr:`fontParts.base.BaseGlyph.height`
+        - :attr:`fontParts.base.BaseGlyph.contours`
+        - :attr:`fontParts.base.BaseGlyph.components`
+        - :attr:`fontParts.base.BaseGlyph.anchors`
+        - :attr:`fontParts.base.BaseGlyph.guidelines`
 
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.
