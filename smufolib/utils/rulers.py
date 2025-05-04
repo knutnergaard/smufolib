@@ -3,8 +3,8 @@
 This module provides functions to retrieve, measure and inspect various parts of glyphs.
 It also defines:
 
-- :data:`ENGRAVING_DEFAULTS_MAPPING`, the default association between ruler functions and glyphs used for
-  calculating :class:`.EngravingDefaults` attribute values.
+- :data:`ENGRAVING_DEFAULTS_MAPPING`, the default association between ruler functions
+  and glyphs used for calculating :class:`.EngravingDefaults` attribute values.
 - :data:`DISPATCHER`, for dynamically executing measurement operations by function name.
 
 """
@@ -181,7 +181,7 @@ def glyphBoundsWidth(glyph: Glyph) -> int | float | None:
 
 
 def glyphBoundsXMinAbs(glyph: Glyph) -> int | float | None:
-    """Return absolute value of glyph's xMin bound.
+    """Return absolute value of glyph's *xMin* bound.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
@@ -313,7 +313,7 @@ def yStrokeWidthAtMinimum(glyph: Glyph) -> int | float | None:
 
 
 def wedgeArmStrokeWidth(glyph: Glyph):
-    """Measure thickness of arm in a wdge-shaped glyph.
+    """Measure thickness of arm in a wedge-shaped glyph.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
@@ -410,8 +410,8 @@ def getGlyphPoints(glyph, types: str | tuple[str, ...] = TYPES, includeComponent
 def hasHorizontalOffCurve(point: RPoint) -> bool:
     """Return :obj:`True` if `point` has a predominantly horizontal off-curve.
 
-    An off-curve control point is considered horizontal if its x difference from the
-    on-curve point is greater than its y difference.
+    An off-curve control point is considered horizontal if its *x-difference* from the
+    on-curve point is greater than its *y-difference*.
 
     :param point: The on-curve point to check.
 
@@ -431,8 +431,8 @@ def hasHorizontalOffCurve(point: RPoint) -> bool:
 def hasVerticalOffCurve(point: RPoint) -> bool:
     """Return :obj:`True` if `point` has a predominantly vertical off-curve.
 
-    An off-curve control point is considered vertical if its y difference from the
-    on-curve point is greater than its x difference.
+    An off-curve control point is considered vertical if its *y-difference* from the
+    on-curve point is greater than its *x-difference*.
 
     :param point: The on-curve point to check.
 
