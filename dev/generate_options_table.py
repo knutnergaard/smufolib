@@ -34,11 +34,11 @@ def main():
         str: ":class:`str`",
         json.loads: ":func:`~json.loads`",
         Request: ":class:`~smufolib.request.Request`",
-        Font: ":class:`~smufolib.font.Font`",
+        Font: ":class:`~smufolib.objects.font.Font`",
         converters.toNumber: ":class:`list`",
     }
 
-    filePath = Path(__file__) / "docs" / "options.csv"
+    filePath = Path(__file__).parent.parent / "docs" / "options.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Argument", "Option", "Type", "Description"]
