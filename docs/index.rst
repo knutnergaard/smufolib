@@ -16,9 +16,9 @@ the command line, rather than any particular font editor.
 
 .. toctree::
    :maxdepth: 1
-   :caption: Getting Started
+   :caption: User Guide
 
-   getting_started
+   user_guide
 
 .. toctree::
    :maxdepth: 1

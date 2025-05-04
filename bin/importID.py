@@ -67,8 +67,8 @@ GLYPHNAMES_DATA = Request(
     CONFIG["metadata.paths"]["glyphnames"], CONFIG["metadata.fallbacks"]["glyphnames"]
 )
 FONT_DATA = Request(
-    CONFIG["metadata.paths"]["referenceFont"],
-    CONFIG["metadata.fallbacks"]["referenceFont"],
+    CONFIG["metadata.paths"]["font"],
+    CONFIG["metadata.fallbacks"]["font"],
 )
 ATTRIBUTES = ("name", "classes", "description")
 INCLUDE_OPTIONALS = False
@@ -108,7 +108,7 @@ def importID(
         metadata file. Defaults to :class:`~.Request`
         with :attr:`~.Request.path` and :attr:`~.Request.fallback` set
         to :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]`
-        respective `referenceFont` configurations.
+        respective `font` configurations.
     :param includeOptionals: Include optional glyphs. Defaults to
         :obj:`False`.
     :param overwrite: Overwrite preexisting values. Defaults to

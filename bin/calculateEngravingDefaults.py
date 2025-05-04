@@ -7,46 +7,9 @@ the :class:`.EngravingDefaults` class based on glyph dimensions,
 registration, metrics, and point placement.
 
 The script provides options to override automatic contour measurements
-and reassign attributes to different ruler functions or glyphs. It aims
-to automate the process, but due to limitations in parameter
-identification and control, it should only be used as a starting point.
-
-By default, attributes are mapped to the following functions and
-glyphs:
-
-    ===================================  ================================  =========
-    Attribute                            Ruler Function                    Glyph
-    ===================================  ================================  =========
-    :attr:`.arrowShaftThickness`         :func:`xStrokeWidthAtOrigin`      `uniEB60`
-    :attr:`.barlineSeparation`           :func:`xDistanceBetweenContours`  `uniE031`
-    :attr:`.beamSpacing`                 :func:`yDistanceBetweenContours`  `uniE1F9`
-    :attr:`.beamThickness`               :func:`glyphBoundsHeight`         `uniE1F7`
-    :attr:`.bracketThickness`            :func:`xStrokeWidthAtOrigin`      `uniE003`
-    :attr:`.dashedBarlineDashLength`     :func:`yStrokeWidthAtMinimum`     `uniE036`
-    :attr:`.dashedBarlineGapLength`      :func:`yDistanceBetweenContours`  `uniE036`
-    :attr:`.dashedBarlineThickness`      :func:`xStrokeWidthAtOrigin`      `uniE036`
-    :attr:`.hairpinThickness`            :func:`yStrokeWidthAtMinimum`     `uniE53E`
-    :attr:`.hBarThickness`               :func:`yStrokeWidthAtMinimum`     `uniE4F0`
-    :attr:`.legerLineExtension`          :func:`glyphBoundsXMinAbs`        `uniE022`
-    :attr:`.legerLineThickness`          :func:`glyphBoundsHeight`         `uniE022`
-    :attr:`.lyricLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
-    :attr:`.octaveLineThickness`         :func:`glyphBoundsHeight`         `uniE010`
-    :attr:`.pedalLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
-    :attr:`.repeatBarlineDotSeparation`  :func:`xDistanceStemToDot`        `uniE040`
-    :attr:`.repeatEndingLineThickness`   :func:`xStrokeWidthAtOrigin`      `uniE030`
-    :attr:`.slurEndpointThickness`       :func:`xStrokeWidthAtOrigin`      `uniE1FD`
-    :attr:`.slurMidpointThickness`       :func:`yStrokeWidthAtMinimum`     `uniE1FD`
-    :attr:`.staffLineThickness`          :func:`glyphBoundsHeight`         `uniE010`
-    :attr:`.stemThickness`               :func:`xStrokeWidthAtOrigin`      `uniE210`
-    :attr:`.subBracketThickness`         :func:`xStrokeWidthAtOrigin`      `uniE030`
-    :attr:`.textEnclosureThickness`      :func:`glyphBoundsHeight`         `uniE010`
-    :attr:`.thickBarlineThickness`       :func:`xStrokeWidthAtOrigin`      `uniE034`
-    :attr:`.thinBarlineThickness`        :func:`xStrokeWidthAtOrigin`      `uniE030`
-    :attr:`.thinThickBarlineSeparation`  :func:`xDistanceBetweenContours`  `uniE032`
-    :attr:`.tieEndpointThickness`        :func:`xStrokeWidthAtOrigin`      `uniE1FD`
-    :attr:`.tieMidpointThickness`        :func:`yStrokeWidthAtMinimum`     `uniE1FD`
-    :attr:`.tupletBracketThickness`      :func:`xStrokeWidthAtOrigin`      `uniE1FE`
-    ===================================  ================================  =========
+and reassign attributes to different ruler functions or glyphs.
+See :ref:`engraving-defaults-mapping` for a complete list of attributes and their
+default corresponding glyphs and assigned ruler functions.
 
 .. note:: The setting for :attr:`.textFontFamily` must be set manually
    within the `override` parameter.

@@ -453,7 +453,12 @@ class Smufl(BaseObject):
         return (Range(self),)
 
     def _getFontRanges(self) -> tuple[Range, ...] | None:
-        if self.font is None or self._names is None or METADATA is None:
+        if (
+            self.font is None
+            or self._names is None
+            or METADATA is None
+            or isinstance(METADATA, str)
+        ):
             return None
 
         ranges = []
