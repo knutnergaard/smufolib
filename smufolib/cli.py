@@ -194,7 +194,7 @@ def commonParser(
 def createHelpFormatter(formatters: str | tuple[str, ...]) -> type[HelpFormatter]:
     """Create child class of multiple help formatters.
 
-    The returned :class:`HelpFormatter` class can be passed to the
+    The returned :class:`argparse.HelpFormatter` class can be passed to the
     `formatter_class` parameter of :class:`argparse.ArgumentParser` to
     combine different formatters, despite the parameter only taking a
     single class as argument.
@@ -208,7 +208,7 @@ def createHelpFormatter(formatters: str | tuple[str, ...]) -> type[HelpFormatter
         :class:`~argparse.MetavarTypeHelpFormatter`, or a :class:`tuple`
         of class names.
     :raises TypeError: If `formatters` is not an accepted type.
-    :raises ValueError: If any `formatters` item is not recognised.
+    :raises ValueError: If any `formatters` item is not recognized.
 
     """
 
