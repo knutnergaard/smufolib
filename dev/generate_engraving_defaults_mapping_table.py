@@ -17,8 +17,6 @@ def main():
 
     # pylint: disable=C0103
 
-    namesMapping = _buildNamesMapping()
-
     filePath = Path(__file__).parent.parent / "docs" / "engraving_defaults_mapping.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
@@ -39,7 +37,6 @@ def main():
             else:
                 rulerName = mapping["ruler"]
                 glyphName = mapping["glyph"]
-                smuflName = namesMapping[glyphName]
                 writer.writerow(
                     {
                         "Attribute": f":attr:`.{attributeName}`",
@@ -47,15 +44,6 @@ def main():
                         "Ruler Function": f":func:`~.rulers.{rulerName}`",
                     }
                 )
-
-
-def _buildNamesMapping():
-    # Create an inverted glyph name mapping from glyphnames.json
-    scriptDir = Path(__file__).parent
-    filepath = scriptDir / "../smufolib/metadata/glyphnames.json"
-    with filepath.open(encoding="utf-8") as jsonFile:
-        metadata = json.load(jsonFile)
-        return {converters.toUniName(v["codepoint"]): k for k, v in metadata.items()}
 
 
 if __name__ == "__main__":
