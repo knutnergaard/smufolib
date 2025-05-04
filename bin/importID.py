@@ -1,30 +1,27 @@
 #!/usr/bin/env python3
 # coding: utf-8
 """
-This script imports :class:`~smufolib.objects.smufl.Smufl`
-identification attribute values for all glyphs in a SMufoLib
-:class:`~smufolib.objects.font.Font` from metadata files. More
-specifically, it automatically sets the values for
+This script imports :class:`~smufolib.objects.smufl.Smufl` identification attribute
+values for all glyphs in a SMufoLib :class:`~smufolib.objects.font.Font` from metadata
+files. More specifically, it automatically sets the values for
 :attr:`~smufolib.objects.smufl.Smufl.name`,
 :attr:`~smufolib.objects.smufl.Smufl.description` and/or
-:attr:`~smufolib.objects.smufl.Smufl.classes`, based on the official metadata
-files of `SMuFL <https://w3c.github.io/smufl/latest/specification/smufl-metadata.html>`_
-and `Bravura <https://github.com/steinbergmedia/bravura#bravura-music-font>`_,
-or any other compatible sources.
+:attr:`~smufolib.objects.smufl.Smufl.classes`, based on the official metadata files of
+`SMuFL <https://w3c.github.io/smufl/latest/specification/smufl-metadata.html>`_ and
+`Bravura <https://github.com/steinbergmedia/bravura#bravura-music-font>`_, or any other
+compatible sources.
 
-Attributes for optional glyphs may be included with `includeOptionals`
-is :obj:`True`, in which case stylistic alternates and ligatures must
-be named with reference to their base glyph(see :ref:`this note <about
-glyph naming>` for more information about glyph naming).
+Attributes for optional glyphs may be included with `includeOptionals` is :obj:`True`,
+in which case stylistic alternates and ligatures must be named with reference to their
+base glyph (see :ref:`this note <about-glyph-naming>` for more information about glyph
+naming).
 
-If `overwrite` is :obj:`False`, glyphs with preset attributes are
-skipped. Glyphs are also skipped if they are non-SMuFL members or if
-lookup fails (because the glyph is unencoded or the codepoint does not
-exist in the source metadata.
+If `overwrite` is :obj:`False`, glyphs with preset attributes are skipped. Glyphs are
+also skipped if they are non-SMuFL members or if lookup fails (because the glyph is
+unencoded or the codepoint does not exist in the source metadata.
 
-This script requires SMufoLib to be installed within its
-executive environment. It may also be imported as a module and contains
-the following public functions:
+This script requires SMufoLib to be installed within its executive environment. It may
+also be imported as a module and contains the following public functions:
 
     - :func:`importID` - The scripts program function.
     - :func:`main` - Command line entry point.
