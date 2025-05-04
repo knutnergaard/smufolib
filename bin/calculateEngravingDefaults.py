@@ -60,9 +60,7 @@ from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 Exclude = tuple[str] | list[str]
 OverrideValue = int | float | tuple[str, ...] | None
 Override = dict[str, OverrideValue]
-MappingValue = str | int | None
-Mapping = dict[str, MappingValue]
-Remapping = dict[str, Mapping]
+Remapping = dict[str, dict[str, str]]
 RulerType = Callable[[Glyph], int | float | None]
 
 CONFIG = config.load()
@@ -144,10 +142,8 @@ def calculateEngravingDefaults(
         glyphName = mapping.get("glyph", "")
         remapping = remap.get(key, {}) if remap else {}
         rulerName = remapping.get("ruler", rulerName)
-        rulerName = cast(str, rulerName)
         ruler: RulerType = DISPATCHER[rulerName]
         glyphName = remapping.get("glyph", glyphName)
-        glyphName = cast(str, glyphName)
 
         rulerValue = _getValue(
             font=font,

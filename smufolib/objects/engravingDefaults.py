@@ -582,7 +582,6 @@ class EngravingDefaults(BaseObject):
             except KeyError:
                 return None
             rulerName = ENGRAVING_DEFAULTS_MAPPING[name]["ruler"]
-            rulerName = cast(str, rulerName)
             ruler: Callable[["Glyph"], int | float | None] = DISPATCHER[rulerName]
             value = ruler(glyph)
 
