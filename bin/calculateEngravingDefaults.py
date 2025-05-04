@@ -35,7 +35,6 @@ argument.
 """
 
 from __future__ import annotations
-from typing import cast
 from collections.abc import Callable
 import argparse
 import json
