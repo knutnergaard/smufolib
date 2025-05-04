@@ -50,7 +50,7 @@ Here is a minimal example:
    auto = false
 
 This example changes the primary mark color and disables automatic calculation of
-:class:`EngravingDefaults`.
+:class:`.EngravingDefaults`.
 
 For a complete list of sections, options, and default values, see the
 :ref:`configuration` section of the API documentation.
@@ -361,7 +361,7 @@ switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
    
    - This setting is stored in the font's metadata and will persist when saving the font.
 
-The :class:`.SMufl` class also provides methods to convert a given value between the
+The :class:`.Smufl` class also provides methods to convert a given value between the
 different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
 value to staff spaces, and the :meth:`.toUnits` to do the opposite::
 
