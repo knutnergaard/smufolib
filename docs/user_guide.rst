@@ -118,8 +118,8 @@ The essential glyph identification attributes (:attr:`.Smufl.name`,
 :ref:`running-scripts` for more information.
 
 .. [#] Most of the objects referred to as "attributes" in this user guide are
-   technically implemented as Python :term:`properties`, but for clarity and consistency
-   with SMuFL metadata terminology, "attribute" is used synonymously throughout.
+   technically implemented as Python properties, but referred to as attributes for
+   clarity and consistency with general terminology.
 
 .. _working-with-metadata:
 
@@ -253,7 +253,7 @@ Even the glyph advance width is available as :attr:`.Smufl.advanceWidth`::
    >>> glyph.smufl.advanceWidth
    671 
    
-It differs from the usual :attr:`fontParts.base.BaseGlyph.width` in optionally providing
+It differs from the usual :attr:`.Glyph.width` in optionally providing
 the value in staff spaces (see :ref:`changing-measurement-units`).
 
 Ligatures and Stylistic Alternates
