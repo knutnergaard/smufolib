@@ -657,33 +657,17 @@ Conversion
 The :mod:`.converters` module provides helper functions for converting between different
 measurement formats, Unicode codepoints, and naming styles. Functions include:
 
-.. list-table::
+.. module:: smufolib.utils.converters
+.. autosummary::
+   :nosignatures:
 
-   * - :func:`.convertMeasurement`  
-     - Convert between ``'units'`` and ``'spaces'`` using a UPM value.
-
-   * - :func:`.toDecimal`
-     - Convert a formatted Unicode :class:`str` (e.g., ``'uniE000'``, ``'U+1D100'``) to
-       a decimal :class:`int`.
-
-   * - :func:`.toUniHex`
-     - Convert a decimal :class:`int` codepoint to a ``'U+XXXX'`` style :class:`str`.
-
-   * - :func:`.toUniName`
-     - Convert a Unicode-formatted :class:`str` or :class:`int` to ``'uniXXXX'`` or
-       ``'uXXXX'``.
-
-   * - :func:`.toNumber`
-     - Convert a :class:`str` to a :class:`float` or :class:`int`, including hex.
-
-   * - :func:`.toIntIfWhole`
-     - Return an :class:`int` if the :class:`float` has no fractional part; otherwise
-       return the original value.
-
-   * - :func:`.toKebab`
-     - Convert camelCase :class:`str` to kebab-case (e.g., ``'camelCase'`` →
-       ``'camel-case'``).
-
+   convertMeasurement
+   toDecimal
+   toUniHex
+   toUniName
+   toNumber
+   toIntIfWhole
+   toKebab
 
 Errors and Warnings
 -------------------
@@ -693,20 +677,14 @@ suggest corrections for invalid values. It includes a dictionary of
 :data:`.ERROR_TEMPLATES` to ensure streamlined and consistent error reporting. Functions
 include:
 
-.. list-table::
+.. module:: smufolib.utils.error
+.. autosummary::
+   :nosignatures:
 
-   * - :func:`.generateErrorMessage`
-     - Generate an error message from one or more templates and keyword arguments.
-
-   * - :func:`.generateTypeError`
-     - Generate a :class:`TypeError` message based on expected types and dependencies.
-
-   * - :func:`.validateType`
-     - Validate that a value (or its items) is of an expected type.
-
-   * - :func:`.suggestValue`
-     - Raise a :class:`ValueError` with a suggestion for a close match if the value is
-       invalid.
+   generateErrorMessage
+   generateTypeError
+   validateType
+   suggestValue
 
 Measuring Contours
 ------------------
@@ -714,70 +692,43 @@ Measuring Contours
 The :mod:`.rulers` module provides utility functions to extract glyph contours, segments
 and points and calculate glyph geometry used in engraving analysis. Functions include:
 
+.. module:: smufolib.utils.rulers
+
 Rulers
 ^^^^^^
 
-.. list-table::
+.. autosummary::
+   :nosignatures:
 
-   * - :func:`.glyphBoundsHeight`
-     - Return the bounding box height of a glyph.
-
-   * - :func:`.glyphBoundsWidth`
-     - Return the bounding box width of a glyph.
-
-   * - :func:`.glyphBoundsXMinAbs`
-     - Return the absolute minimum X coordinate of a glyph's bounds.
-
-   * - :func:`.xDistanceStemToDot`
-     - Measure horizontal distance between a stem and a dot contour.
-
-   * - :func:`.xDistanceBetweenContours`
-     - Measure horizontal distance between two contours in a glyph.
-
-   * - :func:`.yDistanceBetweenContours`
-     - Measure vertical distance between two contours in a glyph.
-
-   * - :func:`.xStrokeWidthAtOrigin`
-     - Measure horizontal stroke width near the origin, aligned on Y.
-
-   * - :func:`.yStrokeWidthAtMinimum`
-     - Measure vertical stroke width at the glyph's lowest point, aligned on X.
-
-   * - :func:`.wedgeArmStrokeWidth`
-     - Measure stroke thickness in wedge-shaped glyphs (e.g., hairpins).
+   glyphBoundsHeight
+   glyphBoundsWidth
+   glyphBoundsXMinAbs
+   xDistanceStemToDot
+   xDistanceBetweenContours
+   yDistanceBetweenContours
+   xStrokeWidthAtOrigin
+   yStrokeWidthAtMinimum
+   wedgeArmStrokeWidth
 
 Boolean Checkers
 ^^^^^^^^^^^^^^^^
 
-.. list-table:: 
+.. autosummary::
+   :nosignatures:
 
-   * - :func:`.areAlligned`
-     - Check whether a group of points is aligned along the specified axis within
-       tolerance.
-   
-   * - :func:`.hasHorizontalOffCurve`
-     - Check whether a curve point has a predominantly horizontal off-curve.
-
-   * - :func:`.hasVerticalOffCurve`
-     - Check whether a curve point has a predominantly vertical off-curve.
+   areAlligned
+   hasHorizontalOffCurve
+   hasVerticalOffCurve
 
 Contour Tools
 ^^^^^^^^^^^^^
 
-.. list-table:: 
+.. autosummary::
+   :nosignatures:
 
-   * - :func:`.getGlyphContours`
-     - Return all contours in a glyph, optionally including components.
-
-   * - :func:`.getGlyphSegments`
-     - Return all segments in the glyph matching given types.
-
-   * - :func:`.getGlyphPoints`
-     - Return all points in the glyph matching given types.
-
-   * - :func:`.getParentSegment`
-     - Return the segment which a point belongs to.
-
-   * - :func:`.combineBounds`
-     - Combine a list of bounds into one bounding box.
+   getGlyphContours
+   getGlyphSegments
+   getGlyphPoints
+   getParentSegment
+   combineBounds
 

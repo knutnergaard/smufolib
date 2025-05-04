@@ -55,7 +55,7 @@ def toDecimal(unicodeString: str) -> int:
     """Convert formatted unicode or uni name to decimal codepoint.
 
     Function accepts any hexadecimal string within the Unicode range
-    (U+0000 – U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
+    (U+0000 - U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
 
     :param unicodeString: The value to convert.
     :raises TypeError: If `unicodeString` is not the accepted type.
