@@ -14,7 +14,9 @@ User defined default settings for SMufoLib are set in the configuration file :re
 smufolib.cfg
 ============
 
-The SMufoLib configuration file `smufolib.cfg` contains default settings for SMufoLib. It contains three main sections, with sub-sections denoted by a preceding dot, and settings for warnings, URL and file paths and colors.
+The SMufoLib configuration file `smufolib.cfg` contains default settings for SMufoLib.
+It contains three main sections, with sub-sections denoted by a preceding dot, and
+settings for warnings, URL and file paths and colors.
 
 .. _[request]:
 
@@ -59,7 +61,7 @@ Metadata fallback paths are configured in this section.
 [cli.shortFlags]
 ----------------
 
-Short flags for :ref:`Command Line Interface` options to be used with :func:`~smufolib.cli.commonParser` are configured in this section.
+Short flags for :ref:`command-line-interface` options to be used with :func:`~smufolib.cli.commonParser` are configured in this section.
 
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg
@@ -101,3 +103,15 @@ This section contains configuration for the :class:`~smufolib.objects.engravingD
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg
     :start-at: [engravingDefaults]
+
+.. envvar:: SMUFOLIB_CFG
+
+   If set, this environment variable overrides the default configuration file path.
+   Use it to specify a custom configuration file location. The value should be an
+   absolute or relative path to the `.cfg` configuration file.
+
+For example:
+
+.. code-block:: zsh
+
+   export SMUFOLIB_CFG=/path/to/custom/smufolib.cfg

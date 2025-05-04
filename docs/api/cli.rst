@@ -1,15 +1,12 @@
-.. _Command Line Interface:
+.. _command-line-interface:
 
-======================
-Command Line Interface
-======================
+=============
+CLI Framework
+=============
 
 To simplify the creation of command-line options and streamline script
-interfaces, :func:`cli.commonParser` provides a set of predefined argument definitions
-for the standard library :mod:`argparse` module. These may be combined
-with any script specific definitions by
-passing :func:`~cli.commonParser` to the `parents` parameter
-of :class:`argparse.ArgumentParser` as a :class:`list`.
+interfaces, the :mod:`.cli` module provides a set of predefined argument definitions as
+well as accompanying tools utilizing the standard library :mod:`argparse` module.
 
 .. _Available Options:
 
@@ -20,9 +17,13 @@ Available Options
     :file: ../options.csv
     :header-rows: 1
 
-.. note:: Short flags for options may be redefined in the
-    :ref:`[cli.shortFlags]` section of :ref:`smufolib.cfg`.
-
+.. note:: 
+    
+    Short flags for options may be redefined in the :ref:`[cli.shortFlags]` section of :ref:`smufolib.cfg`.
 
 .. automodule:: smufolib.cli
     :members:
+
+.. class:: argparse.HelpFormatter
+
+   Formatter for generating usage messages and argument help strings.

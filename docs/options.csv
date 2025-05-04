@@ -5,7 +5,7 @@
 "`color`","``--color, -c``",":class:`list`","List of RGBA color values."
 "`colors`","``--colors, -c``",":func:`~json.loads`","Keys mapped to RGBA color arrays as JSON string."
 "`exclude`","``--exclude, -e``",":class:`list`","Objects to exclude from processing."
-"`font`","``--font, -f``",":class:`~smufolib.font.Font`","Path to UFO file."
+"`font`","``--font, -f``",":class:`~smufolib.objects.font.Font`","Path to UFO file."
 "`fontData`","``--font-data, -F``",":class:`~smufolib.request.Request`","Path to font metadata file."
 "`glyphnamesData`","``--glyphnames-data, -G``",":class:`~smufolib.request.Request`","Path to glyphnames metadata file."
 "`include`","``--include, -i``",":class:`list`","Objects to include in processing."

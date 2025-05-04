@@ -69,6 +69,6 @@ engraving default values from corresponding glyphs using particular ruler functi
     :file: ../mappings.csv
     :header-rows: 1
 
-The constant :data:`.utils.rulers.MAPPING` provides the mapping as a :class:`dict`. The
+The constant :data:`.utils.rulers.ENGRAVING_DEFAULTS_MAPPING` provides the mapping as a :class:`dict`. The
 default mapping may be modified with the `remap` parameter in
 :func:`~bin.calculateEngravingDefaults.calculateEngravingDefaults`.

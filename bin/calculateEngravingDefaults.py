@@ -35,7 +35,6 @@ argument.
 """
 
 from __future__ import annotations
-from typing import cast
 from collections.abc import Callable
 import argparse
 import json
@@ -53,16 +52,14 @@ from smufolib import (
     normalizers,
     stdUtils,
 )
-from smufolib.utils.rulers import MAPPING, DISPATCHER
+from smufolib.utils.rulers import ENGRAVING_DEFAULTS_MAPPING, DISPATCHER
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 
 
 Exclude = tuple[str] | list[str]
 OverrideValue = int | float | tuple[str, ...] | None
 Override = dict[str, OverrideValue]
-MappingValue = str | int | None
-Mapping = dict[str, MappingValue]
-Remapping = dict[str, Mapping]
+Remapping = dict[str, dict[str, str]]
 RulerType = Callable[[Glyph], int | float | None]
 
 CONFIG = config.load()
@@ -124,9 +121,9 @@ def calculateEngravingDefaults(
 
     font.smufl.spaces = False
 
-    iterator = MAPPING.items()
+    iterator = ENGRAVING_DEFAULTS_MAPPING.items()
     if not verbose:
-        iterator = tqdm(MAPPING.items())
+        iterator = tqdm(ENGRAVING_DEFAULTS_MAPPING.items())
 
     stdUtils.verbosePrint("\nSetting attributes:", verbose)
     for key, mapping in iterator:
@@ -144,10 +141,8 @@ def calculateEngravingDefaults(
         glyphName = mapping.get("glyph", "")
         remapping = remap.get(key, {}) if remap else {}
         rulerName = remapping.get("ruler", rulerName)
-        rulerName = cast(str, rulerName)
         ruler: RulerType = DISPATCHER[rulerName]
         glyphName = remapping.get("glyph", glyphName)
-        glyphName = cast(str, glyphName)
 
         rulerValue = _getValue(
             font=font,
@@ -201,7 +196,9 @@ def _normalizeExclude(exclude: Exclude | None) -> Exclude | None:
     error.validateType(exclude, (tuple, list), "exclude")
 
     for item in exclude:
-        error.suggestValue(item, list(MAPPING.keys()), "exclude", items=True)
+        error.suggestValue(
+            item, list(ENGRAVING_DEFAULTS_MAPPING.keys()), "exclude", items=True
+        )
     return exclude
 
 
@@ -212,7 +209,7 @@ def _normalizeOverride(override: Override | None) -> Override | None:
 
     error.validateType(override, dict, "override")
     for key, value in override.items():
-        attributes = list(MAPPING.keys())
+        attributes = list(ENGRAVING_DEFAULTS_MAPPING.keys())
         error.suggestValue(key, attributes, "override", items=True)
         normalizers.normalizeEngravingDefaultsAttr(key, value)
 
@@ -227,7 +224,9 @@ def _normalizeRemap(remap: Remapping | None) -> Remapping | None:
     error.validateType(remap, dict, "remap")
 
     for key, value in remap.items():
-        error.suggestValue(key, list(MAPPING.keys()), "remap", items=True)
+        error.suggestValue(
+            key, list(ENGRAVING_DEFAULTS_MAPPING.keys()), "remap", items=True
+        )
 
         for k, v in value.items():
             error.suggestValue(
