@@ -235,7 +235,7 @@ class Smufl(BaseObject):
         # Common font metadata setter.
         if self.font is not None:
             if value is None:
-                self.font.lib.naked().pop(key)
+                self.font.lib.naked().pop(key, None)
             else:
                 self.font.lib.naked()[key] = value
 
