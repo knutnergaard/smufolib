@@ -21,9 +21,12 @@ Then instantiate a font object::
 
    >>> font = Font("path/to/myFont.ufo")
 
-Before going further, it's a good idea to have a look at the FontParts `Object Reference
+Before going further, it's a good idea to review the FontParts `Object Reference
 <https://fontparts.robotools.dev/en/stable/objectref/index.html>`_. SMufoLib's
-:class:`.Font`, :class:`.Layer` and :class:`.Glyph` classes wrap the FontParts API and serve as the foundation for the features described below.
+:class:`.Font`, :class:`.Layer`, and :class:`.Glyph` classes extend FontPart's `defcon
+<https://defcon.robotools.dev/en/latest/>`_-based reference implementations --
+:class:`RFont`, :class:`RLayer` and :class:`RGlyph` -- and serve as the foundation for
+the features described below.
 
 .. _configuring-smufolib:
 
