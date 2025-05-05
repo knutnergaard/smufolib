@@ -316,7 +316,7 @@ class Smufl(BaseObject):
         """SMuFL-specific glyph anchors as Cartesian coordinates.
 
         This property is read-only. Use
-        the :attr:`fontParts.base.BaseGlyph.anchors` attribute to set
+        the :attr:`.Glyph.anchors` attribute to set
         glyph anchors.
 
         Example::
@@ -521,8 +521,7 @@ class Smufl(BaseObject):
     def advanceWidth(self) -> int | float | None:
         """Glyph advance width.
 
-        This property is equivalent
-        to :attr:`fontParts.base.BaseGlyph.width`.
+        This property is equivalent to :attr:`.Glyph.width`.
 
         Example::
 
@@ -537,12 +536,15 @@ class Smufl(BaseObject):
         return self.glyph.width
 
     @advanceWidth.setter
-    def advanceWidth(self, value: int | float | None) -> None:
+    def advanceWidth(self, value: int | float) -> None:
         if self.glyph is not None:
-            if self.spaces and value is not None:
-                self.glyph.width = self.toUnits(value)
+            if self.spaces:
+                normalizedValue = self.toUnits(value)
+                if normalizedValue is None:
+                    return
             else:
-                self.glyph.width = value
+                normalizedValue = value
+            self.glyph.width = normalizedValue
 
     # --------------
     # Identification
@@ -827,7 +829,7 @@ class Smufl(BaseObject):
         """Return :obj:`True` if glyph is stylistic alternate.
 
         Glyph names with either ``'.alt'`` and ``'.salt'`` suffix are
-        accepted. See :ref:`Note <about glyph naming>` about glyph
+        accepted. See :ref:`Note <about-glyph-naming>` about glyph
         naming.
 
         This property is read-only.
@@ -857,7 +859,7 @@ class Smufl(BaseObject):
     def isSet(self) -> bool:
         """Return :obj:`True` if glyph is stylistic set member.
 
-        See :ref:`Note <about glyph naming>` about glyph naming.
+        See :ref:`Note <about-glyph-naming>` about glyph naming.
 
         This property is read-only.
 
@@ -891,12 +893,12 @@ class Smufl(BaseObject):
         - :attr:`Smufl.engravingDefaults`
         - :attr:`Smufl.anchors`
         - :attr:`Smufl.advanceWidth`
-        - :attr:`fontParts.base.BaseGlyph.width`
-        - :attr:`fontParts.base.BaseGlyph.height`
-        - :attr:`fontParts.base.BaseGlyph.contours`
-        - :attr:`fontParts.base.BaseGlyph.components`
-        - :attr:`fontParts.base.BaseGlyph.anchors`
-        - :attr:`fontParts.base.BaseGlyph.guidelines`
+        - :attr:`.Glyph.width`
+        - :attr:`.Glyph.height`
+        - :attr:`.Glyph.contours`
+        - :attr:`.Glyph.components`
+        - :attr:`.Glyph.anchors`
+        - :attr:`.Glyph.guidelines`
 
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.
