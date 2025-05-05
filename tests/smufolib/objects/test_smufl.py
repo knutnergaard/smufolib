@@ -194,6 +194,16 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
             ),
         )
 
+    def test_alternateGlyphs(self):
+        self.assertIn(self.salt, self.recommended1.smufl.alternateGlyphs)
+        self.assertIn(self.set, self.recommended1.smufl.alternateGlyphs)
+        self.assertIsNone(self.glyph.smufl.alternateGlyphs)
+
+    def test_alternateNames(self):
+        self.assertIn(self.salt.smufl.name, self.recommended1.smufl.alternateNames)
+        self.assertIn(self.set.smufl.name, self.recommended1.smufl.alternateNames)
+        self.assertIsNone(self.glyph.smufl.alternateNames)
+
     # anchors
 
     def test_anchors(self):
@@ -302,6 +312,12 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.recommended1.smufl.advanceWidth = 2
         self.font.lib.pop("com.smufolib.spaces")
         self.assertEqual(self.recommended1.smufl.advanceWidth, 500)
+
+    @patch("smufolib.objects.smufl.Smufl.toUnits", return_value=None)
+    def test_set_advanceWidth_with_spaces_toUnits_None(self, mock_toUnits):
+        self.setSpaces(self.font)
+        self.recommended1.smufl.advanceWidth = 2
+        self.assertEqual(self.recommended1.smufl.advanceWidth, 0)
 
     def test_set_advanceWidth_no_glyph(self):
         self.smufl.font = self.font
