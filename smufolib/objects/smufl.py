@@ -269,7 +269,7 @@ class Smufl(BaseObject):
         return tuple(alternates)
 
     @property
-    def alternateGlyphs(self):
+    def alternateGlyphs(self) -> tuple[Glyph, ...] | None:
         """Alternates of base glyph by :class:`.Glyph` object.
 
         This property is read-only.
@@ -282,10 +282,12 @@ class Smufl(BaseObject):
 
         """
         alternates = self._findAlternates()
+        if self.glyph is None or self.font is None:
+            return None
         return tuple(self.font[a] for a in alternates)
 
     @property
-    def alternateNames(self):
+    def alternateNames(self) -> tuple[str, ...] | None:
         """Alternates of base glyph by :attr:`name`.
 
         This property is read-only.
@@ -297,10 +299,14 @@ class Smufl(BaseObject):
 
         """
         alternates = self._findAlternates()
+        if self.glyph is None or self.font is None:
+            return None
         return tuple(self.font[a].smufl.name for a in alternates)
 
-    def _findAlternates(self):
+    def _findAlternates(self) -> list[str]:
         # find alt names among string of glyph names
+        if self.font is None or self.glyph is None:
+            return []
         string = " ".join(sorted(self.font.keys()))
         pattern = rf"\b{self.glyph.name}\.(?:s?alt|ss)[0-9]{{2}}\b"
         return re.findall(pattern, string)
