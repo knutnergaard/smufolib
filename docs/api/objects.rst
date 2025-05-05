@@ -5,12 +5,7 @@ Objects
 Base Objects
 ============
 
-SMufoLib's most low-level classes are simply implementations of
-the :mod:`fontParts.base` equivalents. As such, SMufoLib provides easy
-access to an entire common font development API in addition to
-functionality specific to SMuFL. Please see the `FontParts
-documentation <https://fontparts.robotools.dev/en/stable/index.html>`_
-for further reference.
+SMufoLib's lowest-level classes subclass the reference implementation of the FontParts API. Only those objects and members that are explicitly overridden or referenced in SMufoLib's own documentation are documented here. For a complete reference to all inherited attributes and methods, see the `FontParts documentation <https://fontparts.robotools.dev/en/stable/index.html>`_.
 
 .. automodule:: smufolib.objects.font
    :members:
@@ -29,7 +24,9 @@ Core Objects
 The following classes handle SMufoLib's metadata collection, storage and
 manipulation.
 
-.. caution:: These classes use :class:`fontParts.base.BaseLib` to store
+.. caution:: 
+   
+   These classes use :class:`fontParts.base.BaseLib` to store
    property settings. Editing these keys directly may cause problems.
 
 .. automodule:: smufolib.objects.smufl
@@ -44,8 +41,8 @@ manipulation.
 Constants
 =========
 
-The core object modules contain the following convenience constants
-which may be imported directly from the main module.
+The core object modules contain the following convenience constants which may be
+imported directly from the main module.
 
 .. automodule:: smufolib.objects.smufl
    :members: ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
@@ -69,6 +66,6 @@ engraving default values from corresponding glyphs using particular ruler functi
     :file: ../mappings.csv
     :header-rows: 1
 
-The constant :data:`.utils.rulers.ENGRAVING_DEFAULTS_MAPPING` provides the mapping as a :class:`dict`. The
-default mapping may be modified with the `remap` parameter in
+The constant :data:`.utils.rulers.ENGRAVING_DEFAULTS_MAPPING` provides the mapping as a
+:class:`dict`. The default mapping may be modified with the `remap` parameter in
 :func:`~bin.calculateEngravingDefaults.calculateEngravingDefaults`.
