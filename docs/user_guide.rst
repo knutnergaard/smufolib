@@ -317,20 +317,16 @@ Status Indicators
 The :class:`.Smufl` class includes a set of convenient :term:`boolean` checks to
 determine a glyph's membership status:
 
-.. list-table::
-   
-   * - :attr:`~.Smufl.isLigature`
-     - Checks if the glyph is a valid ligature
-   * - :attr:`~.Smufl.isMember`
-     - Checks if the glyph is within the SMuFL glyph range
-   * - :attr:`~.Smufl.isOptional`
-     - Checks if the glyph is within the optional glyph range
-   * - :attr:`~.Smufl.isRecommended`
-     - Checks if the glyph is within the recommended glyph range
-   * - :attr:`~.Smufl.isSalt`
-     - Checks if the glyph is  a stylistic alternate
-   * - :attr:`~.Smufl.isSet`
-     - Checks if the glyph is a stylistic set glyph
+.. module:: smufolib.objects.smufl
+.. autosummary::
+   :nosignatures:
+
+   Smufl.isLigature
+   Smufl.isMember
+   Smufl.isOptional
+   Smufl.isRecommended
+   Smufl.isSalt
+   Smufl.isSet
 
 For instance, checking if a glyph is within the accepted range for recommended glyphs in
 SMuFL is as easy as::
@@ -375,11 +371,7 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite::
 
 .. important::
 
-   The attributes and methods mentioned above depend on the font's units-per-em (UPM)
-   value which must be set with :attr:`fontParts.base.BaseInfo.unitsPerEm` for
-   measurement units conversion to work::
-
-      >>> font.info.unitsPerEm = 1000
+   Conversion to staff spaces depends on the font's units-per-em (UPM) value. Make sure font.info.unitsPerEm is set correctly for the conversion to work as expected.
 
 Finding glyphs
 --------------
@@ -462,19 +454,14 @@ The different metadata support files published under the SMuFL standard, as well
 metadata file for SMuFL's reference font, Bravura, can be easily retrieved using the
 appropriately named :class:`.Request` class methods:
 
-.. list-table::
+.. module:: smufolib.request
+.. autosummary::
+   :nosignatures:
 
-   * - :meth:`~.Request.classes`
-     - Retrieves the official `classes.json` metadata file
-
-   * - :meth:`~.Request.glyphnames`
-     - Retrieves the official `glyphnames.json` metadata file
-     
-   * - :meth:`~.Request.ranges`
-     - Retrieves the official `ranges.json` metadata file
-
-   * - :meth:`~.Request.font`
-     - Retrieves the official `bravura.json` metadata file
+   Request.classes
+   Request.glyphnames
+   Request.ranges
+   Request.font
 
 By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
 :class:`str` response instead by setting ``decode=False``::
