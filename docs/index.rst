@@ -40,7 +40,7 @@ on the defcon-based reference implementation of the `FontParts
 the `Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format -- a
 cross-platform, application-independent standard for representing font source data.
 SMufoLib extends these foundations with SMuFL-aware tools for music font design,
-scripting and metadata management — all from the command line, without requiring a GUI
+scripting and metadata management -- all from the command line, without requiring a GUI
 font editor.
 
 .. toctree::

@@ -6,7 +6,7 @@ later. It is listed in the `Python Package Index
 <https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
 `pip <https://pip.pypa.io/>`__:
 
-.. code:: zsh
+.. code-block:: zsh
 
     $ python -m pip install smufolib
 
@@ -21,12 +21,21 @@ Then instantiate a font object::
 
    >>> font = Font("path/to/myFont.ufo")
 
+A font may also be instantiated from another :class:`fontParts.base.BaseFont` object.
+This allows SMufoLib to be used seamlessly within other FontParts-based environments,
+such as `RoboFont <https://robofont.com>`_::
+   
+   from smufolib import Font
+   from mojo.roboFont import CurrentFont
+
+   font = Font(CurrentFont())
+
+
 Before going further, it's a good idea to review the FontParts `Object Reference
 <https://fontparts.robotools.dev/en/stable/objectref/index.html>`_. SMufoLib's
 :class:`.Font`, :class:`.Layer`, and :class:`.Glyph` classes extend FontPart's `defcon
-<https://defcon.robotools.dev/en/latest/>`_-based reference implementations --
-:class:`RFont`, :class:`RLayer` and :class:`RGlyph` -- and serve as the foundation for
-the features described below.
+<https://defcon.robotools.dev/en/latest/>`_-based reference implementation and serve as
+the foundation for the features described below.
 
 .. _configuring-smufolib:
 
@@ -74,7 +83,7 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 
 - On macOS or Linux:
 
-  .. code:: zsh
+  .. code-block:: zsh
 
      export SMUFOLIB_CFG=/path/to/smufolib.cfg
 
@@ -82,7 +91,7 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 
 - On Windows, use the `set` command:
 
-  .. code:: bat
+  .. code-block:: bat
 
      set SMUFOLIB_CFG=C:\path\to\smufolib.cfg
 
@@ -96,33 +105,39 @@ Setting attributes
 ==================
 
 SMufoLib provides easy storage of SMuFL-related font and glyph metadata within the font
-file itself. Attributes [#]_ can be set individually during the design process, and are
-accessed through the :class:`.Smufl` object::
+file itself. Attributes [#]_ can either be set individually during the design process or
+imported from metadata files.
+
+Maually Setting Attributes
+--------------------------
+
+Attributes are accessed through the :class:`.Smufl` object, and may be set for the font
+and individual glyphs::
 
    >>> font.smufl.name = "myFont"
    >>> font.smufl.version = 1.0
    >>> font.smufl.designSize = 20
    >>> font.smufl.sizeRange = (16, 24)
-   >>> glyph = font["uniE000"]
+   >>> glyph = font["uniE050"]
    >>> glyph.smufl.name = "gClef"
    >>> glyph.smufl.description = "G clef"
    >>> glyph.smufl.classes = ("clefs",)
 
 .. note::
 
-   - Some attributes, like :attr:`.Smufl.name`, will be different depending
-     on whether they are accessed through :class:`.Font` or :class:`.Glyph`.
+   - Some attributes, like :attr:`.Smufl.name`, will return different values depending
+     on whether they are accessed through :attr:`.Font.smufl` or :attr:`.Glyph.smufl`.
    - FontParts maintains consistent references to parent-level objects. As a result,
      font-specific :class:`.Smufl` attributes remain accessible from both the font
      itself and any of its glyphs.
 
-The essential glyph identification attributes (:attr:`.Smufl.name`,
-:attr:`.Smufl.description` and :attr:`.Smufl.classes`) may also be imported from preexisting metadata files using the :mod:`~bin.importID` script. See
-:ref:`running-scripts` for more information.
+Importing Attributes
+--------------------
 
-.. [#] Most of the objects referred to as "attributes" in this user guide are
-   technically implemented as Python properties, but referred to as attributes for
-   clarity and consistency with general terminology.
+The essential glyph identification attributes (:attr:`.Smufl.name`,
+:attr:`.Smufl.description` and :attr:`.Smufl.classes`) may be imported from preexisting
+metadata files using the :mod:`~bin.importID` script. See :ref:`running-scripts` for
+more information.
 
 .. _working-with-metadata:
 
@@ -158,7 +173,7 @@ These are particularly useful when working with multiple glyphs by type::
 
 Coloring glyphs by range is also really easy with this feature:
 
-.. code:: python
+.. code-block:: python
 
    import random
    
@@ -199,7 +214,7 @@ Each setting has its own attribute within this object::
    30
 
 Engraving defaults are calculated automatically from corresponding glyphs by default --
-provided that these glyphs exist. As an example, the value for :attr:`hairpinThickness`
+provided that these glyphs exist. As an example, the value for :attr:`.hairpinThickness`
 is based on the shape of the glyph ``'uniE53E'`` (``'dynamicCrescendoHairpin'``). See
 :ref:`engraving-defaults-mapping` for a full list of attributes and their corresponding
 glyphs.
@@ -239,13 +254,13 @@ anchors in a font. See :ref:`running-scripts` for more information.
 .. note::
 
    Only anchors with names specific to SMuFL are accessible through the :class:`.Smufl`
-   object's :attr:`.anchors` attribute. See :data:`.ANCHOR_NAMES` for a full
+   object's :attr:`~.Smufl.anchors` attribute. See :py:data:`.ANCHOR_NAMES` for a full
    :class:`set` of available SMuFL anchors.
 
 Glyph Metrics and Dimensions
 ----------------------------
 
-Similarly to :attr:`anchors`, the :class:`.Smufl` class also provides a SMuFL-specific
+Similarly to :attr:`~.Smufl.anchors`, the :class:`.Smufl` class also provides a SMuFL-specific
 :class:`dict` representation of the glyph bounding box::
 
    >>> glyph.smufl.bBox
@@ -279,20 +294,18 @@ Alternately, components can be listed by their canonical SMuFL names with the
    ('timeSigCombNumerator', 'timeSig3',
    'timeSigCombDenominator', 'timeSig4')
    
-The :attr:`alternateGlyphs` and :attr:`alternateNames` attribute similarly provide
+The :attr:`.alternateGlyphs` and :attr:`.alternateNames` attribute similarly provide
 convenient access to a glyph's stylistic alternates, by :class:`.Glyph` object and
-SMuFL name respectively::
-
-.. todo:: Add examples
+SMuFL name respectively. 
 
 A SMuFL-specific metadata representation of the same alternates can be retrieved with
-the :attr:`alternates` attribute::
+the :attr:`.alternates` attribute::
 
    >>> glyph = font['uniE050'] # gClef
    >>> glyph.smufl.alternates
    ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
 
-The inverse base glyph is also accessible through the :attr:`base` attribute::
+The inverse base glyph is also accessible through the :attr:`.base` attribute::
 
    >>> alternate = font['uniE050.ss01']
    >>> alternate.smufl.base
@@ -300,7 +313,7 @@ The inverse base glyph is also accessible through the :attr:`base` attribute::
 
 The glyph name suffix is a common characteristic of different types of OpenType
 alternates and sets, and may therefore sometimes be necessary to isolate. This is what
-the :attr:`suffix` attribute is for::
+the :attr:`.suffix` attribute is for::
 
    >>> glyph = font['uniE050.ss01']
    >>> glyph.smufl.suffix
@@ -314,7 +327,7 @@ the :attr:`suffix` attribute is for::
 Status Indicators
 -----------------
 
-The :class:`.Smufl` class includes a set of convenient :term:`boolean` checks to
+The :class:`.Smufl` class includes a set of convenient boolean checks to
 determine a glyph's membership status:
 
 .. module:: smufolib.objects.smufl
@@ -371,7 +384,7 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite::
 
 .. important::
 
-   Conversion to staff spaces depends on the font's units-per-em (UPM) value. Make sure font.info.unitsPerEm is set correctly for the conversion to work as expected.
+   Conversion to staff spaces depends on the font's units-per-em (UPM) value. Make sure ``font.info.unitsPerEm`` is set correctly for the conversion to work as expected.
 
 Finding glyphs
 --------------
@@ -398,13 +411,13 @@ Scripts may be run either directly from the command line or imported as regular 
 
 As an example, check for missing or superfluous SMuFL anchors and mark discrepant glyphs by running the :mod:`~bin.checkAnchors` script with the ``--mark`` flag directly from the command line:
 
-.. code:: zsh
+.. code-block:: zsh
 
    $ check-anchors path/to/my/font.ufo --mark
 
 Positional arguments and available options can be listed by running the help command on the script:
 
-.. code:: zsh
+.. code-block:: zsh
 
    $ check-anchors --help
 
@@ -428,22 +441,18 @@ Positional arguments and available options can be listed by running the help com
       -v, --verbose        make output verbose (default: False)
 
 
-Alternatively, scripts can be imported as modules in Python:
+Alternatively, scripts can be imported as modules in Python::
 
-.. code:: python
+   >>> from bin.checkAnchors import checkAnchors
+   >>> checkAnchors(mark=True)
 
-   from bin.checkAnchors import checkAnchors
-
-   checkAnchors(mark=True)
-
-This imports and executes the script's program
-function, :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same
-name. The documentation for either one is accessible via :func:`help`.
+This imports and executes the script's program function,
+:func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name.
 
 Making Metadata Requests
 ========================
 
-SMufoLib provides a :mod:`request` module to handle web requests and metadata file
+SMufoLib provides a :mod:`.request` module to handle web requests and metadata file
 operations, facilitating access to updated SMuFL data. Most of this functionality is
 handled by the module's :class:`.Request` class.
 
@@ -496,11 +505,11 @@ Similarly to the well known HTTP library `Requests
 <https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`Request` object
 provides two properties for accessing raw response data:
 
-- Use the :attr:`text` property to get a decoded :class:`str`::
+- Use the :attr:`.text` property to get a decoded :class:`str`::
 
     >>> data = Request("path/to/file.json").text
 
-- Use the :attr:`content` property to get the raw :class:`bytes` content::
+- Use the :attr:`.content` property to get the raw :class:`bytes` content::
 
     >>> data = Request("path/to/file.json").content
 
@@ -517,7 +526,7 @@ If the file is a JSON file, use the built-in :meth:`~.Request.json` method to pa
 Writing JSON Files
 ------------------
 
-The :mod:`request` module also provides a helper function to simplify the logic
+The :mod:`.request` module also provides a helper function to simplify the logic
 concerned with writing JSON data to a file. Using the :func:`writeJson` function this is
 as simple as::
 
@@ -554,7 +563,7 @@ Creating A Parser
 
 To create a simple parser using only predefined arguments:
 
-.. code:: python
+.. code-block:: python
 
    from smufolib import cli
    
@@ -582,7 +591,7 @@ If you want to define your own additional custom arguments, you can combine
 :func:`.commonParser` with a separate :class:`argparse.ArgumentParser` object by passing
 the function output as a :class:`list` to the `parents` parameter of the class:
 
-.. code:: python
+.. code-block:: python
 
    import argparse
    from smufolib import cli
@@ -621,7 +630,7 @@ fromatters available in the :mod:`argparse` module:
 
 Use the :func:`.createHelpFormatter` function to combine the formatters you want when creating your parser:
 
-.. code:: python
+.. code-block:: python
 
    import argparse
    from smufolib import cli
@@ -662,7 +671,7 @@ measurement formats, Unicode codepoints, and naming styles. Functions include:
 Errors and Warnings
 -------------------
 
-The :mod:`error` module  provides functions to generate error messages, check types, and
+The :mod:`.error` module  provides functions to generate error messages, check types, and
 suggest corrections for invalid values. It includes a dictionary of
 :data:`.ERROR_TEMPLATES` to ensure streamlined and consistent error reporting. Functions
 include:
@@ -722,5 +731,9 @@ Boolean Checks
    hasHorizontalOffCurve
    hasVerticalOffCurve
 
+Footnotes
+=========
 
-
+.. [#] Most of the objects referred to as "attributes" in this user guide are
+   technically implemented as Python properties, but referred to as attributes for
+   clarity and consistency with general terminology.
