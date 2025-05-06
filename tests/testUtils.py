@@ -9,7 +9,7 @@ from tempfile import TemporaryDirectory
 from typing import TYPE_CHECKING, Any
 
 from smufolib.utils import converters
-from smufolib.utils._annotations import CollectionType, PairCollectionType, PairType
+from smufolib.utils._annotations import CollectionType, PairType
 
 if TYPE_CHECKING:
     from smufolib.objects.font import Font
