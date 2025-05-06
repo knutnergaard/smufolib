@@ -7,6 +7,7 @@ from tests.smufolib import (
 )
 from tests.smufolib.objects import (
     test_engravingDefaults,
+    test_font,
     test_glyph,
     test_range,
     test_smufl,
@@ -41,6 +42,7 @@ def testEnvironment(objectGenerator, inApp=False, verbosity=1, testNormalizers=T
         test_engravingDefaults,
         test_error,
         test_generateMetadata,
+        test_font,
         test_glyph,
         test_importAnchors,
         test_importID,
