@@ -5,7 +5,7 @@ from typing import TYPE_CHECKING
 from fontParts.fontshell.glyph import RGlyph
 from smufolib.objects.smufl import Smufl
 
-if TYPE_CHECKING:
+if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell.anchor import RAnchor
     from fontParts.fontshell.contour import RContour
     from fontParts.fontshell.component import RComponent
