@@ -1,12 +1,11 @@
 SMufoLib: Where SMuFL meets UFO
 ===============================
 
-**Find glyphs and their alternates**::
+**Find glyphs**::
 
    >>> glyph = font.smufl.findGlyph("flag8thUp")
    >>> glyph.smufl.alternateGlyphs
-   (<Glyph 'uniE240.salt01' ('public.default') at 4377042592>,
-    <Glyph 'uniE240.ss02' ('public.default') at 4377044992>, 
+   (<Glyph 'uniE240.ss02' ('public.default') at 4377044992>, 
     <Glyph 'uniE240.ss03' ('public.default') at 4377046672>)
 
 **Work with values in staff spaces**::
@@ -17,11 +16,20 @@ SMufoLib: Where SMuFL meets UFO
    >>> glyph.smufl.anchors
    {"graceNoteSlashNE": (1.284, -0.796)}
 
-**Check content against metadata**::
+**Access and gnerate metadata**::
 
-   >>> glyphnamesJson = Request.glyphnames()
-   >>> glyph.smufl.name in glyphnamesJson
-   True
+   >>> Request.glyphnames()
+   {
+      "4stringTabClef": {
+         "codepoint": "U+E06E",
+         "description": "4-string tab clef"
+      },
+      "6stringTabClef": {
+         "codepoint": "U+E06D",
+         "description": "6-string tab clef"
+      }, ...
+
+   >>> generateMetadata("path/to/my/font.ufo") 
 
 **And much more!**
 
