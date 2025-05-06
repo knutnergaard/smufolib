@@ -4,7 +4,6 @@ from fontParts.base.font import BaseFont
 from fontParts.fontshell.font import RFont
 from smufolib.objects.layer import Layer
 from smufolib.objects.smufl import Smufl
-from smufolib.utils import error
 
 
 class Font(RFont):
@@ -38,10 +37,12 @@ class Font(RFont):
         if isinstance(pathOrObject, BaseFont):
             try:
                 pathOrObject = pathOrObject.naked()
-            except AttributeError:
-                error.generateTypeError(
-                    pathOrObject, (BaseFont, defcon.Font), "pathOrObject"
-                )
+            except AttributeError as exc:
+                raise TypeError(
+                    "Expected 'pathOrObject' to be of type str, "
+                    "defcon.Font or BaseFont with naked()."
+                ) from exc
+
         super().__init__(pathOrObject)
 
     @property
