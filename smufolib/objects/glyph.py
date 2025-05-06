@@ -13,12 +13,11 @@ if TYPE_CHECKING:
 
 
 class Glyph(RGlyph):
-    """Environment implementation of :class:`fontParts.base.BaseGlyph`.
+    """SMufoLib environment implementation of :class:`fontParts.base.BaseGlyph`.
 
-    Glyphs are usually accessed through
-    a :class:`~smufolib.objects.font.Font` objects inherent glyph
-    dictionary. To instantiate the SMuFL glyph named `uniE030`
-    (single barline)::
+    Glyphs are usually accessed through a :class:`~smufolib.objects.font.Font` objects
+    inherent glyph dictionary. To instantiate the SMuFL glyph named `'uniE030'`
+    (**single barline**)::
 
         >>> glyph = font['uniE030']
 
@@ -35,7 +34,7 @@ class Glyph(RGlyph):
 
     @property
     def smufl(self) -> Smufl:
-        """Glyph instance of :class:`~smufolib.objects.smufl.Smufl`."""
+        """Glyph-specific instance of :class:`~smufolib.objects.smufl.Smufl`."""
         return Smufl(glyph=self)
 
     @property

@@ -4,7 +4,7 @@ from smufolib.objects.glyph import Glyph
 
 
 class Layer(RLayer):
-    """Environment implementation of :class:`fontParts.base.BaseLayer`."""
+    """SMufoLib environment implementation of :class:`fontParts.base.BaseLayer`."""
 
     # pylint: disable=too-few-public-methods
 
