@@ -16,41 +16,42 @@ import difflib
 
 #: Dictionary of error message templates.
 ERROR_TEMPLATES: dict[str, str] = {
-    "alphanumericValue": "The value for '{objectName}' must be alphanumeric.",
-    "alphanumericValueItems": "Value items for '{objectName}' must be alphanumeric.",
+    "alphanumericValue": "The value for {objectName!r} must be alphanumeric.",
+    "alphanumericValueItems": "Value items for {objectName!r} must be alphanumeric.",
     "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
-    "attributeError": "'{objectName}' has no attribute '{attribute}'.",
-    "dependentTypeError": "Expected '{objectName}' to be of type {validTypes} when {dependencyInfo}, but got {valueType}.",
-    "dependentItemsTypeError": "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {valueType}.",
-    "deprecated": "'{objectName}' is deprecated and will be removed in the next version of SMufoLib (after {version}).",
-    "deprecatedReplacement": "Use '{replacement}' instead.",
-    "duplicateFlags": "Arguments '{argument1}' and '{argument2}' have duplicate short flag: {flag}",
-    "duplicateAttributeValue": "The value {value} for '{attribute}' is already assigned to another {objectName} instance: {conflictingInstance}.",
-    "duplicateItems": "Items in '{objectName}' cannot be duplicates.",
-    "emptyValue": "The value for '{objectName}' cannot be empty.",
-    "emptyValueItems": "Value items for '{objectName}' cannot be empty.",
-    "fileNotFound": "The file or directory for '{objectName}' does not exist.",
-    "invalidFormat": "The value for '{objectName}' is not correctly formatted.",
-    "invalidInitialCharacter": "The value for '{objectName}' must start with a lowercase letter or number.",
-    "invalidInitialItemsCharacter": "Value items for '{objectName}' must start with a lowercase letter or number.",
-    "itemsTypeError": "Items in '{objectName}' must be {validTypes}, not {valueType}.",
-    "itemsValueError": "Invalid value for item in '{objectName}': {value}",
-    "missingExtension": "The value for '{objectName}' must have a '{extension}' extension.",
-    "missingDependencyError": "Cannot set '{objectName}' because '{dependency}' is None.",
-    "missingValue": "Required values for '{objectName}' are missing.",
-    "nonIncreasingRange": "The values in '{objectName}' must form an increasing range.",
-    "notImplementedError": "The '{objectName}' subclass does not implement this method.",
-    "numericValue": "The value for '{objectName}' must be numeric.",
-    "recommendScript": "Consider running the script '{scriptName}' before the current process.",
+    "attributeError": "{objectName!r} has no attribute {attribute!r}.",
+    "contextualSetAttributeError": "Cannot set attribute {attribute!r} when {context}.",
+    "contextualTypeError": "Expected {objectName!r} to be of type {validTypes} when {context}, but got {valueType}.",
+    "contextualItemsTypeError": "Items in {objectName!r} must be {validTypes} when {context}, not {valueType}.",
+    "deprecated": "{objectName!r} is deprecated and will be removed in the next version of SMufoLib (after {version}).",
+    "deprecatedReplacement": "Use {replacement!r} instead.",
+    "duplicateFlags": "Arguments {argument1!r} and {argument2!r} have duplicate short flag: {flag}",
+    "duplicateAttributeValue": "The value {value!r} for {attribute!r} is already assigned to another {objectName} instance: {conflictingInstance!r}.",
+    "duplicateItems": "Items in {objectName!r} cannot be duplicates.",
+    "emptyValue": "The value for {objectName!r} cannot be empty.",
+    "emptyValueItems": "Value items for {objectName!r} cannot be empty.",
+    "fileNotFound": "The file or directory for {objectName!r} does not exist.",
+    "invalidFormat": "The value for {objectName!r} is not correctly formatted.",
+    "invalidInitialCharacter": "The value for {objectName!r} must start with a lowercase letter or number.",
+    "invalidInitialItemsCharacter": "Value items for {objectName!r} must start with a lowercase letter or number.",
+    "itemsTypeError": "Items in {objectName!r} must be {validTypes}, not {valueType}.",
+    "itemsValueError": "Invalid value for item in {objectName!r}: {value!r}",
+    "missingExtension": "The value for {objectName!r} must have a {extension!r} extension.",
+    "missingDependencyError": "Cannot set {objectName!r} because {dependency!r} is None.",
+    "missingValue": "Required values for {objectName!r} are missing.",
+    "nonIncreasingRange": "The values in {objectName!r} must form an increasing range.",
+    "notImplementedError": "The {objectName!r} subclass does not implement this method.",
+    "numericValue": "The value for {objectName!r} must be numeric.",
+    "recommendScript": "Consider running the script {scriptName!r} before the current process.",
     "serializationError": "Error serializing JSON data or writing to the file.",
-    "singleItem": "'{objectName}' must contain a value pair.",
-    "suggestion": "Did you mean '{suggestion}'?",
-    "typeError": "Expected '{objectName}' to be of type {validTypes}, but got {valueType}.",
-    "unicodeOutOfRange": "The value for '{objectName}' is outside the Unicode range (U+0000 - U+10FFFF).",
-    "urlError": "Could not connect to URL: '{url}'",
-    "valueError": "Invalid value for '{objectName}': {value}",
-    "valueTooHigh": "The value for '{objectName}' must be {value} or lower.",
-    "valueTooLow": "The value for '{objectName}' must be {value} or higher.",
+    "singleItem": "{objectName!r} must contain a value pair.",
+    "suggestion": "Did you mean {suggestion!r}?",
+    "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}.",
+    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 - U+10FFFF).",
+    "urlError": "Could not connect to URL: {url!r}",
+    "valueError": "Invalid value for {objectName!r}: {value!r}",
+    "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower.",
+    "valueTooLow": "The value for {objectName!r} must be {value!r} or higher.",
 }
 
 
@@ -83,24 +84,15 @@ def generateErrorMessage(*templateNames: str, string: str = "", **kwargs) -> str
         Could not connect to URL: 'some/url.com'. Please try again.
 
     """
-
-    def formatValue(v):
-        return f"'{v}'" if isinstance(v, str) else v
-
-    if "value" in kwargs:
-        kwargs["value"] = formatValue(kwargs["value"])
-    if "conflictingInstance" in kwargs:
-        kwargs["conflictingInstance"] = formatValue(kwargs["conflictingInstance"])
-
     messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames] + [string]
     return " ".join(messages)
 
 
 def generateTypeError(
     value: Any,
-    validTypes: type | tuple[type, ...] | UnionType,
+    validTypes: type | tuple[type, ...],
     objectName: str,
-    dependencyInfo: str | None = None,
+    context: str | None = None,
     items: bool = False,
 ) -> str:
     """Generate a :class:`TypeError` message.
@@ -109,18 +101,18 @@ def generateTypeError(
     valid types. By default, the message is generated from
     :obj:`ERROR_TEMPLATES`:``'typeError'``.
 
-    If `dependencyInfo` in not :obj:`None` (or empty) and `items`
-    is :obj:`False`, :obj:`ERROR_TEMPLATES`:``'dependentTypeError'``
-    is used. If `items` is :obj:`True` and `dependencyInfo` is :obj:`None`,
+    If `context` in not :obj:`None` (or empty) and `items`
+    is :obj:`False`, :obj:`ERROR_TEMPLATES`:``'contextualTypeError'``
+    is used. If `items` is :obj:`True` and `context` is :obj:`None`,
     :obj:`ERROR_TEMPLATES`:``'itemsTypeError'`` is used. If both
-    `dependencyInfo` is not :obj:`None` and `items` is :obj:`True`,
-    :obj:`ERROR_TEMPLATES`:``'dependentItemsTypeError'`` is used.
+    `context` is not :obj:`None` and `items` is :obj:`True`,
+    :obj:`ERROR_TEMPLATES`:``'contextualItemsTypeError'`` is used.
 
     :param value: The value to be validated.
     :param validTypes: A :class:`tuple` or :class:`list` of valid types.
     :param objectName: The name of the object being validated.
-    :param dependencyInfo: Additional substring for dependent type errors.
-        template. Defaults to :obj:`None`
+    :param context: Additional substring for contextual type errors.
+        Defaults to :obj:`None`
     :param items: Whether to use items-specific template. Defaults
         to :obj:`False`.
     :raises TypeError: If `value` does not match any of the valid
@@ -140,7 +132,6 @@ def generateTypeError(
         Expected 'path' to be of type str, Path or Request, but got int.
 
     """
-
     typeNames = _listTypes(validTypes)
     valueType = type(value).__name__
 
@@ -150,12 +141,9 @@ def generateTypeError(
         "valueType": valueType,
     }
 
-    if items and dependencyInfo:
-        template = "dependentItemsTypeError"
-        kwargs["dependencyInfo"] = dependencyInfo
-    elif dependencyInfo:
-        template = "dependentTypeError"
-        kwargs["dependencyInfo"] = dependencyInfo
+    if context:
+        template = "contextualItemsTypeError" if items else "contextualTypeError"
+        kwargs["context"] = context
     elif items:
         template = "itemsTypeError"
     else:
