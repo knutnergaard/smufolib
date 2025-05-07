@@ -469,10 +469,14 @@ class Smufl(BaseObject):
     def ranges(self) -> tuple[Range, ...] | None:
         """SMuFL ranges covered by font or glyph.
 
-        When accessed from a :class:`.Font` object, returns a :class:`tuple` of all
-        :class:`.Range` objects covered by the font. When accessed from a
-        :class:`.Glyph` object, returns a singleton :class:`tuple` containing the
-        glyph's corresponding :class:`.Range`.
+        This property behaves differently depending on the context in which the
+        :class:`Smufl` object is used:
+
+        - When accessed from a :class:`.Font`, (e.g., ``font.smufl.ranges``) it returns
+          a :class:`tuple` of all :class:`.Range` objects covered by the font.
+        - When accessed from a :class:`.Glyph` (e.g., ``glyph.smufl.ranges``), it
+          returns a singleton :class:`tuple` containing the glyph's corresponding
+          :class:`.Range` object.
 
         This property is read-only.
 
@@ -555,6 +559,18 @@ class Smufl(BaseObject):
 
     # Font family name is acessible through font.smufl.name.
 
+    def classMembers(self, className: str) -> tuple[Glyph, ...]:
+        """Return all glyphs in the font that belong to the given SMuFL class.
+
+        .. versionadded:: 0.6.0
+
+        :param className: The name of the SMuFL glyph class to search for.
+
+        """
+        if self.font is None:
+            return ()
+        return tuple(g for g in self.font if className in g.smufl.classes)
+
     @property
     def version(self) -> float | None:
         """SMuFL-specific font version number.
@@ -591,19 +607,49 @@ class Smufl(BaseObject):
     def classes(self) -> tuple[str, ...] | None:
         """SMuFL-specific class memberships.
 
+        This property behaves differently depending on the context in which the
+        :class:`Smufl` object is used:
+
+        - When accessed via a :class:`.Font` (e.g., ``font.smufl.classes``), it returns
+          a :class:`tuple` of all unique glyph class names used by any glyph in the font
+          and is read-only.
+        - When accessed via a :class:`.Glyph` (e.g., ``glyph.smufl.classes``), it
+          returns a :class:`tuple: of the class memberships for that specific glyph.
+
+        .. versionadded:: 0.6.0
+
+            Context-dependent access (via ``font.smufl`` or ``glyph.smufl``).
+
+
         Example::
+
+            >>> font.smufl.classes
+            ('octaves', 'noteheadSetRoundSmall', 'accidentalsPersian', 'noteheads',
+            'parenthesesNotehead', 'wigglesArpeggiatoDown', 'dynamics', ...)
 
             >>> glyph = font['uniE354'] # accSagittalSharp7v11kUp
             >>> glyph.smufl.classes
-            ['accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions']
+            ('accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions')
 
         """
-        if self.glyph is None:
+        if self.font is None:
             return None
-        return tuple(self.glyph.lib.naked().get("com.smufolib.classes", ()))
+
+        key = "com.smufolib.classes"
+        if self.glyph is None:
+            return tuple({c for g in self.font for c in g.lib.naked().get(key, ())})
+        return tuple(self.glyph.lib.naked().get(key, ()))
 
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
+        if self.glyph is None:
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "contextualSetAttributeError",
+                    attribute="Smufl.classes",
+                    context="accessed from Font",
+                )
+            )
         self._updateGlyphLib(
             "com.smufolib.classes", normalizers.normalizeClasses(value)
         )
@@ -631,6 +677,14 @@ class Smufl(BaseObject):
     @property
     def name(self) -> str | None:
         """SMuFL-specific canonical font or glyph name.
+
+        This property behaves differently depending on the context in which the
+        :class:`Smufl` object is used:
+
+        - When accessed from a :class:`.Font` (``e.g, font.smufl.name``), it returns the
+          SMuFL font name, equivalent to ``font.info.familyName``.
+        - When accessed from a :class:`.Glyph` (``e.g, glyph.smufl.name``), it returns
+          the canonical SMuFL glyph name.
 
         Examples::
 
