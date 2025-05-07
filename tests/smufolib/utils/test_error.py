@@ -11,7 +11,7 @@ from smufolib.utils.error import (
 
 
 def _expected_type_error_substrings(value, validTypes, objectName):
-    """Generate expected substrings for a TypeError message."""
+    # Generate expected substrings for a TypeError message.
     typeNames = _listTypes(validTypes)
     return type(value).__name__, typeNames, objectName
 
@@ -55,28 +55,25 @@ class TestErrorGeneration(unittest.TestCase):
             with self.subTest(substring=substring):
                 self.assertIn(substring, message)
 
-    def test_generateTypeError_with_dependency(self):
+    def test_generateTypeError_with_context(self):
         with patch("smufolib.error.generateErrorMessage") as mock_generate:
             value = 123
             valid_type = str
             objectName = "path"
 
-            generateTypeError(
-                value, valid_type, objectName, dependencyInfo="some_dependency"
-            )
+            generateTypeError(value, valid_type, objectName, context="some_context")
             strValue, strType, objectName = _expected_type_error_substrings(
                 value, valid_type, objectName
             )
             mock_generate.assert_called_with(
-                "dependentTypeError",
+                "contextualTypeError",
                 validTypes=strType,
                 objectName=objectName,
-                dependencyInfo="some_dependency",
+                context="some_context",
                 valueType=strValue,
             )
 
-    def test_generateTypeError_with_dependent_items(self):
-        "Items in '{objectName}' must be {validTypes} when {dependencyInfo}, not {value}."
+    def test_generateTypeError_with_items_and_context(self):
         with patch("smufolib.error.generateErrorMessage") as mock_generate:
             value = 123
             valid_type = str
@@ -86,17 +83,17 @@ class TestErrorGeneration(unittest.TestCase):
                 value,
                 valid_type,
                 objectName,
-                dependencyInfo="some_dependency",
+                context="some_context",
                 items=True,
             )
             strValue, strType, objectName = _expected_type_error_substrings(
                 value, valid_type, objectName
             )
             mock_generate.assert_called_with(
-                "dependentItemsTypeError",
+                "contextualItemsTypeError",
                 validTypes=strType,
                 objectName=objectName,
-                dependencyInfo="some_dependency",
+                context="some_context",
                 valueType=strValue,
             )
 

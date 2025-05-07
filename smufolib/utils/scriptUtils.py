@@ -40,7 +40,7 @@ def normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
                     value=color,
                     validTypes=tuple,
                     objectName="color",
-                    dependencyInfo="'mark' is True",
+                    context="'mark' is True",
                 )
             )
         return None
@@ -67,7 +67,7 @@ def normalizeColorDict(colorDict: ColorDict | None, mark: bool) -> ColorDict | N
                     value=colorDict,
                     validTypes=ColorDict,
                     objectName="colors",
-                    dependencyInfo="'mark' is True",
+                    context="'mark' is True",
                 )
             )
         return None
