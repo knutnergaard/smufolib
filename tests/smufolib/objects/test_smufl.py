@@ -353,25 +353,42 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     # classes
 
-    def test_get_classes(self):
-        self.smufl.glyph = self.glyph
-        self.glyph.lib["com.smufolib.classes"] = ["class1", "class2"]
-        self.assertEqual(self.smufl.classes, ("class1", "class2"))
+    def test_classMembers(self):
+        self.assertEqual(self.smufl.classMembers("class1"), ())
+        self.smufl.font = self.font
+        self.font["uniE000"].lib["com.smufolib.classes"] = ["class1"]
+        self.font["uniE002"].lib["com.smufolib.classes"] = ["class1"]
+        result = self.smufl.classMembers("class1")
+        self.assertIsInstance(result, tuple)
+        self.assertEqual(len(result), 2)
 
-    def test_get_classes_no_font(self):
+    def test_get_classes_from_font(self):
+        self.smufl.font = self.font
+        self.font["uniE000"].lib["com.smufolib.classes"] = ["class1"]
+        self.font["uniE002"].lib["com.smufolib.classes"] = ["class2"]
+        self.assertCountEqual(self.smufl.classes, ("class1", "class2"))
+
+    def test_set_classes_from_font(self):
+        self.smufl.font = self.font
+        with self.assertRaises(AttributeError):
+            self.font.smufl.classes = ["class1", "class2"]
+
+    def test_get_classes_from_glyph(self):
+        self.recommended1.lib["com.smufolib.classes"] = ["class1", "class2"]
+        self.assertEqual(self.recommended1.smufl.classes, ("class1", "class2"))
+
+    def test_get_classes_from_glyph_no_font(self):
         self.assertIsNone(self.smufl.classes)
 
-    def test_set_classes(self):
-        self.smufl.glyph = self.glyph
-        self.smufl.classes = ["class1", "class2"]
-        self.assertEqual(self.smufl.classes, ("class1", "class2"))
+    def test_set_classes_from_glyph(self):
+        self.recommended1.smufl.classes = ["class1", "class2"]
+        self.assertEqual(self.recommended1.smufl.classes, ("class1", "class2"))
 
-    def test_classes_removal(self):
-        self.smufl.glyph = self.glyph
-        self.glyph.lib["com.smufolib.classes"] = ["class1", "class2"]
-        self.smufl.classes = None
-        self.assertEqual(self.smufl.classes, ())
-        self.assertNotIn("com.smufolib.classes", self.glyph.lib)
+    def test_classes_from_glyph_removal(self):
+        self.recommended1.lib["com.smufolib.classes"] = ["class1", "class2"]
+        self.recommended1.smufl.classes = None
+        self.assertEqual(self.recommended1.smufl.classes, ())
+        self.assertNotIn("com.smufolib.classes", self.recommended1.lib)
 
     # description
 
