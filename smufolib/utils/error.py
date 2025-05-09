@@ -60,7 +60,9 @@ class URLWarning(Warning):
     """URL connection failure warning."""
 
 
-def generateErrorMessage(*templateNames: str, string: str = "", **kwargs) -> str:
+def generateErrorMessage(
+    *templateNames: str, string: str | None = None, **kwargs
+) -> str:
     r"""Generate an error message from a template and keyword arguments.
 
     The `templateNames` and `string` will be concatenated in order.
@@ -68,6 +70,7 @@ def generateErrorMessage(*templateNames: str, string: str = "", **kwargs) -> str
     :param \*templateNames: The error message template string, which
         should contain placeholders for keyword arguments.
     :param string: An additional message string to include.
+        Defaults to :obj:`None`
     :param \**kwargs: Arbitrary keyword arguments corresponding to the
         placeholders in the template string.
     :raises KeyError: If a placeholder in the template does not have a
@@ -85,7 +88,9 @@ def generateErrorMessage(*templateNames: str, string: str = "", **kwargs) -> str
         Could not connect to URL: 'some/url.com'. Please try again.
 
     """
-    messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames] + [string]
+    messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
+    if string:
+        messages.append(string)
     return " ".join(messages)
 
 
