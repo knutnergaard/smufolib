@@ -16,43 +16,43 @@ import difflib
 
 #: Dictionary of error message templates.
 ERROR_TEMPLATES: dict[str, str] = {
-    "alphanumericValue": "The value for {objectName!r} must be alphanumeric.",
-    "alphanumericValueItems": "Value items for {objectName!r} must be alphanumeric.",
-    "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
-    "attributeError": "{objectName!r} has no attribute {attribute!r}.",
-    "contextualAttributeError": "The attribute {attribute!r} is not available when {context}.",
-    "contextualSetAttributeError": "Cannot set attribute {attribute!r} when {context}.",
-    "contextualTypeError": "Expected {objectName!r} to be of type {validTypes} when {context}, but got {valueType}.",
-    "contextualItemsTypeError": "Items in {objectName!r} must be {validTypes} when {context}, not {valueType}.",
-    "deprecated": "{objectName!r} is deprecated and will be removed in the next version of SMufoLib (after {version}).",
-    "deprecatedReplacement": "Use {replacement!r} instead.",
+    "alphanumericValue": "The value for {objectName!r} must be alphanumeric",
+    "alphanumericValueItems": "Value items for {objectName!r} must be alphanumeric",
+    "argumentConflict": "The option '{key}' is already added as positional argument or flag",
+    "attributeError": "{objectName!r} has no attribute {attribute!r}",
+    "contextualAttributeError": "The attribute {attribute!r} is not available when {context}",
+    "contextualSetAttributeError": "Cannot set attribute {attribute!r} when {context}",
+    "contextualTypeError": "Expected {objectName!r} to be of type {validTypes} when {context}, but got {valueType}",
+    "contextualItemsTypeError": "Items in {objectName!r} must be {validTypes} when {context}, not {valueType}",
+    "deprecated": "{objectName!r} is deprecated and will be removed in the next version of SMufoLib (after {version})",
+    "deprecatedReplacement": "Use {replacement!r} instead",
     "duplicateFlags": "Arguments {argument1!r} and {argument2!r} have duplicate short flag: {flag}",
-    "duplicateAttributeValue": "The value {value!r} for {attribute!r} is already assigned to another {objectName} instance: {conflictingInstance!r}.",
-    "duplicateItems": "Items in {objectName!r} cannot be duplicates.",
-    "emptyValue": "The value for {objectName!r} cannot be empty.",
-    "emptyValueItems": "Value items for {objectName!r} cannot be empty.",
-    "fileNotFound": "The file or directory for {objectName!r} does not exist.",
-    "invalidFormat": "The value for {objectName!r} is not correctly formatted.",
-    "invalidInitialCharacter": "The value for {objectName!r} must start with a lowercase letter or number.",
-    "invalidInitialItemsCharacter": "Value items for {objectName!r} must start with a lowercase letter or number.",
-    "itemsTypeError": "Items in {objectName!r} must be {validTypes}, not {valueType}.",
+    "duplicateAttributeValue": "The value {value!r} for {attribute!r} is already assigned to another {objectName} instance: {conflictingInstance!r}",
+    "duplicateItems": "Items in {objectName!r} cannot be duplicates",
+    "emptyValue": "The value for {objectName!r} cannot be empty",
+    "emptyValueItems": "Value items for {objectName!r} cannot be empty",
+    "fileNotFound": "The file or directory for {objectName!r} does not exist",
+    "invalidFormat": "The value for {objectName!r} is not correctly formatted",
+    "invalidInitialCharacter": "The value for {objectName!r} must start with a lowercase letter or number",
+    "invalidInitialItemsCharacter": "Value items for {objectName!r} must start with a lowercase letter or number",
+    "itemsTypeError": "Items in {objectName!r} must be {validTypes}, not {valueType}",
     "itemsValueError": "Invalid value for item in {objectName!r}: {value!r}",
-    "missingExtension": "The value for {objectName!r} must have a {extension!r} extension.",
-    "missingDependencyError": "Cannot set {objectName!r} because {dependency!r} is None.",
-    "missingValue": "Required values for {objectName!r} are missing.",
-    "nonIncreasingRange": "The values in {objectName!r} must form an increasing range.",
-    "notImplementedError": "The {objectName!r} subclass does not implement this method.",
-    "numericValue": "The value for {objectName!r} must be numeric.",
-    "recommendScript": "Consider running the script {scriptName!r} before the current process.",
-    "serializationError": "Error serializing JSON data or writing to the file.",
-    "singleItem": "{objectName!r} must contain a value pair.",
+    "missingExtension": "The value for {objectName!r} must have a {extension!r} extension",
+    "missingDependencyError": "Cannot set {objectName!r} because {dependency!r} is None",
+    "missingValue": "Required values for {objectName!r} are missing",
+    "nonIncreasingRange": "The values in {objectName!r} must form an increasing range",
+    "notImplementedError": "The {objectName!r} subclass does not implement this method",
+    "numericValue": "The value for {objectName!r} must be numeric",
+    "recommendScript": "Consider running the script {scriptName!r} before the current process",
+    "serializationError": "Error serializing JSON data or writing to the file",
+    "singleItem": "{objectName!r} must contain a value pair",
     "suggestion": "Did you mean {suggestion!r}?",
-    "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}.",
-    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 - U+10FFFF).",
+    "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}",
+    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 - U+10FFFF)",
     "urlError": "Could not connect to URL: {url!r}",
     "valueError": "Invalid value for {objectName!r}: {value!r}",
-    "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower.",
-    "valueTooLow": "The value for {objectName!r} must be {value!r} or higher.",
+    "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower",
+    "valueTooLow": "The value for {objectName!r} must be {value!r} or higher",
 }
 
 
@@ -91,7 +91,7 @@ def generateErrorMessage(
     messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
     if string:
         messages.append(string)
-    return " ".join(messages)
+    return ". ".join(messages)
 
 
 def generateTypeError(
@@ -213,7 +213,7 @@ def suggestValue(
     cutoff: float = 0.6,
     items=False,
 ) -> str:
-    """Validate value and uggests a valid close match.
+    """Validate value and suggests a valid close match.
 
     If `items` is :obj:`True`, an alternate error message template is
     used to validate the values of items within an :term:`iterable`
