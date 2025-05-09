@@ -18,14 +18,18 @@ def _expected_type_error_substrings(value, validTypes, objectName):
 
 class TestErrorGeneration(unittest.TestCase):
     def test_generateErrorMessage(self):
+        objectName = "TestObject"
+        attribute = "testAttribute"
+        string = "This is an additional string"
         message = generateErrorMessage(
-            "typeError", objectName="index", validTypes="int", valueType="str"
+            "attributeError",
+            objectName=objectName,
+            attribute=attribute,
+            string=string,
         )
-        expectedSubstrings = ("type", "index", "int", "str")
+        expectedMessage = f"{objectName!r} has no attribute {attribute!r}. {string}"
 
-        for substring in expectedSubstrings:
-            with self.subTest(substring=substring):
-                self.assertIn(substring, message)
+        self.assertEqual(message, expectedMessage)
 
     def test_generateTypeError_with_single_type(self):
         value = 123
