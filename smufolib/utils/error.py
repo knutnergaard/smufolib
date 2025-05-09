@@ -20,6 +20,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "alphanumericValueItems": "Value items for {objectName!r} must be alphanumeric.",
     "argumentConflict": "The option '{key}' is already added as positional argument or flag.",
     "attributeError": "{objectName!r} has no attribute {attribute!r}.",
+    "contextualAttributeError": "The attribute {attribute!r} is not available when {context}.",
     "contextualSetAttributeError": "Cannot set attribute {attribute!r} when {context}.",
     "contextualTypeError": "Expected {objectName!r} to be of type {validTypes} when {context}, but got {valueType}.",
     "contextualItemsTypeError": "Items in {objectName!r} must be {validTypes} when {context}, not {valueType}.",
