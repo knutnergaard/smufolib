@@ -108,8 +108,8 @@ SMufoLib provides easy storage of SMuFL-related font and glyph metadata within t
 file itself. Attributes [#]_ can either be set individually during the design process or
 imported from metadata files.
 
-Maually Setting Attributes
---------------------------
+Manually Setting Attributes
+---------------------------
 
 Attributes are accessed through the :class:`.Smufl` object, and may be set for the font
 and individual glyphs::
@@ -194,6 +194,36 @@ The :class:`.Range` object provides the values for any SMuFL range's
 
 .. _engraving-defaults:
 
+Glyph Classes
+-------------
+
+Another way to work with groups of glyphs in SMufoLib is by utilizing SMuFL classes.
+When imported or set, the :attr:`classes` attribute stores the class names associated
+with each glyph::
+
+   >>> glyph = font['uniE260'] # accidentalFlat
+   >>> glyph.smufl.classes
+   ('accidentals', 'accidentalsSagittalMixed', 
+   'accidentalsStandard', 'combiningStaffPositions')
+
+This information can be used to collect glyphs based on their combined class
+membership:
+
+.. code-block:: python
+
+   for glyph in font:
+      classes = glyph.smufl.classes
+      if 'accidentalsStandard' in classes and 'accidentalsSagittalMixed' in classes:
+         # do something
+
+The :meth:`.Smufl.classMembers` method provides a convenient way to collect all glyph
+members of the specified class::
+
+   >>> glyph.smufl.classMembers("accidentalsStandard")
+   (<Glyph 'uniE266' ('public.default') at 4344651664>, 
+   <Glyph 'uniE267' ('public.default') at 4349094128>, 
+   <Glyph 'uniE264' ('public.default') at 4351472640>, ...)
+
 Engraving Defaults
 ------------------
 
@@ -203,7 +233,7 @@ Engraving defaults are managed by their own appropriately named
    >>> font.smufl.engravingDefaults
    <EngravingDefaults in font 'MyFont' path='/path/to/myFont.ufo'
    auto=True at 4425372944>
-
+ 
 Each setting has its own attribute within this object::
    
    >>> ed = font.smufl.engravingDefaults
@@ -367,8 +397,8 @@ switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
    
 .. note::
 
-   - Setting ``font.smufl.engravingDefaults.spaces=True`` is equivalent to setting
-     ``font.smufl.spaces=True``, so either one will affect all relevant
+   - Setting ``font.smufl.engravingDefaults.spaces = True`` is equivalent to setting
+     ``font.smufl.spaces = True``, so either one will affect all relevant
      attributes across the entire library.
    
    - This setting is stored in the font's metadata and will persist when saving the font.
@@ -394,9 +424,6 @@ You can search for a glyph by its canonical SMuFL name with the
 
    >>> font.smufl.findGlyph('barlineSingle')
    <Glyph 'uniE030' ('public.default') at 4393557200>
-
-::
-
    >>> font.smufl.findGlyph('missingSmuflName')
    None
 
@@ -505,11 +532,11 @@ Similarly to the well known HTTP library `Requests
 <https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`Request` object
 provides two properties for accessing raw response data:
 
-- Use the :attr:`.text` property to get a decoded :class:`str`::
+- Use the :attr:`.text` attribute to get a decoded :class:`str`::
 
     >>> data = Request("path/to/file.json").text
 
-- Use the :attr:`.content` property to get the raw :class:`bytes` content::
+- Use the :attr:`.content` attribute to get the raw :class:`bytes` content::
 
     >>> data = Request("path/to/file.json").content
 
