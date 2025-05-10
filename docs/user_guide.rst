@@ -149,8 +149,9 @@ Once SMuFL specific glyph names and other attributes have been set, SMufoLib pro
 Glyph Ranges
 ------------
 
-The SMuFL glyph ranges covered are available for an entire font or any
-specific glyph:: 
+The SMuFL glyph ranges covered by the entire font -- or by a specific glyph -- can be
+accessed via the :attr:`.ranges` attribute on the :class:`.Font` or :class:`.Glyph`
+object, respectively::
    
    >>> font.smufl.ranges
    (<Range 'stringTechniques' ('U+E610-U+E62F') at 4449982528>,
@@ -197,8 +198,7 @@ The :class:`.Range` object provides the values for any SMuFL range's
 Glyph Classes
 -------------
 
-Another way to work with groups of glyphs in SMufoLib is by utilizing SMuFL classes.
-When imported or set, the :attr:`classes` attribute stores the class names associated
+Another way to work with groups of glyphs in SMufoLib is by using SMuFL classes. When imported or set, the :attr:`.Smufl.classes` attribute stores the class names associated
 with each glyph::
 
    >>> glyph = font['uniE260'] # accidentalFlat
@@ -360,16 +360,15 @@ Status Indicators
 The :class:`.Smufl` class includes a set of convenient boolean checks to
 determine a glyph's membership status:
 
-.. module:: smufolib.objects.smufl
 .. autosummary::
    :nosignatures:
 
-   Smufl.isLigature
-   Smufl.isMember
-   Smufl.isOptional
-   Smufl.isRecommended
-   Smufl.isSalt
-   Smufl.isSet
+   ~smufolib.objects.smufl.Smufl.isLigature
+   ~smufolib.objects.smufl.Smufl.isMember
+   ~smufolib.objects.smufl.Smufl.isOptional
+   ~smufolib.objects.smufl.Smufl.isRecommended
+   ~smufolib.objects.smufl.Smufl.isSalt
+   ~smufolib.objects.smufl.Smufl.isSet
 
 For instance, checking if a glyph is within the accepted range for recommended glyphs in
 SMuFL is as easy as::
@@ -419,8 +418,8 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite::
 Finding glyphs
 --------------
 
-You can search for a glyph by its canonical SMuFL name with the
-:meth:`Smufl.findGlyph` method::
+You can search for a glyph by its canonical SMuFL name with the :meth:`.Smufl.findGlyph`
+method::
 
    >>> font.smufl.findGlyph('barlineSingle')
    <Glyph 'uniE030' ('public.default') at 4393557200>
@@ -490,14 +489,13 @@ The different metadata support files published under the SMuFL standard, as well
 metadata file for SMuFL's reference font, Bravura, can be easily retrieved using the
 appropriately named :class:`.Request` class methods:
 
-.. module:: smufolib.request
 .. autosummary::
    :nosignatures:
 
-   Request.classes
-   Request.glyphnames
-   Request.ranges
-   Request.font
+   ~smufolib.request.Request.classes
+   ~smufolib.request.Request.glyphnames
+   ~smufolib.request.Request.ranges
+   ~smufolib.request.Request.font
 
 By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
 :class:`str` response instead by setting ``decode=False``::
@@ -508,7 +506,7 @@ By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
 Paths and Fallbacks
 -------------------
 
-:class:`Request` can handle both URL and filesystem paths. Pass the path as the first
+:class:`.Request` can handle both URL and filesystem paths. Pass the path as the first
 argument::
 
    >>> file = Request("path/to/file.json")
@@ -529,7 +527,7 @@ Raw Output
 ----------
 
 Similarly to the well known HTTP library `Requests
-<https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`Request` object
+<https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`.Request` object
 provides two properties for accessing raw response data:
 
 - Use the :attr:`.text` attribute to get a decoded :class:`str`::
@@ -554,7 +552,7 @@ Writing JSON Files
 ------------------
 
 The :mod:`.request` module also provides a helper function to simplify the logic
-concerned with writing JSON data to a file. Using the :func:`writeJson` function this is
+concerned with writing JSON data to a file. Using the :func:`.writeJson` function this is
 as simple as::
 
    >>> jsonDict = {'font': 'MyFont'}
@@ -673,7 +671,7 @@ Use the :func:`.createHelpFormatter` function to combine the formatters you want
 Using the Utility Modules
 =========================
 
-SMufoLib includes a whole host of utility functions, spread accross several modules.
+SMufoLib includes a whole host of utility functions, spread across several modules.
 The sections below provide a summary of some of the most useful features for
 external use.
 
@@ -683,34 +681,32 @@ Conversion
 The :mod:`.converters` module provides helper functions for converting between different
 measurement formats, Unicode codepoints, and naming styles. Functions include:
 
-.. module:: smufolib.utils.converters
 .. autosummary::
    :nosignatures:
 
-   convertMeasurement
-   toDecimal
-   toUniHex
-   toUniName
-   toNumber
-   toIntIfWhole
-   toKebab
+   ~smufolib.utils.converters.convertMeasurement
+   ~smufolib.utils.converters.toDecimal
+   ~smufolib.utils.converters.toUniHex
+   ~smufolib.utils.converters.toUniName
+   ~smufolib.utils.converters.toNumber
+   ~smufolib.utils.converters.toIntIfWhole
+   ~smufolib.utils.converters.toKebab
 
 Errors and Warnings
 -------------------
 
-The :mod:`.error` module  provides functions to generate error messages, check types, and
-suggest corrections for invalid values. It includes a dictionary of
+The :mod:`.error` module  provides functions to generate error messages, check types,
+and suggest corrections for invalid values. It includes a dictionary of
 :data:`.ERROR_TEMPLATES` to ensure streamlined and consistent error reporting. Functions
 include:
 
-.. module:: smufolib.utils.error
 .. autosummary::
    :nosignatures:
 
-   generateErrorMessage
-   generateTypeError
-   validateType
-   suggestValue
+   ~smufolib.utils.error.generateErrorMessage
+   ~smufolib.utils.error.generateTypeError
+   ~smufolib.utils.error.validateType
+   ~smufolib.utils.error.suggestValue
 
 Contours and Measuring
 ----------------------
@@ -718,19 +714,17 @@ Contours and Measuring
 The :mod:`.rulers` module provides functions to extract glyph contours, segments and
 points and calculate glyph geometry used in engraving analysis. Functions include:
 
-.. module:: smufolib.utils.rulers
-
 Contour Tools
 ^^^^^^^^^^^^^
 
 .. autosummary::
    :nosignatures:
 
-   getGlyphContours
-   getGlyphSegments
-   getGlyphPoints
-   getParentSegment
-   combineBounds
+   ~smufolib.utils.rulers.getGlyphContours
+   ~smufolib.utils.rulers.getGlyphSegments
+   ~smufolib.utils.rulers.getGlyphPoints
+   ~smufolib.utils.rulers.getParentSegment
+   ~smufolib.utils.rulers.combineBounds
 
 Rulers
 ^^^^^^
@@ -738,15 +732,15 @@ Rulers
 .. autosummary::
    :nosignatures:
 
-   glyphBoundsHeight
-   glyphBoundsWidth
-   glyphBoundsXMinAbs
-   xDistanceStemToDot
-   xDistanceBetweenContours
-   yDistanceBetweenContours
-   xStrokeWidthAtOrigin
-   yStrokeWidthAtMinimum
-   wedgeArmStrokeWidth
+   ~smufolib.utils.rulers.glyphBoundsHeight
+   ~smufolib.utils.rulers.glyphBoundsWidth
+   ~smufolib.utils.rulers.glyphBoundsXMinAbs
+   ~smufolib.utils.rulers.xDistanceStemToDot
+   ~smufolib.utils.rulers.xDistanceBetweenContours
+   ~smufolib.utils.rulers.yDistanceBetweenContours
+   ~smufolib.utils.rulers.xStrokeWidthAtOrigin
+   ~smufolib.utils.rulers.yStrokeWidthAtMinimum
+   ~smufolib.utils.rulers.wedgeArmStrokeWidth
 
 Boolean Checks
 ^^^^^^^^^^^^^^
@@ -754,9 +748,9 @@ Boolean Checks
 .. autosummary::
    :nosignatures:
 
-   areAlligned
-   hasHorizontalOffCurve
-   hasVerticalOffCurve
+   ~smufolib.utils.rulers.areAlligned
+   ~smufolib.utils.rulers.hasHorizontalOffCurve
+   ~smufolib.utils.rulers.hasVerticalOffCurve
 
 Footnotes
 =========
