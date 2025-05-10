@@ -60,3 +60,10 @@
 
 .. automodule:: smufolib.utils.stdUtils
     :members:
+
+
+.. toctree::
+   :hidden:
+   :glob:
+
+   _autosummary/smufolib.utils.rulers.*
