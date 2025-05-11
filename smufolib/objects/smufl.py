@@ -690,6 +690,8 @@ class Smufl(BaseObject):
     def classMembers(self, className: str) -> tuple[Glyph, ...]:
         """Return all glyphs in the font that belong to the given SMuFL class.
 
+
+
         .. versionadded:: 0.6.0
 
         :param className: The name of the SMuFL glyph class to search for.
@@ -697,7 +699,12 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return ()
-        return tuple(g for g in self.font if className in g.smufl.classes)
+        return tuple(
+            sorted(
+                [g for g in self.font if className in g.smufl.classes],
+                key=lambda g: g.name,
+            )
+        )
 
     @property
     def version(self) -> float | None:
