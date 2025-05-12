@@ -127,13 +127,13 @@ def validateAttr(obj, attributes: Iterable[str] | None = None) -> bool:
         ...         self.attr3 = False
         ...
         >>> obj = MyClass()
-        >>> validateAttr(obj, 'attr1')
+        >>> validateAttr(obj, "attr1")
         True
-        >>> validateAttr(obj, 'attr2')
+        >>> validateAttr(obj, "attr2")
         False
-        >>> validateAttr(obj, 'attr3')
+        >>> validateAttr(obj, "attr3")
         True
-        >>> validateAttr(obj, ['attr1', 'attr2'])
+        >>> validateAttr(obj, ["attr1", "attr2"])
         False
 
     """
@@ -179,10 +179,10 @@ def verbosePrint(message: str, verbose: bool, *args: Any, **kwargs: Any) -> None
 
     Example::
 
-        >>> verbosePrint('Hello, world!', True)
+        >>> verbosePrint("Hello, world!", True)
         Hello, world!
-        >>> verbosePrint('Hello, world!', False)
-        >>> verbosePrint('Hello, {}!', True, 'Alice')
+        >>> verbosePrint("Hello, world!", False)
+        >>> verbosePrint("Hello, {}!", True, "Alice")
         Hello, Alice!
 
     """

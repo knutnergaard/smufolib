@@ -24,7 +24,7 @@ class Font(RFont):
 
     Example::
 
-        >>> font = Font('path/to/font.ufo')     # Load from path
+        >>> font = Font("path/to/font.ufo")     # Load from path
         >>> font = Font(BaseFont())             # Wrap an existing font
 
     """

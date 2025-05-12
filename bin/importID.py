@@ -92,8 +92,8 @@ def importID(
 
     :param font: Object or path to target :class:`.Font`.
     :param attributes: ID attributes to be set. Value can be either
-        ``'*'`` (all), ``'name'``, ``'classes'``, ``'description'``)
-        or :class:`tuple` of several. Defaults to ``'*'``.
+        ``"*"`` (all), ``"name"``, ``"classes"``, ``"description"``)
+        or :class:`tuple` of several. Defaults to ``"*"``.
     :param classesData: Object call or direct path to classes metadata
         file. Defaults to :class:`.Request` with :attr:`~.Request.path`
         and :attr:`~.Request.fallback` set to

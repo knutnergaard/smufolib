@@ -87,13 +87,13 @@ def getPoints(
         single :class:`.Glyph`, a :class:`tuple` of glyph objects or any
         parent object (:class:`.Layer` or :class:`.Font`).
     :param types: The :attr:`fontParts.base.BasePoint.type` to include.
-        Defaults to ``('line', 'curve', 'qcurve')``.
+        Defaults to ``("line", "curve", "qcurve")``.
     :raises TypeError: If `obj` is not an accepted type.
     :raises ValueError: If `obj` items is not an accepted type.
 
     Example::
 
-        >>> glyph = font['uniE071'] # schaefferGClefToFClef (contour and component parts)
+        >>> glyph = font["uniE071"] # schaefferGClefToFClef (contour and component parts)
         >>> points = pointUtils.getPoints(glyph)
         >>> tuple(points)
         (Point(type='line', position=Position(x=618, y=0), contourIndex=0),
@@ -136,12 +136,12 @@ def getContourPoints(
         parent object (:class:`.Glyph`, :class:`.Layer`
         or :class:`.Font`).
     :param types: The :attr:`fontParts.base.BasePoint.type` to include.
-        Defaults to ``('line', 'curve', 'qcurve')``.
+        Defaults to ``("line", "curve", "qcurve")``.
     :raises TypeError: If `obj` is not an accepted type.
 
     Example::
 
-        >>> glyph = font['uniE071'] # schaefferGClefToFClef (contour part)
+        >>> glyph = font["uniE071"] # schaefferGClefToFClef (contour part)
         >>> points = pointUtils.getContourPoints(glyph)
         >>> tuple(points)
         (Point(type='line', position=Position(x=618, y=0), contourIndex=0),
@@ -186,12 +186,12 @@ def getCompositePoints(
         parent object (:class:`.Glyph`, :class:`.Layer`
         or :class:`.Font`).
     :param types: The :attr:`fontParts.base.BasePoint.type` to include.
-        Defaults to ``('line', 'curve', 'qcurve')``.
+        Defaults to ``("line", "curve", "qcurve")``.
     :raises TypeError: If `obj` is not an accepted type.
 
     Example::
 
-        >>> glyph = font['uniE071'] # schaefferGClefToFClef (component part)
+        >>> glyph = font["uniE071"] # schaefferGClefToFClef (component part)
         >>> points = pointUtils.getCompositePoints(glyph)
         >>> tuple(points)
         (Point(type='line', position=Position(x=309, y=-749), contourIndex=1),

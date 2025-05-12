@@ -25,16 +25,16 @@ def convertMeasurement(
     :param unitsPerEm: The UPM value to base conversion on.
     :param rounded: Whether to round result to nearest integer.
     :raises TypeError: If `measurement` is not an accepted type.
-    :raises ValueError: If `targetUnit` is neither ``'spaces'``
-     nor ``'units'``.
+    :raises ValueError: If `targetUnit` is neither ``"spaces"``
+     nor ``"units"``.
 
     Example::
 
-        >>> convertMeasurement(0.795, 'units', 1000, rounded=False)
+        >>> convertMeasurement(0.795, "units", 1000, rounded=False)
         198.75
-        >>> convertMeasurement(0.795, 'units', 1000, rounded=True)
+        >>> convertMeasurement(0.795, "units", 1000, rounded=True)
         199
-        >>> convertMeasurement('198.75', 'spaces', 1000, rounded=True)
+        >>> convertMeasurement("198.75", "spaces", 1000, rounded=True)
         0.795
 
     """
@@ -55,7 +55,7 @@ def toDecimal(unicodeString: str) -> int:
     """Convert formatted unicode or uni name to decimal codepoint.
 
     Function accepts any hexadecimal string within the Unicode range
-    (U+0000 -- U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
+    (U+0000 -- U+10FFFF) prefixed by ``"u"``, ``"U+"`` or ``"uni"``.
 
     :param unicodeString: The value to convert.
     :raises TypeError: If `unicodeString` is not the accepted type.
@@ -65,11 +65,11 @@ def toDecimal(unicodeString: str) -> int:
 
     Example::
 
-        >>> toDecimal('uniE000')
+        >>> toDecimal("uniE000")
         57344
-        >>> toDecimal('u1D100')
+        >>> toDecimal("u1D100")
         119040
-        >>> toDecimal('U+0A00')
+        >>> toDecimal("U+0A00")
         2560
 
     """
@@ -113,23 +113,23 @@ def toUniHex(codepoint: int) -> str:
 
 
 def toUniName(value: str | int, short: bool = False) -> str:
-    """Convert formatted Unicode hex or decimal to 'uni' name.
+    """Convert formatted Unicode hex or decimal to ``"uni"`` name.
 
     Function accepts any integer or prefixed hexadecimal string
     within the Unicode range (U+0000 -- U+10FFFF).
 
     :param value: The value to convert.
-    :param short: Whether to return name with single ``'u'`` prefix.
+    :param short: Whether to return name with single ``"u"`` prefix.
     :raises TypeError: If `value` is not an accepted type.
     :raises ValueError: If `value` is outside the Unicode range
         (U+0000 -- U+10FFFF) or not a valid formatted string.
 
     Example::
 
-        >>> toUniName('U+E000')
+        >>> toUniName("U+E000")
         'uniE000'
         >>> toUniName('U+E000', short=True)
-        'uE000'
+        "uE000"
         >>> toUniName(57344)
         'uniE000'
 
@@ -161,7 +161,7 @@ def toKebab(camelCaseString: str) -> str:
 
     Example::
 
-        >>> toKebab('camelCase')
+        >>> toKebab("camelCase")
         'camel-case'
 
     """
@@ -176,11 +176,11 @@ def toNumber(numericString: str) -> int | float:
 
     Example::
 
-        >>> toNumber('57344')
+        >>> toNumber("57344")
         57344
-        >>> toNumber('57.344')
+        >>> toNumber("57.344")
         57.344
-        >>> toNumber('E000')
+        >>> toNumber("E000")
         57344
 
     """

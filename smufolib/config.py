@@ -25,7 +25,7 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
 
         >>> from smufolib import config
         >>> cfg = config.load()
-        >>> cfg['request']
+        >>> cfg["request"]
         {'encoding': 'utf-8', 'warn': True}
 
     """

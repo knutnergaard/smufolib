@@ -6,7 +6,7 @@ font file.
 
 To prevent unwanted data loss, items to delete *must* be specifically
 included and may also be specifically excluded. If ``exclude=None``,
-``include='*'`` (all) will delete everything, essentially resetting the
+``include="*"`` (all) will delete everything, essentially resetting the
 font to a non-SMuFL state. Individual attribute and anchor names may
 otherwise be specified in both parameters as a single string or tuple
 of any of the following values:
@@ -86,10 +86,10 @@ def cleanFont(
 
     :param font: Object or path to
         target :class:`~smufolib.objects.font.Font`.
-    :param include: items to be deleted. May be ``'*'`` (all), an
+    :param include: items to be deleted. May be ``"*"`` (all), an
         individual attribute or anchor name as a :class:`str`
         or :class:`tuple` of several.
-    :param exclude: Items to be preserved if ``ìnclude='*'``. Defaults
+    :param exclude: Items to be preserved if ``ìnclude="*"``. Defaults
         to :obj:`None`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.

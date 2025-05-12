@@ -121,7 +121,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> font.smufl.findGlyph('barlineSingle')
+            >>> font.smufl.findGlyph("barlineSingle")
             <Glyph 'uniE030' ('public.default') at 4393557200>
 
         """
@@ -295,7 +295,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE050'] # gClef
+            >>> glyph = font["uniE050"] # gClef
             >>> glyph.smufl.alternates
             ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
 
@@ -367,7 +367,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE050.ss01']
+            >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.base
             <Glyph 'uniE050' ('public.default') at 4373577008>
 
@@ -396,7 +396,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE050.ss01']
+            >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.suffix
             ss01
 
@@ -419,7 +419,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE09E_uniE083_uniE09F_uniE084']
+            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
             >>> glyph.smufl.componentGlyphs
             (<Glyph 'uniE09E' ('public.default') at 4399803376>,
              <Glyph 'uniE083' ('public.default') at 4399803184>,
@@ -445,7 +445,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE09E_uniE083_uniE09F_uniE084']
+            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
             >>> glyph.smufl.componentNames
             ('timeSigCombNumerator', 'timeSig3',
              'timeSigCombDenominator', 'timeSig4')
@@ -477,7 +477,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE212'] # stemSwished
+            >>> glyph = font["uniE212"] # stemSwished
             >>> glyph.smufl.range
             <Range 'stems' ('U+E210-U+E21F') at 4348391632>
 
@@ -518,7 +518,7 @@ class Smufl(BaseObject):
             (<Range 'stringTechniques' ('U+E610-U+E62F') at 4449982528>,
             <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at 4449981712>,
             <Range 'harpTechniques' ('U+E680-U+E69F') at 4449981376>, ...)
-            >>> glyph = font['uniE212'] # stemSwished
+            >>> glyph = font["uniE212"] # stemSwished
             >>> glyph.smufl.ranges
             (<Range 'stems' ('U+E210-U+E21F') at 4348391632>,)
 
@@ -565,7 +565,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE0A3'] # noteheadHalf
+            >>> glyph = font["uniE0A3"] # noteheadHalf
             >>> glyph.smufl.anchors
             {'cutOutNW': (0.204, 0.296), 'cutOutSE':
             (0.98, -0.3), 'splitStemDownNE': (0.956, -0.3), 'splitStemDownNW':
@@ -598,7 +598,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE0A3']
+            >>> glyph = font["uniE0A3"]
             >>> glyph.smufl.codepoint
             U+E0A3
 
@@ -744,7 +744,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE354'] # accSagittalSharp7v11kUp
+            >>> glyph = font["uniE354"] # accSagittalSharp7v11kUp
             >>> glyph.smufl.classes
             ('accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions')
 
@@ -802,7 +802,7 @@ class Smufl(BaseObject):
 
         ::
 
-            >>> glyph = font['uniE212']
+            >>> glyph = font["uniE212"]
             >>> glyph.smufl.name
             stemSwished
 
@@ -893,10 +893,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE09E_uniE083_uniE09F_uniE084']
+            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
             >>> g1.smufl.isLigature
             True
-            >>> glyph = font['uniE083']
+            >>> glyph = font["uniE083"]
             >>> glyph.smufl.isLigature
             False
 
@@ -921,10 +921,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE050']
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.isMember
             True
-            >>> glyph = font['spaces']
+            >>> glyph = font["spaces"]
             >>> glyph.smufl.isMember
             False
 
@@ -943,10 +943,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniF660']
+            >>> glyph = font["uniF660"]
             >>> g1.smufl.isOptional
             True
-            >>> glyph = font['uniE083']
+            >>> glyph = font["uniE083"]
             >>> glyph.smufl.isOptional
             False
 
@@ -965,10 +965,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE083']
+            >>> glyph = font["uniE083"]
             >>> g1.smufl.isRecommended
             True
-            >>> glyph = font['uniF660']
+            >>> glyph = font["uniF660"]
             >>> glyph.smufl.isRecommended
             False
 
@@ -982,7 +982,7 @@ class Smufl(BaseObject):
     def isSalt(self) -> bool:
         """Return :obj:`True` if glyph is stylistic alternate.
 
-        Glyph names with either ``'.alt'`` and ``'.salt'`` suffix are
+        Glyph names with either ``".alt"`` and ``".salt"`` suffix are
         accepted. See :ref:`Note <about-glyph-naming>` about glyph
         naming.
 
@@ -990,10 +990,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE042.salt01']
+            >>> glyph = font["uniE042.salt01"]
             >>> glyph.smufl.isSalt
             True
-            >>> glyph = font['uniE042']
+            >>> glyph = font["uniE042"]
             >>> glyph.smufl.isSalt
             False
 
@@ -1020,10 +1020,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font['uniE050.ss01']
+            >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.isSet
             True
-            >>> glyph = font['uniE042.salt01']
+            >>> glyph = font["uniE042.salt01"]
             >>> glyph.smufl.isSet
             False
 
@@ -1091,7 +1091,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> f = Font('path/to/my/font.ufo')
+            >>> f = Font("path/to/my/font.ufo")
             >>> font.info.unitsPerEm
             2048
             >>> font.smufl.toSpaces(512)
@@ -1128,7 +1128,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> f = Font('path/to/my/font.ufo')
+            >>> f = Font("path/to/my/font.ufo")
             >>> font.info.unitsPerEm
             2048
             >>> font.smufl.toSpaces(2)

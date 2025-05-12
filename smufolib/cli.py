@@ -24,77 +24,77 @@ CONFIG = config.load()
 
 #: Available arguments and their settings.
 CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
-    'attributes': {
-        'nargs': '+',
-        'help': "attribute names to include in processing"
+    "attributes": {
+        "nargs": "+",
+        "help": "attribute names to include in processing"
     },
-    'classesData': {
-        'type': Request,
-        'help': "path to classes metadata file"
+    "classesData": {
+        "type": Request,
+        "help": "path to classes metadata file"
     },
-    'clear': {
-        'action': 'store_true',
-        'help': "erase preexisting objects on execution"
+    "clear": {
+        "action": "store_true",
+        "help": "erase preexisting objects on execution"
     },
-    'color': {
-        'nargs': 4,
-        'type': converters.toNumber,
-        'help': "list of RGBA color values"
+    "color": {
+        "nargs": 4,
+        "type": converters.toNumber,
+        "help": "list of RGBA color values"
     },
-    'colors': {
-        'type': json.loads,
-        'help': "keys mapped to RGBA color arrays as JSON string"
+    "colors": {
+        "type": json.loads,
+        "help": "keys mapped to RGBA color arrays as JSON string"
     },
-    'exclude': {
-        'nargs': '+',
-        'help': "objects to exclude from processing"
+    "exclude": {
+        "nargs": "+",
+        "help": "objects to exclude from processing"
     },
-    'font': {
-        'type': Font,
-        'help': "path to UFO file"
+    "font": {
+        "type": Font,
+        "help": "path to UFO file"
     },
-    'fontData': {
-        'type': Request,
-        'help': "path to font metadata file"
+    "fontData": {
+        "type": Request,
+        "help": "path to font metadata file"
     },
-    'glyphnamesData': {
-        'type': Request,
-        'help': "path to glyphnames metadata file"
+    "glyphnamesData": {
+        "type": Request,
+        "help": "path to glyphnames metadata file"
     },
-    'include': {
-        'nargs': '+',
-        'help': "objects to include in processing"
+    "include": {
+        "nargs": "+",
+        "help": "objects to include in processing"
     },
-    'includeOptionals': {
-        'action': 'store_true',
-        'help': "include optional glyphs"
+    "includeOptionals": {
+        "action": "store_true",
+        "help": "include optional glyphs"
     },
-    'mark': {
-        'action': 'store_true',
-        'help': "apply defined color values to objects"
+    "mark": {
+        "action": "store_true",
+        "help": "apply defined color values to objects"
     },
-    'overwrite': {
-        'action': 'store_true',
-        'help': "overwrite preexisting values"
+    "overwrite": {
+        "action": "store_true",
+        "help": "overwrite preexisting values"
     },
-    'rangesData': {
-        'type': Request,
-        'help': "path to ranges metadata file"
+    "rangesData": {
+        "type": Request,
+        "help": "path to ranges metadata file"
     },
-    'sourcePath': {
-        'type': Request,
-        'help': "path to source file or directory"
+    "sourcePath": {
+        "type": Request,
+        "help": "path to source file or directory"
     },
-    'spaces': {
-        'action': 'store_true',
-        'help': "set unit of measurement to staff spaces"
+    "spaces": {
+        "action": "store_true",
+        "help": "set unit of measurement to staff spaces"
     },
-    'targetPath': {
-        'help': "path to target file or directory"
+    "targetPath": {
+        "help": "path to target file or directory"
     },
-    'verbose': {
-        'action': 'store_true',
-        'help': "make output verbose"
+    "verbose": {
+        "action": "store_true",
+        "help": "make output verbose"
     }
 }
 
@@ -126,7 +126,7 @@ def commonParser(
 
         >>> from smufolib import cli
         >>> parser = cli.commonParser(
-        ...   'font', 'clear', includeOtionals=False,
+        ...   "font", "clear", includeOtionals=False,
         ...   description="Showcase commonParser", addHelp=True
         ...   )
         >>> parser.parse_args("-h".split()))

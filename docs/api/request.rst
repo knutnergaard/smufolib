@@ -11,7 +11,7 @@ requests, while simplifying reading, parsing and writing of JSON data.
 
 .. automodule:: smufolib.request
 
-.. autoclass:: smufolib.request.Request(path=None, fallback=None, encoding=CONFIG['request']['encoding'], warn=CONFIG['request']['warn'])
+.. autoclass:: smufolib.request.Request(path=None, fallback=None, encoding=CONFIG["request"]["encoding"], warn=CONFIG["request"]["warn"])
     :members:
 
-.. autofunction:: writeJson(filepath, source, encoding=CONFIG['request']['encoding'])
+.. autofunction:: writeJson(filepath, source, encoding=CONFIG["request"]["encoding"])

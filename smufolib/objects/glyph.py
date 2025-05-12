@@ -12,7 +12,7 @@ class Glyph(RGlyph):
     inherent glyph dictionary. To instantiate the SMuFL glyph named U+E030 (*single
     barline*)::
 
-        >>> glyph = font['uniE030']
+        >>> glyph = font["uniE030"]
 
     """
 

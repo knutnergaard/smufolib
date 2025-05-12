@@ -270,7 +270,7 @@ def normalizeEngravingDefaultsAttr(
     :raises TypeError: If any parameter value is not an accepted type.
     :raises AttributeError: If name is not a
         valid :class:`.EngravingDefaults` attribute name.
-    :raises ValueError: If  ``'name=textFontFamily'`` and `value` is not
+    :raises ValueError: If  ``"name=textFontFamily"`` and `value` is not
         a :class:`str` or empty.
 
     """

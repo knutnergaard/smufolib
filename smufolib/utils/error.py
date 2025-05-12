@@ -48,7 +48,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "singleItem": "{objectName!r} must contain a value pair",
     "suggestion": "Did you mean {suggestion!r}?",
     "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}",
-    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 - U+10FFFF)",
+    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 -- U+10FFFF)",
     "urlError": "Could not connect to URL: {url!r}",
     "valueError": "Invalid value for {objectName!r}: {value!r}",
     "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower",
@@ -78,13 +78,13 @@ def generateErrorMessage(
 
     Example::
 
-        >>> generateErrorMessage('alphanumericValue', objectName='unicode')
+        >>> generateErrorMessage("alphanumericValue", objectName="unicode")
         "The value for 'unicode' must be alphanumeric."
 
-        >>> generateErrorMessage('typeError', objectName='index', validTypes='int', valueType='str')
+        >>> generateErrorMessage("typeError", objectName="index", validTypes="int", valueType="str")
         "Expected 'index' to be of type int, but got str."
 
-        >>> >>> generateErrorMessage('urlError', string="Please try again.", url='some/url.com')
+        >>> >>> generateErrorMessage("urlError", string="Please try again.", url="some/url.com")
         Could not connect to URL: 'some/url.com'. Please try again.
 
     """
@@ -105,14 +105,14 @@ def generateTypeError(
 
     This function generates an error message based on the number of
     valid types. By default, the message is generated from
-    :obj:`ERROR_TEMPLATES`:``'typeError'``.
+    :obj:`ERROR_TEMPLATES`:``"typeError"``.
 
     If `context` in not :obj:`None` (or empty) and `items`
-    is :obj:`False`, :obj:`ERROR_TEMPLATES`:``'contextualTypeError'``
+    is :obj:`False`, :obj:`ERROR_TEMPLATES`:``"contextualTypeError"``
     is used. If `items` is :obj:`True` and `context` is :obj:`None`,
-    :obj:`ERROR_TEMPLATES`:``'itemsTypeError'`` is used. If both
+    :obj:`ERROR_TEMPLATES`:``"itemsTypeError"`` is used. If both
     `context` is not :obj:`None` and `items` is :obj:`True`,
-    :obj:`ERROR_TEMPLATES`:``'contextualItemsTypeError'`` is used.
+    :obj:`ERROR_TEMPLATES`:``"contextualItemsTypeError"`` is used.
 
     :param value: The value to be validated.
     :param validTypes: A :class:`tuple` or :class:`list` of valid types.
@@ -128,13 +128,13 @@ def generateTypeError(
 
     Example::
 
-        >>> generateTypeError(123, (str,), 'path')
+        >>> generateTypeError(123, (str,), "path")
         Expected 'path' to be of type str, but got int.
 
-        >>> generateTypeError(123, (str, Path), 'path')
+        >>> generateTypeError(123, (str, Path), "path")
         Expected 'path' to be of type str or Path, but got int.
 
-        >>> generateTypeError(123, (str, Path, Request), 'path')
+        >>> generateTypeError(123, (str, Path, Request), "path")
         Expected 'path' to be of type str, Path or Request, but got int.
 
     """
@@ -179,16 +179,17 @@ def validateType(
 
     Example::
 
-        >>> validateType(123, str, 'glyphName')
+        >>> validateType(123, str, "glyphName")
         Traceback (most recent call last):
         ...
         TypeError: Expected 'glyphName' to be of type str, but got int.
 
-        >>> for item in ['uniE000', 1]:
-        ...    validateType(item, str, 'glyphNames', items=True)
+        >>> myList = ["uniE000", 1]
+        >>> for item in myList:
+        ...    validateType(item, str, "myList", items=True)
         Traceback (most recent call last):
         ...
-        ValueError: Items in 'glyphNames' must be str, not int.
+        ValueError: Items in 'myList' must be str, not int.
 
     """
     if isinstance(validTypes, type):
@@ -232,8 +233,8 @@ def suggestValue(
 
     Example::
 
-        >>> suggestValue('spiltStemUpSE', ['splitStemUpSE', 'splitStemUpSW'],
-        ... 'anchorName', cutoff=0.5)
+        >>> suggestValue("spiltStemUpSE", ["splitStemUpSE", "splitStemUpSW"],
+        ... "anchorName", cutoff=0.5)
         "Invalid value for 'anchorName': spiltStemUpSE. Did you mean 'splitStemUpSE'?"
 
     """

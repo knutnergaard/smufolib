@@ -219,7 +219,7 @@ membership:
 
    for glyph in font:
       classes = glyph.smufl.classes
-      if 'accidentalsStandard' in classes and 'accidentalsSagittalMixed' in classes:
+      if "accidentalsStandard" in classes and "accidentalsSagittalMixed" in classes:
          ...
 
 The :meth:`.Smufl.classMembers` method provides a convenient way to collect all glyph
@@ -245,8 +245,8 @@ attribute:
    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
    >>> font.smufl.engravingDefaults
-   <EngravingDefaults in font 'MyFont Regular' 
-   path='/path/to/MyFont.ufo' auto=True at ...>
+   <EngravingDefaults in font "MyFont Regular" 
+   path="/path/to/MyFont.ufo" auto=True at ...>
  
 Each setting has its own attribute within this object:
    
@@ -348,13 +348,13 @@ SMuFL name respectively.
 A SMuFL-specific metadata representation of the same alternates can be retrieved with
 the :attr:`.alternates` attribute:
 
-   >>> glyph = font['uniE050']  # gClef
+   >>> glyph = font["uniE050"]  # gClef
    >>> glyph.smufl.alternates
    ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
 
 The inverse base glyph is also accessible through the :attr:`.base` attribute:
 
-   >>> alternate = font['uniE050.ss01']
+   >>> alternate = font["uniE050.ss01"]
    >>> alternate.smufl.base
    <Glyph 'uniE050' ('public.default') at ...>
 
@@ -362,7 +362,7 @@ The glyph name suffix is a common characteristic of different types of OpenType
 alternates and sets, and may therefore sometimes be necessary to isolate. This is what
 the :attr:`.suffix` attribute is for:
 
-   >>> glyph = font['uniE050.ss01']
+   >>> glyph = font["uniE050.ss01"]
    >>> glyph.smufl.suffix
    'ss01'
 
@@ -581,8 +581,8 @@ concerned with writing JSON data to a file. Using the :func:`.writeJson` functio
 is as simple as::
 
    >>> from smufolib.request import writeJson
-   >>> jsonDict = {'font': 'MyFont'}
-   >>> writeJson('path/to/file.json', jsonDict)
+   >>> jsonDict = {"font": "MyFont"}
+   >>> writeJson("path/to/file.json", jsonDict)
 
 Building Command Line Interfaces
 ================================
@@ -619,7 +619,7 @@ To create a simple parser using only predefined arguments:
    from smufolib import cli
    
    parser = cli.commonParser(
-      'font', 'clear', includeOptionals=False,
+      "font", "clear", includeOptionals=False,
       description="My SMuFL utility", addHelp=True
       )
    
@@ -644,14 +644,14 @@ the function output as a :class:`list` to the `parents` parameter of the class:
    import argparse
    from smufolib import cli
 
-   args = cli.commonParser('font', clear=True, addHelp=False)
+   args = cli.commonParser("font", clear=True, addHelp=False)
    parser = argparse.ArgumentParser(parents=[args],
-               description='showcase commonParser')
+               description="showcase commonParser")
    parser.add_argument(
-       '-m', '--my-argument',
-       action='store_true',
+       "-m", "--my-argument",
+       action="store_true",
        help="do something",
-       dest='myArgument'
+       dest="myArgument"
    )  
 
 .. important::
@@ -684,11 +684,11 @@ Use the :func:`.createHelpFormatter` function to combine the formatters you want
    from smufolib import cli
    
    formatter = cli.createHelpFormatter(
-      ('RawTextHelpFormatter', 'ArgumentDefaultsHelpFormatter')
+      ("RawTextHelpFormatter", "ArgumentDefaultsHelpFormatter")
    )
    parser = argparse.ArgumentParser(
       formatter_class=formatter,
-      description='Process SMuFL metadata'
+      description="Process SMuFL metadata"
    )
 
 Using the Utility Modules

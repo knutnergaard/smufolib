@@ -4,7 +4,7 @@
 
 This script addresses the issue of the lib keys created by the library not following
 the UFO specification. Earlier "private" key names are changed to reverse-DNS
-equivalents (i.e., ``'_name'`` -> ``'com.smufolib.name'``).
+equivalents (i.e., ``"_name"`` -> ``"com.smufolib.name"``).
 
 The script allows batch processing of multiple font files or directories containing
 font files.

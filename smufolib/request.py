@@ -28,7 +28,7 @@ class Request:
     :param warn: Warn if URLError is raised before fallback request. Defaults to
         :ref:`[request]` `warn` configuration.
     :param mode: File usage specification used with :attr:`raw`. See :func:`open` for
-        details. Defaults to 'r' (read).
+        details. Defaults to ``"r"`` (read).
 
     """
 

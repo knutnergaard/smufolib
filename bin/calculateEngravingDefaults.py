@@ -96,9 +96,9 @@ def calculateEngravingDefaults(
         .. code-block:: python
 
             r = {
-                'arrowShaftThickness': {
-                    'ruler': 'glyphBoundsXMinAbs',
-                    'glyph': 'uniEB60'
+                "arrowShaftThickness": {
+                    "ruler": "glyphBoundsXMinAbs",
+                    "glyph": "uniEB60"
                 }
             }
 
