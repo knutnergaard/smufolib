@@ -4,7 +4,7 @@ from smufolib._version import __version__  # noqa: F401
 from smufolib import cli
 from smufolib import config
 from smufolib.objects.engravingDefaults import (
-    ENGRAVING_DEFAULTS_KEYS,
+    ENGRAVING_DEFAULTS_ATTRIBUTES,
     EngravingDefaults,
 )
 from smufolib.objects.font import Font
@@ -32,7 +32,7 @@ __all__ = [
     "cli",
     "config",
     "EngravingDefaults",
-    "ENGRAVING_DEFAULTS_KEYS",
+    "ENGRAVING_DEFAULTS_ATTRIBUTES",
     "Font",
     "Glyph",
     "Layer",

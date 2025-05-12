@@ -48,7 +48,7 @@ imported directly from the main module.
    :members: ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 
 .. automodule:: smufolib.objects.engravingDefaults
-   :members: ENGRAVING_DEFAULTS_KEYS
+   :members: ENGRAVING_DEFAULTS_ATTRIBUTES
 
 
 .. _engraving-defaults-mapping:

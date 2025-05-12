@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import patch
 
-from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
+from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_ATTRIBUTES
 from tests.testUtils import generateGlyph
 
 
@@ -92,7 +92,7 @@ class TestEngravingDefaults(unittest.TestCase):
         if spaces:
             self._set_spaces()
         result = {}
-        for attr in ENGRAVING_DEFAULTS_KEYS:
+        for attr in ENGRAVING_DEFAULTS_ATTRIBUTES:
             with self.subTest(attr=attr):
                 numeric_value = 1.0 if spaces else 250
                 value = testFonts if attr == "textFontFamily" else numeric_value

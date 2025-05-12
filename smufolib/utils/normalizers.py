@@ -274,7 +274,7 @@ def normalizeEngravingDefaultsAttr(
         a :class:`str` or empty.
 
     """
-    from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
+    from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_ATTRIBUTES
 
     if not isinstance(name, str):
         raise TypeError(
@@ -282,7 +282,7 @@ def normalizeEngravingDefaultsAttr(
         )
 
     className = "EngravingDefaults"
-    if name not in ENGRAVING_DEFAULTS_KEYS:
+    if name not in ENGRAVING_DEFAULTS_ATTRIBUTES:
         raise AttributeError(
             error.generateErrorMessage(
                 "attributeError", objectName=className, attribute=name
