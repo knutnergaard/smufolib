@@ -75,7 +75,7 @@ class EngravingDefaults(BaseObject):
         If a value is unassigned (or explicitly set to :obj:`None`), the attribute will
         be calculated automatically from the corresponding glyph in the font, provided
         that glyph exists and `auto` is enabled in :ref:`[engravingDefaults]`. See
-        :ref:`engraving-defaults-mapping` for a complete list of attributes and their
+        :data:`.ENGRAVING_DEFAULTS_MAPPING` for a complete list of attributes and their
         default corresponding glyphs and assigned ruler functions.
 
 

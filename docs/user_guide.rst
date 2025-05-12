@@ -258,7 +258,7 @@ Each setting has its own attribute within this object:
 Engraving defaults are calculated automatically from corresponding glyphs by default --
 provided that these glyphs exist. As an example, the value for :attr:`.hairpinThickness`
 is based on the shape of the glyph U+E53E (*dynamicCrescendoHairpin*). See
-:ref:`engraving-defaults-mapping` for a full list of attributes and their corresponding
+:data:`.ENGRAVING_DEFAULTS_MAPPING` for a full list of attributes and their corresponding
 glyphs.
 
 Override the automatic calculations by setting the attributes to a value other than

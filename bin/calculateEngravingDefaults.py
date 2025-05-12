@@ -8,7 +8,7 @@ registration, metrics, and point placement.
 
 The script provides options to override automatic contour measurements
 and reassign attributes to different ruler functions or glyphs.
-See :ref:`engraving-defaults-mapping` for a complete list of attributes and their
+See :data:`.ENGRAVING_DEFAULTS_MAPPING` for a complete list of attributes and their
 default corresponding glyphs and assigned ruler functions.
 
 .. note:: The setting for :attr:`.textFontFamily` must be set manually
