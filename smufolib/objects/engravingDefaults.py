@@ -59,14 +59,13 @@ ENGRAVING_DEFAULTS_KEYS: set = {
 class EngravingDefaults(BaseObject):
     """SMuFL engraving default settings.
 
-    This object contains properties and methods pertained to SMuFL's
-    `engravingDefaults
-    <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
-    metadata structure, defining recommended defaults for line widths
-    etc., according to the specification.
+    This object contains properties and methods pertained to SMuFL's `engravingDefaults
+    <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_ metadata
+    structure, defining recommended defaults for line widths etc., according to the
+    specification.
 
-    The :class:`EngravingDefaults` object is essentially a :class:`dict`
-    with access to keys through regular class attributes.
+    The :class:`EngravingDefaults` object is essentially a :class:`dict` with access to
+    keys through regular class attributes.
 
     .. versionadded:: 0.5.0
 
@@ -83,10 +82,12 @@ class EngravingDefaults(BaseObject):
         by the :mod:`~bin.calculateEngravingDefaults` script.
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
+    :param auto: Whether to calculate engraving defaults automatically. Defaults to the
+        `auto` setting in :ref:`[engravingDefaults]`.
 
-    While this object is normally created as part of
-    a :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults`
-    object may be created like this::
+    While this object is normally created as part of a
+    :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults` object
+    may be created like this::
 
         >>> d = EngravingDefaults()
 
