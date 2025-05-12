@@ -502,10 +502,6 @@ class EngravingDefaults(BaseObject):
         )
 
 
-def _getAutoFlag():
-    return config.load()["engravingDefaults"]["auto"]
-
-
 def _makeProperty(attr: str, doc: str):
     # textFontFamily declared explicitly above
 
