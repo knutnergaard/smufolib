@@ -1,7 +1,7 @@
 import json
 import sys
 import unittest
-from unittest.mock import patch
+from unittest.mock import PropertyMock, patch
 
 
 from tests.testUtils import (
@@ -10,6 +10,7 @@ from tests.testUtils import (
     drawLines,
     getVerboseOutput,
 )
+from smufolib.objects.engravingDefaults import EngravingDefaults
 from bin.calculateEngravingDefaults import (
     ENGRAVING_DEFAULTS_MAPPING,
     calculateEngravingDefaults,
@@ -23,12 +24,6 @@ class TestCalculateEngravingDefaults(
     def setUp(self):
         super().setUp()
         self.suppressOutput()
-
-        self.patcher = patch(
-            "smufolib.objects.engravingDefaults._getAutoFlag", return_value=False
-        )
-        self.mock_load = self.patcher.start()
-        self.addCleanup(self.patcher.stop)
 
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
@@ -46,22 +41,22 @@ class TestCalculateEngravingDefaults(
             drawLines(glyph, ((10, 0), (20, 0), (20, 15), (10, 15)))
 
         self.fontPath = self.saveFontToTemp()
+        self.ed = self.font.smufl.engravingDefaults
 
     def test_calculateEngravingDefaults_basic(self):
         calculateEngravingDefaults(self.font)
-        ed = self.font.smufl.engravingDefaults
-        self.assertTrue(hasattr(ed, "tupletBracketThickness"))
-        self.assertIsInstance(ed.tupletBracketThickness, (int, float))
+        self.assertTrue(hasattr(self.ed, "tupletBracketThickness"))
+        self.assertIsInstance(self.ed.tupletBracketThickness, (int, float))
 
     def test_calculateEngravingDefaults_exclude(self):
+        self.ed.auto = False
         calculateEngravingDefaults(self.font, exclude=["arrowShaftThickness"])
-        ed = self.font.smufl.engravingDefaults
-        self.assertIsNone(ed.arrowShaftThickness)
+        self.assertIsNone(self.ed.arrowShaftThickness)
 
     def test_calculateEngravingDefaults_override(self):
         override = {"arrowShaftThickness": 1234, "textFontFamily": ("font1", "font2")}
         calculateEngravingDefaults(self.font, override=override)
-        self.assertEqual(self.font.smufl.engravingDefaults.arrowShaftThickness, 1234)
+        self.assertEqual(self.ed.arrowShaftThickness, 1234)
 
     def test_calculateEngravingDefaults_remap(self):
         remapGlyph = self.font.newGlyph("testGlyph")
@@ -73,7 +68,7 @@ class TestCalculateEngravingDefaults(
             }
         }
         calculateEngravingDefaults(self.font, remap=remap)
-        self.assertIsNotNone(self.font.smufl.engravingDefaults.arrowShaftThickness)
+        self.assertIsNotNone(self.ed.arrowShaftThickness)
 
     @patch("builtins.print")
     def test_calculateEngravingDefaults_remap_with_nonexistent(self, mock_print):
@@ -92,7 +87,7 @@ class TestCalculateEngravingDefaults(
     def test_calculateEngravingDefaults_spaces(self):
         self.font.smufl.staffSpaces = 200  # units per space
         calculateEngravingDefaults(self.font, spaces=True)
-        self.assertIsNotNone(self.font.smufl.engravingDefaults.arrowShaftThickness)
+        self.assertIsNotNone(self.ed.arrowShaftThickness)
 
     @patch("bin.calculateEngravingDefaults.Font.save")
     def test_calculateEngravingDefaults_calls_save(self, mock_save):

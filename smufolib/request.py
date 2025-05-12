@@ -201,19 +201,6 @@ class Request:
             return fallback_file.read()
 
     @property
-    def content(self) -> bytes | None:
-        """The raw response data as bytes."""
-        return self._readPreferredSource()
-
-    @property
-    def text(self) -> str | None:
-        """The raw response data as text."""
-        raw = self._readPreferredSource()
-        if raw is None:
-            return None
-        return raw.decode(self.encoding)
-
-    @property
     def path(self) -> str | None:
         """Primary URL or filepath as string.
 
@@ -221,6 +208,10 @@ class Request:
 
         """
         return normalizers.normalizeRequestPath(self._path, "path")
+
+    @path.setter
+    def path(self, value: Path | str | None) -> None:
+        self._path = normalizers.normalizeRequestPath(value, "path")
 
     @property
     def fallback(self) -> str | None:
@@ -231,10 +222,39 @@ class Request:
         """
         return normalizers.normalizeRequestPath(self._fallback, "fallback")
 
+    @fallback.setter
+    def fallback(self, value: str | None) -> None:
+        self._fallback = normalizers.normalizeRequestPath(value, "fallback")
+
     @property
     def encoding(self) -> str:
         """File text encoding."""
         return self._encoding
+
+    @encoding.setter
+    def encoding(self, value: str):
+        self._encoding = value
+
+    @property
+    def content(self) -> bytes | None:
+        """The raw response data as bytes.
+
+        This property is read-only.
+
+        """
+        return self._readPreferredSource()
+
+    @property
+    def text(self) -> str | None:
+        """The raw response data as text.
+
+        This property is read-only.
+
+        """
+        raw = self._readPreferredSource()
+        if raw is None:
+            return None
+        return raw.decode(self.encoding)
 
     # TODO: Remove mode in v0.6.0
 

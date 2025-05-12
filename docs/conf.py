@@ -2,11 +2,11 @@
 
 # pylint: disable=all
 
-import os
 import sys
 import importlib.metadata
+from pathlib import Path
 
-sys.path.insert(0, os.path.abspath(".."))
+sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 
 # -- Project information ------------------------------------------------------
 
@@ -37,6 +37,8 @@ intersphinx_mapping = {
 autodoc_default_options = {
     "member-order": "groupwise",
 }
+
+doctest_global_setup = (Path(__file__).parent / "doctest_setup.py").read_text()
 
 
 exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]

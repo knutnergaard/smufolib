@@ -1,8 +1,8 @@
 """where SMuFL meets UFO"""
 
-from smufolib._version import __version__  # noqa: F401
-from smufolib import cli
 from smufolib import config
+from smufolib._version import __version__  # noqa: F401
+from smufolib.cli import CLI_ARGUMENTS, commonParser, createHelpFormatter
 from smufolib.objects.engravingDefaults import (
     ENGRAVING_DEFAULTS_ATTRIBUTES,
     EngravingDefaults,
@@ -17,7 +17,7 @@ from smufolib.objects.smufl import (
     GLYPH_ATTRIBUTES,
     Smufl,
 )
-from smufolib.request import Request
+from smufolib.request import Request, writeJson
 from smufolib.utils import (
     converters,
     error,
@@ -29,24 +29,27 @@ from smufolib.utils import (
 )
 
 __all__ = [
-    "cli",
+    "ANCHOR_NAMES",
+    "CLI_ARGUMENTS",
+    "commonParser",
     "config",
+    "converters",
+    "createHelpFormatter",
     "EngravingDefaults",
     "ENGRAVING_DEFAULTS_ATTRIBUTES",
-    "Font",
-    "Glyph",
-    "Layer",
-    "Range",
-    "Smufl",
-    "ANCHOR_NAMES",
-    "FONT_ATTRIBUTES",
-    "GLYPH_ATTRIBUTES",
-    "Request",
-    "converters",
     "error",
+    "Font",
+    "FONT_ATTRIBUTES",
+    "Glyph",
+    "GLYPH_ATTRIBUTES",
+    "Layer",
     "normalizers",
     "pointUtils",
+    "Range",
+    "Request",
+    "Smufl",
     "rulers",
     "stdUtils",
     "scriptUtils",
+    "writeJson",
 ]
