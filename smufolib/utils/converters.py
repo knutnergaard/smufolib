@@ -55,13 +55,13 @@ def toDecimal(unicodeString: str) -> int:
     """Convert formatted unicode or uni name to decimal codepoint.
 
     Function accepts any hexadecimal string within the Unicode range
-    (U+0000 - U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
+    (U+0000 -- U+10FFFF) prefixed by ``'u'``, ``'U+'`` or ``'uni'``.
 
     :param unicodeString: The value to convert.
     :raises TypeError: If `unicodeString` is not the accepted type.
     :raises ValueError: If `unicodeString` is not a valid formatted
         unicode codepoint or outside the unicode range
-        (U+0000 – U+10FFFF).
+        (U+0000 -- U+10FFFF).
 
     Example::
 
@@ -95,7 +95,7 @@ def toUniHex(codepoint: int) -> str:
     :param codepoint: The decimal value to convert.
     :raises TypeError: If `codepoint` is not the accepted type.
     :raises ValueError: If `codepoint` is outside the Unicode range
-        (U+0000 – U+10FFFF).
+        (U+0000 -- U+10FFFF).
 
     Example::
 
@@ -116,13 +116,13 @@ def toUniName(value: str | int, short: bool = False) -> str:
     """Convert formatted Unicode hex or decimal to 'uni' name.
 
     Function accepts any integer or prefixed hexadecimal string
-    within the Unicode range (U+0000 – U+10FFFF).
+    within the Unicode range (U+0000 -- U+10FFFF).
 
     :param value: The value to convert.
     :param short: Whether to return name with single ``'u'`` prefix.
     :raises TypeError: If `value` is not an accepted type.
     :raises ValueError: If `value` is outside the Unicode range
-        (U+0000 – U+10FFFF) or not a valid formatted string.
+        (U+0000 -- U+10FFFF) or not a valid formatted string.
 
     Example::
 
