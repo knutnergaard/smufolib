@@ -105,7 +105,7 @@ def cleanFont(
     # Clean font attributes
     stdUtils.verbosePrint("\nCleaning attributes for font:", verbose)
     for attr in itemsToClean["fontAttributes"]:
-        if attr == "engravingDefaults":
+        if font.smufl.engravingDefaults and attr == "engravingDefaults":
             font.smufl.engravingDefaults.clear()
         elif attr == "spaces":
             setattr(font.smufl, attr, False)
