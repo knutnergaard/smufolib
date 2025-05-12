@@ -560,9 +560,8 @@ class Smufl(BaseObject):
     def anchors(self) -> dict[str, tuple[int | float, int | float]] | None:
         """SMuFL-specific glyph anchors as Cartesian coordinates.
 
-        This property is read-only. Use
-        the :attr:`.Glyph.anchors` attribute to set
-        glyph anchors.
+        This property is read-only. Use the :attr:`Glyph.anchors
+        <fontParts.base.BaseGlyph.anchors>` attribute to set glyph anchors.
 
         Example::
 
@@ -650,7 +649,8 @@ class Smufl(BaseObject):
     def advanceWidth(self) -> int | float | None:
         """Glyph advance width.
 
-        This property is equivalent to :attr:`.Glyph.width`.
+        This property is equivalent to :attr:`Glyph.width
+        <fontParts.base.BaseGlyph.width>`.
 
         Example::
 
@@ -1045,12 +1045,12 @@ class Smufl(BaseObject):
         - :attr:`Smufl.engravingDefaults`
         - :attr:`Smufl.anchors`
         - :attr:`Smufl.advanceWidth`
-        - :attr:`.Glyph.width`
-        - :attr:`.Glyph.height`
-        - :attr:`.Glyph.contours`
-        - :attr:`.Glyph.components`
-        - :attr:`.Glyph.anchors`
-        - :attr:`.Glyph.guidelines`
+        - :attr:`Glyph.width <fontParts.base.BaseGlyph.width>`
+        - :attr:`Glyph.height <fontParts.base.BaseGlyph.height>`
+        - :attr:`Glyph.contours <fontParts.base.BaseGlyph.contours>`
+        - :attr:`Glyph.components <fontParts.base.BaseGlyph.components>`
+        - :attr:`Glyph.anchors <fontParts.base.BaseGlyph.anchors>`
+        - :attr:`Glyph.guidelines <fontParts.base.BaseGlyph.guidelines>`
 
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.

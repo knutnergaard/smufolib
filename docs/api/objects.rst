@@ -5,7 +5,7 @@ Objects
 Base Objects
 ============
 
-SMufoLib's lowest-level classes subclass the reference implementation of the FontParts API. Only those objects and members that are explicitly overridden or referenced in SMufoLib's own documentation are documented here. For a complete reference to all inherited attributes and methods, see the `FontParts documentation <https://fontparts.robotools.dev/en/stable/index.html>`_.
+SMufoLib's lowest-level classes subclass the reference implementation of the FontParts API. Only those objects and members that are explicitly overridden are documented here. For a complete reference to all inherited attributes and methods, see the `FontParts documentation <https://fontparts.robotools.dev/en/stable/index.html>`_.
 
 .. automodule:: smufolib.objects.font
    :members:

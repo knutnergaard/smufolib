@@ -307,18 +307,18 @@ Glyph Metrics and Dimensions
 Similarly to :attr:`~.Smufl.anchors`, the :class:`.Smufl` class also provides a SMuFL-specific
 :class:`dict` representation of the glyph bounding box:
    
-   glyph = font["uniE050"]  # gClef
+   >>> glyph = font["uniE050"]  # gClef
    >>> glyph.smufl.bBox
    {'bBoxSW': (0, -634), 'bBoxNE': (648, 1167)}
 
 Even the glyph advance width is available as :attr:`.Smufl.advanceWidth`:
    
-   glyph.smufl.advanceWidth = 648
+   >>> glyph.smufl.advanceWidth = 648
    >>> glyph.smufl.advanceWidth
    648 
    
-It differs from the usual :attr:`.Glyph.width` in optionally providing
-the value in staff spaces (see :ref:`changing-measurement-units`).
+It differs from the usual :attr:`Glyph.width <fontParts.base.BaseGlyph.width>` in
+optionally providing the value in staff spaces (see :ref:`changing-measurement-units`).
 
 Ligatures and Stylistic Alternates
 ----------------------------------
