@@ -298,7 +298,7 @@ class EngravingDefaults(BaseObject):
         return [getattr(self, k) for k in self.keys()]
 
     # ----------
-    # Properties
+    # Attributes
     # ----------
 
     @property
