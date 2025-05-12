@@ -62,22 +62,20 @@ class EngravingDefaults(BaseObject):
     """SMuFL engraving default settings.
 
     This object contains properties and methods pertained to SMuFL's
-    `engravingDefaults
-    <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
-    metadata structure, defining recommended defaults for line widths
-    etc., according to the specification.
+    :smufl:`engravingDefaults <engravingdefaults.html>` metadata structure, defining
+    recommended defaults for line widths etc., according to the specification.
 
-    The :class:`EngravingDefaults` object is essentially a :class:`dict`
-    with each engraving default setting exposed as a read/write property.
+    The :class:`EngravingDefaults` object is essentially a :class:`dict` with each
+    engraving default setting exposed as a read/write property.
 
     .. versionadded:: 0.5.0
 
-        If a value is unassigned (or explicitly set to :obj:`None`), the attribute
-        will be calculated automatically from the corresponding glyph in the font,
-        provided that glyph exists and the :ref:`[engravingDefaults]` `auto`
-        setting is enabled in the configuration file.
-        See :ref:`engraving-defaults-mapping` for a complete list of attributes and
-        their default corresponding glyphs and assigned ruler functions.
+        If a value is unassigned (or explicitly set to :obj:`None`), the attribute will
+        be calculated automatically from the corresponding glyph in the font, provided
+        that glyph exists and the :ref:`[engravingDefaults]` `auto` setting is enabled
+        in the configuration file. See :ref:`engraving-defaults-mapping` for a complete
+        list of attributes and their default corresponding glyphs and assigned ruler
+        functions.
 
     .. tip::
 
@@ -86,9 +84,9 @@ class EngravingDefaults(BaseObject):
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
 
-    While this object is normally created as part of
-    a :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults`
-    object may be created like this::
+    While this object is normally created as part of a
+    :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults` object
+    may be created like this::
 
         >>> d = EngravingDefaults()
 
