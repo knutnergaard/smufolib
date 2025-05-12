@@ -6,7 +6,6 @@ and ruler functions defined in :data:`.EngravingDefaults.ENGRAVING_DEFAULTS_MAPP
 """
 
 import csv
-import json
 from pathlib import Path
 
 from smufolib.utils import converters, rulers
@@ -37,10 +36,12 @@ def main():
             else:
                 rulerName = mapping["ruler"]
                 glyphName = mapping["glyph"]
+                decimal = converters.toDecimal(glyphName)
+                uniHex = converters.toUniHex(decimal)
                 writer.writerow(
                     {
                         "Attribute": f":attr:`.{attributeName}`",
-                        "Glyph": f"`'{glyphName}'`",
+                        "Glyph": uniHex,
                         "Ruler Function": f":func:`~.rulers.{rulerName}`",
                     }
                 )
