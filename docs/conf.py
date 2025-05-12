@@ -20,6 +20,7 @@ release = importlib.metadata.version("smufolib")
 extensions = [
     "sphinx.ext.intersphinx",
     "sphinx.ext.autodoc",
+    "sphinx.ext.extlinks",
     "sphinx.ext.doctest",
     "sphinx.ext.autosummary",
     "sphinx.ext.viewcode",
@@ -33,7 +34,6 @@ intersphinx_mapping = {
     "setuptools": ("https://setuptools.readthedocs.io/en/stable", None),
 }
 
-autodoc_typehints = "signature"
 autodoc_default_options = {
     "member-order": "groupwise",
 }
@@ -45,6 +45,8 @@ highlight_language = "python3"
 add_module_names = False
 nitpicky = True
 default_role = "code"
+
+extlinks = {"smufl": ("https://w3c.github.io/smufl/latest/specification/%s", "%s")}
 
 # -- Options for HTML output --------------------------------------------------
 
