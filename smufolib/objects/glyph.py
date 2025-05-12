@@ -1,23 +1,16 @@
 # pylint: disable=C0114
 from __future__ import annotations
-from typing import TYPE_CHECKING
 
 from fontParts.fontshell.glyph import RGlyph
 from smufolib.objects.smufl import Smufl
-
-if TYPE_CHECKING:  # pragma: no cover
-    from fontParts.fontshell.anchor import RAnchor
-    from fontParts.fontshell.contour import RContour
-    from fontParts.fontshell.component import RComponent
-    from fontParts.fontshell.guideline import RGuideline
 
 
 class Glyph(RGlyph):
     """SMufoLib environment implementation of :class:`fontParts.base.BaseGlyph`.
 
     Glyphs are usually accessed through a :class:`~smufolib.objects.font.Font` objects
-    inherent glyph dictionary. To instantiate the SMuFL glyph named `'uniE030'`
-    (**single barline**)::
+    inherent glyph dictionary. To instantiate the SMuFL glyph named U+E030 (*single
+    barline*)::
 
         >>> glyph = font['uniE030']
 
