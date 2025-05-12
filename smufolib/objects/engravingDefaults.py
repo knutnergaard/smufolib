@@ -19,6 +19,8 @@ if TYPE_CHECKING:  # pragma: no cover
 EngravingDefaultsDictInput = dict[str, EngravingDefaultsInput | None]
 EngravingDefaultsDictReturn = dict[str, EngravingDefaultsReturn | None]
 
+AUTO = config.load()["engravingDefaults"]["auto"]
+
 #: Names of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_KEYS: set = {
     "arrowShaftThickness",
@@ -57,23 +59,22 @@ ENGRAVING_DEFAULTS_KEYS: set = {
 class EngravingDefaults(BaseObject):
     """SMuFL engraving default settings.
 
-    This object contains properties and methods pertained to SMuFL's
-    `engravingDefaults
-    <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
-    metadata structure, defining recommended defaults for line widths
-    etc., according to the specification.
+    This object contains properties and methods pertained to SMuFL's `engravingDefaults
+    <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_ metadata
+    structure, defining recommended defaults for line widths etc., according to the
+    specification.
 
-    The :class:`EngravingDefaults` object is essentially a :class:`dict`
-    with access to keys through regular class attributes.
+    The :class:`EngravingDefaults` object is essentially a :class:`dict` with access to
+    keys through regular class attributes.
 
     .. versionadded:: 0.5.0
 
-        If a value is unassigned (or explicitly set to :obj:`None`), the attribute
-        will be calculated automatically from the corresponding glyph in the font,
-        provided that glyph exists and the :ref:`[engravingDefaults]` `auto`
-        setting is enabled in the configuration file.
-        See :ref:`engraving-defaults-mapping` for a complete list of attributes and
-        their default corresponding glyphs and assigned ruler functions.
+        If a value is unassigned (or explicitly set to :obj:`None`), the attribute will
+        be calculated automatically from the corresponding glyph in the font, provided
+        that glyph exists and `auto` is enabled in :ref:`[engravingDefaults]`. See
+        :ref:`engraving-defaults-mapping` for a complete list of attributes and their
+        default corresponding glyphs and assigned ruler functions.
+
 
     .. tip::
 
@@ -81,24 +82,27 @@ class EngravingDefaults(BaseObject):
         by the :mod:`~bin.calculateEngravingDefaults` script.
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
+    :param auto: Whether to calculate engraving defaults automatically. Defaults to the
+        `auto` setting in :ref:`[engravingDefaults]`.
 
-    While this object is normally created as part of
-    a :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults`
-    object may be created like this::
+    While this object is normally created as part of a
+    :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults` object
+    may be created like this::
 
         >>> d = EngravingDefaults()
 
     """
 
-    def _init(self, smufl: Smufl | None = None) -> None:
+    def _init(self, smufl: Smufl | None = None, auto: bool = AUTO) -> None:
         self._smufl = smufl
+        self._auto = auto
 
     def _reprContents(self) -> list[str]:
         contents = []
         if self.font is not None:
             contents.append("in font")
             contents += self.font._reprContents()  # pylint: disable-next=W0212
-            contents.append(f"auto={_getAutoFlag()}")
+            contents.append(f"auto={self._auto}")
         return contents
 
     def naked(self):
@@ -143,6 +147,23 @@ class EngravingDefaults(BaseObject):
         if self._smufl is None:
             return None
         return self._smufl.layer
+
+    # ----
+    # Auto
+    # ----
+
+    @property
+    def auto(self) -> bool:
+        """Whether to calculate engraving defaults automatically.
+
+        Defaults to the `auto` setting in :ref:`[engravingDefaults]`.
+
+        """
+        return self._auto
+
+    @auto.setter
+    def auto(self, value: bool) -> None:
+        self._auto = value
 
     # ------------------
     # Dictionary methods
@@ -568,14 +589,14 @@ class EngravingDefaults(BaseObject):
 
     def _getValue(self, name: str) -> EngravingDefaultsReturn | None:
         # Common settings property getter.
-        if not self._libDict and not _getAutoFlag():
+        if not self._libDict and not self._auto:
             return None
 
         value = self._libDict.get(name, None)
         if name == "textFontFamily":
             value = self._libDict.get(name, ())
 
-        if self.font and value is None and _getAutoFlag():
+        if self.font and value is None and self._auto:
             glyphName = ENGRAVING_DEFAULTS_MAPPING[name]["glyph"]
             try:
                 glyph = self.font[glyphName]
@@ -732,7 +753,3 @@ class EngravingDefaults(BaseObject):
                 "notImplementedError", objectName=self.__class__.__name__
             )
         )
-
-
-def _getAutoFlag():
-    return config.load()["engravingDefaults"]["auto"]
