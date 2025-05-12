@@ -1,7 +1,10 @@
 import unittest
-from unittest.mock import patch
+from unittest.mock import PropertyMock, patch
 
-from smufolib.objects.engravingDefaults import ENGRAVING_DEFAULTS_KEYS
+from smufolib.objects.engravingDefaults import (
+    EngravingDefaults,
+    ENGRAVING_DEFAULTS_KEYS,
+)
 from tests.testUtils import generateGlyph
 
 
@@ -83,6 +86,16 @@ class TestEngravingDefaults(unittest.TestCase):
         self.assertIs(self.glyph.smufl.engravingDefaults.layer, self.glyph.layer)
         self.assertIsNone(self.otherEngravingDefaults.layer)
 
+    # ----
+    # Auto
+    # ----
+
+    def test_auto(self):
+        self.engravingDefaults.auto = False
+        self.assertFalse(self.engravingDefaults.auto)
+        self.engravingDefaults.auto = True
+        self.assertTrue(self.engravingDefaults.auto)
+
     # ----------
     # Attributes
     # ----------
@@ -102,8 +115,9 @@ class TestEngravingDefaults(unittest.TestCase):
         self.maxDiff = None
         self.assertDictEqual(self.engravingDefaults.items(), result)
 
-    @patch("smufolib.objects.engravingDefaults._getAutoFlag", return_value=True)
-    def test_get_attributes_auto_true(self, mock_autoFlag):
+    def test_get_attributes_auto_true(self):
+        ed = self.font.smufl.engravingDefaults
+        ed.auto = True
         # Generate stem glyph
         generateGlyph(
             self.font,
@@ -111,10 +125,11 @@ class TestEngravingDefaults(unittest.TestCase):
             unicode=0xE210,
             points=((0, 0), (20, 0), (20, 250), (0, 250)),
         )
-        self.assertEqual(self.font.smufl.engravingDefaults.stemThickness, 20)
+        self.assertEqual(ed.stemThickness, 20)
 
-    @patch("smufolib.objects.engravingDefaults._getAutoFlag", return_value=False)
-    def test_get_attributes_auto_false(self, mock_autoFlag):
+    def test_get_attributes_auto_false(self):
+        ed = self.font.smufl.engravingDefaults
+        ed.auto = False
         # Generate stem glyph
         generateGlyph(
             self.font,
@@ -122,7 +137,7 @@ class TestEngravingDefaults(unittest.TestCase):
             unicode=0xE210,
             points=((0, 0), (20, 0), (20, 250), (0, 250)),
         )
-        self.assertIsNone(self.font.smufl.engravingDefaults.stemThickness)
+        self.assertIsNone(ed.stemThickness)
 
     def test_set_attributes_basic(self):
         self._test_attribute_assignment(False)
