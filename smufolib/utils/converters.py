@@ -3,6 +3,10 @@
 These functions focus on conversion different string and number formats
 related to measurements, Unicode codepoints and letter case.
 
+To import the module:
+
+    >>> from smufolib import converters
+
 """
 
 from __future__ import annotations
@@ -28,13 +32,13 @@ def convertMeasurement(
     :raises ValueError: If `targetUnit` is neither ``"spaces"``
      nor ``"units"``.
 
-    Example::
+    Example:
 
-        >>> convertMeasurement(0.795, "units", 1000, rounded=False)
+        >>> converters.convertMeasurement(0.795, "units", 1000, rounded=False)
         198.75
-        >>> convertMeasurement(0.795, "units", 1000, rounded=True)
+        >>> converters.convertMeasurement(0.795, "units", 1000, rounded=True)
         199
-        >>> convertMeasurement("198.75", "spaces", 1000, rounded=True)
+        >>> converters.convertMeasurement("198.75", "spaces", 1000, rounded=True)
         0.795
 
     """
@@ -63,13 +67,13 @@ def toDecimal(unicodeString: str) -> int:
         unicode codepoint or outside the unicode range
         (U+0000 -- U+10FFFF).
 
-    Example::
+    Example:
 
-        >>> toDecimal("uniE000")
+        >>> converters.toDecimal("uniE000")
         57344
-        >>> toDecimal("u1D100")
+        >>> converters.toDecimal("u1D100")
         119040
-        >>> toDecimal("U+0A00")
+        >>> converters.toDecimal("U+0A00")
         2560
 
     """
@@ -97,9 +101,9 @@ def toUniHex(codepoint: int) -> str:
     :raises ValueError: If `codepoint` is outside the Unicode range
         (U+0000 -- U+10FFFF).
 
-    Example::
+    Example:
 
-        >>> toUniHex(2560)
+        >>> converters.toUniHex(2560)
         'U+0A00'
 
     """
@@ -124,13 +128,13 @@ def toUniName(value: str | int, short: bool = False) -> str:
     :raises ValueError: If `value` is outside the Unicode range
         (U+0000 -- U+10FFFF) or not a valid formatted string.
 
-    Example::
+    Example:
 
-        >>> toUniName("U+E000")
+        >>> converters.toUniName("U+E000")
         'uniE000'
-        >>> toUniName('U+E000', short=True)
-        "uE000"
-        >>> toUniName(57344)
+        >>> converters.toUniName('U+E000', short=True)
+        'uE000'
+        >>> converters.toUniName(57344)
         'uniE000'
 
     """
@@ -159,9 +163,9 @@ def toKebab(camelCaseString: str) -> str:
 
     :param camelCaseString: The string to convert.
 
-    Example::
+    Example:
 
-        >>> toKebab("camelCase")
+        >>> converters.toKebab("camelCase")
         'camel-case'
 
     """
@@ -174,13 +178,13 @@ def toNumber(numericString: str) -> int | float:
     :param numericString: The value to convert.
     :raises ValueError: If `numericString` is not a valid int or float.
 
-    Example::
+    Example:
 
-        >>> toNumber("57344")
+        >>> converters.toNumber("57344")
         57344
-        >>> toNumber("57.344")
+        >>> converters.toNumber("57.344")
         57.344
-        >>> toNumber("E000")
+        >>> converters.toNumber("E000")
         57344
 
     """
@@ -205,11 +209,11 @@ def toIntIfWhole(number: int | float) -> int | float:
 
     :param number: The value to convert.
 
-    Example::
+    Example:
 
-        >>> toIntIfWhole(34.0)
+        >>> converters.toIntIfWhole(34.0)
         34
-        >>> toIntIfWhole(34.1)
+        >>> converters.toIntIfWhole(34.1)
         34.1
 
     """

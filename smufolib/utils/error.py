@@ -5,6 +5,10 @@ check types, and suggest corrections for invalid values. It includes
 a dictionary of error message templates to ensure streamlined and
 consistent error reporting.
 
+To import the module:
+
+    >>> from smufolib import error
+
 """
 
 from __future__ import annotations
@@ -76,16 +80,20 @@ def generateErrorMessage(
     :raises KeyError: If a placeholder in the template does not have a
         corresponding keyword argument.
 
-    Example::
+    Examples:
 
-        >>> generateErrorMessage("alphanumericValue", objectName="unicode")
-        "The value for 'unicode' must be alphanumeric."
+        >>> error.generateErrorMessage("alphanumericValue", objectName="unicode")
+        "The value for 'unicode' must be alphanumeric"
 
-        >>> generateErrorMessage("typeError", objectName="index", validTypes="int", valueType="str")
-        "Expected 'index' to be of type int, but got str."
+        >>> error.generateErrorMessage(
+        ...     "typeError", objectName="index", validTypes="int", valueType="str"
+        ...     )
+        "Expected 'index' to be of type int, but got str"
 
-        >>> >>> generateErrorMessage("urlError", string="Please try again.", url="some/url.com")
-        Could not connect to URL: 'some/url.com'. Please try again.
+        >>> error.generateErrorMessage(
+        ...     "urlError", string="Please try again", url="some/url.com"
+        ...     )
+        "Could not connect to URL: 'some/url.com'. Please try again"
 
     """
     messages = [ERROR_TEMPLATES[n].format(**kwargs) for n in templateNames]
@@ -126,16 +134,18 @@ def generateTypeError(
     :raises ValueError: If `items` is :obj:`True` and `value` is not
         an iterable.
 
-    Example::
+    Examples:
 
-        >>> generateTypeError(123, (str,), "path")
-        Expected 'path' to be of type str, but got int.
+        >>> error.generateTypeError(123, (str,), "path")
+        "Expected 'path' to be of type str, but got int"
 
-        >>> generateTypeError(123, (str, Path), "path")
-        Expected 'path' to be of type str or Path, but got int.
+        >>> from pathlib import Path
+        >>> error.generateTypeError(123, (str, Path), "path")
+        "Expected 'path' to be of type str or Path, but got int"
 
-        >>> generateTypeError(123, (str, Path, Request), "path")
-        Expected 'path' to be of type str, Path or Request, but got int.
+        >>> from smufolib import Request
+        >>> error.generateTypeError(123, (str, Path, Request), "path")
+        "Expected 'path' to be of type str, Path or Request, but got int"
 
     """
     typeNames = _listTypes(validTypes)
@@ -177,19 +187,21 @@ def validateType(
     :raises ValueError: If  `items` is :obj:`True` and any `value` item
         does not match any of the valid types.
 
-    Example::
+    Examples:
 
-        >>> validateType(123, str, "glyphName")
-        Traceback (most recent call last):
-        ...
-        TypeError: Expected 'glyphName' to be of type str, but got int.
+        >>> try:
+        ...     error.validateType(123, str, "glyphName")
+        ... except TypeError as e:
+        ...     print(e)
+        Expected 'glyphName' to be of type str, but got int
 
         >>> myList = ["uniE000", 1]
         >>> for item in myList:
-        ...    validateType(item, str, "myList", items=True)
-        Traceback (most recent call last):
-        ...
-        ValueError: Items in 'myList' must be str, not int.
+        ...     try:
+        ...         error.validateType(item, str, "myList", items=True)
+        ...     except ValueError as e:
+        ...         print(e)
+        Items in 'myList' must be str, not int
 
     """
     if isinstance(validTypes, type):
@@ -231,11 +243,15 @@ def suggestValue(
         `possibilities` or if `items` is :obj:`True` and `value` is
         not an iterable.
 
-    Example::
+    Example:
 
-        >>> suggestValue("spiltStemUpSE", ["splitStemUpSE", "splitStemUpSW"],
-        ... "anchorName", cutoff=0.5)
-        "Invalid value for 'anchorName': spiltStemUpSE. Did you mean 'splitStemUpSE'?"
+        >>> try:
+        ...     error.suggestValue(
+        ...         "spiltStemUpSE", ["splitStemUpSE", "splitStemUpSW"],
+        ...         "anchorName", cutoff=0.5)
+        ... except ValueError as e:
+        ...     print(e)
+        Invalid value for 'anchorName': 'spiltStemUpSE'. Did you mean 'splitStemUpSE'?
 
     """
     if value in possibilities:

@@ -191,7 +191,7 @@ def getCompositePoints(
 
     Example::
 
-        >>> glyph = font["uniE071"] # schaefferGClefToFClef (component part)
+        >>> glyph = font["uniE071'] # schaefferGClefToFClef (component part)
         >>> points = pointUtils.getCompositePoints(glyph)
         >>> tuple(points)
         (Point(type='line', position=Position(x=309, y=-749), contourIndex=1),

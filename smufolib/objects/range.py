@@ -19,21 +19,21 @@ METADATA = Request.ranges()
 class Range:
     """SMuFL range-related metadata.
 
-    Information about how a :class:`~smufolib.objects.glyph.Glyph`
-    relates to SMuFL's own glyph ranges is accessible through this
-    object. It is currently read-only, and retrieves it's data from the
-    `ranges.json
-    <https://w3c.github.io/smufl/latest/specification/ranges.html>`_
-    metadata file.
+    Information about how a :class:`~smufolib.objects.glyph.Glyph` relates to SMuFL's
+    own glyph ranges is accessible through this object. It is currently read-only, and
+    retrieves it's data from the :smufl:`ranges.json <ranges.html>` metadata file.
 
-    :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl`.
+    :param smufl: The range's parent :class:`.Smufl` object.
 
-    While this object is normally created as part of
-    a :class:`~smufolib.objects.font.Font`, an
-    orphan :class:`Range` object may be created like
-    this::
+    The :class:`.Range` object is typically accessed through a glyph's Smufl metadata
+    interface:
 
-        >>> range = Range()
+        >>> glyph = font["uniE050"]
+        >>> range = glyph.smufl.range
+
+    It may also be instantiated as an orphan object:
+
+        >>> range = Range()  # doctest: +SKIP
 
     """
 
@@ -54,7 +54,13 @@ class Range:
 
     @property
     def smufl(self) -> Smufl | None:
-        """Parent :class:`~smufolib.objects.smufl.Smufl` object."""
+        """Parent :class:`~smufolib.objects.smufl.Smufl` object.
+
+        Example:
+
+            >>> smufl = range.smufl
+
+        """
         return self._smufl
 
     @smufl.setter
@@ -64,7 +70,12 @@ class Range:
 
     @property
     def glyph(self) -> Glyph | None:
-        """Parent :class:`~smufolib.objects.glyph.Glyph` object."""
+        """Parent :class:`.Glyph` object.
+
+        Example:
+
+            >>>
+        """
         if self._smufl is None:
             return None
         return self._smufl.glyph

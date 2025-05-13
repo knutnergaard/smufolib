@@ -7,6 +7,10 @@ It also defines:
   and glyphs used for calculating :class:`.EngravingDefaults` attribute values.
 - :data:`DISPATCHER`, for dynamically executing measurement operations by function name.
 
+To import the module:
+
+    >>> from smufolib import rulers
+
 """
 
 from __future__ import annotations

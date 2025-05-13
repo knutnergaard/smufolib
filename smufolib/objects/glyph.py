@@ -9,10 +9,9 @@ class Glyph(RGlyph):
     """SMufoLib environment implementation of :class:`fontParts.base.BaseGlyph`.
 
     Glyphs are usually accessed through a :class:`~smufolib.objects.font.Font` objects
-    inherent glyph dictionary. To instantiate the SMuFL glyph named U+E030 (*single
-    barline*)::
+    inherent glyph dictionary. To instantiate the SMuFL glyph named U+E050 (*gClef*):
 
-        >>> glyph = font["uniE030"]
+        >>> glyph = font["uniE050"]
 
     """
 

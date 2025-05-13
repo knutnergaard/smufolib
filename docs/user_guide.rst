@@ -100,6 +100,19 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
    If no valid configuration file is found, SMufoLib falls back to the default
    `smufolib.cfg` located in the library's installation directory.
 
+Reading Configurations
+----------------------
+
+If you want to access the configuration file settings in your scripts, the
+:func:`.config.load` function will return a parsed instance of `smufolib.cfg` as a
+:class:`dict`:
+
+   >>> from smufolib import config
+   >>> cfg = config.load()
+   >>> cfg["request"]
+   {'encoding': 'utf-8', 'warn': True}
+
+See the :mod:`argparse` documentation for more info on working with configuration files.
 
 Setting attributes
 ==================
@@ -245,8 +258,8 @@ attribute:
    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
    >>> font.smufl.engravingDefaults
-   <EngravingDefaults in font "MyFont Regular" 
-   path="/path/to/MyFont.ufo" auto=True at ...>
+   <EngravingDefaults in font 'MyFont Regular' 
+   path='/path/to/MyFont.ufo' auto=True at ...>
  
 Each setting has its own attribute within this object:
    
@@ -614,16 +627,14 @@ Creating A Parser
 
 To create a simple parser using only predefined arguments:
 
-.. code-block::
+.. testcode::
 
-   from smufolib import cli
+   from smufolib import commonParser
    
-   parser = cli.commonParser(
+   parser = commonParser(
       "font", "clear", includeOptionals=False,
       description="My SMuFL utility", addHelp=True
       )
-   
-   args = parser.parse_args()
 
 .. note::
 
@@ -642,9 +653,9 @@ the function output as a :class:`list` to the `parents` parameter of the class:
 .. testcode::
 
    import argparse
-   from smufolib import cli
+   from smufolib import commonParser
 
-   args = cli.commonParser("font", clear=True, addHelp=False)
+   args = commonParser("font", clear=True, addHelp=False)
    parser = argparse.ArgumentParser(parents=[args],
                description="showcase commonParser")
    parser.add_argument(

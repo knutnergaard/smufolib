@@ -122,35 +122,13 @@ def commonParser(
         override the default. Defaults to :obj:`None`
     :param \**kwargs: Options and their default values to assign.
 
-    Examples::
+    Example:
 
-        >>> from smufolib import cli
-        >>> parser = cli.commonParser(
-        ...   "font", "clear", includeOtionals=False,
-        ...   description="Showcase commonParser", addHelp=True
-        ...   )
-        >>> parser.parse_args("-h".split()))
-        usage: test.py [-h] [-x] [-O] font
-
-        Showcase commonParser
-
-        positional arguments:
-            font         path to UFO file
-
-        optional arguments:
-            -h, --help                show this help message and exit
-            -x, --clear               erase preexisting objects on execution
-            -O, --include-optionals   include optional glyphs
-
-    ::
-
-        >>> parser.parse_args("-f path/to/my/font.ufo".split())
-        Namespace(font=<Font 'MyFont' path='path/to/my/font.ufo' at 4377107232>, mark=False)
-
-    ::
-
-        >>> parser.parse_args("-f path/to/my/font.ufo --clear".split())
-        Namespace(font=<Font 'MyFont' path='path/to/my/font.ufo' at 4377107232>, mark=True)
+        >>> from smufolib import commonParser
+        >>> parser = commonParser(
+        ...     "font", "clear", includeOptionals=False,
+        ...     description="My SMuFL utility", addHelp=True
+        ...     )
 
     """
 
@@ -209,6 +187,18 @@ def createHelpFormatter(formatters: str | tuple[str, ...]) -> type[HelpFormatter
         of class names.
     :raises TypeError: If `formatters` is not an accepted type.
     :raises ValueError: If any `formatters` item is not recognized.
+
+    Example:
+
+        >>> import argparse
+        >>> from smufolib import cli
+        >>> formatter = cli.createHelpFormatter(
+        ...    ("RawTextHelpFormatter", "ArgumentDefaultsHelpFormatter")
+        ... )
+        >>> parser = argparse.ArgumentParser(
+        ...     formatter_class=formatter,
+        ...     description="Process SMuFL metadata"
+        ... )
 
     """
 

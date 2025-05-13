@@ -7,6 +7,10 @@ validating class attributes and string representations of floats,
 printing verbose messages, as well as a a no-op function for
 placeholder purposes.
 
+To import the module:
+
+    >>> from smufolib import stdUtils
+
 """
 
 import operator
@@ -23,12 +27,12 @@ def flatten(iterable: Iterable[Any], depth: int | None = None) -> Generator:
     :param depth: The number of levels to flatten. `depth=None` employs
         maximum flattening. Defaults to :obj:`None`.
 
-    Examples::
+    Examples:
 
-        >>> list(flatten([1, [2, [3, [4, 5]]]], depth=2))
+        >>> list(stdUtils.flatten([1, [2, [3, [4, 5]]]], depth=2))
         [1, 2, 3, [4, 5]]
 
-        >>> list(flatten([1, [2, [3, [4, [5]]]]], depth=None))
+        >>> list(stdUtils.flatten([1, [2, [3, [4, [5]]]]], depth=None))
         [1, 2, 3, 4, 5]
 
     """
@@ -50,9 +54,9 @@ def addTuples(*tuples: tuple[int | float, ...]) -> tuple[int | float, ...]:
 
     :param \*tuples: tuples to add.
 
-    Example::
+    Example:
 
-        >>> addTuples((2, 4), (2, 4))
+        >>> stdUtils.addTuples((2, 4), (2, 4))
         (4, 8)
 
     """
@@ -75,7 +79,7 @@ def getSummary(docstring: str | None) -> str | None:
         ...     """
         ...
         >>> docstring = showcaseGetSummary.__doc__
-        >>> getSummary(docstring)
+        >>> stdUtils.getSummary(docstring)
         "Give example for `getSummary()` function."
 
     '''
@@ -90,12 +94,12 @@ def isFloat(string: str) -> bool:
 
     :param string: The string to check.
 
-    Examples::
+    Examples:
 
-        >>> isFloat("3.14")
+        >>> stdUtils.isFloat("3.14")
         True
 
-        >>> isFloat("314")
+        >>> stdUtils.isFloat("314")
         False
 
     """
@@ -118,7 +122,7 @@ def validateAttr(obj, attributes: Iterable[str] | None = None) -> bool:
     :param obj: The object to validate.
     :param attributes: The attribute names to check.
 
-    Example::
+    Example:
 
         >>> class MyClass:
         ...     def __init__(self):
@@ -127,13 +131,13 @@ def validateAttr(obj, attributes: Iterable[str] | None = None) -> bool:
         ...         self.attr3 = False
         ...
         >>> obj = MyClass()
-        >>> validateAttr(obj, "attr1")
+        >>> stdUtils.validateAttr(obj, "attr1")
         True
-        >>> validateAttr(obj, "attr2")
+        >>> stdUtils.validateAttr(obj, "attr2")
         False
-        >>> validateAttr(obj, "attr3")
+        >>> stdUtils.validateAttr(obj, "attr3")
         True
-        >>> validateAttr(obj, ["attr1", "attr2"])
+        >>> stdUtils.validateAttr(obj, ["attr1", "attr2"])
         False
 
     """
@@ -155,10 +159,10 @@ def doNothing(*args: Any, **kwargs: Any) -> None:
     :param \*args: Positional arguments.
     :param \**kwargs: Keyword arguments.
 
-    Example::
+    Example:
 
-        >>> doNothing(1, 2, 3)
-        >>> doNothing(a=1, b=2)
+        >>> stdUtils.doNothing(1, 2, 3)
+        >>> stdUtils.doNothing(a=1, b=2)
 
     """
 
@@ -177,13 +181,11 @@ def verbosePrint(message: str, verbose: bool, *args: Any, **kwargs: Any) -> None
     :param \**kwargs: Additional keyword arguments passed to
         the :func:`print` function.
 
-    Example::
+    Example:
 
-        >>> verbosePrint("Hello, world!", True)
+        >>> stdUtils.verbosePrint("Hello, world!", True)
         Hello, world!
-        >>> verbosePrint("Hello, world!", False)
-        >>> verbosePrint("Hello, {}!", True, "Alice")
-        Hello, Alice!
+        >>> stdUtils.verbosePrint("Hello, world!", False)
 
     """
     if verbose:

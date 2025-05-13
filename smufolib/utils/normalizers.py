@@ -20,6 +20,10 @@ to the following external normalizers for convenience:
     - :func:`~fontParts.base.normalizers.normalizeVisualRounding`
     - :func:`~fontParts.base.normalizers.normalizeGlyph`
 
+To import the module:
+
+    >>> from smufolib import normalizers
+
 """
 
 from __future__ import annotations

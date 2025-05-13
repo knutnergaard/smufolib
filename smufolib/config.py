@@ -21,7 +21,7 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
 
     :param path: Path to `smufolib.cfg`. Defaults to :obj:`None`.
 
-    Example::
+    Example:
 
         >>> from smufolib import config
         >>> cfg = config.load()
