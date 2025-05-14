@@ -19,9 +19,11 @@ METADATA = Request.ranges()
 class Range:
     """SMuFL range-related metadata.
 
-    Information about how a :class:`~smufolib.objects.glyph.Glyph` relates to SMuFL's
-    own glyph ranges is accessible through this object. It is currently read-only, and
-    retrieves it's data from the :smufl:`ranges.json <ranges.html>` metadata file.
+    This object provides access to metadata describing how a
+    :class:`~smufolib.objects.glyph.Glyph` relates to SMuFL-defined glyph ranges. It is
+    currently read-only and retrieves its data from the path assigned to `ranges` in
+    :ref:`[metadata.paths]` or `[metadata.fallbacks]`, defaulting to the
+    :smufl:`ranges.json <ranges.html>` metadata file.
 
     :param smufl: The range's parent :class:`.Smufl` object.
 
@@ -31,7 +33,7 @@ class Range:
         >>> glyph = font["uniE050"]
         >>> range = glyph.smufl.range
 
-    It may also be instantiated as an orphan object:
+    You may also instantiate it independently and assign it to a glyph later:
 
         >>> range = Range()  # doctest: +SKIP
 
@@ -74,7 +76,8 @@ class Range:
 
         Example:
 
-            >>>
+            >>> glyph = range.glyph
+
         """
         if self._smufl is None:
             return None
@@ -82,14 +85,26 @@ class Range:
 
     @property
     def font(self) -> Font | None:
-        """Parent :class:`~smufolib.objects.font.Font` object."""
+        """Parent :class:`~smufolib.objects.font.Font` object.
+
+        Example:
+
+            >>> font = range.font
+
+        """
         if self._smufl is None:
             return None
         return self._smufl.font
 
     @property
     def layer(self) -> Layer | None:
-        """Parent :class:`~smufolib.objects.layer.Layer` object."""
+        """Parent :class:`~smufolib.objects.layer.Layer` object.
+
+        Example:
+
+            >>> layer = range.layer
+
+        """
         if self._smufl is None:
             return None
         return self._smufl.layer
@@ -102,10 +117,10 @@ class Range:
     def name(self) -> str | None:
         """Name of affiliated SMuFL range.
 
-        Example::
+        Example:
 
             >>> range.name
-            timeSignatures
+            'clefs'
 
         """
         result = self._getAttribute("range_name")
@@ -117,10 +132,10 @@ class Range:
     def description(self) -> str | None:
         """Description of affiliated SMuFL range.
 
-        Example::
+        Example:
 
             >>> range.description
-            Time signatures
+            'Clefs'
 
         """
         result = self._getAttribute("description")
@@ -132,12 +147,12 @@ class Range:
     def glyphs(self) -> tuple[Glyph, ...]:
         """:class:`~smufolib.objects.glyph.Glyph` objects of Affiliated SMuFL range.
 
-        Example::
+        Example:
 
-            >>> range.glyphs
-            (<Glyph 'uniE080' ('public.default') at 4596284000>,
+            >>> range.glyphs  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+            (<Glyph 'uniE050' ('public.default') at ...>,
             ...
-            <Glyph 'uniE09F' ('public.default') at 4632755792>)
+            <Glyph 'uniE07F' ('public.default') at ...>)
 
         """
         result = self._getAttribute("glyphs")
@@ -149,10 +164,10 @@ class Range:
     def start(self) -> str | None:
         """Start unicode of affiliated SMuFL range.
 
-        Example::
+        Example:
 
             >>> range.start
-            U+E080
+            'U+E050'
 
         """
         result = self._getAttribute("range_start")
@@ -164,10 +179,10 @@ class Range:
     def end(self) -> str | None:
         """End unicode of affiliated SMuFL range.
 
-        Example::
+        Example:
 
             >>> range.end
-            U+E09F
+            'U+E07F'
 
         """
         result = self._getAttribute("range_end")

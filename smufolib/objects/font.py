@@ -21,11 +21,13 @@ class Font(RFont):
             Support for initializing from an existing :class:`fontParts.base.BaseFont`
             instance.
 
-    Example:
+    Examples:
 
         >>> from smufolib import Font
-        >>> font = Font("path/to/font.ufo")     # Load from path
-        >>> font = Font(BaseFont())             # Wrap an existing font
+        >>> font = Font("path/to/MyFont.ufo")  # doctest: +SKIP
+
+        >>> from fontParts.fontshell import RFont
+        >>> font = Font(RFont())  # doctest: +SKIP
 
     """
 
