@@ -8,6 +8,11 @@ from smufolib.objects.smufl import Smufl
 class Glyph(RGlyph):
     """SMufoLib environment implementation of :class:`fontParts.base.BaseGlyph`.
 
+    .. versionchanged:: 0.6.0
+
+       The ``__repr__`` now includes the canonoical SMuFL glyph name (if present) in
+       square brackets.
+
     Glyphs are usually accessed through a :class:`~smufolib.objects.font.Font` objects
     inherent glyph dictionary. To instantiate the SMuFL glyph named U+E030 (*single
     barline*)::
@@ -16,12 +21,22 @@ class Glyph(RGlyph):
 
     """
 
+    def _reprContents(self) -> list[str]:
+        # Adds bracketed smufl name if available
+        contents = [f"'{self.name}'"]
+        smuflName = getattr(self.smufl, "name", None)
+        if smuflName:
+            contents.append(f"['{smuflName}']")
+        if self.layer is not None:
+            contents.append(f"('{self.layer.name})'")
+        return contents
+
     def _set_name(self, value: str) -> None:
         # Set the name of the glyph and update :attr:`.Font.lib` if necessary.
         if self.font is not None:
-            namesDict = self.font.lib.get("com.smufolib.names", {})
+            namesDict = self.smufl.names
             smuflName = self.smufl.name
-            if smuflName and self.naked().name in namesDict.values():
+            if namesDict and smuflName and self.naked().name in namesDict.values():
                 namesDict[smuflName] = value
         self.naked().name = value
 
