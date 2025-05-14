@@ -1,5 +1,6 @@
 from unittest.mock import PropertyMock
 from smufolib import Font
+from smufolib import converters
 from tests.testUtils import generateGlyph
 
 
@@ -12,7 +13,12 @@ type(font).path = PropertyMock(return_value="/path/to/MyFont.ufo")
 font.info.styleName = "Regular"
 font.info.unitsPerEm = 1000
 
-generateGlyph(font, "uniE050", points=((0, -634), (648, -634), (648, 1167), (0, 1167)))
+generateGlyph(
+    font,
+    "uniE050",
+    smuflName="gClef",
+    points=((0, -634), (648, -634), (648, 1167), (0, 1167)),
+)
 generateGlyph(font, "uniEAA0", smuflName="wiggleTrillFastest")
 generateGlyph(font, "uniE610", smuflName="stringsDownBow")
 generateGlyph(
@@ -45,3 +51,5 @@ generateGlyph(font, "uniE26A_uniE260_uniE26B")
 generateGlyph(font, "uniE26A", smuflName="accidentalParensLeft")
 generateGlyph(font, "uniE26B", smuflName="accidentalParensRight")
 generateGlyph(font, "uniE050.ss01", unicode=0xF472, smuflName="gClefSmall")
+generateGlyph(font, "uniE062", smuflName="fClef")
+generateGlyph(font, "uniE07F", smuflName="clefChangeCombining")
