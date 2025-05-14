@@ -14,7 +14,7 @@ default corresponding glyphs and assigned ruler functions.
 .. note:: The setting for :attr:`.textFontFamily` must be set manually
    within the `override` parameter.
 
-.. versionadded:: 0.5.0
+.. versionchanged:: 0.5.0
 
     The `referenceIndex` paramter has been removed from all ruler functions and is no
     longer needed when providing remappings.
