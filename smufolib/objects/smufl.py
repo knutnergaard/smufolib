@@ -130,14 +130,10 @@ class Smufl(BaseObject):
 
         normalizedName = normalizers.normalizeSmuflName(name)
 
-        if (
-            self.font is None
-            or self._names is None
-            or normalizedName not in self._names
-        ):
+        if self.font is None or self.names is None or normalizedName not in self.names:
             return None
 
-        return self.font[self._names[normalizedName]]
+        return self.font[self.names[normalizedName]]
 
     # -------
     # Parents
@@ -533,7 +529,7 @@ class Smufl(BaseObject):
     def _getFontRanges(self) -> tuple[Range, ...] | None:
         if (
             self._font is None
-            or self._names is None
+            or self.names is None
             or METADATA is None
             or isinstance(METADATA, str)
         ):
@@ -543,9 +539,9 @@ class Smufl(BaseObject):
         for data in METADATA.values():
             match = next(
                 (
-                    self._names[smuflName]
+                    self.names[smuflName]
                     for smuflName in data["glyphs"]
-                    if smuflName in self._names
+                    if smuflName in self.names
                 ),
                 None,
             )
@@ -690,8 +686,6 @@ class Smufl(BaseObject):
     def classMembers(self, className: str) -> tuple[Glyph, ...]:
         """Return all glyphs in the font that belong to the given SMuFL class.
 
-
-
         .. versionadded:: 0.6.0
 
         :param className: The name of the SMuFL glyph class to search for.
@@ -826,6 +820,22 @@ class Smufl(BaseObject):
                     "com.smufolib.name", normalizers.normalizeSmuflName(value)
                 )
 
+    @property
+    def names(self) -> dict[str, str] | None:
+        """Mapping of canonical SMuFL names to corresponding glyph names.
+
+        This property is read-only. It's content is updated through the
+        :attr:`.Smufl.name` and :attr:`Glyph.name` attributes.
+
+        """
+        if self.font is None:
+            return None
+        return self.font.lib.naked().get("com.smufolib.names")
+
+    @names.setter
+    def names(self, value: dict[str, str] | None) -> None:
+        self._updateFontLib("com.smufolib.names", value)
+
     def _updateGlyphLib(self, key: str, value: Any) -> None:
         if self._glyph is not None:
             if not value:
@@ -836,32 +846,32 @@ class Smufl(BaseObject):
 
     def _clearNames(self) -> None:
         if self.font is not None:
-            if self._names:
-                self.font.lib.naked()["com.smufolib.names"].pop(self.name, None)
-            if not self._names:
+            if self.names and self.name:
+                self.names.pop(self.name, None)
+            if not self.names:
                 self.font.lib.naked().pop("com.smufolib.names", None)
 
     def _addNames(self, value: Any) -> None:
-        if self._names is None:
-            self._names = {}
+        if self.names is None:
+            self.names = {}
         if self._glyph is not None:
-            if value in self._names and self._names[value] != self._glyph.name:
+            if value in self.names and self.names[value] != self._glyph.name:
                 raise ValueError(
                     error.generateErrorMessage(
                         "duplicateAttributeValue",
                         value=value,
                         attribute="smufl.name",
                         objectName="Glyph",
-                        conflictingInstance=self._names[value],
+                        conflictingInstance=self.names[value],
                     )
                 )
 
-            if self._glyph.name in self._names.values():
-                self._names = {
-                    k: v for k, v in self._names.items() if v != self._glyph.name
+            if self._glyph.name in self.names.values():
+                self.names = {
+                    k: v for k, v in self.names.items() if v != self._glyph.name
                 }
 
-            self._names[value] = self._glyph.name
+            self.names[value] = self._glyph.name
 
     def _updateNames(self, value: str | None) -> None:
         # Keep dynamic dict of glyph names in font.lib.
@@ -869,17 +879,6 @@ class Smufl(BaseObject):
             self._clearNames()
         else:
             self._addNames(value)
-
-    @property
-    def _names(self) -> dict[str, str] | None:
-        # Dict of glyph names in font.lib.
-        if self.font is None:
-            return None
-        return self.font.lib.naked().get("com.smufolib.names")
-
-    @_names.setter
-    def _names(self, value: dict[str, str] | None) -> None:
-        self._updateFontLib("com.smufolib.names", value)
 
     # ----------
     # Predicates
