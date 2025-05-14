@@ -70,7 +70,7 @@ class EngravingDefaults(BaseObject):
     The :class:`EngravingDefaults` object is essentially a :class:`dict` with each
     engraving default setting exposed as a read/write property.
 
-    .. versionadded:: 0.5.0
+    .. versionchanged:: 0.5.0
 
         If a value is unassigned (or explicitly set to :obj:`None`), the attribute will
         be calculated automatically from the corresponding glyph in the font, provided

@@ -470,7 +470,7 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_set_name_no_parent(self):
         self.smufl.name = "testName"
         self.assertIsNone(self.smufl.name)
-        self.assertIsNone(self.smufl._names)  # pylint: disable=W0212
+        self.assertIsNone(self.smufl.names)  # pylint: disable=W0212
 
     def test_get_glyph_name(self):
         self.recommended1.lib["com.smufolib.name"] = "testName"
