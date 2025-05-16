@@ -144,9 +144,11 @@ class TestRequest(unittest.TestCase):
         self.assertIsNone(self.request.text)
 
     def test_path(self):
+        self.request.path = self.path
         self.assertEqual(self.request.path, self.path)
 
     def test_fallback(self):
+        self.request.fallback = self.fallback
         self.assertEqual(self.request.fallback, self.fallback)
 
     # TODO: Remove mode tests in 0.6
@@ -156,6 +158,8 @@ class TestRequest(unittest.TestCase):
 
     def test_encoding(self):
         self.assertEqual(self.request.encoding, CONFIG["request"]["encoding"])
+        self.request.encoding = "utf-16"
+        self.assertEqual(self.request.encoding, "utf-16")
 
     # TODO: Remove raw tests in 0.6
 

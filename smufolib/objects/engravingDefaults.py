@@ -99,6 +99,37 @@ class EngravingDefaults(BaseObject):
 
     """
 
+    # Stubs to improve linting support.
+    arrowShaftThickness: int | float
+    barlineSeparation: int | float
+    beamSpacing: int | float
+    beamThickness: int | float
+    bracketThickness: int | float
+    dashedBarlineDashLength: int | float
+    dashedBarlineGapLength: int | float
+    dashedBarlineThickness: int | float
+    hairpinThickness: int | float
+    hBarThickness: int | float
+    legerLineExtension: int | float
+    legerLineThickness: int | float
+    lyricLineThickness: int | float
+    octaveLineThickness: int | float
+    pedalLineThickness: int | float
+    repeatBarlineDotSeparation: int | float
+    repeatEndingLineThickness: int | float
+    slurEndpointThickness: int | float
+    slurMidpointThickness: int | float
+    staffLineThickness: int | float
+    stemThickness: int | float
+    subBracketThickness: int | float
+    textEnclosureThickness: int | float
+    thickBarlineThickness: int | float
+    thinBarlineThickness: int | float
+    thinThickBarlineSeparation: int | float
+    tieEndpointThickness: int | float
+    tieMidpointThickness: int | float
+    tupletBracketThickness: int | float
+
     def _init(self, smufl: Smufl | None = None, auto: bool = AUTO) -> None:
         self._smufl = smufl
         self._auto = auto

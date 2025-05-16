@@ -59,18 +59,23 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_properties_no_parent(self):
         for prop in self.properties:
             if not prop.startswith("_"):
-                result = getattr(self.smufl, prop)
-                # get
-                # booleans
-                if prop.startswith("is") or prop == "spaces":
-                    self.assertFalse(result)
+                if prop == "engravingDefaults":
+                    with self.assertRaises(AttributeError):
+                        self.smufl.engravingDefaults = self.engravingDefaults
+                        self.assertIsNone(self.smufl.engravingDefaults)
                 else:
-                    self.assertIsNone(result)
-                # set
-                try:
-                    setattr(self.smufl, prop, None)
-                except (AttributeError, TypeError):
-                    pass
+                    result = getattr(self.smufl, prop)
+                    # get
+                    # booleans
+                    if prop.startswith("is") or prop == "spaces":
+                        self.assertFalse(result)
+                    else:
+                        self.assertIsNone(result)
+                    # set
+                    try:
+                        setattr(self.smufl, prop, None)
+                    except (AttributeError, TypeError):
+                        pass
 
     # ----
     # repr
@@ -550,14 +555,20 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertEqual(
             self.recommended1.smufl.anchors, {"stemUpNW": (1.5 / 250, 2.5 / 250)}
         )
-
         self.recommended1.font.lib.pop("com.smufolib.spaces")
         self.recommended1.smufl.round()
         self.assertEqual(self.recommended1.smufl.advanceWidth, 101)
         self.assertEqual(self.recommended1.smufl.anchors, {"stemUpNW": (2, 3)})
 
     def test_round_no_glyph(self):
-        self.smufl.round()
+        self.smufl.font = self.font
+        with self.assertNotRaises((AttributeError, ValueError)):
+            self.smufl.round()
+
+    def test_round_no_font(self):
+        self.smufl.glyph = self.glyph
+        with self.assertNotRaises((AttributeError, ValueError)):
+            self.smufl.round()
 
     def test_toSpaces(self):
         self.assertIsNone(self.glyph.smufl.toSpaces(125))
