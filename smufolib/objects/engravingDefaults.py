@@ -27,36 +27,36 @@ AUTO = config.load()["engravingDefaults"]["auto"]
 
 #: Names  and descriptions of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_ATTRIBUTES: dict[str, str] = {
-    "textFontFamily": "Preferred text font families for pairing with this music font",
-    "staffLineThickness": "Thickness of each staff line",
-    "stemThickness": "Thickness of a stem",
-    "beamThickness": "Thickness of a beam",
+    "arrowShaftThickness": "Thickness of arrow shafts",
+    "barlineSeparation": "Distance between multiple barlines when locked together",
     "beamSpacing": "Distance between primary and secondary beams",
-    "legerLineThickness": "Thickness of a leger line",
-    "legerLineExtension": "Extension length of a leger line beyond the notehead",
-    "slurEndpointThickness": "Thickness at the end of a slur",
-    "slurMidpointThickness": "Thickness at the midpoint of a slur",
-    "tieEndpointThickness": "Thickness at the end of a tie",
-    "tieMidpointThickness": "Thickness at the midpoint of a tie",
-    "thinBarlineThickness": "Thickness of a thin barline",
-    "thickBarlineThickness": "Thickness of a thick barline",
-    "dashedBarlineThickness": "Thickness of a dashed barline",
+    "beamThickness": "Thickness of a beam",
+    "bracketThickness": "Thickness of bracket lines grouping staves",
     "dashedBarlineDashLength": "Length of dashes in a dashed barline",
     "dashedBarlineGapLength": "Gap length between dashes in a dashed barline",
-    "barlineSeparation": "Distance between multiple barlines when locked together",
-    "thinThickBarlineSeparation": "Distance between thin and thick barlines when locked together",
-    "repeatBarlineDotSeparation": "Horizontal distance between dots and barline in repeats",
-    "bracketThickness": "Thickness of bracket lines grouping staves",
-    "subBracketThickness": "Thickness of sub-bracket lines for related staves",
+    "dashedBarlineThickness": "Thickness of a dashed barline",
+    "hBarThickness": "Thickness of the H-bar in a multi-bar rest",
     "hairpinThickness": "Thickness of crescendo/diminuendo hairpins",
+    "legerLineExtension": "Extension length of a leger line beyond the notehead",
+    "legerLineThickness": "Thickness of a leger line",
+    "lyricLineThickness": "Thickness of lyric extension lines for melismas",
     "octaveLineThickness": "Thickness of dashed lines used for octave indications",
     "pedalLineThickness": "Thickness of lines used for piano pedaling",
+    "repeatBarlineDotSeparation": "Horizontal distance between dots and barline in repeats",
     "repeatEndingLineThickness": "Thickness of brackets indicating repeat endings",
-    "arrowShaftThickness": "Thickness of arrow shafts",
-    "lyricLineThickness": "Thickness of lyric extension lines for melismas",
+    "slurEndpointThickness": "Thickness at the end of a slur",
+    "slurMidpointThickness": "Thickness at the midpoint of a slur",
+    "staffLineThickness": "Thickness of each staff line",
+    "stemThickness": "Thickness of a stem",
+    "subBracketThickness": "Thickness of sub-bracket lines for related staves",
     "textEnclosureThickness": "Thickness of boxes drawn around text instructions",
+    "textFontFamily": "Preferred text font families for pairing with this music font",
+    "thickBarlineThickness": "Thickness of a thick barline",
+    "thinBarlineThickness": "Thickness of a thin barline",
+    "thinThickBarlineSeparation": "Distance between thin and thick barlines when locked together",
+    "tieEndpointThickness": "Thickness at the end of a tie",
+    "tieMidpointThickness": "Thickness at the midpoint of a tie",
     "tupletBracketThickness": "Thickness of brackets around tuplet numbers",
-    "hBarThickness": "Thickness of the H-bar in a multi-bar rest",
 }
 
 
@@ -95,6 +95,37 @@ class EngravingDefaults(BaseObject):
         >>> d = EngravingDefaults()
 
     """
+
+    # Stubs to improve linting support.
+    arrowShaftThickness: int | float
+    barlineSeparation: int | float
+    beamSpacing: int | float
+    beamThickness: int | float
+    bracketThickness: int | float
+    dashedBarlineDashLength: int | float
+    dashedBarlineGapLength: int | float
+    dashedBarlineThickness: int | float
+    hairpinThickness: int | float
+    hBarThickness: int | float
+    legerLineExtension: int | float
+    legerLineThickness: int | float
+    lyricLineThickness: int | float
+    octaveLineThickness: int | float
+    pedalLineThickness: int | float
+    repeatBarlineDotSeparation: int | float
+    repeatEndingLineThickness: int | float
+    slurEndpointThickness: int | float
+    slurMidpointThickness: int | float
+    staffLineThickness: int | float
+    stemThickness: int | float
+    subBracketThickness: int | float
+    textEnclosureThickness: int | float
+    thickBarlineThickness: int | float
+    thinBarlineThickness: int | float
+    thinThickBarlineSeparation: int | float
+    tieEndpointThickness: int | float
+    tieMidpointThickness: int | float
+    tupletBracketThickness: int | float
 
     def _init(self, smufl: Smufl | None = None, auto: bool = AUTO) -> None:
         self._smufl = smufl
