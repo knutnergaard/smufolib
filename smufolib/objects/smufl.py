@@ -252,8 +252,7 @@ class Smufl(BaseObject):
 
     @engravingDefaults.setter
     def engravingDefaults(self, value: EngravingDefaults) -> None:
-        if self.engravingDefaults:
-            self.engravingDefaults.update(normalizers.normalizeEngravingDefaults(value))
+        self.engravingDefaults.update(normalizers.normalizeEngravingDefaults(value))
 
     @property
     def sizeRange(self) -> tuple[int, int] | None:
@@ -1081,7 +1080,7 @@ class Smufl(BaseObject):
         if self.spaces:
             return
 
-        if self.engravingDefaults:
+        if self.font:
             self.engravingDefaults.round()
 
         if self._glyph is not None:
