@@ -244,8 +244,8 @@ class Smufl(BaseObject):
             raise AttributeError(
                 error.generateErrorMessage(
                     "contextualAttributeError",
-                    attribute=f"{self.__class__.__name__}.{'engravingDefaults'}",
-                    context="'Font' is None",
+                    attribute=f"{self.__class__.__name__}.engravingDefaults",
+                    context=f"'{self.__class__.__name__}.font' is None",
                 )
             )
         return EngravingDefaults(self)
