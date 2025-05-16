@@ -3,7 +3,6 @@ SMufoLib: Where SMuFL meets UFO
 
 **Find glyphs**:
 
-
 .. doctest::
    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
