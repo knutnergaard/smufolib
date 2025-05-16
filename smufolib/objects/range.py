@@ -19,16 +19,14 @@ METADATA = Request.ranges()
 class Range:
     """SMuFL range-related metadata.
 
-    This object provides access to metadata describing how a
-    :class:`~smufolib.objects.glyph.Glyph` relates to SMuFL-defined glyph ranges. It is
-    currently read-only and retrieves its data from the path assigned to `ranges` in
-    :ref:`[metadata.paths]` or `[metadata.fallbacks]`, defaulting to the
-    :smufl:`ranges.json <ranges.html>` metadata file.
+    This object provides access to metadata describing how a :class:`.Glyph` relates to
+    SMuFL-defined glyph ranges. It is currently read-only and retrieves its data from
+    the path assigned to `ranges` in :ref:`[metadata.paths]` or `[metadata.fallbacks]`,
+    defaulting to the :smufl:`ranges.json <ranges.html>` metadata file.
 
     :param smufl: The range's parent :class:`.Smufl` object.
 
-    The :class:`.Range` object is typically accessed through a glyph's Smufl metadata
-    interface:
+    This object is typically accessed through a glyph's Smufl metadata interface:
 
         >>> glyph = font["uniE050"]
         >>> range = glyph.smufl.range
@@ -56,11 +54,13 @@ class Range:
 
     @property
     def smufl(self) -> Smufl | None:
-        """Parent :class:`~smufolib.objects.smufl.Smufl` object.
+        """Parent :class:`.Smufl` object.
 
         Example:
 
-            >>> smufl = range.smufl
+            >>> range.smufl  # doctest: +ELLIPSIS
+            <Smufl in glyph 'uniE050' ['gClef'] ('public.default') at ...>
+
 
         """
         return self._smufl
@@ -76,7 +76,8 @@ class Range:
 
         Example:
 
-            >>> glyph = range.glyph
+            >>> range.glyph  # doctest: +ELLIPSIS
+            <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
         """
         if self._smufl is None:
@@ -85,11 +86,12 @@ class Range:
 
     @property
     def font(self) -> Font | None:
-        """Parent :class:`~smufolib.objects.font.Font` object.
+        """Parent :class:`.Font` object.
 
         Example:
 
-            >>> font = range.font
+            >>> range.font  # doctest: +ELLIPSIS
+            <Font 'MyFont Regular' path='/path/to/MyFont.ufo' at ...>
 
         """
         if self._smufl is None:
@@ -98,11 +100,12 @@ class Range:
 
     @property
     def layer(self) -> Layer | None:
-        """Parent :class:`~smufolib.objects.layer.Layer` object.
+        """Parent :class:`.Layer` object.
 
         Example:
 
-            >>> layer = range.layer
+            >>> range.layer  # doctest: +ELLIPSIS
+            <Layer 'public.default' at ...>
 
         """
         if self._smufl is None:
@@ -150,9 +153,9 @@ class Range:
         Example:
 
             >>> range.glyphs  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-            (<Glyph 'uniE050' ('public.default') at ...>,
+            (<Glyph 'uniE050' ['gClef'] ('public.default') at ...>,
             ...
-            <Glyph 'uniE07F' ('public.default') at ...>)
+            <Glyph 'uniE07F' ['clefChangeCombining'] ('public.default') at ...>)
 
         """
         result = self._getAttribute("glyphs")

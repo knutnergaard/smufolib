@@ -49,37 +49,43 @@ GLYPH_ATTRIBUTES: set[str] = {"classes", "description", "name"}
 
 
 class Smufl(BaseObject):
-    """Provide SMuFL-related metadata and functionality.
+    """SMuFL metadata interface for fonts and glyphs.
 
-    This class may be called from either :class:`.Font` or :class:`.Glyph`.
-    Font-specific attributes with unique names may be accessed from both, due to the
-    consistent access to parent classes in FontParts.
+    This class provides structured access to SMuFL-related metadata and utility methods
+    for interacting with both font-level and glyph-level data. It may be accessed from
+    either a :class:`.Font` or a :class:`.Glyph`. Font-level attributes are available
+    in both cases, thanks to consistent parent access patterns in FontParts.
 
     .. _about-glyph-naming:
-
     .. admonition:: About Glyph Naming
-    
+
         Attributes dealing with ligatures (:attr:`isLigature`, :attr:`componentGlyphs`,
         :attr:`componentNames`) and stylistic alternates (:attr:`isSalt`, :attr:`isSet`,
-        :attr:`alternates`, :attr:`base` and :attr:`suffix`) depend on strict adherence
+        :attr:`alternates`, :attr:`base`, and :attr:`suffix`) depend on strict adherence
         to the descriptive naming schemes stipulated in the `Adobe Glyph List
-        Specification <https://github.com/adobe-type-tools/agl-\ specification#readme>`_
+        Specification <https://github.com/adobe-type-tools/agl-specification#readme>`_,
         and followed by the SMuFL standard (see `Section 6
-        <https://github.com/adobe-type-tools/agl-\
-        specification#6-assigning-glyph-names-in-new-fonts>`_ for more information).
+        <https://github.com/adobe-type-tools/agl-specification#6-assigning-glyph-names-
+        in-new-fonts>`_ for more information).
 
-    .. tip:: To avoid having to set all the glyph identification
-       attributes manually, it is advisable to run the
-       script :mod:`.importID` prior to using this class with an
-       existing font for the first time.
+    .. tip::
+
+        To avoid having to set all the glyph identification attributes manually, it is
+        advisable to run the script :mod:`.importID` prior to using this class with an
+        existing font for the first time.
 
     :param font: Parent :class:`.Font` object.
     :param glyph: Parent :class:`.Glyph` object.
 
-    While this object is normally created as part of a :class:`.Font`, an orphan
-    :class:`Smufl` object can be created like this::
+    This object is typically accessed through a :class:`.Font` or :class:`.Glyph`:
 
-        >>> smufl = Smufl()
+        >>> smufl = font.smufl
+        >>> glyph = font["uniE050"]
+        >>> smufl = glyph.smufl
+
+    It may also be instantiated independently and assigned to a font or glyph later:
+
+        >>> smufl = Smufl()  # doctest: +SKIP
 
     """
 
@@ -119,10 +125,10 @@ class Smufl(BaseObject):
 
         :param name: SMuFL-specific canonical glyph name.
 
-        Example::
+        Example:
 
-            >>> font.smufl.findGlyph("barlineSingle")
-            <Glyph 'uniE030' ('public.default') at 4393557200>
+            >>> font.smufl.findGlyph("accidentalFlat")  # doctest: +ELLIPSIS
+            <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
 
         """
         if name is None:
@@ -141,12 +147,12 @@ class Smufl(BaseObject):
 
     @property
     def font(self) -> Font | None:
-        """Parent :class:`.Font` object.
+        """The parent :class:`.Font` object.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.font
-            <Font 'MyFont' path='path/to/my/font.ufo' at 4405856720>
+            >>> smufl.font  # doctest: +ELLIPSIS
+            <Font 'MyFont Regular' path='/path/to/MyFont.ufo' at ...>
 
         """
         if self._font is not None:
@@ -167,12 +173,12 @@ class Smufl(BaseObject):
 
     @property
     def glyph(self) -> Glyph | None:
-        """Parent :class:`.Glyph` object.
+        """The parent :class:`.Glyph` object.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.glyph
-            <Glyph 'uniE587' ('public.default') at 4536458160>
+            >>> smufl.glyph  # doctest: +ELLIPSIS
+            <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
         """
         if self._glyph is None:
@@ -191,14 +197,14 @@ class Smufl(BaseObject):
 
     @property
     def layer(self) -> Layer | None:
-        """Parent :class:`.Layer` object.
+        """The parent :class:`.Layer` object.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.layer
-            <Layer 'public.default' at 4568631952>
+            >>> smufl.layer  # doctest: +ELLIPSIS
+            <Layer 'public.default' at ...>
 
         """
         if self._glyph is None:
@@ -211,12 +217,13 @@ class Smufl(BaseObject):
 
     @property
     def designSize(self) -> int | None:
-        """Optimum point size in integral decipoints.
+        """The optimum point size in integral decipoints.
 
-        Example::
+        Example:
 
+            >>> font.smufl.designSize = 20
             >>> font.smufl.designSize
-            240
+            20
 
         """
         if self.font is None:
@@ -231,13 +238,13 @@ class Smufl(BaseObject):
 
     @property
     def engravingDefaults(self) -> EngravingDefaults | None:
-        """Font's :class:`.EngravingDefaults` object.
+        """The font's :class:`.EngravingDefaults` object.
 
-        Example::
+        Example:
 
-            >>> font.smufl.engravingDefaults
-            <EngravingDefaults in font 'MyFont' path='/path/to/myFont.ufo'
-            auto=True at 4425372944>
+            >>> font.smufl.engravingDefaults  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+            <EngravingDefaults in font 'MyFont Regular' path='/path/to/MyFont.ufo'
+            auto=True at ...>
 
         """
         if self.font is None:
@@ -251,12 +258,13 @@ class Smufl(BaseObject):
 
     @property
     def sizeRange(self) -> tuple[int, int] | None:
-        """Optimum size range in integral decipoints.
+        """The optimum size range in integral decipoints.
 
-        Example::
+        Example:
 
-            >>> font.smufl.designSize
-            (180, 260)
+            >>> font.smufl.sizeRange = (16, 24)
+            >>> font.smufl.sizeRange
+            (16, 24)
 
         """
         if self.font is None:
@@ -285,11 +293,11 @@ class Smufl(BaseObject):
 
     @property
     def alternates(self) -> tuple[dict[str, str], ...] | None:
-        """Metadata of glyph alternates.
+        """Alternates of the current glyph as metadata stubs.
 
         This property is read-only.
 
-        Example::
+        Example:
 
             >>> glyph = font["uniE050"] # gClef
             >>> glyph.smufl.alternates
@@ -310,15 +318,15 @@ class Smufl(BaseObject):
 
     @property
     def alternateGlyphs(self) -> tuple[Glyph, ...] | None:
-        """Alternates of base glyph by :class:`.Glyph` object.
+        """Alternates of the current glyph as :class:`.Glyph` objects.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.alternateGlyphs
-            (<Glyph 'uniE240.ss02' ('public.default') at 4391369312>,
-            <Glyph 'uniE240.ss03' ('public.default') at 4391367776>)
+            >>> glyph = font["uniE050"]
+            >>> glyph.smufl.alternateGlyphs  # doctest: +ELLIPSIS
+            (<Glyph 'uniE050.ss01' ['gClefSmall'] ('public.default') at ...>,)
 
         """
         if self.font is None:
@@ -329,14 +337,15 @@ class Smufl(BaseObject):
 
     @property
     def alternateNames(self) -> tuple[str, ...] | None:
-        """Alternates of base glyph by :attr:`name`.
+        """Alternates of the current glyph by :attr:`name`.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.alternateGlyphs
-            (flag8thUpShort, flag8thUpSmall)
+            >>> glyph = font["uniE050"]
+            >>> glyph.smufl.alternateNames
+            ('gClefSmall',)
 
         """
         if self.font is None:
@@ -357,15 +366,18 @@ class Smufl(BaseObject):
 
     @property
     def base(self) -> Glyph | None:
-        """:class:`.Glyph` object of alternate's base glyph.
+        """Base glyph of the current glyph.
+
+        If the current glyph is not an alternate (i.e., a stylistic variant), the glyph
+        itself is returned.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE050.ss01"]
+            >>> glyph = font["uniE050.ss01"]  # doctest: +ELLIPSIS
             >>> glyph.smufl.base
-            <Glyph 'uniE050' ('public.default') at 4373577008>
+            <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
         """
         if self.font is None:
@@ -379,22 +391,22 @@ class Smufl(BaseObject):
     def _getBasename(self) -> str | None:
         # Get name of base glyph.
         glyph = self._requireGlyphAccess("base")
-        if glyph is None or glyph.name is None:
+        if self.font is None or glyph is None or glyph.name is None:
             return None
-        basename = glyph.name[:7]
-        return basename if self.font and basename in self.font else None
+        basename = glyph.name.split(".")[0]
+        return basename if basename in self.font else None
 
     @property
     def suffix(self) -> str | None:
-        """Return suffix of alternates.
+        """Suffix of the current glyph.
 
         This property is read-only.
 
-        Example::
+        Example:
 
             >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.suffix
-            ss01
+            'ss01'
 
         """
         if self.font is None:
@@ -413,14 +425,13 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
-            >>> glyph.smufl.componentGlyphs
-            (<Glyph 'uniE09E' ('public.default') at 4399803376>,
-             <Glyph 'uniE083' ('public.default') at 4399803184>,
-             <Glyph 'uniE09F' ('public.default') at 4399797952>,
-             <Glyph 'uniE084' ('public.default') at 4399797760>)
+            >>> ligature = font["uniE26A_uniE260_uniE26B"]
+            >>> ligature.smufl.componentGlyphs  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+            (<Glyph 'uniE26A' ['accidentalParensLeft'] ('public.default') at ...>,
+            <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+            <Glyph 'uniE26B' ['accidentalParensRight'] ('public.default') at ...>)
 
         """
         glyph = self._requireGlyphAccess("componentGlyphs")
@@ -439,12 +450,11 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
-            >>> glyph.smufl.componentNames
-            ('timeSigCombNumerator', 'timeSig3',
-             'timeSigCombDenominator', 'timeSig4')
+            >>> ligature = font["uniE26A_uniE260_uniE26B"]
+            >>> ligature.smufl.componentNames
+            ('accidentalParensLeft', 'accidentalFlat', 'accidentalParensRight')
 
         """
         glyph = self._requireGlyphAccess("componentGlyphs")
@@ -475,7 +485,7 @@ class Smufl(BaseObject):
 
             >>> glyph = font["uniE212"] # stemSwished
             >>> glyph.smufl.range
-            <Range 'stems' ('U+E210-U+E21F') at 4348391632>
+            <Range 'stems' ('U+E210-U+E21F') at ...>
 
         """
         warnings.warn(
@@ -508,15 +518,16 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Examples:
 
-            >>> font.smufl.ranges
-            (<Range 'stringTechniques' ('U+E610-U+E62F') at 4449982528>,
-            <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at 4449981712>,
-            <Range 'harpTechniques' ('U+E680-U+E69F') at 4449981376>, ...)
-            >>> glyph = font["uniE212"] # stemSwished
+            >>> font.smufl.ranges  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+            (<Range 'clefs' ('U+E050-U+E07F') at ...>,
+            <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at ...>,
+            <Range 'stringTechniques' ('U+E610-U+E62F') at ...>)
+
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.ranges
-            (<Range 'stems' ('U+E210-U+E21F') at 4348391632>,)
+            (<Range 'clefs' ('U+E050-U+E07F') at ...>,)
 
         """
         if self.font is None:
@@ -559,14 +570,13 @@ class Smufl(BaseObject):
         This property is read-only. Use the :attr:`Glyph.anchors
         <fontParts.base.BaseGlyph.anchors>` attribute to set glyph anchors.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE0A3"] # noteheadHalf
-            >>> glyph.smufl.anchors
-            {'cutOutNW': (0.204, 0.296), 'cutOutSE':
-            (0.98, -0.3), 'splitStemDownNE': (0.956, -0.3), 'splitStemDownNW':
-            (0.128, -0.428), 'splitStemUpSE': (1.108, 0.372), 'splitStemUpSW':
-            (0.328, 0.38), 'stemDownNW': (0.0, -0.168), 'stemUpSE': (1.18, 0.168)}
+            >>> glyph = font["uniE240"]
+            >>> glyph.smufl.anchors  # doctest: +NORMALIZE_WHITESPACE
+            {'graceNoteSlashNE': (321, -199),
+            'graceNoteSlashSW': (-161, -614),
+            'stemUpNW': (0, -10)}
 
         """
         glyph = self._requireGlyphAccess("anchors")
@@ -592,11 +602,11 @@ class Smufl(BaseObject):
     def codepoint(self) -> str | None:
         """Unicode codepoint as formatted string.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE0A3"]
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.codepoint
-            U+E0A3
+            'U+E050'
 
         """
         glyph = self._requireGlyphAccess("codepoint")
@@ -624,10 +634,11 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.bBox
-            {'bBoxSW': (0.0, -0.5), 'bBoxNE': (1.18, 0.5)}
+            {'bBoxSW': (0, -634), 'bBoxNE': (648, 1167)}
 
         """
         glyph = self._requireGlyphAccess("bBox")
@@ -648,10 +659,12 @@ class Smufl(BaseObject):
         This property is equivalent to :attr:`Glyph.width
         <fontParts.base.BaseGlyph.width>`.
 
-        Example::
+        Example:
 
+            >>> glyph = font["uniE050"]
+            >>> glyph.smufl.advanceWidth = 230.5
             >>> glyph.smufl.advanceWidth
-            671
+            230.5
 
         """
         glyph = self._requireGlyphAccess("advanceWidth")
@@ -681,7 +694,7 @@ class Smufl(BaseObject):
     # Font
     # ----
 
-    # Font family name is acessible through font.smufl.name.
+    # Font family name is accessible through font.smufl.name.
 
     def classMembers(self, className: str) -> tuple[Glyph, ...]:
         """Return all glyphs in the font that belong to the given SMuFL class.
@@ -689,6 +702,13 @@ class Smufl(BaseObject):
         .. versionadded:: 0.6.0
 
         :param className: The name of the SMuFL glyph class to search for.
+
+        Example:
+
+            >>> glyph.smufl.classMembers("accidentalsStandard")  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+            (<Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+            <Glyph 'uniE266' ['accidentalTripleFlat'] ('public.default') at ...>,
+            <Glyph 'uniE267' ['accidentalNaturalFlat'] ('public.default') at ...>)
 
         """
         if self.font is None:
@@ -704,8 +724,9 @@ class Smufl(BaseObject):
     def version(self) -> float | None:
         """SMuFL-specific font version number.
 
-        Example::
+        Example:
 
+            >>> font.smufl.version = 2.2
             >>> font.smufl.version
             2.2
 
@@ -738,9 +759,10 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> glyph = font["uniE354"] # accSagittalSharp7v11kUp
+            >>> glyph = font["uniE260"]
             >>> glyph.smufl.classes
-            ('accidentals', 'accidentalsSagittalAthenian', 'combiningStaffPositions')
+            ('accidentals', 'accidentalsSagittalMixed',
+            'accidentalsStandard', 'combiningStaffPositions')
 
         """
         glyph = self._requireGlyphAccess("classes")
@@ -759,10 +781,12 @@ class Smufl(BaseObject):
     def description(self) -> str | None:
         """SMuFL-specific glyph description.
 
-        Example::
+        Example:
 
+            >>> glyph = font["uniE260"]
+            >>> glyph.smufl.description = "Flat"
             >>> glyph.smufl.description
-            Combining swished stem
+            'Flat'
 
         """
         glyph = self._requireGlyphAccess("description")
@@ -789,16 +813,16 @@ class Smufl(BaseObject):
         - When accessed from a :class:`.Glyph` (``e.g, glyph.smufl.name``), it returns
           the canonical SMuFL glyph name.
 
-        Examples::
+        Examples:
 
+            >>> font.smufl.name = "MyFont"
             >>> font.smufl.name
-            Bravura
+            'MyFont'
 
-        ::
-
-            >>> glyph = font["uniE212"]
+            >>> glyph = font["uniE050"]
+            >>> glyph.smufl.name = "gClef"
             >>> glyph.smufl.name
-            stemSwished
+            'gClef'
 
         """
         if self.font is None:
@@ -890,12 +914,12 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE09E_uniE083_uniE09F_uniE084"]
-            >>> g1.smufl.isLigature
+            >>> ligature = font["uniE26A_uniE260_uniE26B"]
+            >>> ligature.smufl.isLigature
             True
-            >>> glyph = font["uniE083"]
+            >>> glyph = font["uniE260"]
             >>> glyph.smufl.isLigature
             False
 
@@ -912,18 +936,17 @@ class Smufl(BaseObject):
 
     @property
     def isMember(self) -> bool:
-        """Return :obj:`True` if glyph is either `recommended or optional
-        <https://w3c.github.io/smufl/latest/about/recommended-chars-\
-        optional-glyphs.html>`_.
+        """Return :obj:`True` if glyph is either :smufl:`recommended or optional
+        </about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
 
-        Example::
+        Example:
 
             >>> glyph = font["uniE050"]
             >>> glyph.smufl.isMember
             True
-            >>> glyph = font["spaces"]
+            >>> glyph = font["space"]
             >>> glyph.smufl.isMember
             False
 
@@ -935,17 +958,17 @@ class Smufl(BaseObject):
 
     @property
     def isOptional(self) -> bool:
-        """Return :obj:`True` if glyph is `optional <https://w3c.github.io\
-        /smufl/latest/about/recommended-chars-optional-glyphs.html>`_.
+        """Return :obj:`True` if glyph is :smufl:`optional
+        </about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniF660"]
-            >>> g1.smufl.isOptional
+            >>> glyph = font["uniE050.ss01"]
+            >>> glyph.smufl.isOptional
             True
-            >>> glyph = font["uniE083"]
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.isOptional
             False
 
@@ -957,17 +980,17 @@ class Smufl(BaseObject):
 
     @property
     def isRecommended(self) -> bool:
-        """Return :obj:`True` if glyph is `recommended <https://w3c.github.io\
-        /smufl/latest/about/recommended-chars-optional-glyphs.html>`_.
+        """Return :obj:`True` if glyph is :smufl:`recommended
+        </about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE083"]
-            >>> g1.smufl.isRecommended
+            >>> glyph = font["uniE050"]
+            >>> glyph.smufl.isRecommended
             True
-            >>> glyph = font["uniF660"]
+            >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.isRecommended
             False
 
@@ -987,12 +1010,12 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
-            >>> glyph = font["uniE042.salt01"]
+            >>> glyph = font["uniE062.salt01"]
             >>> glyph.smufl.isSalt
             True
-            >>> glyph = font["uniE042"]
+            >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.isSalt
             False
 
@@ -1017,12 +1040,12 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
-        Example::
+        Example:
 
             >>> glyph = font["uniE050.ss01"]
             >>> glyph.smufl.isSet
             True
-            >>> glyph = font["uniE042.salt01"]
+            >>> glyph = font["uniE062.salt01"]
             >>> glyph.smufl.isSet
             False
 
@@ -1054,22 +1077,22 @@ class Smufl(BaseObject):
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.
 
-        Examples::
+        Examples:
 
+            >>> font.smufl.spaces = True
+            >>> glyph.smufl.advanceWidth
+            0.922
+            >>> glyph.smufl.round()
+            >>> glyph.smufl.advanceWidth
+            0.922
+
+            >>> font.smufl.spaces = False
+            >>> glyph = font["uniE050"]
             >>> glyph.smufl.advanceWidth
             230.5
             >>> glyph.smufl.round()
-            >>> glyph.smufl.advanceWidthdth
+            >>> glyph.smufl.advanceWidth
             231
-
-        ::
-
-            >>> glyph.smufl.spaces = True
-            >>> glyph.smufl.advanceWidth
-            0.922
-            >>> glyph.smufl.round()
-            >>> glyph.smufl.advanceWidth
-            0.922
 
         """
         if self.spaces:
@@ -1090,9 +1113,7 @@ class Smufl(BaseObject):
 
         Example::
 
-            >>> f = Font("path/to/my/font.ufo")
-            >>> font.info.unitsPerEm
-            2048
+            >>> font.info.unitsPerEm = 2048
             >>> font.smufl.toSpaces(512)
             1.0
 
@@ -1119,17 +1140,14 @@ class Smufl(BaseObject):
     def toUnits(self, value: int | float, rounded=True) -> int | float | None:
         """Convert staff spaces to font units based on font UPM size.
 
-        The inverse of :meth:`toSpaces`.
-        Result is always rounded.
+        The inverse of :meth:`toSpaces`. The result is always rounded.
 
         :param value: Value to convert.
         :param rounded: Whether to round result to nearest integer.
 
         Example::
 
-            >>> f = Font("path/to/my/font.ufo")
-            >>> font.info.unitsPerEm
-            2048
+            >>> font.info.unitsPerEm = 2048
             >>> font.smufl.toSpaces(2)
             1024
 
@@ -1157,13 +1175,15 @@ class Smufl(BaseObject):
     def spaces(self) -> bool:
         """Set state of measurement to staff spaces.
 
-        Example::
+        Example:
 
-            >>> glyph.smufl.advanceWidth
-            230.5
-            >>> glyph.smufl.spaces = True
+            >>> glyph = font["uniE050"]
+            >>> font.smufl.spaces = True
             >>> glyph.smufl.advanceWidth
             0.922
+            >>> font.smufl.spaces = False
+            >>> glyph.smufl.advanceWidth
+            230.5
 
         """
         if self.font is None:

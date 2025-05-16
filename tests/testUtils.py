@@ -29,7 +29,7 @@ def generateGlyph(font: Font, name: str, **kwargs: Any) -> Glyph:
                 glyph.appendAnchor(anchorName, position)
         elif attr == "smuflName":
             (setattr(glyph.smufl, "name", value))
-        elif attr in {"description", "classes", "codepoint"}:
+        elif attr in {"description", "classes", "codepoint", "advanceWidth"}:
             (setattr(glyph.smufl, attr, value))
         else:
             setattr(glyph, attr, value)

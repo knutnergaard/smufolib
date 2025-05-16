@@ -17,9 +17,9 @@ Start by importing SMufoLib:
 
    >>> from smufolib import Font
 
-Then instantiate a font object:
+Then instantiate a font object::
 
-   >>> font = Font("path/to/MyFont.ufo")  # doctest: +SKIP
+   >>> font = Font("path/to/MyFont.ufo")
 
 A font may also be instantiated from another :class:`fontParts.base.BaseFont` object.
 This allows SMufoLib to be used seamlessly within other FontParts-based environments,
@@ -242,9 +242,9 @@ members of the specified class:
    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
    >>> glyph.smufl.classMembers("accidentalsStandard")
-   (<Glyph 'uniE260' ('public.default') at ...>,
-   <Glyph 'uniE266' ('public.default') at ...>, 
-   <Glyph 'uniE267' ('public.default') at ...>)
+   (<Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+   <Glyph 'uniE266' ['accidentalTripleFlat'] ('public.default') at ...>, 
+   <Glyph 'uniE267' ['accidentalNaturalFlat'] ('public.default') at ...>)
    
 
 Engraving Defaults
@@ -344,9 +344,9 @@ Ligatures have their component glyphs readily available with the
 
    >>> ligature = font["uniE26A_uniE260_uniE26B"]
    >>> ligature.smufl.componentGlyphs
-   (<Glyph 'uniE26A' ('public.default') at ...>,
-   <Glyph 'uniE260' ('public.default') at ...>,
-   <Glyph 'uniE26B' ('public.default') at ...>)
+   (<Glyph 'uniE26A' ['accidentalParensLeft'] ('public.default') at ...>,
+   <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+   <Glyph 'uniE26B' ['accidentalParensRight'] ('public.default') at ...>)
 
 Alternately, components can be listed by their canonical SMuFL names with the
 :attr:`.componentNames` attribute:
@@ -369,7 +369,7 @@ The inverse base glyph is also accessible through the :attr:`.base` attribute:
 
    >>> alternate = font["uniE050.ss01"]
    >>> alternate.smufl.base
-   <Glyph 'uniE050' ('public.default') at ...>
+   <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
 The glyph name suffix is a common characteristic of different types of OpenType
 alternates and sets, and may therefore sometimes be necessary to isolate. This is what
@@ -460,7 +460,7 @@ method:
    :options: +ELLIPSIS
 
    >>> font.smufl.findGlyph("gClef")
-   <Glyph 'uniE050' ('public.default') at ...>
+   <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
 .. _running-scripts:
 
@@ -705,9 +705,8 @@ Use the :func:`.createHelpFormatter` function to combine the formatters you want
 Using the Utility Modules
 =========================
 
-SMufoLib includes a whole host of utility functions, spread across several modules.
-The sections below provide a summary of some of the most useful features for
-external use.
+SMufoLib includes a whole host of utility functions, spread across several modules. The
+sections below summarize some of the most useful features for external use.
 
 Conversion
 ----------

@@ -13,10 +13,15 @@ class Glyph(RGlyph):
        The ``__repr__`` now includes the canonoical SMuFL glyph name (if present) in
        square brackets.
 
-    Glyphs are usually accessed through a :class:`~smufolib.objects.font.Font` objects
-    inherent glyph dictionary. To instantiate the SMuFL glyph named U+E050 (*gClef*):
+    This object is typically accessed through a :class:`.Font` object's inherent glyph
+    dictionary. To instantiate the SMuFL glyph named U+E050 (*gClef*):
 
         >>> glyph = font["uniE050"]
+
+    A glyph may also be instantiated independently and assigned to a font or glyph
+    later:
+
+        >>> glyph = Glyph()  # doctest: +SKIP
 
     """
 
@@ -27,7 +32,7 @@ class Glyph(RGlyph):
         if smuflName:
             contents.append(f"['{smuflName}']")
         if self.layer is not None:
-            contents.append(f"('{self.layer.name})'")
+            contents.append(f"('{self.layer.name}')")
         return contents
 
     def _set_name(self, value: str) -> None:

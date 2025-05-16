@@ -27,36 +27,36 @@ AUTO = config.load()["engravingDefaults"]["auto"]
 
 #: Names  and descriptions of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_ATTRIBUTES: dict[str, str] = {
-    "textFontFamily": "Preferred text font families for pairing with this music font",
-    "staffLineThickness": "Thickness of each staff line",
-    "stemThickness": "Thickness of a stem",
-    "beamThickness": "Thickness of a beam",
-    "beamSpacing": "Distance between primary and secondary beams",
-    "legerLineThickness": "Thickness of a leger line",
-    "legerLineExtension": "Extension length of a leger line beyond the notehead",
-    "slurEndpointThickness": "Thickness at the end of a slur",
-    "slurMidpointThickness": "Thickness at the midpoint of a slur",
-    "tieEndpointThickness": "Thickness at the end of a tie",
-    "tieMidpointThickness": "Thickness at the midpoint of a tie",
-    "thinBarlineThickness": "Thickness of a thin barline",
-    "thickBarlineThickness": "Thickness of a thick barline",
-    "dashedBarlineThickness": "Thickness of a dashed barline",
-    "dashedBarlineDashLength": "Length of dashes in a dashed barline",
-    "dashedBarlineGapLength": "Gap length between dashes in a dashed barline",
-    "barlineSeparation": "Distance between multiple barlines when locked together",
-    "thinThickBarlineSeparation": "Distance between thin and thick barlines when locked together",
-    "repeatBarlineDotSeparation": "Horizontal distance between dots and barline in repeats",
-    "bracketThickness": "Thickness of bracket lines grouping staves",
-    "subBracketThickness": "Thickness of sub-bracket lines for related staves",
-    "hairpinThickness": "Thickness of crescendo/diminuendo hairpins",
-    "octaveLineThickness": "Thickness of dashed lines used for octave indications",
-    "pedalLineThickness": "Thickness of lines used for piano pedaling",
-    "repeatEndingLineThickness": "Thickness of brackets indicating repeat endings",
-    "arrowShaftThickness": "Thickness of arrow shafts",
-    "lyricLineThickness": "Thickness of lyric extension lines for melismas",
-    "textEnclosureThickness": "Thickness of boxes drawn around text instructions",
-    "tupletBracketThickness": "Thickness of brackets around tuplet numbers",
-    "hBarThickness": "Thickness of the H-bar in a multi-bar rest",
+    "textFontFamily": "Preferred text font families for pairing with this music font.",
+    "staffLineThickness": "Thickness of each staff line.",
+    "stemThickness": "Thickness of a stem.",
+    "beamThickness": "Thickness of a beam.",
+    "beamSpacing": "Distance between primary and secondary beams.",
+    "legerLineThickness": "Thickness of a leger line.",
+    "legerLineExtension": "Extension length of a leger line beyond the notehead.",
+    "slurEndpointThickness": "Thickness at the end of a slur.",
+    "slurMidpointThickness": "Thickness at the midpoint of a slur.",
+    "tieEndpointThickness": "Thickness at the end of a tie.",
+    "tieMidpointThickness": "Thickness at the midpoint of a tie.",
+    "thinBarlineThickness": "Thickness of a thin barline.",
+    "thickBarlineThickness": "Thickness of a thick barline.",
+    "dashedBarlineThickness": "Thickness of a dashed barline.",
+    "dashedBarlineDashLength": "Length of dashes in a dashed barline.",
+    "dashedBarlineGapLength": "Gap length between dashes in a dashed barline.",
+    "barlineSeparation": "Distance between multiple barlines when locked together.",
+    "thinThickBarlineSeparation": "Distance between thin and thick barlines when locked together.",
+    "repeatBarlineDotSeparation": "Horizontal distance between dots and barline in repeats.",
+    "bracketThickness": "Thickness of bracket lines grouping staves.",
+    "subBracketThickness": "Thickness of sub-bracket lines for related staves.",
+    "hairpinThickness": "Thickness of crescendo/diminuendo hairpins.",
+    "octaveLineThickness": "Thickness of dashed lines used for octave indications.",
+    "pedalLineThickness": "Thickness of lines used for piano pedaling.",
+    "repeatEndingLineThickness": "Thickness of brackets indicating repeat endings.",
+    "arrowShaftThickness": "Thickness of arrow shafts.",
+    "lyricLineThickness": "Thickness of lyric extension lines for melismas.",
+    "textEnclosureThickness": "Thickness of boxes drawn around text instructions.",
+    "tupletBracketThickness": "Thickness of brackets around tuplet numbers.",
+    "hBarThickness": "Thickness of the H-bar in a multi-bar rest.",
 }
 
 
@@ -74,10 +74,9 @@ class EngravingDefaults(BaseObject):
 
         If a value is unassigned (or explicitly set to :obj:`None`), the attribute will
         be calculated automatically from the corresponding glyph in the font, provided
-        that glyph exists and `auto` is enabled in :ref:`[engravingDefaults]`. See
+        that glyph exists and :attr:`auto` is enabled. See
         :data:`.ENGRAVING_DEFAULTS_MAPPING` for a complete list of attributes and their
         default corresponding glyphs and assigned ruler functions.
-
 
     .. tip::
 
@@ -88,11 +87,15 @@ class EngravingDefaults(BaseObject):
     :param auto: Whether to calculate engraving defaults automatically. Defaults to the
         `auto` setting in :ref:`[engravingDefaults]`.
 
-    While this object is normally created as part of a
-    :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults` object
-    may be created like this::
+    This object is typically accessed through a font's Smufl metadata interface:
 
-        >>> d = EngravingDefaults()
+        >>> engravingDefaults = font.smufl.engravingDefaults
+        >>> glyph = font["uniE050"]
+        >>> engravingDefaults = glyph.smufl.engravingDefaults
+
+    It may also be instantiated independently and assigned to a font later:
+
+        >>> engravingDefaults = EngravingDefaults()  # doctest: +SKIP
 
     """
 
@@ -118,7 +121,15 @@ class EngravingDefaults(BaseObject):
 
     @property
     def smufl(self) -> Smufl | None:
-        """Parent :class:`.smufl.Smufl` object"""
+        """Parent :class:`.smufl.Smufl` object.
+
+        Example:
+
+            >>> engravingDefaults.smufl  # doctest: +ELLIPSIS
+            <Smufl in glyph 'uniE050' ['gClef'] ('public.default') at ...>
+
+
+        """
         return self._smufl
 
     @smufl.setter
@@ -132,21 +143,42 @@ class EngravingDefaults(BaseObject):
 
     @property
     def font(self) -> Font | None:
-        """Parent :class:`.Font` object"""
+        """Parent :class:`.Font` object.
+
+        Example:
+
+            >>> engravingDefaults.font  # doctest: +ELLIPSIS
+            <Font 'MyFont Regular' path='/path/to/MyFont.ufo' at ...>
+
+        """
         if self._smufl is None:
             return None
         return self._smufl.font
 
     @property
     def glyph(self) -> Glyph | None:
-        """Parent :class:`.Glyph` object"""
+        """Parent :class:`.Glyph` object.
+
+        Example:
+
+            >>> engravingDefaults.glyph  # doctest: +ELLIPSIS
+            <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
+
+        """
         if self._smufl is None:
             return None
         return self._smufl.glyph
 
     @property
     def layer(self) -> Layer | None:
-        """Parent :class:`.Layer` object"""
+        """Parent :class:`.Layer` object.
+
+        Example:
+
+        >>> engravingDefaults.layer  # doctest: +ELLIPSIS
+        <Layer 'public.default' at ...>
+
+        """
         if self._smufl is None:
             return None
         return self._smufl.layer
@@ -159,7 +191,19 @@ class EngravingDefaults(BaseObject):
     def auto(self) -> bool:
         """Whether to calculate engraving defaults automatically.
 
+        When :obj:`True`, engraving defaults are calculated automatically from font
+        measurements. When :obj:`False`, all values must be set explicitly.
+
+        Automatically calculated values are overridden by any explicitly set defaults,
+        regardless of the `auto` setting.
+
         Defaults to the `auto` setting in :ref:`[engravingDefaults]`.
+
+        Example:
+
+            >>> engravingDefaults.auto = False
+            >>> engravingDefaults.auto
+            False
 
         """
         return self._auto
@@ -180,10 +224,10 @@ class EngravingDefaults(BaseObject):
 
         Example::
 
-            >>> d.items()
+            >>> engravingDefaults.items()
             {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
-            >>> d.clear()
-            >>> d.items()
+            >>> engravingDefaults.clear()
+            >>> engravingDefaults.items()
             {'arrowShaftThickness': None, 'barlineSeparation': None, ...}
 
         """
@@ -191,24 +235,22 @@ class EngravingDefaults(BaseObject):
             self.font.lib.naked().pop("com.smufolib.engravingDefaults", None)
 
     def items(self) -> EngravingDefaultsDictReturn:
-        """Return dict of all available settings and their values.
+        """Return :class:`dict` of all available settings and their values.
 
-        Example::
+        Example:
 
-            >>> d = f.smufl.engravingDefaults
-            >>> d.items()
+            >>> engravingDefaults.items()  # doctest: +ELLIPSIS
             {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
 
         """
         return dict(zip(self.keys(), self.values()))
 
     def keys(self) -> list[str]:
-        """Return sorted list of all available settings names.
+        """Return sorted :class:`list` of all available settings names.
 
-        Example::
+        Example:
 
-            >>> d = f.smufl.engravingDefaults
-            >>> d.keys()
+            >>> engravingDefaults.keys()  # doctest: +ELLIPSIS
             ['arrowShaftThickness', 'barlineSeparation', ...]
 
         """
@@ -226,32 +268,31 @@ class EngravingDefaults(BaseObject):
         :param \**kwargs: Attribute names and values to update as
          keyword arguments.
 
-        An object may be updated in a few different ways::
+        An object may be updated in a few different ways:
 
-            >>> d1 = f.smufl.engravingDefaults
-            >>> d1.items()
-            {'arrowShaftThickness': None, 'barlineSeparation': None, ...}
-
-        Update with :class:`dict` object.::
-
-            >>> d2 = {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
-            >>> d1.update(d2)
-            >>> d1.items()
+            >>> engravingDefaults.items()  # doctest: +ELLIPSIS
             {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
 
-        Update with other :class:`EngravingDefaults` object.::
+        # Update with :class:`dict` object.:
 
-            >>> d2 = f2.smufl.engravingDefaults
-            >>> d2.items()
-            {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
-            >>> d1.update(d2)
-            >>> d1.items()
-            {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
+            >>> other = {"arrowShaftThickness": 35, "barlineSeparation": 68}
+            >>> engravingDefaults.update(other)
+            >>> engravingDefaults.items()  # doctest: +ELLIPSIS
+            {'arrowShaftThickness': 35, 'barlineSeparation': 68, ...}
 
-        Update with keyword arguments::
+        Update with other :class:`EngravingDefaults` object.:
 
-            >>> d1.update(arrowShaftThickness=46, barlineSeparation=72)
-            >>> d1.items()
+            >>> other = otherFont.smufl.engravingDefaults
+            >>> other.items()
+            {'arrowShaftThickness': 52, 'barlineSeparation': 75, ...}
+            >>> engravingDefaults.update(other)
+            >>> engravingDefaults.items()  # doctest: +ELLIPSIS
+            {'arrowShaftThickness': 52, 'barlineSeparation': 75, ...}
+
+        Update with keyword arguments:
+
+            >>> engravingDefaults.update(arrowShaftThickness=46, barlineSeparation=72)
+            >>> engravingDefaults.items()  # doctest: +ELLIPSIS
             {'arrowShaftThickness': 46, 'barlineSeparation': 72, ...}
 
         """
@@ -306,15 +347,14 @@ class EngravingDefaults(BaseObject):
         return base
 
     def values(self) -> list[EngravingDefaultsReturn]:
-        """Return list of all available settings values.
+        """Return a :class:`list` of all available settings values.
 
         Order corresponds to :meth:`keys`.
 
-        Example::
+        Example:
 
-            >>> d = f.smufl.engravingDefaults
-            >>> d.values()
-            [46, 72, 62, 125, 125, 125, 57, 36, 200, 39, 80, 40, ...]
+            >>> engravingDefaults.values()  # doctest: +ELLIPSIS
+            [46, 72, ...]
 
         """
         return [getattr(self, k) for k in self.keys()]
@@ -436,22 +476,19 @@ class EngravingDefaults(BaseObject):
 
         If :attr:`spaces` is :obj:`True`, values are left unchanged.
 
-        Example::
+        Example:
 
-            >>> f.smufl.engravingDefaults.stemThickness
-            30.5
-            >>> f.smufl.engravingDefaults.round()
-            >>> f.smufl.engravingDefaults.stemThickness
+            >>> engravingDefaults.spaces = True
+            >>> engravingDefaults.stemThickness = 0.12
+            >>> engravingDefaults.round()
+            >>> engravingDefaults.stemThickness
+            0.12
+
+            >>> engravingDefaults.spaces = False
+            >>> engravingDefaults.stemThickness = 30.5
+            >>> engravingDefaults.round()
+            >>> engravingDefaults.stemThickness
             31
-
-        ::
-
-            >>> f.smufl.engravingDefaults.spaces = True
-            >>> f.smufl.engravingDefaults.stemThickness
-            0.12
-            >>> f.smufl.engravingDefaults.round()
-            >>> f.smufl.engravingDefaults.stemThickness
-            0.12
 
         """
         if self.spaces:
@@ -466,15 +503,18 @@ class EngravingDefaults(BaseObject):
 
     @property
     def spaces(self) -> bool:
-        """Set state of measurement to staff spaces.
+        """Whether to set state of measurement to staff spaces.
 
-        Example::
+        Example:
 
-            >>> f.smufl.engravingDefaults.stemThickness
-            30.5
-            >>> f.smufl.engravingDefaults.spaces = True
-            >>> f.smufl.engravingDefaults.stemThickness
-            0.12
+            engravingDefaults.stemThickness = 25
+            >>> engravingDefaults.spaces = True
+            >>> engravingDefaults.stemThickness
+            0.1
+            >>> engravingDefaults.spaces = False
+            >>> engravingDefaults.stemThickness
+            25
+
 
         """
         if self._smufl is None:
