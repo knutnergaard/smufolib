@@ -55,8 +55,9 @@ generateGlyph(
         ("graceNoteSlashSW", (-161, -614)),
         ("stemUpNW", (0, -10)),
     ),
+    smuflName="flag8thUp",
 )
-generateGlyph(font, "uniE26A_uniE260_uniE26B")
+generateGlyph(font, "uniE26A_uniE260_uniE26B", smuflName="accidentalFlatParens")
 generateGlyph(font, "uniE26A", smuflName="accidentalParensLeft")
 generateGlyph(font, "uniE26B", smuflName="accidentalParensRight")
 generateGlyph(font, "uniE050.ss01", unicode=0xF472, smuflName="gClefSmall")
@@ -64,3 +65,5 @@ generateGlyph(font, "uniE062", smuflName="fClef")
 generateGlyph(font, "uniE062.salt01", smuflName="fClefFrench")
 generateGlyph(font, "uniE07F", smuflName="clefChangeCombining")
 generateGlyph(font, "space")
+generateGlyph(font, "uniE240.ss02", smuflName="flag8thUpShort")
+generateGlyph(font, "uniE240.ss03", smuflName="flag8thUpStraight")
