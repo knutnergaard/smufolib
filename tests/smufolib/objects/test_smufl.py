@@ -318,13 +318,6 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertIsNone(self.smufl.componentNames)
         self.assertEqual(self.recommended1.smufl.componentNames, ())
 
-    # range
-
-    # TODO: Remove 'range' in 0.6
-
-    def test_range(self):
-        self.assertIsInstance(self.recommended1.smufl.range, type(self.range))
-
     # ranges
 
     def test_ranges_glyph(self):

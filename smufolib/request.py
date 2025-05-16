@@ -27,8 +27,6 @@ class Request:
         :ref:`[request]` `encoding` configuration.
     :param warn: Warn if URLError is raised before fallback request. Defaults to
         :ref:`[request]` `warn` configuration.
-    :param mode: File usage specification used with :attr:`raw`. See :func:`open` for
-        details. Defaults to ``"r"`` (read).
 
     """
 
@@ -95,30 +93,17 @@ class Request:
         request = cls(path, fallback)
         return request.json() if decode else request.text
 
-    # TODO: Remove mode in 0.6
-
     def __init__(
         self,
         path: Path | str | None = None,
         fallback: Path | str | None = None,
         encoding: str = CONFIG["request"]["encoding"],
         warn: bool = CONFIG["request"]["warn"],
-        mode: None = None,
     ) -> None:
         self._path = path
         self._fallback = fallback
         self._encoding = encoding
         self._warn = warn
-        self._mode = mode
-
-        if mode is not None:  # pragma: no cover
-            warnings.warn(
-                error.generateErrorMessage(
-                    "deprecated", objectName="mode", version=0.5
-                ),
-                DeprecationWarning,
-                stacklevel=2,
-            )
 
     def __repr__(self):
         return (
@@ -255,62 +240,6 @@ class Request:
         if raw is None:
             return None
         return raw.decode(self.encoding)
-
-    # TODO: Remove mode in v0.6.0
-
-    @property
-    def mode(self) -> None:
-        """File usage specification.
-
-        .. deprecated:: 0.5.1
-
-        """
-        warnings.warn(
-            error.generateErrorMessage("deprecated", objectName="mode", version=0.5),
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        return self._mode
-
-    # TODO: Remove raw in v0.6.0
-
-    @property
-    def raw(self) -> bytes | None:
-        """Make a request and return raw file contents.
-
-        .. deprecated:: 0.5.1
-
-            Use the :attr:`text` and :attr:`bytes` properties instead.
-
-
-        :raises ValueError: If both path and fallback are :obj:`None` or if the path or
-            fallback file cannot be opened or read.
-        :raises urllib.error.URLError: If there is an error with the URL request and no
-             fallback is provided.
-        :raises FileNotFoundError: If the specified file or fallback file cannot be
-            found.
-
-        """
-        warnings.warn(
-            error.generateErrorMessage(
-                "deprecated",
-                string="Use 'content' or 'text' instead.",
-                objectName="raw",
-                version=0.5,
-            ),
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
-        if self.path is None and self.fallback is None:
-            return None
-
-        try:
-            if self.path is not None:
-                return self._readFromURL()
-            return self._readFromFallback()
-        except ValueError:
-            return self._readFromPath()
 
 
 def writeJson(

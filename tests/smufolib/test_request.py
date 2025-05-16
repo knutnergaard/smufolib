@@ -151,34 +151,10 @@ class TestRequest(unittest.TestCase):
         self.request.fallback = self.fallback
         self.assertEqual(self.request.fallback, self.fallback)
 
-    # TODO: Remove mode tests in 0.6
-
-    def test_mode(self):
-        self.assertIsNone(self.request.mode)
-
     def test_encoding(self):
         self.assertEqual(self.request.encoding, CONFIG["request"]["encoding"])
         self.request.encoding = "utf-16"
         self.assertEqual(self.request.encoding, "utf-16")
-
-    # TODO: Remove raw tests in 0.6
-
-    @patch("builtins.open", new_callable=mock_open, read_data="data from file")
-    def test_raw_basic(self, mock_file):
-        self.request._path = "path.txt"
-        result = self.request.raw
-        self.assertEqual(result, "data from file")
-
-    @patch("builtins.open", new_callable=mock_open, read_data="data from fallback")
-    def test_raw_without_path(self, mock_file):
-        self.request._path = None
-        result = self.request.raw
-        self.assertEqual(result, "data from fallback")
-
-    def test_raw_without_path_and_fallback(self):
-        self.request._path = None
-        self.request._fallback = None
-        self.assertIsNone(self.request.raw)
 
 
 class TestWriteJson(unittest.TestCase):
