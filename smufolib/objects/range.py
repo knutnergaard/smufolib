@@ -30,7 +30,7 @@ class Range:
     This object is typically accessed through a glyph's Smufl metadata interface:
 
         >>> glyph = font["uniE050"]
-        >>> range = glyph.smufl.range
+        >>> range = glyph.smufl.ranges[0]
 
     You may also instantiate it independently and assign it to a glyph later:
 

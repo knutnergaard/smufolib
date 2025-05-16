@@ -26,13 +26,6 @@
 .. automodule:: smufolib.utils.normalizers
     :members:
 
-:mod:`.pointUtils`
-------------------
-
-.. automodule:: smufolib.utils.pointUtils
-    :members:
-    :exclude-members: contourIndex, position, type, x, y
-
 :mod:`.rulers`
 --------------
 

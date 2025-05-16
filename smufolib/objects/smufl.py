@@ -490,39 +490,7 @@ class Smufl(BaseObject):
         ]
         return tuple(components)
 
-    # Range
-
-    # TODO: Remove 'range' in 0.6
-    @property
-    def range(self) -> Range | None:
-        """Glyph's :class:`.Range` object.
-
-        .. deprecated:: 0.5.0
-            Use :attr:`ranges` instead.
-
-        This property is read-only.
-
-        Example::
-
-            >>> glyph = font["uniE212"] # stemSwished
-            >>> glyph.smufl.range
-            <Range 'stems' ('U+E210-U+E21F') at ...>
-
-        """
-        warnings.warn(
-            error.generateErrorMessage(
-                "deprecated",
-                "deprecatedReplacement",
-                objectName="range",
-                version=0.5,
-                replacement="ranges",
-            ),
-            DeprecationWarning,
-            stacklevel=2,
-        )
-        if self.font is None:
-            return None
-        return Range(self)
+    # Ranges
 
     @property
     def ranges(self) -> tuple[Range, ...] | None:
