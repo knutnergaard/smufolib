@@ -230,7 +230,7 @@ class Smufl(BaseObject):
         )
 
     @property
-    def engravingDefaults(self) -> EngravingDefaults | None:
+    def engravingDefaults(self) -> EngravingDefaults:
         """Font's :class:`.EngravingDefaults` object.
 
         Example::
@@ -241,7 +241,13 @@ class Smufl(BaseObject):
 
         """
         if self.font is None:
-            return None
+            raise AttributeError(
+                error.generateErrorMessage(
+                    "contextualAttributeError",
+                    attribute=f"{self.__class__.__name__}.{'engravingDefaults'}",
+                    context="'Font' is None",
+                )
+            )
         return EngravingDefaults(self)
 
     @engravingDefaults.setter
