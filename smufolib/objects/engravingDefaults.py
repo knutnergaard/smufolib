@@ -85,8 +85,8 @@ class EngravingDefaults(BaseObject):
         by the :mod:`~bin.calculateEngravingDefaults` script.
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
-    :param auto: Whether to calculate engraving defaults automatically. Defaults to the
-        `auto` setting in :ref:`[engravingDefaults]`.
+    :param auto: Whether to calculate engraving defaults automatically. Defaults to
+        :ref:`[engravingDefaults]` `auto` configuration.
 
     While this object is normally created as part of a
     :class:`~smufolib.objects.font.Font`, an orphan :class:`EngravingDefaults` object
