@@ -237,7 +237,7 @@ class Smufl(BaseObject):
         )
 
     @property
-    def engravingDefaults(self) -> EngravingDefaults | None:
+    def engravingDefaults(self) -> EngravingDefaults:
         """The font's :class:`.EngravingDefaults` object.
 
         Example:
