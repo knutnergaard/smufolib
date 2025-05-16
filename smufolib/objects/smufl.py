@@ -240,6 +240,8 @@ class Smufl(BaseObject):
     def engravingDefaults(self) -> EngravingDefaults:
         """The font's :class:`.EngravingDefaults` object.
 
+        :raises AttributeError: If attempting to access attribute from glyph.
+
         Example:
 
             >>> font.smufl.engravingDefaults  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
@@ -302,6 +304,8 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> glyph = font["uniE050"] # gClef
@@ -327,6 +331,8 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> glyph = font["uniE050"]
@@ -345,6 +351,8 @@ class Smufl(BaseObject):
         """Alternates of the current glyph by :attr:`name`.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -373,10 +381,12 @@ class Smufl(BaseObject):
     def base(self) -> Glyph | None:
         """Base glyph of the current glyph.
 
-        If the current glyph is not an alternate (i.e., a stylistic variant), the glyph
-        itself is returned.
+        If the current glyph is not an alternate (i.e., a stylistic variant),
+        the glyph itself is returned.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -407,6 +417,8 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> glyph = font["uniE050.ss01"]
@@ -429,6 +441,8 @@ class Smufl(BaseObject):
         """Ligature components by :class:`.Glyph` object.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -454,6 +468,8 @@ class Smufl(BaseObject):
         """Ligature components by :attr:`name`.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -575,6 +591,8 @@ class Smufl(BaseObject):
         This property is read-only. Use the :attr:`Glyph.anchors
         <fontParts.base.BaseGlyph.anchors>` attribute to set glyph anchors.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> glyph = font["uniE240"]
@@ -606,6 +624,8 @@ class Smufl(BaseObject):
     @property
     def codepoint(self) -> str | None:
         """Unicode codepoint as formatted string.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -639,6 +659,8 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> glyph = font["uniE050"]
@@ -663,6 +685,8 @@ class Smufl(BaseObject):
 
         This property is equivalent to :attr:`Glyph.width
         <fontParts.base.BaseGlyph.width>`.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -762,6 +786,8 @@ class Smufl(BaseObject):
     def classes(self) -> tuple[str, ...] | None:
         """SMuFL-specific class memberships.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example::
 
             >>> glyph = font["uniE260"]
@@ -785,6 +811,8 @@ class Smufl(BaseObject):
     @property
     def description(self) -> str | None:
         """SMuFL-specific glyph description.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -919,6 +947,8 @@ class Smufl(BaseObject):
 
         This property is read-only.
 
+        :raises AttributeError: If attempting to access attribute from font.
+
         Example:
 
             >>> ligature = font["uniE26A_uniE260_uniE26B"]
@@ -942,9 +972,11 @@ class Smufl(BaseObject):
     @property
     def isMember(self) -> bool:
         """Return :obj:`True` if glyph is either :smufl:`recommended or optional
-        </about/recommended-chars-optional-glyphs.html>`.
+        <about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -964,9 +996,11 @@ class Smufl(BaseObject):
     @property
     def isOptional(self) -> bool:
         """Return :obj:`True` if glyph is :smufl:`optional
-        </about/recommended-chars-optional-glyphs.html>`.
+        <about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -986,9 +1020,11 @@ class Smufl(BaseObject):
     @property
     def isRecommended(self) -> bool:
         """Return :obj:`True` if glyph is :smufl:`recommended
-        </about/recommended-chars-optional-glyphs.html>`.
+        <about/recommended-chars-optional-glyphs.html>`.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -1014,6 +1050,8 @@ class Smufl(BaseObject):
         naming.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
@@ -1044,6 +1082,8 @@ class Smufl(BaseObject):
         See :ref:`Note <about-glyph-naming>` about glyph naming.
 
         This property is read-only.
+
+        :raises AttributeError: If attempting to access attribute from font.
 
         Example:
 
