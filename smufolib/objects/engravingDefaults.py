@@ -64,8 +64,9 @@ class EngravingDefaults(BaseObject):
     """SMuFL engraving default settings.
 
     This object contains properties and methods pertained to SMuFL's
-    :smufl:`engravingDefaults <engravingdefaults.html>` metadata structure, defining
-    recommended defaults for line widths etc., according to the specification.
+    :smufl:`engravingDefaults <specification/engravingdefaults.html>` metadata
+    structure, defining recommended defaults for line widths etc., according to the
+    specification.
 
     The :class:`EngravingDefaults` object is essentially a :class:`dict` with each
     engraving default setting exposed as a read/write property.

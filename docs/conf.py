@@ -48,7 +48,7 @@ add_module_names = False
 nitpicky = True
 default_role = "code"
 
-extlinks = {"smufl": ("https://w3c.github.io/smufl/latest/specification/%s", "%s")}
+extlinks = {"smufl": ("https://w3c.github.io/smufl/latest/%s", "%s")}
 
 # -- Options for HTML output --------------------------------------------------
 
