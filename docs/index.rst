@@ -42,7 +42,7 @@ SMufoLib: Where SMuFL meets UFO
          "description": "6-string tab clef"
       }, ...
 
-   >>> generateMetadata("path/to/my/font.ufo") 
+   >>> generateMetadata("path/to/MyFont.ufo") 
 
 **And much more!**
 
