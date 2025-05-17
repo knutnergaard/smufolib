@@ -14,7 +14,7 @@ To import the module:
 """
 
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Generator
 from collections.abc import Callable
 from math import dist
 
@@ -23,6 +23,7 @@ from smufolib.utils import converters
 if TYPE_CHECKING:  # pragma: no cover
     from fontParts.fontshell.point import RPoint
     from fontParts.fontshell.segment import RSegment
+    from fontParts.fontshell.contour import RContour
     from smufolib.objects.glyph import Glyph
 
 Bounds = tuple[int | float, int | float, int | float, int | float]
@@ -163,6 +164,12 @@ def glyphBoundsHeight(glyph: Glyph) -> int | float | None:
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> rulers.glyphBoundsHeight(glyph)
+        1801
+
     """
     boundsList = [c.bounds for c in getGlyphContours(glyph)]
     bounds = combineBounds(boundsList)
@@ -176,6 +183,12 @@ def glyphBoundsWidth(glyph: Glyph) -> int | float | None:
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> rulers.glyphBoundsWidth(glyph)
+        648
+
     """
     boundsList = [c.bounds for c in getGlyphContours(glyph)]
     bounds = combineBounds(boundsList)
@@ -188,6 +201,12 @@ def glyphBoundsXMinAbs(glyph: Glyph) -> int | float | None:
     """Return absolute value of glyph's *xMin* bound.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
+
+    Example::
+
+        >>> glyph = font["uniE022"]
+        >>> rulers.glyphBoundsXMinAbs(glyph)
+        80
 
     """
     boundsList = [c.bounds for c in getGlyphContours(glyph)]
@@ -203,6 +222,12 @@ def xDistanceStemToDot(glyph: Glyph) -> int | float | None:
     The contours may be placed on either side of each other.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
+
+    Example::
+
+        >>> glyph = font["uniE040"]
+        >>> rulers.glyphBoundsXMinAbs(glyph)
+        63
 
     """
     dotPoints = [
@@ -228,6 +253,12 @@ def xDistanceBetweenContours(glyph: Glyph) -> int | float | None:
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
+    Example::
+
+        >>> glyph = font["uniE031"]
+        >>> rulers.xDistanceBetweenContours(glyph)
+        85
+
     """
     points = sorted(getGlyphPoints(glyph), key=lambda p: p.x)
     if not points:
@@ -250,6 +281,12 @@ def yDistanceBetweenContours(glyph: Glyph) -> int | float | None:
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
+    Example::
+
+        >>> glyph = font["uniE036"]
+        >>> rulers.yDistanceBetweenContours(glyph)
+        119
+
     """
     points = sorted(getGlyphPoints(glyph), key=lambda p: p.y)
     if not points:
@@ -271,6 +308,12 @@ def xStrokeWidthAtOrigin(glyph: Glyph) -> int | float | None:
     """Measure horizontal distance between aligned points closest to origin.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
+
+    Example::
+
+        >>> glyph = font["uniE1FE"]
+        >>> rulers.xStrokeWidthAtOrigin(glyph)
+        32
 
     """
     points = sorted(getGlyphPoints(glyph), key=lambda p: abs(p.x) + abs(p.y))
@@ -295,6 +338,12 @@ def yStrokeWidthAtMinimum(glyph: Glyph) -> int | float | None:
     """Measure vertical distance between aligned low-points in the glyph.
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
+
+    Example::
+
+        >>> glyph = font["uniE1FD"]
+        >>> rulers.yStrokeWidthAtMinimum(glyph)
+        50
 
     """
 
@@ -321,6 +370,12 @@ def wedgeArmStrokeWidth(glyph: Glyph):
 
     :param glyph: Source :class:`.Glyph` of contours to measure.
 
+    Example::
+
+        >>> glyph = font["uniE1FD"]
+        >>> rulers.yStrokeWidthAtMinimum(glyph)
+        50
+
     """
 
     def euclidean(p1, p2):
@@ -346,6 +401,13 @@ def areAlligned(
     :param tolerance: The tolerance for misalignment to apply in font units.
         Defaults to ``6``.
 
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> point1, point2 = glyph[0].points[:2]
+        >>> rulers.areAlligned((point1, point2), axis="x", tolerance=3)
+        False
+
     """
 
     def withinRange(value: int | float, reference: int | float) -> bool:
@@ -357,12 +419,20 @@ def areAlligned(
     return all(withinRange(getattr(v, axis), reference) for v in rest)
 
 
-def getGlyphContours(glyph: Glyph, includeComponents=True):
+def getGlyphContours(
+    glyph: Glyph, includeComponents: bool = True
+) -> Generator[RContour]:
     """Return all contours in the glyph, including component references.
 
     :param glyph: The :class:`.Glyph` containing the contours to retrieve.
     :param includeComponents: Whether to include any referenced contours in the glyph.
         Defaults to :obj:`True`.
+
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> rulers.getGlyphContours(glyph)  # doctest: +ELLIPSIS
+        <generator object getGlyphContours.<locals>.<genexpr> at 0x...>
 
     """
     if glyph.components and includeComponents:
@@ -372,15 +442,15 @@ def getGlyphContours(glyph: Glyph, includeComponents=True):
         font.insertGlyph(tempGlyph, name=tempName)
         tempAssigned = font[tempName]
         tempAssigned.decompose()
-        contours = (c for c in tempAssigned.contours)
+        contours = (c for c in tempAssigned)
         font.removeGlyph(tempName)
         return contours
-    return (c for c in glyph.contours)
+    return (c for c in glyph)
 
 
 def getGlyphSegments(
-    glyph, types: str | tuple[str, ...] = TYPES, includeComponents=True
-):
+    glyph, types: str | tuple[str, ...] = TYPES, includeComponents: bool = True
+) -> Generator[RSegment]:
     """Return all segments in the `glyph` matching given `types`.
 
     Any segments referenced by components may be included.
@@ -390,12 +460,20 @@ def getGlyphSegments(
         Defaults to ``("line", "curve", "qcurve")``.
     :param includeComponents: Whether to include any referenced contours in the glyph.
 
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> rulers.getGlyphSegments(glyph)  # doctest: +ELLIPSIS
+        <generator object getGlyphSegments.<locals>.<genexpr> at 0x...>
+
     """
     contours = getGlyphContours(glyph, includeComponents=includeComponents)
     return (s for sts in contours for s in sts if s.type in types or s.type == types)
 
 
-def getGlyphPoints(glyph, types: str | tuple[str, ...] = TYPES, includeComponents=True):
+def getGlyphPoints(
+    glyph, types: str | tuple[str, ...] = TYPES, includeComponents: bool = True
+) -> Generator[RPoint]:
     """Return all points in the `glyph` matching given `types`.
 
     Any points referenced by components may be included.
@@ -404,6 +482,12 @@ def getGlyphPoints(glyph, types: str | tuple[str, ...] = TYPES, includeComponent
     :param types: The :attr:`~fontParts.base.BasePoint.type` values to include.
         Defaults to ``("line", "curve", "qcurve")``.
     :param includeComponents: Whether to include any referenced contours in the glyph.
+
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> rulers.getGlyphPoints(glyph)  # doctest: +ELLIPSIS
+        <generator object getGlyphPoints.<locals>.<genexpr> at 0x...>
 
     """
 
@@ -418,6 +502,13 @@ def hasHorizontalOffCurve(point: RPoint) -> bool:
     on-curve point is greater than its *y-difference*.
 
     :param point: The on-curve point to check.
+
+    Example:
+
+        >>> glyph = font["uniE260"]
+        >>> point = glyph[0].points[0]
+        >>> rulers.hasHorizontalOffCurve(point)
+        True
 
     """
     segment = getParentSegment(point)
@@ -440,6 +531,13 @@ def hasVerticalOffCurve(point: RPoint) -> bool:
 
     :param point: The on-curve point to check.
 
+    Example:
+
+        >>> glyph = font["uniE260"]
+        >>> point = glyph[0].points[0]
+        >>> rulers.hasVerticalOffCurve(point)
+        False
+
     """
     segment = getParentSegment(point)
     if segment and point.type in ("curve", "qcurve"):
@@ -458,6 +556,13 @@ def getParentSegment(point: RPoint) -> RSegment | None:
 
     :param point: The point to find the parent segment for.
 
+    Example:
+
+        >>> glyph = font["uniE050"]
+        >>> point = glyph[0].points[0]
+        >>> rulers.getParentSegment(point)  # doctest: +ELLIPSIS
+        <RSegment line index='3' at ...>
+
     """
     match = next(
         (s for s in point.contour.segments if point.contour and point in s), None
@@ -466,7 +571,16 @@ def getParentSegment(point: RPoint) -> RSegment | None:
 
 
 def combineBounds(boundsList: list[Bounds]) -> Bounds | None:
-    """Combine a list of bounds into one bounding box."""
+    """Combine a list of bounds into one bounding box.
+
+    Example:
+
+        >>> glyph1, glyph2 = font["uniE050"], font["uniE260"]
+        >>> boundsList = [glyph1.bounds, glyph2.bounds]
+        >>> rulers.combineBounds(boundsList)
+        (-50, -634, 648, 1167)
+
+    """
     if not boundsList:
         return None
 
