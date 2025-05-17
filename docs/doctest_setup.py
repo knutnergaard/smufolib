@@ -1,7 +1,6 @@
 from unittest.mock import PropertyMock
 from smufolib import Font
-from smufolib import converters
-from tests.testUtils import generateGlyph
+from tests.testUtils import generateGlyph, drawCircle
 
 font = Font()
 type(font).path = PropertyMock(return_value="/path/to/MyFont.ufo")
@@ -41,6 +40,8 @@ generateGlyph(
         "combiningStaffPositions",
     ),
 )
+drawCircle(font["uniE260"], (0, 0), 50)
+
 generateGlyph(
     font, "uniE266", smuflName="accidentalTripleFlat", classes=["accidentalsStandard"]
 )
