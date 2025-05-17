@@ -2,7 +2,6 @@
 from __future__ import annotations
 from typing import TYPE_CHECKING, Any
 import re
-import warnings
 
 from fontParts.base.base import BaseObject
 from smufolib.objects.range import Range, METADATA
