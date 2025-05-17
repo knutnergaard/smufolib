@@ -154,7 +154,7 @@ more information.
 
 .. _working-with-metadata:
 
-Working with metadata
+Working with Metadata
 =====================
 
 Once SMuFL specific glyph names and other attributes have been set, SMufoLib provides useful features like:
@@ -494,9 +494,8 @@ Positional arguments and available options can be listed by running the help com
    options:
       -h, --help           show this help message and exit
       -F FONTDATA, --font-data FONTDATA
-                           path to font metadata file (default: <Request '/url/path
-                           /to/reference/font/metadata.json' ('/file/path/to/refere
-                           nce/font/metadata.json') at 4536666000>)
+                           path to font metadata file (default: <Request '/url/path/to
+                           /reference/font/metadata.json' ('/file/path/to/reference/font/metadata.json') at 4536666000>)
       -m, --mark           apply defined color values to objects (default: False)
       -c COLOR COLOR COLOR COLOR, --color COLOR COLOR COLOR COLOR
                            list of RGBA color values (default: None)

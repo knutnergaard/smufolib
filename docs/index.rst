@@ -29,7 +29,7 @@ SMufoLib: Where SMuFL meets UFO
    >>> for g in smuflRange.glyphs:
    ...   g.width += 10
 
-**Access and gnerate metadata**::
+**Access and generate metadata**::
 
    >>> Request.glyphnames()
    {
