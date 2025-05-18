@@ -48,8 +48,10 @@ importing anchors, setting identification attributes and more.
 Scripts may be run either directly from the command line or imported as regular python modules, passing in any arguments in the familiar manner to each platform.
 
 As an example, check for missing or superfluous SMuFL anchors and mark discrepant
-glyphs by running the :mod:`~bin.checkAnchors` script with the ``--mark`` flag
+glyphs by running the ``bin.checkAnchors`` script with the ``--mark`` flag
 directly from the command line:
+
+.. code-block:: zsh
 
    $ check-anchors path/to/my/font.ufo --mark
 
@@ -84,7 +86,7 @@ Alternatively, scripts can be imported as modules in Python::
    >>> checkAnchors(mark=True)
 
 This imports and executes the script's program function,
-:func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name.
+``bin.checkAnchors.checkAnchors``, from the script module of the same name.
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/smufolib
    :alt: PyPI - Version
