@@ -46,14 +46,9 @@ SMufoLib: Where SMuFL meets UFO
 
 **And much more!**
 
-SMufoLib is a lightweight Python library for working with fonts that follow the
-`Standard Music Font Layout <https://w3c.github.io/smufl/latest/>`_ (SMuFL). It builds
-on the reference implementation of the `FontParts
-<https://fontparts.robotools.dev/en/stable/index.html>`_ API and operates directly on
-the `Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format.
-SMufoLib enhances these foundations with SMuFL-aware tools for music font design,
-scripting and metadata management -- all from the command line, without requiring a GUI
-font editor.
+.. include:: ../README.rst
+   :start-after: .. _intro:
+   :end-before: .. _documentation:
 
 .. toctree::
    :maxdepth: 1
