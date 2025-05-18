@@ -1,57 +1,70 @@
 |PyPI| |versions| |license| |docs| |CI| |coverage|
 
+===============================
 SMufoLib: Where SMuFL meets UFO
 ===============================
 
-SMufoLib is a small Python library designed to aid in font development
-and scripting specific to the `Standard Music Font Layout
-<https://w3c.github.io/smufl/latest/>`_ (SMuFL). As an extension of the
-`FontParts <https://fontparts.robotools.dev/en/stable/index.html>`_
-API, SMufoLib relies on the platform and application independent
-`Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format and
-the command line, rather than any particular font editor.
+.. _intro:
+
+SMufoLib is a lightweight Python library for working with fonts that follow the
+`Standard Music Font Layout <https://w3c.github.io/smufl/latest/>`_ (SMuFL). It builds
+on the reference implementation of the `FontParts
+<https://fontparts.robotools.dev/en/stable/index.html>`_ API and operates directly on
+the `Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format.
+SMufoLib enhances these foundations with SMuFL-aware tools for music font design,
+scripting and metadata management -- all from the command line, without requiring a GUI
+font editor.
+
+.. _documentation:
 
 Documentation
--------------
+=============
 
-SMufoLib’s documentation is available at `smufolib.readthedocs.io
+SMufoLib's documentation is available at `smufolib.readthedocs.io
 <https://smufolib.readthedocs.io/en/latest/index.html>`_.
 
+.. _installation:
+
 Installation
-------------
+============
 
 SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
 later. It is listed in the `Python Package Index
 <https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
 `pip <https://pip.pypa.io/>`__:
 
-.. code:: bash
+.. code-block:: zsh
 
    $ python -m pip install smufolib
 
-Scripts
--------
+.. _running-scripts:
 
-SMufoLib comes bundled with several useful scripts for building SMuFL
-metadata files, calculating engraving defaults from glyphs, importing
-identification attributes and more.
+Running Scripts
+===============
 
-Scripts may be run either directly from the command line or imported as
-regular python modules, passing in any arguments in the familiar manner
-to each platform.
+SMufoLib comes bundled with several useful scripts for building SMuFL metadata files,
+importing anchors, setting identification attributes and more.
 
-As an example, check for missing or superfluous SMuFL anchors and mark
-discrepant glyphs by running the `checkAnchors` script with
-the ``--mark`` flag directly from the command line:
+Scripts may be run either directly from the command line or imported as regular python modules, passing in any arguments in the familiar manner to each platform.
 
-.. code:: zsh
+.. only:: builder_html
+
+   As an example, check for missing or superfluous SMuFL anchors and mark discrepant
+   glyphs by running the :mod:`~bin.checkAnchors` script with the ``--mark`` flag
+   directly from the command line:
+
+.. only:: not builder_html
+
+   As an example, check for missing or superfluous SMuFL anchors and mark discrepant
+   glyphs by running the ``bin.checkAnchors`` script with the ``--mark`` flag
+   directly from the command line:
+.. code-block:: zsh
 
    $ check-anchors path/to/my/font.ufo --mark
 
-Positional arguments and available options can be listed by running the
-help command on the script:
+Positional arguments and available options can be listed by running the help command on the script:
 
-.. code:: zsh
+.. code-block:: zsh
 
    $ check-anchors --help
 
@@ -66,26 +79,28 @@ help command on the script:
    options:
       -h, --help           show this help message and exit
       -F FONTDATA, --font-data FONTDATA
-                           path to font metadata file (default: <Request '/url/path
-                           /to/reference/font/metadata.json' ('/file/path/to/refere
-                           nce/font/metadata.json') at 4536666000>)
+                           path to font metadata file (default: <Request '/url/path/to
+                           /reference/font/metadata.json' ('/file/path/to/reference/font/metadata.json') at 4536666000>)
       -m, --mark           apply defined color values to objects (default: False)
       -c COLOR COLOR COLOR COLOR, --color COLOR COLOR COLOR COLOR
                            list of RGBA color values (default: None)
       -v, --verbose        make output verbose (default: False)
 
 
-Alternatively, scripts can be imported as modules in Python:
+Alternatively, scripts can be imported as modules in Python::
 
-.. code:: Py3
+   >>> from bin.checkAnchors import checkAnchors
+   >>> checkAnchors(mark=True)
 
-   from bin.checkAnchors import checkAnchors
+.. only:: builder_html
 
-   checkAnchors(mark=True)
+   This imports and executes the script's program function,
+   :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name.
 
-This imports and executes the script's program
-function `checkAnchors` from the script module of the same
-name.
+.. only:: not builder_html
+
+   This imports and executes the script's program function,
+   ``checkAnchors.checkAnchors``, from reStructuredTextreStructuredTextthe script module of the same name.
 
 .. |PyPI| image:: https://img.shields.io/pypi/v/smufolib
    :alt: PyPI - Version
