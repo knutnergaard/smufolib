@@ -503,7 +503,7 @@ Alternatively, scripts can be imported as modules in Python::
    >>> checkAnchors(mark=True)
 
 This imports and executes the script's program function,
-:func:`bin.checkAnchors.checkAnchors`, from the script module of the same name.
+:func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name.
 
 Making Metadata Requests
 ========================
