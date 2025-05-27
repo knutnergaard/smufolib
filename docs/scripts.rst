@@ -60,6 +60,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.calculateEngravingDefaults import calculateEngravingDefaults
     >>> calculateEngravingDefaults("path/to/MyFont.ufo", override={"staffSpace": 0.25})
 
@@ -115,6 +117,8 @@ Optional Arguments
 
 Python API
 ----------
+
+.. code-block:: python
 
     >>> from bin.checkAnchors import checkAnchors
     >>> checkAnchors("path/to/MyFont.ufo", mark=True)
@@ -178,6 +182,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.cleanFont import cleanFont
     >>> cleanFont("path/to/MyFont.ufo", include=["anchors", "guidelines"])
 
@@ -230,6 +236,8 @@ Optional Arguments
 
 Python API
 ----------
+
+.. code-block:: python
 
     >>> from bin.generateMetadata import generateMetadata
     >>> generateMetadata("path/to/MyFont.ufo", targetPath="path/to/metadata.json")
@@ -290,6 +298,8 @@ Optional Arguments
 
 Python API
 ----------
+
+.. code-block:: python
 
     >>> from bin.importAnchors import importAnchors
     >>> importAnchors("path/to/MyFont.ufo")
@@ -370,6 +380,8 @@ Optional Arguments
 
 Python API
 ----------
+
+.. code-block:: python
 
     >>> from bin.importID import importID
     >>> importID("path/to/MyFont.ufo", attributes=("classes", "description"))
