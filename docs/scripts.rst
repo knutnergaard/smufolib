@@ -10,7 +10,7 @@ Calculate Engraving Defaults
 Command Line Interface
 ----------------------
 
-.. .. code-block:: console
+.. code-block:: console
 
     $ calculate-engraving-defaults <font> [-o <override>] [-r <remap>] [-e <attributes> ...] [-s] [-v]
 
@@ -31,7 +31,7 @@ Optional Arguments
 
     JSON string of attributes and values to manually override, in the format:
 
-    .. .. code-block:: console
+    .. code-block:: console
 
         '{"<attributeName>": <value>, ...}'
 
@@ -39,7 +39,7 @@ Optional Arguments
 
     JSON string of ruler and glyph remappings, in the format:
 
-    .. .. code-block:: console
+    .. code-block:: console
 
         '{"<attribute name>": {"ruler": "<functionName>", "glyph": "<glyphName>"}, ...}'
 
@@ -79,7 +79,7 @@ Check Anchors
 Command Line Interface
 ----------------------
 
-.. .. code-block:: console
+.. code-block:: console
 
     $ check-anchors <font> [<fontData>] [-m] [-c <color>] [-v]
 
@@ -138,16 +138,7 @@ Clean Font
 Command Line Interface
 ----------------------
 
-Use :option:`clean-font --include` and/or :option:`clean-font --exclude` to specify
-which items to delete or preserve.
-
-To prevent accidental data loss, you must explicitly define what to remove. A wildcard
-(``--include *``) will remove all known SMuFL-related data from the font, unless
-exclusions are specified.
-
-See the list of valid attribute and anchor names in the main docstring above.
-
-.. .. code-block:: console
+.. code-block:: console
 
     $ clean-font <font> [-v]
 
@@ -177,6 +168,16 @@ Optional Arguments
     
     Make output verbose.
 
+Use :option:`--include` and/or :option:`--exclude` to specify which items to delete or
+preserve.
+
+To prevent accidental data loss, you must explicitly define what to remove. A wildcard
+(``--include *``) will remove all known SMuFL-related data from the font, unless
+exclusions are specified.
+
+See the list of valid attribute and anchor names in the :ref:`introduction <clean-font>`
+above.
+
 .. _clean-font-python:
 
 Python API
@@ -202,7 +203,7 @@ Generate metadata
 Command Line Interface
 ----------------------
 
-.. .. code-block:: console
+.. code-block:: console
 
     $ generate-metadata <font> [<targetPath>] [-f <fontData>] [-v]
 
@@ -256,7 +257,7 @@ Import Anchors
 Command Line Interface
 ----------------------
 
-.. .. code-block:: console
+.. code-block:: console
 
     $ import-anchors <font> [<fontData>] [-m] [-c <color>] [-C] [-v]
 
@@ -318,15 +319,7 @@ Import ID
 Command Line Interface
 ----------------------
 
-Optional glyphs can be included with the :option:`import-id --include-optionals` flag. When this option is used, stylistic alternates and ligatures must be named relative to their base glyph (see :ref:`this note <about-glyph-naming>` for more details).
-
-By default, existing attribute values are preserved. To overwrite them, pass the
-:option:`import-id --overwrite` flag. Glyphs are also skipped if they are not part of
-the SMuFL range or if lookup fails (e.g., due to missing codepoints or unencoded glyphs
-in the metadata).
-
-
-.. .. code-block:: console
+.. code-block:: console
 
     $ import-id <font> [<attributes>] [<classesData>] [<glyphnamesData>] [<fontData>] [-o] [-v]
 
@@ -374,7 +367,14 @@ Optional Arguments
 
 .. option:: -v, --verbose
 
-    Make output verbose.    
+    Make output verbose.
+
+Optional glyphs can be included with the :option:`--include-optionals` flag. When this option is used, stylistic alternates and ligatures must be named relative to their base glyph (see :ref:`this note <about-glyph-naming>` for more details).
+
+By default, existing attribute values are preserved. To overwrite them, pass the
+:option:`--overwrite` flag. Glyphs are also skipped if they are not part of
+the SMuFL range or if lookup fails (e.g., due to missing codepoints or unencoded glyphs
+in the metadata). 
 
 .. _import-id-python:
 
