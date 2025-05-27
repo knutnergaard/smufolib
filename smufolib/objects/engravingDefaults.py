@@ -86,7 +86,7 @@ class EngravingDefaults(BaseObject):
 
     :param smufl: Parent :class:`~smufolib.objects.smufl.Smufl` object.
     :param auto: Whether to calculate engraving defaults automatically. Defaults to
-        :ref:`[engravingDefaults]` `auto` configuration.
+        :confval:`engravingDefaults.auto` configuration.
 
     This object is typically accessed through a font's Smufl metadata interface:
 
@@ -249,7 +249,7 @@ class EngravingDefaults(BaseObject):
     def clear(self) -> None:
         """Clear all engraving default settings.
 
-        If `auto` is enabled in :ref:`[engravingDefaults]`, values will fall back to
+        If :confval:`engravingDefaults.auto` is enabled, values will fall back to
         automatically calculated values after being cleared.
 
         Example::

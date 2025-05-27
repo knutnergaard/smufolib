@@ -21,9 +21,7 @@ class Range:
 
     This object provides access to metadata describing how a :class:`.Glyph` relates to
     SMuFL-defined glyph ranges. It is currently read-only and retrieves its data from
-    the path assigned to `ranges` in :ref:`[metadata.paths]` or
-    :ref:`[metadata.fallbacks]`, defaulting to the :smufl:`ranges.json
-    <specification/ranges.html>` metadata file.
+    :confval:`metadata.paths.ranges` or :confval:`metadata.fallbacks.ranges`.
 
     :param smufl: The range's parent :class:`.Smufl` object.
 

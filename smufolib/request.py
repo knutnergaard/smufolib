@@ -24,9 +24,9 @@ class Request:
     :param fallback: Fallback filepath to use if `path` raises
         :class:`urllib.error.URLError`.
     :param encoding: File text encoding. See :func:`open` for details. Defaults to
-        :ref:`[request]` `encoding` configuration.
+        :confval:`request.encoding`.
     :param warn: Warn if URLError is raised before fallback request. Defaults to
-        :ref:`[request]` `warn` configuration.
+        :confval:`request.warn`.
 
     """
 
@@ -34,9 +34,9 @@ class Request:
     def classes(cls, decode: bool = True) -> JsonDict | str | None:
         """Retrieve `classes` metadata from configured paths.
 
-        This method attempts to load metadata from the path specified in the `classes`
-        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
-        `[metadata.fallbacks]` if necessary.
+        This method attempts to load metadata from the path specified in
+        :confval:`metadata.paths.classes`, falling back to
+        :confval:`metadata.fallbacks.classes` if necessary.
 
         :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
             response. Defaults to :obj:`True`.
@@ -46,11 +46,11 @@ class Request:
 
     @classmethod
     def glyphnames(cls, decode: bool = True) -> JsonDict | str | None:
-        """Retrieve `glyphnanes` metadata from configured paths.
+        """Retrieve `glyphnames` metadata from configured paths.
 
-        This method attempts to load metadata from the path specified in the
-        `glyphnanes` option of the `[metadata.paths]` section in `smufolib.cfg`, falling
-        back to `[metadata.fallbacks]` if necessary.
+        This method attempts to load metadata from the path specified in
+        :confval:`metadata.paths.glyphnames`, falling back to
+        :confval:`metadata.fallbacks.glyphnames` if necessary.
 
         :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
             response. Defaults to :obj:`True`.
@@ -62,9 +62,9 @@ class Request:
     def ranges(cls, decode: bool = True) -> JsonDict | str | None:
         """Retrieve `ranges` metadata from configured paths.
 
-        This method attempts to load metadata from the path specified in the `ranges`
-        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
-        `[metadata.fallbacks]` if necessary.
+        This method attempts to load metadata from the path specified in
+        :confval:`metadata.paths.ranges`, falling back to
+        :confval:`metadata.fallbacks.ranges` if necessary.
 
         :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
             response. Defaults to :obj:`True`.
@@ -76,9 +76,9 @@ class Request:
     def font(cls, decode: bool = True) -> JsonDict | str | None:
         """Retrieve `font` metadata from configured paths.
 
-        This method attempts to load metadata from the path specified in the `font`
-        option of the `[metadata.paths]` section in `smufolib.cfg`, falling back to
-        `[metadata.fallbacks]` if necessary.
+        This method attempts to load metadata from the path specified in the
+        :confval:`metadata.paths.font`, falling back to
+        :confval:`metadata.fallbacks.font` if necessary.
 
         :param decode: If :obj:`True`, return parsed JSON data; otherwise, return raw
             response. Defaults to :obj:`True`.
@@ -252,7 +252,7 @@ def writeJson(
     :param filepath: Path to target file.
     :param source: JSON data source.
     :param encoding: File text encoding. See :func:`open` for details. Defaults to
-        :ref:`[request]` `encoding` configuration.
+        :confval:`request.encoding`.
     :raises TypeError: If `filepath` is not the expected type.
     :raises ValueError: If there is an error serializing the JSON data or if `filepath`
         does not have a ``.json`` exctension.
