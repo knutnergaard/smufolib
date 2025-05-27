@@ -151,15 +151,15 @@ Positional Arguments
 
     Path to the font file to clean.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
-
-.. option:: -i, --include <items>...
+.. option:: <include>...
 
     Specify items to delete. May be ``*`` (all), or one or more specified attribute or
     anchor names.
 
-.. option:: -i, --exclude <items>...
+Optional Arguments
+^^^^^^^^^^^^^^^^^^
+
+.. option:: -e, --exclude <exclude>...
 
     Specify items to preserve if :option:`--include` is ``*`` (all). If omitted, all
     matching items will be deleted.
