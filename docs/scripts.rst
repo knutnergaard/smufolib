@@ -10,7 +10,7 @@ Calculate Engraving Defaults
 Command Line Interface
 ----------------------
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ calculate-engraving-defaults <font> [-o <override>] [-r <remap>] [-e <attributes> ...] [-s] [-v]
 
@@ -31,7 +31,7 @@ Optional Arguments
 
     JSON string of attributes and values to manually override, in the format:
 
-    .. code-block:: console
+    .. .. code-block:: console
 
         '{"<attributeName>": <value>, ...}'
 
@@ -39,7 +39,7 @@ Optional Arguments
 
     JSON string of ruler and glyph remappings, in the format:
 
-    .. code-block:: console
+    .. .. code-block:: console
 
         '{"<attribute name>": {"ruler": "<functionName>", "glyph": "<glyphName>"}, ...}'
 
@@ -60,6 +60,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.calculateEngravingDefaults import calculateEngravingDefaults
     >>> calculateEngravingDefaults("path/to/MyFont.ufo", override={"staffSpace": 0.25})
 
@@ -77,7 +79,7 @@ Check Anchors
 Command Line Interface
 ----------------------
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ check-anchors <font> [<fontData>] [-m] [-c <color>] [-v]
 
@@ -116,6 +118,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.checkAnchors import checkAnchors
     >>> checkAnchors("path/to/MyFont.ufo", mark=True)
 
@@ -143,7 +147,7 @@ exclusions are specified.
 
 See the list of valid attribute and anchor names in the main docstring above.
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ clean-font <font> [-v]
 
@@ -178,6 +182,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.cleanFont import cleanFont
     >>> cleanFont("path/to/MyFont.ufo", include=["anchors", "guidelines"])
 
@@ -196,7 +202,7 @@ Generate metadata
 Command Line Interface
 ----------------------
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ generate-metadata <font> [<targetPath>] [-f <fontData>] [-v]
 
@@ -231,6 +237,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.generateMetadata import generateMetadata
     >>> generateMetadata("path/to/MyFont.ufo", targetPath="path/to/metadata.json")
 
@@ -248,7 +256,7 @@ Import Anchors
 Command Line Interface
 ----------------------
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ import-anchors <font> [<fontData>] [-m] [-c <color>] [-C] [-v]
 
@@ -291,6 +299,8 @@ Optional Arguments
 Python API
 ----------
 
+.. code-block:: python
+
     >>> from bin.importAnchors import importAnchors
     >>> importAnchors("path/to/MyFont.ufo")
 
@@ -316,7 +326,7 @@ the SMuFL range or if lookup fails (e.g., due to missing codepoints or unencoded
 in the metadata).
 
 
-.. code-block:: console
+.. .. code-block:: console
 
     $ import-id <font> [<attributes>] [<classesData>] [<glyphnamesData>] [<fontData>] [-o] [-v]
 
@@ -370,6 +380,8 @@ Optional Arguments
 
 Python API
 ----------
+
+.. code-block:: python
 
     >>> from bin.importID import importID
     >>> importID("path/to/MyFont.ufo", attributes=("classes", "description"))
