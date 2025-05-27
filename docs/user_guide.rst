@@ -408,7 +408,7 @@ advance widths in either font units or staff spaces -- whatever suits your workf
 switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
 :attr:`.Smufl.spaces` to :obj:`True`, e.g.:
 
-   ed = font.smufl.engravingDefaults
+   >>> ed = font.smufl.engravingDefaults
    >>> ed.spaces = True
    >>> ed.stemThickness
    0.12
