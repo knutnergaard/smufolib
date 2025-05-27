@@ -8,12 +8,11 @@ SMufoLib: Where SMuFL meets UFO
 
 SMufoLib is a lightweight Python library for working with fonts that follow the
 `Standard Music Font Layout <https://w3c.github.io/smufl/latest/>`_ (SMuFL). It builds
-on the reference implementation of the `FontParts
-<https://fontparts.robotools.dev/en/stable/index.html>`_ API and operates directly on
-the `Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format.
-SMufoLib enhances these foundations with SMuFL-aware tools for music font design,
-scripting and metadata management -- all from the command line, without requiring a GUI
-font editor.
+on the reference implementation of the :fontParts:`FontParts <index.html>` API and
+operates directly on the `Unified Font Object <https://unifiedfontobject.org>`_ (UFO)
+format. SMufoLib enhances these foundations with SMuFL-aware tools for music font
+design, scripting and metadata management -- all from the command line, without
+requiring a GUI font editor.
 
 .. _documentation:
 
@@ -28,12 +27,11 @@ SMufoLib's documentation is available at `smufolib.readthedocs.io
 Installation
 ============
 
-SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or
-later. It is listed in the `Python Package Index
-<https://pypi.org/project/smufolib>`_ (PyPI) and can be installed with
-`pip <https://pip.pypa.io/>`__:
+SMufoLib requires `Python <http://www.python.org/download/>`__ 3.10 or later. It is
+listed in the `Python Package Index <https://pypi.org/project/smufolib>`_ (PyPI) and can
+be installed with `pip <https://pip.pypa.io/>`__:
 
-.. code-block:: zsh
+.. code-block:: console
 
    $ python -m pip install smufolib
 
