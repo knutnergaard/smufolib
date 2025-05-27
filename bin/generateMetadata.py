@@ -1,40 +1,37 @@
 #!/usr/bin/env python3
-# coding: utf-8
 # pylint: disable=C0301
-"""
+"""Generate font metadata JSON file.
+
 This script generates a full featured metadata `JSON
-<https://www.json.org/json-en.html>`_ file for SMuFL fonts from
-metadata sources and user specifications, including the following
-metadata sections:
+<https://www.json.org/json-en.html>`_ file for SMuFL fonts from metadata sources and
+user specifications, including the following metadata sections:
 
-    - `mandatory (fontName and fontVersion)
-      <https://w3c.github.io/smufl/latest/specification/font-specific-metadata.html>`_
-    - `size <https://w3c.github.io/smufl/latest/specification/font-specific-metadata.html>`_
-    - `engravingDefaults <https://w3c.github.io/smufl/latest/specification/engravingdefaults.html>`_
-    - `glyphAdvanceWidths <https://w3c.github.io/smufl/latest/specification/glyphadvancewidths.html>`_
-    - `glyphsWithAnchors <https://w3c.github.io/smufl/latest/specification/glyphswithanchors.html>`_
-    - `glyphsWithAlternates <https://w3c.github.io/smufl/latest/specification/glyphswithalternates.html>`_
-    - `glyphBBoxes <https://w3c.github.io/smufl/latest/specification/glyphbboxes.html>`_
-    - `ligatures <https://w3c.github.io/smufl/latest/specification/ligatures.html>`_
-    - `sets <https://w3c.github.io/smufl/latest/specification/sets.html>`_
-    - `optionalGlyphs <https://w3c.github.io/smufl/latest/specification/optionalglyphs.html>`_
+    - :smufl:`mandatory (fontName and fontVersion) <specification/font-specific-metadata.html>`
+    - :smufl:`size <specification/font-specific-metadata.html>`
+    - :smufl:`engravingDefaults <specification/engravingdefaults.html>`
+    - :smufl:`glyphAdvanceWidths <specification/glyphadvancewidths.html>`
+    - :smufl:`glyphsWithAnchors <specification/glyphswithanchors.html>`
+    - :smufl:`glyphsWithAlternates <specification/glyphswithalternates.html>`
+    - :smufl:`glyphBBoxes <specification/glyphbboxes.html>`
+    - :smufl:`ligatures <specification/ligatures.html>`
+    - :smufl:`sets <specification/sets.html>`
+    - :smufl:`optionalGlyphs <specification/optionalglyphs.html>`
 
-Sections are automatically added depending on the font's scope and
-assigned attribute values.
+Sections are automatically added depending on the font's scope and assigned attribute
+values.
 
-.. tip:: As a starting point, identification and engraving defaults
-   attributes may be set automatically with the :mod:`~bin.importID`
-   and :mod:`~bin.calculateEngravingDefaults` scripts respectively.
+.. tip::
 
-Glyphs outside the SMuFL range as well as unencoded or unnamed glyphs,
-are automatically skipped.
+    As a starting point, identification and engraving defaults
+    attributes may be set automatically with the :mod:`~bin.importID`
+    and :mod:`~bin.calculateEngravingDefaults` scripts respectively.
 
-This script requires SMufoLib to be installed within its executive
-environment. It may also be imported as a module and contains the
-following public functions:
+Glyphs outside the SMuFL range as well as unencoded or unnamed glyphs, are automatically
+skipped.
 
-    - :func:`generateMetadata` - The scripts program function.
-    - :func:`main` - Command line entry point.
+The script requires SMufoLib to be installed in its execution environment. It can be
+used from the command line or as a Python module. See the :ref:`generate-metadata-cli`
+and :ref:`generate-metadata-python` sections below for usage details.
 
 """
 
@@ -78,16 +75,13 @@ def generateMetadata(
     fontData: str | Path | Request = FONT_DATA,
     verbose: bool = VERBOSE,
 ) -> None:
-    """Generate metadata JSON file.
+    """Generate font metadata JSON file (Python API).
 
-    :param font: Object or path to
-        targetPath :class:`~smufolib.objects.font.Font`.
+    :param font: Object or path to targetPath :class:`~smufolib.objects.font.Font`.
     :param targetPath: Target directory for Metadata JSON file.
-    :param fontData: Object call or direct path to reference font
-        metadata file. Defaults to :class:`~.Request`
-        with :attr:`~.Request.path` and :attr:`~.Request.fallback` set
-        to :ref:`[metadata.paths]` and :ref:`
-        [metadata.fallbacks]` respective `font` configurations.
+    :param fontData: Request for or path to reference font metadata file.
+        Defaults to :class:`smufolib.request.Request` passing
+        :confval:`metadata.paths.font` and :confval:`metadata.fallbacks.font`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.
     :raises FileNotFoundError: If `targetPath` does not exist.

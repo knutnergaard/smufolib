@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
-# coding: utf-8
-"""
-This script deletes SMuFL-specific metadata and glyph anchors from a UFO
-font file.
+"""Remove SMuFL font data.
 
-To prevent unwanted data loss, items to delete *must* be specifically
-included and may also be specifically excluded. If ``exclude=None``,
-``include="*"`` (all) will delete everything, essentially resetting the
-font to a non-SMuFL state. Individual attribute and anchor names may
-otherwise be specified in both parameters as a single string or tuple
-of any of the following values:
+.. warning::
+
+    This script will permanently delete data. Always back up your font file before use.
+
+This script deletes SMuFL-specific metadata and glyph anchors from a UFO font file.
+
+The following attribute and anchor names may be specified for inclusion or exclusion:
 
     Attributes
         - `designSize`
@@ -44,15 +42,9 @@ of any of the following values:
         - `noteheadOrigin`
         - `opticalCenter`
 
-.. Warning:: This script will permanently delete data. Remember to
-   always back up your file before running.
-
-This script requires SMufoLib to be installed within its executive
-environment. It may also be imported as a module and contains the
-following public funcitons:
-
-    - :func:`cleanFont` - The scripts program function.
-    - :func:`main` - Command line entry point.
+The script requires SMufoLib to be installed in its execution environment. It can be
+used from the command line or as a Python module. See the :ref:`clean-font-cli` and
+:ref:`clean-font-python` sections below for usage details.
 
 """
 
@@ -82,19 +74,23 @@ def cleanFont(
     exclude: Iterable | None = EXCLUDE,
     verbose: bool = VERBOSE,
 ):
-    """Delete Smufl-specific attribute values.
+    """Delete Smufl-specific attribute values (Python API).
 
-    :param font: Object or path to
-        target :class:`~smufolib.objects.font.Font`.
-    :param include: items to be deleted. May be ``"*"`` (all), an
-        individual attribute or anchor name as a :class:`str`
-        or :class:`tuple` of several.
-    :param exclude: Items to be preserved if ``ìnclude="*"``. Defaults
-        to :obj:`None`.
+    Use the `include` and `exclude` keyword arguments to control which attributes and
+    anchors are removed.
+
+    To avoid unintentional data loss, `include` must be specified. Setting `include="*"`
+    will delete all SMuFL metadata and anchors.
+
+    Refer to the list of valid keys in the main docstring.
+
+    :param font: Object or path to target :class:`~smufolib.objects.font.Font`.
+    :param include: Items to be deleted. May be ``"*"`` (all), an individual attribute
+        or anchor name as a :class:`str` or :class:`tuple` of several.
+    :param exclude: Items to be preserved if ``ìnclude="*"``. Defaults to :obj:`None`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.
-    :raises ValueError: If any item in `include` or `exclude` is
-        invalid.
+    :raises ValueError: If any item in `include` or `exclude` is invalid.
 
     """
     print("Starting...")

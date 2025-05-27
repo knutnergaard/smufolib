@@ -1,36 +1,33 @@
-#!/usr/bin python3
-# coding: utf-8
+#!/usr/bin/env python3
+"""Calculate engraving defaults from glyph contours.
 
-"""
-This script calculates and sets attribute values for
-the :class:`.EngravingDefaults` class based on glyph dimensions,
-registration, metrics, and point placement.
+This script calculates and sets attribute values for the :class:`.EngravingDefaults`
+class based on glyph dimensions, registration, metrics, and point placement.
 
-The script provides options to override automatic contour measurements
-and reassign attributes to different ruler functions or glyphs.
-See :data:`.ENGRAVING_DEFAULTS_MAPPING` for a complete list of attributes and their
-default corresponding glyphs and assigned ruler functions.
+It offers options to override automatic contour measurements and reassign attributes to
+different ruler functions or glyphs. Refer to :data:`.ENGRAVING_DEFAULTS_MAPPING` for a
+comprehensive list of attributes and their default corresponding glyphs and assigned
+ruler functions.
 
-.. note:: The setting for :attr:`.textFontFamily` must be set manually
-   within the `override` parameter.
+.. note::
+
+    The setting for :attr:`.textFontFamily` must be set manually within the `override`
+    parameter.
+
+The script requires SMufoLib to be installed in its execution environment. It can be
+used from the command line or as a Python module. See the
+:ref:`calculate-engraving-defaults-cli` and :ref:`calculate-engraving-defaults-python`
+sections below for usage details.
+
+
 
 .. versionchanged:: 0.5.0
 
-    The `referenceIndex` paramter has been removed from all ruler functions and is no
+    The `referenceIndex` parameter has been removed from all ruler functions and is no
     longer needed when providing remappings.
 
-    The ruler functions have been removed from this script and are now available in
-    the :mod:`~smufolib.utils.rulers` module.
-
-This script requires SMufoLib to be installed within its executive
-environment. It may also be imported as a module and contains the
-following public functions:
-
-    - :func:`calculateEngravingDefaults` - The scripts program function.
-    - :func:`main` - Command line entry point.
-
-For command-line options, run the script with :option:`--help`
-argument.
+    The ruler functions have been removed from this script and are now available in the
+    :mod:`~smufolib.utils.rulers` module.
 
 """
 
@@ -83,9 +80,9 @@ def calculateEngravingDefaults(
     spaces: bool = SPACES,
     verbose: bool = VERBOSE,
 ) -> None:
-    """Calculate engraving defaults from glyph contours.
+    """Calculate engraving defaults from glyph contours (Python API).
 
-    :param font: Target font object or path to file.
+    :param font: Target :class:`.Font` object or path to file.
     :param exclude: :class:`.EngravingDefaults` attributes to exclude.
         Defaults to :obj:`None`.
     :param override: :class:`.EngravingDefaults` attributes to manually
@@ -104,7 +101,7 @@ def calculateEngravingDefaults(
 
         Defaults to :obj:`None`.
     :param spaces: Whether values for overrides are given in staff
-        spaces as opposed to font units. Defaults to :obj:`False`.
+        spaces instead of font units. Defaults to :obj:`False`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.
     :raises ValueError: If any parameter value item is not the expected
@@ -283,8 +280,8 @@ def _parseArgs() -> argparse.Namespace:
         default=OVERRIDE,
         type=json.loads,
         help=textwrap.dedent(
-            """JSON string of attributes and values to manually override;
-            in the format '{"<attribute name>": <value>, ...}'"""
+            """JSON string of attributes and values to manually override
+            in the format: '{"<attributeName>": <value>, ...}'"""
         ),
     )
 
@@ -295,8 +292,8 @@ def _parseArgs() -> argparse.Namespace:
         type=json.loads,
         help=textwrap.dedent(
             """JSON string of ruler and glyph remappings
-            in the format: {"<attribute name>": '{"ruler": "<function name>", 
-            "glyph": "<glyph name>"}, ...}'"""
+            in the format: '{"<attributeName>": {"ruler": "<functionName>", 
+            "glyph": "<glyphName>"}, ...}'"""
         ),
     )
     return parser.parse_args()

@@ -1,15 +1,13 @@
 #!/usr/bin/env python3
 # coding: utf-8
-"""
-This script sets glyph anchors based on data from a SMuFL font metadata
-JSON file (SMuFL's reference font, Bravura, by default).
+"""Import anchors from font metadata.
 
-This script requires SMufoLib to be installed within its
-executive environment. It may also be imported as a module and contains
-the following public funcitons:
+This script sets glyph anchors based on data from a SMuFL font metadata JSON file
+(SMuFL's reference font, Bravura, by default).
 
-    - :func:`importAnchors` - The scripts program function.
-    - :func:`main` - Command line entry point.
+The script requires SMufoLib to be installed in its execution environment. It can be
+used from the command line or as a Python module. See the :ref:`import-anchors-cli`
+and :ref:`import-anchors-python` sections below for usage details.
 
 """
 
@@ -60,18 +58,15 @@ def importAnchors(
     clear: bool = CLEAR,
     verbose: bool = VERBOSE,
 ) -> None:
-    """Import anchors from font metadata.
+    """Import anchors from font metadata (Python API).
 
     :param font: font object to which the script applies.
-    :param fontData: Object call or direct path to reference font
-        metadata file. Defaults to :class:`~smufolib.request.Request`
-        with :obj:`~smufolib.request.Request.path`
-        and :obj:`~smufolib.request.Request.fallback` set to
-        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]` respective
-        `font` configurations.
+    :param fontData: Request for or path to reference font metadata file.
+        Defaults to :class:`smufolib.request.Request` passing
+        :confval:`metadata.paths.font` and :confval:`metadata.fallbacks.font`.
     :param mark: Apply defined anchor colors. Defaults to :obj:`True`.
     :param colors: dict of anchorNames mapped to UFO color values to
-        apply when `mark` is :obj:`True`.
+        apply when `mark` is :obj:`True`. Defaults to :confval:`color.anchors`.
     :param clear: Erase preexisting anchors on append. Defaults to
         :obj:`False`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.

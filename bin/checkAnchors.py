@@ -1,20 +1,15 @@
 #!/usr/bin/env python3
-# coding: utf-8
-"""
-This script checks font anchors against the metadata file of SMuFL's
-reference font, Bravura, to find missing or superfluous glyph anchors
-according to the SMuFL standard.
+"""Check SMuFL glyph anchors against reference font metadata.
 
-Discrepancies are printed to console, and glyphs may be marked with
-color value specified in smufolib.cfg. Glyphs without annotated smufl
-names or glyph names will be skipped.
+This script checks font anchors against reference font metadata, identifying missing or
+superfluous glyph anchors according to the SMuFL standard.
 
-This script requires SMufoLib to be installed within its executive
-environment. It may also be imported as a module and contains the
-following public funcitons:
+Discrepancies are printed to console, and glyphs may be marked with a specified color
+value. Glyphs without annotated smufl names or glyph names will be skipped.
 
-    - :func:`checkAnchors` - The scripts program function.
-    - :func:`main` - Command line entry point.
+The script requires SMufoLib to be installed in its execution environment. It can be
+used from the command line or as a Python module. See the :ref:`check-anchors-cli` and
+:ref:`check-anchors-python` sections below for usage details.
 
 """
 
@@ -64,22 +59,18 @@ def checkAnchors(
     color: ColorTuple | None = MARK_COLOR,
     verbose: bool = VERBOSE,
 ) -> None:
-    """Check validity of SMuFL-specific glyph anchors.
+    """Check font anchors against SMuFL reference data (Python API).
 
-    :param font: Object or path to
-        target :class:`~smufolib.objects.font.Font`.
-    :param fontData: Object call or direct path to reference font
-        metadata file. Defaults to :class:`~smufolib.request.Request`
-        with :attr:`~smufolib.request.Request.path`
-        and :attr:`~smufolib.request.Request.fallback` set to
-        :ref:`[metadata.paths]` and :ref:`[metadata.fallbacks]`
-        respective `font` configurations.
+    :param font: Target :class:`.Font` object or path to font file.
+    :param fontData: Request for or path to reference font metadata file. Defaults to
+        :class:`smufolib.request.Request` passing :confval:`metadata.paths.font` and
+        :confval:`metadata.fallbacks.font`.
     :param mark: Mark discrepant glyphs. Defaults to :obj:`False`.
-    :param color: Color value to apply when ``mark=True``.
-        Defaults to :ref:`[color.marks]` `mark1` configuration.
+    :param color: Color to use when marking glyphs. Ignored unless ``mark=True``.
+        Defaults to :confval:`color.marks.mark1`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
-    :raises TypeError: If any parameter value is not the expected type
-        or if `mark` is :obj:`True` while `color` is :obj:`None`.
+    :raises TypeError: If any parameter value is not the expected type or if `mark` is
+        :obj:`True` while `color` is :obj:`None`.
 
     """
     print("Starting...")
@@ -170,7 +161,7 @@ def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
         "font",
-        description=stdUtils.getSummary(checkAnchors.__doc__),
+        description=stdUtils.getSummary(__doc__),
         fontData=FONT_DATA,
         mark=MARK,
         color=MARK_COLOR,
