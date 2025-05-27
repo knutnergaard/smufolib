@@ -1,4 +1,4 @@
-.. _command-line-interface:
+.. _cli-framework:
 
 =============
 CLI Framework
@@ -17,9 +17,9 @@ Available Options
     :file: ../options.csv
     :header-rows: 1
 
-.. note:: 
-    
-    Short flags for options may be redefined in the :ref:`[cli.shortFlags]` section of :ref:`smufolib.cfg`.
+.. note::
+
+    Short flags for options may be redefined in the :ref:`cli.shortFlags` section of :ref:`smufolib.cfg`.
 
 .. automodule:: smufolib.cli
     :members:
