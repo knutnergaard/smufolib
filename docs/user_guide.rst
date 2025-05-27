@@ -464,8 +464,8 @@ importing anchors, setting identification attributes and more.
 
 Scripts may be run either directly from the command line or imported as regular python modules, passing in any arguments in the familiar manner to each platform.
 
-As an example, check for missing or superfluous SMuFL anchors and mark discrepant
-glyphs by running the :mod:`bin.checkAnchors` script with the ``--mark`` flag
+As an example, check for missing or superfluous SMuFL anchors and mark discrepant glyphs
+by running the :ref:`check-anchors` script with the :option:`check-anchors --mark` flag
 directly from the command line:
 
 .. code-block:: console
