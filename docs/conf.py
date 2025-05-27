@@ -48,7 +48,10 @@ add_module_names = False
 nitpicky = True
 default_role = "code"
 
-extlinks = {"smufl": ("https://w3c.github.io/smufl/latest/%s", "%s")}
+extlinks = {
+    "smufl": ("https://w3c.github.io/smufl/latest/%s", "%s"),
+    "fontParts": ("https://fontparts.robotools.dev/en/stable/%s", "%s"),
+}
 
 # -- Options for HTML output --------------------------------------------------
 
