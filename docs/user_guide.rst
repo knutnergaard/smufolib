@@ -23,10 +23,10 @@ such as `RoboFont <https://robofont.com>`_::
    font = Font(CurrentFont())
 
 
-Before going further, it's a good idea to review the FontParts `Object Reference
-<https://fontparts.robotools.dev/en/stable/objectref/index.html>`_. SMufoLib's
-:class:`.Font`, :class:`.Layer`, and :class:`.Glyph` classes extend FontPart's `defcon
-<https://defcon.robotools.dev/en/latest/>`_-based reference implementation and serve as
+Before going further, it's a good idea to review the FontParts :fontParts:`Object
+Reference <objectref/index.html>`. SMufoLib's :class:`.Font`, :class:`.Layer`, and
+:class:`.Glyph` classes extend FontPart's `defcon
+<https://defcon.robotools.dev/en/stable/>`_-based reference implementation and serve as
 the foundation for the features described below.
 
 .. _configuring-smufolib:
@@ -75,7 +75,7 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 
 - On macOS or Linux:
 
-  .. code-block:: zsh
+  .. code-block:: console
 
      export SMUFOLIB_CFG=/path/to/smufolib.cfg
 
@@ -269,9 +269,9 @@ glyphs.
 Override the automatic calculations by setting the attributes to a value other than
 :obj:`None`.
 
-To turn the feature off entirely, disable `auto` in the :ref:`[engravingDefaults]`
-section of `smufolib.cfg`. See :ref:`configuring-smufolib` for more information
-about how to customize SMufoLib's behavior.
+To turn the feature off entirely, disable :confval:`engravingDefaults.auto`. See
+:ref:`configuring-smufolib` for more information about how to customize SMufoLib's
+behavior.
 
 Engraving defaults are available in either font units or staff spaces. See
 :ref:`changing-measurement-units` for more information.
@@ -468,13 +468,13 @@ As an example, check for missing or superfluous SMuFL anchors and mark discrepan
 glyphs by running the :mod:`bin.checkAnchors` script with the ``--mark`` flag
 directly from the command line:
 
-.. code-block:: zsh
+.. code-block:: console
 
    $ check-anchors path/to/my/font.ufo --mark
 
 Positional arguments and available options can be listed by running the help command on the script:
 
-.. code-block:: zsh
+.. code-block:: console
 
    $ check-anchors --help
 
@@ -604,7 +604,7 @@ By using the :func:`.commonParser` utility and the pre-configured
 :data:`.CLI_ARGUMENTS`, you can easily construct robust and consistent parsers for your
 own scripts.
 
-See the :ref:`command-line-interface` section of the API documentation for a complete
+See the :ref:`cli-framework` section of the API documentation for a complete
 list of available arguments and their default flags.
 
 Features
@@ -668,13 +668,13 @@ the function output as a :class:`list` to the `parents` parameter of the class:
    
 
 To avoid conflicts between standard and custom arguments, you can modify the short flag
-definitions for each argument in the :ref:`[cli.shortFlags]` section of `smufolib.cfg`.
+definitions for each argument in the :ref:`cli.shortFlags` section of `smufolib.cfg`.
 
 Creating Help Formatters
 ------------------------
 
 The CLI framework also supports custom help formatting by combining the different help
-fromatters available in the :mod:`argparse` module:
+formatters available in the :mod:`argparse` module:
 
 - :class:`~argparse.RawDescriptionHelpFormatter`
 - :class:`~argparse.RawTextHelpFormatter`
@@ -785,3 +785,4 @@ Footnotes
 .. [#] Most of the objects referred to as "attributes" in this user guide are
    technically implemented as Python properties, but referred to as attributes for
    clarity and consistency with general terminology.
+   
