@@ -27,7 +27,7 @@ sections below for usage details.
     longer needed when providing remappings.
 
     The ruler functions have been removed from this script and are now available in the
-    :mod:`~smufolib.utils.rulers` module.
+    :mod:`.rulers` module.
 
 """
 
@@ -82,7 +82,7 @@ def calculateEngravingDefaults(
 ) -> None:
     """Calculate engraving defaults from glyph contours (Python API).
 
-    :param font: Target :class:`.Font` object or path to file.
+    :param font: Target :class:`.Font` object or path to font file.
     :param exclude: :class:`.EngravingDefaults` attributes to exclude.
         Defaults to :obj:`None`.
     :param override: :class:`.EngravingDefaults` attributes to manually

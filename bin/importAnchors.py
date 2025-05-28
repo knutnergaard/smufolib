@@ -60,9 +60,9 @@ def importAnchors(
 ) -> None:
     """Import anchors from font metadata (Python API).
 
-    :param font: font object to which the script applies.
+    :param font: Target :class:`.Font` object or path to font file.
     :param fontData: Request for or path to reference font metadata file.
-        Defaults to :class:`smufolib.request.Request` passing
+        Defaults to :class:`.Request` passing
         :confval:`metadata.paths.font` and :confval:`metadata.fallbacks.font`.
     :param mark: Apply defined anchor colors. Defaults to :obj:`True`.
     :param colors: dict of anchorNames mapped to UFO color values to

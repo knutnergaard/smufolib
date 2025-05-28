@@ -63,7 +63,7 @@ def checkAnchors(
 
     :param font: Target :class:`.Font` object or path to font file.
     :param fontData: Request for or path to reference font metadata file. Defaults to
-        :class:`smufolib.request.Request` passing :confval:`metadata.paths.font` and
+        :class:`.Request` passing :confval:`metadata.paths.font` and
         :confval:`metadata.fallbacks.font`.
     :param mark: Mark discrepant glyphs. Defaults to :obj:`False`.
     :param color: Color to use when marking glyphs. Ignored unless ``mark=True``.

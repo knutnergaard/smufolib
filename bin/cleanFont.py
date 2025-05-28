@@ -84,7 +84,7 @@ def cleanFont(
 
     Refer to the list of valid keys in the main docstring.
 
-    :param font: Object or path to target :class:`~smufolib.objects.font.Font`.
+    :param font: Target :class:`.Font` object or path to font file.
     :param include: Items to be deleted. May be ``"*"`` (all), an individual attribute
         or anchor name as a :class:`str` or :class:`tuple` of several.
     :param exclude: Items to be preserved if ``ìnclude="*"``. Defaults to :obj:`None`.

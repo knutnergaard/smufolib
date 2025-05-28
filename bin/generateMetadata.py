@@ -77,10 +77,10 @@ def generateMetadata(
 ) -> None:
     """Generate font metadata JSON file (Python API).
 
-    :param font: Object or path to targetPath :class:`~smufolib.objects.font.Font`.
+    :param font: Source :class:`.Font` object or path to font file.
     :param targetPath: Target directory for Metadata JSON file.
     :param fontData: Request for or path to reference font metadata file.
-        Defaults to :class:`smufolib.request.Request` passing
+        Defaults to :class:`.Request` passing
         :confval:`metadata.paths.font` and :confval:`metadata.fallbacks.font`.
     :param verbose: Make output verbose. Defaults to :obj:`False`.
     :raises TypeError: If any parameter value is not the expected type.

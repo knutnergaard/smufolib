@@ -89,18 +89,18 @@ def importID(
     Glyphs are also skipped if they are not SMuFL members or if lookup fails (e.g., due
     to missing codepoints or unencoded glyphs in the metadata).
 
-    :param font: Object or path to target :class:`.Font`.
+    :param font: Target :class:`.Font` object or path to font file.
     :param attributes: ID attributes to be set. Value can be either ``"*"`` (all),
         ``"name"``, ``"classes"``, ``"description"`` or :class:`tuple` of several.
         Defaults to ``"*"``.
     :param classesData: Request for or path to classes metadata file. Defaults to
-        :class:`smufolib.request.Request` passing :confval:`metadata.paths.classes` and
+        :class:`.Request` passing :confval:`metadata.paths.classes` and
         :confval:`metadata.fallbacks.classes`.
     :param glyphnamesData: Request for or path to glyphnames metadata file. Defaults to
-        :class:`smufolib.request.Request` passing :confval:`metadata.paths.glyphnames`
+        :class:`.Request` passing :confval:`metadata.paths.glyphnames`
         and :confval:`metadata.fallbacks.glyphnames`.
     :param fontData: Request for or path to reference font metadata file. Defaults to
-        :class:`smufolib.request.Request` passing :confval:`metadata.paths.font` and
+        :class:`.Request` passing :confval:`metadata.paths.font` and
         :confval:`metadata.fallbacks.font`.
     :param includeOptionals: Include optional glyphs. Defaults to :obj:`False`.
     :param overwrite: Overwrite preexisting values. Defaults to :obj:`False`.
