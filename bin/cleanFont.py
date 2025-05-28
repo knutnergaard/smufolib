@@ -56,7 +56,7 @@ from tqdm import tqdm
 
 from smufolib import Font
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
-from smufolib import cli
+from smufolib.cli import REQUIRED, commonParser
 from smufolib.utils import error, stdUtils
 from smufolib.utils.scriptUtils import normalizeFont as _normalizeFont
 
@@ -187,9 +187,9 @@ def _buildItemsDict(include, exclude):
 
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
-    parser = cli.commonParser(
+    parser = commonParser(
         "font",
-        "include",
+        include=REQUIRED,
         description=stdUtils.getSummary(__doc__),
         exclude=EXCLUDE,
         verbose=VERBOSE,
