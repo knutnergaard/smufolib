@@ -263,7 +263,7 @@ def _getValue(
 def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = argparse.ArgumentParser(
-        description=stdUtils.getSummary(calculateEngravingDefaults.__doc__),
+        description=stdUtils.getSummary(__doc__),
         parents=[
             cli.commonParser(
                 "font", exclude=EXCLUDE, spaces=SPACES, verbose=VERBOSE, addHelp=False

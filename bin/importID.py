@@ -305,7 +305,7 @@ def _parseArgs() -> argparse.Namespace:
     # Parse command line arguments and options.
     parser = cli.commonParser(
         "font",
-        description=stdUtils.getSummary(importID.__doc__),
+        description=stdUtils.getSummary(__doc__),
         attributes="*",
         classesData=CLASSES_DATA,
         glyphnamesData=GLYPHNAMES_DATA,

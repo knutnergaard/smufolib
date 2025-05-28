@@ -198,7 +198,7 @@ def _parseArgs() -> argparse.Namespace:
     parser = cli.commonParser(
         "font",
         "targetPath",
-        description=stdUtils.getSummary(generateMetadata.__doc__),
+        description=stdUtils.getSummary(__doc__),
         fontData=FONT_DATA,
         verbose=VERBOSE,
     )
