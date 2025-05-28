@@ -2,7 +2,7 @@
 
 from smufolib import config
 from smufolib._version import __version__  # noqa: F401
-from smufolib.cli import CLI_ARGUMENTS, commonParser, createHelpFormatter
+from smufolib.cli import CLI_ARGUMENTS, REQUIRED, commonParser, createHelpFormatter
 from smufolib.objects.engravingDefaults import (
     ENGRAVING_DEFAULTS_ATTRIBUTES,
     EngravingDefaults,
@@ -46,6 +46,7 @@ __all__ = [
     "Range",
     "Request",
     "Smufl",
+    "REQUIRED",
     "rulers",
     "stdUtils",
     "scriptUtils",
