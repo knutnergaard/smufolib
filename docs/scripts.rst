@@ -24,8 +24,8 @@ Positional Arguments
 
     Path to font file or font object.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 
 .. option:: -o <override>, --override <override>
 
@@ -92,8 +92,8 @@ Positional Arguments
 
     Path to the font file to check.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 
 .. option:: -F <font-data>, --font-data <font-data>
 
@@ -151,15 +151,15 @@ Positional Arguments
 
     Path to the font file to clean.
 
-.. option:: <include>...
+Options
+^^^^^^^
 
-    Specify items to delete. May be ``*`` (all), or one or more specified attribute or
-    anchor names.
+.. option:: -i, --include <items>... 
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+    Specify items to delete. May be ``*`` (all), or one or more specified
+    attribute or anchor names *(required)*.
 
-.. option:: -e, --exclude <exclude>...
+.. option:: -e, --exclude <items>...
 
     Specify items to preserve if :option:`--include` is ``*`` (all). If omitted, all
     matching items will be deleted.
@@ -216,8 +216,8 @@ Positional Arguments
 
     Path to the font file to generate metadata for.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 
 .. option:: <target-path>
 
@@ -270,8 +270,8 @@ Positional Arguments
 
     Path to the font file to import anchors into.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 
 .. option:: -F <font-data>, --font-data <font-data>
 
@@ -332,8 +332,8 @@ Positional Arguments
 
     Path to the font file to import ID data into.
 
-Optional Arguments
-^^^^^^^^^^^^^^^^^^
+Options
+^^^^^^^
 
 .. option:: -a <attributes>..., --attributes <attributes>...
 
