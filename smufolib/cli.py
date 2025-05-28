@@ -101,6 +101,16 @@ CLI_ARGUMENTS: dict[str, dict[str, Any]] = {
 # fmt: on
 
 
+class _Required:
+    # Sentinel value for required arguments.
+    def __repr__(self) -> str:
+        return "<Required>"
+
+
+#: Sentinel value for required arguments.
+REQUIRED = _Required()
+
+
 def commonParser(
     *args: str,
     addHelp: bool = True,
@@ -110,25 +120,34 @@ def commonParser(
 ) -> ArgumentParser:
     r"""Provide generic command-line arguments and options.
 
-    See the :ref:`Available Options` for details.
+    See the :ref:`Available Options` for argument definitions.
 
-    :param \*args: Required positional arguments to assign.
-    :param addHelp: Add help message. Should be :obj:`False` when
-        function is parent and otherwise :obj:`True`. Defaults
-        to :obj:`True`.
-    :param description: Program description when used directly. Defaults
-        to :obj:`None`
-    :param customHelpers: Arguments mapped to custom help strings to
-        override the default. Defaults to :obj:`None`
-    :param \**kwargs: Options and their default values to assign.
+    Positional arguments defined in :data:`CLI_ARGUMENTS` with ``action="store_true"``
+    or ``action="store_false"`` will be treated as a boolean flag.
+
+    .. versionadded:: 0.6.2
+
+        If a keyword argument is assigned the value :data:`REQUIRED`, it will be treated
+        as a required argument in the command-line interface. Help output can show or
+        hide this status depending on :confval:`cli.markRequired`.
+
+    :param \*args: Names of positional arguments to include.
+    :param addHelp: Add help message. Should be :obj:`False` when function is parent and
+        otherwise :obj:`True`. Defaults to :obj:`True`.
+    :param description: Program description when used directly. Defaults to :obj:`None`
+    :param customHelpers: Arguments mapped to custom help strings to override the
+        default. Defaults to :obj:`None`
+    :param \**kwargs: Flagged options and their default values to include. Use the
+        constant :data:`.REQUIRED` as value to mark the option as mandatory.
+
 
     Example:
 
-        >>> from smufolib import commonParser
+        >>> from smufolib import commonParser, REQUIRED
         >>> parser = commonParser(
-        ...     "font", "clear", includeOptionals=False,
+        ...     "font", "clear", targetPath=REQUIRED, includeOptionals=False,
         ...     description="My SMuFL utility", addHelp=True
-        ...     )
+        ... )
 
     """
 
@@ -162,8 +181,15 @@ def commonParser(
 
         flags = generateFlags(key)
         localArguments[key]["dest"] = key
+
         if value is not None:
             localArguments[key]["default"] = value
+
+        if value is REQUIRED:
+            localArguments[key]["required"] = True
+            if CONFIG["cli"]["markRequired"]:
+                localArguments[key]["help"] += " (required)"
+
         addArgument(key, flags, customHelpers)
 
     return parser
