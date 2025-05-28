@@ -101,6 +101,7 @@ class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
         test_args = [
             "cleanFont",
             str(self.fontPath),
+            "--include",
             include,
             "--exclude",
             *exclude,

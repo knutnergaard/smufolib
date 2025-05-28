@@ -1,14 +1,16 @@
 import unittest
+from unittest.mock import patch
 from argparse import (
     ArgumentParser,
     HelpFormatter,
     RawTextHelpFormatter,
     ArgumentDefaultsHelpFormatter,
 )
-from smufolib.cli import commonParser, createHelpFormatter
+from smufolib.cli import REQUIRED, CONFIG, commonParser, createHelpFormatter
+from tests.testUtils import SuppressOutputMixin
 
 
-class TestCLI(unittest.TestCase):
+class TestCLI(SuppressOutputMixin, unittest.TestCase):
     def test_commonParser_basic(self):
         parser = commonParser("clear", addHelp=False)
         args = parser.parse_args(["--clear"])
@@ -43,6 +45,17 @@ class TestCLI(unittest.TestCase):
     def test_commonParser_argument_conflict(self):
         with self.assertRaises(ValueError):
             commonParser("color", color=[1, 2, 3, 4])
+
+    @patch.dict(CONFIG, {"cli": {"markRequired": False}})
+    def test_commonParser_required_argument(self):
+        parser = commonParser(color=REQUIRED, addHelp=False)
+        result = [1, 2, 3, 4]
+        args = parser.parse_args(["--color", "1", "2", "3", "4"])
+        with self.assertRaises(SystemExit):
+            self.suppressOutput()
+            args = parser.parse_args(["--color"])
+        self.assertEqual(repr(REQUIRED), "<Required>")
+        self.assertEqual(args.color, result)
 
     def test_createHelpFormatter_single(self):
         formatter_class = createHelpFormatter("RawTextHelpFormatter")
