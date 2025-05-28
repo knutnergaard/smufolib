@@ -130,6 +130,25 @@ Metadata fallback paths are configured in this section.
 
     The fallback path to the font metadata file.
 
+.. _cli:
+
+cli
+---
+
+This section contains general configuration for the :ref:`cli-framework`.
+
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [cli]
+    :end-before: [cli.shortFlags]
+
+.. confval:: cli.markRequired
+    :type: ``bool``
+    :default: ``true``
+
+    Whether to append ``(required)`` to the help message of :data:`.REQUIRED` arguments.
+    :ref:`cli-framework` options.
+    
 .. _cli.shortFlags:
 
 cli.shortFlags
