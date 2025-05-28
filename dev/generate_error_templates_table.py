@@ -1,6 +1,6 @@
 """Generate error templates CSV table for SMufoLib documentaton.
 
-The script generates a table representation of :const:`.ERROR_TEMPLATES`
+The script generates a table representation of :data:`.ERROR_TEMPLATES`
 for documentation purposes.
 
 """

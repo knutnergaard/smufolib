@@ -1,6 +1,6 @@
 """Generate options CSV table for SMufoLib documentaton.
 
-The script uses values from :const:`.CLI_ARGUMENTS` and `smufolib.cfg`
+The script uses values from :data:`.CLI_ARGUMENTS` and `smufolib.cfg`
 to generate a CSV table of command line options and their value types
 corresponding to argument names to be passed to :func:`.commonParser`.
 
