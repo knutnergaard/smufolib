@@ -1,7 +1,7 @@
 """Utility functions for converting values between various formats.
 
-These functions focus on conversion different string and number formats
-related to measurements, Unicode codepoints and letter case.
+These functions focus on converting between different string and numeric formats
+related to measurements, Unicode codepoints, and letter casing.
 
 To import the module:
 
@@ -55,15 +55,15 @@ def convertMeasurement(
     return round(measurement) if rounded else measurement
 
 
-def toDecimal(unicodeString: str) -> int:
+def toDecimal(string: str) -> int:
     """Convert formatted unicode or uni name to decimal codepoint.
 
     Function accepts any hexadecimal string within the Unicode range
     (U+0000 -- U+10FFFF) prefixed by ``"u"``, ``"U+"`` or ``"uni"``.
 
-    :param unicodeString: The value to convert.
-    :raises TypeError: If `unicodeString` is not the accepted type.
-    :raises ValueError: If `unicodeString` is not a valid formatted
+    :param string: The value to convert.
+    :raises TypeError: If `string` is not the accepted type.
+    :raises ValueError: If `string` is not a valid formatted
         unicode codepoint or outside the unicode range
         (U+0000 -- U+10FFFF).
 
@@ -77,56 +77,66 @@ def toDecimal(unicodeString: str) -> int:
         2560
 
     """
-    error.validateType(unicodeString, str, "unicodeString")
-    unicodeHex = _findUnicodeHex(unicodeString)
+    error.validateType(string, str, "string")
+    unicodeHex = _findUnicodeHex(string)
     if not unicodeHex:
         raise ValueError(
-            error.generateErrorMessage("invalidFormat", objectName="unicodeString")
+            error.generateErrorMessage("invalidFormat", objectName="string")
         )
+    decimal = int(unicodeHex, 16)
 
-    decimal = int(toNumber(unicodeHex))  # Casting to int to please mypy.
-    if _isInUnicodeRange(decimal):
+    if stdUtils.isInUnicodeRange(decimal):
         return decimal
 
     raise ValueError(
-        error.generateErrorMessage("unicodeOutOfRange", objectName="unicodeString")
+        error.generateErrorMessage("unicodeOutOfRange", objectName="string")
     )
 
 
-def toUniHex(codepoint: int) -> str:
-    """Convert decimal codepoint to formatted Unicode hex.
+def toUniHex(value: int | str) -> str:
+    """Convert decimal codepoint or uni-name to formatted Unicode hex.
 
-    :param codepoint: The decimal value to convert.
-    :raises TypeError: If `codepoint` is not the accepted type.
-    :raises ValueError: If `codepoint` is outside the Unicode range
+    :param value: The decimal value to convert.
+    :raises TypeError: If `value` is not the accepted type.
+    :raises ValueError: If `value` is outside the Unicode range
         (U+0000 -- U+10FFFF).
 
     Example:
 
         >>> converters.toUniHex(2560)
         'U+0A00'
+        >>> converters.toUniHex("uni0A00")
+        'U+0A00'
 
     """
-    error.validateType(codepoint, int, "codepoint")
+    error.validateType(value, (int, str), "codepoint")
+    if isinstance(value, str):
+        unicodeHex = _findUnicodeHex(value)
+        if not unicodeHex:
+            raise ValueError(
+                error.generateErrorMessage("invalidFormat", objectName="value")
+            )
+        value = int(unicodeHex, 16)
 
-    if _isInUnicodeRange(codepoint):
-        return f"U+{str(hex(codepoint).upper()[2:]).zfill(4)}"
+    if stdUtils.isInUnicodeRange(value):
+        return f"U+{value:04X}"
+
     raise ValueError(
-        error.generateErrorMessage("unicodeOutOfRange", objectName="codepoint")
+        error.generateErrorMessage("unicodeOutOfRange", objectName="value")
     )
 
 
-def toUniName(value: str | int, short: bool = False) -> str:
-    """Convert formatted Unicode hex or decimal to ``"uni"`` name.
+def toUniName(value: int | str, short: bool = False) -> str:
+    """Convert decimal codepoint or Unicode notation string to uni-name.
 
-    Function accepts any integer or prefixed hexadecimal string
-    within the Unicode range (U+0000 -- U+10FFFF).
+    Function accepts any integer or prefixed hexadecimal string (e.g., ``"U+E000"``,
+    ``"uE000"``, ``"uniE000"``) within the Unicode range (U+0000 -- U+10FFFF).
 
     :param value: The value to convert.
     :param short: Whether to return name with single ``"u"`` prefix.
     :raises TypeError: If `value` is not an accepted type.
-    :raises ValueError: If `value` is outside the Unicode range
-        (U+0000 -- U+10FFFF) or not a valid formatted string.
+    :raises ValueError: If `value` is outside the Unicode range (U+0000 -- U+10FFFF) or
+        not a valid formatted string.
 
     Example:
 
@@ -138,24 +148,23 @@ def toUniName(value: str | int, short: bool = False) -> str:
         'uniE000'
 
     """
-    prefix = "u" if short else "uni"
+    error.validateType(value, (int | str), "value")
 
-    error.validateType(value, (str, int), "value")
     if isinstance(value, str):
         unicodeHex = _findUnicodeHex(value)
         if unicodeHex is None:
             raise ValueError(
                 error.generateErrorMessage("invalidFormat", objectName="value")
             )
-    else:
-        unicodeHex = "0x" + format(value, "X").zfill(4)
+        value = int(unicodeHex, 16)
 
-    if not _isInUnicodeRange(int(unicodeHex, 16)):
-        raise ValueError(
-            error.generateErrorMessage("unicodeOutOfRange", objectName="value")
-        )
+    if stdUtils.isInUnicodeRange(value):
+        prefix = "u" if short else "uni"
+        return f"{prefix}{value:04X}"
 
-    return prefix + unicodeHex[2:].upper()
+    raise ValueError(
+        error.generateErrorMessage("unicodeOutOfRange", objectName="value")
+    )
 
 
 def toKebab(camelCaseString: str) -> str:
@@ -217,25 +226,17 @@ def toIntIfWhole(number: int | float) -> int | float:
         34.1
 
     """
-
     if isinstance(number, float) and number.is_integer():
         return int(number)
     return number
 
 
-def _findUnicodeHex(unicodeString: str) -> str | None:
+def _findUnicodeHex(string: str) -> str | None:
     # Find the hex in various unicode value configurations.
     # If found, add prefix and return value or None.
-    error.validateType(unicodeString, str, "unicodeString")
-    pattern = r"((?<=^u)|(?<=^u\+)|(?<=^uni))([a-f]|[0-9]){4,}"
-    result = re.search(pattern, unicodeString, flags=re.IGNORECASE)
+    error.validateType(string, str, "string")
+    pattern = r"(?:^u\+?|^uni)([0-9a-f]{4,})"
+    result = re.search(pattern, string, flags=re.IGNORECASE)
     if not result:
         return None
-    return f"0x{result.group(0)}"
-
-
-def _isInUnicodeRange(codepoint: int) -> bool:
-    # Check if number is within Unicode range
-    if 0x0 <= codepoint <= 0x10FFFF:
-        return True
-    return False
+    return result.group(1)
