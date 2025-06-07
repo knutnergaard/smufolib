@@ -112,6 +112,13 @@ def isFloat(string: str) -> bool:
         return False
 
 
+def isInUnicodeRange(codepoint: int) -> bool:
+    """Check if an integer is within the Unicode range (U+0000 to U+10FFFF)."""
+    if 0x0 <= codepoint <= 0x10FFFF:
+        return True
+    return False
+
+
 def validateAttr(obj, attributes: Iterable[str] | None = None) -> bool:
     """Validate `obj` based on whether the given attributes have been set.
 
