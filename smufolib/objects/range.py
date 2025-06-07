@@ -1,10 +1,12 @@
 # pylint: disable=C0114
 from __future__ import annotations
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, TypeVar, Type
 
 from smufolib.request import Request
 from smufolib import config
-from smufolib.utils import normalizers
+from smufolib.utils import converters, normalizers
+from smufolib.utils._annotations import CollectionType
+from smufolib.objects import _lib
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.smufl import Smufl
@@ -13,15 +15,30 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
 
 CONFIG = config.load()
+EDITABLE = editable = CONFIG["range"]["editable"]
 METADATA = Request.ranges()
+RANGES_LIB_KEY = "com.smufolib.ranges"
+
+RangeValue = str | int | tuple["Glyph", ...] | None
+T = TypeVar("T", bound=RangeValue)
 
 
 class Range:
     """SMuFL range-related metadata.
 
     This object provides access to metadata describing how a :class:`.Glyph` relates to
-    SMuFL-defined glyph ranges. It is currently read-only and retrieves its data from
-    :confval:`metadata.paths.ranges` or :confval:`metadata.fallbacks.ranges`.
+    SMuFL-defined glyph ranges. Specified range data is sourced from
+    :confval:`metadata.paths.ranges`, falling back to
+    :confval:`metadata.fallbacks.ranges` if the former is unavailable.
+
+    Ranges are read-only by default. Editability is controlled globally via the
+    :confval:`range.editable` configuration setting. New custom ranges may be added
+    using :meth:`.Smufl.newRange`. This data will be stored in the font's :class:`Lib
+    <fontParts.base.BaseLib>` object.
+
+    .. versionadded:: 0.7.0
+
+        Support for optional editability.
 
     :param smufl: The range's parent :class:`.Smufl` object.
 
@@ -38,14 +55,25 @@ class Range:
 
     # pylint: disable=invalid-name
 
-    def __init__(self, smufl: Smufl | None = None) -> None:
+    def __init__(
+        self,
+        smufl: Smufl | None = None,
+        _internal: bool = True,
+    ) -> None:
         self._smufl = smufl
+        self._internal = _internal
 
     def __repr__(self):
         return (
             f"<{self.__class__.__name__} '{self.name}' "
-            f"('{self.start}-{self.end}') at {id(self)}>"
+            f"({self.strStart}-{self.strEnd}) editable={EDITABLE} at {id(self)}>"
         )
+
+    def __bool__(self):
+        return bool(self.name)
+
+    def __hash__(self):
+        return hash((self.name, self.start, self.end, self.description))
 
     # -------
     # Parents
@@ -117,7 +145,7 @@ class Range:
 
     @property
     def name(self) -> str | None:
-        """Name of affiliated SMuFL range.
+        """Unique identifier of the glyph's affiliated SMuFL range.
 
         Example:
 
@@ -125,14 +153,11 @@ class Range:
             'clefs'
 
         """
-        result = self._getAttribute("range_name")
-        if isinstance(result, str):
-            return result
-        return None
+        return self._getAttribute("identifier", str)
 
     @property
     def description(self) -> str | None:
-        """Description of affiliated SMuFL range.
+        """Human-readable description of the glyph's affiliated SMuFL range.
 
         Example:
 
@@ -140,14 +165,11 @@ class Range:
             'Clefs'
 
         """
-        result = self._getAttribute("description")
-        if isinstance(result, str):
-            return result
-        return None
+        return self._getAttribute("description", str)
 
     @property
-    def glyphs(self) -> tuple[Glyph, ...]:
-        """:class:`~smufolib.objects.glyph.Glyph` objects of Affiliated SMuFL range.
+    def glyphs(self) -> tuple[Glyph, ...] | None:
+        """:class:`.Glyph` objects of the glyph's affiliated SMuFL range.
 
         Example:
 
@@ -157,14 +179,35 @@ class Range:
             <Glyph 'uniE07F' ['clefChangeCombining'] ('public.default') at ...>)
 
         """
-        result = self._getAttribute("glyphs")
-        if isinstance(result, tuple):
-            return result
-        return ()
+        return self._getAttribute("glyphs", tuple)
 
     @property
-    def start(self) -> str | None:
-        """Start unicode of affiliated SMuFL range.
+    def start(self) -> int | None:
+        """Start unicode of the glyph's affiliated SMuFL range.
+
+        Example:
+
+            >>> range.start
+            57424
+
+        """
+        return self._getAttribute("range_start", int)
+
+    @property
+    def end(self) -> int | None:
+        """End unicode of the glyph's affiliated SMuFL range.
+
+        Example:
+
+            >>> range.end
+            57471
+
+        """
+        return self._getAttribute("range_end", int)
+
+    @property
+    def strStart(self) -> str | None:
+        """Start of the glyph's affiliated SMuFL range as Unicode string.
 
         Example:
 
@@ -172,14 +215,11 @@ class Range:
             'U+E050'
 
         """
-        result = self._getAttribute("range_start")
-        if isinstance(result, str):
-            return result
-        return None
+        return self._getAttribute("range_start", str)
 
     @property
-    def end(self) -> str | None:
-        """End unicode of affiliated SMuFL range.
+    def strEnd(self) -> str | None:
+        """End of the glyph's affiliated SMuFL range as Unicode string.
 
         Example:
 
@@ -187,26 +227,41 @@ class Range:
             'U+E07F'
 
         """
-        result = self._getAttribute("range_end")
-        if isinstance(result, str):
-            return result
-        return None
+        return self._getAttribute("range_end", str)
 
-    def _getAttribute(self, name: str) -> str | tuple[Glyph, ...] | None:
+    def _getAttribute(self, key: str, expectedType: Type[T]) -> T | None:
         # Get metadata attributes from ranges.json.
-        if self.glyph is None or METADATA is None or isinstance(METADATA, str):
+        data = (
+            _lib.getLibSubdict(self.font, RANGES_LIB_KEY)
+            if self._internal
+            else METADATA
+        )
+
+        if self.glyph is None or data is None or isinstance(data, str):
             return None
-        for range_, attributes in METADATA.items():
-            if self._smufl is None or self._smufl.name not in attributes["glyphs"]:
+
+        for range_, attributes in data.items():
+            if self._smufl is None or (
+                not self._internal and self._smufl.name not in attributes["glyphs"]
+            ):
                 continue
-            if name == "range_name":
-                return range_
-            if name == "glyphs":
-                glyphs = tuple(
+            value = attributes.get(key)
+            if key == "identifier":
+                value = range_
+            if key == "glyphs":
+                value = tuple(
                     g
-                    for n in attributes[name]
+                    for n in attributes[key]
                     if (g := self._smufl.findGlyph(n)) is not None
                 )
-                return glyphs
-            return attributes.get(name)
+            if key in {"range_start", "range_end"}:
+                value = attributes.get(key)
+                if expectedType is int:
+                    if isinstance(value, str):
+                        value = converters.toDecimal(value)
+                elif expectedType is str:
+                    if isinstance(value, int):
+                        value = converters.toUniHex(value)
+        if isinstance(value, expectedType):
+            return value
         return None
