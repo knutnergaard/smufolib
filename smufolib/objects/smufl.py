@@ -4,14 +4,23 @@ from typing import TYPE_CHECKING, Any
 import re
 
 from fontParts.base.base import BaseObject
-from smufolib.objects.range import Range, METADATA
+from smufolib.objects.range import Range, METADATA, RANGES_LIB_KEY
 from smufolib.objects.engravingDefaults import EngravingDefaults
+from smufolib.objects import _lib
 from smufolib.utils import converters, error, normalizers
 
 if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
     from smufolib.objects.glyph import Glyph
+
+CLASSES_LIB_KEY = "com.smufolib.classes"
+DESCRIPTION_LIB_KEY = "com.smufolib.description"
+DESIGN_SIZE_LIB_KEY = "com.smufolib.designSize"
+NAMES_LIB_KEY = "com.smufolib.names"
+NAME_LIB_KEY = "com.smufolib.name"
+SIZE_RANGE_LIB_KEY = "com.smufolib.sizeRange"
+SPACES_LIB_KEY = "com.smufolib.spaces"
 
 #: Names of glyph anchors specified by the SMuFL standard.
 ANCHOR_NAMES: set[str] = {
@@ -133,7 +142,7 @@ class Smufl(BaseObject):
         if name is None:
             return None
 
-        normalizedName = normalizers.normalizeSmuflName(name)
+        normalizedName = normalizers.normalizeSmuflName(name, "Smufl.name")
 
         if self.font is None or self.names is None or normalizedName not in self.names:
             return None
@@ -227,12 +236,12 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.naked().get("com.smufolib.designSize", None)
+        return self.font.lib.naked().get(DESIGN_SIZE_LIB_KEY, None)
 
     @designSize.setter
     def designSize(self, value: int | None) -> None:
-        self._updateFontLib(
-            "com.smufolib.designSize", normalizers.normalizeDesignSize(value)
+        _lib.updateLibSubdict(
+            self.font, DESIGN_SIZE_LIB_KEY, normalizers.normalizeDesignSize(value)
         )
 
     @property
@@ -275,21 +284,13 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return None
-        return self.font.lib.naked().get("com.smufolib.sizeRange", None)
+        return self.font.lib.naked().get(SIZE_RANGE_LIB_KEY, None)
 
     @sizeRange.setter
     def sizeRange(self, value: tuple[int, int] | None) -> None:
-        self._updateFontLib(
-            "com.smufolib.sizeRange", normalizers.normalizeSizeRange(value)
+        _lib.updateLibSubdict(
+            self.font, SIZE_RANGE_LIB_KEY, normalizers.normalizeSizeRange(value)
         )
-
-    def _updateFontLib(self, key: str, value: Any) -> None:
-        # Common font metadata setter.
-        if self.font is not None:
-            if value is None:
-                self.font.lib.naked().pop(key, None)
-            else:
-                self.font.lib.naked()[key] = value
 
     # --------------
     # Glyph metadata
@@ -491,6 +492,74 @@ class Smufl(BaseObject):
 
     # Ranges
 
+    def newRange(
+        self,
+        name: str,
+        start: int,
+        end: int,
+        description: str,
+        overrideExisting=False,
+    ) -> None:
+        """Add SMuFL range to font.
+
+        This method defines a SMuFL range in the font's metadata using a start and end
+        glyph (by name or codepoint). The `glyphs` key in the resulting metadata is
+        computed dynamically and reflects the current glyphs in the font that fall
+        within the specified range. It will update automatically as glyphs are added
+        or removed.
+
+
+        :param name: A unique identifier for the range.
+        :param start: The starting unicode codepoint of the range.
+        :param end: The ending unicode codepoint of the range.
+        :param description: A human-readable description of the range.
+        :param overrideExisting: Whether to replace an existing range if any part of the
+            new range overlap with it. Defaults to :obj:`False`.
+        :raises ValueError: If `start` or `end` partially or completely overlap
+            with an existing range when `overrideExisting` is :obj:`False`.
+
+
+        """
+        normalizedName = normalizers.normalizeSmuflName(name, "Range.name")
+        normalizedDescription = normalizers.normalizeDescription(
+            description, "Range.description"
+        )
+        if normalizedName is None:
+            return
+
+        range_: dict[str, dict[str, str | int | list[str] | None]] = {
+            normalizedName: {
+                "description": normalizedDescription,
+                "range_start": start,
+                "range_end": end,
+            }
+        }
+        if self.font is not None:
+            if self.ranges and (
+                any(
+                    self._hasOverlap((start, end), (r.start, r.end))
+                    for r in self.ranges
+                    if r.start and r.end
+                )
+                and overrideExisting is False
+            ):
+                raise ValueError(
+                    error.generateErrorMessage(
+                        "overlappingRange",
+                        string="Set overrideExisting=True to replace",
+                        name=name,
+                        start=converters.toUniHex(start),
+                        end=converters.toUniHex(end),
+                    )
+                )
+            glyphs: list[str] = [
+                g.smufl.name
+                for g in self.font
+                if g.smufl.name and start <= g.unicode <= end
+            ]
+            range_[normalizedName]["glyphs"] = glyphs
+            _lib.updateLibSubdict(self.font, RANGES_LIB_KEY, range_)
+
     @property
     def ranges(self) -> tuple[Range, ...] | None:
         """SMuFL ranges covered by font or glyph.
@@ -521,21 +590,29 @@ class Smufl(BaseObject):
         if self.font is None:
             return None
 
-        if self._glyph is None:
-            return self._getFontRanges()
-        return (Range(self),)
+        if self._glyph is not None:
+            internalData = _lib.getLibSubdict(self.font, RANGES_LIB_KEY)
+            if internalData:
+                for data in internalData.values():
+                    if (
+                        data.get("range_start")
+                        <= self._glyph.unicode
+                        <= data.get("range_end")
+                    ):
+                        return (Range(self, internal=True),)
+            return (Range(self),)
+        return self._collectAllRanges()
 
-    def _getFontRanges(self) -> tuple[Range, ...] | None:
+    def _getRangesFromMetadata(self, metadata, internal=False) -> list[Range]:
         if (
-            self._font is None
+            self.font is None
             or self.names is None
-            or METADATA is None
-            or isinstance(METADATA, str)
+            or metadata is None
+            or isinstance(metadata, str)
         ):
-            return None
-
+            return []
         ranges = []
-        for data in METADATA.values():
+        for data in metadata.values():
             match = next(
                 (
                     self.names[smuflName]
@@ -545,9 +622,45 @@ class Smufl(BaseObject):
                 None,
             )
             if match:
-                ranges.append(Range(self._font[match].smufl))
+                ranges.append(Range(self.font[match].smufl, internal=internal))
 
-        return tuple(ranges)
+        return ranges
+
+    def _collectAllRanges(self) -> tuple[Range, ...]:
+        internal = (
+            self._getRangesFromMetadata(
+                _lib.getLibSubdict(self.font, RANGES_LIB_KEY), internal=True
+            )
+            or []
+        )
+        external = self._getRangesFromMetadata(METADATA) or []
+        internalSpans = [
+            (r.start, r.end)
+            for r in internal
+            if r.start is not None and r.end is not None
+        ]
+        nonConflictingExternal = [
+            r
+            for r in external
+            if r.start is not None
+            and r.end is not None
+            and not any(
+                self._hasOverlap((r.start, r.end), (iStart, iEnd))
+                for iStart, iEnd in internalSpans
+            )
+        ]
+        return tuple(
+            sorted(
+                internal + nonConflictingExternal,
+                key=lambda r: (r.start is None, r.start),
+            )
+        )
+
+    @staticmethod
+    def _hasOverlap(range1: tuple[int, int], range2: tuple[int, int]) -> bool:
+        start1, end1 = range1
+        start2, end2 = range2
+        return not (end1 < start2 or start1 > end2)
 
     # Anchors
 
@@ -766,18 +879,18 @@ class Smufl(BaseObject):
         glyph = self._requireGlyphAccess("classes")
         if glyph is None:
             return None
-        return tuple(glyph.lib.naked().get("com.smufolib.classes", ()))
+        return tuple(glyph.lib.naked().get(CLASSES_LIB_KEY, ()))
 
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._requireGlyphAccess("classes")
-        self._updateGlyphLib(
-            "com.smufolib.classes", normalizers.normalizeClasses(value)
+        _lib.updateLibSubdict(
+            self.glyph, CLASSES_LIB_KEY, normalizers.normalizeClasses(value)
         )
 
     @property
     def description(self) -> str | None:
-        """SMuFL-specific glyph description.
+        """SMuFL-specific human-readable glyph description.
 
         :raises AttributeError: If attempting to access attribute from font.
 
@@ -792,13 +905,15 @@ class Smufl(BaseObject):
         glyph = self._requireGlyphAccess("description")
         if glyph is None:
             return None
-        return glyph.lib.naked().get("com.smufolib.description", None)
+        return glyph.lib.naked().get(DESCRIPTION_LIB_KEY, None)
 
     @description.setter
     def description(self, value: str | None) -> None:
         self._requireGlyphAccess("description")
-        self._updateGlyphLib(
-            "com.smufolib.description", normalizers.normalizeDescription(value)
+        _lib.updateLibSubdict(
+            self.glyph,
+            DESCRIPTION_LIB_KEY,
+            normalizers.normalizeDescription(value, "Smufl.description"),
         )
 
     @property
@@ -830,7 +945,7 @@ class Smufl(BaseObject):
 
         if self.glyph is None:
             return self.font.info.naked().familyName
-        return self.glyph.lib.naked().get("com.smufolib.name", None)
+        return self.glyph.lib.naked().get(NAME_LIB_KEY, None)
 
     @name.setter
     def name(self, value: str | None) -> None:
@@ -839,47 +954,41 @@ class Smufl(BaseObject):
             if self.glyph is None:
                 self.font.info.naked().familyName = value
             else:
-                self._updateNames(normalizers.normalizeSmuflName(value))
-                self._updateGlyphLib(
-                    "com.smufolib.name", normalizers.normalizeSmuflName(value)
+                self._updateNames(normalizers.normalizeSmuflName(value, "Smufl.name"))
+                _lib.updateLibSubdict(
+                    self.glyph,
+                    NAME_LIB_KEY,
+                    normalizers.normalizeSmuflName(value, "Smufl.name"),
                 )
 
     @property
     def names(self) -> dict[str, str] | None:
         """Mapping of canonical SMuFL names to corresponding glyph names.
 
-        This property is read-only. It's content is updated through the
+        This property is read-only. Its content is updated through the
         :attr:`.Smufl.name` and :attr:`Glyph.name` attributes.
 
         """
-        if self.font is None:
-            return None
-        return self.font.lib.naked().get("com.smufolib.names")
+        return _lib.getLibSubdict(self.font, NAMES_LIB_KEY)
 
     @names.setter
     def names(self, value: dict[str, str] | None) -> None:
-        self._updateFontLib("com.smufolib.names", value)
-
-    def _updateGlyphLib(self, key: str, value: Any) -> None:
-        if self._glyph is not None:
-            if not value:
-                if key in self._glyph.lib.naked():
-                    del self._glyph.lib.naked()[key]
-            else:
-                self._glyph.lib.naked()[key] = value
+        _lib.updateLibSubdict(self.font, NAMES_LIB_KEY, value)
 
     def _clearNames(self) -> None:
-        if self.font is not None:
-            if self.names and self.name:
+        if self.font is not None and self.names is not None:
+            if self.name:
                 self.names.pop(self.name, None)
             if not self.names:
-                self.font.lib.naked().pop("com.smufolib.names", None)
+                self.font.lib.naked().pop(NAMES_LIB_KEY, None)
 
     def _addNames(self, value: Any) -> None:
-        if self.names is None:
-            self.names = {}
-        if self._glyph is not None:
-            if value in self.names and self.names[value] != self._glyph.name:
+        if self._glyph is not None and self.names is not None:
+            if (
+                self.names
+                and value in self.names
+                and self.names[value] != self._glyph.name
+            ):
                 raise ValueError(
                     error.generateErrorMessage(
                         "duplicateAttributeValue",
@@ -1200,7 +1309,7 @@ class Smufl(BaseObject):
         """
         if self.font is None:
             return False
-        return self.font.lib.naked().get("com.smufolib.spaces", False)
+        return self.font.lib.naked().get(SPACES_LIB_KEY, False)
 
     @spaces.setter
     def spaces(self, value):
@@ -1215,9 +1324,9 @@ class Smufl(BaseObject):
                 )
             value = normalizers.normalizeBoolean(value)
             if value:
-                self.font.lib.naked()["com.smufolib.spaces"] = True
+                self.font.lib.naked()[SPACES_LIB_KEY] = True
             else:
-                self.font.lib.naked().pop("com.smufolib.spaces", False)
+                self.font.lib.naked().pop(SPACES_LIB_KEY, False)
 
     # ------------------------
     # Override from BaseObject
