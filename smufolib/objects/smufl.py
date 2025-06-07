@@ -4,6 +4,7 @@ from typing import TYPE_CHECKING, Any
 import re
 
 from fontParts.base.base import BaseObject
+from smufolib import config
 from smufolib.objects.range import Range, METADATA, RANGES_LIB_KEY
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib.objects import _lib
@@ -13,6 +14,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
     from smufolib.objects.font import Font
     from smufolib.objects.glyph import Glyph
+
+CONFIG = config.load()
 
 CLASSES_LIB_KEY = "com.smufolib.classes"
 DESCRIPTION_LIB_KEY = "com.smufolib.description"
@@ -520,12 +523,21 @@ class Smufl(BaseObject):
 
 
         """
+        if not CONFIG["range"]["editable"]:
+            raise PermissionError(
+                error.generateErrorMessage(
+                    "permissionError",
+                    context="Editing range data is disallowed in configuration.",
+                )
+            )
         normalizedName = normalizers.normalizeSmuflName(name, "Range.name")
         normalizedDescription = normalizers.normalizeDescription(
             description, "Range.description"
         )
-        if normalizedName is None:
-            return
+        if not isinstance(normalizedName, str):
+            raise ValueError(
+                error.generateTypeError(validTypes=str, objectName="name", value=name)
+            )
 
         range_: dict[str, dict[str, str | int | list[str] | None]] = {
             normalizedName: {
@@ -599,11 +611,11 @@ class Smufl(BaseObject):
                         <= self._glyph.unicode
                         <= data.get("range_end")
                     ):
-                        return (Range(self, internal=True),)
-            return (Range(self),)
+                        return (Range(self, _internal=True),)
+            return (Range(self, _internal=False),)
         return self._collectAllRanges()
 
-    def _getRangesFromMetadata(self, metadata, internal=False) -> list[Range]:
+    def _getRangesFromMetadata(self, metadata, _internal=False) -> list[Range]:
         if (
             self.font is None
             or self.names is None
@@ -622,21 +634,21 @@ class Smufl(BaseObject):
                 None,
             )
             if match:
-                ranges.append(Range(self.font[match].smufl, internal=internal))
+                ranges.append(Range(self.font[match].smufl, _internal=_internal))
 
         return ranges
 
     def _collectAllRanges(self) -> tuple[Range, ...]:
-        internal = (
+        _internal = (
             self._getRangesFromMetadata(
-                _lib.getLibSubdict(self.font, RANGES_LIB_KEY), internal=True
+                _lib.getLibSubdict(self.font, RANGES_LIB_KEY), _internal=True
             )
             or []
         )
         external = self._getRangesFromMetadata(METADATA) or []
         internalSpans = [
             (r.start, r.end)
-            for r in internal
+            for r in _internal
             if r.start is not None and r.end is not None
         ]
         nonConflictingExternal = [
@@ -651,7 +663,7 @@ class Smufl(BaseObject):
         ]
         return tuple(
             sorted(
-                internal + nonConflictingExternal,
+                _internal + nonConflictingExternal,
                 key=lambda r: (r.start is None, r.start),
             )
         )

@@ -48,6 +48,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "notImplementedError": "The {objectName!r} subclass does not implement this method",
     "numericValue": "The value for {objectName!r} must be numeric",
     "overlappingRange": "Range '{name}' ({start}-{end}) overlaps with an existing range",
+    "permissionError": "Permission denied: {context}",
     "recommendScript": "Consider running the script {scriptName!r} before the current process",
     "serializationError": "Error serializing JSON data or writing to the file",
     "singleItem": "{objectName!r} must contain a value pair",
