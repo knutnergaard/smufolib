@@ -38,7 +38,7 @@ from fontParts.base.normalizers import normalizeColor
 from fontParts.base.normalizers import normalizeVisualRounding
 from fontParts.base.normalizers import normalizeGlyph
 
-from smufolib.utils import error
+from smufolib.utils import error, converters
 from smufolib.utils._annotations import (
     EngravingDefaultsInput,
     EngravingDefaultsReturn,
@@ -100,7 +100,7 @@ def normalizeClasses(value: CollectionType[str] | None) -> tuple[str, ...]:
     for val in value:
         error.validateType(val, str, objectName, items=True)
         for v in val.split("_"):
-            normalizeSmuflName(v, items=True)
+            normalizeSmuflName(v, "Smufl.classes", items=True)
 
     duplicates = {v for v in value if value.count(v) > 1}
     if len(duplicates) != 0:
@@ -111,10 +111,11 @@ def normalizeClasses(value: CollectionType[str] | None) -> tuple[str, ...]:
     return tuple(v for v in value if v)
 
 
-def normalizeDescription(value: str | None) -> str | None:
-    """Normalize smufl descriptions.
+def normalizeDescription(value: str | None, attributeName: str) -> str | None:
+    """Normalize human-readable smufl descriptions.
 
     :param value: The value to normalize.
+    :param attributeName: The name of the attribute to normalize.
     :raises TypeError: If `value` is not an accepted type.
     :raises ValueError: If `value` is an empty string.
 
@@ -122,11 +123,11 @@ def normalizeDescription(value: str | None) -> str | None:
     if value is None:
         return None
 
-    error.validateType(value, (str, type(None)), "Smufl.description")
+    error.validateType(value, (str, type(None)), attributeName)
 
     if len(value) == 0:
         raise ValueError(
-            error.generateErrorMessage("emptyValue", objectName="Smufl.description")
+            error.generateErrorMessage("emptyValue", objectName=attributeName)
         )
 
     return value
@@ -205,10 +206,13 @@ def normalizeSmufl(value: Smufl) -> Smufl:
     return normalizeInternalObjectType(value, Smufl, "Smufl")
 
 
-def normalizeSmuflName(value: str | None, items: bool = False) -> str | None:
-    """Normalize smufl names.
+def normalizeSmuflName(
+    value: str | None, attributeName: str, items: bool = False
+) -> str | None:
+    """Normalize cannonical SMuFL names of glyphs, classes and ranges.
 
     :param value: The value to normalize.
+    :param attributeName: The name of the attribute to normalize.
     :param items: Whether to normalize `value` items rather than `value`
         itself. Defaults to :obj:`False`.
     :raises TypeError: If `value` is not an accepted type.
@@ -221,28 +225,24 @@ def normalizeSmuflName(value: str | None, items: bool = False) -> str | None:
     if value is None:
         return None
 
-    objectName = "Smufl.name"
-    if items:
-        objectName = "Smufl.classes"
-
-    error.validateType(value, (str, type(None)), objectName)
+    error.validateType(value, (str, type(None)), attributeName)
 
     if not value:
         template = "emptyValueItems" if items else "emptyValue"
-        raise ValueError(error.generateErrorMessage(template, objectName=objectName))
+        raise ValueError(error.generateErrorMessage(template, objectName=attributeName))
 
     for val in value:
         if not val.isalnum():
             template = "alphanumericValueItems" if items else "alphanumericValue"
             raise ValueError(
-                error.generateErrorMessage(template, objectName=objectName)
+                error.generateErrorMessage(template, objectName=attributeName)
             )
 
     if value[0].isupper():
         template = (
             "invalidInitialItemsCharacter" if items else "invalidInitialCharacter"
         )
-        raise ValueError(error.generateErrorMessage(template, objectName=objectName))
+        raise ValueError(error.generateErrorMessage(template, objectName=attributeName))
 
     return value
 
