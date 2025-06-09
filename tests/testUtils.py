@@ -17,7 +17,7 @@ if TYPE_CHECKING:
 
 
 def generateGlyph(font: Font, name: str, **kwargs: Any) -> Glyph:
-    glyph = font.newGlyph(name)
+    glyph = font[name] if name in font else font.newGlyph(name)
     glyph.unicode = kwargs.get("unicode")
     for attr, value in kwargs.items():
         if value is None:
