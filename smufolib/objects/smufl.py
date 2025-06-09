@@ -16,6 +16,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.glyph import Glyph
 
 CONFIG = config.load()
+EDITABLE = CONFIG["range"]["editable"]
 
 CLASSES_LIB_KEY = "com.smufolib.classes"
 DESCRIPTION_LIB_KEY = "com.smufolib.description"
@@ -264,8 +265,8 @@ class Smufl(BaseObject):
             raise AttributeError(
                 error.generateErrorMessage(
                     "contextualAttributeError",
-                    attribute=f"{self.__class__.__name__}.engravingDefaults",
-                    context=f"'{self.__class__.__name__}.font' is None",
+                    attribute="Smufl.engravingDefaults",
+                    context="'Smufl.font' is None",
                 )
             )
         return EngravingDefaults(self)
@@ -523,21 +524,25 @@ class Smufl(BaseObject):
 
 
         """
-        if not CONFIG["range"]["editable"]:
+        if self.font is None:
+            return
+
+        if not EDITABLE:
             raise PermissionError(
                 error.generateErrorMessage(
                     "permissionError",
                     context="Editing range data is disallowed in configuration.",
                 )
             )
+
         normalizedName = normalizers.normalizeSmuflName(name, "Range.name")
+        if normalizedName is None:
+            raise TypeError(
+                error.generateTypeError(validTypes=str, objectName="name", value=name)
+            )
         normalizedDescription = normalizers.normalizeDescription(
             description, "Range.description"
         )
-        if not isinstance(normalizedName, str):
-            raise ValueError(
-                error.generateTypeError(validTypes=str, objectName="name", value=name)
-            )
 
         range_: dict[str, dict[str, str | int | list[str] | None]] = {
             normalizedName: {
@@ -546,31 +551,31 @@ class Smufl(BaseObject):
                 "range_end": end,
             }
         }
-        if self.font is not None:
-            if self.ranges and (
-                any(
-                    self._hasOverlap((start, end), (r.start, r.end))
-                    for r in self.ranges
-                    if r.start and r.end
+
+        if self.ranges and (
+            any(
+                self._hasOverlap((start, end), (r.start, r.end))
+                for r in self.ranges
+                if r.start and r.end
+            )
+            and overrideExisting is False
+        ):
+            raise ValueError(
+                error.generateErrorMessage(
+                    "overlappingRange",
+                    string="Set overrideExisting=True to replace",
+                    name=name,
+                    start=converters.toUniHex(start),
+                    end=converters.toUniHex(end),
                 )
-                and overrideExisting is False
-            ):
-                raise ValueError(
-                    error.generateErrorMessage(
-                        "overlappingRange",
-                        string="Set overrideExisting=True to replace",
-                        name=name,
-                        start=converters.toUniHex(start),
-                        end=converters.toUniHex(end),
-                    )
-                )
-            glyphs: list[str] = [
-                g.smufl.name
-                for g in self.font
-                if g.smufl.name and start <= g.unicode <= end
-            ]
-            range_[normalizedName]["glyphs"] = glyphs
-            _lib.updateLibSubdict(self.font, RANGES_LIB_KEY, range_)
+            )
+        glyphs: list[str] = [
+            g.smufl.name
+            for g in self.font
+            if g.smufl.name and start <= g.unicode <= end
+        ]
+        range_[normalizedName]["glyphs"] = glyphs
+        _lib.updateLibSubdict(self.font, RANGES_LIB_KEY, range_)
 
     @property
     def ranges(self) -> tuple[Range, ...] | None:
@@ -612,7 +617,8 @@ class Smufl(BaseObject):
                         <= data.get("range_end")
                     ):
                         return (Range(self, _internal=True),)
-            return (Range(self, _internal=False),)
+            range_ = Range(self, _internal=False)
+            return (range_,) if range_ else ()
         return self._collectAllRanges()
 
     def _getRangesFromMetadata(self, metadata, _internal=False) -> list[Range]:
@@ -966,11 +972,13 @@ class Smufl(BaseObject):
             if self.glyph is None:
                 self.font.info.naked().familyName = value
             else:
-                self._updateNames(normalizers.normalizeSmuflName(value, "Smufl.name"))
+                normalizedName = normalizers.normalizeSmuflName(value, "Smufl.name")
+                self._updateRange(normalizedName)
+                self._updateNames(normalizedName)
                 _lib.updateLibSubdict(
                     self.glyph,
                     NAME_LIB_KEY,
-                    normalizers.normalizeSmuflName(value, "Smufl.name"),
+                    normalizedName,
                 )
 
     @property
@@ -1024,6 +1032,20 @@ class Smufl(BaseObject):
             self._clearNames()
         else:
             self._addNames(value)
+
+    def _updateRange(self, value: str | None) -> None:
+        # Update name in range.glyphs.
+        if not self.font or not self.ranges or value is None:
+            return
+
+        range_ = self.ranges[0]
+        if not range_._internal:
+            return
+
+        glyphs = self.font.lib[RANGES_LIB_KEY][range_.name]["glyphs"]
+        if self.name in glyphs:
+            glyphs.remove(self.name)
+        glyphs.append(value)
 
     # ----------
     # Predicates
