@@ -13,7 +13,6 @@ def getLibSubdict(obj: Font | Glyph | None, key: str) -> dict | None:
 
 
 def updateLibSubdict(obj: Font | Glyph | None, libKey: str, value: Any) -> None:
-    # Common font metadata setter.
     if obj is None:
         return
     lib = obj.lib.naked()
@@ -27,12 +26,11 @@ def updateLibSubdict(obj: Font | Glyph | None, libKey: str, value: Any) -> None:
 def updateLibSubdictValue(
     obj: Font | Glyph | None, libKey: str, valueKey: str, value: Any
 ) -> None:
-    # Common font metadata setter.
     if obj is None:
         return
     lib = obj.lib.naked()
     subdict = lib.get(libKey, {})
-    if value is None:
+    if not value:
         subdict.pop(valueKey, None)
         if libKey in lib and not lib[libKey]:
             del lib[libKey]
