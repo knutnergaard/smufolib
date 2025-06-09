@@ -65,15 +65,23 @@ class Range:
 
     def __repr__(self):
         return (
-            f"<{self.__class__.__name__} '{self.name}' "
+            f"<{self.__class__.__name__} {self.name!r} "
             f"({self.strStart}-{self.strEnd}) editable={EDITABLE} at {id(self)}>"
         )
 
     def __bool__(self):
-        return bool(self.name)
+        return self.name is not None and self.start is not None and self.end is not None
+
+    def __eq__(self, other):
+        return (
+            isinstance(other, Range)
+            and self.name == other.name
+            and self.start == other.start
+            and self.end == other.end
+        )
 
     def __hash__(self):
-        return hash((self.name, self.start, self.end, self.description))
+        return hash((self.name, self.start, self.end))
 
     # -------
     # Parents
@@ -256,12 +264,10 @@ class Range:
                 )
             if key in {"range_start", "range_end"}:
                 value = attributes.get(key)
-                if expectedType is int:
-                    if isinstance(value, str):
-                        value = converters.toDecimal(value)
-                elif expectedType is str:
-                    if isinstance(value, int):
-                        value = converters.toUniHex(value)
-        if isinstance(value, expectedType):
-            return value
+                if expectedType is int and isinstance(value, str):
+                    value = converters.toDecimal(value)
+                elif expectedType is str and isinstance(value, int):
+                    value = converters.toUniHex(value)
+            if isinstance(value, expectedType):
+                return value
         return None
