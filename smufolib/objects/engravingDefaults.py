@@ -5,6 +5,7 @@ from collections.abc import Callable
 
 from fontParts.base.base import BaseObject
 from smufolib import config
+from smufolib.objects import _lib
 from smufolib.utils import error, normalizers
 from smufolib.utils.rulers import DISPATCHER, ENGRAVING_DEFAULTS_MAPPING
 from smufolib.utils._annotations import (
@@ -24,6 +25,7 @@ EngravingDefaultsDictInput = dict[str, EngravingDefaultsInput | None]
 EngravingDefaultsDictReturn = dict[str, EngravingDefaultsReturn | None]
 
 AUTO = config.load()["engravingDefaults"]["auto"]
+ENGRAVING_DEFAULTS_LIB_KEY = "com.smufolib.engravingDefaults"
 
 #: Names  and descriptions of engraving defaults as specified in the SMuFL standard.
 ENGRAVING_DEFAULTS_ATTRIBUTES: dict[str, str] = {
@@ -262,7 +264,7 @@ class EngravingDefaults(BaseObject):
 
         """
         if self.font is not None:
-            self.font.lib.naked().pop("com.smufolib.engravingDefaults", None)
+            self.font.lib.naked().pop(ENGRAVING_DEFAULTS_LIB_KEY, None)
 
     def items(self) -> EngravingDefaultsDictReturn:
         """Return :class:`dict` of all available settings and their values.
@@ -330,8 +332,8 @@ class EngravingDefaults(BaseObject):
         if not normalizedOther or self.font is None:
             return
 
-        if "com.smufolib.engravingDefaults" not in self.font.lib:
-            self.font.lib["com.smufolib.engravingDefaults"] = {}
+        if ENGRAVING_DEFAULTS_LIB_KEY not in self.font.lib:
+            self.font.lib[ENGRAVING_DEFAULTS_LIB_KEY] = {}
 
         for key, value in normalizedOther.items():
             if key not in self.keys():
@@ -350,7 +352,7 @@ class EngravingDefaults(BaseObject):
                 and self.spaces
             ):
                 normalizedValue = self._smufl.toUnits(normalizedValue)
-            self.font.lib["com.smufolib.engravingDefaults"][key] = normalizedValue
+            self.font.lib[ENGRAVING_DEFAULTS_LIB_KEY][key] = normalizedValue
 
     def _mergeOthers(
         self,
@@ -404,22 +406,23 @@ class EngravingDefaults(BaseObject):
 
     # All other properties declared dynamically below
 
-    def _getValue(self, name: str) -> EngravingDefaultsReturn | None:
+    def _getValue(self, key: str) -> EngravingDefaultsReturn | None:
         # Common settings property getter.
-        if not self._libDict and not self._auto:
+        libDict = _lib.getLibSubdict(self.font, ENGRAVING_DEFAULTS_LIB_KEY)
+        if libDict is None or not libDict and not self._auto:
             return None
 
-        value = self._libDict.get(name, None)
-        if name == "textFontFamily":
-            value = self._libDict.get(name, ())
+        value = libDict.get(key, None)
+        if key == "textFontFamily":
+            value = libDict.get(key, ())
 
         if self.font and value is None and self._auto:
-            glyphName = ENGRAVING_DEFAULTS_MAPPING[name]["glyph"]
+            glyphName = ENGRAVING_DEFAULTS_MAPPING[key]["glyph"]
             try:
                 glyph = self.font[glyphName]
             except KeyError:
                 return None
-            rulerName = ENGRAVING_DEFAULTS_MAPPING[name]["ruler"]
+            rulerName = ENGRAVING_DEFAULTS_MAPPING[key]["ruler"]
             ruler: Callable[["Glyph"], int | float | None] = DISPATCHER[rulerName]
             value = ruler(glyph)
 
@@ -427,43 +430,24 @@ class EngravingDefaults(BaseObject):
             return self.font.smufl.toSpaces(value)
         return value
 
-    def _setValue(self, name: str, value: EngravingDefaultsInput | None) -> None:
+    def _setValue(self, key: str, value: EngravingDefaultsInput | None) -> None:
         # Common settings property setter.
         # Keeps dynamic dict of settings in font.lib().
 
         if self.font is None:
             return
 
-        normalizedValue = normalizers.normalizeEngravingDefaultsAttr(name, value)
-        libDict = self._libDict
+        normalized = normalizers.normalizeEngravingDefaultsAttr(key, value)
 
-        if not normalizedValue:
-            libDict.pop(name, None)
+        if self.spaces and isinstance(normalized, (int, float)):
+            normalized = self.font.smufl.toUnits(normalized)
 
-            if not libDict:
-                self.font.lib.pop("com.smufolib.engravingDefaults", None)
-            else:
-                self._libDict = libDict
-
-        else:
-            if self.spaces and isinstance(normalizedValue, (int, float)):
-                normalizedValue = self.font.smufl.toUnits(normalizedValue)
-
-            self._libDict[name] = normalizedValue
-            self._libDict = libDict
-
-    @property
-    def _libDict(self) -> EngravingDefaultsDictReturn:
-        # Dynamic dict in font.lib.naked().
-        if self.font is None:
-            return {}
-        lib = self.font.lib.naked()
-        return lib.setdefault("com.smufolib.engravingDefaults", {})
-
-    @_libDict.setter
-    def _libDict(self, value: EngravingDefaultsDictInput) -> None:
-        if self.font is not None:
-            self.font.lib.naked()["com.smufolib.engravingDefaults"] = value
+        _lib.updateLibSubdictValue(
+            self.font,
+            ENGRAVING_DEFAULTS_LIB_KEY,
+            key,
+            normalized,
+        )
 
     # -----------------------------
     # Normalization and Measurement
