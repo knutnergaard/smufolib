@@ -51,7 +51,7 @@ class Normalizers(unittest.TestCase):
 
     def test_normalizeDescription_with_invalid_value(self):
         with self.assertRaises(ValueError):
-            normalizeDescription("")
+            normalizeDescription("", "")
 
     def test_normalizeDesignSize_with_invalid_type(self):
         with self.assertRaises(TypeError):
@@ -79,12 +79,12 @@ class Normalizers(unittest.TestCase):
 
     def test_normalizeSmuflName_with_invalid_type(self):
         with self.assertRaises(TypeError):
-            normalizeSmuflName(0)
+            normalizeSmuflName(0, "")
 
     def test_normalizeSmuflName_with_invalid_values(self):
         for name in self.faultyNames:
             with self.assertRaises(ValueError):
-                normalizeSmuflName(name)
+                normalizeSmuflName(name, "")
 
     def test_normalizeEngravingDefaults_with_invalid_value(self):
         with self.assertRaises(ValueError):

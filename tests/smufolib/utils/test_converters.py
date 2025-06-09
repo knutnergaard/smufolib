@@ -40,7 +40,8 @@ class Converters(unittest.TestCase):
 
     def test_toUniHex(self):
         self.assertEqual(toUniHex(57344), "U+E000")
-        with self.assertRaises(TypeError):
+        self.assertEqual(toUniHex("uniE000"), "U+E000")
+        with self.assertRaises(ValueError):
             toUniHex("57344")
         with self.assertRaises(ValueError):
             toUniHex(2000000)

@@ -1,6 +1,7 @@
+import copy
 import unittest
 import smufolib
-import smufolib.objects
+from smufolib.objects.range import RANGES_LIB_KEY
 from tests.testUtils import generateGlyph
 
 
@@ -12,14 +13,11 @@ class TestRange(unittest.TestCase):
         self.smufl, _ = self.objectGenerator("smufl")
         self.otherSmufl, _ = self.objectGenerator("smufl")
         self.layer, _ = self.objectGenerator("layer")
-        self.range, _ = self.objectGenerator("range")
-        self.otherRange, _ = self.objectGenerator("range")
 
         # pylint: enable=E1101
         # Create layer and assign to font
         self.layer = self.font.newLayer("testLayer")
         self.font.defaultLayer = self.layer
-        self.range.smufl = self.smufl
         self.glyph1 = generateGlyph(
             self.font, "uniE080", unicode=0xE080, smuflName="timeSig0"
         )
@@ -27,7 +25,7 @@ class TestRange(unittest.TestCase):
             self.font, "uniE081", unicode=0xE081, smuflName="timeSig1"
         )
         self.smufl.glyph = self.glyph1
-
+        self._originalMetadata = smufolib.objects.range.METADATA
         smufolib.objects.range.METADATA = {
             "timeSignatures": {
                 "description": "Time signatures",
@@ -36,21 +34,31 @@ class TestRange(unittest.TestCase):
                 "range_end": "U+E09F",
             }
         }
+        self.addCleanup(self._restoreMetadata)
+        self.range = self.glyph1.smufl.ranges[0]
+
+    def _restoreMetadata(self):
+        smufolib.objects.range.METADATA = self._originalMetadata
 
     def test_repr(self):
         expected_repr = (
-            f"<{self.range.__class__.__name__} '{self.range.name}' "
-            f"('{self.range.start}-{self.range.end}') at {id(self.range)}>"
+            f"<{self.range.__class__.__name__} {self.range.name!r} "
+            f"({self.range.strStart}-{self.range.strEnd}) editable=False at {id(self.range)}>"
         )
         self.assertEqual(repr(self.range), expected_repr)
 
+    def test_eq_hash(self):
+        range1 = self.range
+        range2 = copy.copy(range1)
+        self.assertEqual(range1, range2)
+        self.assertEqual(hash(range1), hash(range2))
+
     def test_smufl(self):
         self.range.smufl = None
+        self.range.smufl = self.smufl
         self.assertEqual(self.range.smufl, self.smufl)
         self.range.smufl = self.otherSmufl
         self.assertEqual(self.range.smufl, self.otherSmufl)
-        self.assertIsNone(self.otherRange.smufl)
-        self.range.smufl = None
 
     def test_glyph(self):
         self.assertEqual(self.range.glyph, self.glyph1)
@@ -69,33 +77,47 @@ class TestRange(unittest.TestCase):
 
     def test_name(self):
         self.assertEqual(self.range.name, "timeSignatures")
-        smufolib.objects.range.METADATA[1] = smufolib.objects.range.METADATA[
-            "timeSignatures"
-        ]
         del smufolib.objects.range.METADATA["timeSignatures"]
         self.assertIsNone(self.range.name)
 
     def test_description(self):
         self.assertEqual(self.range.description, "Time signatures")
-        smufolib.objects.range.METADATA["timeSignatures"]["description"] = 1
+        smufolib.objects.range.METADATA["timeSignatures"]["description"] = 1.0
         self.assertIsNone(self.range.description)
 
+    def test_strStart(self):
+        self.assertEqual(self.range.strStart, "U+E080")
+        smufolib.objects.range.METADATA["timeSignatures"]["range_start"] = 1.0
+        self.assertIsNone(self.range.strStart)
+
+    def test_strEnd(self):
+        self.assertEqual(self.range.strEnd, "U+E09F")
+        smufolib.objects.range.METADATA["timeSignatures"]["range_end"] = 1.0
+        self.assertIsNone(self.range.strEnd)
+
     def test_start(self):
-        self.assertEqual(self.range.start, "U+E080")
-        smufolib.objects.range.METADATA["timeSignatures"]["range_start"] = 1
+        self.assertEqual(self.range.start, 0xE080)
+        smufolib.objects.range.METADATA["timeSignatures"]["range_start"] = 1.0
         self.assertIsNone(self.range.start)
 
     def test_end(self):
-        self.assertEqual(self.range.end, "U+E09F")
-        smufolib.objects.range.METADATA["timeSignatures"]["range_end"] = 1
+        self.assertEqual(self.range.end, 0xE09F)
+        smufolib.objects.range.METADATA["timeSignatures"]["range_end"] = 1.0
         self.assertIsNone(self.range.end)
 
     def test_glyphs(self):
         self.assertEqual(self.range.glyphs, (self.glyph1, self.glyph2))
         smufolib.objects.range.METADATA["timeSignatures"]["range_start"] = "U+E080"
-        smufolib.objects.range.METADATA["timeSignatures"]["glyphs"] = ()
-        self.assertEqual(self.range.glyphs, ())
+        smufolib.objects.range.METADATA["timeSignatures"]["glyphs"] = []
+        self.assertIsNone(self.range.glyphs)
 
     def test_getAttribute_without_metadata(self):
         smufolib.objects.range.METADATA = None
         self.assertIsNone(self.range.end)
+
+    def test_internal_metadata(self):
+        smufolib.objects.range.METADATA["timeSignatures"]["range_start"] = 0xE080
+        smufolib.objects.range.METADATA["timeSignatures"]["range_end"] = 0xE09F
+        self.font.lib[RANGES_LIB_KEY] = smufolib.objects.range.METADATA
+        self.assertEqual(self.range.strStart, "U+E080")
+        self.assertEqual(self.range.strEnd, "U+E09F")
