@@ -477,7 +477,7 @@ This section contains configuration for the :class:`.EngravingDefaults` class.
     :type: ``bool``
     :default: ``true``
 
-    Whether to automatically calculate engraving defaults automatically.
+    Whether to calculate engraving defaults automatically.
 
 ranges
 ------
