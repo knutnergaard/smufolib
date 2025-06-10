@@ -466,18 +466,50 @@ color.anchors
 engravingDefaults
 -----------------
 
-This section contains configuration for the :class:`~smufolib.objects.engravingDefaults.EngravingDefaults` class.
+This section contains configuration for the :class:`.EngravingDefaults` class.
 
 .. literalinclude:: ../../smufolib/smufolib.cfg
     :language: cfg
     :start-at: [engravingDefaults]
+    :end-before: [ranges]
 
 .. confval:: engravingDefaults.auto
     :type: ``bool``
     :default: ``true``
 
     Whether to automatically calculate engraving defaults automatically.
+
+ranges
+------
+
+This section contains configuration related to the functionality, generation and
+modification of :class:`.Range` objects.
+
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [ranges]
+    :end-before: [classes]
+
+.. confval:: ranges.editable
+    :type: ``bool``
+    :default: ``false``
+
+    Whether to allow creation or editing of glyph ranges.
+
+classes
+-------
+
+This section contains configuration related to :attr:`.Smufl.classes`.
+
+.. literalinclude:: ../../smufolib/smufolib.cfg
+    :language: cfg
+    :start-at: [classes]
+
+.. confval:: classes.strict
+    :type: ``bool``
+    :default: ``true``
     
+Whether to enforce SMuFL-specific :data:`.CLASS_NAMES` or allow custom names.
 
 .. envvar:: SMUFOLIB_CFG
 
