@@ -476,7 +476,7 @@ This section contains configuration for the :class:`~smufolib.objects.engravingD
     :type: ``bool``
     :default: ``true``
 
-    Whether to automatically calculate engraving defaults automatically.
+    Whether to calculate engraving defaults automatically.
     
 
 .. envvar:: SMUFOLIB_CFG
