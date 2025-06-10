@@ -1,6 +1,5 @@
 .. include:: ../README.rst
    :start-after: .. _installation:
-   :end-before: .. _running-scripts:
 
 First Steps
 ===========
