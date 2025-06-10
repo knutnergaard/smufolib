@@ -5,7 +5,6 @@ from typing import TYPE_CHECKING, TypeVar, Type
 from smufolib.request import Request
 from smufolib import config
 from smufolib.utils import converters, normalizers
-from smufolib.utils._annotations import CollectionType
 from smufolib.objects import _lib
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -15,7 +14,7 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.layer import Layer
 
 CONFIG = config.load()
-EDITABLE = editable = CONFIG["range"]["editable"]
+EDITABLE = editable = CONFIG["ranges"]["editable"]
 METADATA = Request.ranges()
 RANGES_LIB_KEY = "com.smufolib.ranges"
 
