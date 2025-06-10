@@ -16,8 +16,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.glyph import Glyph
 
 CONFIG = config.load()
-EDITABLE = CONFIG["range"]["editable"]
-
+EDITABLE = CONFIG["ranges"]["editable"]
+STRICT_CLASSES = CONFIG["classes"]["strict"]
 CLASSES_LIB_KEY = "com.smufolib.classes"
 DESCRIPTION_LIB_KEY = "com.smufolib.description"
 DESIGN_SIZE_LIB_KEY = "com.smufolib.designSize"
@@ -50,6 +50,82 @@ ANCHOR_NAMES: set[str] = {
     "repeatOffset",
     "noteheadOrigin",
     "opticalCenter",
+}
+
+#: Names of glyph classes included in the SMuFL specification.
+CLASS_NAMES: set[str] = {
+    "accidentals",
+    "accidentals24EDOArrows",
+    "accidentals53EDOTurkish",
+    "accidentals72EDOWyschnegradsky",
+    "accidentalsAEU",
+    "accidentalsArabic",
+    "accidentalsHelmholtzEllis",
+    "accidentalsJohnston",
+    "accidentalsPersian",
+    "accidentalsSagittalAthenian",
+    "accidentalsSagittalDiacritics",
+    "accidentalsSagittalMixed",
+    "accidentalsSagittalPromethean",
+    "accidentalsSagittalPure",
+    "accidentalsSagittalTrojan",
+    "accidentalsSims",
+    "accidentalsStandard",
+    "accidentalsSteinZimmermann",
+    "accidentalsStockhausen",
+    "articulations",
+    "articulationsAbove",
+    "articulationsBelow",
+    "combiningStaffPositions",
+    "clefs",
+    "clefsC",
+    "clefsF",
+    "clefsG",
+    "dynamics",
+    "forTextBasedApplications",
+    "multiGlyphForms",
+    "noteheads",
+    "noteheadSetCircled",
+    "noteheadSetCircleX",
+    "noteheadSetDefault",
+    "noteheadSetDiamond",
+    "noteheadSetDiamondOld",
+    "noteheadSetHeavyX",
+    "noteheadSetLargeArrowDown",
+    "noteheadSetLargeArrowUp",
+    "noteheadSetNamesPitch",
+    "noteheadSetNamesSolfege",
+    "noteheadSetPlus",
+    "noteheadSetRoundLarge",
+    "noteheadSetRoundSmall",
+    "noteheadSetSacredHarp",
+    "noteheadSetSlashed1",
+    "noteheadSetSlashed2",
+    "noteheadSetSlashHorizontalEnds",
+    "noteheadSetSlashVerticalEnds",
+    "noteheadSetSquare",
+    "noteheadSetTriangleDown",
+    "noteheadSetTriangleLeft",
+    "noteheadSetTriangleRight",
+    "noteheadSetTriangleUp",
+    "noteheadSetWithX",
+    "noteheadSetX",
+    "parenthesesNotehead",
+    "octaves",
+    "ornaments",
+    "pauses",
+    "pausesAbove",
+    "pausesBelow",
+    "rests",
+    "stemDecorations",
+    "wigglesArpeggiato",
+    "wigglesArpeggiatoDown",
+    "wigglesArpeggiatoUp",
+    "wigglesCircularMotion",
+    "wigglesQuasiRandom",
+    "wigglesTrill",
+    "wigglesVibrato",
+    "wigglesVibratoVariable",
 }
 
 
@@ -531,7 +607,7 @@ class Smufl(BaseObject):
             raise PermissionError(
                 error.generateErrorMessage(
                     "permissionError",
-                    context="Editing range data is disallowed in configuration.",
+                    context="Editing range data is disallowed in configuration",
                 )
             )
 
@@ -884,7 +960,12 @@ class Smufl(BaseObject):
     def classes(self) -> tuple[str, ...] | None:
         """SMuFL-specific class memberships.
 
+        If :confval:`classes.strict` is enabled, only SMuFL-specific class names are
+        allowed. See :data:`.CLASS_NAMES` for the full :class:`set` of specified names.
+
         :raises AttributeError: If attempting to access attribute from font.
+        :raises ValueError: If attempting to set a name not specified in
+            :data:`.CLASS_NAMES` when :confval:`classes.strict` is enabled.
 
         Example::
 
@@ -902,6 +983,17 @@ class Smufl(BaseObject):
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._requireGlyphAccess("classes")
+        if STRICT_CLASSES and value:
+            for item in value:
+                if item not in CLASS_NAMES:
+                    raise ValueError(
+                        error.generateErrorMessage(
+                            "itemsValueError",
+                            objectName="Smufl.classes",
+                            value=item,
+                            string="Non-SMuFL classes are disallowed in configuration",
+                        )
+                    )
         _lib.updateLibSubdict(
             self.glyph, CLASSES_LIB_KEY, normalizers.normalizeClasses(value)
         )
@@ -1035,7 +1127,7 @@ class Smufl(BaseObject):
 
     def _updateRange(self, value: str | None) -> None:
         # Update name in range.glyphs.
-        if not self.font or not self.ranges or value is None:
+        if not self.font or not self.ranges:
             return
 
         range_ = self.ranges[0]
@@ -1045,7 +1137,8 @@ class Smufl(BaseObject):
         glyphs = self.font.lib[RANGES_LIB_KEY][range_.name]["glyphs"]
         if self.name in glyphs:
             glyphs.remove(self.name)
-        glyphs.append(value)
+        if value is not None:
+            glyphs.append(value)
 
     # ----------
     # Predicates
