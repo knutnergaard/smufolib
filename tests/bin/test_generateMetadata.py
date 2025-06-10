@@ -4,7 +4,7 @@ import unittest
 from unittest.mock import patch
 
 
-from smufolib import Request
+import smufolib
 from tests.testUtils import (
     SavedFontMixin,
     SavedMetadataMixin,
@@ -20,6 +20,7 @@ class TestGenerateMetadata(
     def setUp(self):
         super().setUp()
         self.suppressOutput()
+        smufolib.objects.smufl.STRICT_CLASSES = False
 
         # fmt: off
         self.metadata = {
@@ -221,7 +222,7 @@ class TestGenerateMetadata(
         args, kwargs = mock_generateMetadata.call_args
         self.assertIsInstance(args[0], type(self.font))
         self.assertEqual(args[1], str(self.tempPath))
-        self.assertIsInstance(kwargs["fontData"], Request)
+        self.assertIsInstance(kwargs["fontData"], smufolib.Request)
         self.assertTrue(kwargs["verbose"])
 
     def test_compileMetadata_no_font_attribute_value(self):

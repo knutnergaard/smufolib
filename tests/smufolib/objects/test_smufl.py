@@ -14,6 +14,7 @@ from tests.testUtils import (
 
 class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def setUp(self):
+        smufolib.objects.smufl.STRICT_CLASSES = False
         # Create generic objects
         # pylint: disable=E1101
         self.font, _ = self.objectGenerator("font")
@@ -201,6 +202,111 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertEqual(self.smufl.sizeRange, None)
         self.assertNotIn("com.smufolib.sizeRange", self.font.lib)
 
+    def test_newRange_basic(self):
+        self.smufl.font = self.font
+        smufolib.objects.smufl.EDITABLE = True
+        result = {
+            "testRange": {
+                "range_start": 0xE000,
+                "range_end": 0xE001,
+                "description": "Test description",
+                "glyphs": [],
+            }
+        }
+        self.smufl.newRange(
+            "testRange",
+            start=result["testRange"]["range_start"],
+            end=result["testRange"]["range_end"],
+            description=result["testRange"]["description"],
+        )
+        self.assertEqual(self.font.lib[RANGES_LIB_KEY], result)
+
+    def test_newRange_no_font(self):
+        self.smufl.newRange(
+            "testRange",
+            start=0,
+            end=1,
+            description="testDescription",
+        )
+        self.assertNotIn(RANGES_LIB_KEY, self.font.lib)
+
+    def test_newRange_no_name(self):
+        self.smufl.font = self.font
+        smufolib.objects.smufl.EDITABLE = True
+        with self.assertRaises(TypeError):
+            self.smufl.newRange(
+                None,
+                start=0,
+                end=1,
+                description="testDescription",
+            )
+
+    def test_newRange_uneditable(self):
+        self.smufl.font = self.font
+        smufolib.objects.smufl.EDITABLE = False
+        with self.assertRaises(PermissionError):
+            self.smufl.newRange(
+                "testRange",
+                start=0,
+                end=1,
+                description="testDescription",
+            )
+
+    def test_newRange_conflicting_range(self):
+        self.smufl.font = self.font
+        smufolib.objects.smufl.EDITABLE = True
+        generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
+        with self.assertRaises(ValueError):
+            self.smufl.newRange(
+                "testRange",
+                start=0xE000,
+                end=0xE002,
+                description="testDescription",
+            )
+
+    def test_ranges_glyph(self):
+        self.recommended1.smufl.name = "brace"
+        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
+
+    def test_ranges_font(self):
+        self.recommended1.smufl.name = "brace"
+        self.recommended2.smufl.name = "staff1Line"
+        self.assertEqual(len(self.font.smufl.ranges), 2)
+
+    def test_ranges_metadata_str(self):
+        smufolib.objects.smufl.METADATA = ""
+        self.assertEqual(self.recommended1.smufl.ranges, ())
+
+    def test_ranges_no_names(self):
+        for glyph in self.font:
+            glyph.smufl.name = None
+        self.assertEqual(self.font.smufl.ranges, ())
+
+    def test_ranges_internalData(self):
+        self.font.lib[RANGES_LIB_KEY] = {
+            "testRange1": {
+                "range_start": 0xE000,
+                "range_end": 0xE002,
+                "description": "Test description 1",
+                "glyphs": ["brace"],
+            }
+        }
+
+        generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
+        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
+        self.assertEqual(self.recommended1.smufl.ranges[0].start, 0xE000)
+
+        # Add preexisting range
+        self.font.lib[RANGES_LIB_KEY] = {
+            "testRange2": {
+                "range_start": 0xE010,
+                "range_end": 0xE012,
+                "description": "Test description 2",
+                "glyphs": [],
+            }
+        }
+        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
+
     # --------------
     # Glyph metadata
     # --------------
@@ -319,113 +425,6 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertEqual(self.ligature.smufl.componentNames, componentNames)
         self.assertIsNone(self.smufl.componentNames)
         self.assertEqual(self.recommended1.smufl.componentNames, ())
-
-    # ranges
-
-    def test_newRange_basic(self):
-        self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
-        result = {
-            "testRange": {
-                "range_start": 0xE000,
-                "range_end": 0xE001,
-                "description": "Test description",
-                "glyphs": [],
-            }
-        }
-        self.smufl.newRange(
-            "testRange",
-            start=result["testRange"]["range_start"],
-            end=result["testRange"]["range_end"],
-            description=result["testRange"]["description"],
-        )
-        self.assertEqual(self.font.lib[RANGES_LIB_KEY], result)
-
-    def test_newRange_no_font(self):
-        self.smufl.newRange(
-            "testRange",
-            start=0,
-            end=1,
-            description="testDescription",
-        )
-        self.assertNotIn(RANGES_LIB_KEY, self.font.lib)
-
-    def test_newRange_no_name(self):
-        self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
-        with self.assertRaises(TypeError):
-            self.smufl.newRange(
-                None,
-                start=0,
-                end=1,
-                description="testDescription",
-            )
-
-    def test_newRange_uneditable(self):
-        self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = False
-        with self.assertRaises(PermissionError):
-            self.smufl.newRange(
-                "testRange",
-                start=0,
-                end=1,
-                description="testDescription",
-            )
-
-    def test_newRange_conflicting_range(self):
-        self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
-        generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
-        with self.assertRaises(ValueError):
-            self.smufl.newRange(
-                "testRange",
-                start=0xE000,
-                end=0xE002,
-                description="testDescription",
-            )
-
-    def test_ranges_glyph(self):
-        self.recommended1.smufl.name = "brace"
-        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
-
-    def test_ranges_font(self):
-        self.recommended1.smufl.name = "brace"
-        self.recommended2.smufl.name = "staff1Line"
-        self.assertEqual(len(self.font.smufl.ranges), 2)
-
-    def test_ranges_metadata_str(self):
-        smufolib.objects.smufl.METADATA = ""
-        self.assertEqual(self.recommended1.smufl.ranges, ())
-
-    def test_ranges_no_names(self):
-        for glyph in self.font:
-            glyph.smufl.name = None
-        self.assertEqual(self.font.smufl.ranges, ())
-
-    def test_ranges_internalData(self):
-        self.font.lib[RANGES_LIB_KEY] = {
-            "testRange1": {
-                "range_start": 0xE000,
-                "range_end": 0xE002,
-                "description": "Test description 1",
-                "glyphs": ["brace"],
-            }
-        }
-
-        generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
-        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
-        self.assertEqual(self.recommended1.smufl.ranges[0].start, 0xE000)
-
-        # Add preexisting range
-        self.font.lib[RANGES_LIB_KEY] = {
-            "testRange2": {
-                "range_start": 0xE010,
-                "range_end": 0xE012,
-                "description": "Test description 2",
-                "glyphs": [],
-            }
-        }
-        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
 
     # advanceWidth
 
@@ -613,6 +612,8 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertEqual(
             self.font.lib[RANGES_LIB_KEY]["testRange1"]["glyphs"], ["testName"]
         )
+        glyph.smufl.name = None
+        self.assertEqual(self.font.lib[RANGES_LIB_KEY]["testRange1"]["glyphs"], [])
 
     # ----------
     # Validation
@@ -768,3 +769,11 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertNotIn(
             "testName", _lib.getLibSubdict(self.font, "com.smufolib.names")
         )
+
+    def test_removeGlyph_updates_names(self):
+        self.recommended1.smufl.name = "testName"
+        glyphName = self.recommended1.name
+        self.assertIn("testName", self.font.smufl.names)
+        self.font.removeGlyph(glyphName)
+        self.assertNotIn(glyphName, self.font)
+        self.assertNotIn("testName", self.font.smufl.names)

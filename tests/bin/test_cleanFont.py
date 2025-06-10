@@ -2,6 +2,7 @@ import sys
 import unittest
 from unittest.mock import patch
 
+import smufolib
 from smufolib.objects.smufl import ANCHOR_NAMES, FONT_ATTRIBUTES, GLYPH_ATTRIBUTES
 from tests.testUtils import SavedFontMixin, SuppressOutputMixin, getVerboseOutput
 from bin.cleanFont import cleanFont, main
@@ -10,6 +11,7 @@ from bin.cleanFont import cleanFont, main
 class TestCleanFont(SavedFontMixin, SuppressOutputMixin, unittest.TestCase):
     def setUp(self):
         super().setUp()
+        smufolib.objects.smufl.STRICT_CLASSES = False
         self.font, _ = self.objectGenerator("font")  # pylint: disable=E1101
         self.font.smufl.name = "testFont"
         self.font.smufl.version = 1.0
