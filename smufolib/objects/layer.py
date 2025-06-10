@@ -9,3 +9,9 @@ class Layer(RLayer):
     # pylint: disable=too-few-public-methods
 
     glyphClass = Glyph
+
+    def _removeGlyph(self, name, **kwargs):
+        layer = self.naked()
+        # Clean up font.lib.
+        self[name].smufl.name = None
+        del layer[name]
