@@ -1,25 +1,25 @@
 .. include:: ../README.rst
-   :start-after: .. _installation:
+    :start-after: .. _installation:
 
 First Steps
 ===========
 
 Start by importing SMufoLib:
 
-   >>> from smufolib import Font
+    >>> from smufolib import Font
 
-Then instantiate a font object::
+Then instantiate a font object:
 
-   >>> font = Font("path/to/MyFont.ufo")
+    >>> font = Font("path/to/MyFont.ufo")  # doctest: +SKIP
 
 A font may also be instantiated from another :class:`fontParts.base.BaseFont` object.
 This allows SMufoLib to be used seamlessly within other FontParts-based environments,
 such as `RoboFont <https://robofont.com>`_::
    
-   from smufolib import Font
-   from mojo.roboFont import CurrentFont
+    from smufolib import Font
+    from mojo.roboFont import CurrentFont
 
-   font = Font(CurrentFont())
+    font = Font(CurrentFont())
 
 
 Before going further, it's a good idea to review the FontParts :fontParts:`Object
@@ -46,11 +46,11 @@ Here is a minimal example:
 
 .. code-block:: ini
 
-   [color.marks]
-   mark1 = (1.0, 0.0, 1.0, 1.0)
+    [color.marks]
+    mark1 = (1.0, 0.0, 1.0, 1.0)
 
-   [engravingDefaults]
-   auto = false
+    [engravingDefaults]
+    auto = false
 
 This example changes the primary mark color and disables automatic calculation of
 :class:`.EngravingDefaults`.
@@ -63,10 +63,10 @@ Configuration File Location
 
 SMufoLib will search for the configuration file in the following order:
 
-   #. The user's home directory (as returned by :func:`os.path.expanduser`)
-   #. The current working directory
-   #. The path specified by the :envvar:`SMUFOLIB_CFG` environment variable
-   #. The SMufoLib installation directory
+    #. The user's home directory (as returned by :func:`os.path.expanduser`)
+    #. The current working directory
+    #. The path specified by the :envvar:`SMUFOLIB_CFG` environment variable
+    #. The SMufoLib installation directory
 
 The first valid file found will be used.
 
@@ -74,22 +74,22 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 
 - On macOS or Linux:
 
-  .. code-block:: console
+    .. code-block:: console
 
-     export SMUFOLIB_CFG=/path/to/smufolib.cfg
+        export SMUFOLIB_CFG=/path/to/smufolib.cfg
 
   Add this to your shell startup file (e.g., `~/.zshrc` or `~/.bashrc`) to make it persistent.
 
 - On Windows, use the `set` command:
 
-  .. code-block:: bat
+    .. code-block:: bat
 
-     set SMUFOLIB_CFG=C:\path\to\smufolib.cfg
+        set SMUFOLIB_CFG=C:\path\to\smufolib.cfg
 
 .. note::
 
-   If no valid configuration file is found, SMufoLib falls back to the default
-   `smufolib.cfg` located in the library's installation directory.
+    If no valid configuration file is found, SMufoLib falls back to the default
+    `smufolib.cfg` located in the library's installation directory.
 
 Reading Configurations
 ----------------------
@@ -98,10 +98,10 @@ If you want to access the configuration file settings in your scripts, the
 :func:`.config.load` function will return a parsed instance of `smufolib.cfg` as a
 :class:`dict`:
 
-   >>> from smufolib import config
-   >>> cfg = config.load()
-   >>> cfg["request"]
-   {'encoding': 'utf-8', 'warn': True}
+    >>> from smufolib import config
+    >>> cfg = config.load()
+    >>> cfg["request"]
+    {'encoding': 'utf-8', 'warn': True}
 
 See the :mod:`argparse` documentation for more info on working with configuration files.
 
@@ -118,22 +118,22 @@ Manually Setting Attributes
 Attributes are accessed through the :class:`.Smufl` object, and may be set for the font
 and individual glyphs:
 
-   >>> font.smufl.name = "MyFont"
-   >>> font.smufl.version = 1.0
-   >>> font.smufl.designSize = 20
-   >>> font.smufl.sizeRange = (16, 24)
-   >>> glyph = font["uniE050"]
-   >>> glyph.smufl.name = "gClef"
-   >>> glyph.smufl.description = "G clef"
-   >>> glyph.smufl.classes = ("clefs",)
+    >>> font.smufl.name = "MyFont"
+    >>> font.smufl.version = 1.0
+    >>> font.smufl.designSize = 20
+    >>> font.smufl.sizeRange = (16, 24)
+    >>> glyph = font["uniE050"]
+    >>> glyph.smufl.name = "gClef"
+    >>> glyph.smufl.description = "G clef"
+    >>> glyph.smufl.classes = ("clefs",)
 
 .. note::
 
-   - Some attributes, like :attr:`.Smufl.name`, will return different values depending
-     on whether they are accessed through :attr:`.Font.smufl` or :attr:`.Glyph.smufl`.
-   - FontParts maintains consistent references to parent-level objects. As a result,
-     font-specific :class:`.Smufl` attributes remain accessible from both the font
-     itself and any of its glyphs.
+    - Some attributes, like :attr:`.Smufl.name`, will return different values depending
+      on whether they are accessed through :attr:`.Font.smufl` or :attr:`.Glyph.smufl`.
+    - FontParts maintains consistent references to parent-level objects. As a result,
+      font-specific :class:`.Smufl` attributes remain accessible from both the font
+      itself and any of its glyphs.
 
 Importing Attributes
 --------------------
@@ -158,47 +158,55 @@ accessed via the :attr:`.ranges` attribute on the :class:`.Font` or :class:`.Gly
 object, respectively:
 
 .. doctest::
-   :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
+    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
    
-   >>> font.smufl.ranges
-   (<Range 'clefs' ('U+E050-U+E07F') at ...>, 
-   <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at ...>, 
-   <Range 'stringTechniques' ('U+E610-U+E62F') at ...>)
+    >>> font.smufl.ranges
+    (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>, 
+    ...
+    <Range 'multiSegmentLines' (U+EAA0-U+EB0F) editable=False at ...>)
 
 .. doctest::
 
-   >>> glyph = font["uniE050"]  # gClef
-   >>> glyph.smufl.ranges
-   (<Range 'clefs' ('U+E050-U+E07F') at ...>,)
-
-
+    >>> glyph = font["uniE050"]  # gClef
+    >>> glyph.smufl.ranges
+    (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>,)
+    
 These are particularly useful when working with multiple glyphs by type:
 
-   >>> for glyph in font:
-   ...     if glyph.smufl.ranges[0].name == "staffBracketsAndDividers":
-   ...         glyph.moveBy = (12, 0)
+    >>> for glyph in font:
+    ...     for range in glyph.smufl.ranges:
+    ...         if range.name == "staffBracketsAndDividers":
+    ...             glyph.moveBy = (12, 0)
 
 
 Coloring glyphs by range is also really easy with this feature:
 
 .. testcode::
 
-   import random
+    import random
    
-   def get_random_color():
-      r = random.random()
-      g = random.random()
-      b = random.random()
-      return (r, g, b, 1)
+    def get_random_color():
+        r = random.random()
+        g = random.random()
+        b = random.random()
+        return (r, g, b, 1)
    
-   for range in font.smufl.ranges:
-       color = get_random_color()
-       for glyph in range.glyphs:
-           glyph.mark = color
+    for range in font.smufl.ranges:
+        color = get_random_color()
+        for glyph in range:
+            glyph.mark = color
 
 The :class:`.Range` object provides the values for any SMuFL range's 
 :attr:`~.Range.name`, :attr:`~.Range.description`, :attr:`~.Range.glyphs`, 
 :attr:`~.Range.start` and :attr:`~.Range.end` attributes.
+
+Ranges are read-only by default, but may be made editable with the
+:confval:`ranges.editable` configuration setting. When enabled, custom ranges may be
+added using the :meth:`.Smufl.newRange` method:
+
+    >>> font.smufl.newRange(  # doctest: +SKIP
+    ...     "myRange", 0xF500, 0xF50F, "A Range of custom glyphs."
+    ... )
 
 .. _engraving-defaults:
 
@@ -209,34 +217,37 @@ Another way to work with groups of glyphs in SMufoLib is by using SMuFL classes.
 with each glyph:
 
 .. doctest::
-   :options: +NORMALIZE_WHITESPACE
+    :options: +NORMALIZE_WHITESPACE
 
-   >>> glyph = font["uniE260"]  # accidentalFlat
-   >>> glyph.smufl.classes
-   ('accidentals', 'accidentalsSagittalMixed', 
-   'accidentalsStandard', 'combiningStaffPositions')
+    >>> glyph = font["uniE260"]  # accidentalFlat
+    >>> glyph.smufl.classes
+    ('accidentals', 'accidentalsSagittalMixed', 
+    'accidentalsStandard', 'combiningStaffPositions')
 
 This information can be used to collect glyphs based on their combined class
 membership:
 
 .. testcode::
 
-   for glyph in font:
-      classes = glyph.smufl.classes
-      if "accidentalsStandard" in classes and "accidentalsSagittalMixed" in classes:
-         ...
+    for glyph in font:
+        classes = glyph.smufl.classes
+        if "accidentalsStandard" in classes and "accidentalsSagittalMixed" in classes:
+            ...
 
 The :meth:`.Smufl.classMembers` method provides a convenient way to collect all glyph
 members of the specified class:
 
 .. doctest::
-   :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
+    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
-   >>> glyph.smufl.classMembers("accidentalsStandard")
-   (<Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
-   <Glyph 'uniE266' ['accidentalTripleFlat'] ('public.default') at ...>, 
-   <Glyph 'uniE267' ['accidentalNaturalFlat'] ('public.default') at ...>)
-   
+    >>> glyph.smufl.classMembers("accidentalsStandard")
+    (<Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+    <Glyph 'uniE266' ['accidentalTripleFlat'] ('public.default') at ...>, 
+    <Glyph 'uniE267' ['accidentalNaturalFlat'] ('public.default') at ...>)
+    
+By default class names are limited to those specified in the :smufl:`SMuFL specification
+<specification/classes.html>`. To allow custom class names, disable the
+:confval:`classes.strict` configuration setting.
 
 Engraving Defaults
 ------------------
@@ -246,18 +257,18 @@ Engraving defaults are managed by their own appropriately named
 attribute:
 
 .. doctest::
-   :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
+    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
-   >>> font.smufl.engravingDefaults
-   <EngravingDefaults in font 'MyFont Regular' 
-   path='/path/to/MyFont.ufo' auto=True at ...>
+    >>> font.smufl.engravingDefaults
+    <EngravingDefaults in font 'MyFont Regular' 
+    path='/path/to/MyFont.ufo' auto=True at ...>
  
 Each setting has its own attribute within this object:
    
-   >>> ed = font.smufl.engravingDefaults
-   >>> ed.stemThickness = 30
-   >>> ed.stemThickness
-   30
+    >>> ed = font.smufl.engravingDefaults
+    >>> ed.stemThickness = 30
+    >>> ed.stemThickness
+    30
 
 Engraving defaults are calculated automatically from corresponding glyphs by default --
 provided that these glyphs exist. As an example, the value for :attr:`.hairpinThickness`
@@ -283,13 +294,13 @@ representation of a glyph's anchors is available from the :attr:`.Smufl.anchors`
 attribute:
 
 .. doctest::
-   :options: +NORMALIZE_WHITESPACE
+    :options: +NORMALIZE_WHITESPACE
    
-   >>> glyph = font["uniE240"]  # flag8thUp
-   >>> glyph.smufl.anchors
-   {'graceNoteSlashNE': (321, -199), 
-   'graceNoteSlashSW': (-161, -614), 
-   'stemUpNW': (0, -10)}
+    >>> glyph = font["uniE240"]  # flag8thUp
+    >>> glyph.smufl.anchors
+    {'graceNoteSlashNE': (321, -199), 
+    'graceNoteSlashSW': (-161, -614), 
+    'stemUpNW': (0, -10)}
 
 Anchor coordinates are available in either font units or staff spaces. See
 :ref:`changing-measurement-units` for more information.
@@ -301,9 +312,9 @@ anchors in a font. See :ref:`running-scripts` for more information.
 
 .. note::
 
-   Only anchors with names specific to SMuFL are accessible through the :class:`.Smufl`
-   object's :attr:`~.Smufl.anchors` attribute. See :py:data:`.ANCHOR_NAMES` for a full
-   :class:`set` of available SMuFL anchors.
+    Only anchors with names specific to SMuFL are accessible through the :class:`.Smufl`
+    object's :attr:`~.Smufl.anchors` attribute. See :py:data:`.ANCHOR_NAMES` for a full
+    :class:`set` of available SMuFL anchors.
 
 Glyph Metrics and Dimensions
 ----------------------------
@@ -311,15 +322,15 @@ Glyph Metrics and Dimensions
 Similarly to :attr:`~.Smufl.anchors`, the :class:`.Smufl` class also provides a SMuFL-specific
 :class:`dict` representation of the glyph bounding box:
    
-   >>> glyph = font["uniE050"]  # gClef
-   >>> glyph.smufl.bBox
-   {'bBoxSW': (0, -634), 'bBoxNE': (648, 1167)}
+    >>> glyph = font["uniE050"]  # gClef
+    >>> glyph.smufl.bBox
+    {'bBoxSW': (0, -634), 'bBoxNE': (648, 1167)}
 
 Even the glyph advance width is available as :attr:`.Smufl.advanceWidth`:
    
-   >>> glyph.smufl.advanceWidth = 648
-   >>> glyph.smufl.advanceWidth
-   648 
+    >>> glyph.smufl.advanceWidth = 648
+    >>> glyph.smufl.advanceWidth
+    648 
    
 It differs from the usual :attr:`Glyph.width <fontParts.base.BaseGlyph.width>` in
 optionally providing the value in staff spaces (see :ref:`changing-measurement-units`).
@@ -331,19 +342,19 @@ Ligatures have their component glyphs readily available with the
 :attr:`.componentGlyphs` attribute:
 
 .. doctest::
-   :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
+    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
 
-   >>> ligature = font["uniE26A_uniE260_uniE26B"]
-   >>> ligature.smufl.componentGlyphs
-   (<Glyph 'uniE26A' ['accidentalParensLeft'] ('public.default') at ...>,
-   <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
-   <Glyph 'uniE26B' ['accidentalParensRight'] ('public.default') at ...>)
+    >>> ligature = font["uniE26A_uniE260_uniE26B"]
+    >>> ligature.smufl.componentGlyphs
+    (<Glyph 'uniE26A' ['accidentalParensLeft'] ('public.default') at ...>,
+    <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>,
+    <Glyph 'uniE26B' ['accidentalParensRight'] ('public.default') at ...>)
 
 Alternately, components can be listed by their canonical SMuFL names with the
 :attr:`.componentNames` attribute:
    
-   >>> ligature.smufl.componentNames
-   ('accidentalParensLeft', 'accidentalFlat', 'accidentalParensRight')
+    >>> ligature.smufl.componentNames
+    ('accidentalParensLeft', 'accidentalFlat', 'accidentalParensRight')
    
 The :attr:`.alternateGlyphs` and :attr:`.alternateNames` attribute similarly provide
 convenient access to a glyph's stylistic alternates, by :class:`.Glyph` object and
@@ -352,28 +363,28 @@ SMuFL name respectively.
 A SMuFL-specific metadata representation of the same alternates can be retrieved with
 the :attr:`.alternates` attribute:
 
-   >>> glyph = font["uniE050"]  # gClef
-   >>> glyph.smufl.alternates
-   ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
+    >>> glyph = font["uniE050"]  # gClef
+    >>> glyph.smufl.alternates
+    ({'codepoint': 'U+F472', 'name': 'gClefSmall'},)
 
 The inverse base glyph is also accessible through the :attr:`.base` attribute:
 
-   >>> alternate = font["uniE050.ss01"]
-   >>> alternate.smufl.base
-   <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
+    >>> alternate = font["uniE050.ss01"]
+    >>> alternate.smufl.base
+    <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
 The glyph name suffix is a common characteristic of different types of OpenType
 alternates and sets, and may therefore sometimes be necessary to isolate. This is what
 the :attr:`.suffix` attribute is for:
 
-   >>> glyph = font["uniE050.ss01"]
-   >>> glyph.smufl.suffix
-   'ss01'
+    >>> glyph = font["uniE050.ss01"]
+    >>> glyph.smufl.suffix
+    'ss01'
 
 .. important::
 
-   The attributes in this section demand strict adherence to SMuFL's glyph naming
-   standards. See :ref:`this note about glyph naming <about-glyph-naming>` for details.
+    The attributes in this section demand strict adherence to SMuFL's glyph naming
+    standards. See :ref:`this note about glyph naming <about-glyph-naming>` for details.
 
 Status Indicators
 -----------------
@@ -382,20 +393,20 @@ The :class:`.Smufl` class includes a set of convenient boolean checks to
 determine a glyph's membership status:
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.objects.smufl.Smufl.isLigature
-   ~smufolib.objects.smufl.Smufl.isMember
-   ~smufolib.objects.smufl.Smufl.isOptional
-   ~smufolib.objects.smufl.Smufl.isRecommended
-   ~smufolib.objects.smufl.Smufl.isSalt
-   ~smufolib.objects.smufl.Smufl.isSet
+    ~smufolib.objects.smufl.Smufl.isLigature
+    ~smufolib.objects.smufl.Smufl.isMember
+    ~smufolib.objects.smufl.Smufl.isOptional
+    ~smufolib.objects.smufl.Smufl.isRecommended
+    ~smufolib.objects.smufl.Smufl.isSalt
+    ~smufolib.objects.smufl.Smufl.isSet
 
 For instance, checking if a glyph is within the accepted range for recommended glyphs in
 SMuFL is as easy as:
 
-   >>> if glyph.smufl.isRecommended:
-   ...   ...
+    >>> if glyph.smufl.isRecommended:
+    ...     ...
 
 .. _changing-measurement-units:
 
@@ -407,39 +418,39 @@ advance widths in either font units or staff spaces -- whatever suits your workf
 switch to staff spaces, set either :attr:`.EngravingDefaults.spaces` or
 :attr:`.Smufl.spaces` to :obj:`True`, e.g.:
 
-   >>> ed = font.smufl.engravingDefaults
-   >>> ed.spaces = True
-   >>> ed.stemThickness
-   0.12
-   >>> ed.stemThickness = 0.14
-   >>> ed.spaces = False
-   >>> ed.stemThickness
-   35
+    >>> ed = font.smufl.engravingDefaults
+    >>> ed.spaces = True
+    >>> ed.stemThickness
+    0.12
+    >>> ed.stemThickness = 0.14
+    >>> ed.spaces = False
+    >>> ed.stemThickness
+    35
    
 .. note::
 
-   - Setting ``font.smufl.engravingDefaults.spaces = True`` is equivalent to setting
-     ``font.smufl.spaces = True``, so either one will affect all relevant
-     attributes across the entire library.
-   
-   - This setting is stored in the font's metadata and will persist when saving the font.
+    - Setting ``font.smufl.engravingDefaults.spaces = True`` is equivalent to setting
+      ``font.smufl.spaces = True``, so either one will affect all relevant
+      attributes across the entire library.
+    
+    - This setting is stored in the font's metadata and will persist when saving the font.
 
 The :class:`.Smufl` class also provides methods to convert a given value between the
 different units of measurement. Use the :meth:`.toSpaces` method to convert a font units
 value to staff spaces, and the :meth:`.toUnits` to do the opposite:
 
-   >>> font.smufl.toSpaces(250)
-   1.0
-   >>> font.smufl.toUnits(1.0)
-   250
+    >>> font.smufl.toSpaces(250)
+    1.0
+    >>> font.smufl.toUnits(1.0)
+    250
 
 .. important::
 
-   Conversion to staff spaces depends on the font's units-per-em (UPM) value. Make sure
-   :attr:`BaseInfo.unitsPerEm <fontParts.base.BaseInfo.unitsPerEm>` is set correctly for
-   the conversion to work as expected, e.g.:
+    Conversion to staff spaces depends on the font's units-per-em (UPM) value. Make sure
+    :attr:`BaseInfo.unitsPerEm <fontParts.base.BaseInfo.unitsPerEm>` is set correctly
+    for the conversion to work as expected, e.g.:
    
-      >>> font.info.unitsPerEm = 1000
+        >>> font.info.unitsPerEm = 1000
 
 Finding glyphs
 --------------
@@ -448,10 +459,10 @@ You can search for a glyph by its canonical SMuFL name with the :meth:`.Smufl.fi
 method:
 
 .. doctest::
-   :options: +ELLIPSIS
+    :options: +ELLIPSIS
 
-   >>> font.smufl.findGlyph("gClef")
-   <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
+    >>> font.smufl.findGlyph("gClef")
+    <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
 .. _running-scripts:
 
@@ -469,37 +480,35 @@ directly from the command line:
 
 .. code-block:: console
 
-   $ check-anchors path/to/my/font.ufo --mark
+    $ check-anchors path/to/my/font.ufo --mark
 
 Positional arguments and available options can be listed by running the help command on the script:
 
 .. code-block:: console
 
-   $ check-anchors --help
+    $ check-anchors --help
 
-   usage: check-anchors [-h] [-F FONTDATA] [-m] [-c COLOR COLOR COLOR COLOR] [-v]
-                        font
-
-   Find missing or superfluous SMuFL anchors.
-
-   positional arguments:
+    usage: check-anchors [-h] [-F FONTDATA] [-m] [-c COLOR COLOR COLOR COLOR] [-v] font
+    
+    Check SMuFL glyph anchors against reference font metadata.
+    
+    positional arguments:
       font                  path to UFO file
-
-   options:
-      -h, --help           show this help message and exit
+    
+    options:
+      -h, --help            show this help message and exit
       -F FONTDATA, --font-data FONTDATA
-                           path to font metadata file (default: <Request '/url/path/to
-                           /reference/font/metadata.json' ('/file/path/to/reference/font/metadata.json') at 4536666000>)
-      -m, --mark           apply defined color values to objects (default: False)
+                            path to font metadata file
+      -m, --mark            apply defined color values to objects
       -c COLOR COLOR COLOR COLOR, --color COLOR COLOR COLOR COLOR
-                           list of RGBA color values (default: None)
-      -v, --verbose        make output verbose (default: False)
+                            list of RGBA color values
+      -v, --verbose         make output verbose
 
 
-Alternatively, scripts can be imported as modules in Python::
+Alternatively, scripts can be imported as modules in Python:
 
-   >>> from bin.checkAnchors import checkAnchors
-   >>> checkAnchors(mark=True)
+    >>> from bin.checkAnchors import checkAnchors
+    >>> checkAnchors(mark=True)  # doctest: +SKIP
 
 This imports and executes the script's program function,
 :func:`~bin.checkAnchors.checkAnchors`, from the script module of the same name.
@@ -511,7 +520,7 @@ SMufoLib provides a :mod:`.request` module to handle web requests and metadata f
 operations, facilitating access to updated SMuFL data. Most of this functionality is
 handled by the module's :class:`.Request` class, which may be imported directly:
 
-   >>> from smufolib import Request
+    >>> from smufolib import Request
 
 Standard Metadata Requests
 --------------------------
@@ -521,38 +530,38 @@ metadata file for SMuFL's reference font, Bravura, can be easily retrieved using
 appropriately named :class:`.Request` class methods:
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.request.Request.classes
-   ~smufolib.request.Request.glyphnames
-   ~smufolib.request.Request.ranges
-   ~smufolib.request.Request.font
+    ~smufolib.request.Request.classes
+    ~smufolib.request.Request.glyphnames
+    ~smufolib.request.Request.ranges
+    ~smufolib.request.Request.font
 
 By default, these methods return a parsed Python :class:`dict`. Retrieve a raw
 :class:`str` response instead by setting ``decode=False``:
 
-   >>> text = Request.classes(decode=False)
+    >>> text = Request.classes(decode=False)
    
 
 Paths and Fallbacks
 -------------------
 
 :class:`.Request` can handle both URL and filesystem paths. Pass the path as the first
-argument::
+argument:
 
-   >>> file = Request("path/to/file.json")
-   >>> file = Request("https://path/to/file.json")
+    >>> file = Request("path/to/file.json")  # doctest: +SKIP
+    >>> file = Request("https://path/to/file.json")  # doctest: +SKIP
 
 You can also combine a remote URL with a local fallback file. This enables automatic
-fallback to a local copy if the remote request fails due to a connection error::
+fallback to a local copy if the remote request fails due to a connection error:
 
-   >>> file = Request("https://path/to/file.json", "path/to/file.json")
+    >>> file = Request("https://path/to/file.json", "path/to/file.json")  # doctest: +SKIP
 
 .. note::
 
-   A fallback will only be attempted if a :class:`~urllib.error.URLError` is raised.
-   If the primary `path` points to a local file and it fails, the error will be raised
-   immediately.
+    A fallback will only be attempted if a :class:`~urllib.error.URLError` is raised.
+    If the primary `path` points to a local file and it fails, the error will be raised
+    immediately.
 
 Raw Output
 ----------
@@ -561,22 +570,22 @@ Similarly to the well known HTTP library `Requests
 <https://requests.readthedocs.io/en/latest/>_`, SMufoLib's :class:`.Request` object
 provides two properties for accessing raw response data:
 
-- Use the :attr:`.text` attribute to get a decoded :class:`str`::
+- Use the :attr:`.text` attribute to get a decoded :class:`str`:
 
-    >>> data = Request("path/to/file.json").text
+    >>> data = Request("path/to/file.json").text  # doctest: +SKIP
 
-- Use the :attr:`.content` attribute to get the raw :class:`bytes` content::
+- Use the :attr:`.content` attribute to get the raw :class:`bytes` content:
 
-    >>> data = Request("path/to/file.json").content
+    >>> data = Request("path/to/file.json").content  # doctest: +SKIP
 
 Unless an `encoding` is explicitly specified, text responses will be decoded using UTF-8.
 
 Parsing JSON Files
 ------------------
 
-If the file is a JSON file, use the built-in :meth:`~.Request.json` method to parse it::
+If the file is a JSON file, use the built-in :meth:`~.Request.json` method to parse it:
 
-   >>> data = Request("https://path/to/file.json").json()
+    >>> data = Request("https://path/to/file.json").json()  # doctest: +SKIP
 
 
 Writing JSON Files
@@ -584,11 +593,11 @@ Writing JSON Files
 
 The :mod:`.request` module also provides a helper function to simplify the logic
 concerned with writing JSON data to a file. Using the :func:`.writeJson` function this
-is as simple as::
+is as simple as:
 
-   >>> from smufolib.request import writeJson
-   >>> jsonDict = {"font": "MyFont"}
-   >>> writeJson("path/to/file.json", jsonDict)
+    >>> from smufolib.request import writeJson  # doctest: +SKIP
+    >>> jsonDict = {"font": "MyFont"}  # doctest: +SKIP
+    >>> writeJson("path/to/file.json", jsonDict)  # doctest: +SKIP
 
 Building Command Line Interfaces
 ================================
@@ -622,17 +631,17 @@ To create a simple parser using only predefined arguments:
 
 .. testcode::
 
-   from smufolib import commonParser
-   
-   parser = commonParser(
-      "font", "clear", includeOptionals=False,
-      description="My SMuFL utility", addHelp=True
-      )
+    from smufolib import commonParser
+    
+    parser = commonParser(
+       "font", "clear", includeOptionals=False,
+       description="My SMuFL utility", addHelp=True
+       )
 
 .. note::
 
-   :func:`.commonParser` automatically converts argument names from camelCase to kebab-case (e.g., ``includeOptionals`` becomes ``--include-optionals``)
-   to maintain consistency with common command-line interfaces.
+    :func:`.commonParser` automatically converts argument names from camelCase to kebab-case (e.g., ``includeOptionals`` becomes ``--include-optionals``)
+    to maintain consistency with common command-line interfaces.
 
 .. _combining-parsers:
 
@@ -645,18 +654,20 @@ the function output as a :class:`list` to the `parents` parameter of the class:
 
 .. testcode::
 
-   import argparse
-   from smufolib import commonParser
+    import argparse
+    from smufolib import commonParser
 
-   args = commonParser("font", clear=True, addHelp=False)
-   parser = argparse.ArgumentParser(parents=[args],
-               description="showcase commonParser")
-   parser.add_argument(
-       "-m", "--my-argument",
-       action="store_true",
-       help="do something",
-       dest="myArgument"
-   )  
+    args = commonParser("font", clear=True, addHelp=False)
+    parser = argparse.ArgumentParser(
+        parents=[args],
+        description="showcase commonParser"
+    )
+    parser.add_argument(
+        "-m", "--my-argument",
+        action="store_true",
+        help="do something",
+        dest="myArgument"
+    )  
 
 .. important::
 
@@ -684,16 +695,16 @@ Use the :func:`.createHelpFormatter` function to combine the formatters you want
 
 .. testcode::
 
-   import argparse
-   from smufolib import cli
-   
-   formatter = cli.createHelpFormatter(
-      ("RawTextHelpFormatter", "ArgumentDefaultsHelpFormatter")
-   )
-   parser = argparse.ArgumentParser(
-      formatter_class=formatter,
-      description="Process SMuFL metadata"
-   )
+    import argparse
+    from smufolib import cli
+    
+    formatter = cli.createHelpFormatter(
+        ("RawTextHelpFormatter", "ArgumentDefaultsHelpFormatter")
+    )
+    parser = argparse.ArgumentParser(
+        formatter_class=formatter,
+        description="Process SMuFL metadata"
+    )
 
 Using the Utility Modules
 =========================
@@ -708,15 +719,15 @@ The :mod:`.converters` module provides helper functions for converting between d
 measurement formats, Unicode codepoints, and naming styles. Functions include:
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.utils.converters.convertMeasurement
-   ~smufolib.utils.converters.toDecimal
-   ~smufolib.utils.converters.toUniHex
-   ~smufolib.utils.converters.toUniName
-   ~smufolib.utils.converters.toNumber
-   ~smufolib.utils.converters.toIntIfWhole
-   ~smufolib.utils.converters.toKebab
+    ~smufolib.utils.converters.convertMeasurement
+    ~smufolib.utils.converters.toDecimal
+    ~smufolib.utils.converters.toUniHex
+    ~smufolib.utils.converters.toUniName
+    ~smufolib.utils.converters.toNumber
+    ~smufolib.utils.converters.toIntIfWhole
+    ~smufolib.utils.converters.toKebab
 
 Errors and Warnings
 -------------------
@@ -727,12 +738,12 @@ and suggest corrections for invalid values. It includes a dictionary of
 include:
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.utils.error.generateErrorMessage
-   ~smufolib.utils.error.generateTypeError
-   ~smufolib.utils.error.validateType
-   ~smufolib.utils.error.suggestValue
+    ~smufolib.utils.error.generateErrorMessage
+    ~smufolib.utils.error.generateTypeError
+    ~smufolib.utils.error.validateType
+    ~smufolib.utils.error.suggestValue
 
 Contours and Measuring
 ----------------------
@@ -744,39 +755,39 @@ Contour Tools
 ^^^^^^^^^^^^^
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.utils.rulers.getGlyphContours
-   ~smufolib.utils.rulers.getGlyphSegments
-   ~smufolib.utils.rulers.getGlyphPoints
-   ~smufolib.utils.rulers.getParentSegment
-   ~smufolib.utils.rulers.combineBounds
+    ~smufolib.utils.rulers.getGlyphContours
+    ~smufolib.utils.rulers.getGlyphSegments
+    ~smufolib.utils.rulers.getGlyphPoints
+    ~smufolib.utils.rulers.getParentSegment
+    ~smufolib.utils.rulers.combineBounds
 
 Rulers
 ^^^^^^
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.utils.rulers.glyphBoundsHeight
-   ~smufolib.utils.rulers.glyphBoundsWidth
-   ~smufolib.utils.rulers.glyphBoundsXMinAbs
-   ~smufolib.utils.rulers.xDistanceStemToDot
-   ~smufolib.utils.rulers.xDistanceBetweenContours
-   ~smufolib.utils.rulers.yDistanceBetweenContours
-   ~smufolib.utils.rulers.xStrokeWidthAtOrigin
-   ~smufolib.utils.rulers.yStrokeWidthAtMinimum
-   ~smufolib.utils.rulers.wedgeArmStrokeWidth
+    ~smufolib.utils.rulers.glyphBoundsHeight
+    ~smufolib.utils.rulers.glyphBoundsWidth
+    ~smufolib.utils.rulers.glyphBoundsXMinAbs
+    ~smufolib.utils.rulers.xDistanceStemToDot
+    ~smufolib.utils.rulers.xDistanceBetweenContours
+    ~smufolib.utils.rulers.yDistanceBetweenContours
+    ~smufolib.utils.rulers.xStrokeWidthAtOrigin
+    ~smufolib.utils.rulers.yStrokeWidthAtMinimum
+    ~smufolib.utils.rulers.wedgeArmStrokeWidth
 
 Boolean Checks
 ^^^^^^^^^^^^^^
 
 .. autosummary::
-   :nosignatures:
+    :nosignatures:
 
-   ~smufolib.utils.rulers.areAlligned
-   ~smufolib.utils.rulers.hasHorizontalOffCurve
-   ~smufolib.utils.rulers.hasVerticalOffCurve
+    ~smufolib.utils.rulers.areAlligned
+    ~smufolib.utils.rulers.hasHorizontalOffCurve
+    ~smufolib.utils.rulers.hasVerticalOffCurve
 
 Footnotes
 =========

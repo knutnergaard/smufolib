@@ -578,15 +578,17 @@ class Smufl(BaseObject):
         start: int,
         end: int,
         description: str,
-        overrideExisting=False,
+        overrideExisting: bool = False,
     ) -> None:
         """Add SMuFL range to font.
 
-        This method defines a SMuFL range in the font's metadata using a start and end
-        glyph (by name or codepoint). The `glyphs` key in the resulting metadata is
-        computed dynamically and reflects the current glyphs in the font that fall
-        within the specified range. It will update automatically as glyphs are added
-        or removed.
+        This method defines a SMuFL range in the font's metadata using a `start` and
+        `end` decimal codepoint.
+
+        The `glyphs` key in the resulting metadata is computed dynamically and reflects
+        the current glyphs in the font that fall within the specified range. It will
+        update automatically as glyphs are added (and assigned a :attr:`name`) or
+        removed.
 
 
         :param name: A unique identifier for the range.
@@ -595,8 +597,15 @@ class Smufl(BaseObject):
         :param description: A human-readable description of the range.
         :param overrideExisting: Whether to replace an existing range if any part of the
             new range overlap with it. Defaults to :obj:`False`.
-        :raises ValueError: If `start` or `end` partially or completely overlap
-            with an existing range when `overrideExisting` is :obj:`False`.
+        :raises PermissionError: If :confval:`ranges.editable` is disabled.
+        :raises ValueError: If `start` or `end` partially or completely overlap with an
+            existing range when `overrideExisting` is :obj:`False`.
+
+        Example:
+
+            >>> font.smufl.newRange(  # doctest: +SKIP
+            ...     "myRange", 0xF500, 0xF50F, "A Range of custom glyphs."
+            ... )
 
 
         """
@@ -671,13 +680,13 @@ class Smufl(BaseObject):
         Examples:
 
             >>> font.smufl.ranges  # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
-            (<Range 'clefs' ('U+E050-U+E07F') at ...>,
-            <Range 'multiSegmentLines' ('U+EAA0-U+EB0F') at ...>,
-            <Range 'stringTechniques' ('U+E610-U+E62F') at ...>)
+            (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>,
+            ...
+            <Range 'multiSegmentLines' (U+EAA0-U+EB0F) editable=False at ...>)
 
             >>> glyph = font["uniE050"]
             >>> glyph.smufl.ranges
-            (<Range 'clefs' ('U+E050-U+E07F') at ...>,)
+            (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>,)
 
         """
         if self.font is None:
@@ -962,6 +971,10 @@ class Smufl(BaseObject):
 
         If :confval:`classes.strict` is enabled, only SMuFL-specific class names are
         allowed. See :data:`.CLASS_NAMES` for the full :class:`set` of specified names.
+
+        .. versionadded:: 0.7.0
+
+            Distinction between strict, SMuFL-specific vs. lenient, custom class names.
 
         :raises AttributeError: If attempting to access attribute from font.
         :raises ValueError: If attempting to set a name not specified in

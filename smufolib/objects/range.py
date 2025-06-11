@@ -32,7 +32,7 @@ class Range:
     :confval:`metadata.fallbacks.ranges` if the former is unavailable.
 
     Ranges are read-only by default. Editability is controlled globally via the
-    :confval:`range.editable` configuration setting. New custom ranges may be added
+    :confval:`ranges.editable` configuration setting. New custom ranges may be added
     using :meth:`.Smufl.newRange`. This data will be stored in the font's :class:`Lib
     <fontParts.base.BaseLib>` object.
 
@@ -224,7 +224,7 @@ class Range:
 
         Example:
 
-            >>> range.start
+            >>> range.strStart
             'U+E050'
 
         """
@@ -236,7 +236,7 @@ class Range:
 
         Example:
 
-            >>> range.end
+            >>> range.strEnd
             'U+E07F'
 
         """
