@@ -24,7 +24,7 @@ SMufoLib: Where SMuFL meets UFO
 
    >>> glyph = font["uniE050"]  # gClef
    >>> glyph.smufl.ranges
-   (<Range 'clefs' ('U+E050-U+E07F') at ...>,)
+   (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>,)
    >>> smuflRange = glyph.smufl.ranges[0]
    >>> for g in smuflRange.glyphs:
    ...   g.width += 10
