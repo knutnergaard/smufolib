@@ -36,7 +36,6 @@ def normalizeColor(color: ColorTuple | None, mark: bool) -> ColorTuple | None:
     :raises TypeError: If `color` is not the expected type.
 
     """
-    # Normalize `color` value.
     if color is None:
         if mark:
             raise TypeError(
@@ -93,7 +92,6 @@ def normalizeFont(font: Font | Path | str) -> Font:
     :raises TypeError: If `font` is not the expected type.
 
     """
-    # Convert font path to object if necessary.
     error.validateType(font, (Font, Path, str), "font")
     if isinstance(font, Font):
         return font
@@ -107,7 +105,6 @@ def normalizeJsonDict(jsonDict: JsonDict | None) -> JsonDict:
     :raises TypeError: If `jsonDict` is :obj:`None`.
 
     """
-    # Ensure `jsonDict` is not None.
     if jsonDict is None:
         raise TypeError(error.generateTypeError(jsonDict, JsonDict, "JSON file"))
     return jsonDict
@@ -123,16 +120,23 @@ def normalizeRequest(request: Request | Path | str) -> Request:
     :raises TypeError: If `request` is not the expected type.
 
     """
-    # Convert request path to object if necessary.
     error.validateType(request, (Request, Path, str), "request")
     if isinstance(request, Request):
         return request
     return Request(request)
 
 
-def normalizeTargetPath(targetPath: str | Path) -> str | Path:
-    # Ensure targetPath exists.
-    if not Path(targetPath).exists():
+def normalizeTargetPath(targetPath: str | Path) -> Path:
+    """Ensure that `targetPath` is an existing :class:`Path`.
+
+    :param targetPath: The target path to normalize.
+    :raises TypeError: If `targetPath` is not an expected type.
+    :raises FileNotFoundError: If `targetPath` does not exist.
+
+    """
+    error.validateType(targetPath, (Path, str), "targetPath")
+    targetPath = Path(targetPath)
+    if not targetPath.exists():
         raise FileNotFoundError(
             error.generateErrorMessage("fileNotFound", objectName="targetPath")
         )
