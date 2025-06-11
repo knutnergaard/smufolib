@@ -96,7 +96,7 @@ def generateMetadata(
 
     metadata = _compileMetadata(font, fontDataJson, verbose)
 
-    filename = Path(targetPath).resolve() / f"{font.smufl.name}.json"
+    filename = targetPath.resolve() / f"{font.smufl.name}.json"
     stdUtils.verbosePrint(f"\nWriting metadata to: '{filename}'", verbose)
     writeJson(filename, metadata)
 
