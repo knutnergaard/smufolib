@@ -12,7 +12,7 @@ on the reference implementation of the `FontParts
 <https://fontparts.robotools.dev/en/stable/index.html>`_ API and operates directly on the
 `Unified Font Object <https://unifiedfontobject.org>`_ (UFO) format. SMufoLib enhances
 these foundations with SMuFL-aware tools for music font design, scripting and metadata
-management -- all from the command line, without requiring a GUI font editor.
+management – all from the command line, without requiring a GUI font editor.
 
 .. _documentation:
 
