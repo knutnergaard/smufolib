@@ -193,7 +193,18 @@ class Smufl(BaseObject):
         return contents
 
     def naked(self):
-        """BaseObject override for __eq__ and __hash__."""
+        """Return the wrapped defcon object.
+
+        This method is useful if you need to bypass the wrapper and interact directly
+        with the underlying `defcon <https://defcon.robotools.dev/en/stable/>`_ object
+        (e.g., for compatibility with other libraries).
+
+        Example:
+
+            >>> smufl.glyph.naked()  # doctest: +ELLIPSIS
+            <defcon.objects.glyph.Glyph object at 0x...>
+
+        """
         return self
 
     def _requireGlyphAccess(self, attribute: str) -> Glyph | None:
