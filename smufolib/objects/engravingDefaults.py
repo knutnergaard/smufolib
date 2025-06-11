@@ -146,7 +146,7 @@ class EngravingDefaults(BaseObject):
         return contents
 
     def naked(self):
-        # BaseObject override for __eq__ and __hash__
+        """BaseObject override for __eq__ and __hash__."""
         return self  # pragma: no cover
 
     # -------
