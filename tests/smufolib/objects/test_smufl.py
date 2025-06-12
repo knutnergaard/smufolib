@@ -285,27 +285,27 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_ranges_internalData(self):
         self.font.lib[RANGES_LIB_KEY] = {
             "testRange1": {
-                "range_start": 0xE000,
-                "range_end": 0xE002,
+                "range_start": 0xF000,
+                "range_end": 0xF002,
                 "description": "Test description 1",
-                "glyphs": ["brace"],
+                "glyphs": ["testName"],
             }
         }
+        glyph = generateGlyph(self.font, "uniF000", smuflName="testName")
+        self.assertEqual(len(glyph.smufl.ranges), 0)
+        glyph.unicode = 0xF000
+        self.assertEqual(len(glyph.smufl.ranges), 1)
+        self.assertEqual(glyph.smufl.ranges[0].start, 0xF000)
 
-        generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
-        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
-        self.assertEqual(self.recommended1.smufl.ranges[0].start, 0xE000)
-
-        # Add preexisting range
-        self.font.lib[RANGES_LIB_KEY] = {
-            "testRange2": {
-                "range_start": 0xE010,
-                "range_end": 0xE012,
-                "description": "Test description 2",
-                "glyphs": [],
-            }
+        # Add other range
+        self.font.lib[RANGES_LIB_KEY]["testRange2"] = {
+            "range_start": 0xF010,
+            "range_end": 0xF012,
+            "description": "Test description 2",
+            "glyphs": [],
         }
-        self.assertEqual(len(self.recommended1.smufl.ranges), 1)
+
+        self.assertEqual(len(glyph.smufl.ranges), 1)
 
     # --------------
     # Glyph metadata
@@ -376,7 +376,6 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_bBox_from_font(self):
         self.smufl.font = self.font
         with self.assertRaises(AttributeError):
-            self.smufl.font = self.font
             self.assertIsNone(self.smufl.bBox)
 
     def test_bBox_with_spaces(self):
@@ -456,8 +455,8 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertEqual(self.recommended1.smufl.advanceWidth, 0)
 
     def test_set_advanceWidth_from_font(self):
+        self.smufl.font = self.font
         with self.assertRaises(AttributeError):
-            self.smufl.font = self.font
             self.smufl.advanceWidth = 100
             self.assertIsNone(self.smufl.advanceWidth)
 
@@ -514,6 +513,13 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_set_classes_from_glyph(self):
         self.recommended1.smufl.classes = ["class1", "class2"]
         self.assertEqual(self.recommended1.smufl.classes, ("class1", "class2"))
+
+    def test_set_classes_strict(self):
+        smufolib.objects.smufl.STRICT_CLASSES = True
+        self.recommended1.smufl.classes = ["accidentals", "dynamics"]
+        self.assertEqual(self.recommended1.smufl.classes, ("accidentals", "dynamics"))
+        with self.assertRaises(ValueError):
+            self.recommended1.smufl.classes = ["class1", "class2"]
 
     def test_classes_from_glyph_removal(self):
         self.recommended1.lib["com.smufolib.classes"] = ["class1", "class2"]

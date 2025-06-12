@@ -47,6 +47,13 @@ class TestRange(unittest.TestCase):
         )
         self.assertEqual(repr(self.range), expected_repr)
 
+    def test_contains(self):
+        self.assertTrue("timeSig0" in self.range)
+        self.assertFalse("uniE080" in self.range)
+
+    def test_iter(self):
+        self.assertEqual(list(self.range), list(self.range.glyphs))
+
     def test_eq_hash(self):
         range1 = self.range
         range2 = copy.copy(range1)
