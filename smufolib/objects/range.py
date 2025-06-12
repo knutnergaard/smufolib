@@ -68,8 +68,9 @@ class Range:
     def __bool__(self) -> bool:
         return self.name is not None and self.start is not None and self.end is not None
 
-    def __contains__(self, item: Glyph) -> bool:
-        return item in self.glyphs if self.glyphs else False
+    def __contains__(self, glyphName: str) -> bool:
+        glyphNames = self._getAttribute("glyphNames", tuple)
+        return glyphName in glyphNames if glyphNames else False
 
     def __eq__(self, other: object) -> bool:
         return (
@@ -261,6 +262,8 @@ class Range:
             value = attributes.get(key)
             if key == "identifier":
                 value = range_
+            if key == "glyphNames":
+                value = tuple(attributes["glyphs"])
             if key == "glyphs":
                 value = tuple(
                     g
