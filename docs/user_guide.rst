@@ -28,6 +28,13 @@ Reference <objectref/index.html>`. SMufoLib's :class:`.Font`, :class:`.Layer`, a
 <https://defcon.robotools.dev/en/stable/>`_-based reference implementation and serve as
 the foundation for the features described below.
 
+.. note::
+
+    SMufoLib is designed to work with the default layer of a UFO font. SMuFL metadata is
+    stored in the font-level and glyph-level :class:`Lib <fontParts.base.BaseLib>`
+    objects, which are shared across all layers. As such, SMufoLib does not interact
+    with or expose any layer-specific functionality.
+
 .. _configuring-smufolib:
 
 Configuring SMufoLib
