@@ -707,7 +707,7 @@ class Smufl(BaseObject):
             internalData = _lib.getLibSubdict(self.font, RANGES_LIB_KEY)
             if internalData:
                 for data in internalData.values():
-                    if (
+                    if self._glyph.unicode is not None and (
                         data.get("range_start")
                         <= self._glyph.unicode
                         <= data.get("range_end")
@@ -741,21 +741,21 @@ class Smufl(BaseObject):
         return ranges
 
     def _collectAllRanges(self) -> tuple[Range, ...]:
-        _internal = (
+        internalRanges = (
             self._getRangesFromMetadata(
                 _lib.getLibSubdict(self.font, RANGES_LIB_KEY), _internal=True
             )
             or []
         )
-        external = self._getRangesFromMetadata(METADATA) or []
+        externalRanges = self._getRangesFromMetadata(METADATA) or []
         internalSpans = [
             (r.start, r.end)
-            for r in _internal
+            for r in internalRanges
             if r.start is not None and r.end is not None
         ]
         nonConflictingExternal = [
             r
-            for r in external
+            for r in externalRanges
             if r.start is not None
             and r.end is not None
             and not any(
@@ -765,7 +765,7 @@ class Smufl(BaseObject):
         ]
         return tuple(
             sorted(
-                _internal + nonConflictingExternal,
+                internalRanges + nonConflictingExternal,
                 key=lambda r: (r.start is None, r.start),
             )
         )
