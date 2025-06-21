@@ -16,7 +16,7 @@ from smufolib.utils import error
 def main():
     """Main function of the script."""
 
-    filePath = Path(__file__).parent.parent / "docs" / "error_templates.csv"
+    filePath = Path(__file__).parents[2] / "docs" / "error_templates.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Key", "Template"]

@@ -16,7 +16,7 @@ def main():
 
     # pylint: disable=C0103
 
-    filePath = Path(__file__).parent.parent / "docs" / "engraving_defaults_mapping.csv"
+    filePath = Path(__file__).parents[2] / "docs" / "engraving_defaults_mapping.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Attribute", "Glyph", "Ruler Function"]

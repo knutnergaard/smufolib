@@ -11,7 +11,7 @@ from smufolib.utils.error import ERROR_TEMPLATES
 def main():
     """Main function of the script."""
 
-    filePath = Path(__file__).parents[1] / "smufolib" / "utils" / "_annotations.py"
+    filePath = Path(__file__).parents[2] / "smufolib" / "utils" / "_annotations.py"
 
     content = filePath.read_text(encoding="utf-8")
 

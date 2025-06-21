@@ -38,7 +38,7 @@ def main():
         converters.toNumber: ":class:`list`",
     }
 
-    filePath = Path(__file__).parent.parent / "docs" / "options.csv"
+    filePath = Path(__file__).parents[2] / "docs" / "options.csv"
 
     with open(filePath, "w", encoding="utf-8", newline="") as csvfile:
         fieldnames = ["Argument", "Option", "Type", "Description"]
