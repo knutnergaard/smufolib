@@ -2,7 +2,8 @@
 from __future__ import annotations
 
 from fontParts.fontshell.glyph import RGlyph
-from smufolib.objects.smufl import Smufl
+from smufolib.objects.smufl import NAMES_LIB_KEY, Smufl
+from smufolib.objects import _lib
 
 
 class Glyph(RGlyph):
@@ -38,7 +39,7 @@ class Glyph(RGlyph):
     def _set_name(self, value: str) -> None:
         # Set the name of the glyph and update :attr:`.Font.lib` if necessary.
         if self.font is not None:
-            namesDict = self.smufl.names
+            namesDict = _lib.getLibSubdict(self.font, NAMES_LIB_KEY)
             smuflName = self.smufl.name
             if namesDict and smuflName and self.naked().name in namesDict.values():
                 namesDict[smuflName] = value
