@@ -89,7 +89,9 @@ def toDecimal(string: str) -> int:
         return decimal
 
     raise ValueError(
-        error.generateErrorMessage("unicodeOutOfRange", objectName="string")
+        error.generateErrorMessage(
+            "unicodeOutOfRange", objectName="string", start="U+0000", end="U+10FFFF"
+        )
     )
 
 
@@ -122,7 +124,9 @@ def toUniHex(value: int | str) -> str:
         return f"U+{value:04X}"
 
     raise ValueError(
-        error.generateErrorMessage("unicodeOutOfRange", objectName="value")
+        error.generateErrorMessage(
+            "unicodeOutOfRange", objectName="value", start="U+0000", end="U+10FFFF"
+        )
     )
 
 
@@ -163,7 +167,9 @@ def toUniName(value: int | str, short: bool = False) -> str:
         return f"{prefix}{value:04X}"
 
     raise ValueError(
-        error.generateErrorMessage("unicodeOutOfRange", objectName="value")
+        error.generateErrorMessage(
+            "unicodeOutOfRange", objectName="value", start="U+0000", end="U+10FFFF"
+        )
     )
 
 
