@@ -1528,7 +1528,7 @@ class Smufl(BaseObject):
         if not self.font.info.unitsPerEm:
             raise AttributeError(
                 error.generateErrorMessage(
-                    "missingDependencyError",
+                    "missingDependency",
                     objectName="value",
                     dependency="font.info.unitsPerEm",
                 )
@@ -1562,7 +1562,7 @@ class Smufl(BaseObject):
         if not self.font.info.unitsPerEm:
             raise AttributeError(
                 error.generateErrorMessage(
-                    "missingDependencyError",
+                    "missingDependency",
                     objectName="value",
                     dependency="font.info.unitsPerEm",
                 )
@@ -1600,7 +1600,7 @@ class Smufl(BaseObject):
             if not self.font.info.unitsPerEm:
                 raise AttributeError(
                     error.generateErrorMessage(
-                        "missingDependencyError",
+                        "missingDependency",
                         objectName="spaces",
                         dependency="font.info.unitsPerEm",
                     )

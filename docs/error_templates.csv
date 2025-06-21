@@ -21,7 +21,7 @@
 "``""itemsTypeError""``","Items in `objectName!r` must be `validTypes`, not `valueType`"
 "``""itemsValueError""``","Invalid value for item in `objectName!r`: `value!r`"
 "``""missingExtension""``","The value for `objectName!r` must have a `extension!r` extension"
-"``""missingDependencyError""``","Cannot set `objectName!r` because `dependency!r` is None"
+"``""missingDependency""``","Cannot set `objectName!r` because `dependency!r` is None"
 "``""missingValue""``","Required values for `objectName!r` are missing"
 "``""nonIncreasingRange""``","The values in `objectName!r` must form an increasing range"
 "``""notImplementedError""``","The `objectName!r` subclass does not implement this method"

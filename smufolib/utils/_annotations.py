@@ -40,7 +40,7 @@ ErrorKey = Literal[
     "invalidInitialItemsCharacter",
     "itemsTypeError",
     "itemsValueError",
-    "missingDependencyError",
+    "missingDependency",
     "missingExtension",
     "missingGlyph",
     "missingValue",
