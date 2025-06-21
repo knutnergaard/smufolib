@@ -5,7 +5,7 @@ from collections.abc import Iterator
 
 from smufolib.request import Request
 from smufolib import config
-from smufolib.utils import converters, normalizers
+from smufolib.utils import converters, error, normalizers
 from smufolib.objects import _lib
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -30,6 +30,10 @@ class Range:
     SMuFL-defined glyph ranges. Specified range data is sourced from
     :confval:`metadata.paths.ranges`, falling back to
     :confval:`metadata.fallbacks.ranges` if the former is unavailable.
+
+    Like :class:`.Font` or :class:`.Layer`, this object behaves like a collection of
+    :class:`.Glyph` instances. However, membership checks are based on
+    :attr:`.Smufl.name` rather than :attr:`Glyph.name <fontParts.base.BaseGlyph.name>`.
 
     Ranges are read-only by default. Editability is controlled globally via the
     :confval:`ranges.editable` configuration setting. New custom ranges may be added
@@ -79,6 +83,87 @@ class Range:
             and self.start == other.start
             and self.end == other.end
         )
+
+    def __getitem__(self, name: str) -> Glyph:
+        """Get a SMuFL glyph by its canonical name from the range.
+
+        :param name: The :attr:`.Smufl.name` of the glyph to retrieve.
+        :raises TypeError: If `name` or `glyph` is not of the expected type.
+        :raises ValueError: If `name` is not a valid SMuFL name.
+        :raises KeyError: If the glyph is not found.
+
+        Example:
+
+            >>> glyph = font.smufl.range["accidentalFlat"]  # doctest: +ELLIPSIS
+            <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
+
+        """
+        if self.smufl is not None:
+            glyph = self.smufl[name]
+
+            if (
+                glyph is not None
+                and glyph.unicode is not None
+                and self.start <= glyph.unicode <= self.end
+            ):
+                return glyph
+
+        raise KeyError(error.generateErrorMessage("missingGlyph", name=name))
+
+    def __setitem__(self, name: str, glyph: Glyph) -> None:
+        """Insert or replace a SMuFL glyph in the range.
+
+        If `glyph` is considered recommended (i.e., listed in
+        :confval:`metadata.glyphnames`), it will be assigned a corresponding
+        :attr:`~fontParts.base.BaseGlyph.name` and
+        :attr:`~fontParts.base.BaseGlyph.unicode`.
+
+        If it is optional or not a SMUFL glyph, `name` will be used if ``glyph.name`` is
+        :obj:`None`.
+
+        :param name: The :attr:`.Smufl.name` of the glyph to insert or replace.
+        :param glyph: The :class:`.Glyph` object to insert.
+        :raises TypeError: If `name` or `glyph` is not of the expected type.
+        :raises ValueError:
+            - If `name` is not a valid SMuFL name.
+            - If `glyph` is not within the range's Unicode range.
+
+        Example:
+
+            >>> font.smufl["accidentalFlat"] = glyph
+
+        """
+        if self.smufl is None or self.font is None:
+            return
+
+        self.smufl[name] = glyph
+
+        inserted = self.smufl[name]
+
+        if (
+            inserted is None
+            or inserted.unicode is None
+            or not self.start <= inserted.unicode <= self.end
+        ):
+            del self[name]
+            raise ValueError(
+                error.generateErrorMessage(
+                    "unicodeOutOfRange",
+                    objectName=name,
+                    start=self.strStart,
+                    end=self.strEnd,
+                )
+            )
+
+    def __delitem__(self, name: str) -> None:
+        """Delete a SMuFL glyph from the range.
+
+        :param name: The :attr:`.Smufl.name` of the glyph to delete.
+        :raises KeyError: If the glyph does not exist in the range.
+
+        """
+        if self.smufl is not None:
+            del self.smufl[name]
 
     def __hash__(self) -> int:
         return hash((self.name, self.start, self.end))
