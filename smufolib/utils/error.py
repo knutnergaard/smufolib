@@ -13,8 +13,10 @@ To import the module:
 
 from __future__ import annotations
 from types import UnionType
-from typing import Any, get_args
+from typing import get_args, Any
 import difflib
+
+from smufolib.utils._annotations import ErrorKey
 
 # pylint: disable=C0103
 
@@ -41,8 +43,9 @@ ERROR_TEMPLATES: dict[str, str] = {
     "invalidInitialItemsCharacter": "Value items for {objectName!r} must start with a lowercase letter or number",
     "itemsTypeError": "Items in {objectName!r} must be {validTypes}, not {valueType}",
     "itemsValueError": "Invalid value for item in {objectName!r}: {value!r}",
+    "missingDependency": "Cannot set {objectName!r} because {dependency!r} is None",
     "missingExtension": "The value for {objectName!r} must have a {extension!r} extension",
-    "missingDependencyError": "Cannot set {objectName!r} because {dependency!r} is None",
+    "missingGlyph": "No SMuFL glyph named {name!r}",
     "missingValue": "Required values for {objectName!r} are missing",
     "nonIncreasingRange": "The values in {objectName!r} must form an increasing range",
     "notImplementedError": "The {objectName!r} subclass does not implement this method",
@@ -54,7 +57,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "singleItem": "{objectName!r} must contain a value pair",
     "suggestion": "Did you mean {suggestion!r}?",
     "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}",
-    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range (U+0000 -- U+10FFFF)",
+    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range ({start}-{end})",
     "urlError": "Could not connect to URL: {url!r}",
     "valueError": "Invalid value for {objectName!r}: {value!r}",
     "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower",
@@ -67,7 +70,7 @@ class URLWarning(Warning):
 
 
 def generateErrorMessage(
-    *templateNames: str, string: str | None = None, **kwargs
+    *templateNames: ErrorKey, string: str | None = None, **kwargs
 ) -> str:
     r"""Generate an error message from a template and keyword arguments.
 
@@ -160,7 +163,9 @@ def generateTypeError(
     }
 
     if context:
-        template = "contextualItemsTypeError" if items else "contextualTypeError"
+        template: ErrorKey = (
+            "contextualItemsTypeError" if items else "contextualTypeError"
+        )
         kwargs["context"] = context
     elif items:
         template = "itemsTypeError"
@@ -261,7 +266,7 @@ def suggestValue(
     closeMatches = difflib.get_close_matches(value, possibilities, 1, cutoff)
     if closeMatches:
         suggestion = closeMatches[0]
-        template = "itemsValueError" if items else "valueError"
+        template: ErrorKey = "itemsValueError" if items else "valueError"
         raise ValueError(
             generateErrorMessage(
                 template,
