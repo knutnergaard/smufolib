@@ -1,13 +1,17 @@
 # pylint: disable=C0103, C0114, R0904, W0212, W0221
 from __future__ import annotations
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, cast, Any
+from collections.abc import Iterator
 import re
+import warnings
 
 from fontParts.base.base import BaseObject
+
 from smufolib import config
 from smufolib.objects.range import Range, METADATA, RANGES_LIB_KEY
 from smufolib.objects.engravingDefaults import EngravingDefaults
 from smufolib.objects import _lib
+from smufolib.request import Request
 from smufolib.utils import converters, error, normalizers
 
 if TYPE_CHECKING:  # pragma: no cover
@@ -16,8 +20,6 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.glyph import Glyph
 
 CONFIG = config.load()
-EDITABLE = CONFIG["ranges"]["editable"]
-STRICT_CLASSES = CONFIG["classes"]["strict"]
 CLASSES_LIB_KEY = "com.smufolib.classes"
 DESCRIPTION_LIB_KEY = "com.smufolib.description"
 DESIGN_SIZE_LIB_KEY = "com.smufolib.designSize"
@@ -25,6 +27,7 @@ NAMES_LIB_KEY = "com.smufolib.names"
 NAME_LIB_KEY = "com.smufolib.name"
 SIZE_RANGE_LIB_KEY = "com.smufolib.sizeRange"
 SPACES_LIB_KEY = "com.smufolib.spaces"
+GLYPHNAMES_DATA = Request.glyphnames()
 
 #: Names of glyph anchors specified by the SMuFL standard.
 ANCHOR_NAMES: set[str] = {
@@ -180,7 +183,8 @@ class Smufl(BaseObject):
     def _init(self, font: Font | None = None, glyph: Glyph | None = None) -> None:
         self._font = font
         self._glyph = glyph
-        self._layer = None
+        self._classesStrict = CONFIG["classes"]["strict"]
+        self._rangesEditable = CONFIG["ranges"]["editable"]
 
     def _reprContents(self) -> list[str]:
         contents = []
@@ -219,8 +223,117 @@ class Smufl(BaseObject):
             )
         return self._glyph
 
+    def __getitem__(self, name: str) -> Glyph:
+        """Get a SMuFL glyph by its canonical name from the font.
+
+        :param name: The :attr:`name` of the glyph to retrieve.
+        :raises TypeError: If `name` or `glyph` is not of the expected type.
+        :raises ValueError: If `name` is not a valid SMuFL name.
+        :raises KeyError: If the glyph is not found.
+
+        Example:
+
+            >>> glyph = font.smufl["accidentalFlat"]  # doctest: +ELLIPSIS
+            <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
+
+        """
+        if self.font is not None:
+            if name in self._names:
+                glyphName = self._names[name]
+                return self.font[glyphName]
+
+        raise KeyError(error.generateErrorMessage("missingGlyph", name=name))
+
+    def __setitem__(self, name: str, glyph: Glyph) -> None:
+        """Insert or replace a SMuFL glyph in the font.
+
+        If `glyph` is considered recommended (i.e., listed in
+        :confval:`metadata.glyphnames`), it will be assigned a corresponding
+        :attr:`~fontParts.base.BaseGlyph.name` and
+        :attr:`~fontParts.base.BaseGlyph.unicode`.
+
+        If it is optional or not a SMUFL glyph, `name` will be used if ``glyph.name`` is
+        :obj:`None`.
+
+        :param name: The :attr:`name` of the glyph to insert or replace.
+        :param glyph: The :class:`.Glyph` object to insert.
+        :raises TypeError: If `name` or `glyph` is not of the expected type.
+        :raises ValueError: If `name` is not a valid SMuFL name.
+
+        Example:
+
+            >>> font.smufl["accidentalFlat"] = glyph
+
+        """
+        if self.font is None:
+            return
+
+        from smufolib.objects.glyph import Glyph
+
+        error.validateType(name, str, objectName="name")
+        error.validateType(glyph, Glyph, objectName="glyph")
+
+        normalizedName = cast(str, normalizers.normalizeSmuflName(name, "name"))
+        if isinstance(GLYPHNAMES_DATA, dict):
+            glyphData = GLYPHNAMES_DATA.get(normalizedName)
+        else:
+            glyphData = None
+
+        if glyphData:
+            codepoint = converters.toDecimal(glyphData["codepoint"])
+            glyphName = converters.toUniName(glyphData["codepoint"])
+        else:
+            codepoint = glyph.unicode
+            glyphName = glyph.name or name
+
+        insert = self.font._insertGlyph(glyph, name=glyphName, clear=False)
+        insert.unicode = codepoint
+        insert.smufl.name = name
+
+    def __delitem__(self, name: str) -> None:
+        """Delete a SMuFL glyph from the font.
+
+        :param name: The :attr:`name` of the glyph to delete.
+        :raises TypeError: If `name` is not a :class:`str`.
+        :raises ValueError: If `name` is not a valid SMuFL name.
+
+        Example:
+
+            >>> del font.smufl["accidentalFlat"]
+
+        """
+        if self.font is None or self._names is None:
+            return
+
+        normalizedName = normalizers.normalizeSmuflName(name, "Smufl.name")
+        if normalizedName in self._names:
+            del self.font[self._names[normalizedName]]
+            _lib.updateLibSubdictValue(self.font, NAMES_LIB_KEY, normalizedName, None)
+
+    def __len__(self) -> int:
+        if self.font is None or self._names is None:
+            return 0
+        return len(self._names)
+
+    def __iter__(self) -> Iterator[Glyph]:
+        if self._names is None:
+            return
+
+        for smuflName in self._names:
+            glyph = self[smuflName]
+            if glyph is not None:
+                yield glyph
+
+    def keys(self):
+        """Return SMuFL canonical names."""
+        return self._names.keys()
+
     def findGlyph(self, name: str) -> Glyph | None:
         """Find :class:`.Glyph` object from :attr:`name`.
+
+        .. deprecated 0.7.0
+
+            Use ``font.smufl["name"]`` instead.
 
         :param name: SMuFL-specific canonical glyph name.
 
@@ -235,10 +348,14 @@ class Smufl(BaseObject):
 
         normalizedName = normalizers.normalizeSmuflName(name, "Smufl.name")
 
-        if self.font is None or self.names is None or normalizedName not in self.names:
+        if (
+            self.font is None
+            or self._names is None
+            or normalizedName not in self._names
+        ):
             return None
 
-        return self.font[self.names[normalizedName]]
+        return self.font[self._names[normalizedName]]
 
     # -------
     # Parents
@@ -623,7 +740,7 @@ class Smufl(BaseObject):
         if self.font is None:
             return
 
-        if not EDITABLE:
+        if not CONFIG["ranges"]["editable"]:
             raise PermissionError(
                 error.generateErrorMessage(
                     "permissionError",
@@ -720,7 +837,7 @@ class Smufl(BaseObject):
     def _getRangesFromMetadata(self, metadata, _internal=False) -> list[Range]:
         if (
             self.font is None
-            or self.names is None
+            or self._names is None
             or metadata is None
             or isinstance(metadata, str)
         ):
@@ -729,9 +846,9 @@ class Smufl(BaseObject):
         for data in metadata.values():
             match = next(
                 (
-                    self.names[smuflName]
+                    self._names[smuflName]
                     for smuflName in data["glyphs"]
-                    if smuflName in self.names
+                    if smuflName in self._names
                 ),
                 None,
             )
@@ -1007,7 +1124,7 @@ class Smufl(BaseObject):
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._requireGlyphAccess("classes")
-        if STRICT_CLASSES and value:
+        if CONFIG["classes"]["strict"] and value:
             for item in value:
                 if item not in CLASS_NAMES:
                     raise ValueError(
@@ -1085,7 +1202,7 @@ class Smufl(BaseObject):
     def name(self, value: str | None) -> None:
         # Update com.smufolib.names before ID property
         if self.font is not None:
-            if self.glyph is None:
+            if self._glyph is None:
                 self.font.info.naked().familyName = value
             else:
                 normalizedName = normalizers.normalizeSmuflName(value, "Smufl.name")
@@ -1105,42 +1222,52 @@ class Smufl(BaseObject):
         :attr:`.Smufl.name` and :attr:`Glyph.name` attributes.
 
         """
+        warnings.warn(
+            error.generateErrorMessage(
+                "deprecated",
+                "deprecatedReplacement",
+                objectName="Smufl.names",
+                version="0.6",
+                replacement=f"font.lib[{NAMES_LIB_KEY}]",
+            ),
+            DeprecationWarning,
+            stacklevel=2,
+        )
         return _lib.getLibSubdict(self.font, NAMES_LIB_KEY)
 
-    @names.setter
-    def names(self, value: dict[str, str] | None) -> None:
-        _lib.updateLibSubdict(self.font, NAMES_LIB_KEY, value)
+    @property
+    def _names(self) -> dict[str, str]:
+        return _lib.getLibSubdict(self.font, NAMES_LIB_KEY) or {}
 
     def _clearNames(self) -> None:
-        if self.font is not None and self.names is not None:
+        if self.font is not None:
             if self.name:
-                self.names.pop(self.name, None)
-            if not self.names:
-                self.font.lib.naked().pop(NAMES_LIB_KEY, None)
+                self._names.pop(self.name, None)
+            if not self._names:
+                _lib.updateLibSubdict(self.font, NAMES_LIB_KEY, None)
 
     def _addNames(self, value: Any) -> None:
-        if self._glyph is not None and self.names is not None:
-            if (
-                self.names
-                and value in self.names
-                and self.names[value] != self._glyph.name
-            ):
+        if self._glyph is not None:
+            if value in self._names and self._names[value] != self._glyph.name:
                 raise ValueError(
                     error.generateErrorMessage(
                         "duplicateAttributeValue",
                         value=value,
                         attribute="smufl.name",
                         objectName="Glyph",
-                        conflictingInstance=self.names[value],
+                        conflictingInstance=self._names[value],
                     )
                 )
 
-            if self._glyph.name in self.names.values():
-                self.names = {
-                    k: v for k, v in self.names.items() if v != self._glyph.name
+            if self._glyph.name in self._names.values():
+                filtered = {
+                    k: v for k, v in self._names.items() if v != self._glyph.name
                 }
+                _lib.updateLibSubdict(self.font, NAMES_LIB_KEY, filtered)
 
-            self.names[value] = self._glyph.name
+            _lib.updateLibSubdictValue(
+                self.font, NAMES_LIB_KEY, value, self._glyph.name
+            )
 
     def _updateNames(self, value: str | None) -> None:
         # Keep dynamic dict of glyph names in font.lib.
@@ -1200,6 +1327,11 @@ class Smufl(BaseObject):
     def isMember(self) -> bool:
         """Return :obj:`True` if glyph is either :smufl:`recommended or optional
         <about/recommended-chars-optional-glyphs.html>`.
+
+        .. deprecated:: 0.7.0
+
+            Use ``glyph in font.smufl`` instead.
+
 
         This property is read-only.
 
