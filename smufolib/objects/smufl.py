@@ -165,8 +165,8 @@ class Smufl(BaseObject):
         advisable to run the script :mod:`.importID` prior to using this class with an
         existing font for the first time.
 
-    :param font: Parent :class:`.Font` object.
-    :param glyph: Parent :class:`.Glyph` object.
+    :keyword font: Parent :class:`.Font` object.
+    :keyword glyph: Parent :class:`.Glyph` object.
 
     This object is typically accessed through a :class:`.Font` or :class:`.Glyph`:
 
@@ -222,6 +222,18 @@ class Smufl(BaseObject):
                 )
             )
         return self._glyph
+
+    # -----------------
+    # Glyph Interaction
+    # -----------------
+
+    def __contains__(self, name: str) -> bool:
+        """Check if a SMuFL glyph exists in the font by its canonical name.
+
+        :param name: The :attr:`name` of the glyph to check.
+
+        """
+        return name in self._names
 
     def __getitem__(self, name: str) -> Glyph:
         """Get a SMuFL glyph by its canonical name from the font.
@@ -311,11 +323,13 @@ class Smufl(BaseObject):
             _lib.updateLibSubdictValue(self.font, NAMES_LIB_KEY, normalizedName, None)
 
     def __len__(self) -> int:
+        """Return the number of SMuFL glyphs in the font."""
         if self.font is None or self._names is None:
             return 0
         return len(self._names)
 
     def __iter__(self) -> Iterator[Glyph]:
+        """Iterate over SMuFL glyphs in the font."""
         if self._names is None:
             return
 
@@ -325,7 +339,7 @@ class Smufl(BaseObject):
                 yield glyph
 
     def keys(self):
-        """Return SMuFL canonical names."""
+        """Return a view of the canonical SMuFL glyph names in the font."""
         return self._names.keys()
 
     def findGlyph(self, name: str) -> Glyph | None:
@@ -343,6 +357,17 @@ class Smufl(BaseObject):
             <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
 
         """
+        warnings.warn(
+            error.generateErrorMessage(
+                "deprecated",
+                "deprecatedReplacement",
+                objectName="findGlyph",
+                replacement="font.smufl['name']",
+                version="0.7.0",
+            ),
+            DeprecationWarning,
+            stacklevel=2,
+        )
         if name is None:
             return None
 
