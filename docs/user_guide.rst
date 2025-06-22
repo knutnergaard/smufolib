@@ -112,12 +112,42 @@ If you want to access the configuration file settings in your scripts, the
 
 See the :mod:`argparse` documentation for more info on working with configuration files.
 
-Setting attributes
+.. _glyph-management:
+
+Glyph Management
+================
+
+The :class:`.Smufl` class provides a SMuFL-aware interface to the font, enabling glyph
+access and manipulation by canonical SMuFL names, [#]_ using familiar dictionary operations:
+
+To insert the glyph U+E000 (*brace*):
+
+    >>> from smufolib import Glyph
+    >>> glyph = Glyph()
+    >>> font.smufl["brace"] = glyph
+
+For glyphs in the :smufl:`recommended <about/recommended-chars-optional-glyphs.html>`
+SMuFL range, this automatically assigns the correct Unicode and font glyph name:
+
+    >>> glyph = font.smufl["brace"]
+    >>> glyph.name
+    'uniE000'
+    >>> glyph.unicode
+    57344
+
+For optional or custom SMuFL glyphs, the given name is used as the glyph name, and no Unicode value is assigned unless explicitly set.
+
+To remove a SMuFL glyph, use the :meth:`del` operator:
+
+    >>> del font.smufl["brace"]
+
+
+Setting Attributes
 ==================
 
-SMufoLib provides easy storage of SMuFL-related font and glyph metadata within the font
-file itself. Attributes [#]_ can either be set individually during the design process or
-imported from metadata files.
+SMufoLib stores SMuFL-specific font and glyph metadata directly within the font file.
+Attributes [#]_ can either be set individually during the design process or imported
+from metadata files.
 
 Manually Setting Attributes
 ---------------------------
@@ -160,25 +190,17 @@ Once SMuFL specific glyph names and other attributes have been set, SMufoLib pro
 Glyph Ranges
 ------------
 
-The SMuFL glyph ranges covered by the entire font -- or by a specific glyph -- can be
-accessed via the :attr:`.ranges` attribute on the :class:`.Font` or :class:`.Glyph`
-object, respectively:
+You can introspect the SMuFL glyph ranges that apply to the font as a whole or to
+individual glyphs are accessible via the following attributes:
 
-.. doctest::
-    :options: +ELLIPSIS, +NORMALIZE_WHITESPACE
-   
-    >>> font.smufl.ranges
-    (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>, 
-    ...
-    <Range 'multiSegmentLines' (U+EAA0-U+EB0F) editable=False at ...>)
+- ``font.smufl.ranges`` -- Returns a :class:`tuple` containing all SMuFL ranges in the
+  font.
+- ``glyph.smufl.ranges`` -- Returns a :class:`tuple` containing the SMuFL range that the
+  glyph belongs to.
 
-.. doctest::
-
-    >>> glyph = font["uniE050"]  # gClef
-    >>> glyph.smufl.ranges
-    (<Range 'clefs' (U+E050-U+E07F) editable=False at ...>,)
-    
-These are particularly useful when working with multiple glyphs by type:
+Like :class:`.Smufl`, the :class:`.Range` object behaves like a collection of
+:class:`.Glyph` instances. It is particularly useful when working with multiple glyphs
+by type:
 
     >>> for glyph in font:
     ...     for range in glyph.smufl.ranges:
@@ -186,7 +208,7 @@ These are particularly useful when working with multiple glyphs by type:
     ...             glyph.moveBy = (12, 0)
 
 
-Coloring glyphs by range is also really easy with this feature:
+Coloring glyphs by range is also straightforward when using this object:
 
 .. testcode::
 
@@ -203,9 +225,17 @@ Coloring glyphs by range is also really easy with this feature:
         for glyph in range:
             glyph.mark = color
 
-The :class:`.Range` object provides the values for any SMuFL range's 
-:attr:`~.Range.name`, :attr:`~.Range.description`, :attr:`~.Range.glyphs`, 
-:attr:`~.Range.start` and :attr:`~.Range.end` attributes.
+The :class:`.Range` object provides range-specific :ref:`glyph management
+<glyph-management>` as well as access to a SMuFL range's :attr:`~.Range.name`,
+:attr:`~.Range.description`, :attr:`~.Range.start` and :attr:`~.Range.end` attributes.
+
+The :attr:`.Range.glyphs` attribute returns a :class:`tuple` of :class:`.Glyph`
+instances belonging to the range, while :meth:`.Range.keys` returns a :class:`tuple` of
+their canonical SMuFL names.
+
+.. note:: 
+
+    Attempting to insert a glyph whose Unicode value is not within the range's bounds will raise a :class:`ValueError`.
 
 Ranges are read-only by default, but may be made editable with the
 :confval:`ranges.editable` configuration setting. When enabled, custom ranges may be
@@ -458,18 +488,6 @@ value to staff spaces, and the :meth:`.toUnits` to do the opposite:
     for the conversion to work as expected, e.g.:
    
         >>> font.info.unitsPerEm = 1000
-
-Finding glyphs
---------------
-
-You can search for a glyph by its canonical SMuFL name with the :meth:`.Smufl.findGlyph`
-method:
-
-.. doctest::
-    :options: +ELLIPSIS
-
-    >>> font.smufl.findGlyph("gClef")
-    <Glyph 'uniE050' ['gClef'] ('public.default') at ...>
 
 .. _running-scripts:
 
@@ -798,6 +816,9 @@ Boolean Checks
 
 Footnotes
 =========
+
+.. [#] The term *Canonical SMuFL name* refers to the official descriptive glyph names as
+   defined in the :smufl:`SMuFL specification <>`.
 
 .. [#] Most of the objects referred to as "attributes" in this user guide are
    technically implemented as Python properties, but referred to as attributes for
