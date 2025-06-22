@@ -18,6 +18,7 @@ CONFIG = config.load()
 EDITABLE = editable = CONFIG["ranges"]["editable"]
 METADATA = Request.ranges()
 RANGES_LIB_KEY = "com.smufolib.ranges"
+NAMES_LIB_KEY = "com.smufolib.names"
 
 RangeValue = str | int | tuple["Glyph", ...] | None
 T = TypeVar("T", bound=RangeValue)
@@ -70,19 +71,44 @@ class Range:
         )
 
     def __bool__(self) -> bool:
+        """Check if the range is valid.
+
+        A range is considered valid if it has a name, a start, and an end Unicode value.
+
+        """
         return self.name is not None and self.start is not None and self.end is not None
 
-    def __contains__(self, glyphName: str) -> bool:
-        glyphNames = self._getAttribute("glyphNames", tuple)
-        return glyphName in glyphNames if glyphNames else False
-
     def __eq__(self, other: object) -> bool:
+        """Check if two ranges are equal.
+
+        Two ranges are considered equal if they have the same name, start, and end
+        Unicode values.
+
+        :param other: The other object to compare with.
+
+        """
         return (
             isinstance(other, Range)
             and self.name == other.name
             and self.start == other.start
             and self.end == other.end
         )
+
+    def __hash__(self) -> int:
+        return hash((self.name, self.start, self.end))
+
+    # -----------------
+    # Glyph Interaction
+    # -----------------
+
+    def __contains__(self, name: str) -> bool:
+        """Check if a glyph name is part of the range.
+
+        :param name: The :attr:`.Smufl.name` of the glyph to check.
+
+        """
+        glyphNames = self._getAttribute("glyphNames", tuple)
+        return name in glyphNames if glyphNames else False
 
     def __getitem__(self, name: str) -> Glyph:
         """Get a SMuFL glyph by its canonical name from the range.
@@ -94,7 +120,7 @@ class Range:
 
         Example:
 
-            >>> glyph = font.smufl.range["accidentalFlat"]  # doctest: +ELLIPSIS
+            >>> glyph = range["accidentalFlat"]  # doctest: +ELLIPSIS
             <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
 
         """
@@ -130,7 +156,7 @@ class Range:
 
         Example:
 
-            >>> font.smufl["accidentalFlat"] = glyph
+            >>> range["accidentalFlat"] = glyph
 
         """
         if self.smufl is None or self.font is None:
@@ -161,18 +187,25 @@ class Range:
         :param name: The :attr:`.Smufl.name` of the glyph to delete.
         :raises KeyError: If the glyph does not exist in the range.
 
+        Example:
+
+            >>> del range["accidentalFlat"]
+
         """
         if self.smufl is not None:
             del self.smufl[name]
-
-    def __hash__(self) -> int:
-        return hash((self.name, self.start, self.end))
 
     def __iter__(self) -> Iterator[Glyph]:
         return iter(self.glyphs or ())
 
     def __len__(self) -> int:
         return len(self.glyphs) if self.glyphs is not None else 0
+
+    def keys(self):
+        """Return a view of the canonical SMuFL glyph names in the range."""
+        names = _lib.getLibSubdict(self.font, NAMES_LIB_KEY)
+        filtered = {k: v for k, v in names.items() if k in self}
+        return filtered.keys()
 
     # -------
     # Parents
