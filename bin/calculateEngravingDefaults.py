@@ -19,8 +19,6 @@ used from the command line or as a Python module. See the
 :ref:`calculate-engraving-defaults-cli` and :ref:`calculate-engraving-defaults-python`
 sections below for usage details.
 
-
-
 .. versionchanged:: 0.5.0
 
     The `referenceIndex` parameter has been removed from all ruler functions and is no
