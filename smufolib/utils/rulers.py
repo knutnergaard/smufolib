@@ -394,7 +394,7 @@ def wedgeArmStrokeWidth(glyph: Glyph):
 def areAlligned(
     points: tuple[RPoint, ...], axis: str, tolerance: int | float = TOLERANCE
 ) -> bool:
-    """Return :obj:`True` if the specified `points` are aligned on `axis`.
+    """Check if the specified `points` are aligned on `axis`.
 
     :param points: The points to check for alignment.
     :param axis: The axis (``"x"`` or ``"y"``) accross which to check for alignment.
@@ -422,7 +422,7 @@ def areAlligned(
 def getGlyphContours(
     glyph: Glyph, includeComponents: bool = True
 ) -> Generator[RContour]:
-    """Return all contours in the glyph, including component references.
+    """Return all contours in `glyph`, including component references.
 
     :param glyph: The :class:`.Glyph` containing the contours to retrieve.
     :param includeComponents: Whether to include any referenced contours in the glyph.
@@ -451,7 +451,7 @@ def getGlyphContours(
 def getGlyphSegments(
     glyph, types: str | tuple[str, ...] = TYPES, includeComponents: bool = True
 ) -> Generator[RSegment]:
-    """Return all segments in the `glyph` matching given `types`.
+    """Return all segments in `glyph`, matching given `types`.
 
     Any segments referenced by components may be included.
 
@@ -474,7 +474,7 @@ def getGlyphSegments(
 def getGlyphPoints(
     glyph, types: str | tuple[str, ...] = TYPES, includeComponents: bool = True
 ) -> Generator[RPoint]:
-    """Return all points in the `glyph` matching given `types`.
+    """Return all points in `glyph`, matching given `types`.
 
     Any points referenced by components may be included.
 
@@ -496,7 +496,7 @@ def getGlyphPoints(
 
 
 def hasHorizontalOffCurve(point: RPoint) -> bool:
-    """Return :obj:`True` if `point` has a predominantly horizontal off-curve.
+    """Check if the given point has a predominantly horizontal off-curve.
 
     An off-curve control point is considered horizontal if its *x-difference* from the
     on-curve point is greater than its *y-difference*.
@@ -524,7 +524,7 @@ def hasHorizontalOffCurve(point: RPoint) -> bool:
 
 
 def hasVerticalOffCurve(point: RPoint) -> bool:
-    """Return :obj:`True` if `point` has a predominantly vertical off-curve.
+    """Check if the given point has a predominantly vertical off-curve.
 
     An off-curve control point is considered vertical if its *y-difference* from the
     on-curve point is greater than its *x-difference*.
@@ -552,7 +552,7 @@ def hasVerticalOffCurve(point: RPoint) -> bool:
 
 
 def getParentSegment(point: RPoint) -> RSegment | None:
-    """Get the segment which the `point` belongs to.
+    """Get the segment which the given point belongs to.
 
     :param point: The point to find the parent segment for.
 
