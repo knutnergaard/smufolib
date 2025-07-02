@@ -264,7 +264,7 @@ class Smufl(BaseObject):
         :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`.
 
-        If it is optional or not a SMUFL glyph, `name` will be used if ``glyph.name`` is
+        If it is optional or not a SMuFL glyph, `name` will be used if ``glyph.name`` is
         :obj:`None`.
 
         :param name: The :attr:`name` of the glyph to insert or replace.
@@ -292,11 +292,11 @@ class Smufl(BaseObject):
             glyphData = None
 
         if glyphData:
-            codepoint = converters.toDecimal(glyphData["codepoint"])
             glyphName = converters.toUniName(glyphData["codepoint"])
+            codepoint = converters.toDecimal(glyphData["codepoint"])
         else:
-            codepoint = glyph.unicode
             glyphName = glyph.name or name
+            codepoint = glyph.unicode
 
         insert = self.font._insertGlyph(glyph, name=glyphName, clear=False)
         insert.unicode = codepoint
@@ -341,6 +341,57 @@ class Smufl(BaseObject):
     def keys(self):
         """Return a view of the canonical SMuFL glyph names in the font."""
         return self._names.keys()
+
+    def newGlyph(self, name: str, clear: bool = True) -> Glyph | None:
+        """Create a new glyph in the font and return it.
+
+        This method is a SMuFL-specific implementation of :meth:`Font.newGlyph
+        <fontParts.base.BaseFont.newGlyph>`.
+
+        If `name` represents a recommended glyph (i.e., listed in
+        :confval:`metadata.glyphnames`), it will be assigned a corresponding
+        :attr:`~fontParts.base.BaseGlyph.name` and
+        :attr:`~fontParts.base.BaseGlyph.unicode`. Otherwise, `name` will be used if
+        ``glyph.name`` is :obj:`None`.
+
+        :param name: The name of the glyph to create.
+        :param clear: Whether to clear any preexisting glyph with the specified `name`
+            before creation. Defaults to :obj:`True`
+        :returns: The newly created :class:`BaseGlyph` instance.
+
+        Example::
+
+            >>> glyph = font.smufl.newGlyph("brace")
+
+        """
+        if self.font is None:
+            return None
+
+        normalizedName = cast(str, normalizers.normalizeSmuflName(name, "name"))
+        if isinstance(GLYPHNAMES_DATA, dict):
+            glyphData = GLYPHNAMES_DATA.get(normalizedName)
+        else:
+            glyphData = None
+
+        tempName = "com.smufolib.temp"
+        if name in self:
+            if not clear:
+                return self[name]
+            del self[name]
+        glyph = self.font._newGlyph(tempName)
+
+        if glyphData:
+            glyphName = converters.toUniName(glyphData["codepoint"])
+            codepoint = converters.toDecimal(glyphData["codepoint"])
+        else:
+            glyphName = glyph.name or name
+            codepoint = None
+
+        glyph.name = glyphName
+        glyph.smufl.name = name
+        glyph.unicode = codepoint
+
+        return glyph
 
     def findGlyph(self, name: str) -> Glyph | None:
         """Find :class:`.Glyph` object from :attr:`name`.
