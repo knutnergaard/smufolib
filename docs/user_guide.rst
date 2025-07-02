@@ -118,7 +118,7 @@ Glyph Management
 ================
 
 The :class:`.Smufl` class provides a SMuFL-aware interface to the font, enabling glyph
-access and manipulation by canonical SMuFL names, [#]_ using familiar dictionary operations:
+access and manipulation by canonical SMuFL names, [#]_ using familiar dictionary operations.
 
 To insert the glyph U+E000 (*brace*):
 
@@ -135,9 +135,16 @@ SMuFL range, this automatically assigns the correct Unicode and font glyph name:
     >>> glyph.unicode
     57344
 
-For optional or custom SMuFL glyphs, the given name is used as the glyph name, and no Unicode value is assigned unless explicitly set.
+For optional or custom SMuFL glyphs, the given name is used as the glyph name, and no
+Unicode value is assigned unless explicitly set.
 
-To remove a SMuFL glyph, use the :meth:`del` operator:
+You can also create new glyphs via the :meth:`.Smufl.newGlyph` method, which represents
+a SMuFL-specific equivalent to :meth:`Font.newGlyph <fontParts.base.BaseFont.newGlyph>`, allowing creation by SMuFL name rather than glyph
+name:
+
+    >>> glyph = font.smufl.newGlyph("brace")
+
+To remove a SMuFL glyph, use the :keyword:`del` statement:
 
     >>> del font.smufl["brace"]
 
