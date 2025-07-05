@@ -124,8 +124,8 @@ class Range:
             <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
 
         """
-        if self.smufl is not None:
-            glyph = self.smufl[name]
+        if self._smufl is not None:
+            glyph = self._smufl[name]
 
             if (
                 glyph is not None
@@ -159,12 +159,12 @@ class Range:
             >>> range["accidentalFlat"] = glyph
 
         """
-        if self.smufl is None or self.font is None:
+        if self._smufl is None or self.font is None:
             return
 
-        self.smufl[name] = glyph
+        self._smufl[name] = glyph
 
-        inserted = self.smufl[name]
+        inserted = self._smufl[name]
 
         if (
             inserted is None
@@ -192,8 +192,8 @@ class Range:
             >>> del range["accidentalFlat"]
 
         """
-        if self.smufl is not None:
-            del self.smufl[name]
+        if self._smufl is not None:
+            del self._smufl[name]
 
     def __iter__(self) -> Iterator[Glyph]:
         return iter(self.glyphs or ())
@@ -377,6 +377,7 @@ class Range:
                 not self._internal and self._smufl.name not in attributes["glyphs"]
             ):
                 continue
+
             value = attributes.get(key)
             if key == "identifier":
                 value = range_
@@ -384,9 +385,9 @@ class Range:
                 value = tuple(attributes["glyphs"])
             if key == "glyphs":
                 value = tuple(
-                    g
+                    self._smufl[n]
                     for n in attributes[key]
-                    if (g := self._smufl.findGlyph(n)) is not None
+                    if n in self._smufl and self._smufl[n] is not None
                 )
             if key in {"range_start", "range_end"}:
                 value = attributes.get(key)
