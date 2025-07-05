@@ -20,6 +20,8 @@ if TYPE_CHECKING:  # pragma: no cover
     from smufolib.objects.glyph import Glyph
 
 CONFIG = config.load()
+EDITABLE_RANGES = CONFIG["ranges"]["editable"]
+STRICT_CLASSES = CONFIG["classes"]["strict"]
 CLASSES_LIB_KEY = "com.smufolib.classes"
 DESCRIPTION_LIB_KEY = "com.smufolib.description"
 DESIGN_SIZE_LIB_KEY = "com.smufolib.designSize"
@@ -183,8 +185,6 @@ class Smufl(BaseObject):
     def _init(self, font: Font | None = None, glyph: Glyph | None = None) -> None:
         self._font = font
         self._glyph = glyph
-        self._classesStrict = CONFIG["classes"]["strict"]
-        self._rangesEditable = CONFIG["ranges"]["editable"]
 
     def _reprContents(self) -> list[str]:
         contents = []
@@ -249,12 +249,11 @@ class Smufl(BaseObject):
             <Glyph 'uniE260' ['accidentalFlat'] ('public.default') at ...>
 
         """
-        if self.font is not None:
-            if name in self._names:
-                glyphName = self._names[name]
-                return self.font[glyphName]
+        if self.font is None or name not in self._names:
+            raise KeyError(error.generateErrorMessage("missingGlyph", name=name))
 
-        raise KeyError(error.generateErrorMessage("missingGlyph", name=name))
+        glyphName = self._names[name]
+        return self.font[glyphName]
 
     def __setitem__(self, name: str, glyph: Glyph) -> None:
         """Insert or replace a SMuFL glyph in the font.
@@ -264,13 +263,15 @@ class Smufl(BaseObject):
         :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`.
 
-        If it is optional or not a SMuFL glyph, `name` will be used if ``glyph.name`` is
-        :obj:`None`.
+        If `glyph` is optional, `name` will be used if ``glyph.name`` is :obj:`None`.
 
         :param name: The :attr:`name` of the glyph to insert or replace.
         :param glyph: The :class:`.Glyph` object to insert.
         :raises TypeError: If `name` or `glyph` is not of the expected type.
-        :raises ValueError: If `name` is not a valid SMuFL name.
+        :raises ValueError:
+            - If `name` is not a valid SMuFL name.
+            - If ``glyph`` is not a SMuFL glyph (i.e., ``glyph.unicode`` is outside the
+            Unicode range U+E000-U+F8FF).
 
         Example:
 
@@ -297,6 +298,17 @@ class Smufl(BaseObject):
         else:
             glyphName = glyph.name or name
             codepoint = glyph.unicode
+
+        start, end = 0xE000, 0xF8FF
+        if not start <= codepoint <= end:
+            raise ValueError(
+                error.generateErrorMessage(
+                    "unicodeOutOfRange",
+                    objectName=name,
+                    start=converters.toUniHex(start),
+                    end=converters.toUniHex(end),
+                )
+            )
 
         insert = self.font._insertGlyph(glyph, name=glyphName, clear=False)
         insert.unicode = codepoint
@@ -330,13 +342,8 @@ class Smufl(BaseObject):
 
     def __iter__(self) -> Iterator[Glyph]:
         """Iterate over SMuFL glyphs in the font."""
-        if self._names is None:
-            return
-
         for smuflName in self._names:
-            glyph = self[smuflName]
-            if glyph is not None:
-                yield glyph
+            yield self[smuflName]
 
     def keys(self):
         """Return a view of the canonical SMuFL glyph names in the font."""
@@ -384,7 +391,7 @@ class Smufl(BaseObject):
             glyphName = converters.toUniName(glyphData["codepoint"])
             codepoint = converters.toDecimal(glyphData["codepoint"])
         else:
-            glyphName = glyph.name or name
+            glyphName = name
             codepoint = None
 
         glyph.name = glyphName
@@ -816,7 +823,7 @@ class Smufl(BaseObject):
         if self.font is None:
             return
 
-        if not CONFIG["ranges"]["editable"]:
+        if not EDITABLE_RANGES:
             raise PermissionError(
                 error.generateErrorMessage(
                     "permissionError",
@@ -1200,7 +1207,7 @@ class Smufl(BaseObject):
     @classes.setter
     def classes(self, value: tuple[str, ...] | None) -> None:
         self._requireGlyphAccess("classes")
-        if CONFIG["classes"]["strict"] and value:
+        if STRICT_CLASSES and value:
             for item in value:
                 if item not in CLASS_NAMES:
                     raise ValueError(
@@ -1293,6 +1300,8 @@ class Smufl(BaseObject):
     @property
     def names(self) -> dict[str, str] | None:
         """Mapping of canonical SMuFL names to corresponding glyph names.
+
+        .. deprecated:: 0.7.0
 
         This property is read-only. Its content is updated through the
         :attr:`.Smufl.name` and :attr:`Glyph.name` attributes.
