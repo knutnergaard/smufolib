@@ -57,7 +57,7 @@ ERROR_TEMPLATES: dict[str, str] = {
     "singleItem": "{objectName!r} must contain a value pair",
     "suggestion": "Did you mean {suggestion!r}?",
     "typeError": "Expected {objectName!r} to be of type {validTypes}, but got {valueType}",
-    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range ({start}-{end})",
+    "unicodeOutOfRange": "The value for {objectName!r} is outside the Unicode range {start}-{end}",
     "urlError": "Could not connect to URL: {url!r}",
     "valueError": "Invalid value for {objectName!r}: {value!r}",
     "valueTooHigh": "The value for {objectName!r} must be {value!r} or lower",
