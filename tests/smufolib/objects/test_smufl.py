@@ -98,7 +98,119 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
         self.assertIn("in glyph", value)
         self.assertIn(self.glyph._reprContents()[0], value)
 
-    # pylint: enable=W0212
+    # -----------------
+    # Glyph Interaction
+    # -----------------
+
+    def test_contains(self):
+        self.smufl.font = self.font
+        self.assertFalse("brace" in self.smufl)
+        self.recommended1.smufl.name = "brace"
+        self.assertTrue("brace" in self.smufl)
+        self.assertFalse("uniE000" in self.smufl)
+
+    def test_getitem_basic(self):
+        self.recommended1.smufl.name = "brace"
+        self.smufl.font = self.font
+        result = self.smufl["brace"]
+        self.assertEqual(result, self.recommended1)
+
+    def test_getitem_no_font(self):
+        self.recommended1.smufl.name = "brace"
+        with self.assertRaises(KeyError):
+            self.assertIsNone(self.smufl["brace"])
+
+    def test_setitem_basic(self):
+        self.smufl.font = self.font
+        self.smufl["brace"] = self.glyph
+        self.assertTrue("brace" in self.smufl)
+        glyph = self.smufl["brace"]
+        self.assertEqual(glyph.name, "uniE000")
+        self.assertEqual(glyph.unicode, 0xE000)
+
+    def test_setitem_no_font(self):
+        self.smufl["brace"] = self.glyph
+        self.assertFalse("brace" in self.smufl)
+
+    def test_setitem_invalid_data(self):
+        with patch("smufolib.objects.smufl.GLYPHNAMES_DATA", new=""):
+            self.smufl.font = self.font
+            self.smufl["brace"] = self.glyph
+            self.assertTrue("brace" in self.smufl)
+            glyph = self.smufl["brace"]
+            self.assertEqual(glyph.name, "brace")
+            self.assertIsNone(glyph.unicode)
+
+    def test_delitem_basic(self):
+        self.smufl.font = self.font
+        self.recommended1.smufl.name = "testName"
+        self.assertTrue("testName" in self.smufl)
+        del self.smufl["testName"]
+        self.assertFalse("testName" in self.smufl)
+
+    def test_delitem_no_font(self):
+        del self.smufl["testName"]
+        self.assertFalse("testName" in self.smufl)
+
+    def test_delitem_missing_name(self):
+        self.smufl.font = self.font
+        self.recommended1.smufl.name = "testName"
+        del self.smufl["testName1"]
+        self.assertTrue("testName" in self.smufl)
+
+    def test_len_basic(self):
+        self.smufl.font = self.font
+        self.assertEqual(len(self.smufl), 0)
+        self.recommended1.smufl.name = "brace"
+        self.assertEqual(len(self.smufl), 1)
+
+    def test_len_no_font(self):
+        self.assertEqual(len(self.smufl), 0)
+
+    def test_iter(self):
+        self.smufl.font = self.font
+        self.recommended1.smufl.name = "brace"
+        self.recommended2.smufl.name = "stem"
+        result = list(iter(self.smufl))
+        self.assertEqual(len(result), 2)
+
+    def test_keys(self):
+        self.smufl.font = self.font
+        self.recommended1.smufl.name = "brace"
+        self.assertEqual(list(self.smufl.keys()), ["brace"])
+
+    def test_newGlyph_basic(self):
+        self.smufl.font = self.font
+        glyph = self.smufl.newGlyph("gClef")
+        self.assertTrue("gClef" in self.smufl)
+        self.assertEqual(glyph.name, "uniE050")
+        self.assertEqual(glyph.unicode, 0xE050)
+
+    def test_newGlyph_no_font(self):
+        self.smufl.newGlyph("gClef")
+        self.assertFalse("gClef" in self.smufl)
+
+    def test_newGlyph_invalid_data(self):
+        with patch("smufolib.objects.smufl.GLYPHNAMES_DATA", new=""):
+            self.smufl.font = self.font
+            glyph = self.smufl.newGlyph("gClef")
+            self.assertTrue("gClef" in self.smufl)
+            self.assertEqual(glyph.name, "gClef")
+            self.assertIsNone(glyph.unicode)
+
+    def test_newGlyph_clear_true(self):
+        self.smufl.font = self.font
+        glyph1 = self.smufl.newGlyph("gClef")
+        glyph1.note = "hello"
+        glyph2 = self.smufl.newGlyph("gClef", clear=True)
+        self.assertEqual(glyph2.note, None)
+
+    def test_newGlyph_clear_false(self):
+        self.smufl.font = self.font
+        glyph1 = self.smufl.newGlyph("gClef")
+        glyph1.note = "hello"
+        glyph2 = self.smufl.newGlyph("gClef", clear=False)
+        self.assertEqual(glyph2.note, "hello")
 
     # -------
     # Parents
@@ -204,7 +316,7 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     def test_newRange_basic(self):
         self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
+        smufolib.objects.smufl.EDITABLE_RANGES = True
         result = {
             "testRange": {
                 "range_start": 0xE000,
@@ -232,7 +344,7 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     def test_newRange_no_name(self):
         self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
+        smufolib.objects.smufl.EDITABLE_RANGES = True
         with self.assertRaises(TypeError):
             self.smufl.newRange(
                 None,
@@ -241,9 +353,9 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
                 description="testDescription",
             )
 
-    def test_newRange_uneditable(self):
+    def test_newRange_unEDITABLE_RANGES(self):
         self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = False
+        smufolib.objects.smufl.EDITABLE_RANGES = False
         with self.assertRaises(PermissionError):
             self.smufl.newRange(
                 "testRange",
@@ -254,7 +366,7 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
 
     def test_newRange_conflicting_range(self):
         self.smufl.font = self.font
-        smufolib.objects.smufl.EDITABLE = True
+        smufolib.objects.smufl.EDITABLE_RANGES = True
         generateGlyph(self.font, "uniE000", unicode=0xE000, smuflName="brace")
         with self.assertRaises(ValueError):
             self.smufl.newRange(

@@ -13,6 +13,8 @@ class TestRange(unittest.TestCase):
         self.smufl, _ = self.objectGenerator("smufl")
         self.otherSmufl, _ = self.objectGenerator("smufl")
         self.layer, _ = self.objectGenerator("layer")
+        self.glyph, _ = self.objectGenerator("glyph")
+        self.emptyRange, _ = self.objectGenerator("range")
 
         # pylint: enable=E1101
         # Create layer and assign to font
@@ -32,7 +34,13 @@ class TestRange(unittest.TestCase):
                 "glyphs": ["timeSig0", "timeSig1"],
                 "range_start": "U+E080",
                 "range_end": "U+E09F",
-            }
+            },
+            "staffBracketsAndDividers": {
+                "description": "Staff brackets and dividers",
+                "glyphs": ["brace", "bracket"],
+                "range_end": "U+E00F",
+                "range_start": "U+E000",
+            },
         }
         self.addCleanup(self._restoreMetadata)
         self.range = self.glyph1.smufl.ranges[0]
@@ -47,18 +55,67 @@ class TestRange(unittest.TestCase):
         )
         self.assertEqual(repr(self.range), expected_repr)
 
-    def test_contains(self):
-        self.assertTrue("timeSig0" in self.range)
-        self.assertFalse("uniE080" in self.range)
-
-    def test_iter(self):
-        self.assertEqual(list(self.range), list(self.range.glyphs))
-
     def test_eq_hash(self):
         range1 = self.range
         range2 = copy.copy(range1)
         self.assertEqual(range1, range2)
         self.assertEqual(hash(range1), hash(range2))
+
+    # -----------------
+    # Glyph Interaction
+    # -----------------
+
+    def test_contains(self):
+        self.assertTrue("timeSig0" in self.range)
+        self.assertFalse("uniE080" in self.range)
+
+    def test_getitem_basic(self):
+        result = self.range["timeSig0"]
+        self.assertEqual(result, self.glyph1)
+
+    def test_getitem_no_smufl(self):
+        with self.assertRaises(KeyError):
+            self.assertIsNone(self.emptyRange["timeSig0"])
+
+    def test_getitem_no_unicode(self):
+        self.glyph1.unicode = None
+        with self.assertRaises(KeyError):
+            result = self.range["timeSig0"]
+            self.assertEqual(result, self.glyph1)
+
+    def test_setitem_basic(self):
+        self.range["timeSig2"] = self.glyph
+        glyph = self.range["timeSig2"]
+        self.assertEqual(glyph.name, "uniE082")
+        self.assertEqual(glyph.unicode, 0xE082)
+
+    def test_setitem_no_font(self):
+        self.emptyRange["brace"] = self.glyph
+        self.assertFalse("brace" in self.emptyRange)
+
+    def test_setitem_unicode_out_of_range(self):
+        with self.assertRaises(ValueError):
+            self.range["brace"] = self.glyph
+            print("brace" in self.range.smufl)
+            self.assertNotIn("brace", self.range)
+
+    def test_delitem_basic(self):
+        del self.range["timeSig0"]
+        self.assertFalse("timeSig0" in self.range)
+
+    def test_delitem_no_font(self):
+        del self.emptyRange["timeSig0"]
+        self.assertTrue("timeSig0" in self.range)
+
+    def test_iter(self):
+        self.assertEqual(list(self.range), list(self.range.glyphs))
+
+    def test_keys(self):
+        self.assertEqual(list(self.range.keys()), ["timeSig0", "timeSig1"])
+
+    # -------
+    # Parents
+    # -------
 
     def test_smufl(self):
         self.range.smufl = None

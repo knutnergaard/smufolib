@@ -21,7 +21,6 @@ class TestGenerateMetadata(
         super().setUp()
         self.suppressOutput()
         smufolib.objects.smufl.STRICT_CLASSES = False
-
         # fmt: off
         self.metadata = {
             "fontName": "testFont",
