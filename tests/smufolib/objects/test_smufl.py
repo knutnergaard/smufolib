@@ -135,11 +135,18 @@ class TestSmufl(unittest.TestCase, AssertNotRaisesMixin):
     def test_setitem_invalid_data(self):
         with patch("smufolib.objects.smufl.GLYPHNAMES_DATA", new=""):
             self.smufl.font = self.font
+            self.glyph.unicode = 0xE000
             self.smufl["brace"] = self.glyph
             self.assertTrue("brace" in self.smufl)
-            glyph = self.smufl["brace"]
-            self.assertEqual(glyph.name, "brace")
-            self.assertIsNone(glyph.unicode)
+            self.assertEqual(self.smufl["brace"].name, "brace")
+            self.assertEqual(self.smufl["brace"].unicode, 0xE000)
+
+    def test_setitem_invalid_data_unicode_out_of_range(self):
+        with patch("smufolib.objects.smufl.GLYPHNAMES_DATA", new=""):
+            self.smufl.font = self.font
+            self.glyph.unicode = ord("x")
+            with self.assertRaises(ValueError):
+                self.smufl["brace"] = self.glyph
 
     def test_delitem_basic(self):
         self.smufl.font = self.font
