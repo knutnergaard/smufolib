@@ -300,7 +300,7 @@ class Smufl(BaseObject):
             codepoint = glyph.unicode
 
         start, end = 0xE000, 0xF8FF
-        if not start <= codepoint <= end:
+        if codepoint is not None and not start <= codepoint <= end:
             raise ValueError(
                 error.generateErrorMessage(
                     "unicodeOutOfRange",
