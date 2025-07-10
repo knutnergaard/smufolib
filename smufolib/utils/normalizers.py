@@ -45,6 +45,7 @@ from smufolib.utils._annotations import (
     CollectionType,
     PairCollectionType,
     PairType,
+    ErrorKey,
 )
 
 # ruff: noqa: F401
@@ -228,7 +229,7 @@ def normalizeSmuflName(
     error.validateType(value, (str, type(None)), attributeName)
 
     if not value:
-        template = "emptyValueItems" if items else "emptyValue"
+        template: ErrorKey = "emptyValueItems" if items else "emptyValue"
         raise ValueError(error.generateErrorMessage(template, objectName=attributeName))
 
     for val in value:
