@@ -400,6 +400,7 @@ class Smufl(BaseObject):
 
         return glyph
 
+    # TODO: Remove in v0.8.0
     def findGlyph(self, name: str) -> Glyph | None:
         """Find :class:`.Glyph` object from :attr:`name`.
 
