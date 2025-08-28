@@ -1410,16 +1410,10 @@ class Smufl(BaseObject):
             return True
         return False
 
-    # TODO: Remove in v0.8.0
     @property
     def isMember(self) -> bool:
         """Return :obj:`True` if glyph is either :smufl:`recommended or optional
         <about/recommended-chars-optional-glyphs.html>`.
-
-        .. deprecated:: 0.7.0
-
-            Use ``glyph in font.smufl`` instead.
-
 
         This property is read-only.
 
@@ -1435,18 +1429,6 @@ class Smufl(BaseObject):
             False
 
         """
-        warnings.warn(
-            error.generateErrorMessage(
-                "deprecated",
-                "deprecatedReplacement",
-                objectName="Smufl.isMember",
-                version="0.7",
-                replacement="__contains__",
-            ),
-            DeprecationWarning,
-            stacklevel=2,
-        )
-
         glyph = self._requireGlyphAccess("isMember")
         if glyph is not None and glyph.unicode and 0xE000 <= glyph.unicode <= 0xF8FF:
             return True
