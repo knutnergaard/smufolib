@@ -61,6 +61,8 @@ html_context = {
     "display_github": True,
     "github_user": "knutnergaard",
     "github_repo": "smufolib",
+    "github_version": "main",
+    "conf_py_path": "/docs/",
 }
 
 html_css_files = ["css/custom.css"]
