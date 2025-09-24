@@ -258,9 +258,9 @@ class Smufl(BaseObject):
     def __setitem__(self, name: str, glyph: Glyph) -> None:
         """Insert or replace a SMuFL glyph in the font.
 
-        If `glyph` is considered recommended (i.e., listed in
-        :smufl:`metadata.glyphnames`), it will be assigned a corresponding
-        :attr:`~fontParts.base.BaseGlyph.name` and
+        If `glyph` is considered recommended (i.e., listed in the
+        :smufl:`glyphnames.json <specification/glyphnames.html>` metadata file), it will
+        be assigned a corresponding :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`.
 
         If `glyph` is optional, `name` will be used if ``glyph.name`` is :obj:`None`.
@@ -355,16 +355,16 @@ class Smufl(BaseObject):
         This method is a SMuFL-specific implementation of :meth:`Font.newGlyph
         <fontParts.base.BaseFont.newGlyph>`.
 
-        If `name` represents a recommended glyph (i.e., listed in
-        :smufl:`metadata.glyphnames`), it will be assigned a corresponding
-        :attr:`~fontParts.base.BaseGlyph.name` and
+        If `name` represents a recommended glyph (i.e., listed in the
+        :smufl:`glyphnames.json <specification/glyphnames.html>` metadata file), it will
+        be assigned a corresponding :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`. Otherwise, `name` will be used if
         ``glyph.name`` is :obj:`None`.
 
         :param name: The name of the glyph to create.
         :param clear: Whether to clear any preexisting glyph with the specified `name`
             before creation. Defaults to :obj:`True`
-        :returns: The newly created :class:`Glyph <fontParts.base.BaseGlyph>` instance.
+        :returns: The newly created :class:`.Glyph` instance.
 
         Example::
 
