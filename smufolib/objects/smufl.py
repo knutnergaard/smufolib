@@ -259,7 +259,7 @@ class Smufl(BaseObject):
         """Insert or replace a SMuFL glyph in the font.
 
         If `glyph` is considered recommended (i.e., listed in
-        :confval:`metadata.glyphnames`), it will be assigned a corresponding
+        :smufl:`metadata.glyphnames`), it will be assigned a corresponding
         :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`.
 
@@ -356,7 +356,7 @@ class Smufl(BaseObject):
         <fontParts.base.BaseFont.newGlyph>`.
 
         If `name` represents a recommended glyph (i.e., listed in
-        :confval:`metadata.glyphnames`), it will be assigned a corresponding
+        :smufl:`metadata.glyphnames`), it will be assigned a corresponding
         :attr:`~fontParts.base.BaseGlyph.name` and
         :attr:`~fontParts.base.BaseGlyph.unicode`. Otherwise, `name` will be used if
         ``glyph.name`` is :obj:`None`.
@@ -364,7 +364,7 @@ class Smufl(BaseObject):
         :param name: The name of the glyph to create.
         :param clear: Whether to clear any preexisting glyph with the specified `name`
             before creation. Defaults to :obj:`True`
-        :returns: The newly created :class:`BaseGlyph` instance.
+        :returns: The newly created :class:`Glyph <fontParts.base.BaseGlyph>` instance.
 
         Example::
 
@@ -1306,7 +1306,8 @@ class Smufl(BaseObject):
         .. deprecated:: 0.7.0
 
         This property is read-only. Its content is updated through the
-        :attr:`.Smufl.name` and :attr:`Glyph.name` attributes.
+        :attr:`.Smufl.name` and :attr:`Glyph.name <fontParts.base.BaseGlyph.name>`
+        attributes.
 
         """
         warnings.warn(
