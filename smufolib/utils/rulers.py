@@ -468,7 +468,7 @@ def getGlyphSegments(
 
     """
     contours = getGlyphContours(glyph, includeComponents=includeComponents)
-    return (s for sts in contours for s in sts if s.type in types or s.type == types)
+    return (s for c in contours for s in c if s.type in types or s.type == types)
 
 
 def getGlyphPoints(
@@ -492,7 +492,7 @@ def getGlyphPoints(
     """
 
     segments = getGlyphSegments(glyph, includeComponents=includeComponents, types=types)
-    return (p for pts in segments for p in pts if p.type in types or p.type == types)
+    return (p for s in segments for p in s if p.type in types or p.type == types)
 
 
 def hasHorizontalOffCurve(point: RPoint) -> bool:
