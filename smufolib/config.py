@@ -2,8 +2,9 @@
 from __future__ import annotations
 from typing import Any
 import os
-import errno
 import importlib.resources
+from urllib.parse import urlparse
+
 from configparser import ConfigParser, ExtendedInterpolation
 from pathlib import Path
 
@@ -11,13 +12,15 @@ from pathlib import Path
 def load(path: Path | str | None = None) -> dict[str, Any]:
     """Load parsed config file as :class:`dict`.
 
-    If the `path` parameter is an empty :class:`str` or :obj:`None`,
-    the following locations are checked in order:
+    If the `path` parameter is an empty :class:`str` or :obj:`None`, the following
+    locations are checked in order:
 
     #. Current working directory
     #. Home directory
     #. Environment variable :envvar:`SMUFOLIB_CFG`
-    #. SMufoLib package directory
+
+    Any config files at these locations are layered on top of the package-level
+    `defaults.cfg`.
 
     :param path: Path to `smufolib.cfg`. Defaults to :obj:`None`.
 
@@ -43,34 +46,35 @@ def _readConfigFile(path: Path | str | None) -> ConfigParser:
     config = ConfigParser(interpolation=ExtendedInterpolation())
     config.optionxform = str  # type: ignore
 
-    selectedPath = Path(_selectPath(path))
-    with selectedPath.open(encoding="utf-8") as f:
-        config.read_file(f)
+    defaultPath = importlib.resources.files("smufolib").joinpath("defaults.cfg")
+    with defaultPath.open("r", encoding="utf-8") as defaults:
+        config.read_file(defaults)
 
-    # Store config file location
-    config.basePath = selectedPath.parent  # type: ignore
+    userPaths = _selectPaths(path)
+    parentPaths = [Path(str(defaultPath)).parent] + [p.parent for p in userPaths]
+
+    config.read(userPaths, encoding="utf-8")
+    _resolveMetadataPaths(config, parentPaths)
 
     return config
 
 
-def _selectPath(path: Path | str | None) -> str:
-    # Select filepath to config file.
-    if path and Path(path).exists():
-        return str(path)
-
+def _selectPaths(path: Path | str | None) -> list[Path]:
+    # Create a list of all possible filepaths in order of priority.
     nameExtension = ("smufolib", "cfg")
-    fallbackCandidates = [
-        Path.cwd() / ".".join(nameExtension),
+    envValue = os.getenv("_".join(nameExtension).upper())
+    candidates = [
         Path.home() / ".".join(nameExtension),
-        os.getenv("_".join(nameExtension).upper()),
-        str(importlib.resources.files("smufolib").joinpath("smufolib.cfg")),
+        Path.cwd() / ".".join(nameExtension),
     ]
 
-    for selection in fallbackCandidates:
-        if selection and Path(selection).exists():
-            return str(selection)
+    if envValue:
+        candidates.append(Path(envValue))
 
-    raise FileNotFoundError(errno.ENOENT, os.strerror(errno.ENOENT))
+    if path:
+        candidates.append(Path(path))
+
+    return [p for p in candidates if Path(p).exists()]
 
 
 def _parse(
@@ -79,13 +83,6 @@ def _parse(
     # Parse configured values.
     stringValue = config.get(section, option)
 
-    # Normalize paths in fallback section
-    if section == "metadata.fallbacks":
-        basePath = getattr(config, "basePath", None)
-        if basePath:
-            fullPath = Path(stringValue)
-            if not fullPath.is_absolute():
-                return str((basePath / fullPath).resolve())
     try:
         return config.getint(section, option)
     except ValueError:
@@ -107,3 +104,25 @@ def _parse(
                 # Strip \n to perserve multiline option after setting
                 # config.optionxform = str.
                 return stringValue.replace("\n", "") if stringValue else None
+
+
+def _resolveMetadataPaths(config: ConfigParser, baseDirs: list[Path]) -> None:
+    # Resolve relative paths in [metadata] sections.
+    for section in ("metadata.paths", "metadata.fallbacks"):
+        if not config.has_section(section):
+            continue
+
+        for key, value in config.items(section):
+            path = Path(value)
+
+            if urlparse(value).scheme in {"http", "https"}:
+                continue
+
+            if path.is_absolute():
+                continue
+
+            for base in reversed(baseDirs):
+                candidate = base / path
+                if candidate.exists():
+                    config.set(section, key, str(candidate.resolve()))
+                    break
