@@ -18,7 +18,7 @@ def load(path: Path | str | None = None) -> dict[str, Any]:
 
     If `path` is provided, only that file is loaded.
 
-    :param path: Path to `smufolib.cfg`. Defaults to :obj:`None`.
+    :param path: Path to the `.cfg` configuration file. Defaults to :obj:`None`.
 
     Example:
 
