@@ -19,7 +19,8 @@ Available Options
 
 .. note::
 
-    Short flags for options may be redefined in the :ref:`cli.shortFlags` section of :ref:`smufolib.cfg`.
+    Short flags for options may be redefined in the :ref:`cli.shortFlags`
+    configuration section.
 
 .. automodule:: smufolib.cli
     :members:
