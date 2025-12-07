@@ -12,15 +12,11 @@ from pathlib import Path
 def load(path: Path | str | None = None) -> dict[str, Any]:
     """Load parsed config file as :class:`dict`.
 
-    If the `path` parameter is an empty :class:`str` or :obj:`None`, the following
-    locations are checked in order:
+    If `path` is not provided, configuration is obtained by searching the standard
+    locations described in the user guide (see :ref:`configuring-smufolib`). Files found
+    later in the search order override earlier ones.
 
-    #. Current working directory
-    #. Home directory
-    #. Environment variable :envvar:`SMUFOLIB_CFG`
-
-    Any config files at these locations are layered on top of the package-level
-    `defaults.cfg`.
+    If `path` is provided, only that file is loaded.
 
     :param path: Path to `smufolib.cfg`. Defaults to :obj:`None`.
 

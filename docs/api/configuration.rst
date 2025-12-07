@@ -4,19 +4,45 @@
 Configuration
 =============
 
-User defined default settings for SMufoLib are set in the configuration file :ref:`smufolib.cfg` and parsed by the :mod:`.config` module. Detailed information on how SMufoLib handles configuration is provided in the following sections.
+SMufoLib can be configured using an `INI-style <https://docs.python.org/3/library/configparser.html#supported-ini-file-structure>`_ file
+discoverable from multiple locations. When more than one file is present, the settings
+from these files are layered to produce the final configuration.
+
+Configurations are read and parsed using the :mod:`.config` module and may be loaded
+as a :class:`dict` object by calling the :func:`.load` function.
 
 .. automodule:: smufolib.config
     :members:
 
-.. _smufolib.cfg:
+.. envvar:: SMUFOLIB_CFG
 
-smufolib.cfg
-============
+    If set, this environment variable overrides the default configuration file path.
+    Use it to specify a custom configuration file location. The value should be an
+    absolute or relative path to the `.cfg` configuration file.
 
-The SMufoLib configuration file `smufolib.cfg` contains default settings for SMufoLib.
-It contains three main sections, with sub-sections denoted by a preceding dot, and
-settings for warnings, URL and file paths and colors.
+    For example:
+
+    .. code-block:: console
+
+        export SMUFOLIB_CFG=/path/to/custom/smufolib.cfg
+
+.. _about-configuration-file-naming:
+
+.. admonition:: About Configuration File Naming
+
+    Configuration files located at the current working directory or the home
+    directory must be named `smufolib.cfg` to be discovered automatically.
+
+    This restriction does not apply to explicitly provided paths, which may point to
+    files with any name.
+
+.. _sections-and-options:
+
+Sections and Options
+====================
+
+The following sections and options may be overridden in a SMufoLib configuration file
+(`smufolib.cfg`):
 
 .. _request:
 
@@ -25,7 +51,7 @@ request
 
 This section contains configuration for the :class:`.Request` class.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [request]
     :end-before: [metadata.paths]
@@ -49,8 +75,11 @@ metadata.paths
 
 Primary metadata paths are configured in this section.
 
+Relative paths declared in this section are resolved to absolute paths based on their
+parent directories, ensuring valid references for local metadata resources.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [metadata.paths]
     :end-before: [metadata.fallbacks]
@@ -60,7 +89,8 @@ Primary metadata paths are configured in this section.
     :default: ``https://raw.githubusercontent.com/w3c/smufl/gh-pages/metadata/``
 
     The base directory for metadata paths. This may be used to construct the full paths
-    for metadata files using :class:`configparser.ExtendedInterpolation` (``${directory}``).
+    for metadata files using :class:`configparser.ExtendedInterpolation`
+    (``${directory}``).
 
 .. confval:: metadata.paths.classes
     :type: ``str``
@@ -91,12 +121,18 @@ Primary metadata paths are configured in this section.
 metadata.fallbacks
 ------------------
 
-Metadata fallback paths are configured in this section.
+Optional metadata fallback paths are configured in this section.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+Fallbacks are used when the primary metadata files cannot be loaded (e.g., due to
+offline usage)
+
+Like :ref:`metadata.paths`, relative paths in this section are resolved based on their
+parent directory.
+
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [metadata.fallbacks]
-    :end-before: [cli.shortFlags]
+    :end-before: [cli]
 
 .. confval:: metadata.fallbacks.directory
     :type: ``str``
@@ -137,7 +173,7 @@ cli
 
 This section contains general configuration for the :ref:`cli-framework`.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [cli]
     :end-before: [cli.shortFlags]
@@ -157,7 +193,7 @@ cli.shortFlags
 Short flags for :ref:`cli-framework` options to be used with
 :func:`~smufolib.cli.commonParser` are configured in this section.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [cli.shortFlags]
     :end-before: [color.marks]
@@ -280,7 +316,7 @@ color.marks
 
 :ref:`type-color` values for glyph marks are configured in this section.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [color.marks]
     :end-before: [color.anchors]
@@ -312,7 +348,7 @@ color.anchors
 
 :ref:`type-color` values for glyph anchors are configured in this section.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [color.anchors]
     :end-before: [engravingDefaults]
@@ -468,7 +504,7 @@ engravingDefaults
 
 This section contains configuration for the :class:`.EngravingDefaults` class.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [engravingDefaults]
     :end-before: [ranges]
@@ -485,7 +521,7 @@ ranges
 This section contains configuration related to the functionality, generation and
 modification of :class:`.Range` objects.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [ranges]
     :end-before: [classes]
@@ -501,7 +537,7 @@ classes
 
 This section contains configuration related to :attr:`.Smufl.classes`.
 
-.. literalinclude:: ../../smufolib/smufolib.cfg
+.. literalinclude:: ../../smufolib/defaults.cfg
     :language: cfg
     :start-at: [classes]
 
@@ -509,16 +545,4 @@ This section contains configuration related to :attr:`.Smufl.classes`.
     :type: ``bool``
     :default: ``true``
     
-Whether to enforce SMuFL-specific :data:`.CLASS_NAMES` or allow custom names.
-
-.. envvar:: SMUFOLIB_CFG
-
-   If set, this environment variable overrides the default configuration file path.
-   Use it to specify a custom configuration file location. The value should be an
-   absolute or relative path to the `.cfg` configuration file.
-
-For example:
-
-.. code-block:: console
-
-   export SMUFOLIB_CFG=/path/to/custom/smufolib.cfg
+    Whether to enforce SMuFL-specific :data:`.CLASS_NAMES` or allow custom names.

@@ -40,16 +40,17 @@ the foundation for the features described below.
 Configuring SMufoLib
 ====================
 
-SMufoLib supports customization through a configuration file named `smufolib.cfg`.
-This allows you to tailor the library's behavior to specific project needs, such as
-disabling automatic engraving calculation or changing default colors for mark glyphs.
+SMufoLib supports customization through a configuration file, allowing you to tailor the
+library's behavior to project- or user-specific needs.
 
 Configuration File Structure
 ----------------------------
 
-The configuration file uses an INI-style format with sections and key-value pairs.
+The configuration file uses an `INI-style
+<https://docs.python.org/3/library/configparser.html#supported-ini-file-structure>`_
+format with sections and key-value pairs. 
 
-Here is a minimal example:
+A minimal example:
 
 .. code-block:: ini
 
@@ -63,21 +64,26 @@ This example changes the primary mark color and disables automatic calculation o
 :class:`.EngravingDefaults`.
 
 For a complete list of sections, options, and default values, see the
-:ref:`configuration` section of the API documentation.
+:ref:`sections-and-options` section of the API documentation.
 
-Configuration File Location
----------------------------
+Configuration File Discovery
+----------------------------
 
-SMufoLib will search for the configuration file in the following order:
+SMufoLib reads configuration files in layers, allowing local project or user-specific
+settings to override the default package configuration.
 
-    #. The user's home directory (as returned by :func:`os.path.expanduser`)
-    #. The current working directory
-    #. The path specified by the :envvar:`SMUFOLIB_CFG` environment variable
-    #. The SMufoLib installation directory
+You can pass a specific `path` argument when calling :func:`.config.load`, which will
+take ultimate precedence over any other sources (see :ref:`reading-configurations`). Otherwise, the following locations are checked in order of increasing precedence:
 
-The first valid file found will be used.
+1. Current working directory (`./smufolib.cfg`)
+2. Home directory (`~/.smufolib.cfg`) as returned by :func:`os.path.expanduser`
+3. Environment variable :envvar:`SMUFOLIB_CFG`
 
-To set a custom configuration path, define the environment variable :envvar:`SMUFOLIB_CFG`:
+Files found later in the list override values from earlier files. You only need to
+include the keys you want to change; all unspecified values are inherited from the
+defaults.
+
+To define the environment variable :envvar:`SMUFOLIB_CFG`:
 
 - On macOS or Linux:
 
@@ -93,17 +99,17 @@ To set a custom configuration path, define the environment variable :envvar:`SMU
 
         set SMUFOLIB_CFG=C:\path\to\smufolib.cfg
 
-.. note::
+.. seealso::
 
-    If no valid configuration file is found, SMufoLib falls back to the default
-    `smufolib.cfg` located in the library's installation directory.
+   For details on which filenames are auto-discovered, see :ref:`About Configuration File Naming <about-configuration-file-naming>`.
+
+.. _reading-configurations:
 
 Reading Configurations
 ----------------------
 
-If you want to access the configuration file settings in your scripts, the
-:func:`.config.load` function will return a parsed instance of `smufolib.cfg` as a
-:class:`dict`:
+If you want to access the configurations in your scripts, the :func:`.config.load`
+function will return a parsed instance of it as a :class:`dict`:
 
     >>> from smufolib import config
     >>> cfg = config.load()
