@@ -1,4 +1,4 @@
-.. _metadata requests:
+.. _metadata-requests:
 
 =================
 Metadata Requests
