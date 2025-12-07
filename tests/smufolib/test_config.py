@@ -1,4 +1,3 @@
-import configparser
 import os
 import shutil
 import unittest
@@ -40,10 +39,13 @@ source = rel/path/to/resource.json
         self.assertEqual(loaded["settings"]["iterable"], ("string.",))
 
     def test_relative_path_resolution(self):
+        # Create temp file
+        rel_file = self.configPath.parent / "rel/path/to/resource.json"
+        rel_file.parent.mkdir(parents=True, exist_ok=True)
+        rel_file.touch()
+
         loaded = config.load(self.configPath)
-        expectedPath = str(
-            (self.configPath.parent / "rel/path/to/resource.json").resolve()
-        )
+        expectedPath = str(rel_file.resolve())
         self.assertEqual(loaded["metadata.fallbacks"]["source"], expectedPath)
 
     @mock.patch("smufolib.config.Path.cwd")
@@ -61,6 +63,17 @@ source = rel/path/to/resource.json
         shutil.copy(self.configPath, fallbackPath)
         loaded = config.load(None)
         self.assertIn("settings", loaded)
+
+    @mock.patch.dict(os.environ, {}, clear=True)
+    def test_load_from_env_variable(self):
+        env_config_path = self.tempPath / "env_config.cfg"
+        shutil.copy(self.configPath, env_config_path)
+
+        # Patch environment to point to our test config file
+        with mock.patch.dict(os.environ, {"SMUFOLIB_CFG": str(env_config_path)}):
+            loaded = config.load(None)
+            self.assertEqual(loaded["settings"]["number"], 42)
+            self.assertIn("metadata.fallbacks", loaded)
 
     @mock.patch("smufolib.config.Path.cwd", return_value=Path("/nonexistent"))
     @mock.patch("smufolib.config.Path.home", return_value=Path("/nonexistent"))
@@ -102,3 +115,26 @@ source = rel/path/to/resource.json
         parser.basePath = Path("/should/not/be/used")
         result = config._parse(parser, "metadata.fallbacks", "source")
         self.assertEqual(result, absPath)
+
+    @mock.patch("smufolib.config.Path.home")
+    @mock.patch("smufolib.config.Path.cwd")
+    def test_env_variable_takes_precedence(self, mock_cwd, mock_home):
+        mock_home.return_value = self.tempPath
+        mock_cwd.return_value = self.tempPath
+
+        # Create competing configs
+        home_cfg = self.tempPath / "smufolib.cfg"
+        cwd_cfg = self.tempPath / "smufolib.cfg"
+        env_cfg = self.tempPath / "env_config.cfg"
+
+        for cfg in (home_cfg, cwd_cfg, env_cfg):
+            shutil.copy(self.configPath, cfg)
+
+        # Make env one different
+        with env_cfg.open("a") as f:
+            f.write("\n[extra]\nsource = env")
+
+        with mock.patch.dict(os.environ, {"SMUFOLIB_CFG": str(env_cfg)}):
+            loaded = config.load(None)
+            self.assertIn("extra", loaded)
+            self.assertEqual(loaded["extra"]["source"], "env")
