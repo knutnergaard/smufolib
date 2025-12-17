@@ -105,11 +105,11 @@ To define the environment variable :envvar:`SMUFOLIB_CFG`:
 
 .. _reading-configurations:
 
-Reading Configurations
-----------------------
+Reading Configuration
+---------------------
 
-If you want to access the configurations in your scripts, the :func:`.config.load`
-function will return a parsed instance of it as a :class:`dict`:
+If you want to access the configuration in your scripts, the :func:`.config.load`
+function returns the effective configuration as a parsed :class:`dict`:
 
     >>> from smufolib import config
     >>> cfg = config.load()
