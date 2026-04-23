@@ -1,4 +1,4 @@
-|PyPI| |versions| |license| |docs| |CI| |coverage|
+|PyPI| |versions| |SMuFL| |license| |docs| |CI| |coverage|
 
 ===============================
 SMufoLib: Where SMuFL meets UFO
@@ -42,6 +42,8 @@ be installed with `pip <https://pip.pypa.io/>`__:
 .. |versions| image:: https://img.shields.io/pypi/pyversions/smufolib
    :alt: PyPI - Python Version
    :target: https://www.python.org
+
+.. |SMuFL| image:: https://img.shields.io/github/v/tag/w3c/smufl?label=SMuFL
 
 .. |license| image:: https://img.shields.io/pypi/l/smufolib
    :alt: PyPI - License
