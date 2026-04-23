@@ -44,6 +44,8 @@ be installed with `pip <https://pip.pypa.io/>`__:
    :target: https://www.python.org
 
 .. |SMuFL| image:: https://img.shields.io/github/v/tag/w3c/smufl?label=SMuFL
+   :alt: SMuFL - Version
+   :target: https://github.com/w3c-cg/smufl
 
 .. |license| image:: https://img.shields.io/pypi/l/smufolib
    :alt: PyPI - License
