@@ -130,5 +130,5 @@ jobs:
           files: coverage.xml
           flags: python-${{ matrix.python-version }}
           name: codecov-umbrella
-          fail_ci_if_error: true
+          fail_ci_if_error: false
           token: ${{ secrets.CODECOV_TOKEN }}
