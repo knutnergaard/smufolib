@@ -43,7 +43,7 @@ be installed with `pip <https://pip.pypa.io/>`__:
    :alt: PyPI - Python Version
    :target: https://www.python.org
 
-.. |SMuFL| image:: https://img.shields.io/github/v/tag/w3c/smufl?label=SMuFL
+.. |SMuFL| image:: https://img.shields.io/badge/SMuFL-1.4-blue
    :alt: SMuFL - Version
    :target: https://github.com/w3c-cg/smufl
 
