@@ -1,7 +1,7 @@
 import unittest
 from unittest.mock import Mock
 
-from fontParts.fontshell import RFont, RGlyph
+from fontParts.fontshell import RFont
 
 from smufolib.objects.font import Font
 from tests.testUtils import SavedFontMixin

@@ -1,7 +1,7 @@
 import json
 import sys
 import unittest
-from unittest.mock import PropertyMock, patch
+from unittest.mock import patch
 
 
 from tests.testUtils import (
@@ -10,7 +10,6 @@ from tests.testUtils import (
     drawLines,
     getVerboseOutput,
 )
-from smufolib.objects.engravingDefaults import EngravingDefaults
 from bin.calculateEngravingDefaults import (
     ENGRAVING_DEFAULTS_MAPPING,
     calculateEngravingDefaults,
